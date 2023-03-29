@@ -13,7 +13,16 @@
             android:usesCleartextTraffic="false"
             tools:targetApi="31">
         <activity
-                android:name=".MainActivity"
+                android:name=".activities.PropertyListActivity"
+                android:exported="false" />
+        <activity
+                android:name=".activities.LobbyViewActivity"
+                android:exported="false" />
+        <activity
+                android:name=".activities.GameViewActivity"
+                android:exported="false" />
+        <activity
+                android:name=".activities.MainActivity"
                 android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
