@@ -82,4 +82,7 @@ public class Property extends Field {
         return (int) (this.baseRent * this.accessories.size() * levelFactor);
     }
 
+    public void resetAccessories() {
+        this.accessories.clear();
+    }
 }
