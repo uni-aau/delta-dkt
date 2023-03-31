@@ -85,4 +85,31 @@ public class Property extends Field {
     public void resetAccessories() {
         this.accessories.clear();
     }
+
+
+    public int getPrice() {
+        return price;
+    }
+
+    public PropertyLevel getLevel() {
+        return level;
+    }
+
+    public Player getOwner() {
+        return owner;
+    }
+
+    public int getHousePrice() {
+        return housePrice;
+    }
+
+    public int getHotelPrice() {
+        return hotelPrice;
+    }
+
+    public ArrayList<PropertyAccessory> getAccessories() {
+        return accessories;
+    }
+
+
 }
