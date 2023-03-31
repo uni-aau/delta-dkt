@@ -61,4 +61,25 @@ public class Property extends Field {
     }
 
 
+    /**
+     * This method will calculate the rent based on the accessories on it, its baseRent and its property level.
+     *
+     * @return The rent to be paid by any person who visits this property.
+     */
+    public int calculateRent() {
+        if (this.accessories.size() == 0) return this.baseRent;
+
+        double levelFactor = 1;
+
+        if (this.level == PropertyLevel.cheap) levelFactor = 0.5;
+        if (this.level == PropertyLevel.premium) levelFactor = 1.5;
+
+        // A house is worth 6 houses
+        if (this.accessories.get(0) == PropertyAccessory.hotel)
+            return (int) (this.baseRent * levelFactor * 6);
+
+        // otherwise return the product of: houses on the proeprty multiplied with its baseRent and its level factor.
+        return (int) (this.baseRent * this.accessories.size() * levelFactor);
+    }
+
 }
