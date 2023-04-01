@@ -94,6 +94,19 @@ public class PropertyTests {
 
 
     /**
+     * Checks whether a house can be added to the property when there is a hotel.
+     */
+    @Test
+    void check_Invalid_addHouse_withHotel() {
+        testAccessory(0, 0);
+        dummy.addHotel(1000);
+
+        dummy.addHouse(1000);
+        testAccessory(0, 1);
+    }
+
+
+    /**
      * Checks whether the properties accessories match the expected values.
      *
      * @param expectedHouse The expected count of houses.
