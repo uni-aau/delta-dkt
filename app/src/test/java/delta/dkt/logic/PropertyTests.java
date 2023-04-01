@@ -147,6 +147,31 @@ public class PropertyTests {
     //* Testing Property value evaluations
 
 
+    /**
+     * Checks whether the raw value of the property is calculated correctly.
+     */
+    @Test
+    void checkRawPropertyValue () {
+        Assertions.assertEquals(dummy.getPrice(), dummy.getRawValue());
+
+        dummy.addHouse(1000);
+        Assertions.assertEquals(dummy.getPrice() + dummy.getHousePrice(), dummy.getRawValue());
+
+        dummy.addHouse(1000);
+        Assertions.assertEquals(dummy.getPrice() + dummy.getHousePrice() * 2, dummy.getRawValue());
+
+        dummy.addHouse(1000);
+        Assertions.assertEquals(dummy.getPrice() + dummy.getHousePrice() * 3, dummy.getRawValue());
+
+        dummy.addHouse(1000);
+        Assertions.assertEquals(dummy.getPrice() + dummy.getHousePrice() * 4, dummy.getRawValue());
+
+
+        dummy.addHotel(1000);
+        Assertions.assertEquals(dummy.getPrice() + dummy.getHotelPrice(), dummy.getRawValue());
+    }
+    
+
 
     /**
      * Calculates the expected rent of a propery
