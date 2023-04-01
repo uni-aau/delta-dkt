@@ -78,10 +78,10 @@ public class Property extends Field {
 
         // A house is worth 6 houses
         if (this.accessories.get(0) == PropertyAccessory.hotel)
-            return (int) (this.baseRent * levelFactor * 6);
+            return (int) (this.baseRent + this.baseRent * levelFactor * 6);
 
         // otherwise return the product of: houses on the proeprty multiplied with its baseRent and its level factor.
-        return (int) (this.baseRent * this.accessories.size() * levelFactor);
+        return (int) (this.baseRent + this.baseRent * this.accessories.size() * levelFactor);
     }
 
     /**
@@ -97,7 +97,7 @@ public class Property extends Field {
      * @param playerCash The cash of the player which is used to check whether the player is able to buy a house.
      * @return Returns whether a house has been added to the property or not.
      */
-    public boolean buyHouse(int playerCash) {
+    public boolean addHouse(int playerCash) {
         // only one hotel can be on the property.
         if (this.accessories.size() == 1 && this.accessories.get(0) == PropertyAccessory.hotel) return false;
 
@@ -178,6 +178,8 @@ public class Property extends Field {
      * @return Returns the count of hotels on the property, can only be (0|1).
      */
     public int getHotels() {
+        if (this.accessories.size() == 0) return 0;
+
         if (this.accessories.get(0) == PropertyAccessory.hotel) return 1;
 
         // there can only be 1 hotel on a property.
