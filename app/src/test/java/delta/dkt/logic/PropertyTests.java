@@ -27,9 +27,7 @@ public class PropertyTests {
     void checkPropertyOwner () {
         Assertions.assertNull(dummy.getOwner());
 
-        Assertions.assertDoesNotThrow(() -> {
-            dummy.setOwner(playerMock);
-        });
+        Assertions.assertDoesNotThrow(() -> dummy.setOwner(playerMock));
 
         Assertions.assertNotNull(dummy.getOwner());
         Assertions.assertEquals(playerMock, dummy.getOwner());
@@ -130,6 +128,7 @@ public class PropertyTests {
         testRentCalculations(base, levelFactor);
     }
 
+
     /**
      * Checks whether the rent calculation increases properly considering its level-factor, in this case premium.
      */
@@ -142,6 +141,8 @@ public class PropertyTests {
 
         testRentCalculations(base, levelFactor);
     }
+
+
 
     /**
      * Calculates the expected rent of a propery
