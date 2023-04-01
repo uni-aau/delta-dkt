@@ -145,7 +145,22 @@ public class Property extends Field {
 
         return total;
     }
-    
+
+    /**
+     * @return Returns the value for which the property could be sold. Calculation: 50% property price, 25% accessory price.
+     */
+    public int getSellValue() {
+        // only 50% of the price is refundable
+        double value = this.price * 0.5;
+
+        // only 25% of the accessories value is refundable
+        value += this.getHouses() * this.housePrice * 0.25;
+        value += this.getHotels() * this.hotelPrice * 0.25;
+
+        return (int) value;
+    }
+
+
     // Getters
 
     /**
