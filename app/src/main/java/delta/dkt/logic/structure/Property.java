@@ -134,7 +134,18 @@ public class Property extends Field {
         return true;
     }
 
+    /**
+     * @return Returns the total value of the property, including the price and its accessories.
+     */
+    public int getRawValue() {
+        int total = this.price;
 
+        total += getHouses() * this.housePrice;
+        total += getHotels() * this.hotelPrice;
+
+        return total;
+    }
+    
     // Getters
 
     /**
