@@ -81,7 +81,7 @@ public class Property extends Field {
             return (int) (this.baseRent * levelFactor * 6);
 
         // otherwise return the product of: houses on the proeprty multiplied with its baseRent and its level factor.
-        return (int) (this.baseRent * this.accessories.size() * levelFactor);
+        return (int) (this.baseRent + this.baseRent * this.accessories.size() * levelFactor);
     }
 
     /**
