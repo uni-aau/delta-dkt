@@ -101,7 +101,24 @@ public class PropertyTests {
         testAccessory(0, 1);
     }
 
+    /**
+     * Checks whether the accessories of a property can be set to default (empty).
+     */
+    @Test
+    void checkResetingAccessories () {
+        testAccessory(0, 0);
 
+        dummy.addHouse(1000);
+        testAccessory(1, 0);
+
+        dummy.addHouse(1000);
+        testAccessory(2, 0);
+
+        dummy.resetAccessories();
+        testAccessory(0, 0);
+    }
+
+    
     //* Testing Rent Calculations
 
 
