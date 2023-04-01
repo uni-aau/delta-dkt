@@ -118,7 +118,7 @@ public class PropertyTests {
     }
 
     /**
-     * Checks whether the rent calculation for a cheap property increases properly considering its level / factor.
+     * Checks whether the rent calculation for a cheap property increases properly considering its level / factor, in this case cheap.
      */
     @Test
     void checkCheapRentCalculation () {
