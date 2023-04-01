@@ -111,6 +111,29 @@ public class Property extends Field {
         return true;
     }
 
+    /**
+     * This method adds a house to this property as long the rules of the game are not broken. When there are
+     *
+     * @param playerCash The cash of player is used to check if a hotel can be bought.
+     * @return Returns whether a hotel has been added to the property or not.
+     */
+    public boolean addHotel(int playerCash) {
+        // when there is at least one house but less than 4 houses (hotel could replace them) on the property than a hotel can't be bought.
+        if (this.accessories.size() > 0 && this.accessories.size() < 4) return false;
+
+        //? this way a hotel could be bought before houses are on the property or when there 4 houses.
+        //? depending on the prefered game speed this setting could be changed.
+
+        // player can't efford to pay a hotel
+        if (playerCash < this.hotelPrice) return false;
+
+        // when there are 4 houses on the property, replace them with a hotel.
+        if (this.accessories.size() == 4) this.resetAccessories();
+
+        this.accessories.add(PropertyAccessory.hotel);
+        return true;
+    }
+
 
     // Getters
 
