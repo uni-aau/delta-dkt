@@ -35,5 +35,30 @@ public class PropertyTests {
         Assertions.assertEquals(playerMock, dummy.getOwner());
     }
 
+    /**
+     * Checks whether a hotel can be bought, including testing for game rules (only 1 hotel can be bought).
+     */
+    @Test
+    void checkHotelAccessory() {
+        testAccessory(0, 0);
 
+        dummy.addHotel(1000);
+        testAccessory(0, 1);
+
+        dummy.addHotel(1000);
+        testAccessory(0, 1);
+    }
+
+
+    /**
+     * Checks whether the properties accessories match the expected values.
+     *
+     * @param expectedHouse The expected count of houses.
+     * @param expectedHotel The expected count of hotels.
+     */
+    private void testAccessory(int expectedHouse, int expectedHotel) {
+        Assertions.assertEquals((expectedHouse + expectedHotel), dummy.getAccessories().size());
+        Assertions.assertEquals(expectedHouse, dummy.getHouses());
+        Assertions.assertEquals(expectedHotel, dummy.getHotels());
+    }
 }
