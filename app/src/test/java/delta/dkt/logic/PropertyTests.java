@@ -75,7 +75,6 @@ public class PropertyTests {
         testAccessory(4, 0);
     }
 
-
     /**
      * Checks whether the transition from 4 houses to 1 hotel works as indentended
      */
@@ -90,7 +89,6 @@ public class PropertyTests {
         testAccessory(0, 1);
     }
 
-
     /**
      * Checks whether a house can be added to the property when there is a hotel.
      */
@@ -102,6 +100,9 @@ public class PropertyTests {
         dummy.addHouse(1000);
         testAccessory(0, 1);
     }
+
+
+    //* Testing Rent Calculations
 
 
     /**
@@ -141,6 +142,9 @@ public class PropertyTests {
 
         testRentCalculations(base, levelFactor);
     }
+
+
+    //* Testing Property value evaluations
 
 
 
