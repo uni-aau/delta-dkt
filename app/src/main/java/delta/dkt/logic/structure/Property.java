@@ -178,6 +178,8 @@ public class Property extends Field {
      * @return Returns the count of hotels on the property, can only be (0|1).
      */
     public int getHotels() {
+        if (this.accessories.size() == 0) return 0;
+
         if (this.accessories.get(0) == PropertyAccessory.hotel) return 1;
 
         // there can only be 1 hotel on a property.
