@@ -107,6 +107,31 @@ public class PropertyTests {
 
 
     /**
+     * Checks whether the rent increases with the amount of houses and hotels, in regard to the property level (factor).
+     */
+    @Test
+    void checkNormalRentCalculation() {
+        Assertions.assertEquals(10, dummy.calculateRent());
+
+        dummy.addHouse(1000);
+        Assertions.assertEquals(20, dummy.calculateRent());
+
+        dummy.addHouse(1000);
+        Assertions.assertEquals(30, dummy.calculateRent());
+
+        dummy.addHouse(1000);
+        Assertions.assertEquals(40, dummy.calculateRent());
+
+        dummy.addHouse(1000);
+        Assertions.assertEquals(50, dummy.calculateRent());
+
+
+        dummy.addHotel(2000);
+        testAccessory(0, 1);
+        Assertions.assertEquals(70, dummy.calculateRent());
+    }
+
+    /**
      * Checks whether the properties accessories match the expected values.
      *
      * @param expectedHouse The expected count of houses.
