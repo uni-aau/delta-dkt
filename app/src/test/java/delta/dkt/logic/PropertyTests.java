@@ -33,6 +33,15 @@ public class PropertyTests {
         Assertions.assertEquals(playerMock, dummy.getOwner());
     }
 
+
+    /**
+     * Checks whether the provided level is set and accessible.
+     */
+    @Test
+    void checkPropertyLevel () {
+        Assertions.assertEquals(PropertyLevel.normal, dummy.getLevel());
+    }
+
     /**
      * Checks whether a hotel can be bought, including testing for game rules (only 1 hotel can be bought).
      */
