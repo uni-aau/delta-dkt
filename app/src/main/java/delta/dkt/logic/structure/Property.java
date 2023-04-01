@@ -2,6 +2,9 @@ package delta.dkt.logic.structure;
 
 import java.util.ArrayList;
 
+/**
+ * This class represents a property of the game that can be bought, where rent can be paid and more.
+ */
 public class Property extends Field {
     private int price;
     private int baseRent;
@@ -82,31 +85,51 @@ public class Property extends Field {
         return (int) (this.baseRent * this.accessories.size() * levelFactor);
     }
 
+    /**
+     * This method will reset the accessories on the property. Thus, all houses or a hotel will be removed from it.
+     */
     public void resetAccessories() {
         this.accessories.clear();
     }
 
-
+    /**
+     * @return Returns the price of the property for which it can be bought.
+     */
     public int getPrice() {
         return price;
     }
 
+    /**
+     * @return Returns the type/level of property, which has direct impact on the rent calculation. It can either be a property that has a good, normal or cheap rent ratio.
+     */
     public PropertyLevel getLevel() {
         return level;
     }
 
+    /**
+     * @return Returns the Player that has bought, thus owns this property.
+     */
     public Player getOwner() {
         return owner;
     }
 
+    /**
+     * @return Returns the price for which a house can be bought on to this property.
+     */
     public int getHousePrice() {
         return housePrice;
     }
 
+    /**
+     * @return Returns the price for which a hotel can be bought on to this property.
+     */
     public int getHotelPrice() {
         return hotelPrice;
     }
 
+    /**
+     * @return Returns the current accesssories on the property, thus a hotel, its houses or an empty list.
+     */
     public ArrayList<PropertyAccessory> getAccessories() {
         return accessories;
     }
