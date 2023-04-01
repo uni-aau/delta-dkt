@@ -97,7 +97,7 @@ public class Property extends Field {
      * @param playerCash The cash of the player which is used to check whether the player is able to buy a house.
      * @return Returns whether a house has been added to the property or not.
      */
-    public boolean buyHouse(int playerCash) {
+    public boolean addHouse(int playerCash) {
         // only one hotel can be on the property.
         if (this.accessories.size() == 1 && this.accessories.get(0) == PropertyAccessory.hotel) return false;
 
