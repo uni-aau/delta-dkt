@@ -79,6 +79,21 @@ public class PropertyTests {
 
 
     /**
+     * Checks whether the transition from 4 houses to 1 hotel works as indentended
+     */
+    @Test
+    void check_houseTransition() {
+        // add 4 houses to the property
+        check_addHouse();
+
+        testAccessory(4, 0);
+
+        dummy.addHotel(1000);
+        testAccessory(0, 1);
+    }
+
+
+    /**
      * Checks whether the properties accessories match the expected values.
      *
      * @param expectedHouse The expected count of houses.
