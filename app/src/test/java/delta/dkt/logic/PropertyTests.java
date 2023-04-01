@@ -40,9 +40,14 @@ public class PropertyTests {
     void checkHotelAccessory () {
         testAccessory(0, 0);
 
+        // not enough money to buy a hotel
+        dummy.addHotel(0);
+        testAccessory(0, 0);
+
         dummy.addHotel(1000);
         testAccessory(0, 1);
 
+        // to many hotels
         dummy.addHotel(1000);
         testAccessory(0, 1);
     }
@@ -52,6 +57,10 @@ public class PropertyTests {
      */
     @Test
     void check_addHouse () {
+        testAccessory(0, 0);
+
+        // not enough money to buy a house
+        dummy.addHouse(0);
         testAccessory(0, 0);
 
         // add house nr 1
@@ -118,7 +127,7 @@ public class PropertyTests {
         testAccessory(0, 0);
     }
 
-    
+
     //* Testing Rent Calculations
 
 
