@@ -116,7 +116,20 @@ public class PropertyTests {
 
         testRentCalculations(base, levelFactor);
     }
-    
+
+    /**
+     * Checks whether the rent calculation for a cheap property increases properly considering its level / factor.
+     */
+    @Test
+    void checkCheapRentCalculation () {
+        dummy = new Property(10, 10, 10, PropertyLevel.cheap, 10, 10);
+
+        int base = 10;
+        double levelFactor = 0.5;
+
+        testRentCalculations(base, levelFactor);
+    }
+
 
     /**
      * Calculates the expected rent of a propery
@@ -133,7 +146,7 @@ public class PropertyTests {
         rent += houses * base * levelFactor;
 
         // add hotel rent calculation
-        rent += hotel * base * levelFactor;
+        rent += hotel * base * levelFactor * 6;
 
         return rent;
     }
