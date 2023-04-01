@@ -21,7 +21,27 @@ public class PropertyTests {
 
     //* Testing getter, setter functions
 
-    
+    /**
+     * Check the location of the property by calling its inheritated getter function
+     */
+    @Test
+    void checkLocation () {
+        Assertions.assertEquals(12, dummy.getLocation());
+    }
+
+
+    /**
+     * Checks whether the name is set by default and if it can be modified.
+     */
+    @Test
+    void checkName () {
+        Assertions.assertNull(dummy.getName());
+
+        dummy.setName("Luxenburg");
+        Assertions.assertEquals("Luxenburg", dummy.getName());
+    }
+
+
     /**
      * Checks whether the provided level is set and accessible.
      */
