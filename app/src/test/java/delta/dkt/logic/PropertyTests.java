@@ -49,6 +49,34 @@ public class PropertyTests {
         testAccessory(0, 1);
     }
 
+    /**
+     * Checks whether a house can be added to a property and if the amount of houses is capped at 4.
+     */
+    @Test
+    void check_addHouse() {
+        testAccessory(0, 0);
+
+        // add house nr 1
+        dummy.addHouse(1000);
+        testAccessory(1, 0);
+
+        // add house nr 2
+        dummy.addHouse(1000);
+        testAccessory(2, 0);
+
+        // add house nr 3
+        dummy.addHouse(1000);
+        testAccessory(3, 0);
+
+        // add house nr 4
+        dummy.addHouse(1000);
+        testAccessory(4, 0);
+
+        // theoretically add house nr 5 => would brake the rules of the game
+        dummy.addHouse(1000);
+        testAccessory(4, 0);
+    }
+
 
     /**
      * Checks whether the properties accessories match the expected values.
