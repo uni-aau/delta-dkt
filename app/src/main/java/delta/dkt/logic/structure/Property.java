@@ -63,7 +63,6 @@ public class Property extends Field {
         this.owner = owner;
     }
 
-
     /**
      * This method will calculate the rent based on the accessories on it, its baseRent and its property level.
      *
@@ -91,6 +90,30 @@ public class Property extends Field {
     public void resetAccessories() {
         this.accessories.clear();
     }
+
+    /**
+     * This method adds a house to the property as long as it does not break the rules of the game.
+     *
+     * @param playerCash The cash of the player which is used to check whether the player is able to buy a house.
+     * @return Returns whether a house has been added to the property or not.
+     */
+    public boolean buyHouse(int playerCash) {
+        // only one hotel can be on the property.
+        if (this.accessories.size() == 1 && this.accessories.get(0) == PropertyAccessory.hotel) return false;
+
+        // max of 4 houses on the property.
+        if (this.accessories.size() >= 4) return false;
+
+        // the player is able to pay a house
+        if (playerCash < this.housePrice) return false;
+
+        this.accessories.add(PropertyAccessory.house);
+        return true;
+    }
+
+
+    // Getters
+
 
     /**
      * @return Returns the price of the property for which it can be bought.
