@@ -78,7 +78,7 @@ public class Property extends Field {
 
         // A house is worth 6 houses
         if (this.accessories.get(0) == PropertyAccessory.hotel)
-            return (int) (this.baseRent * levelFactor * 6);
+            return (int) (this.baseRent + this.baseRent * levelFactor * 6);
 
         // otherwise return the product of: houses on the proeprty multiplied with its baseRent and its level factor.
         return (int) (this.baseRent + this.baseRent * this.accessories.size() * levelFactor);
