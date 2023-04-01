@@ -19,6 +19,17 @@ public class PropertyTests {
         dummy = new Property(12, 100, 10, PropertyLevel.normal, 100);
     }
 
+    //* Testing getter, setter functions
+
+    
+    /**
+     * Checks whether the provided level is set and accessible.
+     */
+    @Test
+    void checkPropertyLevel () {
+        Assertions.assertEquals(PropertyLevel.normal, dummy.getLevel());
+    }
+
 
     /**
      * This test checks whether the owner of a property can be set.
@@ -34,13 +45,7 @@ public class PropertyTests {
     }
 
 
-    /**
-     * Checks whether the provided level is set and accessible.
-     */
-    @Test
-    void checkPropertyLevel () {
-        Assertions.assertEquals(PropertyLevel.normal, dummy.getLevel());
-    }
+    //* Testing Property Accessories modifications
 
     /**
      * Checks whether a hotel can be bought, including testing for game rules (only 1 hotel can be bought).
