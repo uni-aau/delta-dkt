@@ -170,7 +170,52 @@ public class PropertyTests {
         dummy.addHotel(1000);
         Assertions.assertEquals(dummy.getPrice() + dummy.getHotelPrice(), dummy.getRawValue());
     }
-    
+
+
+    /**
+     * Checks whether the sell value of a property for all the possible accessories is calculated correclty.
+     */
+    @Test
+    void checkSellPropertyValue () {
+        // no accessories
+        testSellValue();
+
+        dummy.addHouse(1000);
+        testSellValue();
+
+        dummy.addHouse(1000);
+        testSellValue();
+
+        dummy.addHouse(1000);
+        testSellValue();
+
+        dummy.addHouse(1000);
+        testSellValue();
+
+
+        dummy.addHotel(1000);
+        testSellValue();
+    }
+
+    /**
+     * Checks whether the actual value is equal to the expected value.
+     */
+    private void testSellValue () {
+        Assertions.assertEquals(calculateExpectedSellValue(), dummy.getSellValue());
+    }
+
+    /**
+     * @return the sell value of the property (50% price, 25% accessories)
+     */
+    private int calculateExpectedSellValue () {
+        int value = dummy.getPrice() / 2;
+
+        value += dummy.getHouses() * dummy.getHousePrice() * 0.25;
+        value += dummy.getHotels() * dummy.getHotelPrice() * 0.25;
+
+        return value;
+    }
+
 
 
     /**
