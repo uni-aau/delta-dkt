@@ -148,6 +148,16 @@ public class Property extends Field {
         return this.accessories.size();
     }
 
+    /**
+     * @return Returns the count of hotels on the property, can only be (0|1).
+     */
+    public int getHotels() {
+        if (this.accessories.get(0) == PropertyAccessory.hotel) return 1;
+
+        // there can only be 1 hotel on a property.
+        return 0;
+    }
+
 
     /**
      * @return Returns the price of the property for which it can be bought.
