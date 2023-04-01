@@ -130,6 +130,18 @@ public class PropertyTests {
         testRentCalculations(base, levelFactor);
     }
 
+    /**
+     * Checks whether the rent calculation increases properly considering its level-factor, in this case premium.
+     */
+    @Test
+    void checkPremiumRentCalculation () {
+        dummy = new Property(10, 10, 10, PropertyLevel.premium, 10, 10);
+
+        int base = 10;
+        double levelFactor = 1.5;
+
+        testRentCalculations(base, levelFactor);
+    }
 
     /**
      * Calculates the expected rent of a propery
