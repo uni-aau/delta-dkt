@@ -137,6 +137,17 @@ public class Property extends Field {
 
     // Getters
 
+    /**
+     * @return Returns the count of houses on the property
+     */
+    public int getHouses() {
+        if (this.accessories.size() == 0) return 0;
+
+        if (this.accessories.get(0) == PropertyAccessory.hotel) return 0;
+
+        return this.accessories.size();
+    }
+
 
     /**
      * @return Returns the price of the property for which it can be bought.
