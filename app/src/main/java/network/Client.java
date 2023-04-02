@@ -24,6 +24,7 @@ public class Client extends Thread {
 
     private Object runningToken;
 
+    private static final String messageDelimiter = "\0";
 
     public Client(String host, int port) {
         this.host = host;
@@ -128,7 +129,7 @@ public class Client extends Thread {
             //and an reply can be received
             String answer = outputBuffer.poll().sendMessage(printStream, bufferedReader);
             if (answer != null) {
-               handleInput(answer);
+                handleInput(answer);
             }
         }
     }
@@ -161,13 +162,17 @@ public class Client extends Thread {
     /**
      * Handles the input the client receives. This is currently incomplete and it will (hopefully)
      * defer the message to the logic
+     *
      * @param message
      */
     private void handleInput(String message) {
         //TODO Defer to the logic classes
         //Currently for testing: ECHO
-        if (!message.equals("pong")) {
-            insertIntoOutputBuffer(new Message(false, message, MessageType.ECHO));
+        String[] messages = message.split(messageDelimiter);
+        for(String m:messages) {
+            if (!m.equals("pong")) {
+                insertIntoOutputBuffer(new Message(false, m, MessageType.ECHO));
+            }
         }
     }
 }

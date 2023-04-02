@@ -36,6 +36,8 @@ public class TestServer extends Thread {
 
     private ArrayList<String> independentMessages;
 
+    private static final String messageDelimiter = "\0";
+
     public TestServer(int port) {
         this.port = port;
 
@@ -68,7 +70,7 @@ public class TestServer extends Thread {
                         if (gotAnswer) {
 
                             String answer = getAnswer(br);
-                            answeredMessages.add(answer);
+                            handleMessage(answer, false);
 
                            // System.out.println("CLIENT ANSWERED: " + answer);
                         } else {
@@ -82,11 +84,9 @@ public class TestServer extends Thread {
 
                 if (br.ready()) {
                     String message = getAnswer(br);
-                    independentMessages.add(message);
+                    handleMessage(message,true);
 
-                    if(message.equals("ping")){
-                        insertIntoOutputBuffer("pong");
-                    }
+
 
                    // System.out.println("CLIENT SENT: " + message);
                 }
@@ -107,6 +107,22 @@ public class TestServer extends Thread {
             throw new RuntimeException(e);
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
+        }
+    }
+
+    private void handleMessage(String message, boolean isIndependent){
+        String[] messages = message.split(messageDelimiter);
+        if(isIndependent){
+            for(String m:messages){
+                independentMessages.add(m);
+                if(m.equals("ping")){
+                    insertIntoOutputBuffer("pong");
+                }
+            }
+        }else{
+            for(String m:messages){
+                answeredMessages.add(m);
+            }
         }
     }
 

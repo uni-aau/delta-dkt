@@ -33,7 +33,7 @@ public class Message {
     public static String sendAndReceive(PrintStream printStream, BufferedReader bufferedReader, String message, boolean expectsAnswer) {
         String answer = null;
 
-        printStream.println(message);
+        printStream.println(message+"\0");
         printStream.flush();
         if (expectsAnswer) {
             answer = "";

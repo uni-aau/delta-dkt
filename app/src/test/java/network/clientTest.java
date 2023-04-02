@@ -2,24 +2,10 @@ package network;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-import android.util.Log;
-
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.OutputStream;
-import java.io.OutputStreamWriter;
-import java.io.PrintStream;
-import java.net.ServerSocket;
-import java.net.Socket;
-import java.util.Stack;
 
 class clientTest {
 
@@ -94,6 +80,17 @@ class clientTest {
         waitForTraffic();
 
         assertTrue(server.getIndependentMessages().contains("TESTPING"));
+    }
+
+    @Test
+    void testMessageSeparation(){
+        server.insertIntoOutputBuffer("MESSAGE1\0Message2\0Message3\0");
+        waitForTraffic();
+
+        assertEquals("MESSAGE1",server.getAnsweredMessages().get(0));
+        assertEquals("Message2",server.getAnsweredMessages().get(1));
+        assertEquals("Message3",server.getAnsweredMessages().get(2));
+
     }
 
     public void waitForTraffic(){
