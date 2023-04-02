@@ -69,8 +69,8 @@ public class Property extends Field {
 
         double levelFactor = 1;
 
-        if (this.level == PropertyLevel.cheap) levelFactor = 0.5;
-        if (this.level == PropertyLevel.premium) levelFactor = 1.5;
+        if (this.level == PropertyLevel.CHEAP) levelFactor = 0.5;
+        if (this.level == PropertyLevel.PREMIUM) levelFactor = 1.5;
 
         // A house is worth 6 houses
         if (this.accessories.get(0) == PropertyAccessory.HOTEL)
