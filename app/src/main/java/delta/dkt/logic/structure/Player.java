@@ -22,6 +22,21 @@ public class Player {
     }
 
     /**
+     * This function will be fetching the field based on the given location and will buy it, as long as it is not owned by anyone yet and the players cash is sufficient.
+     */
+    private boolean purchaseProperty (int location) {
+        Property prop = null; //todo Map.getField(location)
+
+        if (prop.getOwner() != null) return false;
+        if (prop.getPrice() > this.cash) return false;
+
+        this.cash -= prop.getPrice();
+        prop.setOwner(this);
+        return true;
+    }
+
+
+    /**
      * Will time out this player from moving for a given amount of rounds.
      */
     public void setTimeout (int rounds) {
