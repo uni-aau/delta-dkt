@@ -10,7 +10,7 @@ public class Player {
     private int id = Player._id++;
     private String nickname;
 
-    private Field location = null; //todo -> set this to be the start field
+    private Field position = null; //todo -> set this to be the start field
     private int cash = Player.startCash;
     private ArrayList<Property> properties = new ArrayList<>();
 
