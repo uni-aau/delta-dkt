@@ -53,7 +53,21 @@ public class Player {
         return purchaseProperty(location);
     }
 
-    
+
+    /**
+     * This function sells a given property and adds the refunded value to the players cash and removes the accessories and ownership.
+     */
+    private void refundProperty (int location) {
+        Property property = null; //todo once again fetch the property by its ID from some global field handler.
+
+        this.cash += property.getSellValue();
+
+        property.setOwner(null);
+        property.resetAccessories();
+        this.properties.remove(property);
+    }
+
+
     //? Player suspensions
 
     /**
