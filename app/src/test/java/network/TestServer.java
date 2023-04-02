@@ -136,7 +136,7 @@ public class TestServer extends Thread {
 
         synchronized (outputBuffer) {
 
-            outputBuffer.add(message);
+            outputBuffer.add(message+messageDelimiter);
         }
     }
 

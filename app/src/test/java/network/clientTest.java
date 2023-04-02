@@ -95,7 +95,7 @@ class clientTest {
 
     public void waitForTraffic(){
         try {
-            Thread.sleep(100);
+            Thread.sleep(250);
             while(!server.hasFinishedQueue()&& !client.hasFinishedQueue()){
                 Thread.sleep(1);
             }
