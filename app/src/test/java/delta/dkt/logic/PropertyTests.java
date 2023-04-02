@@ -9,7 +9,7 @@ import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
 
-public class PropertyTests {
+class PropertyTests {
 
     Player playerMock = Mockito.mock(Player.class);
     Property dummy = null;
