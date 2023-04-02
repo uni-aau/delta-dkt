@@ -71,6 +71,12 @@ public class Player {
         return true;
     }
 
+    /**
+     * This function will attempt to sell the property on the players current position.
+     */
+    public boolean sellProperty () {
+        return refundProperty(this.position.getLocation());
+    }
 
     //? Player suspensions
 
