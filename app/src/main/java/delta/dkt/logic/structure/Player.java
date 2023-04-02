@@ -110,4 +110,30 @@ public class Player {
         this.suspention = 0;
     }
 
+
+    //? Getters
+
+    public int getId () {
+        return id;
+    }
+
+    public String getNickname () {
+        return nickname;
+    }
+
+    public Field getPosition () {
+        return position;
+    }
+
+    public int getCash () {
+        return cash;
+    }
+
+    public ArrayList<Property> getProperties () {
+        return properties;
+    }
+
+    public int getSuspention () {
+        return suspention;
+    }
 }
