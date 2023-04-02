@@ -72,13 +72,6 @@ public class Player {
     }
 
     /**
-     * This function will attempt to sell the property on the players current position.
-     */
-    public boolean sellProperty () {
-        return refundProperty(this.position.getLocation());
-    }
-
-    /**
      * This function will attempt to sell a given property. The player does not have to be on top of it.
      */
     public boolean sellProperty (int location) {
