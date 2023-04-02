@@ -42,6 +42,14 @@ public class Player {
         return purchaseProperty(this.position.getLocation());
     }
 
+    /**
+     * This function will attempt to buy a given property by its location.
+     * Following the rules of DKT, this type of acquistion is normally not allowed, but can be
+     * used to increase the game speed.
+     */
+    public boolean buyProperty (int location) {
+        return purchaseProperty(location);
+    }
 
     /**
      * Will time out this player from moving for a given amount of rounds.
