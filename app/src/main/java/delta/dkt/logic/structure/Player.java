@@ -35,6 +35,13 @@ public class Player {
         return true;
     }
 
+    /**
+     * This function will attempt to buy the property on which the player currently is standing on.
+     */
+    public boolean buyProperty () {
+        return purchaseProperty(this.position.getLocation());
+    }
+
 
     /**
      * Will time out this player from moving for a given amount of rounds.
