@@ -56,15 +56,19 @@ public class Player {
 
     /**
      * This function sells a given property and adds the refunded value to the players cash and removes the accessories and ownership.
+     * @return Returns whether this operation was succesful or not.
      */
-    private void refundProperty (int location) {
+    private boolean refundProperty (int location) {
         Property property = null; //todo once again fetch the property by its ID from some global field handler.
+
+        if (property.getOwner() != this) return false;
 
         this.cash += property.getSellValue();
 
         property.setOwner(null);
         property.resetAccessories();
         this.properties.remove(property);
+        return true;
     }
 
 
