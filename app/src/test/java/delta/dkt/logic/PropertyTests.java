@@ -9,14 +9,14 @@ import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
 
-public class PropertyTests {
+class PropertyTests {
 
     Player playerMock = Mockito.mock(Player.class);
     Property dummy = null;
 
     @BeforeEach
     void setup () {
-        dummy = new Property(12, 100, 10, PropertyLevel.normal, 100);
+        dummy = new Property(12, 100, 10, PropertyLevel.NORMAL, 100);
     }
 
     //* Testing getter, setter functions
@@ -47,7 +47,7 @@ public class PropertyTests {
      */
     @Test
     void checkPropertyLevel () {
-        Assertions.assertEquals(PropertyLevel.normal, dummy.getLevel());
+        Assertions.assertEquals(PropertyLevel.NORMAL, dummy.getLevel());
     }
 
 
@@ -181,7 +181,7 @@ public class PropertyTests {
      */
     @Test
     void checkCheapRentCalculation () {
-        dummy = new Property(10, 10, 10, PropertyLevel.cheap, 10, 10);
+        dummy = new Property(10, 10, 10, PropertyLevel.CHEAP, 10, 10);
 
         int base = 10;
         double levelFactor = 0.5;
@@ -195,7 +195,7 @@ public class PropertyTests {
      */
     @Test
     void checkPremiumRentCalculation () {
-        dummy = new Property(10, 10, 10, PropertyLevel.premium, 10, 10);
+        dummy = new Property(10, 10, 10, PropertyLevel.PREMIUM, 10, 10);
 
         int base = 10;
         double levelFactor = 1.5;
