@@ -74,15 +74,11 @@ class PropertyTests {
     void checkHotelAccessory () {
         testAccessory(0, 0);
 
-        // not enough money to buy a hotel
-        dummy.addHotel(0);
-        testAccessory(0, 0);
-
-        dummy.addHotel(1000);
+        dummy.addHotel();
         testAccessory(0, 1);
 
         // to many hotels
-        dummy.addHotel(1000);
+        dummy.addHotel();
         testAccessory(0, 1);
     }
 
@@ -93,28 +89,24 @@ class PropertyTests {
     void check_addHouse () {
         testAccessory(0, 0);
 
-        // not enough money to buy a house
-        dummy.addHouse(0);
-        testAccessory(0, 0);
-
         // add house nr 1
-        dummy.addHouse(1000);
+        dummy.addHouse();
         testAccessory(1, 0);
 
         // add house nr 2
-        dummy.addHouse(1000);
+        dummy.addHouse();
         testAccessory(2, 0);
 
         // add house nr 3
-        dummy.addHouse(1000);
+        dummy.addHouse();
         testAccessory(3, 0);
 
         // add house nr 4
-        dummy.addHouse(1000);
+        dummy.addHouse();
         testAccessory(4, 0);
 
         // theoretically add house nr 5 => would brake the rules of the game
-        dummy.addHouse(1000);
+        dummy.addHouse();
         testAccessory(4, 0);
     }
 
@@ -128,7 +120,7 @@ class PropertyTests {
 
         testAccessory(4, 0);
 
-        dummy.addHotel(1000);
+        dummy.addHotel();
         testAccessory(0, 1);
     }
 
@@ -138,9 +130,9 @@ class PropertyTests {
     @Test
     void check_Invalid_addHouse_withHotel () {
         testAccessory(0, 0);
-        dummy.addHotel(1000);
+        dummy.addHotel();
 
-        dummy.addHouse(1000);
+        dummy.addHouse();
         testAccessory(0, 1);
     }
 
@@ -151,10 +143,10 @@ class PropertyTests {
     void checkResetingAccessories () {
         testAccessory(0, 0);
 
-        dummy.addHouse(1000);
+        dummy.addHouse();
         testAccessory(1, 0);
 
-        dummy.addHouse(1000);
+        dummy.addHouse();
         testAccessory(2, 0);
 
         dummy.resetAccessories();
@@ -214,20 +206,20 @@ class PropertyTests {
     void checkRawPropertyValue () {
         Assertions.assertEquals(dummy.getPrice(), dummy.getRawValue());
 
-        dummy.addHouse(1000);
+        dummy.addHouse();
         Assertions.assertEquals(dummy.getPrice() + dummy.getHousePrice(), dummy.getRawValue());
 
-        dummy.addHouse(1000);
+        dummy.addHouse();
         Assertions.assertEquals(dummy.getPrice() + dummy.getHousePrice() * 2, dummy.getRawValue());
 
-        dummy.addHouse(1000);
+        dummy.addHouse();
         Assertions.assertEquals(dummy.getPrice() + dummy.getHousePrice() * 3, dummy.getRawValue());
 
-        dummy.addHouse(1000);
+        dummy.addHouse();
         Assertions.assertEquals(dummy.getPrice() + dummy.getHousePrice() * 4, dummy.getRawValue());
 
 
-        dummy.addHotel(1000);
+        dummy.addHotel();
         Assertions.assertEquals(dummy.getPrice() + dummy.getHotelPrice(), dummy.getRawValue());
     }
 
@@ -240,20 +232,20 @@ class PropertyTests {
         // no accessories
         testSellValue();
 
-        dummy.addHouse(1000);
+        dummy.addHouse();
         testSellValue();
 
-        dummy.addHouse(1000);
+        dummy.addHouse();
         testSellValue();
 
-        dummy.addHouse(1000);
+        dummy.addHouse();
         testSellValue();
 
-        dummy.addHouse(1000);
+        dummy.addHouse();
         testSellValue();
 
 
-        dummy.addHotel(1000);
+        dummy.addHotel();
         testSellValue();
     }
 
@@ -306,20 +298,20 @@ class PropertyTests {
     private void testRentCalculations (int base, double levelFactor) {
         Assertions.assertEquals(expectedRent(base, levelFactor, 0, 0), dummy.calculateRent()); // => base rent of the property
 
-        dummy.addHouse(1000);
+        dummy.addHouse();
         Assertions.assertEquals(expectedRent(base, levelFactor, 1, 0), dummy.calculateRent());
 
-        dummy.addHouse(1000);
+        dummy.addHouse();
         Assertions.assertEquals(expectedRent(base, levelFactor, 2, 0), dummy.calculateRent());
 
-        dummy.addHouse(1000);
+        dummy.addHouse();
         Assertions.assertEquals(expectedRent(base, levelFactor, 3, 0), dummy.calculateRent());
 
-        dummy.addHouse(1000);
+        dummy.addHouse();
         Assertions.assertEquals(expectedRent(base, levelFactor, 4, 0), dummy.calculateRent());
 
 
-        dummy.addHotel(2000);
+        dummy.addHotel();
         testAccessory(0, 1);
         Assertions.assertEquals(expectedRent(base, levelFactor, 0, 1), dummy.calculateRent());
     }
