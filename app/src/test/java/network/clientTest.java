@@ -41,7 +41,14 @@ class clientTest {
 
         client.ping();
 
-        waitForTraffic();
+        while(server.getIndependentMessages().size() != 1){
+           // System.out.println("ping "+server.getAnsweredMessages().size() );
+            try {
+                Thread.sleep(1);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+        }
 
         assertTrue(server.getIndependentMessages().contains("ping"));
 
@@ -52,7 +59,14 @@ class clientTest {
     @Test
     void sendAndReceive() {
         server.insertIntoOutputBuffer("ECHOTEST");
-        waitForTraffic();
+        while(server.getAnsweredMessages().size() != 1){
+           // System.out.println("sendAndReceive "+server.getAnsweredMessages().size() );
+            try {
+                Thread.sleep(1);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+        }
 
         assertTrue(server.getAnsweredMessages().contains("ECHOTEST"));
 
@@ -64,7 +78,14 @@ class clientTest {
             server.insertIntoOutputBuffer("MESSAGE"+i);
         }
 
-        waitForTraffic();
+        while(server.getAnsweredMessages().size() != orderTestSize){
+           // System.out.println("testOrder "+server.getAnsweredMessages().size() );
+            try {
+                Thread.sleep(1);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+        }
 
         for(int i = 0; i<orderTestSize;i++){
             assertEquals("MESSAGE"+i,server.getAnsweredMessages().get(i));
@@ -77,15 +98,30 @@ class clientTest {
     void testClientSend(){
         client.insertIntoOutputBuffer(new Message(false, "TESTPING", MessageType.PING));
 
-        waitForTraffic();
+        while(server.getAnsweredMessages().size() != 1){
+          //  System.out.println("testClientSend "+server.getAnsweredMessages().size() );
+            try {
+                Thread.sleep(1);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+        }
 
-        assertTrue(server.getIndependentMessages().contains("TESTPING"));
+        assertTrue(server.getAnsweredMessages().contains("TESTPING"));
     }
 
     @Test
     void testMessageSeparation(){
         server.insertIntoOutputBuffer("MESSAGE1\0Message2\0Message3\0");
-        waitForTraffic();
+
+        while(server.getAnsweredMessages().size() != 3){
+          //  System.out.println("testMessageSeparation "+server.getAnsweredMessages().size() );
+            try {
+                Thread.sleep(1);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+        }
 
         assertEquals("MESSAGE1",server.getAnsweredMessages().get(0));
         assertEquals("Message2",server.getAnsweredMessages().get(1));
