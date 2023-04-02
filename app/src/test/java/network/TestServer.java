@@ -6,17 +6,23 @@ import java.io.InputStreamReader;
 import java.io.PrintStream;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.ArrayDeque;
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.Stack;
 
+/**
+ * A testclass for the client to simulate a server.
+ * This will get deprecated when the actual server gets implemented.
+ */
 public class TestServer extends Thread {
 
 
     private ServerSocket serverSocket;
     private Socket socket;
 
-    private Stack<String> outputBuffer;
+    private ArrayDeque<String> outputBuffer;
 
     private static final long TIMEOUT = 20000000l;
 
@@ -26,15 +32,16 @@ public class TestServer extends Thread {
 
     private int port;
 
-    private Set<String> answeredMessages;
+    private ArrayList<String> answeredMessages;
 
-    private Set<String> independentMessages;
+    private ArrayList<String> independentMessages;
+
     public TestServer(int port) {
         this.port = port;
 
-        outputBuffer = new Stack<>();
-        answeredMessages = new HashSet<>();
-        independentMessages = new HashSet<>();
+        outputBuffer = new ArrayDeque<>();
+        answeredMessages = new ArrayList<>();
+        independentMessages = new ArrayList<>();
         runningToken = "";
         isRunning = true;
 
@@ -63,22 +70,26 @@ public class TestServer extends Thread {
                             String answer = getAnswer(br);
                             answeredMessages.add(answer);
 
-                            System.out.println("CLIENT ANSWERED: " + answer);
+                           // System.out.println("CLIENT ANSWERED: " + answer);
                         } else {
-                            System.out.println("<No Answer>");
+                           // System.out.println("<No Answer>");
                         }
 
 
                     }
                 }
-                    boolean receivedMessage = waitForAnswer(br);
 
-                    if (receivedMessage) {
-                        String message = getAnswer(br);
-                        independentMessages.add(message);
 
-                        System.out.println("CLIENT SENT: " + message);
+                if (br.ready()) {
+                    String message = getAnswer(br);
+                    independentMessages.add(message);
+
+                    if(message.equals("ping")){
+                        insertIntoOutputBuffer("pong");
                     }
+
+                   // System.out.println("CLIENT SENT: " + message);
+                }
 
 
                 synchronized (runningToken) {
@@ -87,6 +98,8 @@ public class TestServer extends Thread {
                         break;
                     }
                 }
+
+                Thread.sleep(1);
 
 
             }
@@ -103,11 +116,11 @@ public class TestServer extends Thread {
         }
     }
 
-    public void insertIntoOutputBuffer(String message){
+    public void insertIntoOutputBuffer(String message) {
 
-        synchronized (outputBuffer){
+        synchronized (outputBuffer) {
 
-            outputBuffer.push(message);
+            outputBuffer.add(message);
         }
     }
 
@@ -127,6 +140,12 @@ public class TestServer extends Thread {
         return gotAnswer;
     }
 
+    public boolean hasFinishedQueue(){
+        synchronized (outputBuffer){
+            return outputBuffer.isEmpty();
+        }
+    }
+
     private String getAnswer(BufferedReader br) throws IOException {
         String answer = "";
 
@@ -136,11 +155,11 @@ public class TestServer extends Thread {
         return answer;
     }
 
-    public Set<String> getAnsweredMessages() {
+    public ArrayList<String> getAnsweredMessages() {
         return answeredMessages;
     }
 
-    public Set<String> getIndependentMessages() {
+    public ArrayList<String> getIndependentMessages() {
         return independentMessages;
     }
 }

@@ -9,6 +9,8 @@ public class Message {
     private String payLoad;
     private MessageType type;
 
+    private static final long TIMEOUT = 500000000l;
+
     public Message(boolean expectsAnswer, String payLoad, MessageType type) {
         this.expectsAnswer = expectsAnswer;
         this.payLoad = payLoad;
@@ -20,6 +22,14 @@ public class Message {
         return Message.sendAndReceive(printStream, bufferedReader, payLoad, expectsAnswer);
     }
 
+    /**
+     * Sends a message and receives a potential response
+     * @param printStream
+     * @param bufferedReader
+     * @param message
+     * @param expectsAnswer
+     * @return
+     */
     public static String sendAndReceive(PrintStream printStream, BufferedReader bufferedReader, String message, boolean expectsAnswer) {
         String answer = null;
 
@@ -29,7 +39,15 @@ public class Message {
             answer = "";
             try {
 
+                long time = System.nanoTime();
+                //Wait for the recipient to respond
                 while (!bufferedReader.ready()) {
+                    if(System.nanoTime()-time > TIMEOUT) {
+                        //TODO: This timeout could be due to bad networking, maybe pass a flag to the logic so the user can get feedback?
+                        System.err.println("TIMEOUT WHILE WAITING FOR RESPONSE ON MESSAGE: "+message);
+                        break;
+                    }
+
                     Thread.sleep(1);
                 }
 
@@ -46,13 +64,4 @@ public class Message {
 
     }
 
-    public static int ping(PrintStream printStream, BufferedReader bufferedReader){
-        long time = System.nanoTime();
-        sendAndReceive(printStream,bufferedReader,"ping", true);
-        long difference = System.nanoTime()-time;
-
-        int millis = (int)(((double)difference)/1000000.0);
-
-        return millis;
-    }
 }

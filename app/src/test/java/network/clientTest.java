@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import android.util.Log;
 
 import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
@@ -26,6 +27,8 @@ class clientTest {
 
     static Client client;
 
+    static final int orderTestSize = 100;
+
 
     @BeforeAll
     static void setup() {
@@ -41,30 +44,65 @@ class clientTest {
         client.shutdown();
         server.shutdown();
     }
+    @AfterEach
+     void cleanupMessages(){
+        server.getAnsweredMessages().clear();
+        server.getIndependentMessages().clear();
+    }
 
     @Test
     void ping() {
 
         client.ping();
 
-        wait(100);
+        waitForTraffic();
 
         assertTrue(server.getIndependentMessages().contains("ping"));
+
+
 
     }
 
     @Test
     void sendAndReceive() {
         server.insertIntoOutputBuffer("ECHOTEST");
-        wait(100);
+        waitForTraffic();
 
         assertTrue(server.getAnsweredMessages().contains("ECHOTEST"));
 
     }
 
-    public void wait(int millis){
+    @Test
+    void testOrder(){
+        for(int i = 0; i<orderTestSize;i++){
+            server.insertIntoOutputBuffer("MESSAGE"+i);
+        }
+
+        waitForTraffic();
+
+        for(int i = 0; i<orderTestSize;i++){
+            assertEquals("MESSAGE"+i,server.getAnsweredMessages().get(i));
+
+        }
+
+    }
+
+    @Test
+    void testClientSend(){
+        client.insertIntoOutputBuffer(new Message(false, "TESTPING", MessageType.PING));
+
+        waitForTraffic();
+
+        assertTrue(server.getIndependentMessages().contains("TESTPING"));
+    }
+
+    public void waitForTraffic(){
         try {
-            Thread.sleep(millis);
+            Thread.sleep(100);
+            while(!server.hasFinishedQueue()&& !client.hasFinishedQueue()){
+                Thread.sleep(1);
+            }
+
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
