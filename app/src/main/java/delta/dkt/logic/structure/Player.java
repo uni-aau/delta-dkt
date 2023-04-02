@@ -3,15 +3,15 @@ package delta.dkt.logic.structure;
 import java.util.ArrayList;
 
 public class Player {
-    static int startCash = 500;
-    private static int _id = 1;
+    static int START_CASH = 500;
+    private static int _ID = 1;
 
     //? May be used to sync player data across clients
-    private int id = Player._id++;
+    private int id = Player._ID++;
     private String nickname;
 
     private Field position = null; //todo -> set this to be the start field
-    private int cash = Player.startCash;
+    private int cash = Player.START_CASH;
     private ArrayList<Property> properties = new ArrayList<>();
 
     //? May be used to check whether a player is timeoutet, e.g. prison, or not.
@@ -77,6 +77,8 @@ public class Player {
     public boolean sellProperty (int location) {
         return refundProperty(location);
     }
+
+
 
     //? Player suspensions
 
