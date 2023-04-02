@@ -21,6 +21,8 @@ public class Player {
         this.nickname = nickname;
     }
 
+    //? Property handling
+
     /**
      * This function will be fetching the field based on the given location and will buy it, as long as it is not owned by anyone yet and the players cash is sufficient.
      */
@@ -50,6 +52,9 @@ public class Player {
     public boolean buyProperty (int location) {
         return purchaseProperty(location);
     }
+
+    
+    //? Player suspensions
 
     /**
      * Will time out this player from moving for a given amount of rounds.
