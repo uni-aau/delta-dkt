@@ -20,9 +20,14 @@ class clientTest {
     static void setup() {
         server = new TestServer(6868);
         client = new Client("localhost", 6868);
-
-        client.start();
         server.start();
+        try {
+            Thread.sleep(100);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+        client.start();
+
     }
 
     @AfterAll
