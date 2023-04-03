@@ -15,7 +15,8 @@
             app:layout_constraintHorizontal_bias="0.499"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintVertical_bias="0.498" />
+            app:layout_constraintVertical_bias="0.498"
+            app:srcCompat="@drawable/dkttestmap" />
 
     <TextView
             android:layout_width="161dp"
@@ -24,6 +25,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintEnd_toStartOf="@+id/imageView"
+            android:src="@drawable/dkttestmap"
             android:text="General Information"
             android:textStyle="bold"
             android:textSize="16sp"
