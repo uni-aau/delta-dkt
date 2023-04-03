@@ -25,7 +25,7 @@
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintEnd_toStartOf="@+id/imageView"
             android:src="@drawable/dkttestmap"
-            android:text="General Information"
+            android:text="@string/general_information"
             android:textStyle="bold"
             android:textSize="16sp"
             app:layout_constraintBottom_toTopOf="@+id/textView_players_online"
@@ -34,7 +34,7 @@
             android:gravity="center_horizontal" />
 
     <TextView
-            android:text="Players online: {0}/{1}"
+            android:text="@string/players_online"
             android:layout_width="150dp"
             android:layout_height="22dp"
             android:id="@+id/textView_players_online"
@@ -47,7 +47,7 @@
             android:gravity="center" />
 
     <TextView
-            android:text="Cash: {0}$"
+            android:text="@string/cash_text"
             android:layout_width="150dp"
             android:layout_height="23dp"
             android:id="@+id/textView_cash"
@@ -60,7 +60,7 @@
             android:textSize="14sp" />
 
     <TextView
-            android:text="My Properties: {0}"
+            android:text="@string/my_properties_text"
             android:layout_width="150dp"
             android:layout_height="23dp"
             android:id="@+id/textView_my_properties"
@@ -73,7 +73,7 @@
             android:textSize="14sp" />
 
     <TextView
-            android:text="Playing Time: {0}"
+            android:text="@string/playing_time_text"
             android:layout_width="150sp"
             android:layout_height="23dp"
             android:id="@+id/textView_playing_time"
@@ -96,10 +96,10 @@
             app:layout_constraintTop_toBottomOf="@+id/textView_dice_information"
             app:layout_constraintBottom_toTopOf="@+id/button_property_infos"
             android:textSize="12sp"
-            android:text="Roll the dice" />
+            android:text="@string/roll_the_dice" />
 
     <Button
-            android:text="Property Information"
+            android:text="@string/property_information"
             android:layout_width="130dp"
             android:layout_height="55dp"
             android:id="@+id/button_property_infos"
@@ -112,7 +112,7 @@
             android:textSize="12sp" />
 
     <TextView
-            android:text="{0} rolls the dice\n{1} left to roll the dice"
+            android:text="@string/dice_information_text"
             android:layout_width="147dp"
             android:layout_height="60dp"
             android:id="@+id/textView_dice_information"

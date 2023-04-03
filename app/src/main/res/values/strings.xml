@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">DKT</string>
+    <string name="general_information">General Information</string>
+    <string name="players_online">Players online: {0}/{1}</string>
+    <string name="cash_text">Cash: {0}$</string>
+    <string name="my_properties_text">My Properties: {0}</string>
+    <string name="playing_time_text">Playing Time: {0}</string>
+    <string name="roll_the_dice">Roll the dice</string>
+    <string name="property_information">Property Information</string>
+    <string name="dice_information_text">{0} rolls the dice\n{1} left to roll the dice</string>
 </resources>
