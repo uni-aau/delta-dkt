@@ -15,7 +15,8 @@
             app:layout_constraintHorizontal_bias="0.528"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:srcCompat="@drawable/dkttestmap" />
+            app:srcCompat="@drawable/dkttestmap"
+            android:contentDescription="@string/gameview_image_description" />
 
     <TextView
             android:layout_width="161dp"
