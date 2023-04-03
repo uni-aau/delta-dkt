@@ -81,4 +81,42 @@
             app:layout_constraintTop_toBottomOf="@+id/textView9"
             android:gravity="center" />
 
+    <Button
+            android:layout_width="130dp"
+            android:layout_height="55dp"
+            android:id="@+id/button"
+            android:layout_marginEnd="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/imageView"
+            app:layout_constraintHorizontal_bias="0.518"
+            app:layout_constraintTop_toBottomOf="@+id/textView"
+            app:layout_constraintBottom_toTopOf="@+id/button3"
+            android:textSize="12sp"
+            android:text="Roll the dice" />
+
+    <Button
+            android:text="Property Information"
+            android:layout_width="130dp"
+            android:layout_height="55dp"
+            android:id="@+id/button3"
+            android:layout_marginEnd="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/imageView"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintTop_toBottomOf="@+id/button"
+            android:textSize="12sp" />
+
+    <TextView
+            android:text="{0} rolls the dice\n{1} left to roll the dice"
+            android:layout_width="147dp"
+            android:layout_height="57dp"
+            android:id="@+id/textView"
+            app:layout_constraintStart_toEndOf="@+id/imageView"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:gravity="center"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/button" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
