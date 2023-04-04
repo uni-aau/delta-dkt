@@ -69,6 +69,8 @@ public class Player {
 
         Property property = (Property) located;
 
+        if (property.getOwner().getId() != this.getId()) return false;
+
         this.cash += property.getSellValue();
 
         property.setOwner(null);
