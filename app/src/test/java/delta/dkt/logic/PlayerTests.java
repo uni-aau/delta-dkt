@@ -73,7 +73,29 @@ class PlayerTests {
         } else {
             assertFalse(player.buyProperty(testProperty2.getLocation()));
         }
-        
+
+        verifyMockCalls(buying);
+    }
+
+
+    /**
+     * Checks whether a property cannot be bought when it is already owned by someone else.
+     * @param onTop parameterization for whether the player is on top of the property or not.
+     */
+    @ParameterizedTest
+    @ValueSource(booleans = {true, false})
+    void checkPropertyAcqusition_Owned (boolean onTop) {
+        Property buying = onTop ? testProperty1 : testProperty2;
+        buying.setOwner(new Player("Maxi"));
+
+        setMockRequirements_PropertyAquisition();
+
+        if (onTop) {
+            assertFalse(player.buyProperty());
+        } else {
+            assertFalse(player.buyProperty(testProperty2.getLocation()));
+        }
+
         verifyMockCalls(buying);
     }
 
