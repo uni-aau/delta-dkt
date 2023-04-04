@@ -231,6 +231,27 @@ class PlayerTests {
     }
 
     /**
+     * Check whether reducing a player's suspension works properly.
+     */
+    @Test
+    void checkReducingSuspension () {
+        checkSettingPlayerTimeout();
+
+        for (int i = 10; i > 0; i--) {
+            assertEquals(i, player.getSuspention());
+            player.reduceTimeout();
+            assertEquals(i - 1, player.getSuspention());
+
+            // there is still a suspension
+            if (i - 1 > 0) assertTrue(player.isTimeoutet());
+        }
+
+        assertEquals(0, player.getSuspention());
+        assertFalse(player.isTimeoutet());
+    }
+
+    
+    /**
      * This method will set up the mock-requirements for testing the property-payment-cycle
      */
     void setMockRequirements_PropertyAquisition () {
