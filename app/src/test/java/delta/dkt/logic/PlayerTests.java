@@ -29,11 +29,17 @@ class PlayerTests {
         assertEquals("Mike", player.getNickname());
     }
 
-    /**
-     * Checks whether the property on which the player is standing on can be bought.
-     */
+
     @Test
     void checkBuyProperty_onLocation () {
+        testBuyProperty(true);
+    }
+
+
+    /**
+     * This method will attempt to buy a property either on the players current position or any property identified by its location.
+     */
+    void testBuyProperty (boolean standingOnTop) {
         Game.map = mockMapHandling;
         Player.START_CASH = 1000;
         when(mockMapHandling.getField(0)).thenReturn(dummy);
@@ -41,7 +47,11 @@ class PlayerTests {
 
         player = new Player("Patrick"); // => usage mock in instance variables
 
-        boolean paymentState = player.buyProperty();
+        boolean paymentState = false;
+
+        if (standingOnTop) paymentState = player.buyProperty();
+        else paymentState = player.buyProperty(dummy.getLocation());
+
         assertTrue(paymentState);
 
         assertEquals(1, player.getProperties().size());
