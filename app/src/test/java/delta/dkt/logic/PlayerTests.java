@@ -39,7 +39,7 @@ class PlayerTests {
      */
     @Test
     void checkCash () {
-        assertEquals(Player.START_CASH, player.getCash());
+        assertEquals(Player.getStartCash(), player.getCash());
     }
 
     /**
@@ -58,6 +58,26 @@ class PlayerTests {
     void checkDefaultSuspension () {
         assertEquals(0, player.getSuspention());
     }
+
+
+    /**
+     * Checks whether the static variable startCash can be accessed and modified
+     */
+    @Test
+    void checkStartCash_GetterSetter () {
+        Player.setStartCash(1000);
+        assertEquals(1000, Player.getStartCash());
+    }
+
+    /**
+     * Checks whether the static variable playerCount can be accessed and modified
+     */
+    @Test
+    void checkGamePlayerCount_GetterSetter () {
+        Game.setPlayerCount(10);
+        assertEquals(10, Game.getPlayerCount());
+    }
+
 
     //? Property Acquisitions
 
@@ -91,7 +111,7 @@ class PlayerTests {
     @ParameterizedTest
     @ValueSource(booleans = {true, false})
     void checkPropertyAcqusition_LowCash (boolean onTop) {
-        Player.START_CASH = 0;
+        Player.setStartCash(0);
         setMockRequirements_PropertyAquisition();
 
         Property buying = onTop ? testProperty1 : testProperty2;
@@ -135,7 +155,7 @@ class PlayerTests {
     @ParameterizedTest
     @ValueSource(booleans = {true, false})
     void checkPropertyAcqusition_InvalidField (boolean onTop) {
-        Game.map = mockMapHandling;
+        Game.setMap(mockMapHandling);
 
         Field invalidField = new SomeTestField(16);
 
@@ -165,7 +185,7 @@ class PlayerTests {
         player.buyProperty();
 
         assertTrue(player.sellProperty(testProperty1.getLocation()));
-        assertEquals(Player.START_CASH - testProperty1.getPrice() / 2, player.getCash());
+        assertEquals(Player.getStartCash() - testProperty1.getPrice() / 2, player.getCash());
         assertEquals(0, player.getProperties().size());
         assertNull(testProperty1.getOwner());
         assertEquals(0, testProperty1.getAccessories().size());
@@ -189,7 +209,7 @@ class PlayerTests {
      */
     @Test
     void checkPropertyRefund_InvalidField () {
-        Game.map = mockMapHandling;
+        Game.setMap(mockMapHandling);
 
         Field invalidField = new SomeTestField(16);
 
@@ -260,7 +280,7 @@ class PlayerTests {
      * This method will set up the mock-requirements for testing the property-payment-cycle
      */
     void setMockRequirements_PropertyAquisition () {
-        Game.map = mockMapHandling;
+        Game.setMap(mockMapHandling);
         when(mockMapHandling.getField(0)).thenReturn(testProperty1);
         when(mockMapHandling.getField(testProperty1.getLocation())).thenReturn(testProperty1);
         when(mockMapHandling.getField(testProperty2.getLocation())).thenReturn(testProperty2);
@@ -284,7 +304,7 @@ class PlayerTests {
     void testSuccessfulPropertyAcquisition (int exProperties, int propertyPrice) {
         assertEquals(exProperties, player.getProperties().size());
         assertEquals(player, player.getProperties().get(0).getOwner());
-        assertEquals((Player.START_CASH - propertyPrice), player.getCash());
+        assertEquals((Player.getStartCash() - propertyPrice), player.getCash());
     }
 }
 

@@ -3,15 +3,25 @@ package delta.dkt.logic.structure;
 import java.util.ArrayList;
 
 public class Player {
-    public static int START_CASH = 500;
+    private static int STARTCASH = 500;
+
+    public static int getStartCash () {
+        return STARTCASH;
+    }
+
+    public static void setStartCash (int startCash) {
+        STARTCASH = startCash;
+    }
+
+
     private static int _ID = 1;
 
     //? May be used to sync player data across clients
     private int id = Player._ID++;
     private String nickname;
 
-    private Field position = Game.map.getField(0); //todo -> set this to be the start field
-    private int cash = Player.START_CASH;
+    private Field position = Game.getMap().getField(0);
+    private int cash = Player.STARTCASH;
     private ArrayList<Property> properties = new ArrayList<>();
 
     //? May be used to check whether a player is timeoutet, e.g. prison, or not.
@@ -27,7 +37,7 @@ public class Player {
      * This function will be fetching the field based on the given location and will buy it, as long as it is not owned by anyone yet and the players cash is sufficient.
      */
     private boolean purchaseProperty (int location) {
-        Field located = Game.map.getField(location);
+        Field located = Game.getMap().getField(location);
         if (!(located instanceof Property)) return false;
 
         Property prop = (Property) located;
@@ -64,7 +74,7 @@ public class Player {
      * @return Returns whether this operation was succesful or not.
      */
     private boolean refundProperty (int location) {
-        Field located = Game.map.getField(location);
+        Field located = Game.getMap().getField(location);
         if (!(located instanceof Property)) return false;
 
         Property property = (Property) located;
