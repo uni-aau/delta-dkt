@@ -59,6 +59,17 @@ class PlayerTests {
         assertEquals(0, player.getSuspention());
     }
 
+
+    /**
+     * Checks whether the static variable playerCount can be accessed and modified
+     */
+    @Test
+    void checkGamePlayerCount_GetterSetter () {
+        Game.setPlayerCount(10);
+        assertEquals(10, Game.getPlayerCount());
+    }
+
+
     //? Property Acquisitions
 
     /**
