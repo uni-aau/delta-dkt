@@ -42,6 +42,15 @@ class PlayerTests {
         assertEquals(Player.START_CASH, player.getCash());
     }
 
+    /**
+     * Checks whether the default position of a player is set correclty and accessible.
+     */
+    @Test
+    void checkDefaultPosition () {
+        setMockRequirements_PropertyAquisition();
+        assertEquals(testProperty1, player.getPosition());
+    }
+
 
     //? Property Acquisitions
 
