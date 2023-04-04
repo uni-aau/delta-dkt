@@ -24,12 +24,22 @@ class PlayerTests {
         testProperty2 = new Property(14, 10, 10, PropertyLevel.NORMAL, 10, 10);
     }
 
+    //? Getters
+
     /**
      * Checks whether the initialized nickname, via the constructor, has been set and is accesible.
      */
     @Test
     void checkNickname () {
         assertEquals("Mike", player.getNickname());
+    }
+
+    /**
+     * Checks whether the player actually starts with the default cash.
+     */
+    @Test
+    void checkCash () {
+        assertEquals(Player.START_CASH, player.getCash());
     }
 
 
