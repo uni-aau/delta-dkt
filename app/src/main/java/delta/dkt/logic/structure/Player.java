@@ -36,6 +36,8 @@ public class Player {
 
         this.cash -= prop.getPrice();
         prop.setOwner(this);
+
+        this.properties.add(prop);
         return true;
     }
 
