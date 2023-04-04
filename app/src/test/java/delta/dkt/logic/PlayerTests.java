@@ -250,6 +250,9 @@ class PlayerTests {
 
         assertEquals(0, player.getSuspention());
         assertFalse(player.isTimeoutet());
+
+        player.reduceTimeout();
+        assertEquals(0, player.getSuspention());
     }
 
 
