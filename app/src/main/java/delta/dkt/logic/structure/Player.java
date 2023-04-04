@@ -3,7 +3,7 @@ package delta.dkt.logic.structure;
 import java.util.ArrayList;
 
 public class Player {
-    static int START_CASH = 500;
+    public static int START_CASH = 500;
     private static int _ID = 1;
 
     //? May be used to sync player data across clients
