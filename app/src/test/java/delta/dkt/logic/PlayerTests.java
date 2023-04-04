@@ -199,6 +199,18 @@ class PlayerTests {
         assertFalse(player.sellProperty(invalidField.getLocation()));
     }
 
+    //? Player Timeouts
+
+    /**
+     * Checks whether a player can be suspended for a given amount of rounds.
+     */
+    @Test
+    void checkSettingPlayerTimeout () {
+        player.setTimeout(10);
+        assertEquals(10, player.getSuspention());
+    }
+
+    
     /**
      * This method will set up the mock-requirements for testing the property-payment-cycle
      */
