@@ -157,6 +157,23 @@ class PlayerTests {
     }
 
     /**
+     * Check whether the attempt of selling a field that is no property is handled correctly.
+     */
+    @Test
+    void checkPropertyRefund_InvalidField () {
+        Game.map = mockMapHandling;
+
+        Field invalidField = new SomeTestField(16);
+
+        when(mockMapHandling.getField(0)).thenReturn(invalidField);
+        when(mockMapHandling.getField(16)).thenReturn(invalidField);
+
+        player = new Player("Josef");
+
+        assertFalse(player.sellProperty(invalidField.getLocation()));
+    }
+
+    /**
      * This method will set up the mock-requirements for testing the property-payment-cycle
      */
     void setMockRequirements_PropertyAquisition () {
