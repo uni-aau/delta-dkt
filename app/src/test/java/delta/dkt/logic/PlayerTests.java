@@ -135,7 +135,7 @@ class PlayerTests {
     @ParameterizedTest
     @ValueSource(booleans = {true, false})
     void checkPropertyAcqusition_InvalidField (boolean onTop) {
-        Game.map = mockMapHandling;
+        Game.setMap(mockMapHandling);
 
         Field invalidField = new SomeTestField(16);
 
@@ -189,7 +189,7 @@ class PlayerTests {
      */
     @Test
     void checkPropertyRefund_InvalidField () {
-        Game.map = mockMapHandling;
+        Game.setMap(mockMapHandling);
 
         Field invalidField = new SomeTestField(16);
 
@@ -260,7 +260,7 @@ class PlayerTests {
      * This method will set up the mock-requirements for testing the property-payment-cycle
      */
     void setMockRequirements_PropertyAquisition () {
-        Game.map = mockMapHandling;
+        Game.setMap(mockMapHandling);
         when(mockMapHandling.getField(0)).thenReturn(testProperty1);
         when(mockMapHandling.getField(testProperty1.getLocation())).thenReturn(testProperty1);
         when(mockMapHandling.getField(testProperty2.getLocation())).thenReturn(testProperty2);

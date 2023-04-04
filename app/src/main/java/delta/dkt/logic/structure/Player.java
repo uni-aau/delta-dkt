@@ -10,7 +10,7 @@ public class Player {
     private int id = Player._ID++;
     private String nickname;
 
-    private Field position = Game.map.getField(0); //todo -> set this to be the start field
+    private Field position = Game.getMap().getField(0); //todo -> set this to be the start field
     private int cash = Player.START_CASH;
     private ArrayList<Property> properties = new ArrayList<>();
 
@@ -27,7 +27,7 @@ public class Player {
      * This function will be fetching the field based on the given location and will buy it, as long as it is not owned by anyone yet and the players cash is sufficient.
      */
     private boolean purchaseProperty (int location) {
-        Field located = Game.map.getField(location);
+        Field located = Game.getMap().getField(location);
         if (!(located instanceof Property)) return false;
 
         Property prop = (Property) located;
@@ -64,7 +64,7 @@ public class Player {
      * @return Returns whether this operation was succesful or not.
      */
     private boolean refundProperty (int location) {
-        Field located = Game.map.getField(location);
+        Field located = Game.getMap().getField(location);
         if (!(located instanceof Property)) return false;
 
         Property property = (Property) located;
