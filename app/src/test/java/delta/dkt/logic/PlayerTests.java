@@ -33,6 +33,8 @@ class PlayerTests {
     }
 
 
+    //? Property Acquisitions
+
     /**
      * Checks whether a property can be bought when standing on top of it and when a player would choose to buy any (free) property.
      * Including reference checks included in this payment cycle.
@@ -123,6 +125,24 @@ class PlayerTests {
         }
 
         verifyMockCalls(invalidField);
+    }
+
+
+    //? Property Refunds
+
+    /**
+     * Checks whether a property owned by a player can be refuned successfully
+     */
+    @Test
+    void checkPropertyRefund_Successful () {
+        setMockRequirements_PropertyAquisition();
+        player.buyProperty();
+
+        assertTrue(player.sellProperty(testProperty1.getLocation()));
+        assertEquals(Player.START_CASH - testProperty1.getPrice() / 2, player.getCash());
+        assertEquals(0, player.getProperties().size());
+        assertNull(testProperty1.getOwner());
+        assertEquals(0, testProperty1.getAccessories().size());
     }
 
 
