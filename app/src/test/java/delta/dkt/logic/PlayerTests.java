@@ -61,6 +61,15 @@ class PlayerTests {
 
 
     /**
+     * Checks whether the static variable startCash can be accessed and modified
+     */
+    @Test
+    void checkStartCash_GetterSetter () {
+        Player.setStartCash(1000);
+        assertEquals(1000, Player.getStartCash());
+    }
+
+    /**
      * Checks whether the static variable playerCount can be accessed and modified
      */
     @Test
