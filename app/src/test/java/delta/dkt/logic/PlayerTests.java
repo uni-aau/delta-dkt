@@ -178,8 +178,10 @@ class PlayerTests {
     void checkPropertyRefund_NotOwned () {
         setMockRequirements_PropertyAquisition();
 
-        assertFalse(player.sellProperty(0));
-        assertTrue(testProperty1.getOwner() == null || testProperty1.getOwner() != player);
+        assertFalse(player.sellProperty(testProperty1.getLocation()));
+
+        testProperty1.setOwner(new Player("Herbert"));
+        assertFalse(player.sellProperty(testProperty1.getLocation()));
     }
 
     /**
@@ -250,7 +252,7 @@ class PlayerTests {
         assertFalse(player.isTimeoutet());
     }
 
-    
+
     /**
      * This method will set up the mock-requirements for testing the property-payment-cycle
      */
