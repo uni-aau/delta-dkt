@@ -30,37 +30,39 @@ class PlayerTests {
     }
 
 
+    /**
+     * Checks whether the property, the player is standing on can be bought successfully, including the references that are being made during this cycle.
+     */
     @Test
     void checkBuyProperty_onLocation () {
-        testBuyProperty(true);
-    }
+        setMockRequirements_PropertyAquisition();
 
-
-    /**
-     * This method will attempt to buy a property either on the players current position or any property identified by its location.
-     */
-    void testBuyProperty (boolean standingOnTop) {
-        Game.map = mockMapHandling;
-        Player.START_CASH = 1000;
-        when(mockMapHandling.getField(0)).thenReturn(dummy);
-        when(mockMapHandling.getField(dummy.getLocation())).thenReturn(dummy);
-
-        player = new Player("Patrick"); // => usage mock in instance variables
-
-        boolean paymentState = false;
-
-        if (standingOnTop) paymentState = player.buyProperty();
-        else paymentState = player.buyProperty(dummy.getLocation());
-
-        assertTrue(paymentState);
+        assertTrue(player.buyProperty());
 
         assertEquals(1, player.getProperties().size());
         assertEquals(player, player.getProperties().get(0).getOwner());
         assertEquals((Player.START_CASH - dummy.getPrice()), player.getCash());
 
-        verify(mockMapHandling).getField(0);
-        verify(mockMapHandling).getField(dummy.getLocation());
+        verifyMockCalls();
     }
 
 
+    /**
+     * This method will set up the mock-requirements for testing the property-payment-cycle
+     */
+    void setMockRequirements_PropertyAquisition () {
+        Game.map = mockMapHandling;
+        when(mockMapHandling.getField(0)).thenReturn(dummy);
+        when(mockMapHandling.getField(dummy.getLocation())).thenReturn(dummy);
+
+        player = new Player("Patrick"); // => usage mock in instance variables
+    }
+
+    /**
+     * This method will verify the calls of the previously mocked methods.
+     */
+    void verifyMockCalls () {
+        verify(mockMapHandling).getField(0);
+        verify(mockMapHandling).getField(dummy.getLocation());
+    }
 }
