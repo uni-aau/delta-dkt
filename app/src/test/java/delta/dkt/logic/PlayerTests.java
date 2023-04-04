@@ -100,6 +100,28 @@ class PlayerTests {
     }
 
 
+    @ParameterizedTest
+    @ValueSource(booleans = {true, false})
+    void checkPropertyAcqusition_InvalidField (boolean onTop) {
+        Game.map = mockMapHandling;
+
+        Field invalidField = new SomeTestField(16);
+
+        when(mockMapHandling.getField(0)).thenReturn(invalidField);
+        when(mockMapHandling.getField(16)).thenReturn(invalidField);
+
+        player = new Player("Josef");
+
+        if (onTop) {
+            assertFalse(player.buyProperty());
+        } else {
+            assertFalse(player.buyProperty(invalidField.getLocation()));
+        }
+
+        verifyMockCalls(invalidField);
+    }
+
+
     /**
      * This method will set up the mock-requirements for testing the property-payment-cycle
      */
@@ -115,7 +137,7 @@ class PlayerTests {
     /**
      * This method will verify the calls of the previously mocked methods.
      */
-    void verifyMockCalls (Property bought) {
+    void verifyMockCalls (Field bought) {
         verify(mockMapHandling).getField(0);
         verify(mockMapHandling).getField(bought.getLocation());
     }
@@ -129,5 +151,13 @@ class PlayerTests {
         assertEquals(exProperties, player.getProperties().size());
         assertEquals(player, player.getProperties().get(0).getOwner());
         assertEquals((Player.START_CASH - propertyPrice), player.getCash());
+    }
+}
+
+
+class SomeTestField extends Field {
+
+    public SomeTestField (int location) {
+        super(location);
     }
 }
