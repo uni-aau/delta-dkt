@@ -145,6 +145,16 @@ class PlayerTests {
         assertEquals(0, testProperty1.getAccessories().size());
     }
 
+    /**
+     * Checks whether a player can sell a property that he does not own.
+     */
+    @Test
+    void checkPropertyRefund_NotOwned () {
+        setMockRequirements_PropertyAquisition();
+
+        assertFalse(player.sellProperty(0));
+        assertTrue(testProperty1.getOwner() == null || testProperty1.getOwner() != player);
+    }
 
     /**
      * This method will set up the mock-requirements for testing the property-payment-cycle
