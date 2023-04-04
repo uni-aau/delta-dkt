@@ -100,6 +100,10 @@ class PlayerTests {
     }
 
 
+    /**
+     * Checks whether the acquisition process handles the amtept to buy a field, thus no property, correclty.
+     * @param onTop parameterization for whether the player is on top of the property or not.
+     */
     @ParameterizedTest
     @ValueSource(booleans = {true, false})
     void checkPropertyAcqusition_InvalidField (boolean onTop) {
