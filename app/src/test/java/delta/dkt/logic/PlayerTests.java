@@ -51,6 +51,13 @@ class PlayerTests {
         assertEquals(testProperty1, player.getPosition());
     }
 
+    /**
+     * Check whether a player is not suspened by default.
+     */
+    @Test
+    void checkDefaultSuspension () {
+        assertEquals(0, player.getSuspention());
+    }
 
     //? Property Acquisitions
 
