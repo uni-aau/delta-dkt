@@ -3,14 +3,14 @@ package delta.dkt.logic.structure;
 import java.util.ArrayList;
 
 public class Player {
-    private static int START_CASH = 500;
+    private static int STARTCASH = 500;
 
     public static int getStartCash () {
-        return START_CASH;
+        return STARTCASH;
     }
 
     public static void setStartCash (int startCash) {
-        START_CASH = startCash;
+        STARTCASH = startCash;
     }
 
 
@@ -21,7 +21,7 @@ public class Player {
     private String nickname;
 
     private Field position = Game.getMap().getField(0);
-    private int cash = Player.START_CASH;
+    private int cash = Player.STARTCASH;
     private ArrayList<Property> properties = new ArrayList<>();
 
     //? May be used to check whether a player is timeoutet, e.g. prison, or not.
