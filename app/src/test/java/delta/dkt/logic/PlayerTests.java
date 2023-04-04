@@ -6,8 +6,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
 class PlayerTests {
@@ -53,6 +52,28 @@ class PlayerTests {
 
         testSuccessfulPropertyAcquisition(1, buying.getPrice());
 
+        verifyMockCalls(buying);
+    }
+
+
+    /**
+     * Checks whether the proceeding of a player attempting to buy a property when he does not have enough cash.
+     * @param onTop parameterization for whether the player is on top of the property or not.
+     */
+    @ParameterizedTest
+    @ValueSource(booleans = {true, false})
+    void checkPropertyAcqusition_LowCash (boolean onTop) {
+        Player.START_CASH = 0;
+        setMockRequirements_PropertyAquisition();
+
+        Property buying = onTop ? testProperty1 : testProperty2;
+
+        if (onTop) {
+            assertFalse(player.buyProperty());
+        } else {
+            assertFalse(player.buyProperty(testProperty2.getLocation()));
+        }
+        
         verifyMockCalls(buying);
     }
 
