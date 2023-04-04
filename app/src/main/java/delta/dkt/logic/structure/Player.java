@@ -3,14 +3,14 @@ package delta.dkt.logic.structure;
 import java.util.ArrayList;
 
 public class Player {
-    static int START_CASH = 500;
+    public static int START_CASH = 500;
     private static int _ID = 1;
 
     //? May be used to sync player data across clients
     private int id = Player._ID++;
     private String nickname;
 
-    private Field position = null; //todo -> set this to be the start field
+    private Field position = Game.map.getField(0); //todo -> set this to be the start field
     private int cash = Player.START_CASH;
     private ArrayList<Property> properties = new ArrayList<>();
 
@@ -27,15 +27,18 @@ public class Player {
      * This function will be fetching the field based on the given location and will buy it, as long as it is not owned by anyone yet and the players cash is sufficient.
      */
     private boolean purchaseProperty (int location) {
-        Property prop = (Property) MapHandling.getField(location); //todo Map.getField(location)
+        Field located = Game.map.getField(location);
+        if (!(located instanceof Property)) return false;
 
-        if (prop == null) return false;
+        Property prop = (Property) located;
 
         if (prop.getOwner() != null) return false;
         if (prop.getPrice() > this.cash) return false;
 
         this.cash -= prop.getPrice();
         prop.setOwner(this);
+
+        this.properties.add(prop);
         return true;
     }
 
@@ -61,9 +64,13 @@ public class Player {
      * @return Returns whether this operation was succesful or not.
      */
     private boolean refundProperty (int location) {
-        Property property = (Property) MapHandling.getField(location); //todo once again fetch the property by its ID from some global field handler.
+        Field located = Game.map.getField(location);
+        if (!(located instanceof Property)) return false;
 
-        if (property == null) return false;
+        Property property = (Property) located;
+
+        if (property.getOwner() == null) return false;
+        if (property.getOwner().getId() != this.getId()) return false;
 
         this.cash += property.getSellValue();
 
