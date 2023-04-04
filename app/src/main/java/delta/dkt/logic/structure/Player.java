@@ -27,9 +27,10 @@ public class Player {
      * This function will be fetching the field based on the given location and will buy it, as long as it is not owned by anyone yet and the players cash is sufficient.
      */
     private boolean purchaseProperty (int location) {
-        Property prop = (Property) Game.map.getField(location); //todo Map.getField(location)
+        Field located = Game.map.getField(location);
+        if (!(located instanceof Property)) return false;
 
-        if (prop == null) return false;
+        Property prop = (Property) located;
 
         if (prop.getOwner() != null) return false;
         if (prop.getPrice() > this.cash) return false;
@@ -63,9 +64,10 @@ public class Player {
      * @return Returns whether this operation was succesful or not.
      */
     private boolean refundProperty (int location) {
-        Property property = (Property) Game.map.getField(location); //todo once again fetch the property by its ID from some global field handler.
+        Field located = Game.map.getField(location);
+        if (!(located instanceof Property)) return false;
 
-        if (property == null) return false;
+        Property property = (Property) located;
 
         this.cash += property.getSellValue();
 
