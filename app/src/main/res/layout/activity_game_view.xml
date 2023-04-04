@@ -4,7 +4,20 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".activities.GameViewActivity">
+        tools:context=".activities.GameViewActivity"
+        android:layout_gravity="center_vertical">
+
+    <TextView
+            android:text="@string/activity_text"
+            android:layout_width="142dp"
+            android:layout_height="81dp"
+            android:id="@+id/textView_activity"
+            android:gravity="center_horizontal"
+            app:layout_constraintStart_toEndOf="@+id/imageView"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/button_property_infos" />
 
     <ImageView
             android:layout_width="398dp"
@@ -90,39 +103,37 @@
             android:layout_width="130dp"
             android:layout_height="55dp"
             android:id="@+id/button_roll_dice"
-            android:layout_marginEnd="16dp"
-            app:layout_constraintEnd_toEndOf="parent"
+            android:textSize="12sp"
+            android:text="@string/roll_the_dice"
             app:layout_constraintStart_toEndOf="@+id/imageView"
             app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView_dice_information"
-            app:layout_constraintBottom_toTopOf="@+id/button_property_infos"
-            android:textSize="12sp"
-            android:text="@string/roll_the_dice" />
+            app:layout_constraintBottom_toTopOf="@+id/button_property_infos" />
 
     <Button
             android:text="@string/property_information"
             android:layout_width="130dp"
             android:layout_height="55dp"
             android:id="@+id/button_property_infos"
-            android:layout_marginEnd="16dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
+            android:textSize="12sp"
             app:layout_constraintStart_toEndOf="@+id/imageView"
             app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/button_roll_dice"
-            android:textSize="12sp" />
+            app:layout_constraintBottom_toTopOf="@+id/textView_activity" />
 
     <TextView
             android:text="@string/dice_information_text"
             android:layout_width="147dp"
             android:layout_height="60dp"
             android:id="@+id/textView_dice_information"
+            android:gravity="center"
+            android:textSize="14sp"
             app:layout_constraintStart_toEndOf="@+id/imageView"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintEnd_toEndOf="parent"
-            android:gravity="center"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toTopOf="@+id/button_roll_dice"
-            android:textSize="15sp" />
+            app:layout_constraintBottom_toTopOf="@+id/button_roll_dice" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
