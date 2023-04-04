@@ -1,7 +1,11 @@
 package delta.dkt.logic.structure;
 
 public class BankTaskField extends Field{
-    public BankTaskField(int location) {
+
+    BankTask bankTask;
+
+    public BankTaskField(int location, BankTask bankTask) {
         super(location);
+        this.bankTask = bankTask;
     }
 }
