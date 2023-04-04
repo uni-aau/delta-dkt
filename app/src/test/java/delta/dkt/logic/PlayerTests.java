@@ -210,7 +210,15 @@ class PlayerTests {
         assertEquals(10, player.getSuspention());
     }
 
-    
+    /**
+     * Checks whether the suspension state can be accessed.
+     */
+    @Test
+    void checkIsPlayerSuspended () {
+        checkSettingPlayerTimeout();
+        assertTrue(player.isTimeoutet());
+    }
+
     /**
      * This method will set up the mock-requirements for testing the property-payment-cycle
      */
