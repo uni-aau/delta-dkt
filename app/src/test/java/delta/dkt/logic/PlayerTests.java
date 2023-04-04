@@ -220,6 +220,17 @@ class PlayerTests {
     }
 
     /**
+     * Check whether the suspension of a player can be lifted.
+     */
+    @Test
+    void checkResetSuspension () {
+        checkSettingPlayerTimeout();
+        player.resetTimeout();
+        assertFalse(player.isTimeoutet());
+        assertEquals(0, player.getSuspention());
+    }
+
+    /**
      * This method will set up the mock-requirements for testing the property-payment-cycle
      */
     void setMockRequirements_PropertyAquisition () {
