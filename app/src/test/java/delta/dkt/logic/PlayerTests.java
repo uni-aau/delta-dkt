@@ -39,7 +39,7 @@ class PlayerTests {
      */
     @Test
     void checkCash () {
-        assertEquals(Player.START_CASH, player.getCash());
+        assertEquals(Player.getStartCash(), player.getCash());
     }
 
     /**
@@ -91,7 +91,7 @@ class PlayerTests {
     @ParameterizedTest
     @ValueSource(booleans = {true, false})
     void checkPropertyAcqusition_LowCash (boolean onTop) {
-        Player.START_CASH = 0;
+        Player.setStartCash(0);
         setMockRequirements_PropertyAquisition();
 
         Property buying = onTop ? testProperty1 : testProperty2;
@@ -165,7 +165,7 @@ class PlayerTests {
         player.buyProperty();
 
         assertTrue(player.sellProperty(testProperty1.getLocation()));
-        assertEquals(Player.START_CASH - testProperty1.getPrice() / 2, player.getCash());
+        assertEquals(Player.getStartCash() - testProperty1.getPrice() / 2, player.getCash());
         assertEquals(0, player.getProperties().size());
         assertNull(testProperty1.getOwner());
         assertEquals(0, testProperty1.getAccessories().size());
@@ -284,7 +284,7 @@ class PlayerTests {
     void testSuccessfulPropertyAcquisition (int exProperties, int propertyPrice) {
         assertEquals(exProperties, player.getProperties().size());
         assertEquals(player, player.getProperties().get(0).getOwner());
-        assertEquals((Player.START_CASH - propertyPrice), player.getCash());
+        assertEquals((Player.getStartCash() - propertyPrice), player.getCash());
     }
 }
 

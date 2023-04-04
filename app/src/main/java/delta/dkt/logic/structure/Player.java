@@ -3,14 +3,24 @@ package delta.dkt.logic.structure;
 import java.util.ArrayList;
 
 public class Player {
-    public static int START_CASH = 500;
+    private static int START_CASH = 500;
+
+    public static int getStartCash () {
+        return START_CASH;
+    }
+
+    public static void setStartCash (int startCash) {
+        START_CASH = startCash;
+    }
+
+
     private static int _ID = 1;
 
     //? May be used to sync player data across clients
     private int id = Player._ID++;
     private String nickname;
 
-    private Field position = Game.getMap().getField(0); //todo -> set this to be the start field
+    private Field position = Game.getMap().getField(0);
     private int cash = Player.START_CASH;
     private ArrayList<Property> properties = new ArrayList<>();
 
