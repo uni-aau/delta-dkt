@@ -16,6 +16,29 @@
         android:layout_marginTop="40dp"
         app:srcCompat="@drawable/dkt_logo_2" />
 
+    <TextView
+        android:id="@+id/username_textview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/dkt_logo"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:fontFamily="@font/bangers"
+        android:text="Please enter your Username:"
+        android:textColor="@color/dkt_red"
+        android:textSize="30sp"
+        android:textStyle="bold" />
 
+    <EditText
+        android:id="@+id/username_edittext"
+        android:layout_width="300dp"
+        android:layout_height="30dp"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/username_textview"
+        android:layout_marginTop="10dp"
+        android:paddingLeft="15dp"
+        android:inputType="textPersonName"
+        android:text="UserName"
+        android:background="@drawable/edit_text_background"/>
 
 </RelativeLayout>
