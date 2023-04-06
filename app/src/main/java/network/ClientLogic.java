@@ -1,6 +1,8 @@
 package network;
 
+import android.os.Bundle;
 import android.os.Handler;
+import android.os.Message;
 import android.widget.TextView;
 
 public class ClientLogic {
@@ -11,7 +13,16 @@ public class ClientLogic {
         this.handler = handler;
     }
 
-    public void setTextOfUIElement(TextView element, String text){
+    public void setTextOfTestElement(String text){
+        sendHandle(text, ClientHandler.testType);
+    }
 
+    public void sendHandle(String message, String type) {
+
+        android.os.Message handleMessage = new Message();
+        Bundle b = new Bundle();
+        b.putString(type, message);
+        handleMessage.setData(b);
+        handler.sendMessage(handleMessage);
     }
 }

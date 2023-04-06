@@ -26,9 +26,12 @@ public class Client extends Thread {
 
     private static final String messageDelimiter = "\0";
 
-    public Client(String host, int port) {
+    private ClientLogic logic;
+
+    public Client(String host, int port, ClientLogic logic) {
         this.host = host;
         this.port = port;
+        this.logic = logic;
 
         outputBuffer = new ArrayDeque<>();
         isRunning = true;
@@ -172,6 +175,10 @@ public class Client extends Thread {
         for(String m:messages) {
             if (!m.equals("pong")) {
                 insertIntoOutputBuffer(new Message(false, m, MessageType.ECHO));
+            }
+
+            if(m.equals(ClientHandler.testType)){
+                logic.setTextOfTestElement("test");
             }
         }
     }
