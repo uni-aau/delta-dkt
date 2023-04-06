@@ -13,7 +13,7 @@
         android:layout_width="293dp"
         android:layout_height="152dp"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="20dp"
         app:srcCompat="@drawable/dkt_logo_2" />
 
     <TextView
@@ -32,13 +32,26 @@
     <EditText
         android:id="@+id/username_edittext"
         android:layout_width="300dp"
-        android:layout_height="30dp"
+        android:layout_height="48dp"
         android:layout_centerHorizontal="true"
         android:layout_below="@id/username_textview"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="20dp"
         android:paddingLeft="15dp"
         android:inputType="textPersonName"
         android:text="UserName"
         android:background="@drawable/edit_text_background"/>
+
+    <Button
+        android:id="@+id/enter_btn"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:text="Enter"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/username_edittext"
+        android:layout_marginTop="20dp"
+        android:textColor="@color/dkt_yellow"
+        android:textSize="20sp"
+        android:fontFamily="@font/bangers"
+        android:background="@drawable/host_btn_background"/>
 
 </RelativeLayout>
