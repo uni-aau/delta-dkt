@@ -18,7 +18,7 @@ public class Player {
 
     //? May be used to sync player data across clients
     private int id = Player._ID++;
-    private String nickname;
+    private String nickname = "Player-" + id;
 
     private Field position = Game.getMap().getField(0);
     private int cash = Player.STARTCASH;
@@ -29,6 +29,10 @@ public class Player {
 
     public Player (String nickname) {
         this.nickname = nickname;
+    }
+
+    public Player () {
+        
     }
 
     //? Property handling
