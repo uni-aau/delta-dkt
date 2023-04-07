@@ -3,25 +3,25 @@ package delta.dkt.logic.structure;
 import java.util.ArrayList;
 
 public class Player {
-    private static int STARTCASH = 500;
+    private static int startCash = 500;
 
     public static int getStartCash () {
-        return STARTCASH;
+        return startCash;
     }
 
     public static void setStartCash (int startCash) {
-        STARTCASH = startCash;
+        Player.startCash = startCash;
     }
 
 
-    private static int _ID = 1;
+    private static int _id = 1;
 
     //? May be used to sync player data across clients
-    private int id = Player._ID++;
+    private int id = Player._id++;
     private String nickname = "Player-" + id;
 
     private Field position = Game.getMap().getField(0);
-    private int cash = Player.STARTCASH;
+    private int cash = Player.startCash;
     private ArrayList<Property> properties = new ArrayList<>();
 
     //? May be used to check whether a player is timeoutet, e.g. prison, or not.
@@ -32,7 +32,7 @@ public class Player {
     }
 
     public Player () {
-        
+
     }
 
     //? Property handling
