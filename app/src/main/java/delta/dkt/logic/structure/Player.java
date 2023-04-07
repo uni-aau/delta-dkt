@@ -140,6 +140,9 @@ public class Player {
      * @param location The destination to which the player will be moved to.
      */
     private void move (int location) {
+        //? Player has a suspension and is prohibited from moving.
+        if (this.isTimeoutet()) return;
+
         this.position = Game.getMap().getField(location);
     }
 
