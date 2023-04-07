@@ -361,6 +361,23 @@ class PlayerTests {
         verify(mockMapHandling).getFields();
     }
 
+    
+    /**
+     * Checks whether a player is prohibited from moving when suspended.
+     */
+    @Test
+    void checkPlayerMovement_Suspended () {
+        setMockRequirements_PropertyAquisition();
+        when(mockMapHandling.getFields()).thenReturn(generateDummyList());
+
+        player.setSuspension(10);
+        assertTrue(player.isSuspended());
+
+        int previous = player.getPosition().getLocation();
+        player.moveTo(12);
+
+        assertEquals(previous, player.getPosition().getLocation());
+    }
 
     /**
      * This method will create a property object that is being used as a valid field.
