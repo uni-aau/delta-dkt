@@ -341,6 +341,26 @@ class PlayerTests {
         verify(mockMapHandling).getFields();
     }
 
+    /**
+     * Checks whether a players position can be set by moving the player to a given position.
+     * @param location The location to which the player should be moved.
+     */
+    @ParameterizedTest
+    @ValueSource(ints = {1, 2, 3, 4, 5, 6, 10})
+    void checkPlayerMovement_moveTo (int location) {
+        setMockRequirements_PropertyAquisition();
+
+        //? sets the return value for getField method with its given arguments to a valid property.
+        when(mockMapHandling.getField(location)).thenReturn(generateDummyProperty(location));
+        when(mockMapHandling.getFields()).thenReturn(generateDummyList());
+
+        player.moveTo(location);
+        assertEquals(location, player.getPosition().getLocation());
+
+        verify(mockMapHandling).getField(location);
+        verify(mockMapHandling).getFields();
+    }
+
 
     /**
      * This method will create a property object that is being used as a valid field.
