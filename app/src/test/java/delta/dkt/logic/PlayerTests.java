@@ -78,6 +78,14 @@ class PlayerTests {
         assertEquals(10, Game.getPlayerCount());
     }
 
+    /**
+     * Checks whether the default nickname is set.
+     */
+    @Test
+    void checkDefaultPlayerNickname () {
+        player = new Player();
+        assertTrue(player.getNickname().startsWith("Player-"));
+    }
 
     //? Property Acquisitions
 
