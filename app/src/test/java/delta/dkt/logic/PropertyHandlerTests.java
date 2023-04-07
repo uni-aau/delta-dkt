@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static delta.dkt.logic.structure.PropertyLevel.NORMAL;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
@@ -13,13 +14,21 @@ import delta.dkt.logic.structure.Property;
 import delta.dkt.logic.structure.PropertyHandler;
 
 public class PropertyHandlerTests {
-
     Property p = new Property(6, 250, 96, NORMAL, 150);
 
 
     @Test
     void testGetPropertiesName() {
         assertEquals("Amtsplatz", PropertyHandler.getProperties(2).getName(), "Name is not the expected name");
+        assertEquals("Murplatz", PropertyHandler.getProperties(5).getName(), "Name is not the expected name");
+        assertEquals("Joseph-Haydn-Gasse", PropertyHandler.getProperties(10).getName(), "Name is not the expected name");
+        assertEquals("Kärntnerstraße", PropertyHandler.getProperties(15).getName(), "Name is not the expected name");
+        assertEquals("Westbahnstraße", PropertyHandler.getProperties(26).getName(), "Name is not the expected name");
+        assertEquals("Villacherstraße", PropertyHandler.getProperties(30).getName(), "Name is not the expected name");
+        assertEquals("Museumstraße", PropertyHandler.getProperties(22).getName(), "Name is not the expected name");
+        assertEquals("Maria-Theresien-Straße", PropertyHandler.getProperties(35).getName(), "Name is not the expected name");
+        assertEquals("Arlbergstraße", PropertyHandler.getProperties(39).getName(), "Name is not the expected name");
+        assertEquals("Rathausstraße", PropertyHandler.getProperties(40).getName(), "Name is not the expected name");
     }
 
     @Test
