@@ -23,9 +23,10 @@ public class PropertyHandlerTests {
         assertEquals("Murplatz", PropertyHandler.getProperties(5).getName(), "Name is not the expected name");
         assertEquals("Joseph-Haydn-Gasse", PropertyHandler.getProperties(10).getName(), "Name is not the expected name");
         assertEquals("Kärntnerstraße", PropertyHandler.getProperties(15).getName(), "Name is not the expected name");
+        assertEquals("Stifterstraße", PropertyHandler.getProperties(20).getName(), "Name is not the expected name");
+        assertEquals("Museumstraße", PropertyHandler.getProperties(22).getName(), "Name is not the expected name");
         assertEquals("Westbahnstraße", PropertyHandler.getProperties(26).getName(), "Name is not the expected name");
         assertEquals("Villacherstraße", PropertyHandler.getProperties(30).getName(), "Name is not the expected name");
-        assertEquals("Museumstraße", PropertyHandler.getProperties(22).getName(), "Name is not the expected name");
         assertEquals("Maria-Theresien-Straße", PropertyHandler.getProperties(35).getName(), "Name is not the expected name");
         assertEquals("Arlbergstraße", PropertyHandler.getProperties(39).getName(), "Name is not the expected name");
         assertEquals("Rathausstraße", PropertyHandler.getProperties(40).getName(), "Name is not the expected name");
