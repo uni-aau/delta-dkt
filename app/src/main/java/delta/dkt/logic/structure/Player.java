@@ -151,6 +151,17 @@ public class Player {
         this.move(location);
     }
 
+    /**
+     * This function will move a player to a given location, e.g. to prison.
+     * @param location Represents the location of a field on the game map.
+     */
+    public void moveTo (int location) {
+        int safety = location % Game.getMap().getFields().size();
+        //? Safety check for invalid locations
+
+        this.move(safety);
+    }
+
 
     //? Getters
 
