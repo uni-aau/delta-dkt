@@ -236,7 +236,7 @@ class PlayerTests {
      */
     @Test
     void checkSettingPlayerTimeout () {
-        player.setTimeout(10);
+        player.setSuspension(10);
         assertEquals(10, player.getSuspention());
     }
 
@@ -246,7 +246,7 @@ class PlayerTests {
     @Test
     void checkIsPlayerSuspended () {
         checkSettingPlayerTimeout();
-        assertTrue(player.isTimeoutet());
+        assertTrue(player.isSuspended());
     }
 
     /**
@@ -255,8 +255,8 @@ class PlayerTests {
     @Test
     void checkResetSuspension () {
         checkSettingPlayerTimeout();
-        player.resetTimeout();
-        assertFalse(player.isTimeoutet());
+        player.resetSuspension();
+        assertFalse(player.isSuspended());
         assertEquals(0, player.getSuspention());
     }
 
@@ -269,17 +269,17 @@ class PlayerTests {
 
         for (int i = 10; i > 0; i--) {
             assertEquals(i, player.getSuspention());
-            player.reduceTimeout();
+            player.reduceSuspension();
             assertEquals(i - 1, player.getSuspention());
 
             // there is still a suspension
-            if (i - 1 > 0) assertTrue(player.isTimeoutet());
+            if (i - 1 > 0) assertTrue(player.isSuspended());
         }
 
         assertEquals(0, player.getSuspention());
-        assertFalse(player.isTimeoutet());
+        assertFalse(player.isSuspended());
 
-        player.reduceTimeout();
+        player.reduceSuspension();
         assertEquals(0, player.getSuspention());
     }
 

@@ -108,28 +108,28 @@ public class Player {
     /**
      * Will time out this player from moving for a given amount of rounds.
      */
-    public void setTimeout (int rounds) {
+    public void setSuspension (int rounds) {
         this.suspention = rounds;
     }
 
     /**
      * @return Returns whether the player is prohibited from moving, thus has a suspension / timeout.
      */
-    public boolean isTimeoutet () {
+    public boolean isSuspended () {
         return this.suspention > 0;
     }
 
     /**
      * This function may be called when a player is supposed to move, but is prohibited from doing so, thus the remaining amount of suspended rounds, can be decreased by 1.
      */
-    public void reduceTimeout () {
+    public void reduceSuspension () {
         if (this.suspention > 0) this.suspention--;
     }
 
     /**
      * This function may be called when the player uses his 'jail-free-card' or receives any other action, that removes his suspension / timeout.
      */
-    public void resetTimeout () {
+    public void resetSuspension () {
         this.suspention = 0;
     }
 
@@ -141,7 +141,7 @@ public class Player {
      */
     private void move (int location) {
         //? Player has a suspension and is prohibited from moving.
-        if (this.isTimeoutet()) return;
+        if (this.isSuspended()) return;
 
         this.position = Game.getMap().getField(location);
     }
