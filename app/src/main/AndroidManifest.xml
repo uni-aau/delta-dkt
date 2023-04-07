@@ -12,9 +12,7 @@
         android:theme="@style/Theme.Deltadkt"
         android:usesCleartextTraffic="false"
         tools:targetApi="31">
-        <activity
-            android:name=".activities.TestActivity"
-            android:exported="false" />
+
         <activity
             android:name=".activities.PropertyListActivity"
             android:exported="false" />
