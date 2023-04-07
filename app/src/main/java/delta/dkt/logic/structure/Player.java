@@ -133,6 +133,17 @@ public class Player {
         this.suspention = 0;
     }
 
+    //? Positioning
+
+    /**
+     * Moves a player to a given location and sets the corresponding field as his updated position.
+     * @param location The destination to which the player will be moved to.
+     */
+    private void move (int location) {
+        this.position = Game.getMap().getField(location);
+    }
+
+
 
     //? Getters
 
