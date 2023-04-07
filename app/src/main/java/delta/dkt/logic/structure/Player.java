@@ -143,6 +143,13 @@ public class Player {
         this.position = Game.getMap().getField(location);
     }
 
+    /**
+     * This function will move the player by a given amount of steps.
+     */
+    public void moveSteps (int steps) {
+        int location = (this.position.getLocation() + steps) % Game.getMap().getFields().size();
+        this.move(location);
+    }
 
 
     //? Getters
