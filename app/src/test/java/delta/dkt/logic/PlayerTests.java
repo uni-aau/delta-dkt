@@ -6,6 +6,8 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
+import java.util.ArrayList;
+
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
@@ -313,6 +315,46 @@ class PlayerTests {
         assertEquals(exProperties, player.getProperties().size());
         assertEquals(player, player.getProperties().get(0).getOwner());
         assertEquals((Player.getStartCash() - propertyPrice), player.getCash());
+    }
+
+
+    //! Testing the player movements
+
+    /**
+     * Checks whether moving the player with a given amount of steps is successful
+     * @param steps Steps that the player will move from its current position.
+     */
+    @ParameterizedTest
+    @ValueSource(ints = {1, 2, 3, 4, 5, 6, 10})
+    void checkPlayerMovement_bySteps (int steps) {
+        setMockRequirements_PropertyAquisition();
+
+        //? sets the return value for getField method with its given arguments to a valid property.
+        int location = player.getPosition().getLocation() + steps;
+        when(mockMapHandling.getField(location)).thenReturn(generateDummyProperty(location));
+        when(mockMapHandling.getFields()).thenReturn(generateDummyList());
+
+        player.moveSteps(steps);
+        assertEquals(location, player.getPosition().getLocation());
+
+        verify(mockMapHandling).getField(location);
+        verify(mockMapHandling).getFields();
+    }
+
+
+    /**
+     * This method will create a property object that is being used as a valid field.
+     * @param location The location of the property-field.
+     */
+    Field generateDummyProperty (int location) {
+        return new Property(location, 0, 0, PropertyLevel.NORMAL, 0, 0);
+    }
+
+    ArrayList<Field> generateDummyList () {
+        ArrayList<Field> dummy = new ArrayList<>();
+        for (int i = 0; i < 40; i++) dummy.add(null);
+
+        return dummy;
     }
 }
 
