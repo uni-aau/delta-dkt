@@ -21,9 +21,12 @@ class PlayerTests {
 
     @BeforeEach
     void setup () {
-        player = new Player("Mike");
         testProperty1 = new Property(12, 10, 10, PropertyLevel.NORMAL, 10, 10);
         testProperty2 = new Property(14, 10, 10, PropertyLevel.NORMAL, 10, 10);
+
+        setMockRequirements_PropertyAquisition();
+        player = new Player("Mike");
+
     }
 
     //? Getters
@@ -49,7 +52,6 @@ class PlayerTests {
      */
     @Test
     void checkDefaultPosition () {
-        setMockRequirements_PropertyAquisition();
         assertEquals(testProperty1, player.getPosition());
     }
 
@@ -98,8 +100,6 @@ class PlayerTests {
     @ParameterizedTest
     @ValueSource(booleans = {true, false})
     void checkSuccessfulPropertyAcquisition (boolean onTop) {
-        setMockRequirements_PropertyAquisition();
-
         Property buying = onTop ? testProperty1 : testProperty2;
 
         if (onTop) {
@@ -122,7 +122,7 @@ class PlayerTests {
     @ValueSource(booleans = {true, false})
     void checkPropertyAcqusition_LowCash (boolean onTop) {
         Player.setStartCash(0);
-        setMockRequirements_PropertyAquisition();
+        player = new Player();
 
         Property buying = onTop ? testProperty1 : testProperty2;
 
@@ -145,8 +145,6 @@ class PlayerTests {
     void checkPropertyAcqusition_Owned (boolean onTop) {
         Property buying = onTop ? testProperty1 : testProperty2;
         buying.setOwner(new Player("Maxi"));
-
-        setMockRequirements_PropertyAquisition();
 
         if (onTop) {
             assertFalse(player.buyProperty());
@@ -191,7 +189,6 @@ class PlayerTests {
      */
     @Test
     void checkPropertyRefund_Successful () {
-        setMockRequirements_PropertyAquisition();
         player.buyProperty();
 
         assertTrue(player.sellProperty(testProperty1.getLocation()));
@@ -206,8 +203,6 @@ class PlayerTests {
      */
     @Test
     void checkPropertyRefund_NotOwned () {
-        setMockRequirements_PropertyAquisition();
-
         assertFalse(player.sellProperty(testProperty1.getLocation()));
 
         testProperty1.setOwner(new Player("Herbert"));
@@ -302,8 +297,8 @@ class PlayerTests {
      * This method will verify the calls of the previously mocked methods.
      */
     void verifyMockCalls (Field bought) {
-        verify(mockMapHandling).getField(0);
-        verify(mockMapHandling).getField(bought.getLocation());
+        verify(mockMapHandling, atLeastOnce()).getField(0);
+        verify(mockMapHandling, atLeastOnce()).getField(bought.getLocation());
     }
 
     /**
@@ -327,7 +322,6 @@ class PlayerTests {
     @ParameterizedTest
     @ValueSource(ints = {1, 2, 3, 4, 5, 6, 10})
     void checkPlayerMovement_bySteps (int steps) {
-        setMockRequirements_PropertyAquisition();
 
         //? sets the return value for getField method with its given arguments to a valid property.
         int location = player.getPosition().getLocation() + steps;
@@ -348,7 +342,6 @@ class PlayerTests {
     @ParameterizedTest
     @ValueSource(ints = {1, 2, 3, 4, 5, 6, 10})
     void checkPlayerMovement_moveTo (int location) {
-        setMockRequirements_PropertyAquisition();
 
         //? sets the return value for getField method with its given arguments to a valid property.
         when(mockMapHandling.getField(location)).thenReturn(generateDummyProperty(location));
@@ -367,7 +360,6 @@ class PlayerTests {
      */
     @Test
     void checkPlayerMovement_Suspended () {
-        setMockRequirements_PropertyAquisition();
         when(mockMapHandling.getFields()).thenReturn(generateDummyList());
 
         player.setSuspension(10);
