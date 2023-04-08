@@ -361,7 +361,7 @@ class PlayerTests {
         verify(mockMapHandling).getFields();
     }
 
-    
+
     /**
      * Checks whether a player is prohibited from moving when suspended.
      */
@@ -378,6 +378,20 @@ class PlayerTests {
 
         assertEquals(previous, player.getPosition().getLocation());
     }
+
+    //! Preliminary tests for the Game Map
+
+    /**
+     * Checks whether the preliminary implementation of the Game map does not throw any errors.
+     * For now, this test will stay in this class since it tests all the code written in this branch.
+     */
+    @Test
+    void checkGameMap () {
+        assertDoesNotThrow(() -> {
+            assertEquals(40, new GameMap().getFields().size());
+        });
+    }
+
 
     /**
      * This method will create a property object that is being used as a valid field.
