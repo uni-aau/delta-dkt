@@ -4,7 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activities.MainActivity"
+    tools:context=".activities.MainMenuActivity"
     android:background="@color/white"
     >
 
@@ -28,7 +28,8 @@
         android:text="Host Game"
         android:textColor="@color/dkt_yellow"
         android:textSize="20sp"
-        android:textStyle="bold"/>
+
+        android:fontFamily="@font/bangers"/>
 
     <Button
         android:id="@+id/join_button"
@@ -41,7 +42,7 @@
         android:textColor="@color/dkt_yellow"
         android:text="Join Game"
         android:textSize="20sp"
-        android:textStyle="bold"
+        android:fontFamily="@font/bangers"
 
         />
 
