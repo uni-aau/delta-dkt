@@ -378,10 +378,19 @@ class PlayerTests {
      * For now, this test will stay in this class since it tests all the code written in this branch.
      */
     @Test
-    void checkGameMap () {
+    void checkGameMap_getFields () {
         assertDoesNotThrow(() -> {
             assertEquals(40, new GameMap().getFields().size());
         });
+    }
+
+    /**
+     * Checks whether the preliminary implementation of the getField method returns null.
+     * For now, this test will stay in this class since it tests all the code written in this branch.
+     */
+    @Test
+    void checkGameMap_getField () {
+        assertNull(new GameMap().getField(10));
     }
 
 
