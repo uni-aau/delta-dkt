@@ -18,13 +18,34 @@
         app:srcCompat="@drawable/dkt_logo_2"
         tools:layout_editor_absoluteY="128dp" />
 
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:text="Player Lobby"
+        android:layout_below="@id/dkt_logo"
+        android:layout_marginTop="1dp"
+        android:textSize="30sp"
+        android:fontFamily="@font/bangers"
+        android:textColor="@color/dkt_red"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/lobbyRecyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="450dp"
+        android:layout_below="@id/textView"
+        android:layout_marginTop="5dp"
+        />
+
+
     <Button
         android:id="@+id/backbtn"
         android:layout_width="120dp"
         android:layout_height="wrap_content"
         android:text="Back"
-        android:layout_below="@id/dkt_logo"
-        android:layout_marginTop="500dp"
+        android:layout_below="@id/lobbyRecyclerView"
+        android:layout_marginTop="5dp"
         android:layout_marginLeft="20dp"
         android:textColor="@color/dkt_yellow"
         android:textSize="20sp"
@@ -36,13 +57,15 @@
         android:layout_width="120dp"
         android:layout_height="wrap_content"
         android:text="Start"
-        android:layout_below="@id/dkt_logo"
-        android:layout_marginTop="500dp"
+        android:layout_below="@id/lobbyRecyclerView"
+        android:layout_marginTop="5dp"
         android:layout_marginLeft="270dp"
         android:textColor="@color/dkt_yellow"
         android:textSize="20sp"
         android:fontFamily="@font/bangers"
         android:background="@drawable/host_btn_background"/>
+
+
 
 
 </RelativeLayout>
