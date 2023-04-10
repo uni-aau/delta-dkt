@@ -14,7 +14,7 @@
             tools:targetApi="31">
         <activity
                 android:name=".activities.PropertyListActivity"
-                android:exported="false" />
+                android:exported="true" />
         <activity
                 android:name=".activities.LobbyViewActivity"
                 android:exported="false" />
