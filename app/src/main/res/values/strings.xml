@@ -7,4 +7,5 @@
     <string name="text_price">Price: {0}$</string>
     <string name="text_ownedBy">Owned by: {0}</string>
     <string name="text_propertiesAmountTitle">Properties:</string>
+    <string name="text_propInfoTitle">Property Information</string>
 </resources>
