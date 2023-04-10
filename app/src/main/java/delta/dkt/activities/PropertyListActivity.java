@@ -24,7 +24,9 @@ public class PropertyListActivity extends AppCompatActivity {
 
     protected void sendDataToFragment() {
         BlockFragment f1 = BlockFragment.newInstance("Fragment1", "1");
+        BlockFragment f2 = BlockFragment.newInstance("Fragment2", "2");
 
         getSupportFragmentManager().beginTransaction().add(R.id.fragmentContainerView, f1).commit();
+        getSupportFragmentManager().beginTransaction().add(R.id.fragmentContainerView2, f2).commit();
     }
 }
