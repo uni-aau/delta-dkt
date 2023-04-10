@@ -14,5 +14,7 @@ public class PropertyListActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_property_list);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE); // Force landscape screen at activity level
+
+        getSupportActionBar().hide();
     }
 }
