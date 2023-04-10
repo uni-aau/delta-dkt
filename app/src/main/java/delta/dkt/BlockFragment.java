@@ -11,8 +11,8 @@ import android.widget.TextView;
 
 public class BlockFragment extends Fragment {
 
-    private static final String ARG_fragmentNumber = "fragmentNumberInput";
-    private static final String ARG_propNumber = "propNumberInput";
+    private static final String ARG_FRAGMENT_NUMBER = "fragmentNumberInput";
+    private static final String ARG_PROP_NUMBER = "propNumberInput";
 
     private String fragmentNumberInput;
     private String propNumberInput;
@@ -24,8 +24,8 @@ public class BlockFragment extends Fragment {
     public static BlockFragment newInstance(String param1, String param2) {
         BlockFragment fragment = new BlockFragment();
         Bundle args = new Bundle();
-        args.putString(ARG_fragmentNumber, param1);
-        args.putString(ARG_propNumber, param2);
+        args.putString(ARG_FRAGMENT_NUMBER, param1);
+        args.putString(ARG_PROP_NUMBER, param2);
         fragment.setArguments(args);
         return fragment;
     }
@@ -34,19 +34,17 @@ public class BlockFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            fragmentNumberInput = getArguments().getString(ARG_fragmentNumber);
-            propNumberInput = getArguments().getString(ARG_propNumber);
+            fragmentNumberInput = getArguments().getString(ARG_FRAGMENT_NUMBER);
+            propNumberInput = getArguments().getString(ARG_PROP_NUMBER);
         }
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_block, container, false);
 
         setFragmentData(view);
 
-        // Inflate the layout for this fragment
         return view;
     }
 
@@ -57,5 +55,12 @@ public class BlockFragment extends Fragment {
         TextView ownedBy = view.findViewById(R.id.textView_ownedBy);
 
         propNumber.setText(propNumberInput);
+
+        // Todo
+        /*
+        Button zum Zurückführen
+        Scrollbar
+        Property Haus-Implementierung
+         */
     }
 }
