@@ -34,5 +34,12 @@
                 android:name="delta.dkt.BlockFragment"
                 android:id="@+id/fragmentContainerView"
                 tools:layout="@layout/fragment_block" />
+
+        <androidx.fragment.app.FragmentContainerView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:name="delta.dkt.BlockFragment"
+                android:id="@+id/fragmentContainerView2"
+                tools:layout="@layout/fragment_block" />
     </LinearLayout>
 </LinearLayout>
