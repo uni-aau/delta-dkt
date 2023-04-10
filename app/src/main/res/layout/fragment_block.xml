@@ -87,28 +87,32 @@
                     android:layout_height="wrap_content"
                     tools:src="@tools:sample/avatars"
                     android:id="@+id/imageView_prop1"
-                    android:layout_weight="1" />
+                    android:layout_weight="1"
+                    android:contentDescription="@string/textCD_prop1" />
 
             <ImageView
                     android:layout_width="85dp"
                     android:layout_height="wrap_content"
                     tools:src="@tools:sample/avatars"
                     android:id="@+id/imageView_prop2"
-                    android:layout_weight="1" />
+                    android:layout_weight="1"
+                    android:contentDescription="@string/textCD_prop2" />
 
             <ImageView
                     android:layout_width="85dp"
                     android:layout_height="wrap_content"
                     tools:src="@tools:sample/avatars"
                     android:id="@+id/imageView_prop3"
-                    android:layout_weight="1" />
+                    android:layout_weight="1"
+                    android:contentDescription="@string/textCD_prop3" />
 
             <ImageView
                     android:layout_width="85dp"
                     android:layout_height="wrap_content"
                     tools:src="@tools:sample/avatars"
                     android:id="@+id/imageView_prop4"
-                    android:layout_weight="1" />
+                    android:layout_weight="1"
+                    android:contentDescription="@string/textCD_prop4" />
         </LinearLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>

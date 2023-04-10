@@ -8,4 +8,8 @@
     <string name="text_ownedBy">Owned by: {0}</string>
     <string name="text_propertiesAmountTitle">Properties:</string>
     <string name="text_propInfoTitle">Property Information</string>
+    <string name="textCD_prop1">Property 1</string>
+    <string name="textCD_prop2">Property 2</string>
+    <string name="textCD_prop3">Property 3</string>
+    <string name="textCD_prop4">Property 4</string>
 </resources>
