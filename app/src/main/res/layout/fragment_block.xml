@@ -18,7 +18,7 @@
                 android:text="{0}"
                 android:layout_width="44dp"
                 android:layout_height="51dp"
-                android:id="@+id/textView"
+                android:id="@+id/textview_propNumber"
                 android:textSize="25sp"
                 android:textStyle="bold"
                 android:gravity="center"
@@ -31,8 +31,8 @@
                 android:text="Property Name: {0}"
                 android:layout_width="wrap_content"
                 android:layout_height="0dp"
-                android:id="@+id/textView3"
-                app:layout_constraintStart_toEndOf="@+id/textView"
+                android:id="@+id/textView_propName"
+                app:layout_constraintStart_toEndOf="@+id/textview_propNumber"
                 android:layout_marginStart="16dp"
                 app:layout_constraintTop_toTopOf="parent"
                 android:layout_marginTop="28dp" />
@@ -41,20 +41,20 @@
                 android:text="Price: {0}$"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/textView4"
+                android:id="@+id/textView_price"
                 android:layout_marginTop="11dp"
-                app:layout_constraintTop_toBottomOf="@+id/textView3"
+                app:layout_constraintTop_toBottomOf="@+id/textView_propName"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintVertical_bias="0.034"
-                app:layout_constraintStart_toEndOf="@+id/textView"
+                app:layout_constraintStart_toEndOf="@+id/textview_propNumber"
                 android:layout_marginStart="16dp" />
 
         <TextView
                 android:text="Owned by: {0}"
                 android:layout_width="wrap_content"
                 android:layout_height="0dp"
-                android:id="@+id/textView5"
-                app:layout_constraintStart_toEndOf="@+id/textView3"
+                android:id="@+id/textView_ownedBy"
+                app:layout_constraintStart_toEndOf="@+id/textView_propName"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.486"
                 app:layout_constraintTop_toTopOf="parent"
@@ -68,8 +68,8 @@
                 app:layout_constraintVertical_bias="0.25"
                 app:layout_constraintEnd_toEndOf="parent"
                 android:layout_marginTop="8dp"
-                app:layout_constraintTop_toBottomOf="@+id/textView5"
-                app:layout_constraintStart_toEndOf="@+id/textView4"
+                app:layout_constraintTop_toBottomOf="@+id/textView_ownedBy"
+                app:layout_constraintStart_toEndOf="@+id/textView_price"
                 app:layout_constraintHorizontal_bias="0.701">
 
             <TextView
@@ -78,7 +78,7 @@
                     android:layout_height="35dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     android:layout_marginBottom="16dp"
-                    android:id="@+id/textView6"
+                    android:id="@+id/textView_propertiesAmountTitle"
                     android:layout_weight="1"
                     android:gravity="center" />
 
@@ -86,28 +86,28 @@
                     android:layout_width="85dp"
                     android:layout_height="wrap_content"
                     tools:src="@tools:sample/avatars"
-                    android:id="@+id/imageView"
+                    android:id="@+id/imageView_prop1"
                     android:layout_weight="1" />
 
             <ImageView
                     android:layout_width="85dp"
                     android:layout_height="wrap_content"
                     tools:src="@tools:sample/avatars"
-                    android:id="@+id/imageView2"
+                    android:id="@+id/imageView_prop2"
                     android:layout_weight="1" />
 
             <ImageView
                     android:layout_width="85dp"
                     android:layout_height="wrap_content"
                     tools:src="@tools:sample/avatars"
-                    android:id="@+id/imageView3"
+                    android:id="@+id/imageView_prop3"
                     android:layout_weight="1" />
 
             <ImageView
                     android:layout_width="85dp"
                     android:layout_height="wrap_content"
                     tools:src="@tools:sample/avatars"
-                    android:id="@+id/imageView4"
+                    android:id="@+id/imageView_prop4"
                     android:layout_weight="1" />
         </LinearLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
