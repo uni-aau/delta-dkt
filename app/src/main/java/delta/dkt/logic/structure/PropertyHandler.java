@@ -4,7 +4,15 @@ import static delta.dkt.logic.structure.PropertyLevel.CHEAP;
 import static delta.dkt.logic.structure.PropertyLevel.NORMAL;
 import static delta.dkt.logic.structure.PropertyLevel.PREMIUM;
 
+/**
+ * This class represents a PropertyHandler to handle all the properties.
+ */
 public class PropertyHandler {
+
+    /**
+     * Gets the property of a given position
+     * @param position The position of the property.
+     */
     public static Field getProperties(int position){
 
         Property bregenz1;
