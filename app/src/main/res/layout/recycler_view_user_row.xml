@@ -6,7 +6,7 @@
     android:layout_height="match_parent">
 
     <RelativeLayout
-        android:layout_width="300dp"
+        android:layout_width="350dp"
         android:layout_height="100dp"
         android:background="@drawable/join_btn_background"
         android:layout_alignParentLeft="true"
@@ -21,16 +21,19 @@
             android:padding="10dp"
             tools:srcCompat="@tools:sample/avatars"/>
 
+
         <TextView
-            android:id="@+id/userName"
+            android:id="@+id/userName_txt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:text = "UserName"
-            android:textSize="40sp"
+            android:textSize="30sp"
             android:textColor="@color/dkt_yellow"
             android:fontFamily="@font/bangers"
-            android:padding="10dp"/>
+            android:padding="10dp"
+            />
+
 
     </RelativeLayout>
 
