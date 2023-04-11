@@ -7,7 +7,21 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.util.ArrayList;
+
 class UserNameAdapter extends RecyclerView.Adapter<UserNameAdapter.UserViewHolder> {
+
+    Context context;
+    ArrayList <String> usernames = new ArrayList<>();
+
+    public UserNameAdapter (Context context, ArrayList<String> usernames) {
+        this.context=context;
+        this.usernames= usernames;
+    }
+
+
+
+
 
 
 
