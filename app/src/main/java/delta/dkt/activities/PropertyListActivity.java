@@ -17,6 +17,7 @@ public class PropertyListActivity extends AppCompatActivity {
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE); // Force landscape screen at activity level
 
         getSupportActionBar().hide();
+        findViewById(R.id.button_backToGame).setOnClickListener(view -> switchToGameActivity());
         sendDataToFragment(); // Gets replaced later with server
     }
 
@@ -30,5 +31,9 @@ public class PropertyListActivity extends AppCompatActivity {
         getSupportFragmentManager().beginTransaction().add(R.id.frameLayoutImg2, blockNumber2).commit();
         getSupportFragmentManager().beginTransaction().add(R.id.frameLayoutImg3, blockNumber3).commit();
         getSupportFragmentManager().beginTransaction().add(R.id.frameLayoutImg4, blockNumber4).commit();
+    }
+
+    protected void switchToGameActivity() {
+        finish();
     }
 }

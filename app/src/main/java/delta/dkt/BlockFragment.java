@@ -77,7 +77,6 @@ public class BlockFragment extends Fragment {
         TextView price = view.findViewById(R.id.textView_price);
         TextView ownedBy = view.findViewById(R.id.textView_ownedBy);
 
-        System.out.println("DEBUG " + propNameInput);
         propNumber.setText(propNumberInput);
         propName.setText(String.format(getString(R.string.text_propName), propNameInput));
         price.setText(String.format(getString(R.string.text_price), propPriceInput));
@@ -85,8 +84,6 @@ public class BlockFragment extends Fragment {
 
         // Todo
         /*
-        Button zum Zurückführen
-        Scrollbar
         Property Haus-Implementierung
          */
     }
