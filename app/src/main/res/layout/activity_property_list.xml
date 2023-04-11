@@ -4,7 +4,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".activities.PropertyListActivity"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:id="@+id/framelayout2">
 
     <LinearLayout
             android:orientation="horizontal"
@@ -28,25 +29,44 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-        <androidx.fragment.app.FragmentContainerView
+        <ScrollView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:name="delta.dkt.BlockFragment"
-                android:id="@+id/fragmentContainerView"
-                tools:layout="@layout/fragment_block" />
+                android:layout_height="265dp">
 
-        <androidx.fragment.app.FragmentContainerView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:name="delta.dkt.BlockFragment"
-                android:id="@+id/fragmentContainerView2"
-                tools:layout="@layout/fragment_block" />
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
 
-        <FrameLayout
-                android:layout_width="match_parent"
-                android:layout_height="112dp"
-                android:id="@+id/framelayout1">
+                <FrameLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:id="@+id/framelayout1">
 
-        </FrameLayout>
+                </FrameLayout>
+
+                <FrameLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:id="@+id/framelayout2">
+
+                </FrameLayout>
+
+                <FrameLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:id="@+id/framelayout3">
+
+                </FrameLayout>
+
+                <FrameLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:id="@+id/framelayout4">
+
+                </FrameLayout>
+
+            </LinearLayout>
+        </ScrollView>
     </LinearLayout>
 </LinearLayout>
