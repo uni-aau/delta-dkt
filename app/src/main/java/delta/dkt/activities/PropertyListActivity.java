@@ -17,7 +17,6 @@ public class PropertyListActivity extends AppCompatActivity {
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE); // Force landscape screen at activity level
 
         getSupportActionBar().hide();
-        System.out.println("DEBUG wie oft?");
         sendDataToFragment(); // Gets replaced later with server
     }
 
