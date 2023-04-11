@@ -20,6 +20,7 @@ public class LobbyViewActivity extends AppCompatActivity {
 
         Button backbtn = findViewById(R.id.backbtn);
         Button startbtn = findViewById(R.id.startbtn);
+        String userName = getIntent().getStringExtra("stringname");
 
         backbtn.setOnClickListener(new View.OnClickListener() {
             @Override
