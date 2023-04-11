@@ -2,8 +2,11 @@ package delta.dkt;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,25 +24,24 @@ public class BlockFragment extends Fragment {
     private String fragmentNumberInput;
     private String propNumberInput;
     private String propNameInput;
-    private String propPriceInput;
+    private int propPriceInput;
     private String propOwnerInput;
-    private String propPlotAmountInput;
-
+    private int propPlotAmountInput;
 
 
     public BlockFragment() {
         // Required empty public constructor
     }
 
-    public static BlockFragment newInstance(String fragmentNumber, String propNumber, String propName, String propPrice, String propOwner, String propPlotAmount) { // Todo convert to object?
+    public static BlockFragment newInstance(String fragmentNumber, String propNumber, String propName, int propPrice, String propOwner, int propPlotAmount) { // Todo convert to object?
         BlockFragment fragment = new BlockFragment();
         Bundle args = new Bundle();
         args.putString(ARG_FRAGMENT_NUMBER, fragmentNumber);
         args.putString(ARG_PROP_NUMBER, propNumber);
         args.putString(ARG_PROP_NAME, propName);
-        args.putString(ARG_PROP_PRICE, propPrice);
+        args.putInt(ARG_PROP_PRICE, propPrice);
         args.putString(ARG_PROP_OWNER, propOwner);
-        args.putString(ARG_PROP_PLOTAMOUNT, propPlotAmount);
+        args.putInt(ARG_PROP_PLOTAMOUNT, propPlotAmount);
         fragment.setArguments(args);
         return fragment;
     }
@@ -50,16 +52,23 @@ public class BlockFragment extends Fragment {
         if (getArguments() != null) {
             fragmentNumberInput = getArguments().getString(ARG_FRAGMENT_NUMBER);
             propNumberInput = getArguments().getString(ARG_PROP_NUMBER);
+            propNameInput = getArguments().getString(ARG_PROP_NAME);
+            propPriceInput = getArguments().getInt(ARG_PROP_PRICE);
+            propOwnerInput = getArguments().getString(ARG_PROP_OWNER);
+            propPlotAmountInput = getArguments().getInt(ARG_PROP_PLOTAMOUNT);
         }
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_block, container, false);
+        return inflater.inflate(R.layout.fragment_block, container, false);
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
 
         setFragmentData(view);
-
-        return view;
     }
 
     protected void setFragmentData(View view) {
@@ -68,7 +77,11 @@ public class BlockFragment extends Fragment {
         TextView price = view.findViewById(R.id.textView_price);
         TextView ownedBy = view.findViewById(R.id.textView_ownedBy);
 
+        System.out.println("DEBUG " + propNameInput);
         propNumber.setText(propNumberInput);
+        propName.setText(String.format(getString(R.string.text_propName), propNameInput));
+        price.setText(String.format(getString(R.string.text_price), propPriceInput));
+        ownedBy.setText(String.format(getString(R.string.text_ownedBy), propOwnerInput));
 
         // Todo
         /*
