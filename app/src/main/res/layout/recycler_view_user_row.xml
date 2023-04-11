@@ -5,6 +5,29 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <RelativeLayout
+        android:layout_width="300dp"
+        android:layout_height="100dp"
+        android:background="@drawable/join_btn_background"
+        android:layout_alignParentLeft="true"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="5dp">
+
+
+
+        <TextView
+            android:id="@+id/userName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:text = "UserName"
+            android:textSize="40sp"
+            android:textColor="@color/dkt_yellow"
+            android:fontFamily="@font/bangers"
+            android:padding="10dp"/>
+
+    </RelativeLayout>
+
 
 
 
