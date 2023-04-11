@@ -21,8 +21,8 @@ public class PropertyListActivity extends AppCompatActivity {
     }
 
     protected void sendDataToFragment() {
-        BlockFragment blockNumber1 = BlockFragment.newInstance("Fragment1", "1");
-        BlockFragment blockNumber2 = BlockFragment.newInstance("Fragment2", "2");
+        BlockFragment blockNumber1 = BlockFragment.newInstance("Fragment1", "1", "Testprop", "5", "Player1", "2");
+        BlockFragment blockNumber2 = BlockFragment.newInstance("Fragment2", "2", "Testprop2", "10", "Player2", "1");
 
         getSupportFragmentManager().beginTransaction().add(R.id.fragmentContainerView, blockNumber1).commit();
         getSupportFragmentManager().beginTransaction().add(R.id.fragmentContainerView2, blockNumber2).commit();

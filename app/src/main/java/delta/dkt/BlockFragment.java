@@ -13,19 +13,33 @@ public class BlockFragment extends Fragment {
 
     private static final String ARG_FRAGMENT_NUMBER = "fragmentNumberInput";
     private static final String ARG_PROP_NUMBER = "propNumberInput";
+    private static final String ARG_PROP_NAME = "propNameInput";
+    private static final String ARG_PROP_PRICE = "propPriceInput";
+    private static final String ARG_PROP_OWNER = "propOwnerInput";
+    private static final String ARG_PROP_PLOTAMOUNT = "propPlotAmountInput";
 
     private String fragmentNumberInput;
     private String propNumberInput;
+    private String propNameInput;
+    private String propPriceInput;
+    private String propOwnerInput;
+    private String propPlotAmountInput;
+
+
 
     public BlockFragment() {
         // Required empty public constructor
     }
 
-    public static BlockFragment newInstance(String param1, String param2) {
+    public static BlockFragment newInstance(String fragmentNumber, String propNumber, String propName, String propPrice, String propOwner, String propPlotAmount) { // Todo convert to object?
         BlockFragment fragment = new BlockFragment();
         Bundle args = new Bundle();
-        args.putString(ARG_FRAGMENT_NUMBER, param1);
-        args.putString(ARG_PROP_NUMBER, param2);
+        args.putString(ARG_FRAGMENT_NUMBER, fragmentNumber);
+        args.putString(ARG_PROP_NUMBER, propNumber);
+        args.putString(ARG_PROP_NAME, propName);
+        args.putString(ARG_PROP_PRICE, propPrice);
+        args.putString(ARG_PROP_OWNER, propOwner);
+        args.putString(ARG_PROP_PLOTAMOUNT, propPlotAmount);
         fragment.setArguments(args);
         return fragment;
     }
