@@ -10,10 +10,16 @@
         android:layout_height="100dp"
         android:background="@drawable/join_btn_background"
         android:layout_alignParentLeft="true"
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="10dp"
         android:layout_marginLeft="5dp">
 
 
+        <ImageView
+            android:id="@+id/avatar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            tools:srcCompat="@tools:sample/avatars"/>
 
         <TextView
             android:id="@+id/userName"
