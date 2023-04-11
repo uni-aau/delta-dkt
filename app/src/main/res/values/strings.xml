@@ -1,9 +1,9 @@
 <resources>
     <string name="app_name">DKT</string>
     <string name="text_propNumber">{0}</string>
-    <string name="text_propName">Property Name: {0}</string>
-    <string name="text_price">Price: {0}$</string>
-    <string name="text_ownedBy">Owned by: {0}</string>
+    <string name="text_propName">Property Name: %s</string>
+    <string name="text_price">Price: %d$</string>
+    <string name="text_ownedBy">Owned by: %s</string>
     <string name="text_propertiesAmountTitle">Properties:</string>
     <string name="text_propInfoTitle">Property Information</string>
     <string name="textCD_prop1">Property 1</string>
