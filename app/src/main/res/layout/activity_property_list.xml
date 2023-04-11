@@ -41,32 +41,33 @@
                 <FrameLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:id="@+id/framelayout1">
+                        android:id="@+id/frameLayoutImg2">
 
                 </FrameLayout>
 
                 <FrameLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:id="@+id/framelayout2">
+                        android:id="@+id/frameLayoutImg1">
 
                 </FrameLayout>
 
                 <FrameLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:id="@+id/framelayout3">
+                        android:id="@+id/frameLayoutImg3">
 
                 </FrameLayout>
 
                 <FrameLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:id="@+id/framelayout4">
+                        android:id="@+id/frameLayoutImg4">
 
                 </FrameLayout>
 
             </LinearLayout>
         </ScrollView>
+
     </LinearLayout>
 </LinearLayout>

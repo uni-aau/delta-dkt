@@ -26,9 +26,9 @@ public class PropertyListActivity extends AppCompatActivity {
         BlockFragment blockNumber3 = BlockFragment.newInstance("Fragment3", "2", "Testprop2", 10, "Player2", 1);
         BlockFragment blockNumber4 = BlockFragment.newInstance("Fragment4", "2", "Testprop2", 10, "Player2", 1);
 
-        getSupportFragmentManager().beginTransaction().add(R.id.framelayout1, blockNumber1).commit();
-        getSupportFragmentManager().beginTransaction().add(R.id.framelayout2, blockNumber2).commit();
-        getSupportFragmentManager().beginTransaction().add(R.id.framelayout3, blockNumber3).commit();
-        getSupportFragmentManager().beginTransaction().add(R.id.framelayout4, blockNumber4).commit();
+        getSupportFragmentManager().beginTransaction().add(R.id.frameLayoutImg1, blockNumber1).commit();
+        getSupportFragmentManager().beginTransaction().add(R.id.frameLayoutImg2, blockNumber2).commit();
+        getSupportFragmentManager().beginTransaction().add(R.id.frameLayoutImg3, blockNumber3).commit();
+        getSupportFragmentManager().beginTransaction().add(R.id.frameLayoutImg4, blockNumber4).commit();
     }
 }
