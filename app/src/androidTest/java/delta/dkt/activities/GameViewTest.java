@@ -12,8 +12,8 @@ import org.junit.Test;
 
 public class GameViewTest {
     @Rule
-    public ActivityScenarioRule<MainActivity> activityRule =
-            new ActivityScenarioRule<>(MainActivity.class);
+    public ActivityScenarioRule<GameViewActivity> activityRule =
+            new ActivityScenarioRule<>(GameViewActivity.class);
 
     @Test
     public void listGoesOverTheFold() {
