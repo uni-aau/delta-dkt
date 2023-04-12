@@ -108,29 +108,61 @@ public class Player {
     /**
      * Will time out this player from moving for a given amount of rounds.
      */
-    public void setTimeout (int rounds) {
+    public void setSuspension (int rounds) {
         this.suspention = rounds;
     }
 
     /**
      * @return Returns whether the player is prohibited from moving, thus has a suspension / timeout.
      */
-    public boolean isTimeoutet () {
+    public boolean isSuspended () {
         return this.suspention > 0;
     }
 
     /**
      * This function may be called when a player is supposed to move, but is prohibited from doing so, thus the remaining amount of suspended rounds, can be decreased by 1.
      */
-    public void reduceTimeout () {
+    public void reduceSuspension () {
         if (this.suspention > 0) this.suspention--;
     }
 
     /**
      * This function may be called when the player uses his 'jail-free-card' or receives any other action, that removes his suspension / timeout.
      */
-    public void resetTimeout () {
+    public void resetSuspension () {
         this.suspention = 0;
+    }
+
+    //? Positioning
+
+    /**
+     * Moves a player to a given location and sets the corresponding field as his updated position.
+     * @param location The destination to which the player will be moved to.
+     */
+    private void move (int location) {
+        //? Player has a suspension and is prohibited from moving.
+        if (this.isSuspended()) return;
+
+        this.position = Game.getMap().getField(location);
+    }
+
+    /**
+     * This function will move the player by a given amount of steps.
+     */
+    public void moveSteps (int steps) {
+        int location = (this.position.getLocation() + steps) % Game.getMap().getFields().size();
+        this.move(location);
+    }
+
+    /**
+     * This function will move a player to a given location, e.g. to prison.
+     * @param location Represents the location of a field on the game map.
+     */
+    public void moveTo (int location) {
+        int safety = location % Game.getMap().getFields().size();
+        //? Safety check for invalid locations
+
+        this.move(safety);
     }
 
 

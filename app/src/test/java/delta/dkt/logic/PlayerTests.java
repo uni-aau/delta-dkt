@@ -6,6 +6,8 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
+import java.util.ArrayList;
+
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
@@ -19,9 +21,12 @@ class PlayerTests {
 
     @BeforeEach
     void setup () {
-        player = new Player("Mike");
         testProperty1 = new Property(12, 10, 10, PropertyLevel.NORMAL, 10, 10);
         testProperty2 = new Property(14, 10, 10, PropertyLevel.NORMAL, 10, 10);
+
+        setMockRequirements_PropertyAquisition();
+        player = new Player("Mike");
+
     }
 
     //? Getters
@@ -47,7 +52,6 @@ class PlayerTests {
      */
     @Test
     void checkDefaultPosition () {
-        setMockRequirements_PropertyAquisition();
         assertEquals(testProperty1, player.getPosition());
     }
 
@@ -96,8 +100,6 @@ class PlayerTests {
     @ParameterizedTest
     @ValueSource(booleans = {true, false})
     void checkSuccessfulPropertyAcquisition (boolean onTop) {
-        setMockRequirements_PropertyAquisition();
-
         Property buying = onTop ? testProperty1 : testProperty2;
 
         if (onTop) {
@@ -120,7 +122,7 @@ class PlayerTests {
     @ValueSource(booleans = {true, false})
     void checkPropertyAcqusition_LowCash (boolean onTop) {
         Player.setStartCash(0);
-        setMockRequirements_PropertyAquisition();
+        player = new Player();
 
         Property buying = onTop ? testProperty1 : testProperty2;
 
@@ -143,8 +145,6 @@ class PlayerTests {
     void checkPropertyAcqusition_Owned (boolean onTop) {
         Property buying = onTop ? testProperty1 : testProperty2;
         buying.setOwner(new Player("Maxi"));
-
-        setMockRequirements_PropertyAquisition();
 
         if (onTop) {
             assertFalse(player.buyProperty());
@@ -189,7 +189,6 @@ class PlayerTests {
      */
     @Test
     void checkPropertyRefund_Successful () {
-        setMockRequirements_PropertyAquisition();
         player.buyProperty();
 
         assertTrue(player.sellProperty(testProperty1.getLocation()));
@@ -204,8 +203,6 @@ class PlayerTests {
      */
     @Test
     void checkPropertyRefund_NotOwned () {
-        setMockRequirements_PropertyAquisition();
-
         assertFalse(player.sellProperty(testProperty1.getLocation()));
 
         testProperty1.setOwner(new Player("Herbert"));
@@ -236,7 +233,7 @@ class PlayerTests {
      */
     @Test
     void checkSettingPlayerTimeout () {
-        player.setTimeout(10);
+        player.setSuspension(10);
         assertEquals(10, player.getSuspention());
     }
 
@@ -246,7 +243,7 @@ class PlayerTests {
     @Test
     void checkIsPlayerSuspended () {
         checkSettingPlayerTimeout();
-        assertTrue(player.isTimeoutet());
+        assertTrue(player.isSuspended());
     }
 
     /**
@@ -255,8 +252,8 @@ class PlayerTests {
     @Test
     void checkResetSuspension () {
         checkSettingPlayerTimeout();
-        player.resetTimeout();
-        assertFalse(player.isTimeoutet());
+        player.resetSuspension();
+        assertFalse(player.isSuspended());
         assertEquals(0, player.getSuspention());
     }
 
@@ -269,17 +266,17 @@ class PlayerTests {
 
         for (int i = 10; i > 0; i--) {
             assertEquals(i, player.getSuspention());
-            player.reduceTimeout();
+            player.reduceSuspension();
             assertEquals(i - 1, player.getSuspention());
 
             // there is still a suspension
-            if (i - 1 > 0) assertTrue(player.isTimeoutet());
+            if (i - 1 > 0) assertTrue(player.isSuspended());
         }
 
         assertEquals(0, player.getSuspention());
-        assertFalse(player.isTimeoutet());
+        assertFalse(player.isSuspended());
 
-        player.reduceTimeout();
+        player.reduceSuspension();
         assertEquals(0, player.getSuspention());
     }
 
@@ -300,8 +297,8 @@ class PlayerTests {
      * This method will verify the calls of the previously mocked methods.
      */
     void verifyMockCalls (Field bought) {
-        verify(mockMapHandling).getField(0);
-        verify(mockMapHandling).getField(bought.getLocation());
+        verify(mockMapHandling, atLeastOnce()).getField(0);
+        verify(mockMapHandling, atLeastOnce()).getField(bought.getLocation());
     }
 
     /**
@@ -313,6 +310,103 @@ class PlayerTests {
         assertEquals(exProperties, player.getProperties().size());
         assertEquals(player, player.getProperties().get(0).getOwner());
         assertEquals((Player.getStartCash() - propertyPrice), player.getCash());
+    }
+
+
+    //! Testing the player movements
+
+    /**
+     * Checks whether moving the player with a given amount of steps is successful
+     * @param steps Steps that the player will move from its current position.
+     */
+    @ParameterizedTest
+    @ValueSource(ints = {1, 2, 3, 4, 5, 6, 10})
+    void checkPlayerMovement_bySteps (int steps) {
+
+        //? sets the return value for getField method with its given arguments to a valid property.
+        int location = player.getPosition().getLocation() + steps;
+        when(mockMapHandling.getField(location)).thenReturn(generateDummyProperty(location));
+        when(mockMapHandling.getFields()).thenReturn(generateDummyList());
+
+        player.moveSteps(steps);
+        assertEquals(location, player.getPosition().getLocation());
+
+        verify(mockMapHandling).getField(location);
+        verify(mockMapHandling).getFields();
+    }
+
+    /**
+     * Checks whether a players position can be set by moving the player to a given position.
+     * @param location The location to which the player should be moved.
+     */
+    @ParameterizedTest
+    @ValueSource(ints = {1, 2, 3, 4, 5, 6, 10})
+    void checkPlayerMovement_moveTo (int location) {
+
+        //? sets the return value for getField method with its given arguments to a valid property.
+        when(mockMapHandling.getField(location)).thenReturn(generateDummyProperty(location));
+        when(mockMapHandling.getFields()).thenReturn(generateDummyList());
+
+        player.moveTo(location);
+        assertEquals(location, player.getPosition().getLocation());
+
+        verify(mockMapHandling).getField(location);
+        verify(mockMapHandling).getFields();
+    }
+
+
+    /**
+     * Checks whether a player is prohibited from moving when suspended.
+     */
+    @Test
+    void checkPlayerMovement_Suspended () {
+        when(mockMapHandling.getFields()).thenReturn(generateDummyList());
+
+        player.setSuspension(10);
+        assertTrue(player.isSuspended());
+
+        int previous = player.getPosition().getLocation();
+        player.moveTo(12);
+
+        assertEquals(previous, player.getPosition().getLocation());
+    }
+
+    //! Preliminary tests for the Game Map
+
+    /**
+     * Checks whether the preliminary implementation of the Game map does not throw any errors.
+     * For now, this test will stay in this class since it tests all the code written in this branch.
+     */
+    @Test
+    void checkGameMap_getFields () {
+        assertDoesNotThrow(() -> {
+            assertEquals(40, new GameMap().getFields().size());
+        });
+    }
+
+    /**
+     * Checks whether the preliminary implementation of the getField method returns null.
+     * For now, this test will stay in this class since it tests all the code written in this branch.
+     */
+    @Test
+    void checkGameMap_getField () {
+        assertNull(new GameMap().getField(10));
+    }
+
+
+    /**
+     * This method will create a property object that is being used as a valid field.
+     * @param location The location of the property-field.
+     */
+    Field generateDummyProperty (int location) {
+        return new Property(location, 0, 0, PropertyLevel.NORMAL, 0, 0);
+    }
+
+    ArrayList<Field> generateDummyList () {
+        ArrayList<Field> dummy = new ArrayList<>();
+        for (int i = 0; i < 40; i++) dummy.add(null);
+
+        return dummy;
     }
 }
 
