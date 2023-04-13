@@ -1,20 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
 
     <RelativeLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="350dp"
         android:layout_height="100dp"
         android:background="@drawable/user_card_background"
-        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
         android:layout_marginTop="10dp"
-        android:layout_marginLeft="5dp">
+        android:layout_marginStart="5dp">
 
 
         <ImageView
+            android:contentDescription="@string/Avatar"
             android:id="@+id/avatar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -24,20 +22,14 @@
 
         <TextView
             android:id="@+id/userName_txt"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:text = "UserName"
+            android:layout_width="180dp"
+            android:layout_height="70dp"
+            android:layout_alignParentEnd="true"
+            android:text = "@string/UserName"
             android:textSize="30sp"
             android:textColor="@color/dkt_yellow"
             android:fontFamily="@font/bangers"
-            android:padding="10dp"
-            />
-
-
-    </RelativeLayout>
-
-
+            android:padding="10dp"/>
 
 
     </RelativeLayout>
