@@ -91,7 +91,7 @@ public class BlockFragment extends Fragment {
     // Sets the amount of properties per fragment
     protected void setPropertyAmount(View view) {
         if (propPlotAmountInput > CONS_MAX_PROP_AMOUNT)
-            throw new RuntimeException("Too much inserted properties!");
+            throw new IllegalArgumentException("Too much inserted properties!");
 
         ImageView[] propertys = new ImageView[]{
                 view.findViewById(R.id.imageView_prop1),
