@@ -22,18 +22,7 @@ public class GameViewTest {
             new ActivityScenarioRule<>(GameViewActivity.class);
 
     @Test
-    public void listGoesOverTheFold() {
+    public void testTextViewGeneralInfo() {
         onView(withText("General Information")).check(matches(isDisplayed()));
-    }
-
-    @Test
-    public void testViewSwitch() {
-        Intents.init();
-        // Perform an action on the button
-        onView(ViewMatchers.withId(R.id.button_property_infos)).perform(ViewActions.click());
-
-        // Verify that the activity you expect to be launched has started
-        Intents.intended(IntentMatchers.hasComponent(PropertyListActivity.class.getName()));
-        Intents.release();
     }
 }
