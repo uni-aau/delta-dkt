@@ -1,5 +1,16 @@
 <resources>
     <string name="app_name">DKT</string>
+    <string name="text_propNumber">{0}</string>
+    <string name="text_propName">Property Name: %s</string>
+    <string name="text_price">Price: %d$</string>
+    <string name="text_ownedBy">Owned by: %s</string>
+    <string name="text_propertiesAmountTitle">Properties:</string>
+    <string name="text_propInfoTitle">Property Information</string>
+    <string name="textCD_prop1">Property 1</string>
+    <string name="textCD_prop2">Property 2</string>
+    <string name="textCD_prop3">Property 3</string>
+    <string name="textCD_prop4">Property 4</string>
+    <string name="text_backToGame">Back</string>
     <string name="general_information">General Information</string>
     <string name="players_online">Players online: {0}/{1}</string>
     <string name="cash_text">Cash: {0}$</string>
