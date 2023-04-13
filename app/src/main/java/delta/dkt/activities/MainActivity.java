@@ -24,18 +24,15 @@ public class MainActivity extends AppCompatActivity {
         EditText edtxt = findViewById(R.id.username_edittext);
         Button enter = findViewById(R.id.enter_btn);
 
-        enter.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), MainMenuActivity.class);
-                String username = edtxt.getText().toString();
-                if(username.isEmpty()){
-                    Toast.makeText(MainActivity.this, "Please enter Username", Toast.LENGTH_SHORT).show();
-                }else{
-                    Toast.makeText(MainActivity.this, "Welcome " + username + "!", Toast.LENGTH_SHORT).show();
-                    intent.putExtra(intentParameter, username);
-                    startActivity(intent);
-                }
+        enter.setOnClickListener(view -> {
+            Intent intent = new Intent(getApplicationContext(), MainMenuActivity.class);
+            String username = edtxt.getText().toString();
+            if(username.isEmpty()){
+                Toast.makeText(MainActivity.this, "Please enter Username", Toast.LENGTH_SHORT).show();
+            }else{
+                Toast.makeText(MainActivity.this, "Welcome " + username + "!", Toast.LENGTH_SHORT).show();
+                intent.putExtra(intentParameter, username);
+                startActivity(intent);
             }
         });
 
