@@ -1,6 +1,6 @@
 package delta.dkt.activities;
 
-import static delta.dkt.activities.MainActivity.intentParameter;
+import static delta.dkt.activities.MainActivity.INTENT_PARAMETER;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -33,7 +33,7 @@ public class LobbyViewActivity extends AppCompatActivity{
 
 
         userList = new ArrayList<>();
-        String newUser = getIntent().getStringExtra(intentParameter);
+        String newUser = getIntent().getStringExtra(INTENT_PARAMETER);
         userList.add(newUser);
 
         //Only for Testing purpose adding some more Players:
@@ -53,13 +53,13 @@ public class LobbyViewActivity extends AppCompatActivity{
 
         backButton.setOnClickListener(view -> {
             Intent intent = new Intent(getApplicationContext(), MainMenuActivity.class);
-            intent.putExtra(intentParameter, newUser);
+            intent.putExtra(INTENT_PARAMETER, newUser);
             startActivity(intent);
         });
 
         startButton.setOnClickListener(view -> {
             Intent intent = new Intent(getApplicationContext(), GameViewActivity.class);
-            intent.putExtra(intentParameter, newUser);
+            intent.putExtra(INTENT_PARAMETER, newUser);
             startActivity(intent);
         });
     }
