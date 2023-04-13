@@ -40,33 +40,24 @@ class UserNameAdapter extends RecyclerView.Adapter<UserNameAdapter.UserViewHolde
         // assigning values to the views that come back on the screen again (in the recycler view layout file)
         // based on the position of the recycler view
 
-        holder.tv_username.setText(usernames.get(position));
-
-
+        holder.username.setText(usernames.get(position));
     }
 
     @Override
     public int getItemCount() {
         // this method just returns the number of items you want to display
-        // now its 1 because of testing purpose as we only have 1 user at the moment
         return usernames.size();
     }
-
-
-
-
 
 
     class UserViewHolder extends RecyclerView.ViewHolder {
         // Grabs informations thats needed from the recycler_view_user_row.xml
 
-        TextView tv_username;
-        ImageView iv_avatar;
+        TextView username;
 
         public UserViewHolder (@NonNull View itemView) {
             super(itemView);
-            tv_username = itemView.findViewById(R.id.userName_txt);
-            iv_avatar = itemView.findViewById(R.id.avatar);
+            username = itemView.findViewById(R.id.userName_txt);
         }
     }
 }
