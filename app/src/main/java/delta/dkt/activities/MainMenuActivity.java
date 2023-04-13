@@ -20,11 +20,13 @@ public class MainMenuActivity extends AppCompatActivity {
 
         Button host = findViewById(R.id.host_button);
         Button join = findViewById(R.id.join_button);
+        String newUser = getIntent().getStringExtra("stringname");
 
         host.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), LobbyViewActivity.class);
+                intent.putExtra("stringname", newUser);
                 startActivity(intent);
             }
         });
@@ -33,6 +35,7 @@ public class MainMenuActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), LobbyViewActivity.class);
+                intent.putExtra("stringname", newUser);
                 startActivity(intent);
             }
         });
