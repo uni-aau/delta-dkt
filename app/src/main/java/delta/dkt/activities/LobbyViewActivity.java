@@ -15,8 +15,7 @@ import java.util.ArrayList;
 import delta.dkt.R;
 
 
-
-public class LobbyViewActivity extends AppCompatActivity{
+public class LobbyViewActivity extends AppCompatActivity {
 
     RecyclerView recyclerView;
     UserNameAdapter adapter;
@@ -47,8 +46,6 @@ public class LobbyViewActivity extends AppCompatActivity{
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         adapter = new UserNameAdapter(this, userList);
         recyclerView.setAdapter(adapter);
-
-
 
 
         backButton.setOnClickListener(view -> {

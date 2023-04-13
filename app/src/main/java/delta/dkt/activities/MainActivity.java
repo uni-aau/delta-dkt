@@ -25,9 +25,9 @@ public class MainActivity extends AppCompatActivity {
         enter.setOnClickListener(view -> {
             Intent intent = new Intent(getApplicationContext(), MainMenuActivity.class);
             String username = edtxt.getText().toString();
-            if(username.isEmpty()){
+            if (username.isEmpty()) {
                 Toast.makeText(MainActivity.this, "Please enter Username", Toast.LENGTH_SHORT).show();
-            }else{
+            } else {
                 Toast.makeText(MainActivity.this, "Welcome " + username + "!", Toast.LENGTH_SHORT).show();
                 intent.putExtra(INTENT_PARAMETER, username);
                 startActivity(intent);

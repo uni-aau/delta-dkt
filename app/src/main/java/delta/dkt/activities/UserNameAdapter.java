@@ -11,7 +11,6 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 
-
 import java.util.ArrayList;
 
 import delta.dkt.R;
@@ -21,9 +20,9 @@ class UserNameAdapter extends RecyclerView.Adapter<UserNameAdapter.UserViewHolde
     Context context;
     ArrayList<String> usernames;
 
-    public UserNameAdapter (Context context, ArrayList<String> usernames) {
-        this.context=context;
-        this.usernames= usernames;
+    public UserNameAdapter(Context context, ArrayList<String> usernames) {
+        this.context = context;
+        this.usernames = usernames;
     }
 
     @NonNull
@@ -55,7 +54,7 @@ class UserNameAdapter extends RecyclerView.Adapter<UserNameAdapter.UserViewHolde
 
         TextView username;
 
-        public UserViewHolder (@NonNull View itemView) {
+        public UserViewHolder(@NonNull View itemView) {
             super(itemView);
             username = itemView.findViewById(R.id.userName_txt);
         }

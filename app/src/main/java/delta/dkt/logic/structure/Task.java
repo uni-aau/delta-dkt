@@ -9,10 +9,11 @@ public class Task {
 
     /**
      * Creates a new task.
-     * @param id The id of the task
+     *
+     * @param id   The id of the task
      * @param name The name of the task
      */
-    public Task(int id, String name){
+    public Task(int id, String name) {
         this.id = id;
         this.name = name;
     }
