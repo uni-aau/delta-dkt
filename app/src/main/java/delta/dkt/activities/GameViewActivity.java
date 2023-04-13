@@ -19,7 +19,6 @@ public class GameViewActivity extends AppCompatActivity {
         setContentView(R.layout.activity_game_view);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE); // Force landscape screen at activity level
 
-        Objects.requireNonNull(getSupportActionBar()).hide();
         findViewById(R.id.button_property_infos).setOnClickListener(view -> switchToPropertyActivity());
     }
 
