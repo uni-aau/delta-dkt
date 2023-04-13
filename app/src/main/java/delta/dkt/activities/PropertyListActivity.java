@@ -5,7 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 
-import delta.dkt.BlockFragment;
+import delta.dkt.fragments.BlockFragment;
 import delta.dkt.R;
 
 public class PropertyListActivity extends AppCompatActivity {
@@ -21,6 +21,8 @@ public class PropertyListActivity extends AppCompatActivity {
         sendDataToFragment(); // Gets replaced later with server
     }
 
+
+    // Will be moved to server in the next sprint - Only test values
     protected void sendDataToFragment() {
         BlockFragment blockNumber1 = BlockFragment.newInstance("Fragment1", "1", "Testprop", 5, "Player1", 2);
         BlockFragment blockNumber2 = BlockFragment.newInstance("Fragment2", "2", "Testprop2", 10, "Player2", 1);
