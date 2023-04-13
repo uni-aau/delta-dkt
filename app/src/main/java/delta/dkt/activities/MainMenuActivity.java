@@ -1,5 +1,7 @@
 package delta.dkt.activities;
 
+import static delta.dkt.activities.MainActivity.intentParameter;
+
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
@@ -16,17 +18,17 @@ public class MainMenuActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_menu_view);
-        //setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE); // Force landscape screen at activity level
+
 
         Button host = findViewById(R.id.host_button);
         Button join = findViewById(R.id.join_button);
-        String newUser = getIntent().getStringExtra("stringname");
+        String newUser = getIntent().getStringExtra(intentParameter);
 
         host.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), LobbyViewActivity.class);
-                intent.putExtra("stringname", newUser);
+                intent.putExtra(intentParameter, newUser);
                 startActivity(intent);
             }
         });
@@ -35,7 +37,7 @@ public class MainMenuActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), LobbyViewActivity.class);
-                intent.putExtra("stringname", newUser);
+                intent.putExtra(intentParameter, newUser);
                 startActivity(intent);
             }
         });
