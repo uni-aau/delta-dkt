@@ -1,9 +1,70 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:context=".activities.LobbyViewActivity">
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activities.MainActivity">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    <ImageView
+        android:contentDescription="@string/DktLogoDescription"
+        android:id="@+id/dkt_logo"
+        android:layout_width="150dp"
+        android:layout_height="100dp"
+        android:layout_centerHorizontal="true"
+        app:srcCompat="@drawable/dkt_logo_2"
+        tools:layout_editor_absoluteY="128dp" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:text="@string/PlayerLobby"
+        android:layout_below="@id/dkt_logo"
+        android:layout_marginTop="1dp"
+        android:textSize="30sp"
+        android:fontFamily="@font/bangers"
+        android:textColor="@color/dkt_red"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/lobbyRecyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="450dp"
+        android:layout_below="@id/textView"
+        android:layout_marginTop="5dp"
+        />
+
+
+    <Button
+        android:id="@+id/backbtn"
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
+        android:text="@string/BackButton"
+        android:layout_below="@id/lobbyRecyclerView"
+        android:layout_marginTop="5dp"
+        android:layout_marginStart="20dp"
+        android:textColor="@color/dkt_yellow"
+        android:textSize="20sp"
+        android:fontFamily="@font/bangers"
+        android:background="@drawable/host_btn_background"/>
+
+    <Button
+        android:id="@+id/startbtn"
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
+        android:text="@string/StartButton"
+        android:layout_below="@id/lobbyRecyclerView"
+        android:layout_marginTop="5dp"
+        android:layout_marginStart="270dp"
+        android:textColor="@color/dkt_yellow"
+        android:textSize="20sp"
+        android:fontFamily="@font/bangers"
+        android:background="@drawable/host_btn_background"/>
+
+
+
+
+</RelativeLayout>

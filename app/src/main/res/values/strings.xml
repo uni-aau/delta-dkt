@@ -10,4 +10,16 @@
     <string name="dice_information_text">{0} rolls the dice\n{1} left to roll the dice</string>
     <string name="gameview_image_description">DKT-Board</string>
     <string name="activity_text">Activity: {0}</string>
+    <string name="EnterButton">Enter</string>
+    <string name="HostGameButton">Host Game</string>
+    <string name="JoinGameButton">Join Game</string>
+    <string name="BackButton">Back</string>
+    <string name="StartButton">Start</string>
+    <string name="PleaseEnterUsername">Please enter your Username:</string>
+    <string name="UserName">Username</string>
+    <string name="DktLogoDescription">DKTLogo</string>
+    <string name="Avatar">Avatar</string>
+    <string name="PlayerLobby">Player Lobby</string>
+
+
 </resources>
