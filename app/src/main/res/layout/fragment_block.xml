@@ -88,7 +88,8 @@
                     app:srcCompat="@drawable/hotel_preview"
                     android:id="@+id/imageView_prop1"
                     android:layout_weight="1"
-                    android:contentDescription="@string/textCD_prop1" />
+                    android:contentDescription="@string/textCD_prop1"
+                    android:visibility="invisible" />
 
             <ImageView
                     android:layout_width="85dp"
@@ -96,7 +97,8 @@
                     app:srcCompat="@drawable/hotel_preview"
                     android:id="@+id/imageView_prop2"
                     android:layout_weight="1"
-                    android:contentDescription="@string/textCD_prop2" />
+                    android:contentDescription="@string/textCD_prop2"
+                    android:visibility="invisible" />
 
             <ImageView
                     android:layout_width="85dp"
@@ -104,7 +106,8 @@
                     app:srcCompat="@drawable/hotel_preview"
                     android:id="@+id/imageView_prop3"
                     android:layout_weight="1"
-                    android:contentDescription="@string/textCD_prop3" />
+                    android:contentDescription="@string/textCD_prop3"
+                    android:visibility="invisible" />
 
             <ImageView
                     android:layout_width="85dp"
@@ -112,7 +115,8 @@
                     app:srcCompat="@drawable/hotel_preview"
                     android:id="@+id/imageView_prop4"
                     android:layout_weight="1"
-                    android:contentDescription="@string/textCD_prop4" />
+                    android:contentDescription="@string/textCD_prop4"
+                    android:visibility="invisible" />
         </LinearLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>

@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import delta.dkt.R;
@@ -20,7 +21,8 @@ public class BlockFragment extends Fragment {
     private static final String ARG_PROP_NAME = "propNameInput";
     private static final String ARG_PROP_PRICE = "propPriceInput";
     private static final String ARG_PROP_OWNER = "propOwnerInput";
-    private static final String ARG_PROP_PLOTAMOUNT = "propPlotAmountInput";
+    private static final String ARG_PROP_PLOT_AMOUNT = "propPlotAmountInput";
+    private static final int CONS_MAX_PROP_AMOUNT = 4;
 
     private String fragmentNumberInput;
     private String propNumberInput;
@@ -42,7 +44,7 @@ public class BlockFragment extends Fragment {
         args.putString(ARG_PROP_NAME, propName);
         args.putInt(ARG_PROP_PRICE, propPrice);
         args.putString(ARG_PROP_OWNER, propOwner);
-        args.putInt(ARG_PROP_PLOTAMOUNT, propPlotAmount);
+        args.putInt(ARG_PROP_PLOT_AMOUNT, propPlotAmount);
         fragment.setArguments(args);
         return fragment;
     }
@@ -56,7 +58,7 @@ public class BlockFragment extends Fragment {
             propNameInput = getArguments().getString(ARG_PROP_NAME);
             propPriceInput = getArguments().getInt(ARG_PROP_PRICE);
             propOwnerInput = getArguments().getString(ARG_PROP_OWNER);
-            propPlotAmountInput = getArguments().getInt(ARG_PROP_PLOTAMOUNT);
+            propPlotAmountInput = getArguments().getInt(ARG_PROP_PLOT_AMOUNT);
         }
     }
 
@@ -83,9 +85,24 @@ public class BlockFragment extends Fragment {
         price.setText(String.format(getString(R.string.text_price), propPriceInput));
         ownedBy.setText(String.format(getString(R.string.text_ownedBy), propOwnerInput));
 
-        // Todo
-        /*
-        Property Haus-Implementierung
-         */
+        setPropertyAmount(view);
+    }
+
+    // Sets the amount of properties per fragment
+    protected void setPropertyAmount(View view) {
+        if (propPlotAmountInput > CONS_MAX_PROP_AMOUNT)
+            throw new RuntimeException("Too much inserted properties!");
+
+        ImageView[] propertys = new ImageView[]{
+                view.findViewById(R.id.imageView_prop1),
+                view.findViewById(R.id.imageView_prop2),
+                view.findViewById(R.id.imageView_prop3),
+                view.findViewById(R.id.imageView_prop4)
+        };
+
+
+        for (int i = 0; i < propPlotAmountInput; i++) {
+            propertys[i].setVisibility(View.VISIBLE);
+        }
     }
 }
