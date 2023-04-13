@@ -11,4 +11,26 @@
     <string name="textCD_prop3">Property 3</string>
     <string name="textCD_prop4">Property 4</string>
     <string name="text_backToGame">Back</string>
+    <string name="general_information">General Information</string>
+    <string name="players_online">Players online: {0}/{1}</string>
+    <string name="cash_text">Cash: {0}$</string>
+    <string name="my_properties_text">My Properties: {0}</string>
+    <string name="playing_time_text">Playing Time: {0}</string>
+    <string name="roll_the_dice">Roll the dice</string>
+    <string name="property_information">Property Information</string>
+    <string name="dice_information_text">{0} rolls the dice\n{1} left to roll the dice</string>
+    <string name="gameview_image_description">DKT-Board</string>
+    <string name="activity_text">Activity: {0}</string>
+    <string name="EnterButton">Enter</string>
+    <string name="HostGameButton">Host Game</string>
+    <string name="JoinGameButton">Join Game</string>
+    <string name="BackButton">Back</string>
+    <string name="StartButton">Start</string>
+    <string name="PleaseEnterUsername">Please enter your Username:</string>
+    <string name="UserName">Username</string>
+    <string name="DktLogoDescription">DKTLogo</string>
+    <string name="Avatar">Avatar</string>
+    <string name="PlayerLobby">Player Lobby</string>
+
+
 </resources>

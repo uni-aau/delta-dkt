@@ -2,17 +2,40 @@ package delta.dkt.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.pm.ActivityInfo;
+import android.content.Intent;
 import android.os.Bundle;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
 
 import delta.dkt.R;
 
 public class MainActivity extends AppCompatActivity {
 
+    public static final String INTENT_PARAMETER = "username";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE); // Force landscape screen at activity level
+
+        EditText edtxt = findViewById(R.id.username_edittext);
+        Button enter = findViewById(R.id.enter_btn);
+
+        enter.setOnClickListener(view -> {
+            Intent intent = new Intent(getApplicationContext(), MainMenuActivity.class);
+            String username = edtxt.getText().toString();
+            if(username.isEmpty()){
+                Toast.makeText(MainActivity.this, "Please enter Username", Toast.LENGTH_SHORT).show();
+            }else{
+                Toast.makeText(MainActivity.this, "Welcome " + username + "!", Toast.LENGTH_SHORT).show();
+                intent.putExtra(INTENT_PARAMETER, username);
+                startActivity(intent);
+            }
+        });
+
+
     }
+
+
 }

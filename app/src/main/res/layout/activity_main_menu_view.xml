@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activities.MainMenuActivity"
+    android:id = "@+id/main_menu_view">
+
+
+    <ImageView
+        android:contentDescription="@string/DktLogoDescription"
+        android:id="@+id/dkt_logo"
+        android:layout_width="402dp"
+        android:layout_height="246dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="5dp"
+        app:srcCompat="@drawable/dkt_logo_2" />
+
+    <Button
+        android:id="@+id/host_button"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/dkt_logo"
+        android:background="@drawable/host_btn_background"
+        android:layout_marginTop="10dp"
+        android:text="@string/HostGameButton"
+        android:textColor="@color/dkt_yellow"
+        android:textSize="20sp"
+        android:fontFamily="@font/bangers"/>
+
+    <Button
+        android:id="@+id/join_button"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/host_button"
+        android:background="@drawable/host_btn_background"
+        android:layout_marginTop="30dp"
+        android:textColor="@color/dkt_yellow"
+        android:text="@string/JoinGameButton"
+        android:textSize="20sp"
+        android:fontFamily="@font/bangers" />
+
+
+</RelativeLayout>
