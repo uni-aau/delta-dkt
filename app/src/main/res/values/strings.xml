@@ -1,3 +1,15 @@
 <resources>
     <string name="app_name">DKT</string>
+    <string name="EnterButton">Enter</string>
+    <string name="HostGameButton">Host Game</string>
+    <string name="JoinGameButton">Join Game</string>
+    <string name="BackButton">Back</string>
+    <string name="StartButton">Start</string>
+    <string name="PleaseEnterUsername">Please enter your Username:</string>
+    <string name="UserName">Username</string>
+    <string name="DktLogoDescription">DKTLogo</string>
+    <string name="Avatar">Avatar</string>
+    <string name="PlayerLobby">Player Lobby</string>
+
+
 </resources>
