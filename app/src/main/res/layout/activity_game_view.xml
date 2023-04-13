@@ -4,6 +4,140 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".activities.GameViewActivity">
+        tools:context=".activities.GameViewActivity"
+        android:layout_gravity="center_vertical">
+
+    <TextView
+            android:text="@string/activity_text"
+            android:layout_width="142dp"
+            android:layout_height="81dp"
+            android:id="@+id/textView_activity"
+            android:gravity="center_horizontal"
+            app:layout_constraintStart_toEndOf="@+id/imageView"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/button_property_infos" />
+
+    <ImageView
+            android:layout_width="398dp"
+            android:layout_height="387dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:id="@+id/imageView"
+            app:layout_constraintHorizontal_bias="0.528"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:srcCompat="@drawable/dkttestmap"
+            android:contentDescription="@string/gameview_image_description" />
+
+    <TextView
+            android:layout_width="161dp"
+            android:layout_height="36dp"
+            android:id="@+id/textView_general_info"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintEnd_toStartOf="@+id/imageView"
+            android:src="@drawable/dkttestmap"
+            android:text="@string/general_information"
+            android:textStyle="bold"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toTopOf="@+id/textView_players_online"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.5"
+            android:gravity="center_horizontal" />
+
+    <TextView
+            android:text="@string/players_online"
+            android:layout_width="150dp"
+            android:layout_height="22dp"
+            android:id="@+id/textView_players_online"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintHorizontal_bias="0.533"
+            app:layout_constraintEnd_toStartOf="@+id/imageView"
+            app:layout_constraintBottom_toTopOf="@+id/textView_cash"
+            app:layout_constraintTop_toBottomOf="@+id/textView_general_info"
+            android:textSize="14sp"
+            android:gravity="center" />
+
+    <TextView
+            android:text="@string/cash_text"
+            android:layout_width="150dp"
+            android:layout_height="23dp"
+            android:id="@+id/textView_cash"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/imageView"
+            app:layout_constraintBottom_toTopOf="@+id/textView_my_properties"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintTop_toBottomOf="@+id/textView_players_online"
+            android:gravity="center"
+            android:textSize="14sp" />
+
+    <TextView
+            android:text="@string/my_properties_text"
+            android:layout_width="150dp"
+            android:layout_height="23dp"
+            android:id="@+id/textView_my_properties"
+            app:layout_constraintBottom_toTopOf="@+id/textView_playing_time"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintEnd_toStartOf="@+id/imageView"
+            app:layout_constraintTop_toBottomOf="@+id/textView_cash"
+            android:gravity="center"
+            android:textSize="14sp" />
+
+    <TextView
+            android:text="@string/playing_time_text"
+            android:layout_width="150sp"
+            android:layout_height="23dp"
+            android:id="@+id/textView_playing_time"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintEnd_toStartOf="@+id/imageView"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView_my_properties"
+            android:gravity="center"
+            android:textSize="14sp" />
+
+    <Button
+            android:layout_width="130dp"
+            android:layout_height="55dp"
+            android:id="@+id/button_roll_dice"
+            android:textSize="13sp"
+            android:text="@string/roll_the_dice"
+            android:background="@drawable/host_btn_background"
+            android:textColor="@color/dkt_yellow"
+            app:layout_constraintStart_toEndOf="@+id/imageView"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView_dice_information"
+            app:layout_constraintBottom_toTopOf="@+id/button_property_infos" />
+
+    <Button
+            android:text="@string/property_information"
+            android:layout_width="130dp"
+            android:layout_height="55dp"
+            android:id="@+id/button_property_infos"
+            android:textSize="13sp"
+            android:background="@drawable/host_btn_background"
+            android:textColor="@color/dkt_yellow"
+            app:layout_constraintStart_toEndOf="@+id/imageView"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/button_roll_dice"
+            app:layout_constraintBottom_toTopOf="@+id/textView_activity" />
+
+    <TextView
+            android:text="@string/dice_information_text"
+            android:layout_width="147dp"
+            android:layout_height="60dp"
+            android:id="@+id/textView_dice_information"
+            android:gravity="center"
+            android:textSize="14sp"
+            app:layout_constraintStart_toEndOf="@+id/imageView"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/button_roll_dice" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
