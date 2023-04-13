@@ -12,8 +12,10 @@
             android:theme="@style/Theme.Deltadkt"
             android:usesCleartextTraffic="false"
             tools:targetApi="31">
+        <!-- TODO - Exported = true for testing cases. Will be disabled in final product -->
         <activity
                 android:name=".activities.PropertyListActivity"
+                android:permission=""
                 android:exported="true" />
         <activity
                 android:name=".activities.LobbyViewActivity"
