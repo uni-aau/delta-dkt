@@ -10,6 +10,7 @@
 
 
     <ImageView
+        android:contentDescription="@string/DktLogoDescription"
         android:id="@+id/dkt_logo"
         android:layout_width="293dp"
         android:layout_height="152dp"
@@ -25,7 +26,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="20dp"
         android:fontFamily="@font/bangers"
-        android:text="Please enter your Username:"
+        android:text="@string/PleaseEnterUsername"
         android:textColor="@color/dkt_red"
         android:textSize="30sp"
         android:textStyle="bold" />
@@ -39,14 +40,14 @@
         android:layout_marginTop="20dp"
         android:paddingLeft="15dp"
         android:inputType="textPersonName"
-        android:hint="Username"
+        android:hint="@string/UserName"
         android:background="@drawable/edit_text_background"/>
 
     <Button
         android:id="@+id/enter_btn"
         android:layout_width="150dp"
         android:layout_height="wrap_content"
-        android:text="Enter"
+        android:text="@string/EnterButton"
         android:layout_centerHorizontal="true"
         android:layout_below="@id/username_edittext"
         android:layout_marginTop="20dp"
