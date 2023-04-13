@@ -5,8 +5,7 @@
     android:id = "@+id/main_view"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activities.MainActivity"
-    android:background="@color/white">
+    tools:context=".activities.MainActivity">
 
 
     <ImageView
