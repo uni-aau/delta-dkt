@@ -23,22 +23,16 @@ public class MainMenuActivity extends AppCompatActivity {
         Button join = findViewById(R.id.join_button);
         String newUser = getIntent().getStringExtra(INTENT_PARAMETER);
 
-        host.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), LobbyViewActivity.class);
-                intent.putExtra(INTENT_PARAMETER, newUser);
-                startActivity(intent);
-            }
+        host.setOnClickListener(view -> {
+            Intent intent = new Intent(getApplicationContext(), LobbyViewActivity.class);
+            intent.putExtra(INTENT_PARAMETER, newUser);
+            startActivity(intent);
         });
 
-        join.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), LobbyViewActivity.class);
-                intent.putExtra(INTENT_PARAMETER, newUser);
-                startActivity(intent);
-            }
+        join.setOnClickListener(view -> {
+            Intent intent = new Intent(getApplicationContext(), LobbyViewActivity.class);
+            intent.putExtra(INTENT_PARAMETER, newUser);
+            startActivity(intent);
         });
 
     }
