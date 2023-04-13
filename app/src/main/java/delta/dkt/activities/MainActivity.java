@@ -14,6 +14,7 @@ import delta.dkt.R;
 
 public class MainActivity extends AppCompatActivity {
 
+    public static final String intentParameter = "username";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
                     Toast.makeText(MainActivity.this, "Please enter Username", Toast.LENGTH_SHORT).show();
                 }else{
                     Toast.makeText(MainActivity.this, "Welcome " + username + "!", Toast.LENGTH_SHORT).show();
-                    intent.putExtra("stringname", username);
+                    intent.putExtra(intentParameter, username);
                     startActivity(intent);
                 }
             }
