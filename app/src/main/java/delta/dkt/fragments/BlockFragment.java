@@ -15,8 +15,6 @@ import android.widget.TextView;
 import delta.dkt.R;
 
 public class BlockFragment extends Fragment {
-
-    private static final String ARG_FRAGMENT_NUMBER = "fragmentNumberInput";
     private static final String ARG_PROP_NUMBER = "propNumberInput";
     private static final String ARG_PROP_NAME = "propNameInput";
     private static final String ARG_PROP_PRICE = "propPriceInput";
@@ -24,7 +22,6 @@ public class BlockFragment extends Fragment {
     private static final String ARG_PROP_PLOT_AMOUNT = "propPlotAmountInput";
     private static final int CONS_MAX_PROP_AMOUNT = 4;
 
-    private String fragmentNumberInput;
     private String propNumberInput;
     private String propNameInput;
     private int propPriceInput;
@@ -36,10 +33,9 @@ public class BlockFragment extends Fragment {
         // Required empty public constructor
     }
 
-    public static BlockFragment newInstance(String fragmentNumber, String propNumber, String propName, int propPrice, String propOwner, int propPlotAmount) { // Todo convert to object?
+    public static BlockFragment newInstance(String propNumber, String propName, int propPrice, String propOwner, int propPlotAmount) { // Todo convert to object?
         BlockFragment fragment = new BlockFragment();
         Bundle args = new Bundle();
-        args.putString(ARG_FRAGMENT_NUMBER, fragmentNumber);
         args.putString(ARG_PROP_NUMBER, propNumber);
         args.putString(ARG_PROP_NAME, propName);
         args.putInt(ARG_PROP_PRICE, propPrice);
@@ -53,7 +49,6 @@ public class BlockFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            fragmentNumberInput = getArguments().getString(ARG_FRAGMENT_NUMBER);
             propNumberInput = getArguments().getString(ARG_PROP_NUMBER);
             propNameInput = getArguments().getString(ARG_PROP_NAME);
             propPriceInput = getArguments().getInt(ARG_PROP_PRICE);
