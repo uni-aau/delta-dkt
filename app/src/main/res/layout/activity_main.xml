@@ -39,8 +39,10 @@
         android:layout_below="@id/username_textview"
         android:layout_marginTop="20dp"
         android:paddingLeft="15dp"
+        android:paddingRight="15dp"
         android:inputType="textPersonName"
         android:hint="@string/UserName"
+        android:autofillHints="name"
         android:background="@drawable/edit_text_background"/>
 
     <Button
