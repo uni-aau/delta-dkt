@@ -11,6 +11,7 @@
 
 
     <ImageView
+        android:contentDescription="@string/DktLogoDescription"
         android:id="@+id/dkt_logo"
         android:layout_width="402dp"
         android:layout_height="246dp"
@@ -26,10 +27,9 @@
         android:layout_below="@id/dkt_logo"
         android:background="@drawable/host_btn_background"
         android:layout_marginTop="10dp"
-        android:text="Host Game"
+        android:text="@string/HostGameButton"
         android:textColor="@color/dkt_yellow"
         android:textSize="20sp"
-
         android:fontFamily="@font/bangers"/>
 
     <Button
@@ -41,11 +41,9 @@
         android:background="@drawable/host_btn_background"
         android:layout_marginTop="30dp"
         android:textColor="@color/dkt_yellow"
-        android:text="Join Game"
+        android:text="@string/JoinGameButton"
         android:textSize="20sp"
-        android:fontFamily="@font/bangers"
-
-        />
+        android:fontFamily="@font/bangers" />
 
 
 </RelativeLayout>
