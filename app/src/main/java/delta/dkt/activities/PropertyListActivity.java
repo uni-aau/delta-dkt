@@ -16,7 +16,6 @@ public class PropertyListActivity extends AppCompatActivity {
         setContentView(R.layout.activity_property_list);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE); // Force landscape screen at activity level
 
-        getSupportActionBar().hide();
         findViewById(R.id.button_backToGame).setOnClickListener(view -> switchToGameActivity());
         sendDataToFragment(); // Gets replaced later with server
     }
