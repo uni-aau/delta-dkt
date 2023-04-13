@@ -8,7 +8,7 @@
     <RelativeLayout
         android:layout_width="350dp"
         android:layout_height="100dp"
-        android:background="@drawable/join_btn_background"
+        android:background="@drawable/user_card_background"
         android:layout_alignParentLeft="true"
         android:layout_marginTop="10dp"
         android:layout_marginLeft="5dp">
