@@ -7,8 +7,8 @@ import android.os.Bundle;
 
 import delta.dkt.R;
 import network.Client;
-import network.ClientHandler;
-import network.ClientLogic;
+import ClientUIHandling.ClientHandler;
+import ClientUIHandling.ClientLogic;
 import network.TestServer;
 
 public class MainActivity extends AppCompatActivity {
@@ -37,11 +37,13 @@ public class MainActivity extends AppCompatActivity {
 
     public void establishServerConnection(){
         logic = new ClientLogic(new ClientHandler(findViewById(R.id.testView)));
-        server = new TestServer(6868);
-        client = new Client("localhost", 6868, logic);
+        server = new TestServer(1024);
+        client = new Client("localhost", 1024, logic);
         server.start();
-        server.insertIntoOutputBuffer(ClientHandler.testType);
+
         client.start();
+        server.insertIntoOutputBuffer(ClientHandler.testType);
+
 
     }
 

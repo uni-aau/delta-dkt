@@ -1,17 +1,11 @@
-package network;
+package ClientUIHandling;
 
 import android.os.Handler;
 import android.os.Message;
+import android.util.Log;
 import android.widget.TextView;
-import android.view.View;
 
 import androidx.annotation.NonNull;
-
-import org.w3c.dom.Text;
-
-import java.util.logging.LogRecord;
-
-import delta.dkt.R;
 
 public class ClientHandler extends Handler {
 
@@ -19,15 +13,20 @@ public class ClientHandler extends Handler {
 
     public static final String testType = "MODIFYTEST";
 
+
+
     public ClientHandler(TextView testView){
-        this.testView = testView;
+            this.testView = testView;
     }
 
     @Override
     public void handleMessage(@NonNull Message msg) {
         if(msg.getData().containsKey(testType)){
-            testView.setText(msg.getData().get(testType).toString());
-            //TODO: Modify some UI Element
+                testView.setText(msg.getData().get(testType).toString());
         }
+    }
+
+    public TextView getTestView() {
+        return testView;
     }
 }
