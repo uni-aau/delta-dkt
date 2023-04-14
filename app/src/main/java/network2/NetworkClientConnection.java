@@ -25,6 +25,8 @@ public class NetworkClientConnection {
 
     private NetworkConnection connection;
 
+    /**
+
     ResolveListener resolveListener;
 
     NsdManager.DiscoveryListener discoveryListener;
@@ -44,24 +46,27 @@ public class NetworkClientConnection {
     int serverPort;
     InetAddress host;
 
+
     public NetworkClientConnection(Context context){
         this.context = context;
         nsdManager = (NsdManager) context.getSystemService(Context.NSD_SERVICE);
 
-        initializeDiscoveryListener();
+       // initializeDiscoveryListener();
 
-        foundServices = new ArrayList<NsdServiceInfo>();
+        //foundServices = new ArrayList<NsdServiceInfo>();
 
-        startDiscovery();
+        //startDiscovery();
 
 
         //once we picked a discovered service from our list, we need to resolve the service
         //for this procedure we need to initialize a resolveListener Callback Object
-        initializeResolveListener();
+        //initializeResolveListener();
 
     }
+     */
 
-    public void startConnection(String ip, int port, int timeout) throws Exception {
+
+    public void NetworkClientConnection(String ip, int port, int timeout) throws Exception {
         Socket socket = new Socket();
         socket.connect(new InetSocketAddress(ip, port), timeout);
         this.connection = new NetworkConnection(socket);
@@ -79,7 +84,7 @@ public class NetworkClientConnection {
     /**
      * NSD Discovery area
      */
-
+    /**
     public void resolveService(int pos){
         nsdManager.resolveService(foundServices.get(0),resolveListener);
 
@@ -158,10 +163,11 @@ public class NetworkClientConnection {
             }
         };
     }
-
+    */
     /**
      * Initializes the resolve callback object instance var and also sets additional port and host members (they might be removed in future)
      */
+    /**
     private void initializeResolveListener() {
         this.resolveListener = new NsdManager.ResolveListener() {
             @Override
@@ -185,6 +191,6 @@ public class NetworkClientConnection {
             }
         };
     }
-
+   */
 
 }
