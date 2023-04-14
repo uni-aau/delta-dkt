@@ -46,13 +46,16 @@ public class ServerNetworkClient extends Thread{ //always executed on a separate
     public ServerNetworkClient(int port, Context context){
         this.port = port;
         this.context = context;
-
-
-        registerService();
     }
 
 
     public void start() {
+
+
+        //before start listening, register the service
+        registerService();
+        initializeRegistrationListener();
+
         try (ServerSocket serverSocket = new ServerSocket(port)) {
             System.out.println("Server started on port " + port);
             while (true) {
@@ -91,7 +94,18 @@ public class ServerNetworkClient extends Thread{ //always executed on a separate
     }
 
 
-    public void registerService() {
+    /**
+     * property getter/setter
+     */
+    public int getPort() {
+        return port;
+    }
+
+    /**
+     * NSD functions
+     */
+
+    private void registerService() {
         // Create the NsdServiceInfo object, and populate it.
         NsdServiceInfo serviceInfo = new NsdServiceInfo();
 
@@ -108,7 +122,7 @@ public class ServerNetworkClient extends Thread{ //always executed on a separate
                 serviceInfo, NsdManager.PROTOCOL_DNS_SD, registrationListener);
     }
 
-    public void initializeRegistrationListener() {
+    private void initializeRegistrationListener() {
         this.registrationListener = new RegistrationListener() {
 
             @Override
