@@ -1,11 +1,14 @@
 package network;
-/*
+
 import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+
+import ClientUIHandling.ClientHandler;
+import ClientUIHandling.ClientLogic;
 
 class clientTest {
 
@@ -18,8 +21,9 @@ class clientTest {
 
     @BeforeAll
     static void setup() {
+        ClientLogic.isTEST = true;
         server = new TestServer(6868);
-        client = new Client("localhost", 6868);
+        client = new Client("localhost", 6868, new ClientLogic(new ClientHandler(null)));
         server.start();
         try {
             Thread.sleep(100);
@@ -47,7 +51,7 @@ class clientTest {
         client.ping();
 
         while(server.getIndependentMessages().size() != 1){
-           // System.out.println("ping "+server.getAnsweredMessages().size() );
+
             try {
                 Thread.sleep(1);
             } catch (InterruptedException e) {
@@ -65,7 +69,7 @@ class clientTest {
     void sendAndReceive() {
         server.insertIntoOutputBuffer("ECHOTEST");
         while(server.getAnsweredMessages().size() != 1){
-           // System.out.println("sendAndReceive "+server.getAnsweredMessages().size() );
+
             try {
                 Thread.sleep(1);
             } catch (InterruptedException e) {
@@ -84,7 +88,7 @@ class clientTest {
         }
 
         while(server.getAnsweredMessages().size() != orderTestSize){
-           // System.out.println("testOrder "+server.getAnsweredMessages().size() );
+
             try {
                 Thread.sleep(1);
             } catch (InterruptedException e) {
@@ -104,7 +108,7 @@ class clientTest {
         client.insertIntoOutputBuffer(new Message(false, "TESTPING", MessageType.PING));
 
         while(server.getAnsweredMessages().size() != 1){
-          //  System.out.println("testClientSend "+server.getAnsweredMessages().size() );
+
             try {
                 Thread.sleep(1);
             } catch (InterruptedException e) {
@@ -120,7 +124,7 @@ class clientTest {
         server.insertIntoOutputBuffer("MESSAGE1\0Message2\0Message3\0");
 
         while(server.getAnsweredMessages().size() != 3){
-          //  System.out.println("testMessageSeparation "+server.getAnsweredMessages().size() );
+
             try {
                 Thread.sleep(1);
             } catch (InterruptedException e) {
@@ -134,17 +138,4 @@ class clientTest {
 
     }
 
-    public void waitForTraffic(){
-        try {
-            Thread.sleep(250);
-            while(!server.hasFinishedQueue()&& !client.hasFinishedQueue()){
-                Thread.sleep(1);
-            }
-
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
-
-}*/
+}

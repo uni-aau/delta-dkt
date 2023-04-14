@@ -6,9 +6,9 @@ import java.io.InputStreamReader;
 import java.io.PrintStream;
 import java.net.Socket;
 import java.util.ArrayDeque;
-import java.util.PriorityQueue;
-import java.util.Stack;
-import java.util.concurrent.SynchronousQueue;
+
+import ClientUIHandling.ClientHandler;
+import ClientUIHandling.ClientLogic;
 
 public class Client extends Thread {
 
@@ -178,8 +178,12 @@ public class Client extends Thread {
             }
 
             if(m.equals(ClientHandler.testType)){
-                logic.setTextOfTestElement("test");
+                logic.setTextOfTestElement("I HAVE RECEIVED SOMETHING FROM THE SERVER");
             }
         }
+    }
+
+    public ClientLogic getLogic() {
+        return logic;
     }
 }

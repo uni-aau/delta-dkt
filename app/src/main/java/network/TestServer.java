@@ -1,5 +1,7 @@
 package network;
 
+import android.util.Log;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -51,6 +53,16 @@ public class TestServer extends Thread {
 
     public void run() {
         try {
+           /* for(int i = 1; i<65555;i++) {
+                Log.i("DEBUG", "try"+i);
+                try {
+
+                    break;
+                }catch (Exception x){
+
+                }
+            }
+            Log.i("DEBUG", "PORT_"+serverSocket.getLocalPort());*/
             serverSocket = new ServerSocket(port);
             socket = serverSocket.accept();
             PrintStream ps = new PrintStream(socket.getOutputStream());
