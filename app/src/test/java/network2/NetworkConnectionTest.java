@@ -1,52 +1,52 @@
 package network2;
-
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
+import org.junit.jupiter.api.*;
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.OutputStreamWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import android.util.Log;
+
 
 public class NetworkConnectionTest {
 
-    private static final int PORT = 9999;
-    private ServerSocket serverSocket;
-    private Socket clientSocket;
-    private NetworkConnection networkConnection;
+    private final static int PORT = 5050;
 
-    @BeforeEach
-    void setup() throws IOException {
-        serverSocket = new ServerSocket(PORT);
-        clientSocket = new Socket("localhost", PORT);
-        networkConnection = new NetworkConnection(clientSocket);
+    private final static String TAG = "NetworkConnectionTest";
+    private NetworkConnection client;
+    private ServerSocket serverSocket;
+    private Socket socket;
+
+    @BeforeAll
+    public void setUp() throws IOException {
+        //serverSocket = new ServerSocket(PORT); // use port 9090 for the server
+        Log.d(TAG,"Established a server socket on port"+PORT+", listening for incoming requests");
+        new Thread(() -> {
+            try {
+                socket = serverSocket.accept(); // accept the incoming connection and create the socket
+                Log.d(TAG, "Server: Accepted incoming client request. Assigned server<-->client connection on port: "+socket.getPort());
+                client = new NetworkConnection(socket);
+                client.start();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }).start();
     }
 
-    @AfterEach
-    void tearDown() throws IOException {
-        networkConnection.close();
-        clientSocket.close();
+    @AfterAll
+    public void tearDown() throws IOException, InterruptedException {
+        client.close();
+        socket.close();
         serverSocket.close();
     }
 
     @Test
-    void testSend() throws IOException {
-        BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(clientSocket.getOutputStream()));
-        String message = "Test Message";
-        networkConnection.send(message);
-        writer.flush();
-        BufferedReader reader = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
-        assertEquals(message, reader.readLine());
-    }
+    public void testSendAndReceive() throws IOException,InterruptedException {
+        Log.d(TAG,"Client: Socket request send to Server localhost on port "+PORT+".");
+        NetworkConnection sender = new NetworkConnection(new Socket("localhost", PORT)); // connect to the serverport
 
-    @Test
-    void testClose() throws IOException {
-        assertTrue(clientSocket.isConnected());
-        networkConnection.close();
-        assertFalse(clientSocket.isConnected());
+        sender.send("Hello from client");
+        Thread.sleep(1000);
+        assertEquals("Hello from client", client.getLastMsgReceived());
     }
 }

@@ -1,6 +1,7 @@
 package network2;
 
 import android.content.Context;
+import android.net.Network;
 import android.net.nsd.NsdManager;
 import android.net.nsd.NsdManager.RegistrationListener;
 import android.net.nsd.NsdServiceInfo;
@@ -30,12 +31,13 @@ public class ServerNetworkClient extends Thread{ //always executed on a separate
 
     private int port; //the port number where to start the network client on
 
+    private List<NetworkConnection> clientConnections = new ArrayList<>();
+
+
+
+    /** NSD vars
     private String serviceName = "delta_dkt";
     private String serviceType = "_delta_dkt.tcp";
-
-
-    //List of ClientConnections
-    private List<NetworkConnection> clientConnections = new ArrayList<>();
 
     private Context context;
 
@@ -44,26 +46,33 @@ public class ServerNetworkClient extends Thread{ //always executed on a separate
 
 
     public ServerNetworkClient(int port, Context context){
-        this.port = port;
+        ServerNetworkClient(port);
         this.context = context;
+    }
+     */
+
+    public ServerNetworkClient(int port){
+        this.port = port;
     }
 
 
-    public void start() {
+    public void run() {
 
 
         //before start listening, register the service
-        registerService();
-        initializeRegistrationListener();
+       // registerService();
+        //initializeRegistrationListener();
 
         try (ServerSocket serverSocket = new ServerSocket(port)) {
             System.out.println("Server started on port " + port);
-            while (true) {
+            while (!isInterrupted()) {
                 Socket socket = serverSocket.accept();
                 NetworkConnection clientSocket = new NetworkConnection(socket);
                 clientConnections.add(clientSocket);
                 clientSocket.start();
             }
+            //is interrupted.. clean up
+            tearDown();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -94,6 +103,20 @@ public class ServerNetworkClient extends Thread{ //always executed on a separate
     }
 
 
+    public List<NetworkConnection> getConnections(){
+        return this.clientConnections;
+    }
+
+    public void tearDown() throws IOException{
+        for(NetworkConnection clientConn : clientConnections){
+            clientConn.close();
+            clientConn.interrupt();
+            clientConn = null; //delete reference so everything gets disposed by gc
+        }
+        //serversocket is already disposed because of using statement
+        //eliminate references to this instance to finish cleaning
+    }
+
     /**
      * property getter/setter
      */
@@ -103,7 +126,7 @@ public class ServerNetworkClient extends Thread{ //always executed on a separate
 
     /**
      * NSD functions
-     */
+
 
     private void registerService() {
         // Create the NsdServiceInfo object, and populate it.
@@ -157,6 +180,7 @@ public class ServerNetworkClient extends Thread{ //always executed on a separate
 
 
 
+ */
 
 }
 

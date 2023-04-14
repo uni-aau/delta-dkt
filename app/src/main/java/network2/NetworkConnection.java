@@ -28,6 +28,8 @@ public class NetworkConnection extends Thread{ //execute each instance within a 
     private BufferedWriter writer;
     private BufferedReader reader;
 
+    private String lastMsgReceived;
+
     private static final String TAG = "NetworkConnection";
 
     //we introduce the socket as parameter because the server will accept/retrieve socket objects
@@ -53,7 +55,11 @@ public class NetworkConnection extends Thread{ //execute each instance within a 
                 String msg = reader.readLine(); //We wait for incoming messages
                 if (msg != null) { //if we have received a message , handle it
                     Log.d(TAG, "Incoming message "+ msg);
+                    this.lastMsgReceived = msg;
                     //TODO: Implement a handler that handles incoming game-related messages
+
+                    //TODO: CALL CLIENT LOGIC
+
                     //TODO: IMPLEMENT HANDLE AS SYNCHRONIZED METHOD TO AVOID inconsistency due to concurrent executions
                     // or on message handler object level
                 }
@@ -81,6 +87,13 @@ public class NetworkConnection extends Thread{ //execute each instance within a 
         }
     }
 
+
+    public String getLastMsgReceived(){
+        if(this.lastMsgReceived == null){
+            return "";
+        }
+        return this.lastMsgReceived;
+    }
     public void close() throws IOException {
         this.reader.close();
         this.writer.close();

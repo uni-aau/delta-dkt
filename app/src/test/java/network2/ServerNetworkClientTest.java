@@ -5,54 +5,53 @@ import static org.junit.jupiter.api.Assertions.*;
 import android.app.Instrumentation;
 import android.content.Context;
 
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.PrintWriter;
 import java.net.Socket;
+public class ServerNetworkClientTest {
+    private static ServerNetworkClient server;
+    private static NetworkConnection connection;
+    private static final int PORT = 8080;
 
-class ServerNetworkClientTest {
-
-    private Context context;
-
-    public ServerNetworkClientTest(Context context){
-        this.context = context;
-    }
-
-    @Test
     /**
-     * If a start a Server , it´ll listen on a given port for incoming connections.
-     * Test if a connection on the port is accepted after starting
+     * since ServerNetworkClient stores every incoming request in a list of NetworkConnections , the Server-Side client Connection is given in the connList atIndex 0
+     * @throws IOException
      */
-    void start() {
-        ServerNetworkClient server = new ServerNetworkClient(69533,context);
-        server.start(); //server started
+    @BeforeAll
+    static void setup() throws IOException{
+        server = new ServerNetworkClient(PORT);
+        server.start();
 
-        int port = server.getPort();
-        //now try to connect to server on the given port
-        //create NetworkConnection object in a separate Thread
-        Socket socket = null;
-        try {
-            socket = new Socket("localhost",port);
-            assert(socket.isConnected());
-            socket.close();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+        connection = new NetworkConnection(new Socket("localhost",PORT));
+        connection.start();
+    }
+
+    @AfterAll
+    static void teardown() throws IOException{
+        server.tearDown();
     }
 
     @Test
-    void broadcast() {
+    void testSendMessageToServer() {
+        String message = "Hello, server!";
+        connection.send(message);
+        String receivedMessage = server.getConnections().get(0).getLastMsgReceived();
+        assertEquals(message, receivedMessage);
     }
 
     @Test
-    void removeClient() {
+    void testBroadcastMessageToClients() {
+        String message = "Hello, clients!";
+        server.broadcast(message);
+        String receivedMessage = connection.getLastMsgReceived();
+        assertEquals(message, receivedMessage);
     }
 
-    @Test
-    void registerService() {
-    }
 
-    @Test
-    void initializeRegistrationListener() {
-    }
 }

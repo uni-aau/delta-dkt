@@ -1,5 +1,6 @@
 package network2; 
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.net.nsd.NsdManager;
 import android.net.nsd.NsdManager.ResolveListener;
@@ -66,7 +67,7 @@ public class NetworkClientConnection {
      */
 
 
-    public void NetworkClientConnection(String ip, int port, int timeout) throws Exception {
+    public NetworkClientConnection(String ip, int port, int timeout) throws Exception {
         Socket socket = new Socket();
         socket.connect(new InetSocketAddress(ip, port), timeout);
         this.connection = new NetworkConnection(socket);
