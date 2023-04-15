@@ -30,7 +30,7 @@ public class ServerNetworkClientTest {
         }
 
         try {
-            client = new NetworkClientConnection("localhost",PORT, 1000);
+            client = new NetworkClientConnection("localhost",PORT, 1000, null);
             client.start();
         } catch (Exception e) {
             throw new RuntimeException(e);

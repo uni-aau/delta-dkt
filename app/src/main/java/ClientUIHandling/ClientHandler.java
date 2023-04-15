@@ -22,6 +22,7 @@ public class ClientHandler extends Handler {
     @Override
     public void handleMessage(@NonNull Message msg) {
         if(msg.getData().containsKey(testType)){
+            Log.d("TEST", "REACHED");
                 testView.setText(msg.getData().get(testType).toString());
         }
     }

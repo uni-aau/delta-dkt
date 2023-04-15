@@ -67,7 +67,7 @@ public class ServerNetworkClient extends Thread{ //always executed on a separate
             System.out.println("Server started on port " + port);
             while (!isInterrupted()) {
                 Socket socket = serverSocket.accept();
-                NetworkConnection clientSocket = new NetworkConnection(socket);
+                NetworkConnection clientSocket = new NetworkConnection(socket,null);
                 clientConnections.add(clientSocket);
                 clientSocket.start();
             }

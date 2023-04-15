@@ -29,7 +29,7 @@ public class NetworkConnectionTest {
         new Thread(() -> {
             try {
                 Socket socket = serverSocket.accept();
-                client = new NetworkConnection(socket);
+                client = new NetworkConnection(socket,null);
                 client.start();
             } catch (IOException e) {
                 e.printStackTrace();
@@ -45,7 +45,8 @@ public class NetworkConnectionTest {
 
     @Test
     public void testSendAndReceive() throws IOException {
-        NetworkConnection sender = new NetworkConnection(new Socket("localhost", PORT));
+        NetworkConnection sender = new NetworkConnection(new Socket("localhost", PORT),null);
+        sender.start();
 
         String message = "Hello from client";
         sender.send(message);

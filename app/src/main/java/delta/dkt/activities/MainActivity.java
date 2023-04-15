@@ -8,11 +8,20 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import java.io.IOException;
+import java.net.ServerSocket;
+
+import ClientUIHandling.ClientHandler;
+import ClientUIHandling.ClientLogic;
 import delta.dkt.R;
+import network2.NetworkClientConnection;
+import network2.ServerNetworkClient;
 
 public class MainActivity extends AppCompatActivity {
 
     public static final String INTENT_PARAMETER = "username";
+
+    private static ClientLogic logic;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,9 +42,31 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
+        establishServerConnection();
 
     }
 
+    public void establishServerConnection(){
+        logic = new ClientLogic(new ClientHandler(findViewById(R.id.username_edittext)));
+        ClientLogic.isTEST = false;
+        ServerNetworkClient server = null;
+        try {
+            server = new ServerNetworkClient(12312);
+            NetworkClientConnection client = new NetworkClientConnection("localhost", 12312, 1000,logic );
+            server.start();
+
+            client.start();
+            Thread.sleep(200);
+            server.broadcast(ClientHandler.testType);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+
+
+
+
+
+
+    }
 
 }

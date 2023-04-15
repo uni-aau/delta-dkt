@@ -13,6 +13,8 @@ import java.net.Socket;
 import java.util.ArrayList;
 import java.util.List;
 
+import ClientUIHandling.ClientLogic;
+
 
 /**
  * This class can be introduced as wrapper class for a network connection specifically for client connections (server side)
@@ -25,6 +27,8 @@ import java.util.List;
 public class NetworkClientConnection {
 
     private NetworkConnection connection;
+
+    private ClientLogic logic;
 
     /**
 
@@ -67,10 +71,10 @@ public class NetworkClientConnection {
      */
 
 
-    public NetworkClientConnection(String ip, int port, int timeout) throws Exception {
-        Socket socket = new Socket();
-        socket.connect(new InetSocketAddress(ip, port), timeout);
-        this.connection = new NetworkConnection(socket);
+    public NetworkClientConnection(String ip, int port, int timeout, ClientLogic logic) throws Exception {
+
+        this.connection = new NetworkConnection(ip,  port, timeout,logic);
+        this.logic = logic;
     }
 
     public void start(){
