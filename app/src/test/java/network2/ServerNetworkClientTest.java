@@ -38,17 +38,19 @@ public class ServerNetworkClientTest {
     }
 
     @Test
-    void testSendMessageToServer() {
+    void testSendMessageToServer() throws InterruptedException {
         String message = "Hello, server!";
         connection.send(message);
+        Thread.sleep(1000);
         String receivedMessage = server.getConnections().get(0).getLastMsgReceived();
         assertEquals(message, receivedMessage);
     }
 
     @Test
-    void testBroadcastMessageToClients() {
+    void testBroadcastMessageToClients() throws InterruptedException {
         String message = "Hello, clients!";
         server.broadcast(message);
+        Thread.sleep(1000);
         String receivedMessage = connection.getLastMsgReceived();
         assertEquals(message, receivedMessage);
     }

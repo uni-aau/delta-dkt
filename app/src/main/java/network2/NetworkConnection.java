@@ -1,7 +1,6 @@
 package network2;
 
-import android.util.Log;
-import android.widget.Toast;
+import android.nfc.Tag;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -36,25 +35,25 @@ public class NetworkConnection extends Thread{ //execute each instance within a 
     //while listening to its port
     //for us , the port of the socket is defined by the client communicating with us
     public NetworkConnection(Socket connection){
-        Log.d(TAG,"NetworkConnection::(): Saving socket for client connection and creating Reader/Writer Objects");
+        System.out.println(TAG+": Saving socket for client connection and creating Reader/Writer Objects");
         try{
             this.socket = connection;
             reader = new BufferedReader(new InputStreamReader(this.socket.getInputStream()));
             writer = new BufferedWriter(new OutputStreamWriter(this.socket.getOutputStream()));
         }
         catch (Exception ex){
-                Log.e(TAG,ex.getMessage());
+            ex.printStackTrace();
         }
     }
 
     @Override
     public void run() {   //equivalent to the read method .. always active
         try {
-            Log.d(TAG, "Waiting for incoming messages");
+            System.out.println(TAG+":Waiting for incoming messages");
             while (true) {
                 String msg = reader.readLine(); //We wait for incoming messages
                 if (msg != null) { //if we have received a message , handle it
-                    Log.d(TAG, "Incoming message "+ msg);
+                    System.out.println(TAG+":Incoming message "+ msg);
                     this.lastMsgReceived = msg;
                     //TODO: Implement a handler that handles incoming game-related messages
 
@@ -65,7 +64,7 @@ public class NetworkConnection extends Thread{ //execute each instance within a 
                 }
             }
         } catch (IOException e) {
-            Log.e(TAG, e.getMessage());
+            System.out.println(e.getMessage());
 
         } finally {
             // Close the connection always!
@@ -79,6 +78,7 @@ public class NetworkConnection extends Thread{ //execute each instance within a 
 
     public void send(String message) {  //only active when called, executed on the caller-thread or instance thread??
         try {
+            System.out.println(TAG+"Sending following message to server: "+message);
             writer.write(message);
             writer.newLine(); //adds newline == NULLBYTE termination of messages (EOF signal)
             writer.flush(); //flushes the message within the OUTPUTBUFFER -> sends to cient/server via Socket

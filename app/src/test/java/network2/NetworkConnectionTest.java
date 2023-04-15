@@ -1,9 +1,17 @@
 package network2;
 import org.junit.jupiter.api.*;
+import org.mockito.Mock;
+import org.mockito.MockedStatic;
+import org.mockito.Mockito;
+
+import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 import android.util.Log;
 
@@ -12,19 +20,15 @@ public class NetworkConnectionTest {
 
     private final static int PORT = 5050;
 
-    private final static String TAG = "NetworkConnectionTest";
-    private NetworkConnection client;
-    private ServerSocket serverSocket;
-    private Socket socket;
+    private static NetworkConnection client;
+    private static ServerSocket serverSocket;
 
     @BeforeAll
-    public void setUp() throws IOException {
-        //serverSocket = new ServerSocket(PORT); // use port 9090 for the server
-        Log.d(TAG,"Established a server socket on port"+PORT+", listening for incoming requests");
+    static void setUp() throws IOException {
+        serverSocket = new ServerSocket(PORT);
         new Thread(() -> {
             try {
-                socket = serverSocket.accept(); // accept the incoming connection and create the socket
-                Log.d(TAG, "Server: Accepted incoming client request. Assigned server<-->client connection on port: "+socket.getPort());
+                Socket socket = serverSocket.accept();
                 client = new NetworkConnection(socket);
                 client.start();
             } catch (IOException e) {
@@ -34,19 +38,25 @@ public class NetworkConnectionTest {
     }
 
     @AfterAll
-    public void tearDown() throws IOException, InterruptedException {
+    static void tearDown() throws IOException {
         client.close();
-        socket.close();
         serverSocket.close();
     }
 
     @Test
-    public void testSendAndReceive() throws IOException,InterruptedException {
-        Log.d(TAG,"Client: Socket request send to Server localhost on port "+PORT+".");
-        NetworkConnection sender = new NetworkConnection(new Socket("localhost", PORT)); // connect to the serverport
+    public void testSendAndReceive() throws IOException {
+        NetworkConnection sender = new NetworkConnection(new Socket("localhost", PORT));
 
-        sender.send("Hello from client");
-        Thread.sleep(1000);
-        assertEquals("Hello from client", client.getLastMsgReceived());
+        String message = "Hello from client";
+        sender.send(message);
+
+        try {
+            Thread.sleep(1000); // wait for the message to be processed
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        String lastMsgReceived = client.getLastMsgReceived();
+        assertEquals(message, lastMsgReceived);
     }
 }
