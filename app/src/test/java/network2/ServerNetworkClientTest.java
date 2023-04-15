@@ -29,6 +29,12 @@ public class ServerNetworkClientTest {
         System.out.println("TRYING TO START");
         server.start();
 
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+
         connection = new NetworkConnection(new Socket("localhost",PORT));
         connection.start();
     }
