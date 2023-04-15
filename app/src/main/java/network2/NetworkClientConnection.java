@@ -71,7 +71,7 @@ public class NetworkClientConnection {
      */
 
 
-    public NetworkClientConnection(String ip, int port, int timeout, ClientLogic logic) throws Exception {
+    public NetworkClientConnection(String ip, int port, int timeout, ClientLogic logic) {
 
         this.connection = new NetworkConnection(ip,  port, timeout,logic);
         this.logic = logic;
@@ -81,7 +81,7 @@ public class NetworkClientConnection {
         this.connection.start();
     }
 
-    public void sendMessage(String msg) throws Exception {
+    public void sendMessage(String msg) {
          connection.send(msg);
     }
 

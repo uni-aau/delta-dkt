@@ -120,7 +120,9 @@ public class NetworkConnection extends Thread { //execute each instance within a
             System.out.println(e.getMessage());
 
         } catch (InterruptedException e) {
-            throw new RuntimeException(e);
+            Log.e("INTERRUPT", "Interrupted!", e);
+
+            Thread.currentThread().interrupt();
         } finally {
             // Close the connection always!
             try {

@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -50,17 +51,20 @@ public class MainActivity extends AppCompatActivity {
         logic = new ClientLogic(new ClientHandler(findViewById(R.id.username_edittext)));
         ClientLogic.isTEST = false;
         ServerNetworkClient server = null;
-        try {
+
             server = new ServerNetworkClient(12312);
             NetworkClientConnection client = new NetworkClientConnection("localhost", 12312, 1000,logic );
             server.start();
 
             client.start();
+        try {
             Thread.sleep(200);
-            server.broadcast(ClientHandler.testType);
-        } catch (Exception e) {
-            throw new RuntimeException(e);
+        } catch (InterruptedException e) {
+            Log.e("INTERRUPT", "Interrupted!", e);
+            Thread.currentThread().interrupt();
         }
+        server.broadcast(ClientHandler.testType);
+
 
 
 
