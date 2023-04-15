@@ -32,5 +32,6 @@
     <string name="Avatar">Avatar</string>
     <string name="PlayerLobby">Player Lobby</string>
 
-
+    <string name="NSDServiceName">delta_dkt</string>
+    <string name="NSDServiceType">_delta_dkt.tcp</string>
 </resources>

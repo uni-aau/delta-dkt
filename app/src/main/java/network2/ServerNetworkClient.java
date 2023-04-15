@@ -29,11 +29,11 @@ import java.net.ServerSocket;
  */
 public class ServerNetworkClient extends Thread{ //always executed on a separate thread (IO)
 
-    private int port; //the port number where to start the network client on
+    private ServerSocket serverSocket;
 
-    private List<NetworkConnection> clientConnections = new ArrayList<>();
+    private int port; //the number of the port where the serverThread listens on for incoming connections
 
-
+    private List<NetworkConnection> clientConnections ;
 
     /** NSD vars
     private String serviceName = "delta_dkt";
@@ -45,25 +45,26 @@ public class ServerNetworkClient extends Thread{ //always executed on a separate
 
 
 
-    public ServerNetworkClient(int port, Context context){
-        ServerNetworkClient(port);
+    public ServerNetworkClient(Context context){
+        ServerNetworkClient();
         this.context = context;
     }
      */
 
-    public ServerNetworkClient(int port){
-        this.port = port;
+    public ServerNetworkClient(){
+        this.port = 0; //not yet set AND the prequesite for allocating a dynamic port
+        clientConnections = new ArrayList<>(); //init list
     }
 
-
     public void run() {
+        try{
+            //at first , initialize serverSocket at a dynamic port
+            initializeServerSocket();
 
+            //before start listening, register the service
+            // registerService();
+            //initializeRegistrationListener();
 
-        //before start listening, register the service
-       // registerService();
-        //initializeRegistrationListener();
-
-        try (ServerSocket serverSocket = new ServerSocket(port)) {
             System.out.println("Server started on port " + port);
             while (!isInterrupted()) {
                 Socket socket = serverSocket.accept();
@@ -71,26 +72,21 @@ public class ServerNetworkClient extends Thread{ //always executed on a separate
                 clientConnections.add(clientSocket);
                 clientSocket.start();
             }
-            //is interrupted.. clean up
-            tearDown();
-        } catch (IOException e) {
+        }catch (IOException e) {
             e.printStackTrace();
         }
-    }
-
-    /** later when we have the option to introduce a dynamic port
-    public void initializeServerSocket() {
-        // Initialize a server socket on the next available port.
-        try{
-            this.socket = new ServerSocket(0);
-        }catch (Exception ex) {
-            ex.printStackTrace();
+        finally { //always clean up, short extra try-catch needed because if exeption thrown above, teardown might not be executed
+            try{ tearDown();}catch (IOException ex){ ex.printStackTrace(); }
         }
-        // Store the chosen port.
-        this.localPort = socket.getLocalPort();
     }
-     */
 
+    /** later when we have the option to introduce a dynamic port */
+    public void initializeServerSocket() throws IOException{
+        // Initialize a server socket on the next available port.
+        this.serverSocket = new ServerSocket(this.port);
+        // Store the chosen port.
+        this.port = serverSocket.getLocalPort();
+    }
 
     public synchronized void broadcast(String message) { //synchronized might not be necessary since there should always be <= 1 server thread
         for (NetworkConnection clientConnection : clientConnections) {
@@ -98,13 +94,12 @@ public class ServerNetworkClient extends Thread{ //always executed on a separate
         }
     }
 
+    /**
+     * TODO: move this method and all other things concerning connection handling to a separate clientHandler class
+     * @param client
+     */
     public synchronized void removeClient(NetworkConnection client) {
         clientConnections.remove(client);
-    }
-
-
-    public List<NetworkConnection> getConnections(){
-        return this.clientConnections;
     }
 
     public void tearDown() throws IOException{
@@ -122,6 +117,10 @@ public class ServerNetworkClient extends Thread{ //always executed on a separate
      */
     public int getPort() {
         return port;
+    }
+
+    public List<NetworkConnection> getConnections(){
+        return this.clientConnections;
     }
 
     /**

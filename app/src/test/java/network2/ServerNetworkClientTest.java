@@ -17,18 +17,18 @@ import java.net.Socket;
 public class ServerNetworkClientTest {
     private static ServerNetworkClient server;
     private static NetworkConnection connection;
-    private static final int PORT = 8080;
 
     /**
      * since ServerNetworkClient stores every incoming request in a list of NetworkConnections , the Server-Side client Connection is given in the connList atIndex 0
      * @throws IOException
      */
     @BeforeAll
-    static void setup() throws IOException{
-        server = new ServerNetworkClient(PORT);
+    static void setup() throws IOException, InterruptedException{
+        server = new ServerNetworkClient();
         server.start();
-
-        connection = new NetworkConnection(new Socket("localhost",PORT));
+        //Sleep a second untill everything is set up
+        Thread.sleep(1000);
+        connection = new NetworkConnection(new Socket("localhost",server.getPort()));
         connection.start();
     }
 
