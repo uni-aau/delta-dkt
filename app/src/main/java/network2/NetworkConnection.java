@@ -48,7 +48,8 @@ public class NetworkConnection extends Thread{ //execute each instance within a 
             writer = new BufferedWriter(new OutputStreamWriter(this.socket.getOutputStream()));
         }
         catch (Exception ex){
-            ex.printStackTrace();
+            //Deactivated because its a "security hotspot"
+           // ex.printStackTrace();
         }
     }
 

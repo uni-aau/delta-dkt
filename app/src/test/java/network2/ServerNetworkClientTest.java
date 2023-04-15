@@ -62,5 +62,10 @@ public class ServerNetworkClientTest {
         assertEquals(message, receivedMessage);
     }
 
+    @Test
+    public void testGetter(){
+        assertEquals(PORT, server.getPort());
+    }
+
 
 }

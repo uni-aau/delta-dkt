@@ -59,4 +59,6 @@ public class NetworkConnectionTest {
         String lastMsgReceived = client.getLastMsgReceived();
         assertEquals(message, lastMsgReceived);
     }
+
+
 }
