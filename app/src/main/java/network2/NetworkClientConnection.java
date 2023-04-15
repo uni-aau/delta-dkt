@@ -73,6 +73,10 @@ public class NetworkClientConnection {
         this.connection = new NetworkConnection(socket);
     }
 
+    public void start(){
+        this.connection.start();
+    }
+
     public void sendMessage(String msg) throws Exception {
          connection.send(msg);
     }
@@ -81,7 +85,9 @@ public class NetworkClientConnection {
         connection.close();
     }
 
-
+    public NetworkConnection getConnection() {
+        return connection;
+    }
 
     /**
      * NSD Discovery area

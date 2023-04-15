@@ -2,21 +2,15 @@ package network2;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-import android.app.Instrumentation;
-import android.content.Context;
-
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.PrintWriter;
-import java.net.Socket;
+
 public class ServerNetworkClientTest {
     private static ServerNetworkClient server;
-    private static NetworkConnection connection;
+    private static NetworkClientConnection client;
     private static final int PORT = 12312;
 
     /**
@@ -35,19 +29,25 @@ public class ServerNetworkClientTest {
             throw new RuntimeException(e);
         }
 
-        connection = new NetworkConnection(new Socket("localhost",PORT));
-        connection.start();
+        try {
+            client = new NetworkClientConnection("localhost",PORT, 1000);
+            client.start();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+
     }
 
     @AfterAll
-    static void teardown() throws IOException{
+    static void teardown() throws Exception {
+        client.stopConnection();
         server.tearDown();
     }
 
     @Test
-    void testSendMessageToServer() throws InterruptedException {
+    void testSendMessageToServer() throws Exception {
         String message = "Hello, server!";
-        connection.send(message);
+        client.sendMessage(message);
         Thread.sleep(1000);
         String receivedMessage = server.getConnections().get(0).getLastMsgReceived();
         assertEquals(message, receivedMessage);
@@ -58,7 +58,7 @@ public class ServerNetworkClientTest {
         String message = "Hello, clients!";
         server.broadcast(message);
         Thread.sleep(1000);
-        String receivedMessage = connection.getLastMsgReceived();
+        String receivedMessage = client.getConnection().getLastMsgReceived();
         assertEquals(message, receivedMessage);
     }
 
