@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".fragments.BlockFragment"
+        tools:layout_editor_absoluteY="-8dp"
+        tools:layout_editor_absoluteX="9dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="106dp"
+            tools:layout_editor_absoluteY="0dp"
+            tools:layout_editor_absoluteX="89dp">
+
+        <TextView
+                android:text="@string/text_propNumber"
+                android:layout_width="44dp"
+                android:layout_height="51dp"
+                android:id="@+id/textview_propNumber"
+                android:textSize="25sp"
+                android:textStyle="bold"
+                android:gravity="center"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:layout_marginTop="24dp"
+                android:layout_marginStart="16dp" />
+
+        <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="294dp"
+                android:layout_height="104dp"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:id="@+id/linearLayout2"
+                app:layout_constraintStart_toEndOf="@+id/textview_propNumber"
+                android:layout_marginStart="16dp">
+
+            <TextView
+                    android:text="@string/text_propName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/textView_propName"
+                    android:layout_marginTop="24dp" />
+
+            <TextView
+                    android:text="@string/text_price"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/textView_price"
+                    android:layout_marginTop="11dp" />
+        </LinearLayout>
+
+        <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="259dp"
+                android:layout_height="104dp"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:id="@+id/linearLayout"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/linearLayout2"
+                android:layout_marginStart="252dp"
+                app:layout_constraintHorizontal_bias="1.0"
+                android:layout_marginEnd="32dp">
+
+            <TextView
+                    android:text="@string/text_ownedBy"
+                    android:layout_width="250dp"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/textView_ownedBy"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="120dp" />
+
+            <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="250dp"
+                    android:layout_height="35dp"
+                    android:layout_marginTop="8dp">
+
+                <TextView
+                        android:text="@string/text_propertiesAmountTitle"
+                        android:layout_width="115dp"
+                        android:layout_height="35dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        android:layout_marginBottom="16dp"
+                        android:id="@+id/textView_propertiesAmountTitle"
+                        android:layout_weight="1"
+                        android:gravity="center" />
+
+                <ImageView
+                        android:layout_width="85dp"
+                        android:layout_height="wrap_content"
+                        app:srcCompat="@drawable/hotel_preview"
+                        android:id="@+id/imageView_prop1"
+                        android:layout_weight="1"
+                        android:contentDescription="@string/textCD_prop1"
+                        android:visibility="invisible" />
+
+                <ImageView
+                        android:layout_width="85dp"
+                        android:layout_height="wrap_content"
+                        app:srcCompat="@drawable/hotel_preview"
+                        android:id="@+id/imageView_prop2"
+                        android:layout_weight="1"
+                        android:contentDescription="@string/textCD_prop2"
+                        android:visibility="invisible" />
+
+                <ImageView
+                        android:layout_width="85dp"
+                        android:layout_height="wrap_content"
+                        app:srcCompat="@drawable/hotel_preview"
+                        android:id="@+id/imageView_prop3"
+                        android:layout_weight="1"
+                        android:contentDescription="@string/textCD_prop3"
+                        android:visibility="invisible" />
+
+                <ImageView
+                        android:layout_width="85dp"
+                        android:layout_height="wrap_content"
+                        app:srcCompat="@drawable/hotel_preview"
+                        android:id="@+id/imageView_prop4"
+                        android:layout_weight="1"
+                        android:contentDescription="@string/textCD_prop4"
+                        android:visibility="invisible" />
+            </LinearLayout>
+        </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</FrameLayout>
