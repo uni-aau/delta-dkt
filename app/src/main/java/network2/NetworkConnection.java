@@ -31,11 +31,17 @@ public class NetworkConnection extends Thread{ //execute each instance within a 
 
     private static final String TAG = "NetworkConnection";
 
+    private boolean isRunning;
+
+    private Object runningToken;
+
     //we introduce the socket as parameter because the server will accept/retrieve socket objects
     //while listening to its port
     //for us , the port of the socket is defined by the client communicating with us
     public NetworkConnection(Socket connection){
         System.out.println(TAG+": Saving socket for client connection and creating Reader/Writer Objects");
+        this.isRunning = true;
+        runningToken = "";
         try{
             this.socket = connection;
             reader = new BufferedReader(new InputStreamReader(this.socket.getInputStream()));
@@ -51,17 +57,27 @@ public class NetworkConnection extends Thread{ //execute each instance within a 
         try {
             System.out.println(TAG+":Waiting for incoming messages");
             while (true) {
-                String msg = reader.readLine(); //We wait for incoming messages
-                if (msg != null) { //if we have received a message , handle it
-                    System.out.println(TAG+":Incoming message "+ msg);
-                    this.lastMsgReceived = msg;
-                    //TODO: Implement a handler that handles incoming game-related messages
+                //System.out.println("WAITING1");
+                if(reader.ready()) {
+                    String msg = reader.readLine();
+                     //if we have received a message , handle it
+                        System.out.println(TAG + ":Incoming message " + msg);
+                        this.lastMsgReceived = msg;
+                        //TODO: Implement a handler that handles incoming game-related messages
 
-                    //TODO: CALL CLIENT LOGIC
+                        //TODO: CALL CLIENT LOGIC
 
-                    //TODO: IMPLEMENT HANDLE AS SYNCHRONIZED METHOD TO AVOID inconsistency due to concurrent executions
-                    // or on message handler object level
+                        //TODO: IMPLEMENT HANDLE AS SYNCHRONIZED METHOD TO AVOID inconsistency due to concurrent executions
+                        // or on message handler object level
+
                 }
+                //System.out.println("WAITING2");
+                synchronized (runningToken){
+                    if(!isRunning){
+                        break;
+                    }
+                }
+
             }
         } catch (IOException e) {
             System.out.println(e.getMessage());
@@ -98,6 +114,9 @@ public class NetworkConnection extends Thread{ //execute each instance within a 
         this.reader.close();
         this.writer.close();
         this.socket.close();
+        synchronized (runningToken){
+            isRunning = false;
+        }
     }
 
 }

@@ -17,7 +17,7 @@ import java.net.Socket;
 public class ServerNetworkClientTest {
     private static ServerNetworkClient server;
     private static NetworkConnection connection;
-    private static final int PORT = 8080;
+    private static final int PORT = 12312;
 
     /**
      * since ServerNetworkClient stores every incoming request in a list of NetworkConnections , the Server-Side client Connection is given in the connList atIndex 0
@@ -26,6 +26,7 @@ public class ServerNetworkClientTest {
     @BeforeAll
     static void setup() throws IOException{
         server = new ServerNetworkClient(PORT);
+        System.out.println("TRYING TO START");
         server.start();
 
         connection = new NetworkConnection(new Socket("localhost",PORT));
