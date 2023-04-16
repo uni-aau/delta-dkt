@@ -2,6 +2,7 @@ package network2;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
@@ -12,6 +13,7 @@ public class ServerNetworkClientTest {
     private static ServerNetworkClient server;
     private static NetworkClientConnection client;
     private static int dynServerPORT;
+
 
     /**
      * since ServerNetworkClient stores every incoming request in a list of NetworkConnections , the Server-Side client Connection is given in the connList atIndex 0

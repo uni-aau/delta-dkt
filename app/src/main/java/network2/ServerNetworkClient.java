@@ -37,23 +37,23 @@ public class ServerNetworkClient extends Thread { //always executed on a separat
 
     private List<NetworkConnection> clientConnections ;
 
-    /** NSD vars
-    private String serviceName = "delta_dkt";
-    private String serviceType = "_delta_dkt.tcp";
-
     private Context context;
 
-    RegistrationListener registrationListener;
+    private NetworkServiceDiscovery nsd;
 
-
-
-    public ServerNetworkClient(Context context){
-        ServerNetworkClient();
-        this.context = context;
-    }
-     */
 
     public ServerNetworkClient(){
+      initProperties();
+    }
+
+    public ServerNetworkClient(Context context){
+        this.context = context;
+        this.nsd = new NetworkServiceDiscovery(context);
+
+        initProperties();
+    }
+
+    private void initProperties(){
         this.port = 0; //not yet set AND the prequesite for allocating a dynamic port
         clientConnections = new ArrayList<>(); //init list
     }
@@ -64,9 +64,10 @@ public class ServerNetworkClient extends Thread { //always executed on a separat
             //at first , initialize serverSocket at a dynamic port
             initializeServerSocket();
 
-            //before start listening, register the service
-            // registerService();
-            //initializeRegistrationListener();
+            //before start listening, register the service.. the port has been set
+            if(nsd != null){ //for testcases this class has to be called without service registration
+                nsd.registerService(getPort());
+            }
 
             System.out.println("Server started on port " + port);
             while (!isInterrupted()) {
@@ -109,10 +110,9 @@ public class ServerNetworkClient extends Thread { //always executed on a separat
         for(NetworkConnection clientConn : clientConnections){
             clientConn.close();
             clientConn.interrupt();
-            clientConn = null; //delete reference so everything gets disposed by gc
-        }
-        //serversocket is already disposed because of using statement
-        //eliminate references to this instance to finish cleaning
+        }//after disposing all the clients, get rid of nsd service (unregister) and stop the server
+        if(nsd != null){ nsd.tearDown();}
+        serverSocket.close();
     }
 
     /**
@@ -126,59 +126,6 @@ public class ServerNetworkClient extends Thread { //always executed on a separat
         return this.clientConnections;
     }
 
-    /**
-     * NSD functions
-
-
-    private void registerService() {
-        // Create the NsdServiceInfo object, and populate it.
-        NsdServiceInfo serviceInfo = new NsdServiceInfo();
-
-        // The name is subject to change based on conflicts
-        // with other services advertised on the same network.
-        serviceInfo.setServiceName(this.serviceName);
-        serviceInfo.setServiceType(this.serviceType);
-        serviceInfo.setPort(this.port);
-
-
-        NsdManager nsdManager = (NsdManager)this.context.getSystemService(Context.NSD_SERVICE);
-
-     nsdManager.registerService(
-     serviceInfo, NsdManager.PROTOCOL_DNS_SD, registrationListener);
-     }
-
-     private void initializeRegistrationListener() {
-     this.registrationListener = new RegistrationListener() {
-
-    @Override public void onServiceRegistered(NsdServiceInfo NsdServiceInfo) {
-    // Save the service name. Android may have changed it in order to
-    // resolve a conflict, so update the name you initially requested
-    // with the name Android actually used.
-    serviceName = NsdServiceInfo.getServiceName();
-    }
-
-    @Override public void onRegistrationFailed(NsdServiceInfo serviceInfo, int errorCode) {
-    // Registration failed! Put debugging code here to determine why.
-    Log.d("NsdServiceInfo_failed","NetworkClient::initializeRegistrationListener::onRegistrationFailed"+serviceInfo.toString());
-    }
-
-    @Override public void onServiceUnregistered(NsdServiceInfo arg0) {
-    // Service has been unregistered. This only happens when you call
-    // NsdManager.unregisterService() and pass in this listener.
-    Log.d("NsdServiceInfo_unregistered", "Service "+arg0.getServiceName()+" has been unregistered. ("+ arg0.toString()+")");
-    }
-
-    @Override public void onUnregistrationFailed(NsdServiceInfo serviceInfo, int errorCode) {
-    // unregistration failed. Put debugging code here to determine why.
-    Log.d("NsdServiceInfo_unregistration_failed", "NetworkClient::initializeRegistrationListener::onUnregistrationFailed"
-    +"\n"+"errorCode: "+errorCode + "\n" + serviceInfo.toString());
-    }
-    };
-     }
-
-
-
-     */
 
 }
 

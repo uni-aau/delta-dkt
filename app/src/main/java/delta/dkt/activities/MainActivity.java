@@ -52,7 +52,7 @@ public class MainActivity extends AppCompatActivity {
         ClientLogic.isTEST = false;
         ServerNetworkClient server = null;
 
-            server = new ServerNetworkClient();
+            server = new ServerNetworkClient(this.getApplicationContext());
             NetworkClientConnection client = new NetworkClientConnection("localhost", server.getPort(), 1000,logic );
             server.start();
 
