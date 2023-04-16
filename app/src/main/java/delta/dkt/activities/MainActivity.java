@@ -64,13 +64,10 @@ public class MainActivity extends AppCompatActivity {
             Thread.currentThread().interrupt();
         }
         server.broadcast(ClientHandler.testType);
-
-
-
-
-
-
-
     }
+
+
+
+
 
 }
