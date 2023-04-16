@@ -25,75 +25,77 @@ import java.util.List;
 
 import java.net.ServerSocket;
 
+import delta.dkt.activities.MainActivity;
+
 /**
  * This class maintains a set of clientNetworkConnections and listens to a
  * predefined server port via Socket for Incoming Connections
  */
 public class ServerNetworkClient extends Thread { //always executed on a separate thread (IO)
 
-    private int port; //the port number where to start the network client on
+    private ServerSocket serverSocket;
 
-    private List<NetworkConnection> clientConnections = new ArrayList<>();
+    private int port; //the number of the port where the serverThread listens on for incoming connections
+
+    public boolean serverInterrupted;
+
+    private List<NetworkConnection> clientConnections ;
+
+    private Context context;
+
+    private NetworkServiceDiscovery nsd;
 
 
-    /**
-     * NSD vars
-     * private String serviceName = "delta_dkt";
-     * private String serviceType = "_delta_dkt.tcp";
-     * <p>
-     * private Context context;
-     * <p>
-     * RegistrationListener registrationListener;
-     * <p>
-     * <p>
-     * <p>
-     * public ServerNetworkClient(int port, Context context){
-     * ServerNetworkClient(port);
-     * this.context = context;
-     * }
-     */
+    public ServerNetworkClient(){
+      initProperties();
+    }
 
-    public ServerNetworkClient(int port) {
-        this.port = port;
+    public ServerNetworkClient(Context context){
+        this.context = context;
+        this.nsd = new NetworkServiceDiscovery(context);
+
+        initProperties();
+    }
+
+    private void initProperties(){
+        this.port = 0; //not yet set AND the prequesite for allocating a dynamic port
+        clientConnections = new ArrayList<>(); //init list
+        serverInterrupted = false;
     }
 
     @Override
     public void run() {
+        try{
+            //at first , initialize serverSocket at a dynamic port
+            initializeServerSocket();
 
+            //before start listening, register the service.. the port has been set
+            if(nsd != null){ //for testcases this class has to be called without service registration
+                nsd.registerService(getPort());
+            }
 
-        //before start listening, register the service
-        // registerService();
-        //initializeRegistrationListener();
-
-        try (ServerSocket serverSocket = new ServerSocket(port)) {
             System.out.println("Server started on port " + port);
-            while (!isInterrupted()) {
+            while (serverInterrupted == false) {
                 Socket socket = serverSocket.accept();
                 NetworkConnection clientSocket = new NetworkConnection(socket, null);
                 clientConnections.add(clientSocket);
                 clientSocket.start();
             }
-            //is interrupted.. clean up
-            tearDown();
-        } catch (IOException e) {
+        }catch (IOException e) {
             e.printStackTrace();
+        }
+        finally { //always clean up, short extra try-catch needed because if exeption thrown above, teardown might not be executed
+            try{ tearDown();}catch (IOException ex){ ex.printStackTrace(); }
         }
     }
 
-    /**
-     * later when we have the option to introduce a dynamic port
-     * public void initializeServerSocket() {
-     * // Initialize a server socket on the next available port.
-     * try{
-     * this.socket = new ServerSocket(0);
-     * }catch (Exception ex) {
-     * ex.printStackTrace();
-     * }
-     * // Store the chosen port.
-     * this.localPort = socket.getLocalPort();
-     * }
-     */
-
+    /** later when we have the option to introduce a dynamic port */
+    public void initializeServerSocket() throws IOException{
+        // Initialize a server socket on the next available port.
+        this.serverSocket = new ServerSocket(this.port);
+        // Store the chosen port.
+        this.port = serverSocket.getLocalPort();
+    }
 
     public synchronized void broadcast(String message) { //synchronized might not be necessary since there should always be <= 1 server thread
         for (NetworkConnection clientConnection : clientConnections) {
@@ -101,23 +103,21 @@ public class ServerNetworkClient extends Thread { //always executed on a separat
         }
     }
 
+    /**
+     * TODO: move this method and all other things concerning connection handling to a separate clientHandler class
+     * @param client
+     */
     public synchronized void removeClient(NetworkConnection client) {
         clientConnections.remove(client);
     }
 
-
-    public List<NetworkConnection> getConnections() {
-        return this.clientConnections;
-    }
-
-    public void tearDown() throws IOException {
-        for (NetworkConnection clientConn : clientConnections) {
+    public void tearDown() throws IOException{
+        for(NetworkConnection clientConn : clientConnections){
             clientConn.close();
             clientConn.interrupt();
-            clientConn = null; //delete reference so everything gets disposed by gc
-        }
-        //serversocket is already disposed because of using statement
-        //eliminate references to this instance to finish cleaning
+        }//after disposing all the clients, get rid of nsd service (unregister) and stop the server
+        if(nsd != null){ nsd.tearDown();}
+        serverSocket.close();
     }
 
     /**
@@ -127,59 +127,10 @@ public class ServerNetworkClient extends Thread { //always executed on a separat
         return port;
     }
 
-    /**
-     * NSD functions
-
-
-     private void registerService() {
-     // Create the NsdServiceInfo object, and populate it.
-     NsdServiceInfo serviceInfo = new NsdServiceInfo();
-
-     // The name is subject to change based on conflicts
-     // with other services advertised on the same network.
-     serviceInfo.setServiceName(this.serviceName);
-     serviceInfo.setServiceType(this.serviceType);
-     serviceInfo.setPort(this.port);
-
-
-     NsdManager nsdManager = (NsdManager)this.context.getSystemService(Context.NSD_SERVICE);
-
-     nsdManager.registerService(
-     serviceInfo, NsdManager.PROTOCOL_DNS_SD, registrationListener);
-     }
-
-     private void initializeRegistrationListener() {
-     this.registrationListener = new RegistrationListener() {
-
-    @Override public void onServiceRegistered(NsdServiceInfo NsdServiceInfo) {
-    // Save the service name. Android may have changed it in order to
-    // resolve a conflict, so update the name you initially requested
-    // with the name Android actually used.
-    serviceName = NsdServiceInfo.getServiceName();
+    public List<NetworkConnection> getConnections(){
+        return this.clientConnections;
     }
 
-    @Override public void onRegistrationFailed(NsdServiceInfo serviceInfo, int errorCode) {
-    // Registration failed! Put debugging code here to determine why.
-    Log.d("NsdServiceInfo_failed","NetworkClient::initializeRegistrationListener::onRegistrationFailed"+serviceInfo.toString());
-    }
-
-    @Override public void onServiceUnregistered(NsdServiceInfo arg0) {
-    // Service has been unregistered. This only happens when you call
-    // NsdManager.unregisterService() and pass in this listener.
-    Log.d("NsdServiceInfo_unregistered", "Service "+arg0.getServiceName()+" has been unregistered. ("+ arg0.toString()+")");
-    }
-
-    @Override public void onUnregistrationFailed(NsdServiceInfo serviceInfo, int errorCode) {
-    // unregistration failed. Put debugging code here to determine why.
-    Log.d("NsdServiceInfo_unregistration_failed", "NetworkClient::initializeRegistrationListener::onUnregistrationFailed"
-    +"\n"+"errorCode: "+errorCode + "\n" + serviceInfo.toString());
-    }
-    };
-     }
-
-
-
-     */
 
 }
 

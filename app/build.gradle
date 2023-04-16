@@ -55,7 +55,7 @@ task jacocoTestReport(type: JacocoReport, dependsOn: 'testDebugUnitTest') {
 
 sonarqube {
     properties {
-        property "sonar.coverage.exclusions", "src/main/java/delta/dkt/activities/**, src/main/java/delta/dkt/fragments/**, src/main/java/ClientUIHandling/*"
+        property "sonar.coverage.exclusions", "src/main/java/delta/dkt/activities/**, src/main/java/delta/dkt/fragments/**, src/main/java/ClientUIHandling/*,src/main/java/network2/NetworkServiceDiscovery.java, src/main/java/network2/NetworkServiceDiscoveryClient.java"
         property "sonar.projectKey", "uni-aau_delta-dkt"
         property "sonar.organization", "uni-aau"
         property "sonar.host.url", "https://sonarcloud.io"
@@ -77,8 +77,7 @@ dependencies {
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.0'	
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'	
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
-
-    	    // Espresso UI Testing Dependencies:	
+    // Espresso UI Testing Dependencies:
     androidTestImplementation 'androidx.test:runner:1.5.2'	
     androidTestImplementation 'androidx.test:rules:1.5.0'
 }

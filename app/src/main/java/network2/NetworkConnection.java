@@ -168,9 +168,9 @@ public class NetworkConnection extends Thread { //execute each instance within a
     }
 
     public void close() throws IOException {
-        this.reader.close();
-        this.writer.close();
-        this.socket.close();
+        if(this.reader != null){ this.reader.close(); }
+        if(this.writer != null){ this.writer.close(); }
+        if(this.socket != null){ this.socket.close(); }
         synchronized (runningToken) {
             isRunning = false;
         }

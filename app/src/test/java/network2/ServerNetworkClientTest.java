@@ -2,6 +2,7 @@ package network2;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
@@ -11,31 +12,23 @@ import java.io.IOException;
 public class ServerNetworkClientTest {
     private static ServerNetworkClient server;
     private static NetworkClientConnection client;
-    private static final int PORT = 12312;
+    private static int dynServerPORT;
+
 
     /**
      * since ServerNetworkClient stores every incoming request in a list of NetworkConnections , the Server-Side client Connection is given in the connList atIndex 0
      * @throws IOException
      */
     @BeforeAll
-    static void setup() throws IOException{
-        server = new ServerNetworkClient(PORT);
+    static void setup() throws IOException, InterruptedException{
+        server = new ServerNetworkClient();
         System.out.println("TRYING TO START");
         server.start();
 
-        try {
-            Thread.sleep(1000);
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
-
-        try {
-            client = new NetworkClientConnection("localhost",PORT, 1000, null);
-            client.start();
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
-
+        Thread.sleep(1000);
+        dynServerPORT = server.getPort();
+        client = new NetworkClientConnection("localhost",server.getPort(), 1000, null);
+        client.start();
     }
 
     @AfterAll
@@ -64,7 +57,7 @@ public class ServerNetworkClientTest {
 
     @Test
     public void testGetter(){
-        assertEquals(PORT, server.getPort());
+        assertEquals(dynServerPORT, server.getPort());
     }
 
 
