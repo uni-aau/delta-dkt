@@ -46,8 +46,11 @@ public class MainActivity extends AppCompatActivity {
 
         try{
             establishServerConnection();
-        }catch (Exception e){
-            Log.d("MainActivity",e.getMessage());
+        }catch (InterruptedException e){
+            Log.d("MainActivity::oncreate- interrupted",e.getMessage());
+            Thread.currentThread().interrupt();
+        }catch (RuntimeException e){
+            Log.d("MainActivity::oncreate - Runtime exception",e.getMessage());
         }
 
 
