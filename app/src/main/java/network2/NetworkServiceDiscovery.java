@@ -20,7 +20,6 @@ public class NetworkServiceDiscovery {
     public NsdServiceInfo nsdServiceInfo;
 
 
-
     public NetworkServiceDiscovery(Context context) {
         this.nsdManager = (NsdManager) context.getSystemService(Context.NSD_SERVICE);
 

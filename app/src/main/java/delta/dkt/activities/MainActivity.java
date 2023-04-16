@@ -43,34 +43,38 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-        establishServerConnection();
+
+        try{
+            establishServerConnection();
+        }catch (InterruptedException e){
+            Log.d("MainActivity::oncreate- interrupted",e.getMessage());
+            Thread.currentThread().interrupt();
+        }catch (RuntimeException e){
+            Log.d("MainActivity::oncreate - Runtime exception",e.getMessage());
+        }
+
 
     }
 
-    public void establishServerConnection(){
+    public void establishServerConnection() throws InterruptedException, RuntimeException {
         logic = new ClientLogic(new ClientHandler(findViewById(R.id.username_edittext)));
         ClientLogic.isTEST = false;
         ServerNetworkClient server = null;
 
             server = new ServerNetworkClient(this.getApplicationContext());
-            NetworkClientConnection client = new NetworkClientConnection("localhost", server.getPort(), 1000,logic );
             server.start();
 
+            Thread.sleep(1000);
+
+            NetworkClientConnection client = new NetworkClientConnection("localhost", server.getPort(), 1000,logic );
             client.start();
-        try {
-            Thread.sleep(200);
-        } catch (InterruptedException e) {
-            Log.e("INTERRUPT", "Interrupted!", e);
-            Thread.currentThread().interrupt();
-        }
-        server.broadcast(ClientHandler.testType);
+            Thread.sleep(1000);
 
-
-
-
-
-
-
+            server.broadcast(ClientHandler.testType);
     }
+
+
+
+
 
 }
