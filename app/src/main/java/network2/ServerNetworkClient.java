@@ -25,6 +25,8 @@ import java.util.List;
 
 import java.net.ServerSocket;
 
+import delta.dkt.activities.MainActivity;
+
 /**
  * This class maintains a set of clientNetworkConnections and listens to a
  * predefined server port via Socket for Incoming Connections
@@ -34,6 +36,8 @@ public class ServerNetworkClient extends Thread { //always executed on a separat
     private ServerSocket serverSocket;
 
     private int port; //the number of the port where the serverThread listens on for incoming connections
+
+    public boolean serverInterrupted;
 
     private List<NetworkConnection> clientConnections ;
 
@@ -56,6 +60,7 @@ public class ServerNetworkClient extends Thread { //always executed on a separat
     private void initProperties(){
         this.port = 0; //not yet set AND the prequesite for allocating a dynamic port
         clientConnections = new ArrayList<>(); //init list
+        serverInterrupted = false;
     }
 
     @Override
@@ -70,7 +75,7 @@ public class ServerNetworkClient extends Thread { //always executed on a separat
             }
 
             System.out.println("Server started on port " + port);
-            while (!isInterrupted()) {
+            while (serverInterrupted == false) {
                 Socket socket = serverSocket.accept();
                 NetworkConnection clientSocket = new NetworkConnection(socket, null);
                 clientConnections.add(clientSocket);
