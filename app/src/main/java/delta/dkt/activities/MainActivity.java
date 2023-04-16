@@ -60,6 +60,7 @@ public class MainActivity extends AppCompatActivity {
         try {
             Thread.sleep(200);
         } catch (InterruptedException e) {
+            e.printStackTrace();
             Log.e("INTERRUPT", "Interrupted!", e);
             Thread.currentThread().interrupt();
         }
