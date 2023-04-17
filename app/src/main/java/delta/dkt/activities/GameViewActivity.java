@@ -1,13 +1,9 @@
 package delta.dkt.activities;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
-import android.content.pm.ActivityInfo;
 import android.os.Bundle;
-import android.view.View;
 
-import java.util.Objects;
+import androidx.appcompat.app.AppCompatActivity;
 
 import delta.dkt.R;
 
