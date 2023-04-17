@@ -3,7 +3,6 @@ package delta.dkt.activities;
 import static delta.dkt.activities.MainActivity.INTENT_PARAMETER;
 
 import android.content.Intent;
-import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.widget.Button;
 
