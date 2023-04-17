@@ -15,20 +15,25 @@
         <!-- TODO - Exported = true for testing cases. Will be disabled in final product -->
         <activity
                 android:name=".activities.PropertyListActivity"
+                android:screenOrientation="landscape"
                 android:permission=""
                 android:exported="true" />
         <activity
             android:name=".activities.MainMenuActivity"
+                android:screenOrientation="portrait"
             android:exported="false" />
         <activity
             android:name=".activities.LobbyViewActivity"
+                android:screenOrientation="portrait"
             android:exported="false" />
         <activity
             android:name=".activities.GameViewActivity"
+            android:screenOrientation="landscape"
             android:permission=""
             android:exported="true" />
         <activity
             android:name=".activities.MainActivity"
+                android:screenOrientation="portrait"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

@@ -28,7 +28,6 @@ public class LobbyViewActivity extends AppCompatActivity{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lobby_view);
-        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT); // Force portrait screen at activity level
 
         Button backButton = findViewById(R.id.backbtn);
         Button startButton = findViewById(R.id.startbtn);
