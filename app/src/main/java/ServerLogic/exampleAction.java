@@ -17,7 +17,7 @@ public class exampleAction implements ServerActionInterface{
             Log.i("INFO", "TRIGGERED ACTION");
             int id = (int)parameters;
             if (! Game.getPlayers().containsKey(id)) {
-                System.err.println("Wrong player id: " + id);
+                Log.e("ERROR","Wrong player id: " + id);
                 return;
             }
 

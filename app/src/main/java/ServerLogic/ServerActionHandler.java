@@ -2,14 +2,16 @@ package ServerLogic;
 
 import static ClientUIHandling.Constants.*;
 
+import android.util.Log;
+
 import java.util.ArrayList;
 
 import ClientUIHandling.ClientActionInterface;
 import network2.ServerNetworkClient;
 
 public class ServerActionHandler {
-    public static ArrayList<ServerActionInterface> actions;
-    public static ArrayList<String> actionPrefixes;
+    public static final ArrayList<ServerActionInterface> actions;
+    public static final ArrayList<String> actionPrefixes;
 
     private static ServerNetworkClient server;
 
@@ -23,11 +25,12 @@ public class ServerActionHandler {
 
     public static void triggerAction(String name, Object parameters){
         if(server == null){
-            System.err.println("Server not set");
+
+            Log.e("ERROR","Server not set");
             return;
         }
         if(!actionPrefixes.contains(name)){
-            System.err.println("Server action does not exist: "+name);
+            Log.e("ERROR","Server action does not exist: "+name);
             return;
         }
 
