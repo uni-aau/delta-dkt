@@ -16,6 +16,7 @@
         <activity
                 android:name=".activities.PropertyListActivity"
                 android:permission=""
+                android:screenOrientation="landscape"
                 android:exported="true" />
         <activity
             android:name=".activities.MainMenuActivity"
@@ -26,6 +27,7 @@
         <activity
             android:name=".activities.GameViewActivity"
             android:permission=""
+                android:screenOrientation="landscape"
             android:exported="true" />
         <activity
             android:name=".activities.MainActivity"
