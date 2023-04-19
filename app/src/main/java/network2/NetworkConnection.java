@@ -95,6 +95,9 @@ public class NetworkConnection extends Thread { //execute each instance within a
                     System.out.println("RECEIVED");
                     if (logic != null) {
                         logic.setTextOfTestElement(msg);
+                        String[] messageSplit = msg.split(":");
+                        logic.sendHandle(messageSplit[1], messageSplit[0]);
+
                     }
                     //TODO: CALL CLIENT LOGIC
 

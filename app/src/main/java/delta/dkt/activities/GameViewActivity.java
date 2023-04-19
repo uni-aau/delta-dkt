@@ -5,6 +5,7 @@ import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import ClientUIHandling.Constants;
 import delta.dkt.R;
 
 public class GameViewActivity extends AppCompatActivity {
@@ -15,6 +16,8 @@ public class GameViewActivity extends AppCompatActivity {
         setContentView(R.layout.activity_game_view);
 
         findViewById(R.id.button_property_infos).setOnClickListener(view -> switchToPropertyActivity());
+
+        MainActivity.subscribeToLogic(Constants.GameViewActivityType, this);
     }
 
     protected void switchToPropertyActivity() {

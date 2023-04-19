@@ -8,10 +8,16 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+
+import java.io.IOException;
+import java.net.ServerSocket;
+import java.util.HashMap;
 import androidx.appcompat.app.AppCompatActivity;
+
 
 import ClientUIHandling.ClientHandler;
 import ClientUIHandling.ClientLogic;
+import ClientUIHandling.Constants;
 import delta.dkt.R;
 import network2.NetworkClientConnection;
 import network2.ServerNetworkClient;
@@ -21,6 +27,11 @@ public class MainActivity extends AppCompatActivity {
     public static final String INTENT_PARAMETER = "username";
 
     private static ClientLogic logic;
+
+    static {
+        HashMap<String, ClientHandler> handlers = new HashMap<>();
+        logic = new ClientLogic(handlers);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,46 +45,48 @@ public class MainActivity extends AppCompatActivity {
         enter.setOnClickListener(view -> {
             Intent intent = new Intent(getApplicationContext(), MainMenuActivity.class);
             String username = edtxt.getText().toString();
-            if(username.isEmpty()){
+            if (username.isEmpty()) {
                 Toast.makeText(MainActivity.this, "Please enter Username", Toast.LENGTH_SHORT).show();
-            }else{
+            } else {
                 Toast.makeText(MainActivity.this, "Welcome " + username + "!", Toast.LENGTH_SHORT).show();
                 intent.putExtra(INTENT_PARAMETER, username);
                 startActivity(intent);
             }
         });
-
-        try{
+        subscribeToLogic(Constants.MainActivityType, this);
+        try {
             establishServerConnection();
-        }catch (InterruptedException e){
-            Log.d("MainActivity::oncreate- interrupted",e.getMessage());
+        } catch (InterruptedException e) {
+            Log.d("MainActivity::oncreate- interrupted", e.getMessage());
             Thread.currentThread().interrupt();
-        }catch (RuntimeException e){
-            Log.d("MainActivity::oncreate - Runtime exception",e.getMessage());
+        } catch (RuntimeException e) {
+            Log.d("MainActivity::oncreate - Runtime exception", e.getMessage());
         }
 
 
     }
 
+
     public void establishServerConnection() throws InterruptedException, RuntimeException {
-        logic = new ClientLogic(new ClientHandler(findViewById(R.id.username_edittext)));
+
         ClientLogic.isTEST = false;
-        ServerNetworkClient server = null;
 
-            server = new ServerNetworkClient(this.getApplicationContext());
-            server.start();
 
-            Thread.sleep(1000);
+        ServerNetworkClient server = new ServerNetworkClient(this.getApplicationContext());
 
-            NetworkClientConnection client = new NetworkClientConnection("localhost", server.getPort(), 1000,logic );
-            client.start();
-            Thread.sleep(1000);
+        server.start();
 
-            server.broadcast(ClientHandler.testType);
+        Thread.sleep(100);
+        NetworkClientConnection client = new NetworkClientConnection("localhost", server.getPort(), 1000, logic);
+        client.start();
+        Thread.sleep(100);
+
+        server.broadcast(Constants.MainActivityType+":"+Constants.PREFIX_PLAYER_MOVE+" CHANGED NAME");
+
     }
 
-
-
-
+    public static void subscribeToLogic(String type, AppCompatActivity activity) {
+        logic.getHandler().put(type, new ClientHandler(activity));
+    }
 
 }

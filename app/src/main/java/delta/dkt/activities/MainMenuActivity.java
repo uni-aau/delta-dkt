@@ -9,6 +9,7 @@ import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import ClientUIHandling.Constants;
 import delta.dkt.R;
 
 public class MainMenuActivity extends AppCompatActivity {
@@ -35,6 +36,8 @@ public class MainMenuActivity extends AppCompatActivity {
             intent.putExtra(INTENT_PARAMETER, newUser);
             startActivity(intent);
         });
+
+        MainActivity.subscribeToLogic(Constants.MainMenuActivityType, this);
 
     }
 }
