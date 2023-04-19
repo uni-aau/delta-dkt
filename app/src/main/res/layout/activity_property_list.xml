@@ -37,37 +37,8 @@
             <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical">
-
-                <FrameLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:id="@+id/frameLayoutImg1">
-
-                </FrameLayout>
-
-                <FrameLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:id="@+id/frameLayoutImg2">
-
-                </FrameLayout>
-
-                <FrameLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:id="@+id/frameLayoutImg3">
-
-                </FrameLayout>
-
-                <FrameLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:id="@+id/frameLayoutImg4">
-
-                </FrameLayout>
-
-            </LinearLayout>
+                    android:orientation="vertical"
+                    android:id="@+id/linearLayout_Fragments"/>
         </ScrollView>
 
         <androidx.constraintlayout.widget.ConstraintLayout
