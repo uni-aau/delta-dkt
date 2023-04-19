@@ -13,6 +13,8 @@ public class Player {
         Player.startCash = startCash;
     }
 
+    public static Player testInstance = new Player("testPlayer");
+
 
     private static int _id = 1;
 
@@ -190,5 +192,11 @@ public class Player {
 
     public int getSuspention () {
         return suspention;
+    }
+
+    public void payRentTo (Player recipient, int amount) {
+       this.cash-=amount;
+       recipient.cash+=amount;
+
     }
 }

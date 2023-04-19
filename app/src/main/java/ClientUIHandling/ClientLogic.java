@@ -18,7 +18,7 @@ public class ClientLogic {
     }
 
     public void setTextOfTestElement(String text){
-        sendHandle(text, ClientHandler.testType);
+        sendHandle(text, Constants.PREFIX_PLAYER_MOVE);
     }
 
     public void sendHandle(String message, String type) {
@@ -35,7 +35,7 @@ public class ClientLogic {
                 handleMessage.setData(b);
                 handlers.get(type).sendMessage(handleMessage);
             }else{
-                Log.e("ERROR", "Wrong type used.");
+                Log.e("ERROR", "Wrong type used: "+type);
             }
         }
 

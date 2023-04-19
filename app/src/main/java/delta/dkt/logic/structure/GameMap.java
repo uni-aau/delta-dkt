@@ -6,7 +6,9 @@ public class GameMap {
 
     public Field getField (int location) {
         System.out.println("I am using the location parameter, which will be used when this method is implemented, to get rid of the code smell." + location);
-        return null;
+        Property testProperty = new Property(0,10,1,PropertyLevel.CHEAP,10);
+        testProperty.setOwner(Player.testInstance);
+        return testProperty;
     }
 
     /**

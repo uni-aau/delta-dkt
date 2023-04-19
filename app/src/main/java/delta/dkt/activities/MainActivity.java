@@ -1,5 +1,7 @@
 package delta.dkt.activities;
 
+import static ClientUIHandling.Constants.PREFIX_PLAYER_PAYRENT;
+
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
@@ -18,6 +20,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import ClientUIHandling.ClientHandler;
 import ClientUIHandling.ClientLogic;
 import ClientUIHandling.Constants;
+import ServerLogic.ServerActionHandler;
 import delta.dkt.R;
 import network2.NetworkClientConnection;
 import network2.ServerNetworkClient;
@@ -52,6 +55,8 @@ public class MainActivity extends AppCompatActivity {
                 intent.putExtra(INTENT_PARAMETER, username);
                 startActivity(intent);
             }
+
+            ServerActionHandler.triggerAction(PREFIX_PLAYER_PAYRENT, 0);
         });
         subscribeToLogic(Constants.MainActivityType, this);
         try {
@@ -74,13 +79,14 @@ public class MainActivity extends AppCompatActivity {
 
         ServerNetworkClient server = new ServerNetworkClient(this.getApplicationContext());
 
+
         server.start();
 
         Thread.sleep(100);
         NetworkClientConnection client = new NetworkClientConnection("localhost", server.getPort(), 1000, logic);
         client.start();
         Thread.sleep(100);
-
+        ServerActionHandler.setServer(server);
         server.broadcast(Constants.MainActivityType+":"+Constants.PREFIX_PLAYER_MOVE+" CHANGED NAME");
 
     }
