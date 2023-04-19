@@ -2,32 +2,49 @@ package ClientUIHandling;
 
 import android.os.Handler;
 import android.os.Message;
-import android.util.Log;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+
+import java.util.ArrayList;
 
 public class ClientHandler extends Handler {
 
-    private TextView testView;
-
     public static final String testType = "MODIFYTEST";
 
+    public static ArrayList<ClientActionInterface> actions;
+    public static ArrayList<String> actionPrefixes;
+
+    private AppCompatActivity UIActivity;
+
+    static{
+        actions = new ArrayList<>();
+        actionPrefixes = new ArrayList<>();
+
+        actions.add(new ActionExample());
+        actionPrefixes.add(Constants.PREFIX_PLAYER_MOVE);
+    }
 
 
-    public ClientHandler(TextView testView){
-            this.testView = testView;
+    public ClientHandler(AppCompatActivity UIActivity){
+        this.UIActivity = UIActivity;
+
     }
 
     @Override
     public void handleMessage(@NonNull Message msg) {
-        if(msg.getData().containsKey(testType)){
+       /* if(msg.getData().containsKey(testType)){
             Log.d("TEST", "REACHED");
                 testView.setText(msg.getData().get(testType).toString());
+        }*/
+        String message = msg.getData().get("payload").toString();
+        for (int i = 0; i < actions.size(); i++) {
+
+            if(message.startsWith(actionPrefixes.get(i))){
+                actions.get(i).execute(UIActivity, message);
+            }
         }
+
     }
 
-    public TextView getTestView() {
-        return testView;
-    }
 }

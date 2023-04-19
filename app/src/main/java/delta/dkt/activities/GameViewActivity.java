@@ -9,6 +9,7 @@ import android.view.View;
 
 import java.util.Objects;
 
+import ClientUIHandling.Constants;
 import delta.dkt.R;
 
 public class GameViewActivity extends AppCompatActivity {
@@ -20,6 +21,8 @@ public class GameViewActivity extends AppCompatActivity {
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE); // Force landscape screen at activity level
 
         findViewById(R.id.button_property_infos).setOnClickListener(view -> switchToPropertyActivity());
+
+        MainActivity.subscribeToLogic(Constants.GameViewActivityType, this);
     }
 
     protected void switchToPropertyActivity() {

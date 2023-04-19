@@ -2,15 +2,19 @@ package ClientUIHandling;
 
 import android.os.Bundle;
 import android.os.Message;
+import android.util.Log;
+
+import java.util.HashMap;
 
 public class ClientLogic {
 
-    private ClientHandler handler;
+    private HashMap<String, ClientHandler> handlers;
 
     public static boolean isTEST;
 
-    public ClientLogic(ClientHandler handler) {
-        this.handler = handler;
+    public ClientLogic(HashMap<String, ClientHandler> handlers) {
+
+        this.handlers = handlers;
     }
 
     public void setTextOfTestElement(String text){
@@ -24,16 +28,20 @@ public class ClientLogic {
         //The error messages refers to a dead website
         //https://g.co/androidstudio/not-mocked
         if(!isTEST) {
-            android.os.Message handleMessage = new Message();
-            Bundle b = new Bundle();
-            b.putString(type, message);
-            handleMessage.setData(b);
-            handler.sendMessage(handleMessage);
+            if(handlers.containsKey(type)) {
+                android.os.Message handleMessage = new Message();
+                Bundle b = new Bundle();
+                b.putString("payload", message);
+                handleMessage.setData(b);
+                handlers.get(type).sendMessage(handleMessage);
+            }else{
+                Log.e("ERROR", "Wrong type used.");
+            }
         }
 
     }
 
-    public ClientHandler getHandler() {
-        return handler;
+    public HashMap<String, ClientHandler> getHandler() {
+        return handlers;
     }
 }

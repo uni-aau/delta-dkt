@@ -12,6 +12,7 @@ import android.widget.Button;
 
 import java.util.ArrayList;
 
+import ClientUIHandling.Constants;
 import delta.dkt.R;
 
 
@@ -62,5 +63,7 @@ public class LobbyViewActivity extends AppCompatActivity{
             intent.putExtra(INTENT_PARAMETER, newUser);
             startActivity(intent);
         });
+
+        MainActivity.subscribeToLogic(Constants.LobbyViewActivityType, this);
     }
 }
