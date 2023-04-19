@@ -390,7 +390,7 @@ class PlayerTests {
      */
     @Test
     void checkGameMap_getField () {
-        assertNull(new GameMap().getField(10));
+        assertNotNull(new GameMap().getField(10));
     }
 
 
