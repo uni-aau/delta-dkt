@@ -62,7 +62,9 @@ sonarqube {
         property "sonar.host.url", "https://sonarcloud.io"
         property "sonar.java.coveragePlugin", "jacoco"
         property "sonar.coverage.jacoco.xmlReportPaths", "${project.projectDir}/build/reports/jacoco/jacocoTestReport/jacocoTestReport.xml"
-        property "sonar.issue.ignore.block.beginBlockRegexp", "\\s*//\\s*START-NOSCAN"
+
+        property "sonar.issue.ignore.block", "e1"
+        property "sonar.issue.ignore.block.e1.beginBlockRegexp", "\\s*//\\s*START-NOSCAN"
         property "sonar.issue.ignore.block.e1.endBlockRegexp", "\\s*//\\s*END-NOSCAN"
 
     }
