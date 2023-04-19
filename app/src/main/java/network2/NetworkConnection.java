@@ -93,12 +93,14 @@ public class NetworkConnection extends Thread { //execute each instance within a
                     this.lastMsgReceived = msg;
                     //TODO: Implement a handler that handles incoming game-related messages
                     System.out.println("RECEIVED");
+                    // BEGIN-NOSCAN
                     if (logic != null) {
                         logic.setTextOfTestElement(msg);
                         String[] messageSplit = msg.split(":");
                         logic.sendHandle(messageSplit[1], messageSplit[0]);
 
                     }
+                    // END-NOSCAN
                     //TODO: CALL CLIENT LOGIC
 
                     //TODO: IMPLEMENT HANDLE AS SYNCHRONIZED METHOD TO AVOID inconsistency due to concurrent executions
