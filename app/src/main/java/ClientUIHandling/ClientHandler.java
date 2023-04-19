@@ -10,7 +10,6 @@ import java.util.ArrayList;
 
 public class ClientHandler extends Handler {
 
-    public static final String testType = "MODIFYTEST";
 
     public static ArrayList<ClientActionInterface> actions;
     public static ArrayList<String> actionPrefixes;
@@ -23,6 +22,9 @@ public class ClientHandler extends Handler {
 
         actions.add(new ActionExample());
         actionPrefixes.add(Constants.PREFIX_PLAYER_MOVE);
+
+        actions.add(new ActionRentPaid());
+        actionPrefixes.add(Constants.PREFIX_PLAYER_RENTPAID);
     }
 
 

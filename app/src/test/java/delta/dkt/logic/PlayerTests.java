@@ -390,9 +390,27 @@ class PlayerTests {
      */
     @Test
     void checkGameMap_getField () {
-        assertNull(new GameMap().getField(10));
+        assertNotNull(new GameMap().getField(10));
     }
 
+
+    @Test
+    void checkPlayer_payRent () {
+
+        Player testPlayer = new Player();
+        Player testOwner = new Player();
+
+        Property p = new Property(0,10,10,PropertyLevel.CHEAP,10,10);
+        p.setOwner(testOwner);
+        int amount =  p.calculateRent();
+        int cashBeforePlayer = testPlayer.getCash();
+        int cashBeforeOwner = testOwner.getCash();
+        testPlayer.payRentTo(testOwner, amount);
+
+        assertEquals(cashBeforePlayer-amount, testPlayer.getCash());
+        assertEquals(cashBeforeOwner+amount, testOwner.getCash());
+
+    }
 
     /**
      * This method will create a property object that is being used as a valid field.
