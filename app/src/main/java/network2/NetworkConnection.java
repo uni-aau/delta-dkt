@@ -97,8 +97,6 @@ public class NetworkConnection extends Thread { //execute each instance within a
                     if (logic != null) {
 
                         String[] messageSplit = msg.split(":");
-                        System.out.println(messageSplit[0]);
-                        System.out.println(messageSplit[1]);
                         logic.sendHandle(messageSplit[1], messageSplit[0]);
 
                     }
