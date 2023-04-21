@@ -24,6 +24,16 @@ class RelativeRectangle {
         this.height = bottomLeft.y - topLeft.y;
     }
 
+    /**
+     * By using this constructor, the rectangle will act like a sqaure, thus have the same height and width, based on the given locations.
+     * @param start A Point that should be either horizontally or vertially aligned with the end point.
+     * @param end A Point that should be either horizontally or vertially aligned with the start point.
+     */
+    public RelativeRectangle (PointF start, PointF end) {
+        width = end.x - start.x;
+        height = end.x - start.x;
+    }
+
 
     public float getWidthFactor () {
         return width;
@@ -32,7 +42,10 @@ class RelativeRectangle {
     public float getHeightFactor () {
         return height;
     }
-    
+
+
+
+
 }
 
 
