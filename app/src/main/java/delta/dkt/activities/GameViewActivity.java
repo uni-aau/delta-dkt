@@ -14,9 +14,9 @@ import delta.dkt.R;
 
 import static ClientUIHandling.Constants.PREFIX_PLAYER_MOVE;
 
-public class GameViewActivity extends AppCompatActivity {
- 
 
+public class GameViewActivity extends AppCompatActivity {
+    
     @Override
     protected void onCreate (Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,6 +32,8 @@ public class GameViewActivity extends AppCompatActivity {
             public boolean onTouch (View v, MotionEvent event) {
                 if (event.getAction() != MotionEvent.ACTION_DOWN) return false;
 
+                findViewById(R.id.button_roll_dice).performClick();
+
                 var map = findViewById(R.id.imageView);
 
                 float x = event.getX();
@@ -43,7 +45,11 @@ public class GameViewActivity extends AppCompatActivity {
                 float absoluteX = map.getX() + (relativeX * map.getWidth());
                 float absoluteY = map.getY() + (relativeY * map.getHeight());
 
+                var figure = findViewById(R.id.player1);
                 Log.d("Movement", "Relative coordinates: " + new PointF(absoluteX, absoluteY) + " " + new PointF(relativeX, relativeY));
+
+                figure.setX(absoluteX);
+                figure.setY(absoluteY);
 
                 return true;
             }
@@ -54,5 +60,6 @@ public class GameViewActivity extends AppCompatActivity {
         Intent switchIntent = new Intent(this, PropertyListActivity.class);
         startActivity(switchIntent);
     }
+
 
 }
