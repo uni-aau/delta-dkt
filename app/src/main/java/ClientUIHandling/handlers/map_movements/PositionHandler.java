@@ -66,4 +66,29 @@ public class PositionHandler {
 
         return new PointF(x, y);
     }
+
+
+    /**
+     * This method calculates the spacing between player figures.
+     * The chosen layout is 3 rows and 2 columns.
+     *? Note: The desired layout is only achieved when the X and Y values are used accordingly.
+     *? Thus, the first player is always in the bottom left corner of a given field.
+     * @param player The player's identifier, can range between 1-6
+     * @param figure The visual figure element of the player.
+     * @return Returns the X and Y spacing as a PointF.
+     */
+    private static PointF calculatePlayerSpacing (int player, ImageView figure) {
+        PointF spacing = new PointF(0, 0);
+
+        //* The second player in a row
+        if (player % 2 == 0) spacing.x += figure.getWidth() +5;
+
+        //* Players that are not in the base layer (row=1)
+        if (Math.ceil(player / 2.0) > 1) {
+            var layer = Math.ceil(player/2.0);
+            spacing.y += figure.getHeight() * (layer-1);
+        }
+
+        return spacing;
+    }
 }
