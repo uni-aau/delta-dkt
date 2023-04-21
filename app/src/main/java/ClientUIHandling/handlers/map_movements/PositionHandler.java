@@ -38,4 +38,32 @@ public class PositionHandler {
 
     private static RelativeRectangle mapBorder = new RelativeRectangle(new PointF(0.97948635f, 0.87043023f), new PointF(0.9999334f, 0.87043023f));
 
+
+    /**
+     * This method calculates the absolute position of a corner based on relative values.
+     * @param map The ImageView that represents the map, relative values are based on the Width and Height of this map.
+     * @param corner The corner for which the location is to be calculated.
+     * @return Returns the absolute location of a corner.
+     */
+    private static PointF getMapCorner (ImageView map, MapPosition corner) {
+
+        //? top left
+        float x = map.getX() + (mapBorder.getWidthFactor() * map.getWidth());
+        float y = map.getY() + (mapBorder.getHeightFactor() * map.getHeight());
+
+        if (corner == MapPosition.TOP_RIGHT) {
+            x += map.getWidth() - 2 * (map.getWidth() * mapBorder.getWidthFactor());
+        }
+
+        if (corner == MapPosition.BOTTOM_LEFT) {
+            y += map.getHeight() - 2 * (map.getHeight() * mapBorder.getHeightFactor());
+        }
+
+        if (corner == MapPosition.BOTTOM_RIGHT) {
+            x = map.getX() + map.getWidth() - mapBorder.getAbsWidth(map);
+            y = map.getY() + map.getHeight() - mapBorder.getAbsHeight(map);
+        }
+
+        return new PointF(x, y);
+    }
 }
