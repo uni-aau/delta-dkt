@@ -44,7 +44,24 @@ class RelativeRectangle {
     }
 
 
+    /**
+     * This method calculates the absolute width based on the relative value and the game's current width.
+     * @param map The ImageView that contains the map of the game, used for its current width.
+     * @return Returns the absolute width based on relative values.
+     */
+    public float getAbsWidth (ImageView map) {
+        return width * map.getWidth();
+    }
 
+
+    /**
+     * This method calculates the absolute height based on the relative value and the game's current height.
+     * @param map The ImageView that contains the map of the game, used for its current height.
+     * @return Returns the absolute height based on relative values.
+     */
+    public float getAbsHeight (ImageView map) {
+        return height * map.getHeight();
+    }
 
 }
 
