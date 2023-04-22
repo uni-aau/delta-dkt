@@ -18,7 +18,7 @@ import static ClientUIHandling.Constants.PREFIX_PLAYER_MOVE;
 
 
 public class GameViewActivity extends AppCompatActivity {
-
+    int testLocation = 0;
 
     @Override
     protected void onCreate (Bundle savedInstanceState) {
@@ -51,6 +51,16 @@ public class GameViewActivity extends AppCompatActivity {
 
                 figure.setX(absoluteX);
                 figure.setY(absoluteY);
+
+                updatePlayerPosition(testLocation, 1);
+                updatePlayerPosition(testLocation, 2);
+                updatePlayerPosition(testLocation, 3);
+                updatePlayerPosition(testLocation, 4);
+                updatePlayerPosition(testLocation, 5);
+                updatePlayerPosition(testLocation, 6);
+
+                if(testLocation < 39)testLocation++;
+                else testLocation = 0;
 
                 return true;
             }
