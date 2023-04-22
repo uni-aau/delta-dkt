@@ -1,5 +1,6 @@
 package delta.dkt.activities;
 
+import ClientUIHandling.handlers.map_movements.PositionHandler;
 import android.content.Intent;
 import android.graphics.PointF;
 import android.os.Bundle;
@@ -7,6 +8,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.ImageView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import ClientUIHandling.Constants;
@@ -16,7 +18,8 @@ import static ClientUIHandling.Constants.PREFIX_PLAYER_MOVE;
 
 
 public class GameViewActivity extends AppCompatActivity {
-    
+
+
     @Override
     protected void onCreate (Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,8 +34,6 @@ public class GameViewActivity extends AppCompatActivity {
             @Override
             public boolean onTouch (View v, MotionEvent event) {
                 if (event.getAction() != MotionEvent.ACTION_DOWN) return false;
-
-                findViewById(R.id.button_roll_dice).performClick();
 
                 var map = findViewById(R.id.imageView);
 
@@ -61,5 +62,18 @@ public class GameViewActivity extends AppCompatActivity {
         startActivity(switchIntent);
     }
 
+    /**
+     * This method will set update the location of a players figure to the requested destination.
+     * @param destination The destinations number, from 1: Start to 39: Last field.
+     * @param _player The player figure that is to be moved, ranging from 1 to 6.
+     */
+    private void updatePlayerPosition (int destination, int _player) {
+        ImageView map = findViewById(R.id.imageView);
+        int figureIdentifier = getResources().getIdentifier("player" + _player, "id", getPackageName());
+        ImageView figure = findViewById(figureIdentifier);
 
+        var pos = PositionHandler.calculateFigurePosition(destination, _player, figure, map);
+        figure.setX(pos.x);
+        figure.setY(pos.y);
+    }
 }
