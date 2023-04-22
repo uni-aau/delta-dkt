@@ -22,6 +22,11 @@ import org.jetbrains.annotations.NotNull;
 
 
 public class PositionHandler {
+    private static boolean logs = false;
+    public static void setLogs(boolean state) {
+        logs = state;
+    }
+
     private static RelativeRectangle normalField = new RelativeRectangle(
             new PointF(0.21065000f, 0.86278754f), //? Top Left   (standing up right)
             new PointF(0.29321185f, 0.86278754f), //? Top Right  (standing up right)
@@ -91,4 +96,60 @@ public class PositionHandler {
 
         return spacing;
     }
+
+
+    /**
+     * This method will calculate the location of a players figure on the map based on the destination, the size of figure and the map.
+     * @param location The destination on which the figure is to be positioned.
+     * @param player The player's identifier, a player's figure has a fixed location inside a given field.
+     * @param figure The ImageView that represents the player's figure.
+     * @param map The ImageView that presents the map of the game.
+     * @return Returns the location for the given player at the requested location.
+     */
+    public static PointF calculateFigurePosition (int location, int player, ImageView figure, ImageView map) {
+        if(player <= 0 || figure == null || map == null) {
+            Log.e("Movement", "Invalid parameters, aborting calculation!");
+            return new PointF(-100,-100);
+        }
+
+        if(PositionHandler.logs) Log.d("Movement-PositionHandler", "Moving to the following field: " + location);
+
+        //* The corners location on the game's map.
+        PointF start = getMapCorner(map, MapPosition.BOTTOM_RIGHT);
+
+        PointF playerSpacing = calculatePlayerSpacing(player, figure);
+        PointF position = new PointF(start.x - figure.getWidth() - playerSpacing.x, start.y - figure.getHeight() - playerSpacing.y);
+
+
+        if (location > 0 && location <= 10) {
+            start = getMapCorner(map, MapPosition.BOTTOM_RIGHT);
+
+            position.x = start.x - figure.getWidth() - specialField.getAbsWidth(map) - ((location-1) * normalField.getAbsWidth(map)) - playerSpacing.x;
+            position.y = start.y - figure.getHeight() - playerSpacing.y;
+        }
+        if (location >= 11 && location <= 20) {
+            start = getMapCorner(map, MapPosition.BOTTOM_LEFT);
+            location -= 10;
+
+            position.x = start.x + playerSpacing.y;
+            position.y = start.y - figure.getHeight() - specialField.getAbsHeight(map) - playerSpacing.x - ((location-1) * normalField.getAbsWidth(map));
+        }
+        if (location >= 21 && location <= 30) {
+            start = getMapCorner(map, MapPosition.TOP_LEFT);
+            location -= 20;
+
+            position.x = start.x + specialField.getAbsWidth(map) + ((location-1) * normalField.getAbsWidth(map)) + playerSpacing.x;
+            position.y = start.y + playerSpacing.y;
+        }
+        if (location >= 31 && location <= 39) {
+            start = getMapCorner(map, MapPosition.TOP_RIGHT);
+            location -= 30;
+
+            position.x = start.x - figure.getWidth() - playerSpacing.y ;
+            position.y = start.y + specialField.getAbsHeight(map) + playerSpacing.x + ((location-1) * normalField.getAbsWidth(map));
+        }
+
+        return position;
+    }
+
 }
