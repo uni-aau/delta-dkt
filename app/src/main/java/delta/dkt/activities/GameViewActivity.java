@@ -1,6 +1,7 @@
 package delta.dkt.activities;
 
 import ClientUIHandling.handlers.map_movements.PositionHandler;
+import ServerLogic.ServerActionHandler;
 import android.content.Intent;
 import android.graphics.PointF;
 import android.os.Bundle;
@@ -9,16 +10,19 @@ import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.Button;
 import androidx.appcompat.app.AppCompatActivity;
 
 import ClientUIHandling.Constants;
 import delta.dkt.R;
 
 import static ClientUIHandling.Constants.PREFIX_PLAYER_MOVE;
+import static delta.dkt.R.id.imageView;
 
 
 public class GameViewActivity extends AppCompatActivity {
-    int testLocation = 0;
+    int[] locations = new int[6];
+    int clientID = 1; //todo get the clients id - from 1 to 6
 
     @Override
     protected void onCreate (Bundle savedInstanceState) {
@@ -28,6 +32,42 @@ public class GameViewActivity extends AppCompatActivity {
         findViewById(R.id.button_property_infos).setOnClickListener(view -> switchToPropertyActivity());
 
         MainActivity.subscribeToLogic(Constants.GameViewActivityType, this);
+
+
+        
+    }
+
+    protected void switchToPropertyActivity () {
+        Intent switchIntent = new Intent(this, PropertyListActivity.class);
+        startActivity(switchIntent);
+    }
+
+
+
+    /**
+     * This method handles the movement requests of a client, thus sending the request to server.
+     */
+    private void handleMovementRequests () {
+        Button btnDice = findViewById(R.id.button_roll_dice);
+        ImageView map = findViewById(imageView);
+
+
+        //* Wait for the imageView to load, then update the default locations.
+        map.post(() -> updatePlayerPosition(locations[0], 1));
+        map.post(() -> updatePlayerPosition(locations[1], 2));
+        map.post(() -> updatePlayerPosition(locations[2], 3));
+        map.post(() -> updatePlayerPosition(locations[3], 4));
+        map.post(() -> updatePlayerPosition(locations[4], 5));
+        map.post(() -> updatePlayerPosition(locations[5], 6));
+        map.post(() -> PositionHandler.setLogs(true));
+
+
+        btnDice.setOnClickListener(view -> {
+            Log.d("Movement", "Sending movement request to server!");
+            ServerActionHandler.triggerAction(PREFIX_PLAYER_MOVE, clientID);
+        });
+
+
 
         var imageView = findViewById(R.id.imageView);
         imageView.setOnTouchListener(new View.OnTouchListener() {
@@ -46,30 +86,14 @@ public class GameViewActivity extends AppCompatActivity {
                 float absoluteX = map.getX() + (relativeX * map.getWidth());
                 float absoluteY = map.getY() + (relativeY * map.getHeight());
 
-                var figure = findViewById(R.id.player1);
                 Log.d("Movement", "Relative coordinates: " + new PointF(absoluteX, absoluteY) + " " + new PointF(relativeX, relativeY));
 
-                figure.setX(absoluteX);
-                figure.setY(absoluteY);
-
-                updatePlayerPosition(testLocation, 1);
-                updatePlayerPosition(testLocation, 2);
-                updatePlayerPosition(testLocation, 3);
-                updatePlayerPosition(testLocation, 4);
-                updatePlayerPosition(testLocation, 5);
-                updatePlayerPosition(testLocation, 6);
-
-                if(testLocation < 39)testLocation++;
-                else testLocation = 0;
+                btnDice.performClick();
 
                 return true;
             }
         });
-    }
 
-    protected void switchToPropertyActivity () {
-        Intent switchIntent = new Intent(this, PropertyListActivity.class);
-        startActivity(switchIntent);
     }
 
     /**
@@ -78,7 +102,7 @@ public class GameViewActivity extends AppCompatActivity {
      * @param _player The player figure that is to be moved, ranging from 1 to 6.
      */
     private void updatePlayerPosition (int destination, int _player) {
-        ImageView map = findViewById(R.id.imageView);
+        ImageView map = findViewById(imageView);
         int figureIdentifier = getResources().getIdentifier("player" + _player, "id", getPackageName());
         ImageView figure = findViewById(figureIdentifier);
 
