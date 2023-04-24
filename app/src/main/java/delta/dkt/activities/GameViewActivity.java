@@ -34,7 +34,7 @@ public class GameViewActivity extends AppCompatActivity {
         MainActivity.subscribeToLogic(Constants.GameViewActivityType, this);
 
 
-        
+        handleMovementRequests();
     }
 
     protected void switchToPropertyActivity () {
