@@ -32,7 +32,7 @@ public class MainMenuActivity extends AppCompatActivity {
         });
 
         join.setOnClickListener(view -> {
-            Intent intent = new Intent(getApplicationContext(), LobbyViewActivity.class);
+            Intent intent = new Intent(getApplicationContext(), FindHostViewActivity.class);
             intent.putExtra(INTENT_PARAMETER, newUser);
             startActivity(intent);
         });
