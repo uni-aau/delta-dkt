@@ -7,6 +7,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class ClientHandler extends Handler {
 
@@ -16,35 +17,30 @@ public class ClientHandler extends Handler {
 
     private AppCompatActivity UIActivity;
 
-    static{
+    private static HashMap<String, ClientActionInterface> actionMap;
+
+    static {
         actions = new ArrayList<>();
         actionPrefixes = new ArrayList<>();
+        actionMap = new HashMap<>();
+        actionMap.put(Constants.PREFIX_PLAYER_MOVE, new ActionExample());
+        actionMap.put(Constants.PREFIX_PLAYER_RENTPAID, new ActionRentPaid());
 
-        actions.add(new ActionExample());
-        actionPrefixes.add(Constants.PREFIX_PLAYER_MOVE);
 
-        actions.add(new ActionRentPaid());
-        actionPrefixes.add(Constants.PREFIX_PLAYER_RENTPAID);
     }
 
 
-    public ClientHandler(AppCompatActivity UIActivity){
+    public ClientHandler(AppCompatActivity UIActivity) {
         this.UIActivity = UIActivity;
 
     }
 
     @Override
     public void handleMessage(@NonNull Message msg) {
-       /* if(msg.getData().containsKey(testType)){
-            Log.d("TEST", "REACHED");
-                testView.setText(msg.getData().get(testType).toString());
-        }*/
         String message = msg.getData().get("payload").toString();
-        for (int i = 0; i < actions.size(); i++) {
-
-            if(message.startsWith(actionPrefixes.get(i))){
-                actions.get(i).execute(UIActivity, message);
-            }
+        String[] actionSplit = message.split("[: ]");
+        if (actionMap.containsKey(actionSplit[0])) {
+            actionMap.get(actionSplit[0]).execute(UIActivity, message);
         }
 
     }

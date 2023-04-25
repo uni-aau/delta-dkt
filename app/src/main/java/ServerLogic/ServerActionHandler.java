@@ -5,39 +5,38 @@ import static ClientUIHandling.Constants.*;
 import android.util.Log;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import ClientUIHandling.ClientActionInterface;
 import network2.ServerNetworkClient;
 
 public class ServerActionHandler {
-    public static final ArrayList<ServerActionInterface> actions;
-    public static final ArrayList<String> actionPrefixes;
+
+
+    public static HashMap<String, ServerActionInterface> actionMap;
 
     private static ServerNetworkClient server;
 
-    static{
-        actions = new ArrayList<>();
-        actionPrefixes = new ArrayList<>();
-
-        actions.add(new exampleAction());
-        actionPrefixes.add(PREFIX_PLAYER_PAYRENT);
+    static {
+        actionMap = new HashMap<>();
+        actionMap.put(PREFIX_PLAYER_PAYRENT, new exampleAction());
     }
 
-    public static void triggerAction(String name, Object parameters){
-        if(server == null){
+    public static void triggerAction(String name, Object parameters) {
+        if (server == null) {
 
-            Log.e("ERROR","Server not set");
+            Log.e("ERROR", "Server not set");
             return;
         }
-        if(!actionPrefixes.contains(name)){
-            Log.e("ERROR","Server action does not exist: "+name);
+        if (!actionMap.containsKey(name)) {
+            Log.e("ERROR", "Server action does not exist: " + name);
             return;
         }
 
-        actions.get(actionPrefixes.indexOf(name)).execute(server, parameters);
+        actionMap.get(name).execute(server, parameters);
     }
 
-    public static void setServer(ServerNetworkClient serverClient){
+    public static void setServer(ServerNetworkClient serverClient) {
         server = serverClient;
     }
 
