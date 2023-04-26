@@ -26,8 +26,8 @@
         android:layout_below="@id/dkt_logo"
         android:layout_marginTop="1dp"
         android:textSize="30sp"
-        android:fontFamily="@font/bangers"
         android:textColor="@color/dkt_red"/>
+    <!--android:fontFamily="@font/bangers"-->
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/lobbyRecyclerView"
@@ -48,8 +48,8 @@
         android:layout_marginStart="20dp"
         android:textColor="@color/dkt_yellow"
         android:textSize="20sp"
-        android:fontFamily="@font/bangers"
         android:background="@drawable/host_btn_background"/>
+    <!--android:fontFamily="@font/bangers"-->
 
     <Button
         android:id="@+id/startbtn"
@@ -61,8 +61,8 @@
         android:layout_marginStart="270dp"
         android:textColor="@color/dkt_yellow"
         android:textSize="20sp"
-        android:fontFamily="@font/bangers"
         android:background="@drawable/host_btn_background"/>
+    <!--android:fontFamily="@font/bangers"-->
 
 
 

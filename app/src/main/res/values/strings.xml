@@ -33,6 +33,7 @@
     <string name="PlayerLobby">Player Lobby</string>
     <string name="FindHost">Find Host</string>
     <string name="JoinBtn">Join</string>
+    <string name="HostId">Host ID</string>
 
     <string name="NSDServiceName">delta_dkt</string>
     <string name="NSDServiceType">_delta_dkt.tcp</string>

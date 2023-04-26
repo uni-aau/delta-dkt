@@ -28,8 +28,8 @@
             android:text = "@string/UserName"
             android:textSize="30sp"
             android:textColor="@color/dkt_yellow"
-            android:fontFamily="@font/bangers"
             android:padding="10dp"/>
+    <!--android:fontFamily="@font/bangers"-->
 
 
     </RelativeLayout>
