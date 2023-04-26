@@ -1,0 +1,54 @@
+package delta.dkt.activities;
+
+import android.content.Context;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.TextView;
+
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
+
+import java.util.ArrayList;
+
+import delta.dkt.R;
+
+public class HostAdapter extends RecyclerView.Adapter<HostAdapter.HostViewHolder> {
+
+    Context context;
+    ArrayList<String> hostId;
+
+    public HostAdapter (Context context, ArrayList<String> hostId) {
+        this.context=context;
+        this.hostId= hostId;
+    }
+
+    @NonNull
+    @Override
+    public HostViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
+        View view = layoutInflater.inflate(R.layout.recycler_view_find_host, parent, false);
+        return new HostAdapter.HostViewHolder(view);
+    }
+
+    @Override
+    public void onBindViewHolder(@NonNull HostViewHolder holder, int position) {
+        holder.hostId.setText(hostId.get(position));
+    }
+
+    @Override
+    public int getItemCount() {
+        return hostId.size();
+    }
+
+    class HostViewHolder extends RecyclerView.ViewHolder {
+        // Grabs informations thats needed from the recycler_view_find_host.xml
+
+        TextView hostId;
+
+        public HostViewHolder (@NonNull View itemView) {
+            super(itemView);
+            hostId = itemView.findViewById(R.id.hostId_txt);
+        }
+    }
+}
