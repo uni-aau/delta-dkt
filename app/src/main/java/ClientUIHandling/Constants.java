@@ -7,6 +7,7 @@ public class Constants {
     public static final String MainMenuActivityType="menu";
     public static final String PropertyListActivityType="list";
     public static final String LobbyViewActivityType="lobby";
+    public static final String FindHostViewActivityType="findHost";
     public static final String PREFIX_PLAYER_MOVE = "move";
 
     public static final String PREFIX_PLAYER_RENTPAID = "RENTPAID";
