@@ -6,7 +6,7 @@ import android.util.Log;
 
 import java.util.ArrayList;
 
-import ClientUIHandling.ClientActionInterface;
+import ServerLogic.actions.StartGameRequest;
 import network2.ServerNetworkClient;
 
 public class ServerActionHandler {
@@ -21,6 +21,9 @@ public class ServerActionHandler {
 
         actions.add(new exampleAction());
         actionPrefixes.add(PREFIX_PLAYER_PAYRENT);
+
+        actions.add(new StartGameRequest());
+        actionPrefixes.add(PREFIX_GAME_START);
     }
 
     public static void triggerAction(String name, Object parameters){
