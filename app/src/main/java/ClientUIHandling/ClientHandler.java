@@ -8,6 +8,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.ArrayList;
 
+import ClientUIHandling.actions.ActionStartGame;
+
 public class ClientHandler extends Handler {
 
 
@@ -25,6 +27,9 @@ public class ClientHandler extends Handler {
 
         actions.add(new ActionRentPaid());
         actionPrefixes.add(Constants.PREFIX_PLAYER_RENTPAID);
+
+        actions.add(new ActionStartGame());
+        actionPrefixes.add(Constants.PREFIX_GAME_START);
     }
 
 
