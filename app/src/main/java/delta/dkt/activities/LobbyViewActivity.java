@@ -1,5 +1,6 @@
 package delta.dkt.activities;
 
+import static ClientUIHandling.Constants.PREFIX_GAME_START;
 import static ClientUIHandling.Constants.PREFIX_PLAYER_PAYRENT;
 import static delta.dkt.activities.MainActivity.INTENT_PARAMETER;
 
@@ -10,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Button;
 
 import java.util.ArrayList;
@@ -63,9 +65,8 @@ public class LobbyViewActivity extends AppCompatActivity{
         });
 
         startButton.setOnClickListener(view -> {
-            Intent intent = new Intent(getApplicationContext(), GameViewActivity.class);
-            intent.putExtra(INTENT_PARAMETER, newUser);
-            startActivity(intent);
+            Log.d("Start", "Sending start action to server!");
+            ServerActionHandler.triggerAction(PREFIX_GAME_START, 1); // TODO client number
         });
 
         MainActivity.subscribeToLogic(Constants.LobbyViewActivityType, this);
