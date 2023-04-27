@@ -21,9 +21,6 @@ public class ClientHandler extends Handler {
         actions = new ArrayList<>();
         actionPrefixes = new ArrayList<>();
 
-        actions.add(new ActionExample());
-        actionPrefixes.add(Constants.PREFIX_PLAYER_MOVE);
-
         actions.add(new ActionRentPaid());
         actionPrefixes.add(Constants.PREFIX_PLAYER_RENTPAID);
 
