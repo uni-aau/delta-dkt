@@ -101,10 +101,15 @@ public class GameViewActivity extends AppCompatActivity {
      * @param destination The destinations number, from 1: Start to 39: Last field.
      * @param _player The player figure that is to be moved, ranging from 1 to 6.
      */
-    private void updatePlayerPosition (int destination, int _player) {
+    public void updatePlayerPosition (int destination, int _player) {
         ImageView map = findViewById(imageView);
         int figureIdentifier = getResources().getIdentifier("player" + _player, "id", getPackageName());
         ImageView figure = findViewById(figureIdentifier);
+
+        if(map == null || figure == null){
+            Log.e("Movement-GameView", String.format("Aborting movement! Because %s", (map == null ? "the map has not been found!" : "the players figure couldn't be found!")));
+            return;
+        }
 
         var pos = PositionHandler.calculateFigurePosition(destination, _player, figure, map);
         figure.setX(pos.x);
