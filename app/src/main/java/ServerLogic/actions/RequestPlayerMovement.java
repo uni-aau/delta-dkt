@@ -56,7 +56,7 @@ public class RequestPlayerMovement implements ServerActionInterface {
         args[1] = String.valueOf(destination);
 
         Log.d(tag, "Sending data to clients of the game!");
-        server.broadcast(MainActivityType, PREFIX_PLAYER_MOVE, args);
+        server.broadcast(GameViewActivityType, PREFIX_PLAYER_MOVE, args);
     }
 
     /**
