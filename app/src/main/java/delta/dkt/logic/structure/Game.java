@@ -10,6 +10,7 @@ public class Game {
         map = new GameMap();
         players = new HashMap<>();
         players.put(0, new Player("testPlayer"));
+        players.put(1, new Player("TestPlayer2"));
 
     }
 
