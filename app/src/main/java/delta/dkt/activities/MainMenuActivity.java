@@ -43,7 +43,7 @@ public class MainMenuActivity extends AppCompatActivity {
             // ---Start Server---
             server = new ServerNetworkClient();
             startServer(server);
-            //Toast.makeText(MainMenuActivity.this, "Server started on "+getTime(), Toast.LENGTH_SHORT).show();
+            Toast.makeText(MainMenuActivity.this, "Server started on "+getTime(), Toast.LENGTH_SHORT).show();
             //-----------------
 
             startActivity(intent);
@@ -61,6 +61,11 @@ public class MainMenuActivity extends AppCompatActivity {
 
     public void startServer(ServerNetworkClient server){
         server.start();
+    }
+
+    public String getTime() {
+        SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss");
+        return sdf.format(new Date());
     }
 
 }
