@@ -1,6 +1,6 @@
 package delta.dkt.activities;
 
-import ClientUIHandling.handlers.map_movements.PositionHandler;
+import ClientUIHandling.handlers.positioning.PositionHandler;
 import ServerLogic.ServerActionHandler;
 import android.content.Intent;
 import android.graphics.PointF;

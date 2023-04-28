@@ -1,9 +1,8 @@
-package ClientUIHandling.handlers.map_movements;
+package ClientUIHandling.handlers.positioning;
 
 import android.graphics.PointF;
 import android.util.Log;
 import android.widget.ImageView;
-import org.jetbrains.annotations.NotNull;
 
 //? A map has fields
     //? Most of them are normal fields with a static width and height
@@ -26,6 +25,8 @@ public class PositionHandler {
     public static void setLogs(boolean state) {
         logs = state;
     }
+
+    private PositionHandler(){}
 
     private static RelativeRectangle normalField = new RelativeRectangle(
             new PointF(0.21065000f, 0.86278754f), //? Top Left   (standing up right)
