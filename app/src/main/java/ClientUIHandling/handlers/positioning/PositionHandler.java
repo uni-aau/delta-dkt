@@ -1,9 +1,8 @@
-package ClientUIHandling.handlers.map_movements;
+package ClientUIHandling.handlers.positioning;
 
 import android.graphics.PointF;
 import android.util.Log;
 import android.widget.ImageView;
-import org.jetbrains.annotations.NotNull;
 
 //? A map has fields
     //? Most of them are normal fields with a static width and height

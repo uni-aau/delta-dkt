@@ -1,4 +1,4 @@
-package ClientUIHandling.handlers.map_movements;
+package ClientUIHandling.handlers.positioning;
 
 import android.graphics.PointF;
 import android.widget.ImageView;
