@@ -28,10 +28,10 @@ public class ActionMove implements ClientActionInterface {
             clientID = Integer.parseInt(args[0]);
             destination = Integer.parseInt(args[1]);
         } catch (NumberFormatException e) {
-            String msg = String.format("Parsing the clientID or location has failed, thus the map cannot be updated! (ID: %s, destination: %s)", args[0], args[1]);
+            String msg = String.format("Parsing the clientID or location has failed, thus the map cannot be updated! (ID: (%s), destination: (%s))", args[0], args[1]);
             Log.e(tag, msg);
             Toast.makeText(activity, msg, Toast.LENGTH_LONG).show();
-            e.printStackTrace();
+
             return;
         }
 
