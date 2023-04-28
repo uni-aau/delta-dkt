@@ -13,7 +13,7 @@ import static ClientUIHandling.Constants.*;
 @SuppressWarnings("FieldCanBeLocal")
 public class RequestPlayerMovement implements ServerActionInterface {
     private String tag = "Movement-"+getClass().getSimpleName();
-    private int maxFields = 39;
+    private int maxFields = 41;
 
 
     @SuppressWarnings("DataFlowIssue")
@@ -47,6 +47,8 @@ public class RequestPlayerMovement implements ServerActionInterface {
 
         int steps = useDice(1, 6);
         int destination = (currentPosition + steps) % maxFields;
+        if(destination == 0) destination++;
+
         Log.d(tag, String.format("Moving %s by %s steps on the map! old location was %s => new location is: %s", clientID, steps, currentPosition, destination));
 
         requestPlayer.moveTo(destination);
