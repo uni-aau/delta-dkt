@@ -45,6 +45,11 @@ public class PropertyHandler {
                 bregenz1.setName("Amtsplatz");
                 return bregenz1;
             }
+            case 4: {
+                Property kraftZentrale = new Property(4, 250, 80, PREMIUM, -1);
+                kraftZentrale.setName("Kraft Zentrale");
+                return kraftZentrale;
+            }
             case 5: {
                 graz1 = new Property(5, 300, 120, NORMAL, 200);
                 graz1.setName("Murplatz");
@@ -60,6 +65,11 @@ public class PropertyHandler {
                 graz3.setName("Joaneumring");
                 return graz3;
             }
+            case 8: {
+                Property eisenbahn = new Property(8, 230, 20, NORMAL, -1);
+                eisenbahn.setName("Eisenbahn Wien-Graz");
+                return eisenbahn;
+            }
             case 10: {
                 eisenstadt1 = new Property(10, 100, 24, CHEAP, 50);
                 eisenstadt1.setName("Joseph-Haydn-Gasse");
@@ -69,6 +79,16 @@ public class PropertyHandler {
                 eisenstadt2 = new Property(12, 220, 80, CHEAP, 160);
                 eisenstadt2.setName("Schloßgrund");
                 return eisenstadt2;
+            }
+            case 13: {
+                Property schiff = new Property(13, 230, 20, NORMAL, -1);
+                schiff.setName("Schifffahrt Wien-Budapest");
+                return schiff;
+            }
+            case 14: {
+                Property seilbahn = new Property(14, 250, 20, NORMAL, -1);
+                seilbahn.setName("Seilbahn");
+                return seilbahn;
             }
             case 15:{
                 wien1 = new Property(15,380, 200, PREMIUM, 220);
@@ -85,6 +105,11 @@ public class PropertyHandler {
                 wien3.setName("Kobenzlstraße");
                 return wien3;
             }
+            case 18: {
+                Property bahn = new Property(18, 230, 20, NORMAL, -1);
+                bahn.setName("Elektr. Bahn Wien-Innsburck");
+                return bahn;
+            }
             case 19:{
                 linz1 = new Property(19,300, 120, NORMAL, 200);
                 linz1.setName("Landstraße");
@@ -99,6 +124,11 @@ public class PropertyHandler {
                 linz3 = new Property(22,220, 80, CHEAP, 160);
                 linz3.setName("Museumstraße");
                 return linz3;
+            }
+            case 24: {
+                Property autobus = new Property(24, 230, 20, NORMAL, -1);
+                autobus.setName("Autobus Glockner");
+                return autobus;
             }
             case 25:{
                 salzburg1 = new Property(25,250, 96, NORMAL, 150);
@@ -129,6 +159,11 @@ public class PropertyHandler {
                 klagenfurt3 = new Property(32,210, 72, NORMAL, 120);
                 klagenfurt3.setName("Alter Platz");
                 return klagenfurt3;
+            }
+            case 34: {
+                Property flugzeug = new Property(34, 230, 20, NORMAL, -1);
+                flugzeug.setName("Fluglinie Wien-Venedig");
+                return flugzeug;
             }
             case 35:{
                 innsbruck1 = new Property(35,300, 120, NORMAL, 200);
