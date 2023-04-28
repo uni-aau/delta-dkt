@@ -16,7 +16,7 @@ public class StartGameRequest implements ServerActionInterface {
 
         String[] notificationMessage = {"Test"};
         server.broadcast(LobbyViewActivityType, PREFIX_GAME_START, notificationMessage);
-//        server.broadcast(GameViewActivityType + ":"+ PREFIX_GAME_START + " Game started!");
+
         // TODO
     }
 }

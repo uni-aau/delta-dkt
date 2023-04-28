@@ -6,6 +6,7 @@ import android.util.Log;
 
 import java.util.ArrayList;
 
+import ServerLogic.actions.RegisterUser;
 import ServerLogic.actions.StartGameRequest;
 import network2.ServerNetworkClient;
 
@@ -24,6 +25,9 @@ public class ServerActionHandler {
 
         actions.add(new StartGameRequest());
         actionPrefixes.add(PREFIX_GAME_START);
+
+        actions.add(new RegisterUser());
+        actionPrefixes.add(PREFIX_REGISTER);
     }
 
     public static void triggerAction(String name, Object parameters){

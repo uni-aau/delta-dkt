@@ -1,5 +1,7 @@
 package ClientUIHandling.actions;
 
+import static ClientUIHandling.Constants.PREFIX_REGISTER;
+
 import android.content.Intent;
 import android.util.Log;
 
@@ -16,6 +18,7 @@ public class ActionStartGame implements ClientActionInterface {
         Intent switchToGameViewIntent = new Intent(activity, GameViewActivity.class);
         activity.startActivity(switchToGameViewIntent);
 
-        // TODO get unique ID
+        String macAdress = "";
+        ServerActionHandler.triggerAction(PREFIX_REGISTER, macAdress); // Unique register
     }
 }
