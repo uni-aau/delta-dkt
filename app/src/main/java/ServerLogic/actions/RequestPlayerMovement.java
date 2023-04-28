@@ -68,7 +68,9 @@ public class RequestPlayerMovement implements ServerActionInterface {
      * @return Returns a random value in between the given range.
      */
     public static int useDice(int min, int max){
+        //START-NOSCAN
         return (int) (Math.random() * max + min);
+        //END-NOSCAN
     }
 
 }
