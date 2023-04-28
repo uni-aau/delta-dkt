@@ -22,7 +22,7 @@ public class Player {
     private int id = Player._id++;
     private String nickname = "Player-" + id;
 
-    private Field position = Game.getMap().getField(0);
+    private Field position = Game.getMap().getField(1);
     private int cash = Player.startCash;
     private ArrayList<Property> properties = new ArrayList<>();
 
@@ -145,6 +145,8 @@ public class Player {
         //? Player has a suspension and is prohibited from moving.
         if (this.isSuspended()) return;
 
+        if(location == 0) location++;
+
         this.position = Game.getMap().getField(location);
     }
 
@@ -152,7 +154,7 @@ public class Player {
      * This function will move the player by a given amount of steps.
      */
     public void moveSteps (int steps) {
-        int location = (this.position.getLocation() + steps) % Game.getMap().getFields().size();
+        int location = (this.position.getLocation() + steps) % (Game.getMap().getFields().size() + 1);
         this.move(location);
     }
 
@@ -161,10 +163,7 @@ public class Player {
      * @param location Represents the location of a field on the game map.
      */
     public void moveTo (int location) {
-        int safety = location % Game.getMap().getFields().size();
-        //? Safety check for invalid locations
-
-        this.move(safety);
+        this.move(location);
     }
 
 
