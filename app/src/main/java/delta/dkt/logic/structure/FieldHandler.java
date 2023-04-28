@@ -8,7 +8,7 @@ public class FieldHandler {
     public static ArrayList<Field> getFields() {
         ArrayList<Field> fields = new ArrayList<>();
 
-        for (int i = 0; i < 40; i++) {
+        for (int i = 1; i <= 40; i++) {
             if (PropertyHandler.getProperties(i) != null) fields.add(PropertyHandler.getProperties(i));
             if (TaskHandler.getTask(i) != null) fields.add(TaskHandler.getTask(i));
 
