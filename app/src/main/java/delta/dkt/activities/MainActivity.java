@@ -56,7 +56,6 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
 
-//            ServerActionHandler.triggerAction(PREFIX_PLAYER_PAYRENT, 0);
         });
         subscribeToLogic(Constants.MainActivityType, this);
         try {
