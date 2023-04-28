@@ -24,8 +24,7 @@ public class RequestPlayerMovement implements ServerActionInterface {
         try{
             clientID = Integer.parseInt(parameters.toString());
         }catch (NumberFormatException e){
-            Log.e("Movement", "Parsing the clientsID failed, as its format is invalid!");
-            e.printStackTrace();
+            Log.e("Movement", String.format("Parsing the clientsID failed, as its format is invalid! (%s)", parameters));
 
             server.broadcast(GameViewActivityType, PREFIX_PLAYER_MOVE, new String[]{"error", "Someone tried to move but provided an invalid id."});
             return;
