@@ -167,7 +167,7 @@ class PlayerTests {
 
         Field invalidField = new SomeTestField(16);
 
-        when(mockMapHandling.getField(0)).thenReturn(invalidField);
+        when(mockMapHandling.getField(1)).thenReturn(invalidField);
         when(mockMapHandling.getField(16)).thenReturn(invalidField);
 
         player = new Player("Josef");
@@ -218,7 +218,7 @@ class PlayerTests {
 
         Field invalidField = new SomeTestField(16);
 
-        when(mockMapHandling.getField(0)).thenReturn(invalidField);
+        when(mockMapHandling.getField(1)).thenReturn(invalidField);
         when(mockMapHandling.getField(16)).thenReturn(invalidField);
 
         player = new Player("Josef");
@@ -286,7 +286,7 @@ class PlayerTests {
      */
     void setMockRequirements_PropertyAquisition () {
         Game.setMap(mockMapHandling);
-        when(mockMapHandling.getField(0)).thenReturn(testProperty1);
+        when(mockMapHandling.getField(1)).thenReturn(testProperty1);
         when(mockMapHandling.getField(testProperty1.getLocation())).thenReturn(testProperty1);
         when(mockMapHandling.getField(testProperty2.getLocation())).thenReturn(testProperty2);
 
@@ -297,7 +297,7 @@ class PlayerTests {
      * This method will verify the calls of the previously mocked methods.
      */
     void verifyMockCalls (Field bought) {
-        verify(mockMapHandling, atLeastOnce()).getField(0);
+        verify(mockMapHandling, atLeastOnce()).getField(1);
         verify(mockMapHandling, atLeastOnce()).getField(bought.getLocation());
     }
 
@@ -345,13 +345,11 @@ class PlayerTests {
 
         //? sets the return value for getField method with its given arguments to a valid property.
         when(mockMapHandling.getField(location)).thenReturn(generateDummyProperty(location));
-        when(mockMapHandling.getFields()).thenReturn(generateDummyList());
 
         player.moveTo(location);
         assertEquals(location, player.getPosition().getLocation());
 
-        verify(mockMapHandling).getField(location);
-        verify(mockMapHandling).getFields();
+        verify(mockMapHandling, atLeastOnce()).getField(location);
     }
 
 
@@ -400,7 +398,7 @@ class PlayerTests {
         Player testPlayer = new Player();
         Player testOwner = new Player();
 
-        Property p = new Property(0,10,10,PropertyLevel.CHEAP,10,10);
+        Property p = new Property(1,10,10,PropertyLevel.CHEAP,10,10);
         p.setOwner(testOwner);
         int amount =  p.calculateRent();
         int cashBeforePlayer = testPlayer.getCash();
