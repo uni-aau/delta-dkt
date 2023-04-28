@@ -114,6 +114,9 @@ public class PositionHandler {
 
         if(PositionHandler.logs) Log.d("Movement-PositionHandler", "Moving to the following field: " + location);
 
+        //? Made with the assumption that the start has the location 0.
+        location -= 1;
+
         //* The corners location on the game's map.
         PointF start = getMapCorner(map, MapPosition.BOTTOM_RIGHT);
 

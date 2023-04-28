@@ -21,7 +21,7 @@ import static delta.dkt.R.id.imageView;
 
 
 public class GameViewActivity extends AppCompatActivity {
-    int[] locations = new int[6];
+    int[] locations = {1,1,1,1,1,1};
     int clientID = 1; //todo get the clients id - from 1 to 6
 
     @Override
