@@ -26,6 +26,8 @@ public class PositionHandler {
         logs = state;
     }
 
+    private PositionHandler(){}
+
     private static RelativeRectangle normalField = new RelativeRectangle(
             new PointF(0.21065000f, 0.86278754f), //? Top Left   (standing up right)
             new PointF(0.29321185f, 0.86278754f), //? Top Right  (standing up right)
