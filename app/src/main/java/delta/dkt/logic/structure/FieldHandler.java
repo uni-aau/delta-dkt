@@ -4,7 +4,9 @@ import java.util.ArrayList;
 import java.util.Optional;
 
 public class FieldHandler {
-    
+
+    private FieldHandler(){}
+
     public static ArrayList<Field> getFields() {
         ArrayList<Field> fields = new ArrayList<>();
 
