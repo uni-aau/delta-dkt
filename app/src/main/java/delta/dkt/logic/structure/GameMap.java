@@ -6,18 +6,23 @@ import java.util.Optional;
 public class GameMap {
     private ArrayList<Field> fields = FieldHandler.getFields();
 
-    public Field getField (int location) {
-        System.out.println("I am using the location parameter, which will be used when this method is implemented, to get rid of the code smell." + location);
-        Property testProperty = new Property(0,10,1,PropertyLevel.CHEAP,10);
-        testProperty.setOwner(Player.testInstance);
-        return testProperty;
+    /**
+     * This method returns a field based on the requested location.
+     *
+     * @param location The location of a field on the map, ranging from 1 to 40.
+     * @return Returns a field, when a valid location is provided. Otherwise, null will be returned.
+     */
+    public Field getField(int location) {
+        Optional<Field> field = fields.stream().filter(f -> f.getLocation() == location).findFirst();
+        return field.orElse(null);
     }
 
     /**
      * This method returns all the fields on the map. Note that, fields are initialized once and then stored in a local variable inside the GameMap, to preserve the field-states, such as owners, houses and more.
+     *
      * @return Returns the fields of the map.
      */
-    public ArrayList<Field> getFields () {
+    public ArrayList<Field> getFields() {
         return fields;
     }
 }
