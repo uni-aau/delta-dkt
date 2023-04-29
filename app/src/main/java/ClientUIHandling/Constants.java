@@ -14,4 +14,5 @@ public class Constants {
     public static final String PREFIX_PLAYER_PAYRENT = "PAYRENT";
     public static final String PREFIX_GAME_START = "GAMESTART";
     public static final String PREFIX_REGISTER = "REGISTERUSER";
+    public static final String PREFIX_GET_SERVER_TIME = "servertime";
 }
