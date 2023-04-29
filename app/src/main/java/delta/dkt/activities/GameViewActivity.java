@@ -21,11 +21,11 @@ import static delta.dkt.R.id.imageView;
 
 
 public class GameViewActivity extends AppCompatActivity {
-    int[] locations = {1,1,1,1,1,1};
+    int[] locations = {1, 1, 1, 1, 1, 1};
     int clientID = 1; //todo get the clients id - from 1 to 6
 
     @Override
-    protected void onCreate (Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game_view);
 
@@ -37,17 +37,16 @@ public class GameViewActivity extends AppCompatActivity {
         handleMovementRequests();
     }
 
-    protected void switchToPropertyActivity () {
+    protected void switchToPropertyActivity() {
         Intent switchIntent = new Intent(this, PropertyListActivity.class);
         startActivity(switchIntent);
     }
 
 
-
     /**
      * This method handles the movement requests of a client, thus sending the request to server.
      */
-    private void handleMovementRequests () {
+    private void handleMovementRequests() {
         Button btnDice = findViewById(R.id.button_roll_dice);
         ImageView map = findViewById(imageView);
 
@@ -68,11 +67,10 @@ public class GameViewActivity extends AppCompatActivity {
         });
 
 
-
         var imageView = findViewById(R.id.imageView);
         imageView.setOnTouchListener(new View.OnTouchListener() {
             @Override
-            public boolean onTouch (View v, MotionEvent event) {
+            public boolean onTouch(View v, MotionEvent event) {
                 if (event.getAction() != MotionEvent.ACTION_DOWN) return false;
 
                 var map = findViewById(R.id.imageView);
@@ -98,15 +96,16 @@ public class GameViewActivity extends AppCompatActivity {
 
     /**
      * This method will set update the location of a players figure to the requested destination.
+     *
      * @param destination The destinations number, from 1: Start to 39: Last field.
      * @param _player The player figure that is to be moved, ranging from 1 to 6.
      */
-    public void updatePlayerPosition (int destination, int _player) {
+    public void updatePlayerPosition(int destination, int _player) {
         ImageView map = findViewById(imageView);
         int figureIdentifier = getResources().getIdentifier("player" + _player, "id", getPackageName());
         ImageView figure = findViewById(figureIdentifier);
 
-        if(map == null || figure == null){
+        if (map == null || figure == null) {
             Log.e("Movement-GameView", String.format("Aborting movement! Because %s", (map == null ? "the map has not been found!" : "the players figure couldn't be found!")));
             return;
         }
