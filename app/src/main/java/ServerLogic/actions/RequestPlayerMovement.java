@@ -38,7 +38,8 @@ public class RequestPlayerMovement implements ServerActionInterface {
             return;
         }
 
-        Log.d(tag, String.format("Performing move request for client: %s.", clientID));
+        Log.d(tag, "");
+        Log.d(tag, String.format("Performing move request for client: (%s).", clientID));
 
 
         Player requestPlayer = Game.getPlayers().get(clientID);
@@ -48,7 +49,9 @@ public class RequestPlayerMovement implements ServerActionInterface {
         int destination = (currentPosition + steps) % maxFields;
         if(destination == 0) destination++;
 
-        Log.d(tag, String.format("Moving %s by %s steps on the map! old location was %s => new location is: %s", clientID, steps, currentPosition, destination));
+        //* detailed logs
+        Log.d(tag, String.format("Moving player (id=%s) to (pos=%s)!", clientID, destination));
+        Log.d(tag+"-detail", String.format("\told position: (pos=%s), new position: (pos=%s), steps: (steps=%s)", clientID, currentPosition, destination, steps));
 
         requestPlayer.moveTo(destination);
 
@@ -56,7 +59,8 @@ public class RequestPlayerMovement implements ServerActionInterface {
         args[0] = String.valueOf(clientID);
         args[1] = String.valueOf(destination);
 
-        Log.d(tag, "Sending data to clients of the game!");
+        Log.d(tag, String.format("Sending out messages to %s players.", Game.getPlayers().size()));
+        Log.d(tag, "");
         server.broadcast(GameViewActivityType, PREFIX_PLAYER_MOVE, args);
     }
 
