@@ -7,6 +7,7 @@ import android.util.Log;
 import java.util.ArrayList;
 
 import ServerLogic.actions.RegisterUser;
+import ServerLogic.actions.ServerStartTime;
 import ServerLogic.actions.StartGameRequest;
 import network2.ServerNetworkClient;
 
@@ -28,6 +29,9 @@ public class ServerActionHandler {
 
         actions.add(new RegisterUser());
         actionPrefixes.add(PREFIX_REGISTER);
+
+        actions.add(new ServerStartTime());
+        actionPrefixes.add(PREFIX_GET_SERVER_TIME);
     }
 
     public static void triggerAction(String name, Object parameters){
