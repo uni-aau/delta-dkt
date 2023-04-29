@@ -21,6 +21,10 @@ public class ServerActionHandler {
 
         actions.add(new exampleAction());
         actionPrefixes.add(PREFIX_PLAYER_PAYRENT);
+
+        actions.add(new exampleAction());
+        actionPrefixes.add(PREFIX_HOST_NEW_GAME);
+
     }
 
     public static void triggerAction(String name, Object parameters){
