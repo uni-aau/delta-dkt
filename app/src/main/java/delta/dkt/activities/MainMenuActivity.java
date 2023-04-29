@@ -41,9 +41,7 @@ public class MainMenuActivity extends AppCompatActivity {
             Intent intent = new Intent(getApplicationContext(), LobbyViewActivity.class);
             intent.putExtra(INTENT_PARAMETER, newUser);
             // ---Start Server---
-            server = new ServerNetworkClient();
-            startServer(server);
-            Toast.makeText(MainMenuActivity.this, "Server started on "+getTime(), Toast.LENGTH_SHORT).show();
+            startServer();
             //-----------------
 
             startActivity(intent);
@@ -59,8 +57,10 @@ public class MainMenuActivity extends AppCompatActivity {
 
     }
 
-    public void startServer(ServerNetworkClient server){
+    public void startServer(){
+        server = new ServerNetworkClient();
         server.start();
+        Toast.makeText(MainMenuActivity.this, "Server started on "+getTime(), Toast.LENGTH_SHORT).show();
     }
 
     public String getTime() {
