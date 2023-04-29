@@ -1,6 +1,7 @@
 package delta.dkt.activities;
 
 import static ClientUIHandling.Constants.PREFIX_GAME_START;
+import static ClientUIHandling.Constants.PREFIX_GET_SERVER_TIME;
 import static ClientUIHandling.Constants.PREFIX_PLAYER_PAYRENT;
 import static delta.dkt.activities.MainActivity.INTENT_PARAMETER;
 
@@ -66,6 +67,7 @@ public class LobbyViewActivity extends AppCompatActivity{
 
         startButton.setOnClickListener(view -> {
             Log.d("Start", "Sending start action to server!");
+            ServerActionHandler.triggerAction(PREFIX_GET_SERVER_TIME, 1);
             ServerActionHandler.triggerAction(PREFIX_GAME_START, 1); // TODO client number
         });
 
