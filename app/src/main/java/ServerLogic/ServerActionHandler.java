@@ -22,7 +22,7 @@ public class ServerActionHandler {
         actions.add(new exampleAction());
         actionPrefixes.add(PREFIX_PLAYER_PAYRENT);
 
-        actions.add(new exampleAction());
+        actions.add(new HostGameAction());
         actionPrefixes.add(PREFIX_HOST_NEW_GAME);
 
     }
