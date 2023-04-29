@@ -6,8 +6,6 @@ import delta.dkt.logic.structure.Game;
 import delta.dkt.logic.structure.Player;
 import network2.ServerNetworkClient;
 
-import java.util.ArrayList;
-
 import static ClientUIHandling.Constants.*;
 
 @SuppressWarnings("FieldCanBeLocal")

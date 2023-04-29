@@ -3,17 +3,11 @@ package ClientUIHandling.actions;
 import ClientUIHandling.ClientActionInterface;
 import ClientUIHandling.Constants;
 import ClientUIHandling.handlers.notifications.SnackBarHandler;
-import android.graphics.Color;
 import android.util.Log;
-import android.view.View;
-import android.widget.TextView;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
-import com.google.android.material.snackbar.BaseTransientBottomBar;
-import com.google.android.material.snackbar.Snackbar;
 import delta.dkt.R;
 import delta.dkt.activities.GameViewActivity;
-import delta.dkt.activities.MainActivity;
 
 public class ActionMove implements ClientActionInterface {
     private String tag = "Movement-" + this.getClass().getSimpleName();
