@@ -7,6 +7,8 @@ import android.util.Log;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.util.UUID;
+
 import ClientUIHandling.ClientActionInterface;
 import ServerLogic.ServerActionHandler;
 import delta.dkt.activities.GameViewActivity;
@@ -18,7 +20,7 @@ public class ActionStartGame implements ClientActionInterface {
         Intent switchToGameViewIntent = new Intent(activity, GameViewActivity.class);
         activity.startActivity(switchToGameViewIntent);
 
-        String macAdress = "";
-        ServerActionHandler.triggerAction(PREFIX_REGISTER, macAdress); // Unique register
+        String uniqueID = UUID.randomUUID().toString(); // Unique ID for register command
+        ServerActionHandler.triggerAction(PREFIX_REGISTER, uniqueID);
     }
 }
