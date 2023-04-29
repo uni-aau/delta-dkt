@@ -19,7 +19,7 @@ public class ActionMove implements ClientActionInterface {
     private String tag = "Movement-" + this.getClass().getSimpleName();
 
     @Override
-    public void execute (AppCompatActivity activity, String clientMessage) {
+    public void execute(AppCompatActivity activity, String clientMessage) {
         String[] args = clientMessage.replace(Constants.PREFIX_PLAYER_MOVE, "").trim().split(";");
 
         if (args[0].trim().equalsIgnoreCase("error")) {
@@ -45,8 +45,8 @@ public class ActionMove implements ClientActionInterface {
         gameViewActivity.updatePlayerPosition(destination, clientID);
 
         String result = String.format("Successfully moved (id=%s) to (pos=%s)", clientID, destination);
-        Log.d(tag+"-ClientSide", result);
-        
+        Log.d(tag + "-ClientSide", result);
+
         var snack = SnackBarHandler.createSnackbar(activity.findViewById(R.id.imageView), result, 2000, true, "#6481d5", null);
         snack.show();
     }
