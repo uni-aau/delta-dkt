@@ -2,10 +2,15 @@ package ClientUIHandling.actions;
 
 import ClientUIHandling.ClientActionInterface;
 import ClientUIHandling.Constants;
+import ClientUIHandling.handlers.notifications.SnackBarHandler;
+import android.graphics.Color;
 import android.util.Log;
+import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
+import com.google.android.material.snackbar.BaseTransientBottomBar;
+import com.google.android.material.snackbar.Snackbar;
 import delta.dkt.R;
 import delta.dkt.activities.GameViewActivity;
 import delta.dkt.activities.MainActivity;
@@ -22,7 +27,7 @@ public class ActionMove implements ClientActionInterface {
             return;
         }
 
-        int clientID = 0, destination = 0;
+        int clientID, destination;
 
         try {
             clientID = Integer.parseInt(args[0]);
@@ -38,7 +43,11 @@ public class ActionMove implements ClientActionInterface {
         GameViewActivity gameViewActivity = (GameViewActivity) activity;
 
         gameViewActivity.updatePlayerPosition(destination, clientID);
-        Log.d(tag, String.format("Successfully moved %s to %s", clientID, destination));
+
+        String result = String.format("Successfully moved (id=%s) to (pos=%s)", clientID, destination);
+        Log.d(tag+"-ClientSide", result);
+
+
         Toast.makeText(activity, "Successfully moved!", Toast.LENGTH_SHORT).show();
     }
 }
