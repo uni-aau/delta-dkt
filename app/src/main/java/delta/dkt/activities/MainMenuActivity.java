@@ -1,5 +1,6 @@
 package delta.dkt.activities;
 
+import static ClientUIHandling.Constants.PREFIX_HOST_NEW_GAME;
 import static delta.dkt.activities.MainActivity.INTENT_PARAMETER;
 
 import android.content.Intent;
@@ -14,8 +15,9 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import ClientUIHandling.Constants;
+import ServerLogic.ServerActionHandler;
 import delta.dkt.R;
-import network2.NetworkServiceDiscovery;
+
 import network2.ServerNetworkClient;
 
 
@@ -38,13 +40,7 @@ public class MainMenuActivity extends AppCompatActivity {
 
 
         host.setOnClickListener(view -> {
-            Intent intent = new Intent(getApplicationContext(), LobbyViewActivity.class);
-            intent.putExtra(INTENT_PARAMETER, newUser);
-            // ---Start Server---
             startServer();
-            //-----------------
-
-            startActivity(intent);
         });
 
         join.setOnClickListener(view -> {
@@ -61,6 +57,7 @@ public class MainMenuActivity extends AppCompatActivity {
         server = new ServerNetworkClient();
         server.start();
         Toast.makeText(MainMenuActivity.this, "Server started on "+getTime(), Toast.LENGTH_SHORT).show();
+        ServerActionHandler.triggerAction(PREFIX_HOST_NEW_GAME, null);
     }
 
     public String getTime() {
