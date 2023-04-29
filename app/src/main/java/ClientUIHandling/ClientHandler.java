@@ -25,6 +25,10 @@ public class ClientHandler extends Handler {
 
         actions.add(new ActionRentPaid());
         actionPrefixes.add(Constants.PREFIX_PLAYER_RENTPAID);
+
+        actions.add(new ActionHostNewGame());
+        actionPrefixes.add(Constants.PREFIX_HOST_NEW_GAME);
+
     }
 
 
