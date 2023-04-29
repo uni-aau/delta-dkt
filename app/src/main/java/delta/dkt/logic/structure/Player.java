@@ -5,11 +5,11 @@ import java.util.ArrayList;
 public class Player {
     private static int startCash = 500;
 
-    public static int getStartCash () {
+    public static int getStartCash() {
         return startCash;
     }
 
-    public static void setStartCash (int startCash) {
+    public static void setStartCash(int startCash) {
         Player.startCash = startCash;
     }
 
@@ -29,11 +29,11 @@ public class Player {
     //? May be used to check whether a player is timeoutet, e.g. prison, or not.
     private int suspention = 0;
 
-    public Player (String nickname) {
+    public Player(String nickname) {
         this.nickname = nickname;
     }
 
-    public Player () {
+    public Player() {
 
     }
 
@@ -42,7 +42,7 @@ public class Player {
     /**
      * This function will be fetching the field based on the given location and will buy it, as long as it is not owned by anyone yet and the players cash is sufficient.
      */
-    private boolean purchaseProperty (int location) {
+    private boolean purchaseProperty(int location) {
         Field located = Game.getMap().getField(location);
         if (!(located instanceof Property)) return false;
 
@@ -61,7 +61,7 @@ public class Player {
     /**
      * This function will attempt to buy the property on which the player currently is standing on.
      */
-    public boolean buyProperty () {
+    public boolean buyProperty() {
         return purchaseProperty(this.position.getLocation());
     }
 
@@ -70,16 +70,17 @@ public class Player {
      * Following the rules of DKT, this type of acquistion is normally not allowed, but can be
      * used to increase the game speed.
      */
-    public boolean buyProperty (int location) {
+    public boolean buyProperty(int location) {
         return purchaseProperty(location);
     }
 
 
     /**
      * This function sells a given property and adds the refunded value to the players cash and removes the accessories and ownership.
+     *
      * @return Returns whether this operation was succesful or not.
      */
-    private boolean refundProperty (int location) {
+    private boolean refundProperty(int location) {
         Field located = Game.getMap().getField(location);
         if (!(located instanceof Property)) return false;
 
@@ -99,10 +100,9 @@ public class Player {
     /**
      * This function will attempt to sell a given property. The player does not have to be on top of it.
      */
-    public boolean sellProperty (int location) {
+    public boolean sellProperty(int location) {
         return refundProperty(location);
     }
-
 
 
     //? Player suspensions
@@ -110,28 +110,28 @@ public class Player {
     /**
      * Will time out this player from moving for a given amount of rounds.
      */
-    public void setSuspension (int rounds) {
+    public void setSuspension(int rounds) {
         this.suspention = rounds;
     }
 
     /**
      * @return Returns whether the player is prohibited from moving, thus has a suspension / timeout.
      */
-    public boolean isSuspended () {
+    public boolean isSuspended() {
         return this.suspention > 0;
     }
 
     /**
      * This function may be called when a player is supposed to move, but is prohibited from doing so, thus the remaining amount of suspended rounds, can be decreased by 1.
      */
-    public void reduceSuspension () {
+    public void reduceSuspension() {
         if (this.suspention > 0) this.suspention--;
     }
 
     /**
      * This function may be called when the player uses his 'jail-free-card' or receives any other action, that removes his suspension / timeout.
      */
-    public void resetSuspension () {
+    public void resetSuspension() {
         this.suspention = 0;
     }
 
@@ -139,13 +139,14 @@ public class Player {
 
     /**
      * Moves a player to a given location and sets the corresponding field as his updated position.
+     *
      * @param location The destination to which the player will be moved to.
      */
-    private void move (int location) {
+    private void move(int location) {
         //? Player has a suspension and is prohibited from moving.
         if (this.isSuspended()) return;
 
-        if(location == 0) location++;
+        if (location == 0) location++;
 
         this.position = Game.getMap().getField(location);
     }
@@ -153,49 +154,50 @@ public class Player {
     /**
      * This function will move the player by a given amount of steps.
      */
-    public void moveSteps (int steps) {
+    public void moveSteps(int steps) {
         int location = (this.position.getLocation() + steps) % (Game.getMap().getFields().size() + 1);
         this.move(location);
     }
 
     /**
      * This function will move a player to a given location, e.g. to prison.
+     *
      * @param location Represents the location of a field on the game map.
      */
-    public void moveTo (int location) {
+    public void moveTo(int location) {
         this.move(location);
     }
 
 
     //? Getters
 
-    public int getId () {
+    public int getId() {
         return id;
     }
 
-    public String getNickname () {
+    public String getNickname() {
         return nickname;
     }
 
-    public Field getPosition () {
+    public Field getPosition() {
         return position;
     }
 
-    public int getCash () {
+    public int getCash() {
         return cash;
     }
 
-    public ArrayList<Property> getProperties () {
+    public ArrayList<Property> getProperties() {
         return properties;
     }
 
-    public int getSuspention () {
+    public int getSuspention() {
         return suspention;
     }
 
-    public void payRentTo (Player recipient, int amount) {
-       this.cash-=amount;
-       recipient.cash+=amount;
+    public void payRentTo(Player recipient, int amount) {
+        this.cash -= amount;
+        recipient.cash += amount;
 
     }
 }
