@@ -46,8 +46,8 @@ public class ActionMove implements ClientActionInterface {
 
         String result = String.format("Successfully moved (id=%s) to (pos=%s)", clientID, destination);
         Log.d(tag+"-ClientSide", result);
-
-
-        Toast.makeText(activity, "Successfully moved!", Toast.LENGTH_SHORT).show();
+        
+        var snack = SnackBarHandler.createSnackbar(activity.findViewById(R.id.imageView), result, 2000, true, "#6481d5", null);
+        snack.show();
     }
 }
