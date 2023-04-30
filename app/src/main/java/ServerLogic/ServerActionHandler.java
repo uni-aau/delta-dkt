@@ -2,6 +2,7 @@ package ServerLogic;
 
 import static ClientUIHandling.Constants.*;
 
+import ServerLogic.actions.RequestPlayerMovement;
 import android.util.Log;
 
 import java.util.ArrayList;
@@ -32,6 +33,12 @@ public class ServerActionHandler {
 
         actions.add(new ServerStartTime());
         actionPrefixes.add(PREFIX_GET_SERVER_TIME);
+
+        //* Request movement when pressing dice
+        actions.add(new RequestPlayerMovement());
+        actionPrefixes.add(PREFIX_PLAYER_MOVE);
+
+
     }
 
     public static void triggerAction(String name, Object parameters){
