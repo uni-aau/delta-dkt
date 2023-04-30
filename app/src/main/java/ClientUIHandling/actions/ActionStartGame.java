@@ -1,6 +1,5 @@
 package ClientUIHandling.actions;
 
-import static ClientUIHandling.Constants.PREFIX_GET_SERVER_TIME;
 import static ClientUIHandling.Constants.PREFIX_REGISTER;
 
 import android.content.Intent;

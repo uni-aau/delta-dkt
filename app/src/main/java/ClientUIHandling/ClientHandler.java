@@ -10,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import java.util.ArrayList;
 
 import ClientUIHandling.actions.ActionStartGame;
+import ClientUIHandling.actions.ActionRollDicePermission;
 
 public class ClientHandler extends Handler {
 
@@ -31,6 +32,9 @@ public class ClientHandler extends Handler {
         
         actions.add(new ActionMove());
         actionPrefixes.add(Constants.PREFIX_PLAYER_MOVE);
+
+        actions.add(new ActionRollDicePermission());
+        actionPrefixes.add(Constants.PREFIX_ROLL_DICE_PERM);
     }
 
 
