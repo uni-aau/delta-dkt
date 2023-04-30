@@ -1,8 +1,6 @@
 package delta.dkt.activities;
 
 import static ClientUIHandling.Constants.PREFIX_GAME_START;
-import static ClientUIHandling.Constants.PREFIX_GET_SERVER_TIME;
-import static ClientUIHandling.Constants.PREFIX_PLAYER_PAYRENT;
 import static delta.dkt.activities.MainActivity.INTENT_PARAMETER;
 
 import androidx.appcompat.app.AppCompatActivity;
