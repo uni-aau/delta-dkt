@@ -7,28 +7,26 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import java.util.Arrays;
-
 import ClientUIHandling.ClientActionInterface;
 import delta.dkt.R;
 
 public class UpdateGameTime implements ClientActionInterface {
     @Override
     public void execute(AppCompatActivity activity, String clientMessage) {
-        String[] args = clientMessage.replace(PREFIX_GET_SERVER_TIME, "").trim().split(";");
+        String[] args = clientMessage.replace(PREFIX_GET_SERVER_TIME, "").trim().split(";"); // Holt sich Args nach dem Prefix
 
-        Log.d("UI Game Time", "Received update game time event: " + args[0]);
+        Log.d("[UI] GameTime", "Received update game time event: " + args[0]);
 
         updateGameTime(args[0], activity);
     }
 
     private void updateGameTime(String args, AppCompatActivity activity) {
-        int miliseconds = Integer.parseInt(args);
+        int milliseconds = Integer.parseInt(args);
 
-        int hours = (miliseconds/ 3600000);
-        int minutes = (miliseconds - hours * 3600000)/ 60000;
-        int seconds = (miliseconds - hours * 3600000 - minutes * 60000) / 1000;
+        int seconds = (milliseconds / 1000);
+        int minutes = (milliseconds / 60000);
+        int hours = (milliseconds / 3600000);
 
-        ((TextView)activity.findViewById(R.id.textView_playing_time)).setText(hours + " " + minutes + " " + seconds); // Todo improve
+        ((TextView)activity.findViewById(R.id.textView_playing_time)).setText(String.format(activity.getString(R.string.playing_time_text), hours, "Hours", minutes, "Minutes", seconds, "Seconds")); // Todo improve
     }
 }
