@@ -104,6 +104,16 @@ public class ServerNetworkClient extends Thread { //always executed on a separat
     }
 
     /**
+     * This method will use the required syntax of the original broadcoast method.
+     * @param activity The activity name, using a variable in the Constants class, which is the target.
+     * @param prefix The prefix defines the action that should be executed and should also be defined in the Constants class.
+     * @param args The additional parameters that follow along with the command.
+     */
+    public synchronized void broadcast(String activity, String prefix, String[] args){
+        this.broadcast(activity+":"+prefix+" "+String.join(";", args));
+    }
+
+    /**
      * TODO: move this method and all other things concerning connection handling to a separate clientHandler class
      * @param client
      */

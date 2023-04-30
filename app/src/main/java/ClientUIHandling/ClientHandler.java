@@ -1,5 +1,6 @@
 package ClientUIHandling;
 
+import ClientUIHandling.actions.ActionMove;
 import android.os.Handler;
 import android.os.Message;
 
@@ -20,11 +21,11 @@ public class ClientHandler extends Handler {
         actions = new ArrayList<>();
         actionPrefixes = new ArrayList<>();
 
-        actions.add(new ActionExample());
-        actionPrefixes.add(Constants.PREFIX_PLAYER_MOVE);
-
         actions.add(new ActionRentPaid());
         actionPrefixes.add(Constants.PREFIX_PLAYER_RENTPAID);
+
+        actions.add(new ActionMove());
+        actionPrefixes.add(Constants.PREFIX_PLAYER_MOVE);
     }
 
 

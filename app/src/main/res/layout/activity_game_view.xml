@@ -20,8 +20,8 @@
             app:layout_constraintTop_toBottomOf="@+id/button_property_infos" />
 
     <ImageView
-            android:layout_width="398dp"
-            android:layout_height="387dp"
+            android:layout_width="335dp"
+            android:layout_height="335dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             android:id="@+id/imageView"
@@ -29,7 +29,8 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
             app:srcCompat="@drawable/dkttestmap"
-            android:contentDescription="@string/gameview_image_description" />
+            android:contentDescription="@string/gameview_image_description"
+    />
 
     <TextView
             android:layout_width="161dp"
@@ -139,5 +140,47 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toTopOf="@+id/button_roll_dice" />
+    <ImageView
+            android:layout_width="13dp"
+            android:layout_height="13dp" app:srcCompat="@drawable/circle_pink" android:id="@+id/player5"
+            app:layout_constraintEnd_toEndOf="@+id/imageView"
+            app:layout_constraintStart_toStartOf="@+id/imageView"
+            app:layout_constraintBottom_toBottomOf="@+id/imageView" app:layout_constraintTop_toTopOf="@+id/imageView"
+            app:layout_constraintHorizontal_bias="0.963" app:layout_constraintVertical_bias="0.906"/>
+    <ImageView
+            android:layout_width="13dp"
+            android:layout_height="13dp" app:srcCompat="@drawable/circle_red" android:id="@+id/player6"
+            app:layout_constraintEnd_toEndOf="@+id/imageView"
+            app:layout_constraintStart_toStartOf="@+id/imageView"
+            app:layout_constraintBottom_toBottomOf="@+id/imageView" app:layout_constraintTop_toTopOf="@+id/imageView"
+            app:layout_constraintHorizontal_bias="0.929" app:layout_constraintVertical_bias="0.906"/>
+    <ImageView
+            android:layout_width="13dp"
+            android:layout_height="13dp" app:srcCompat="@drawable/circle_green" android:id="@+id/player3"
+            app:layout_constraintEnd_toEndOf="@+id/imageView"
+            app:layout_constraintStart_toStartOf="@+id/imageView"
+            app:layout_constraintBottom_toBottomOf="@+id/imageView" app:layout_constraintTop_toTopOf="@+id/imageView"
+            app:layout_constraintHorizontal_bias="0.963" app:layout_constraintVertical_bias="0.943"/>
+    <ImageView
+            android:layout_width="13dp"
+            android:layout_height="13dp" app:srcCompat="@drawable/circle_orange" android:id="@+id/player4"
+            app:layout_constraintEnd_toEndOf="@+id/imageView"
+            app:layout_constraintStart_toStartOf="@+id/imageView"
+            app:layout_constraintBottom_toBottomOf="@+id/imageView" app:layout_constraintTop_toTopOf="@+id/imageView"
+            app:layout_constraintHorizontal_bias="0.929" app:layout_constraintVertical_bias="0.943"/>
+    <ImageView
+            android:layout_width="13dp"
+            android:layout_height="13dp" app:srcCompat="@drawable/circle_purple" android:id="@+id/player2"
+            app:layout_constraintEnd_toEndOf="@+id/imageView"
+            app:layout_constraintStart_toStartOf="@+id/imageView"
+            app:layout_constraintBottom_toBottomOf="@+id/imageView" app:layout_constraintTop_toTopOf="@+id/imageView"
+            app:layout_constraintHorizontal_bias="0.929" app:layout_constraintVertical_bias="0.981"/>
+    <ImageView
+            android:layout_width="13dp"
+            android:layout_height="13dp" app:srcCompat="@drawable/circle_blue" android:id="@+id/player1"
+            app:layout_constraintEnd_toEndOf="@+id/imageView"
+            app:layout_constraintStart_toStartOf="@+id/imageView"
+            app:layout_constraintBottom_toBottomOf="@+id/imageView" app:layout_constraintTop_toTopOf="@+id/imageView"
+            app:layout_constraintHorizontal_bias="0.963" app:layout_constraintVertical_bias="0.981"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
