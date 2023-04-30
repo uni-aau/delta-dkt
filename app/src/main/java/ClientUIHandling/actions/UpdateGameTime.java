@@ -27,6 +27,12 @@ public class UpdateGameTime implements ClientActionInterface {
         int minutes = (milliseconds / 60000);
         int hours = (milliseconds / 3600000);
 
-        ((TextView)activity.findViewById(R.id.textView_playing_time)).setText(String.format(activity.getString(R.string.playing_time_text), hours, "Hours", minutes, "Minutes", seconds, "Seconds")); // Todo improve
+        // Sets the text for the playing time ( != 1 -> pluralText)
+        String hoursLocale = hours != 1 ? activity.getString(R.string.hours_plural_text) : activity.getString(R.string.hour_sing_text);
+        String minutesLocale = minutes != 1 ? activity.getString(R.string.minutes_plural_text) : activity.getString(R.string.minute_sing_text);
+        String secondsLocale = seconds != 1 ? activity.getString(R.string.seconds_plural_text) : activity.getString(R.string.second_sing_text);
+
+        // %d %s, %d %s, %d, %s
+        ((TextView) activity.findViewById(R.id.textView_playing_time)).setText(String.format(activity.getString(R.string.playing_time_text), hours, hoursLocale, minutes, minutesLocale, seconds, secondsLocale));
     }
 }
