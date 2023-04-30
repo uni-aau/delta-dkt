@@ -8,6 +8,7 @@ import android.util.Log;
 import java.util.ArrayList;
 
 import ServerLogic.actions.RegisterUser;
+import ServerLogic.actions.RollDicePerm;
 import ServerLogic.actions.StartGameRequest;
 import network2.ServerNetworkClient;
 
@@ -29,6 +30,9 @@ public class ServerActionHandler {
 
         actions.add(new RegisterUser());
         actionPrefixes.add(PREFIX_REGISTER);
+
+        actions.add(new RollDicePerm());
+        actionPrefixes.add(PREFIX_ROLL_DICE_PERM);
 
         //* Request movement when pressing dice
         actions.add(new RequestPlayerMovement());

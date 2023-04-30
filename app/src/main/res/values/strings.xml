@@ -34,4 +34,5 @@
 
     <string name="NSDServiceName">delta_dkt</string>
     <string name="NSDServiceType">_delta_dkt.tcp</string>
+    <string name="not_your_turn_text">It is not your turn!</string>
 </resources>
