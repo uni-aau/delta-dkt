@@ -23,19 +23,21 @@ public class ServerStartTime implements ServerActionInterface {
             @Override
             public void onTick(long l) {
                 elapsedTime += 1000; // + 1000 millisekunden -> +1 sekunde
+
                 int currentMinute = (int) (elapsedTime / 60000);
                 System.out.println("Debug - CurrentMinute = " + currentMinute);
 
-//                if(currentMinute != previousMinute) { // todo nur eine request pro minute?
+                // if(currentMinute != previousMinute) { // Todo - Check, ob nur eine Request pro Minute?
                 server.broadcast(GameViewActivityType, PREFIX_GET_SERVER_TIME, new String[]{String.valueOf(elapsedTime)});
                 previousMinute = currentMinute;
-//                }
             }
 
             @Override
             public void onFinish() {
-                timer.cancel();
-                // max timer - Game schließt? Todo für spätere implementierung
+                timer.cancel(); // Timer stoppt
+                // Todo - Game wird abgebrochen und ein Gewinner eruiert
+                // Text sollte kurz vor knapp rot werden. Entweder runter zählen oder raufzählen (countdown)
+                // Endvalue muss später über Settings festlegt werden
             }
         };
         timer.start();
