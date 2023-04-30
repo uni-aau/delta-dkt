@@ -8,6 +8,7 @@ import android.util.Log;
 import java.util.ArrayList;
 
 import ClientUIHandling.ClientActionInterface;
+import ServerLogic.actions.ServerStartTime;
 import network2.ServerNetworkClient;
 
 public class ServerActionHandler {
@@ -23,12 +24,12 @@ public class ServerActionHandler {
         actions.add(new exampleAction());
         actionPrefixes.add(PREFIX_PLAYER_PAYRENT);
 
-
         //* Request movement when pressing dice
         actions.add(new RequestPlayerMovement());
         actionPrefixes.add(PREFIX_PLAYER_MOVE);
 
-
+        actions.add(new ServerStartTime());
+        actionPrefixes.add(PREFIX_GET_SERVER_TIME);
     }
 
     public static void triggerAction(String name, Object parameters){

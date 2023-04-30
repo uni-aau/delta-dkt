@@ -16,6 +16,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import ClientUIHandling.Constants;
 import delta.dkt.R;
 
+import static ClientUIHandling.Constants.PREFIX_GET_SERVER_TIME;
 import static ClientUIHandling.Constants.PREFIX_PLAYER_MOVE;
 import static delta.dkt.R.id.imageView;
 
@@ -28,6 +29,8 @@ public class GameViewActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game_view);
+
+        ServerActionHandler.triggerAction(PREFIX_GET_SERVER_TIME, 1);
 
         findViewById(R.id.button_property_infos).setOnClickListener(view -> switchToPropertyActivity());
 
