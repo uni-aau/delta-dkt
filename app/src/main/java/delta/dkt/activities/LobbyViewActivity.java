@@ -1,6 +1,5 @@
 package delta.dkt.activities;
 
-import static ClientUIHandling.Constants.PREFIX_PLAYER_PAYRENT;
 import static delta.dkt.activities.MainActivity.INTENT_PARAMETER;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -15,7 +14,6 @@ import android.widget.Button;
 import java.util.ArrayList;
 
 import ClientUIHandling.Constants;
-import ServerLogic.ServerActionHandler;
 import delta.dkt.R;
 
 
