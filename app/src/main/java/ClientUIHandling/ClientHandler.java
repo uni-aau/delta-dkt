@@ -10,7 +10,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import java.util.ArrayList;
 
 import ClientUIHandling.actions.ActionStartGame;
-import ClientUIHandling.actions.UpdateGameTime;
 
 public class ClientHandler extends Handler {
 
@@ -29,9 +28,6 @@ public class ClientHandler extends Handler {
 
         actions.add(new ActionStartGame());
         actionPrefixes.add(Constants.PREFIX_GAME_START);
-
-        actions.add(new UpdateGameTime());
-        actionPrefixes.add(Constants.PREFIX_GET_SERVER_TIME);
         
         actions.add(new ActionMove());
         actionPrefixes.add(Constants.PREFIX_PLAYER_MOVE);
