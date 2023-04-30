@@ -12,17 +12,17 @@ import network2.ServerNetworkClient;
 public class ServerStartTime implements ServerActionInterface {
     private long elapsedTime = 0L;
     private int previousMinute = -1;
+    private CountDownTimer timer;
 
     @Override
     public void execute(ServerNetworkClient server, Object parameters) {
         Log.d("Server Start Time", "Received Server Start Time request!");
 
-        int endValue = 300000;
-
-        CountDownTimer countDownTimer = new CountDownTimer(endValue, 1000) {
+        int endValue = 30000;
+        timer = new CountDownTimer(endValue, 1000) {
             @Override
             public void onTick(long l) {
-                elapsedTime += 1000;
+                elapsedTime += 1000; // + 1000 millisekunden -> +1 sekunde
                 int currentMinute = (int) (elapsedTime / 60000);
                 System.out.println("Debug - CurrentMinute = " + currentMinute);
 
@@ -34,9 +34,10 @@ public class ServerStartTime implements ServerActionInterface {
 
             @Override
             public void onFinish() {
+                timer.cancel();
                 // max timer - Game schließt? Todo für spätere implementierung
             }
         };
-        countDownTimer.start();
+        timer.start();
     }
 }
