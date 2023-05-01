@@ -12,7 +12,7 @@
     <string name="textCD_prop4">Property 4</string>
     <string name="text_backToGame">Back</string>
     <string name="general_information">General Information</string>
-    <string name="players_online">Players online: {0}/{1}</string>
+    <string name="players_online">Players online: %d / %d</string>
     <string name="cash_text">Cash: {0}$</string>
     <string name="my_properties_text">My Properties: {0}</string>
     <string name="playing_time_text">Playing Time: {0}</string>
