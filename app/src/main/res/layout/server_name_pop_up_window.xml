@@ -39,6 +39,37 @@
             app:layout_constraintBottom_toTopOf="@id/okButton"
             />
 
+        <Button
+            android:id="@+id/okButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:backgroundTint="@color/dkt_red"
+            android:text="@string/OK"
+            android:textSize="14sp"
+            app:cornerRadius="12dp"
+            android:fontFamily="@font/bangers"
+            android:textColor="@color/dkt_yellow"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.094"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/popUpEditText" />
+
+        <Button
+            android:id="@+id/cancelButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:backgroundTint="@color/dkt_red"
+            android:text="@string/Cancel"
+            android:textSize="14sp"
+            app:cornerRadius="12dp"
+            android:fontFamily="@font/bangers"
+            android:textColor="@color/dkt_yellow"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.905"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/popUpEditText" />
 
 
 
