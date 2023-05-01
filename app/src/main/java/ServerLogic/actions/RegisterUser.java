@@ -15,10 +15,10 @@ public class RegisterUser implements ServerActionInterface {
 
         int clientId = Game.getPlayers().size() + 1; // Starts at 1 instead of 0
         String uniqueNickName = "Player" + clientId;
-        System.out.println("Debug - ClientID: " + clientId);
+        Log.d("[Server Register User]", "Debug - ClientID: " + clientId);
 
         Game.getPlayers().put(clientId, new Player(uniqueNickName));
 
-        GameViewActivity.clientID = clientId;
+        GameViewActivity.clientID = clientId; // Set gameview client ID
     }
 }

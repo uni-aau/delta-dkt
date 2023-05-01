@@ -11,7 +11,7 @@ import ClientUIHandling.Constants;
 import delta.dkt.R;
 
 public class ActionBroadcastStartStats implements ClientActionInterface {
-    private int MAX_PLAYER_VALUE = -1; // Todo muss via Lobby settings implementiert werden
+    private final int MAX_PLAYER_VALUE = -1; // Todo muss via Lobby settings implementiert werden
 
     @Override
     public void execute(AppCompatActivity activity, String clientMessage) {
@@ -19,6 +19,7 @@ public class ActionBroadcastStartStats implements ClientActionInterface {
 
         Log.d("[UI] BroadcastStartStats", "Received broadcast event: " + args[0]);
 
+        // Broadcast start toast to every player
         String toastValue = String.format(activity.getString(R.string.start_broadcast_toast_text), args[0]);
         Toast.makeText(activity, toastValue, Toast.LENGTH_SHORT).show();
 

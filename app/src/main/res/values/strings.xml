@@ -34,6 +34,5 @@
 
     <string name="NSDServiceName">delta_dkt</string>
     <string name="NSDServiceType">_delta_dkt.tcp</string>
-    <string name="not_your_turn_text">It is not your turn!</string>
     <string name="start_broadcast_toast_text">The game successfully started with %s players</string>
 </resources>

@@ -16,9 +16,11 @@ public class ActionStartGame implements ClientActionInterface {
     public void execute(AppCompatActivity activity, String clientMessage) {
         Log.d("Client UI Action", "Successfully received action from server handler: Activity: " + activity + " Message: " + clientMessage);
 
+        // Starts game and switches to game activity
         Intent switchToGameViewIntent = new Intent(activity, GameViewActivity.class);
         activity.startActivity(switchToGameViewIntent);
 
+        // Register players
         ServerActionHandler.triggerAction(PREFIX_REGISTER, 1);
     }
 }

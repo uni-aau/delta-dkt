@@ -43,9 +43,6 @@ public class GameViewActivity extends AppCompatActivity {
         ServerActionHandler.triggerAction(PREFIX_INIT_PLAYERS, String.valueOf(clientID)); // Set player & handle dice perms
         ServerActionHandler.triggerAction(PREFIX_GAME_START_STATS, String.valueOf(Game.getPlayers().size())); // Update player stats
 
-        System.out.println("ClientID Debug: " + clientID);
-
-
         handleMovementRequests();
     }
 
@@ -80,7 +77,7 @@ public class GameViewActivity extends AppCompatActivity {
             public boolean onTouch(View v, MotionEvent event) {
                 if (event.getAction() != MotionEvent.ACTION_DOWN) return false;
 
-                var map = findViewById(R.id.imageView);
+                map = findViewById(R.id.imageView);
 
                 float x = event.getX();
                 float y = event.getY();
@@ -108,7 +105,6 @@ public class GameViewActivity extends AppCompatActivity {
      * @param _player The player figure that is to be moved, ranging from 1 to 6.
      */
     public void updatePlayerPosition(int destination, int _player) {
-        ImageView map = findViewById(imageView);
         int figureIdentifier = getResources().getIdentifier("player" + _player, "id", getPackageName());
         ImageView figure = findViewById(figureIdentifier);
 
