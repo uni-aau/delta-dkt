@@ -2,6 +2,7 @@ package delta.dkt.activities;
 
 import ClientUIHandling.handlers.positioning.PositionHandler;
 import ServerLogic.ServerActionHandler;
+
 import android.content.Intent;
 import android.graphics.PointF;
 import android.os.Bundle;
@@ -11,6 +12,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.Button;
+
 import androidx.appcompat.app.AppCompatActivity;
 
 import ClientUIHandling.Constants;
@@ -25,7 +27,7 @@ import static delta.dkt.R.id.imageView;
 
 public class GameViewActivity extends AppCompatActivity {
     int[] locations = {1, 1, 1, 1, 1, 1};
-    int clientID = 1; //todo get the clients id - from 1 to 6
+    public static int clientID = 1; //todo get the clients id - from 1 to 6
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,12 +59,11 @@ public class GameViewActivity extends AppCompatActivity {
 
 
         //* Wait for the imageView to load, then update the default locations.
-        map.post(() -> updatePlayerPosition(locations[0], 1));
-        map.post(() -> updatePlayerPosition(locations[1], 2));
-        map.post(() -> updatePlayerPosition(locations[2], 3));
-        map.post(() -> updatePlayerPosition(locations[3], 4));
-        map.post(() -> updatePlayerPosition(locations[4], 5));
-        map.post(() -> updatePlayerPosition(locations[5], 6));
+        // Update only those player positions, that are in the game
+        for (int i = 0; i < Game.getPlayers().size(); i++) {
+            int value = i;
+            map.post(() -> updatePlayerPosition(locations[value], value + 1));
+        }
         map.post(() -> PositionHandler.setLogs(true));
 
 
