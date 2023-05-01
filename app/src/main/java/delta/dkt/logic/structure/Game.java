@@ -11,7 +11,7 @@ public class Game {
     static {
         map = new GameMap();
         players = new HashMap<>();
-        players.put(0, new Player("testPlayer"));
+//        players.put(0, new Player("testPlayer"));
 //        players.put(1, new Player("TestPlayer2"));
 
     }
