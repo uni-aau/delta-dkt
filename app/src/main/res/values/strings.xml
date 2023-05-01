@@ -18,7 +18,7 @@
     <string name="playing_time_text">Playing Time: {0}</string>
     <string name="roll_the_dice">Roll the dice</string>
     <string name="property_information">Property Information</string>
-    <string name="dice_information_text">{0} rolls the dice\n{1} left to roll the dice</string>
+    <string name="dice_information_text">%s rolls the dice\n{1} left to roll the dice</string>
     <string name="gameview_image_description">DKT-Board</string>
     <string name="activity_text">Activity: {0}</string>
     <string name="EnterButton">Enter</string>

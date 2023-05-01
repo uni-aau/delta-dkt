@@ -6,11 +6,15 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.util.Objects;
+
 import ClientUIHandling.ClientActionInterface;
 import delta.dkt.R;
+import delta.dkt.logic.structure.Game;
 
 public class ActionPlayerInit implements ClientActionInterface {
     @Override
@@ -34,6 +38,7 @@ public class ActionPlayerInit implements ClientActionInterface {
         }
 
         enablePlayers(activity, clientId);
+//        setInitRollDicePlayer(activity);
     }
 
     // Shows for every clientId a specific player marker in the gui
@@ -43,4 +48,21 @@ public class ActionPlayerInit implements ClientActionInterface {
         int figureIdentifier = activity.getResources().getIdentifier("player" + clientId, "id", activity.getPackageName());
         activity.findViewById(figureIdentifier).setVisibility(View.VISIBLE);
     }
+
+    // Todo derzeit noch nicht implementierbar
+/*    private void setInitRollDicePlayer(AppCompatActivity activity) {
+        String playerNickname = Objects.requireNonNull(Game.getPlayers().get(1)).getNickname();
+        String inputValue = String.format(activity.getString(R.string.dice_information_text), playerNickname);
+        Log.d("[UI] Action", "Set init player name: Nickname: " + playerNickname);
+
+        ((TextView) activity.findViewById(R.id.textView_dice_information)).setText(inputValue);
+    }*/
+
+/*    private void setInitRollDicePlayer(AppCompatActivity activity, int clientId) {
+        String playerNickname = Game.getPlayers().get(clientId).getNickname();
+        String inputValue = String.format(activity.getString(R.string.dice_information_text), playerNickname);
+        Log.d("[UI] Action", "Set init player name: " + clientId + " Nickname: " + playerNickname);
+
+        ((TextView) activity.findViewById(R.id.textView_dice_information)).setText(inputValue);
+    }*/
 }
