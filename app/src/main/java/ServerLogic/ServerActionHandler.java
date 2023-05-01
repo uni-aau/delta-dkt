@@ -2,6 +2,7 @@ package ServerLogic;
 
 import static ClientUIHandling.Constants.*;
 
+import ServerLogic.actions.GameStartStatsRequest;
 import ServerLogic.actions.RequestPlayerMovement;
 import android.util.Log;
 
@@ -33,6 +34,9 @@ public class ServerActionHandler {
 
         actions.add(new RollDicePerm());
         actionPrefixes.add(PREFIX_ROLL_DICE_PERM);
+
+        actions.add(new GameStartStatsRequest());
+        actionPrefixes.add(PREFIX_GAME_START_STATS);
 
         //* Request movement when pressing dice
         actions.add(new RequestPlayerMovement());
