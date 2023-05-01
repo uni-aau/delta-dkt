@@ -65,7 +65,7 @@ public class LobbyViewActivity extends AppCompatActivity{
 
         startButton.setOnClickListener(view -> {
             Log.d("Start", "Sending start action to server!");
-            ServerActionHandler.triggerAction(PREFIX_GAME_START, 1); // TODO client number
+            ServerActionHandler.triggerAction(PREFIX_GAME_START, 1);
         });
 
         MainActivity.subscribeToLogic(Constants.LobbyViewActivityType, this);

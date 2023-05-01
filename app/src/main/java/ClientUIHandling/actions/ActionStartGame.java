@@ -20,7 +20,6 @@ public class ActionStartGame implements ClientActionInterface {
         Intent switchToGameViewIntent = new Intent(activity, GameViewActivity.class);
         activity.startActivity(switchToGameViewIntent);
 
-        String uniqueID = UUID.randomUUID().toString(); // Unique ID for register command
-        ServerActionHandler.triggerAction(PREFIX_REGISTER, uniqueID);
+        ServerActionHandler.triggerAction(PREFIX_REGISTER, 1);
     }
 }
