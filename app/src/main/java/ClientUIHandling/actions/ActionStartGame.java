@@ -7,8 +7,6 @@ import android.util.Log;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import java.util.UUID;
-
 import ClientUIHandling.ClientActionInterface;
 import ServerLogic.ServerActionHandler;
 import delta.dkt.activities.GameViewActivity;

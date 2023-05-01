@@ -12,6 +12,7 @@ import delta.dkt.R;
 
 public class ActionBroadcastStartStats implements ClientActionInterface {
     private int MAX_PLAYER_VALUE = -1; // Todo muss via Lobby settings implementiert werden
+
     @Override
     public void execute(AppCompatActivity activity, String clientMessage) {
         String[] args = clientMessage.replace(Constants.PREFIX_GAME_START_STATS, "").trim().split(";"); // Holt sich Args nach dem Prefix
@@ -26,6 +27,6 @@ public class ActionBroadcastStartStats implements ClientActionInterface {
 
     private void updateGeneralInfo(AppCompatActivity activity, String playerAmount) {
         String inputValue = String.format(activity.getString(R.string.players_online), Integer.parseInt(playerAmount), MAX_PLAYER_VALUE);
-        ((TextView)activity.findViewById(R.id.textView_players_online)).setText(inputValue);
+        ((TextView) activity.findViewById(R.id.textView_players_online)).setText(inputValue);
     }
 }

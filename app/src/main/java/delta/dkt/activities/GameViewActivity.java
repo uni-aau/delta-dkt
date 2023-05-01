@@ -1,33 +1,31 @@
 package delta.dkt.activities;
 
-import ClientUIHandling.handlers.positioning.PositionHandler;
-import ServerLogic.ServerActionHandler;
+import static ClientUIHandling.Constants.PREFIX_GAME_START_STATS;
+import static ClientUIHandling.Constants.PREFIX_INIT_PLAYERS;
+import static ClientUIHandling.Constants.PREFIX_PLAYER_MOVE;
+import static delta.dkt.R.id.imageView;
 
 import android.content.Intent;
 import android.graphics.PointF;
 import android.os.Bundle;
-
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.Button;
+import android.widget.ImageView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import ClientUIHandling.Constants;
+import ClientUIHandling.handlers.positioning.PositionHandler;
+import ServerLogic.ServerActionHandler;
 import delta.dkt.R;
 import delta.dkt.logic.structure.Game;
 
-import static ClientUIHandling.Constants.PREFIX_GAME_START_STATS;
-import static ClientUIHandling.Constants.PREFIX_PLAYER_MOVE;
-import static ClientUIHandling.Constants.PREFIX_INIT_PLAYERS;
-import static delta.dkt.R.id.imageView;
-
 
 public class GameViewActivity extends AppCompatActivity {
-    int[] locations = {1, 1, 1, 1, 1, 1};
     public static int clientID = -1; // ID gets set by server
+    int[] locations = {1, 1, 1, 1, 1, 1};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,8 +35,8 @@ public class GameViewActivity extends AppCompatActivity {
         findViewById(R.id.button_property_infos).setOnClickListener(view -> switchToPropertyActivity());
 
         MainActivity.subscribeToLogic(Constants.GameViewActivityType, this);
-        ServerActionHandler.triggerAction(PREFIX_INIT_PLAYERS, String.valueOf(clientID)); // Todo prefix anpassen
-        ServerActionHandler.triggerAction(PREFIX_GAME_START_STATS, String.valueOf(Game.getPlayers().size()));
+        ServerActionHandler.triggerAction(PREFIX_INIT_PLAYERS, String.valueOf(clientID)); // Set player & handle dice perms
+        ServerActionHandler.triggerAction(PREFIX_GAME_START_STATS, String.valueOf(Game.getPlayers().size())); // Update player stats
 
         System.out.println("ClientID Debug: " + clientID);
 

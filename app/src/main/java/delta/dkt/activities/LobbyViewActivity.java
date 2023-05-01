@@ -3,15 +3,15 @@ package delta.dkt.activities;
 import static ClientUIHandling.Constants.PREFIX_GAME_START;
 import static delta.dkt.activities.MainActivity.INTENT_PARAMETER;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Button;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 
@@ -20,8 +20,7 @@ import ServerLogic.ServerActionHandler;
 import delta.dkt.R;
 
 
-
-public class LobbyViewActivity extends AppCompatActivity{
+public class LobbyViewActivity extends AppCompatActivity {
 
     RecyclerView recyclerView;
     UserNameAdapter adapter;
@@ -55,8 +54,6 @@ public class LobbyViewActivity extends AppCompatActivity{
         recyclerView.setAdapter(adapter);
 
 
-
-
         backButton.setOnClickListener(view -> {
             Intent intent = new Intent(getApplicationContext(), MainMenuActivity.class);
             intent.putExtra(INTENT_PARAMETER, newUser);
@@ -65,7 +62,7 @@ public class LobbyViewActivity extends AppCompatActivity{
 
         startButton.setOnClickListener(view -> {
             Log.d("Start", "Sending start action to server!");
-            ServerActionHandler.triggerAction(PREFIX_GAME_START, 1);
+            ServerActionHandler.triggerAction(PREFIX_GAME_START, "");
         });
 
         MainActivity.subscribeToLogic(Constants.LobbyViewActivityType, this);

@@ -6,15 +6,11 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import java.util.Objects;
-
 import ClientUIHandling.ClientActionInterface;
 import delta.dkt.R;
-import delta.dkt.logic.structure.Game;
 
 public class ActionPlayerInit implements ClientActionInterface {
     @Override

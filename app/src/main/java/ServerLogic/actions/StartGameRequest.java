@@ -1,6 +1,5 @@
 package ServerLogic.actions;
 
-import static ClientUIHandling.Constants.GameViewActivityType;
 import static ClientUIHandling.Constants.LobbyViewActivityType;
 import static ClientUIHandling.Constants.PREFIX_GAME_START;
 
@@ -14,9 +13,6 @@ public class StartGameRequest implements ServerActionInterface {
     public void execute(ServerNetworkClient server, Object parameters) {
         Log.d("Server START GAME", "Start request received! Server: " + server + " parameters: " + parameters);
 
-        String[] notificationMessage = {"Test"};
-        server.broadcast(LobbyViewActivityType, PREFIX_GAME_START, notificationMessage);
-
-        // TODO
+        server.broadcast(LobbyViewActivityType, PREFIX_GAME_START, new String[]{(String) parameters});
     }
 }
