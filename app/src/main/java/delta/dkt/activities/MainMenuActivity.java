@@ -75,7 +75,11 @@ public class MainMenuActivity extends AppCompatActivity {
 
         okButton.setOnClickListener(view1 -> {
             String serverName = editText.getText().toString();
-            startServer(serverName);
+            if (serverName.isEmpty()) {
+                Toast.makeText(MainMenuActivity.this, "Please enter Servername", Toast.LENGTH_SHORT).show();
+            }else {
+                startServer(serverName);
+            }
         });
 
         cancelButton.setOnClickListener(view1 -> alertDialog.dismiss());
