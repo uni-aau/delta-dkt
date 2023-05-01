@@ -37,8 +37,10 @@ public class GameViewActivity extends AppCompatActivity {
         findViewById(R.id.button_property_infos).setOnClickListener(view -> switchToPropertyActivity());
 
         MainActivity.subscribeToLogic(Constants.GameViewActivityType, this);
-        ServerActionHandler.triggerAction(PREFIX_ROLL_DICE_PERM, String.valueOf(Game.getPlayers().size()));
+        ServerActionHandler.triggerAction(PREFIX_ROLL_DICE_PERM, String.valueOf(clientID));
         ServerActionHandler.triggerAction(PREFIX_GAME_START_STATS, String.valueOf(Game.getPlayers().size()));
+
+        System.out.println("ClientID Debug: " + clientID);
 
 
         handleMovementRequests();

@@ -9,7 +9,6 @@ import network2.ServerNetworkClient;
 public class RollDicePerm implements ServerActionInterface {
     @Override
     public void execute(ServerNetworkClient server, Object parameters) {
-        // Will be recoded later
         server.broadcast(GameViewActivityType, PREFIX_ROLL_DICE_PERM, new String[]{(String) parameters});
     }
 }
