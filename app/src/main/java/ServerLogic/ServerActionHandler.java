@@ -9,7 +9,7 @@ import android.util.Log;
 import java.util.ArrayList;
 
 import ServerLogic.actions.RegisterUser;
-import ServerLogic.actions.RollDicePerm;
+import ServerLogic.actions.RequestPlayerInit;
 import ServerLogic.actions.StartGameRequest;
 import network2.ServerNetworkClient;
 
@@ -32,8 +32,8 @@ public class ServerActionHandler {
         actions.add(new RegisterUser());
         actionPrefixes.add(PREFIX_REGISTER);
 
-        actions.add(new RollDicePerm());
-        actionPrefixes.add(PREFIX_ROLL_DICE_PERM);
+        actions.add(new RequestPlayerInit());
+        actionPrefixes.add(PREFIX_INIT_PLAYERS);
 
         actions.add(new GameStartStatsRequest());
         actionPrefixes.add(PREFIX_GAME_START_STATS);

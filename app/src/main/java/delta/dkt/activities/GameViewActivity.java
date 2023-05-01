@@ -21,7 +21,7 @@ import delta.dkt.logic.structure.Game;
 
 import static ClientUIHandling.Constants.PREFIX_GAME_START_STATS;
 import static ClientUIHandling.Constants.PREFIX_PLAYER_MOVE;
-import static ClientUIHandling.Constants.PREFIX_ROLL_DICE_PERM;
+import static ClientUIHandling.Constants.PREFIX_INIT_PLAYERS;
 import static delta.dkt.R.id.imageView;
 
 
@@ -37,7 +37,7 @@ public class GameViewActivity extends AppCompatActivity {
         findViewById(R.id.button_property_infos).setOnClickListener(view -> switchToPropertyActivity());
 
         MainActivity.subscribeToLogic(Constants.GameViewActivityType, this);
-        ServerActionHandler.triggerAction(PREFIX_ROLL_DICE_PERM, String.valueOf(clientID)); // Todo prefix anpassen
+        ServerActionHandler.triggerAction(PREFIX_INIT_PLAYERS, String.valueOf(clientID)); // Todo prefix anpassen
         ServerActionHandler.triggerAction(PREFIX_GAME_START_STATS, String.valueOf(Game.getPlayers().size()));
 
         System.out.println("ClientID Debug: " + clientID);
