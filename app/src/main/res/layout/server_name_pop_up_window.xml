@@ -15,6 +15,30 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent">
 
+        <TextView
+            android:id="@+id/popUpTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/EnterServerName"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            android:paddingTop="28dp"
+            android:gravity="center_horizontal"
+            android:fontFamily="@font/bangers"
+            app:layout_constraintTop_toTopOf="@id/layoutPopUp"/>
+
+        <EditText
+            android:id="@+id/popUpEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginStart="20dp"
+            android:textSize="18sp"
+            app:layout_constraintTop_toBottomOf="@id/popUpTitle"
+            app:layout_constraintBottom_toTopOf="@id/okButton"
+            />
+
 
 
 
