@@ -31,6 +31,11 @@
     <string name="DktLogoDescription">DKTLogo</string>
     <string name="Avatar">Avatar</string>
     <string name="PlayerLobby">Player Lobby</string>
+    <string name="EnterServerName">Please enter Server name</string>
+    <string name="OK">OK</string>
+    <string name="Cancel">Cancel</string>
+    <string name="ServerName">ServerName</string>
+
 
     <string name="NSDServiceName">delta_dkt</string>
     <string name="NSDServiceType">_delta_dkt.tcp</string>
