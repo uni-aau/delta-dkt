@@ -5,7 +5,9 @@ import static ClientUIHandling.Constants.PREFIX_ROLL_DICE_PERM;
 import android.content.Context;
 import android.graphics.Color;
 import android.util.Log;
+import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -32,5 +34,15 @@ public class ActionRollDicePermission implements ClientActionInterface {
             rollDice.setEnabled(false);
             rollDice.setBackgroundResource(R.drawable.host_btn_background_disabled);
         }
+
+        enablePlayers(activity, clientId);
+    }
+
+    // Shows for every clientId a specific player marker in the gui
+    private void enablePlayers(AppCompatActivity activity, int clientId) {
+        Log.d("[UI] Action", "Received client ID for player enabling: " + clientId);
+
+        int figureIdentifier = activity.getResources().getIdentifier("player" + clientId, "id", activity.getPackageName());
+        activity.findViewById(figureIdentifier).setVisibility(View.VISIBLE); // Todo es wird trotzdem noch die alte ID sichtbar gemacht?
     }
 }

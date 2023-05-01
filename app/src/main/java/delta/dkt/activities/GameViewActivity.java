@@ -27,7 +27,7 @@ import static delta.dkt.R.id.imageView;
 
 public class GameViewActivity extends AppCompatActivity {
     int[] locations = {1, 1, 1, 1, 1, 1};
-    public static int clientID = 1; //todo get the clients id - from 1 to 6
+    public static int clientID = -1; // ID gets set by server
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,7 +37,7 @@ public class GameViewActivity extends AppCompatActivity {
         findViewById(R.id.button_property_infos).setOnClickListener(view -> switchToPropertyActivity());
 
         MainActivity.subscribeToLogic(Constants.GameViewActivityType, this);
-        ServerActionHandler.triggerAction(PREFIX_ROLL_DICE_PERM, String.valueOf(clientID));
+        ServerActionHandler.triggerAction(PREFIX_ROLL_DICE_PERM, String.valueOf(clientID)); // Todo prefix anpassen
         ServerActionHandler.triggerAction(PREFIX_GAME_START_STATS, String.valueOf(Game.getPlayers().size()));
 
         System.out.println("ClientID Debug: " + clientID);
