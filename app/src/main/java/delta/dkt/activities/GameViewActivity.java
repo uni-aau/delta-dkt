@@ -17,6 +17,7 @@ import ClientUIHandling.Constants;
 import delta.dkt.R;
 import delta.dkt.logic.structure.Game;
 
+import static ClientUIHandling.Constants.PREFIX_GAME_START_STATS;
 import static ClientUIHandling.Constants.PREFIX_PLAYER_MOVE;
 import static ClientUIHandling.Constants.PREFIX_ROLL_DICE_PERM;
 import static delta.dkt.R.id.imageView;
@@ -35,6 +36,7 @@ public class GameViewActivity extends AppCompatActivity {
 
         MainActivity.subscribeToLogic(Constants.GameViewActivityType, this);
         ServerActionHandler.triggerAction(PREFIX_ROLL_DICE_PERM, String.valueOf(Game.getPlayers().size()));
+        ServerActionHandler.triggerAction(PREFIX_GAME_START_STATS, String.valueOf(Game.getPlayers().size()));
 
 
         handleMovementRequests();
