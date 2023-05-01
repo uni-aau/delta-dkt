@@ -10,7 +10,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.ArrayList;
 
-import ClientUIHandling.actions.ActionRollDice;
 import ClientUIHandling.actions.ActionStartGame;
 import ClientUIHandling.actions.ActionPlayerInit;
 
@@ -40,9 +39,6 @@ public class ClientHandler extends Handler {
 
         actions.add(new ActionBroadcastStartStats());
         actionPrefixes.add(Constants.PREFIX_GAME_START_STATS);
-
-        actions.add(new ActionRollDice());
-        actionPrefixes.add(Constants.PREFIX_ROLL_DICE_REQUEST);
     }
 
 

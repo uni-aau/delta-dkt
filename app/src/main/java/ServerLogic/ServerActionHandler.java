@@ -10,7 +10,6 @@ import java.util.ArrayList;
 
 import ServerLogic.actions.RegisterUser;
 import ServerLogic.actions.RequestPlayerInit;
-import ServerLogic.actions.RollDicePermRequest;
 import ServerLogic.actions.StartGameRequest;
 import network2.ServerNetworkClient;
 
@@ -38,9 +37,6 @@ public class ServerActionHandler {
 
         actions.add(new GameStartStatsRequest());
         actionPrefixes.add(PREFIX_GAME_START_STATS);
-
-        actions.add(new RollDicePermRequest());
-        actionPrefixes.add(PREFIX_ROLL_DICE_REQUEST);
 
         //* Request movement when pressing dice
         actions.add(new RequestPlayerMovement());
