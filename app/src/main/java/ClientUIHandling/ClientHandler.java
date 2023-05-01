@@ -1,5 +1,6 @@
 package ClientUIHandling;
 
+import ClientUIHandling.actions.ActionBroadcastStartStats;
 import ClientUIHandling.actions.ActionMove;
 import android.os.Handler;
 import android.os.Message;
@@ -35,6 +36,9 @@ public class ClientHandler extends Handler {
 
         actions.add(new ActionRollDicePermission());
         actionPrefixes.add(Constants.PREFIX_ROLL_DICE_PERM);
+
+        actions.add(new ActionBroadcastStartStats());
+        actionPrefixes.add(Constants.PREFIX_GAME_START_STATS);
     }
 
 
