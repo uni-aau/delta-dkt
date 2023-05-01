@@ -1,6 +1,8 @@
 package ClientUIHandling;
 
 import ClientUIHandling.actions.ActionMove;
+import ClientUIHandling.actions.ActionRollDice;
+
 import android.os.Handler;
 import android.os.Message;
 
@@ -26,6 +28,9 @@ public class ClientHandler extends Handler {
 
         actions.add(new ActionMove());
         actionPrefixes.add(Constants.PREFIX_PLAYER_MOVE);
+
+        actions.add(new ActionRollDice());
+        actionPrefixes.add(Constants.PREFIX_ROLL_DICE_REQUEST);
     }
 
 

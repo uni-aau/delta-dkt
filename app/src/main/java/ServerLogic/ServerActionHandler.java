@@ -8,6 +8,7 @@ import android.util.Log;
 import java.util.ArrayList;
 
 import ClientUIHandling.ClientActionInterface;
+import ServerLogic.actions.RollDicePermRequest;
 import network2.ServerNetworkClient;
 
 public class ServerActionHandler {
@@ -27,6 +28,9 @@ public class ServerActionHandler {
         //* Request movement when pressing dice
         actions.add(new RequestPlayerMovement());
         actionPrefixes.add(PREFIX_PLAYER_MOVE);
+
+        actions.add(new RollDicePermRequest());
+        actionPrefixes.add(PREFIX_ROLL_DICE_REQUEST);
 
 
     }
