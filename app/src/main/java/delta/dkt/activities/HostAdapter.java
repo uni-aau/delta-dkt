@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -17,6 +18,7 @@ public class HostAdapter extends RecyclerView.Adapter<HostAdapter.HostViewHolder
 
     Context context;
     ArrayList<String> hostId;
+    public static View selectedView;
 
     public HostAdapter (Context context, ArrayList<String> hostId) {
         this.context=context;
@@ -41,14 +43,28 @@ public class HostAdapter extends RecyclerView.Adapter<HostAdapter.HostViewHolder
         return hostId.size();
     }
 
-    class HostViewHolder extends RecyclerView.ViewHolder {
+    class HostViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         // Grabs informations thats needed from the recycler_view_find_host.xml
-
         TextView hostId;
-
         public HostViewHolder (@NonNull View itemView) {
             super(itemView);
             hostId = itemView.findViewById(R.id.hostId_txt);
+            itemView.setOnClickListener(this);
+        }
+
+        @Override
+        public void onClick(View view) {
+            String selectedHost = hostId.getText().toString();
+            view.findViewById(R.id.recViewFindHost).setBackgroundResource(R.drawable.host_background);
+
+            if(selectedView == null){
+                selectedView = view;
+            }else{
+                selectedView.findViewById(R.id.recViewFindHost).setBackgroundResource(R.drawable.user_card_background);
+                selectedView = view;
+            }
+
+            Toast.makeText(context, "Selected host: " + selectedHost, Toast.LENGTH_SHORT).show();
         }
     }
 }

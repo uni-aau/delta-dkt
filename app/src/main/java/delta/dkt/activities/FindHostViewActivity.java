@@ -6,6 +6,7 @@ import static delta.dkt.activities.MainActivity.INTENT_PARAMETER;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -35,9 +36,7 @@ public class FindHostViewActivity extends AppCompatActivity{
         Button joinButton = findViewById(R.id.joinbtn);
         String newUser = getIntent().getStringExtra(INTENT_PARAMETER);
 
-
         hostList = new ArrayList<>();
-
 
         hostList.add("Host1");
         hostList.add("Host2");
@@ -47,7 +46,6 @@ public class FindHostViewActivity extends AppCompatActivity{
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         adapter = new HostAdapter(this, hostList);
         recyclerView.setAdapter(adapter);
-
 
 
         backButton.setOnClickListener(view -> {

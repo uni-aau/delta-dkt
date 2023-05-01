@@ -2,6 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/host_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".activities.MainActivity">
@@ -31,8 +32,7 @@
         android:layout_width="match_parent"
         android:layout_height="450dp"
         android:layout_below="@id/textView"
-        android:layout_marginTop="5dp"
-        />
+        android:layout_marginTop="5dp" />
 
     <Button
         android:id="@+id/backbtn"
@@ -58,7 +58,8 @@
         android:background="@drawable/host_btn_background"
         android:text="@string/JoinBtn"
         android:textColor="@color/dkt_yellow"
-        android:textSize="20sp" />
+        android:textSize="20sp"
+        android:visibility="invisible" />
 
 
 </RelativeLayout>
