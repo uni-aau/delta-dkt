@@ -17,7 +17,7 @@ public class RegisterUser implements ServerActionInterface {
         String uniqueNickName = "Player" + clientId;
         System.out.println("Debug - ClientID: " + clientId);
 
-        Game.getPlayers().put(clientId, new Plsayer(uniqueNickName));
+        Game.getPlayers().put(clientId, new Player(uniqueNickName));
 
         GameViewActivity.clientID = clientId;
     }
