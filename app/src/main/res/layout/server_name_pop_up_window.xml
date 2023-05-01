@@ -35,6 +35,9 @@
             android:layout_marginEnd="20dp"
             android:layout_marginStart="20dp"
             android:textSize="18sp"
+            android:inputType="text"
+            android:autofillHints="name"
+            android:hint="@string/EnterServerName"
             app:layout_constraintTop_toBottomOf="@id/popUpTitle"
             app:layout_constraintBottom_toTopOf="@id/okButton"
             />
@@ -76,6 +79,7 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <ImageView
+        android:contentDescription="@string/DktLogoDescription"
         android:id="@+id/dktLogo"
         android:layout_width="50dp"
         android:layout_height="50dp"
