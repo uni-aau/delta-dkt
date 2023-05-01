@@ -7,7 +7,6 @@ import android.util.Log;
 
 import java.util.ArrayList;
 
-import ClientUIHandling.ClientActionInterface;
 import network2.ServerNetworkClient;
 
 public class ServerActionHandler {
@@ -20,13 +19,14 @@ public class ServerActionHandler {
         actions = new ArrayList<>();
         actionPrefixes = new ArrayList<>();
 
-        actions.add(new exampleAction());
+        actions.add(new ActionPayRent());
         actionPrefixes.add(PREFIX_PLAYER_PAYRENT);
 
 
         //* Request movement when pressing dice
         actions.add(new RequestPlayerMovement());
         actionPrefixes.add(PREFIX_PLAYER_MOVE);
+
 
 
     }

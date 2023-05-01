@@ -26,6 +26,9 @@ public class ClientHandler extends Handler {
 
         actions.add(new ActionMove());
         actionPrefixes.add(Constants.PREFIX_PLAYER_MOVE);
+
+        actions.add(new ActionPlayerLost());
+        actionPrefixes.add(Constants.PREFIX_PLAYER_RENTPAID);
     }
 
 
