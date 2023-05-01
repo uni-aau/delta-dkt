@@ -6,6 +6,21 @@
     android:layout_height="wrap_content"
     android:id = "@+id/popUpConstraintLayout">
 
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/layoutPopUp"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/pop_up_background"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
 
 
 
