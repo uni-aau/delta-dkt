@@ -26,11 +26,16 @@ import delta.dkt.logic.structure.Game;
 public class GameViewActivity extends AppCompatActivity {
     public static int clientID = -1; // ID gets set by server
     int[] locations = {1, 1, 1, 1, 1, 1};
+    Button btnDice;
+    ImageView map;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game_view);
+
+        btnDice = findViewById(R.id.button_roll_dice);
+        map = findViewById(imageView);
 
         findViewById(R.id.button_property_infos).setOnClickListener(view -> switchToPropertyActivity());
 
@@ -54,10 +59,6 @@ public class GameViewActivity extends AppCompatActivity {
      * This method handles the movement requests of a client, thus sending the request to server.
      */
     private void handleMovementRequests() {
-        Button btnDice = findViewById(R.id.button_roll_dice);
-        ImageView map = findViewById(imageView);
-
-
         //* Wait for the imageView to load, then update the default locations.
         // Update only those player positions, that are in the game
         for (int i = 0; i < Game.getPlayers().size(); i++) {
@@ -119,5 +120,17 @@ public class GameViewActivity extends AppCompatActivity {
         var pos = PositionHandler.calculateFigurePosition(destination, _player, figure, map);
         figure.setX(pos.x);
         figure.setY(pos.y);
+    }
+
+    public void enableDice() {
+        btnDice.setEnabled(true);
+        btnDice.setBackgroundResource(R.drawable.host_btn_background);
+        map.setEnabled(true);
+    }
+
+    public void disableDice() {
+        btnDice.setEnabled(false); // prevent touch event
+        btnDice.setBackgroundResource(R.drawable.host_btn_background_disabled);
+        map.setEnabled(false);
     }
 }
