@@ -1,9 +1,5 @@
 package ServerLogic.actions;
 
-import static ClientUIHandling.Constants.GameViewActivityType;
-import static ClientUIHandling.Constants.LobbyViewActivityType;
-import static ClientUIHandling.Constants.PREFIX_ROLL_DICE_PERM;
-
 import android.util.Log;
 
 import ServerLogic.ServerActionInterface;
@@ -18,10 +14,12 @@ public class RegisterUser implements ServerActionInterface {
         String uuid = (String) parameters;
         Log.d("Server Register User", "Register User request received! Server: " + server + " parameters: " + parameters);
 
-        int size = Game.getPlayers().size();
-        System.out.println("Debug - Gamesize: " + size);
-        Game.getPlayers().put(size + 1, new Player(uuid));
+        int clientId = Game.getPlayers().size() + 1; // Starts at 1 instead of 0
+        System.out.println("Debug - ClientID: " + clientId);
+        Game.getPlayers().put(clientId + 1, new Player(uuid));
 
-        // Todo start toast + update online players + button enabling
+        GameViewActivity.clientID = clientId;
+
+        // Todo button enabling
     }
 }
