@@ -36,11 +36,11 @@ public class exampleAction implements ServerActionInterface{
                 if(owner != null && !property.getOwner().equals(player)){
                     int rent = property.calculateRent();
                     if(player.getCash() < rent){
-                        //TODO: Call player lose event
+                        Game.getPlayers().remove(player);
+                        server.broadcast(MainActivityType+":"+PREFIX_PLAYER_LOST+" "+id);
 
                     }else{
                         player.payRentTo(owner, rent);
-
                         server.broadcast(MainActivityType+":"+PREFIX_PLAYER_RENTPAID+" "+id+" "+player.getCash()+" "+owner.getId()+" "+owner.getCash());
                     }
 
