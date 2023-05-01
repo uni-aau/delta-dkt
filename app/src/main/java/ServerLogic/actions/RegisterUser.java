@@ -16,7 +16,7 @@ public class RegisterUser implements ServerActionInterface {
 
         int clientId = Game.getPlayers().size() + 1; // Starts at 1 instead of 0
         System.out.println("Debug - ClientID: " + clientId);
-        Game.getPlayers().put(clientId + 1, new Player(uuid));
+        Game.getPlayers().put(clientId, new Player(uuid));
 
         GameViewActivity.clientID = clientId;
 
