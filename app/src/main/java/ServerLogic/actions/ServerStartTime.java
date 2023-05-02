@@ -6,6 +6,7 @@ import static ClientUIHandling.Constants.PREFIX_GET_SERVER_TIME;
 import android.os.CountDownTimer;
 import android.util.Log;
 
+import ClientUIHandling.Config;
 import ServerLogic.ServerActionInterface;
 import network2.ServerNetworkClient;
 
@@ -18,11 +19,10 @@ public class ServerStartTime implements ServerActionInterface {
     public void execute(ServerNetworkClient server, Object parameters) {
         Log.d("Server Start Time", "Received Server Start Time request!");
 
-        int endValue = 30000;
-        timer = new CountDownTimer(endValue, 1000) {
+        timer = new CountDownTimer(Config.END_TIME, 1000) {
             @Override
             public void onTick(long l) {
-                elapsedTime += 1000; // + 1000 millisekunden -> +1 sekunde
+                elapsedTime += 1000; // + 1000 millisekunden pro Tick -> +1 sekunde
 
                 int currentMinute = (int) (elapsedTime / 60000);
                 System.out.println("Debug - CurrentMinute = " + currentMinute);
@@ -37,7 +37,6 @@ public class ServerStartTime implements ServerActionInterface {
                 timer.cancel(); // Timer stoppt
                 // Todo - Game wird abgebrochen und ein Gewinner eruiert
                 // Text sollte kurz vor knapp rot werden. Entweder runter zählen oder raufzählen (countdown)
-                // Endvalue muss später über Settings festlegt werden
             }
         };
         timer.start();
