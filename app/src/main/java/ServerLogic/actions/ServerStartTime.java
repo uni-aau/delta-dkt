@@ -25,7 +25,7 @@ public class ServerStartTime implements ServerActionInterface {
                 elapsedTime += 1000; // + 1000 millisekunden pro Tick -> +1 sekunde
 
                 int currentMinute = (int) (elapsedTime / 60000);
-                System.out.println("Debug - CurrentMinute = " + currentMinute);
+                Log.d("[Server] Request Time", "CurrentMinute = " + currentMinute + "PreviousMinute = " + previousMinute);
 
                 // if(currentMinute != previousMinute) { // Todo - Check, ob nur eine Request pro Minute?
                 server.broadcast(GameViewActivityType, PREFIX_GET_SERVER_TIME, new String[]{String.valueOf(elapsedTime)});
@@ -34,9 +34,8 @@ public class ServerStartTime implements ServerActionInterface {
 
             @Override
             public void onFinish() {
-                timer.cancel(); // Timer stoppt
-                // Todo - Game wird abgebrochen und ein Gewinner eruiert
-                // Text sollte kurz vor knapp rot werden. Entweder runter zählen oder raufzählen (countdown)
+                timer.cancel();
+                // Todo - Game wird abgebrochen und ein Gewinner eruiert - CountDown oder StoppUhr
             }
         };
         timer.start();
