@@ -7,35 +7,43 @@
     tools:context=".activities.MainActivity">
 
 
-
     <ImageView
-        android:contentDescription="@string/DktLogoDescription"
         android:id="@+id/dkt_logo"
-        android:layout_width="150dp"
-        android:layout_height="100dp"
-        android:layout_centerHorizontal="true"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:contentDescription="@string/DktLogoDescription"
         app:srcCompat="@drawable/dkt_logo_2"
-        tools:layout_editor_absoluteY="128dp" />
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp"/>
 
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
         android:layout_centerHorizontal="true"
-        android:text="@string/PlayerLobby"
-        android:layout_below="@id/dkt_logo"
-        android:layout_marginTop="1dp"
-        android:textSize="30sp"
         android:fontFamily="@font/bangers"
-        android:textColor="@color/dkt_red"/>
+        android:text="@string/PlayerLobby"
+        android:textColor="@color/dkt_red"
+        android:textSize="30sp" />
+
+    <TextView
+        android:id="@+id/currentPlayersTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/NumberOfPlayers"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="1dp"
+        android:fontFamily="@font/bangers"
+        android:textSize="20sp"
+        android:layout_below="@id/dkt_logo"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/lobbyRecyclerView"
         android:layout_width="match_parent"
         android:layout_height="450dp"
-        android:layout_below="@id/textView"
-        android:layout_marginTop="5dp"
-        />
+        android:layout_below="@id/currentPlayersTextView"
+        android:layout_marginTop="40dp" />
 
 
     <Button
