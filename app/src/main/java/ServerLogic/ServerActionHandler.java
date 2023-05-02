@@ -10,7 +10,7 @@ import java.util.ArrayList;
 
 import ServerLogic.actions.RegisterUser;
 import ServerLogic.actions.RequestPlayerInit;
-import ServerLogic.actions.StartGameRequest;
+import ServerLogic.actions.RequestGameStart;
 import network2.ServerNetworkClient;
 
 public class ServerActionHandler {
@@ -26,7 +26,7 @@ public class ServerActionHandler {
         actions.add(new exampleAction());
         actionPrefixes.add(PREFIX_PLAYER_PAYRENT);
 
-        actions.add(new StartGameRequest());
+        actions.add(new RequestGameStart());
         actionPrefixes.add(PREFIX_GAME_START);
 
         actions.add(new RegisterUser());

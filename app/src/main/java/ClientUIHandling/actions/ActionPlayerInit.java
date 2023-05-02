@@ -36,8 +36,8 @@ public class ActionPlayerInit implements ClientActionInterface {
     private void enablePlayers(AppCompatActivity activity, int clientId) {
         Log.d("[UI] Action", "Received client ID for player enabling: " + clientId);
 
-        if(clientId <= Config.MAX_CLIENTS) {
-            for(int i = 1; i <= Game.getPlayers().size(); i++) { // Sets the markers visible for every player (specially late joins)
+        if (clientId <= Config.MAX_CLIENTS) {
+            for (int i = 1; i <= Game.getPlayers().size(); i++) { // Sets the markers visible for every player (specially late joins)
                 int figureIdentifier = activity.getResources().getIdentifier("player" + i, "id", activity.getPackageName());
                 activity.findViewById(figureIdentifier).setVisibility(View.VISIBLE);
             }
