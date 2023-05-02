@@ -7,6 +7,7 @@ import android.util.Log;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
+import ServerLogic.ServerActionHandler;
 import delta.dkt.R;
 import delta.dkt.activities.GameViewActivity;
 
@@ -44,5 +45,7 @@ public class ActionMove implements ClientActionInterface {
 
         var snack = SnackBarHandler.createSnackbar(activity.findViewById(R.id.imageView), result, 2000, true, "#6481d5", null);
         snack.show();
+
+        ServerActionHandler.triggerAction(Constants.PREFIX_ROLL_DICE_REQUEST, clientID); // Sets the next player to roll the dice
     }
 }

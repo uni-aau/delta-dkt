@@ -8,6 +8,7 @@ import android.util.Log;
 
 import java.util.ArrayList;
 
+import ServerLogic.actions.RequestRollDicePerm;
 import ServerLogic.actions.RequestGameStartTime;
 import ServerLogic.actions.RegisterUser;
 import ServerLogic.actions.RequestPlayerInit;
@@ -42,6 +43,10 @@ public class ServerActionHandler {
         //* Request movement when pressing dice
         actions.add(new RequestPlayerMovement());
         actionPrefixes.add(PREFIX_PLAYER_MOVE);
+
+        actions.add(new RequestRollDicePerm());
+        actionPrefixes.add(PREFIX_ROLL_DICE_REQUEST);
+
 
         actions.add(new RequestGameStartTime());
         actionPrefixes.add(PREFIX_GET_SERVER_TIME);
