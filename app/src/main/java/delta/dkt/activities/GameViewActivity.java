@@ -16,6 +16,7 @@ import android.widget.ImageView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import ClientUIHandling.Config;
 import ClientUIHandling.Constants;
 import ClientUIHandling.handlers.positioning.PositionHandler;
 import ServerLogic.ServerActionHandler;
@@ -25,7 +26,6 @@ import delta.dkt.logic.structure.Game;
 
 public class GameViewActivity extends AppCompatActivity {
     public static int clientID = -1; // ID gets set by server
-    private final int MAX_CLIENTS = 6; // Todo move
     int[] locations = {1, 1, 1, 1, 1, 1};
     Button btnDice;
     ImageView map;
@@ -59,7 +59,7 @@ public class GameViewActivity extends AppCompatActivity {
         //* Wait for the imageView to load, then update the default locations.
         // Update only those player positions, that are in the game
         for (int i = 0; i < Game.getPlayers().size(); i++) {
-            if (i <= MAX_CLIENTS - 1) {
+            if (i <= Config.MAX_CLIENTS - 1) {
                 int value = i;
                 map.post(() -> updatePlayerPosition(locations[value], value + 1));
             }
