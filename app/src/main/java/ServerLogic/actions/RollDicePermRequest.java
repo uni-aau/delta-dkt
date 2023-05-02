@@ -18,7 +18,7 @@ public class RollDicePermRequest implements ServerActionInterface {
 
         // Check if clientID is last ID in game
         if (oldClientId % Game.getPlayers().size() == 0) {
-            nextClient = 1; // swap to first position
+            nextClient = 1; // swap to first player
         } else {
             nextClient = oldClientId + 1;
         }
