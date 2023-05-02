@@ -1,5 +1,7 @@
 package delta.dkt.activities;
 
+import static delta.dkt.activities.MainMenuActivity.getTime;
+
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,7 +11,9 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 import delta.dkt.R;
 
@@ -38,6 +42,8 @@ class UserNameAdapter extends RecyclerView.Adapter<UserNameAdapter.UserViewHolde
         // based on the position of the recycler view
 
         holder.username.setText(usernames.get(position));
+        holder.userRole.setText("Host");
+        holder.joiningTime.setText("Joined on: "+ getTime());
 
     }
 
@@ -62,4 +68,6 @@ class UserNameAdapter extends RecyclerView.Adapter<UserNameAdapter.UserViewHolde
             joiningTime = itemView.findViewById(R.id.joiningTime);
         }
     }
+
+
 }
