@@ -38,6 +38,7 @@ class UserNameAdapter extends RecyclerView.Adapter<UserNameAdapter.UserViewHolde
         // based on the position of the recycler view
 
         holder.username.setText(usernames.get(position));
+
     }
 
     @Override
@@ -51,10 +52,14 @@ class UserNameAdapter extends RecyclerView.Adapter<UserNameAdapter.UserViewHolde
         // Grabs informations thats needed from the recycler_view_user_row.xml
 
         TextView username;
+        TextView userRole;
+        TextView joiningTime;
 
         public UserViewHolder (@NonNull View itemView) {
             super(itemView);
             username = itemView.findViewById(R.id.userName_txt);
+            userRole = itemView.findViewById(R.id.userRole);
+            joiningTime = itemView.findViewById(R.id.joiningTime);
         }
     }
 }
