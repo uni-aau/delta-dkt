@@ -98,7 +98,7 @@ public class MainMenuActivity extends AppCompatActivity {
         ServerActionHandler.triggerAction(PREFIX_HOST_NEW_GAME, null);
     }
 
-    public String getTime() {
+    public static String getTime() {
         SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss");
         return sdf.format(new Date());
     }
