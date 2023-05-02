@@ -36,7 +36,6 @@ public class GameViewActivity extends AppCompatActivity {
 
         btnDice = findViewById(R.id.button_roll_dice);
         map = findViewById(imageView);
-
         findViewById(R.id.button_property_infos).setOnClickListener(view -> switchToPropertyActivity());
 
         MainActivity.subscribeToLogic(Constants.GameViewActivityType, this);
@@ -125,8 +124,8 @@ public class GameViewActivity extends AppCompatActivity {
     }
 
     public void disableDice() {
-        btnDice.setEnabled(false); // prevent touch event
+        btnDice.setEnabled(false);
         btnDice.setBackgroundResource(R.drawable.host_btn_background_disabled);
-        map.setEnabled(false);
+        map.setEnabled(false); // prevent touch event
     }
 }

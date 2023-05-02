@@ -17,12 +17,13 @@ public class ActionBroadcastStartStats implements ClientActionInterface {
     public void execute(AppCompatActivity activity, String clientMessage) {
         String[] args = clientMessage.replace(Constants.PREFIX_GAME_START_STATS, "").trim().split(";"); // Holt sich Args nach dem Prefix
 
-        Log.d("[UI] BroadcastStartStats", "Received broadcast event: " + args[0]);
+        Log.d("[UI] Broadcast Start Stats", "Received broadcast event: " + args[0]);
 
-        // Broadcast start toast to every player
+        // Sends start toast to every player
         String toastValue = String.format(activity.getString(R.string.start_broadcast_toast_text), args[0]);
         Toast.makeText(activity, toastValue, Toast.LENGTH_SHORT).show();
 
+        // Updates player online textView
         updateGeneralInfo(activity, args[0]);
     }
 

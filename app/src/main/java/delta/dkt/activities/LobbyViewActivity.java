@@ -21,7 +21,6 @@ import delta.dkt.R;
 
 
 public class LobbyViewActivity extends AppCompatActivity {
-
     RecyclerView recyclerView;
     UserNameAdapter adapter;
     ArrayList<String> userList;
@@ -35,7 +34,6 @@ public class LobbyViewActivity extends AppCompatActivity {
 
         Button backButton = findViewById(R.id.backbtn);
         Button startButton = findViewById(R.id.startbtn);
-
 
         userList = new ArrayList<>();
         String newUser = getIntent().getStringExtra(INTENT_PARAMETER);
@@ -53,20 +51,18 @@ public class LobbyViewActivity extends AppCompatActivity {
         adapter = new UserNameAdapter(this, userList);
         recyclerView.setAdapter(adapter);
 
-
         backButton.setOnClickListener(view -> {
             Intent intent = new Intent(getApplicationContext(), MainMenuActivity.class);
             intent.putExtra(INTENT_PARAMETER, newUser);
             startActivity(intent);
         });
 
+        // Move players and register them
         startButton.setOnClickListener(view -> {
             Log.d("Start", "Sending start action to server!");
             ServerActionHandler.triggerAction(PREFIX_GAME_START, "");
         });
 
         MainActivity.subscribeToLogic(Constants.LobbyViewActivityType, this);
-
-
     }
 }
