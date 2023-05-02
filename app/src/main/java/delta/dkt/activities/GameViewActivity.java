@@ -1,38 +1,47 @@
 package delta.dkt.activities;
 
-import ClientUIHandling.handlers.positioning.PositionHandler;
-import ServerLogic.ServerActionHandler;
-import android.content.Intent;
-import android.graphics.PointF;
-import android.os.Bundle;
-
-import android.util.Log;
-import android.view.MotionEvent;
-import android.view.View;
-import android.widget.ImageView;
-import android.widget.Button;
-import androidx.appcompat.app.AppCompatActivity;
-
-import ClientUIHandling.Constants;
-import delta.dkt.R;
-
+import static ClientUIHandling.Constants.PREFIX_GAME_START_STATS;
+import static ClientUIHandling.Constants.PREFIX_INIT_PLAYERS;
 import static ClientUIHandling.Constants.PREFIX_PLAYER_MOVE;
 import static delta.dkt.R.id.imageView;
 
+import android.content.Intent;
+import android.graphics.PointF;
+import android.os.Bundle;
+import android.util.Log;
+import android.view.MotionEvent;
+import android.view.View;
+import android.widget.Button;
+import android.widget.ImageView;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import ClientUIHandling.Config;
+import ClientUIHandling.Constants;
+import ClientUIHandling.handlers.positioning.PositionHandler;
+import ServerLogic.ServerActionHandler;
+import delta.dkt.R;
+import delta.dkt.logic.structure.Game;
+
 
 public class GameViewActivity extends AppCompatActivity {
+    public static int clientID = -1; // ID gets set by server
     int[] locations = {1, 1, 1, 1, 1, 1};
-    int clientID = 1; //todo get the clients id - from 1 to 6
+    Button btnDice;
+    ImageView map;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game_view);
 
+        btnDice = findViewById(R.id.button_roll_dice);
+        map = findViewById(imageView);
         findViewById(R.id.button_property_infos).setOnClickListener(view -> switchToPropertyActivity());
 
         MainActivity.subscribeToLogic(Constants.GameViewActivityType, this);
-
+        ServerActionHandler.triggerAction(PREFIX_INIT_PLAYERS, String.valueOf(clientID)); // Set player & handle dice perms
+        ServerActionHandler.triggerAction(PREFIX_GAME_START_STATS, String.valueOf(Game.getPlayers().size())); // Update player stats
 
         handleMovementRequests();
     }
@@ -47,17 +56,14 @@ public class GameViewActivity extends AppCompatActivity {
      * This method handles the movement requests of a client, thus sending the request to server.
      */
     private void handleMovementRequests() {
-        Button btnDice = findViewById(R.id.button_roll_dice);
-        ImageView map = findViewById(imageView);
-
-
         //* Wait for the imageView to load, then update the default locations.
-        map.post(() -> updatePlayerPosition(locations[0], 1));
-        map.post(() -> updatePlayerPosition(locations[1], 2));
-        map.post(() -> updatePlayerPosition(locations[2], 3));
-        map.post(() -> updatePlayerPosition(locations[3], 4));
-        map.post(() -> updatePlayerPosition(locations[4], 5));
-        map.post(() -> updatePlayerPosition(locations[5], 6));
+        // Update only those player positions, that are in the game
+        for (int i = 0; i < Game.getPlayers().size(); i++) {
+            if (i <= Config.MAX_CLIENTS - 1) {
+                int value = i;
+                map.post(() -> updatePlayerPosition(locations[value], value + 1));
+            }
+        }
         map.post(() -> PositionHandler.setLogs(true));
 
 
@@ -73,7 +79,7 @@ public class GameViewActivity extends AppCompatActivity {
             public boolean onTouch(View v, MotionEvent event) {
                 if (event.getAction() != MotionEvent.ACTION_DOWN) return false;
 
-                var map = findViewById(R.id.imageView);
+                map = findViewById(R.id.imageView);
 
                 float x = event.getX();
                 float y = event.getY();
@@ -101,7 +107,6 @@ public class GameViewActivity extends AppCompatActivity {
      * @param _player The player figure that is to be moved, ranging from 1 to 6.
      */
     public void updatePlayerPosition(int destination, int _player) {
-        ImageView map = findViewById(imageView);
         int figureIdentifier = getResources().getIdentifier("player" + _player, "id", getPackageName());
         ImageView figure = findViewById(figureIdentifier);
 
@@ -113,5 +118,17 @@ public class GameViewActivity extends AppCompatActivity {
         var pos = PositionHandler.calculateFigurePosition(destination, _player, figure, map);
         figure.setX(pos.x);
         figure.setY(pos.y);
+    }
+
+    public void enableDice() {
+        btnDice.setEnabled(true);
+        btnDice.setBackgroundResource(R.drawable.host_btn_background);
+        map.setEnabled(true);
+    }
+
+    public void disableDice() {
+        btnDice.setEnabled(false);
+        btnDice.setBackgroundResource(R.drawable.host_btn_background_disabled);
+        map.setEnabled(false); // prevent touch event
     }
 }

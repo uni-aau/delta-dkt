@@ -1,5 +1,6 @@
 package ClientUIHandling;
 
+import ClientUIHandling.actions.ActionBroadcastStartStats;
 import ClientUIHandling.actions.ActionMove;
 import android.os.Handler;
 import android.os.Message;
@@ -8,6 +9,9 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.ArrayList;
+
+import ClientUIHandling.actions.ActionStartGame;
+import ClientUIHandling.actions.ActionPlayerInit;
 
 public class ClientHandler extends Handler {
 
@@ -24,8 +28,17 @@ public class ClientHandler extends Handler {
         actions.add(new ActionRentPaid());
         actionPrefixes.add(Constants.PREFIX_PLAYER_RENTPAID);
 
+        actions.add(new ActionStartGame());
+        actionPrefixes.add(Constants.PREFIX_GAME_START);
+        
         actions.add(new ActionMove());
         actionPrefixes.add(Constants.PREFIX_PLAYER_MOVE);
+
+        actions.add(new ActionPlayerInit());
+        actionPrefixes.add(Constants.PREFIX_INIT_PLAYERS);
+
+        actions.add(new ActionBroadcastStartStats());
+        actionPrefixes.add(Constants.PREFIX_GAME_START_STATS);
     }
 
 
