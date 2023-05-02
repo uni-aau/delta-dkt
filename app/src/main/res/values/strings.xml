@@ -15,7 +15,7 @@
     <string name="players_online">Players online: %d / %d</string>
     <string name="cash_text">Cash: {0}$</string>
     <string name="my_properties_text">My Properties: {0}</string>
-    <string name="playing_time_text">Playing Time: {0}</string>
+    <string name="playing_time_text">Playing Time: %d %s, %d %s, %d %s</string>
     <string name="roll_the_dice">Roll the dice</string>
     <string name="property_information">Property Information</string>
     <string name="dice_information_text">%s rolls the dice\n{1} left to roll the dice</string>
@@ -34,5 +34,11 @@
 
     <string name="NSDServiceName">delta_dkt</string>
     <string name="NSDServiceType">_delta_dkt.tcp</string>
+    <string name="hours_plural_text">hours</string>
+    <string name="hour_sing_text">hour</string>
+    <string name="minutes_plural_text">minutes</string>
+    <string name="minute_sing_text">minute</string>
+    <string name="seconds_plural_text">seconds</string>
+    <string name="second_sing_text">second</string>
     <string name="start_broadcast_toast_text">The game successfully started with %s players</string>
 </resources>
