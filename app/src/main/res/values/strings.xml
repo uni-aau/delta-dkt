@@ -35,6 +35,8 @@
     <string name="OK">OK</string>
     <string name="Cancel">Cancel</string>
     <string name="ServerName">ServerName</string>
+    <string name="UserRole">UserRole</string>
+    <string name="JoiningTime">Joined on:</string>
 
 
     <string name="NSDServiceName">delta_dkt</string>
