@@ -24,6 +24,7 @@ public class FindHostViewActivity extends AppCompatActivity{
     RecyclerView recyclerView;
     HostAdapter adapter;
     ArrayList<String> hostList;
+    public static Button joinButton;
 
 
     @Override
@@ -33,7 +34,7 @@ public class FindHostViewActivity extends AppCompatActivity{
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
         Button backButton = findViewById(R.id.backbtn);
-        Button joinButton = findViewById(R.id.joinbtn);
+        joinButton = findViewById(R.id.joinbtn);
         String newUser = getIntent().getStringExtra(INTENT_PARAMETER);
 
         hostList = new ArrayList<>();
