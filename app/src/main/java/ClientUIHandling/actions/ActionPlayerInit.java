@@ -10,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import ClientUIHandling.ClientActionInterface;
 import delta.dkt.activities.GameViewActivity;
+import delta.dkt.logic.structure.Game;
 
 public class ActionPlayerInit implements ClientActionInterface {
     private final int MAX_CLIENTS = 6;
@@ -36,8 +37,10 @@ public class ActionPlayerInit implements ClientActionInterface {
         Log.d("[UI] Action", "Received client ID for player enabling: " + clientId);
 
         if(clientId <= MAX_CLIENTS) {
-            int figureIdentifier = activity.getResources().getIdentifier("player" + clientId, "id", activity.getPackageName());
-            activity.findViewById(figureIdentifier).setVisibility(View.VISIBLE);
+            for(int i = 1; i <= Game.getPlayers().size(); i++) { // Sets the markers visible for every player (specially late joins)
+                int figureIdentifier = activity.getResources().getIdentifier("player" + i, "id", activity.getPackageName());
+                activity.findViewById(figureIdentifier).setVisibility(View.VISIBLE);
+            }
         } else {
             Log.e("[UI] Action Error", String.format("Error - Less player markers (%d) than players (%d)!", MAX_CLIENTS, clientId));
             Toast.makeText(activity, "There was an error while adding another player - Check error logs!", Toast.LENGTH_SHORT).show();
