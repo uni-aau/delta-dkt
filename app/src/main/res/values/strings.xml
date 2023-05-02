@@ -37,6 +37,7 @@
     <string name="ServerName">ServerName</string>
     <string name="UserRole">UserRole</string>
     <string name="JoiningTime">Joined on:</string>
+    <string name="NumberOfPlayers">Number of Players:</string>
 
 
     <string name="NSDServiceName">delta_dkt</string>
