@@ -8,8 +8,7 @@ import android.util.Log;
 
 import java.util.ArrayList;
 
-import ClientUIHandling.ClientActionInterface;
-import ServerLogic.actions.ServerStartTime;
+import ServerLogic.actions.RequestGameStartTime;
 import ServerLogic.actions.RegisterUser;
 import ServerLogic.actions.RequestPlayerInit;
 import ServerLogic.actions.RequestGameStart;
@@ -44,7 +43,7 @@ public class ServerActionHandler {
         actions.add(new RequestPlayerMovement());
         actionPrefixes.add(PREFIX_PLAYER_MOVE);
 
-        actions.add(new ServerStartTime());
+        actions.add(new RequestGameStartTime());
         actionPrefixes.add(PREFIX_GET_SERVER_TIME);
     }
 

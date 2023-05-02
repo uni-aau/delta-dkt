@@ -10,7 +10,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import ClientUIHandling.ClientActionInterface;
 import delta.dkt.R;
 
-public class UpdateGameTime implements ClientActionInterface {
+public class ActionUpdateGameTime implements ClientActionInterface {
     @Override
     public void execute(AppCompatActivity activity, String clientMessage) {
         String[] args = clientMessage.replace(PREFIX_GET_SERVER_TIME, "").trim().split(";"); // Holt sich Args nach dem Prefix

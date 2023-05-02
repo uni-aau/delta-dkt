@@ -2,7 +2,7 @@ package ClientUIHandling;
 
 import ClientUIHandling.actions.ActionBroadcastStartStats;
 import ClientUIHandling.actions.ActionMove;
-import ClientUIHandling.actions.UpdateGameTime;
+import ClientUIHandling.actions.ActionUpdateGameTime;
 
 import android.os.Handler;
 import android.os.Message;
@@ -36,7 +36,7 @@ public class ClientHandler extends Handler {
         actions.add(new ActionMove());
         actionPrefixes.add(Constants.PREFIX_PLAYER_MOVE);
 
-        actions.add(new UpdateGameTime());
+        actions.add(new ActionUpdateGameTime());
         actionPrefixes.add(Constants.PREFIX_GET_SERVER_TIME);
         
         actions.add(new ActionPlayerInit());

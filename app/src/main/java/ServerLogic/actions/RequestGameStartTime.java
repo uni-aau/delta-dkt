@@ -10,7 +10,7 @@ import ClientUIHandling.Config;
 import ServerLogic.ServerActionInterface;
 import network2.ServerNetworkClient;
 
-public class ServerStartTime implements ServerActionInterface {
+public class RequestGameStartTime implements ServerActionInterface {
     private long elapsedTime = 0L;
     private int previousMinute = -1;
     private CountDownTimer timer;
