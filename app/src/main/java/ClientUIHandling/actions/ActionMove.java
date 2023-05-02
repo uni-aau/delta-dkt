@@ -6,6 +6,7 @@ import ClientUIHandling.handlers.notifications.SnackBarHandler;
 import android.util.Log;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
+
 import delta.dkt.R;
 import delta.dkt.activities.GameViewActivity;
 
