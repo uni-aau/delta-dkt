@@ -24,7 +24,7 @@ public class LobbyViewActivity extends AppCompatActivity{
 
     RecyclerView recyclerView;
     UserNameAdapter adapter;
-    ArrayList<String> userList;
+    public static ArrayList<String> userList;
 
 
     @Override
@@ -41,12 +41,6 @@ public class LobbyViewActivity extends AppCompatActivity{
         String newUser = getIntent().getStringExtra(INTENT_PARAMETER);
         userList.add(newUser);
 
-        //Only for Testing purpose adding some more Players:
-        userList.add("Angelo");
-        userList.add("Doug");
-        userList.add("Slim");
-        userList.add("Spider Man");
-        userList.add("Kim");
 
         recyclerView = findViewById(R.id.lobbyRecyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
