@@ -11,7 +11,7 @@ import ClientUIHandling.Constants;
 import delta.dkt.R;
 
 public class ActionBroadcastStartStats implements ClientActionInterface {
-    private final int MAX_PLAYER_VALUE = -1; // Todo muss via Lobby settings implementiert werden
+    private final int MAX_CLIENTS = -1; // Todo muss via Lobby settings implementiert werden
 
     @Override
     public void execute(AppCompatActivity activity, String clientMessage) {
@@ -28,7 +28,7 @@ public class ActionBroadcastStartStats implements ClientActionInterface {
     }
 
     private void updateGeneralInfo(AppCompatActivity activity, String playerAmount) {
-        String inputValue = String.format(activity.getString(R.string.players_online), Integer.parseInt(playerAmount), MAX_PLAYER_VALUE);
+        String inputValue = String.format(activity.getString(R.string.players_online), Integer.parseInt(playerAmount), MAX_CLIENTS);
         ((TextView) activity.findViewById(R.id.textView_players_online)).setText(inputValue);
     }
 }
