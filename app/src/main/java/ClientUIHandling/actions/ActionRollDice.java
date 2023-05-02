@@ -3,13 +3,10 @@ package ClientUIHandling.actions;
 import static ClientUIHandling.Constants.PREFIX_ROLL_DICE_REQUEST;
 
 import android.util.Log;
-import android.widget.Button;
-import android.widget.ImageView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import ClientUIHandling.ClientActionInterface;
-import delta.dkt.R;
 import delta.dkt.activities.GameViewActivity;
 import delta.dkt.logic.structure.Game;
 
