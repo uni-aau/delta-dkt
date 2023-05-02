@@ -9,7 +9,7 @@ import ServerLogic.ServerActionInterface;
 import delta.dkt.logic.structure.Game;
 import network2.ServerNetworkClient;
 
-public class RollDicePermRequest implements ServerActionInterface {
+public class RequestRollDicePerm implements ServerActionInterface {
     @Override
     public void execute(ServerNetworkClient server, Object parameters) {
         int nextClient;

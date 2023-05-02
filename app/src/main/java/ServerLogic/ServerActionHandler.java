@@ -8,8 +8,7 @@ import android.util.Log;
 
 import java.util.ArrayList;
 
-import ClientUIHandling.ClientActionInterface;
-import ServerLogic.actions.RollDicePermRequest;
+import ServerLogic.actions.RequestRollDicePerm;
 import ServerLogic.actions.RequestGameStartTime;
 import ServerLogic.actions.RegisterUser;
 import ServerLogic.actions.RequestPlayerInit;
@@ -45,7 +44,7 @@ public class ServerActionHandler {
         actions.add(new RequestPlayerMovement());
         actionPrefixes.add(PREFIX_PLAYER_MOVE);
 
-        actions.add(new RollDicePermRequest());
+        actions.add(new RequestRollDicePerm());
         actionPrefixes.add(PREFIX_ROLL_DICE_REQUEST);
 
 
