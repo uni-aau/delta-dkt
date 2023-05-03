@@ -16,7 +16,7 @@ import static org.mockito.Mockito.when;
 import android.util.Log;
 
 
-public class NetworkConnectionTest {
+class NetworkConnectionTest {
 
     private final static int PORT = 5050;
 
@@ -44,7 +44,7 @@ public class NetworkConnectionTest {
     }
 
     @Test
-    public void testSendAndReceive() throws IOException {
+    void testSendAndReceive() throws IOException {
         NetworkConnection sender = new NetworkConnection(new Socket("localhost", PORT),null);
         sender.start();
 

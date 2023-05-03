@@ -21,6 +21,10 @@ public class ServerActionHandler {
 
     private static ServerNetworkClient server;
 
+    private ServerActionHandler() {
+        // no instantiation of class
+    }
+
     static{
         actions = new ArrayList<>();
         actionPrefixes = new ArrayList<>();

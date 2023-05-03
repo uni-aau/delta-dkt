@@ -63,6 +63,6 @@ public class LobbyViewActivity extends AppCompatActivity {
             ServerActionHandler.triggerAction(PREFIX_GAME_START, "");
         });
 
-        MainActivity.subscribeToLogic(Constants.LobbyViewActivityType, this);
+        MainActivity.subscribeToLogic(Constants.LOBBYVIEW_ACTIVITY_TYPE, this);
     }
 }

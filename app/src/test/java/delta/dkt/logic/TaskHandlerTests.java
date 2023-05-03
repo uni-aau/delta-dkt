@@ -10,7 +10,7 @@ import org.junit.jupiter.params.provider.ValueSource;
 
 import delta.dkt.logic.structure.TaskHandler;
 
-public class TaskHandlerTests {
+class TaskHandlerTests {
 
     /**
      * Check if the getTask methode returns not null if it gets a location where there is a task field.

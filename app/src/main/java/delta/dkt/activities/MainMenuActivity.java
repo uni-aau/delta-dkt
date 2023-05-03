@@ -37,7 +37,7 @@ public class MainMenuActivity extends AppCompatActivity {
             startActivity(intent);
         });
 
-        MainActivity.subscribeToLogic(Constants.MainMenuActivityType, this);
+        MainActivity.subscribeToLogic(Constants.MAINMENU_ACTIVITY_TYPE, this);
 
     }
 }

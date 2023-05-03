@@ -1,7 +1,5 @@
 package delta.dkt.activities;
 
-import static ClientUIHandling.Constants.PREFIX_PLAYER_PAYRENT;
-
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
@@ -11,8 +9,6 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 
-import java.io.IOException;
-import java.net.ServerSocket;
 import java.util.HashMap;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -57,7 +53,7 @@ public class MainActivity extends AppCompatActivity {
             }
 
         });
-        subscribeToLogic(Constants.MainActivityType, this);
+        subscribeToLogic(Constants.MAIN_ACTIVITY_TYPE, this);
         try {
             establishServerConnection();
         } catch (InterruptedException e) {

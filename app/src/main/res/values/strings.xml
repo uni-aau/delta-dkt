@@ -41,4 +41,10 @@
     <string name="seconds_plural_text">seconds</string>
     <string name="second_sing_text">second</string>
     <string name="start_broadcast_toast_text">The game successfully started with %s players</string>
+    <string name="img_description_player6_text">Player 6</string>
+    <string name="img_description_player5_text">Player 5</string>
+    <string name="img_description_player3_text">Player 3</string>
+    <string name="img_description_player4_text">Player 4</string>
+    <string name="img_description_player2_text">Player 2</string>
+    <string name="img_description_player1_text">Player 1</string>
 </resources>
