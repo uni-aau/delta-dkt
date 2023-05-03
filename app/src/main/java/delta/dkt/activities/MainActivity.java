@@ -56,7 +56,6 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
 
-            ServerActionHandler.triggerAction(PREFIX_PLAYER_PAYRENT, 0);
         });
         subscribeToLogic(Constants.MainActivityType, this);
         try {
@@ -87,8 +86,6 @@ public class MainActivity extends AppCompatActivity {
         client.start();
         Thread.sleep(100);
         ServerActionHandler.setServer(server);
-        server.broadcast(Constants.MainActivityType+":"+Constants.PREFIX_PLAYER_MOVE+" CHANGED NAME");
-
     }
 
     public static void subscribeToLogic(String type, AppCompatActivity activity) {
