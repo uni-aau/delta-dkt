@@ -1,6 +1,6 @@
 package ServerLogic.actions;
 
-import static ClientUIHandling.Constants.GameViewActivityType;
+import static ClientUIHandling.Constants.GAMEVIEW_ACTIVITY_TYPE;
 import static ClientUIHandling.Constants.PREFIX_ROLL_DICE_REQUEST;
 
 import android.util.Log;
@@ -24,6 +24,6 @@ public class RequestRollDicePerm implements ServerActionInterface {
         }
 
         Log.d("[Server] Roll Dice Request", "OldClientId = " + oldClientId + " NewClient = " + nextClient);
-        server.broadcast(GameViewActivityType, PREFIX_ROLL_DICE_REQUEST, new String[]{String.valueOf(nextClient)});
+        server.broadcast(GAMEVIEW_ACTIVITY_TYPE, PREFIX_ROLL_DICE_REQUEST, new String[]{String.valueOf(nextClient)});
     }
 }

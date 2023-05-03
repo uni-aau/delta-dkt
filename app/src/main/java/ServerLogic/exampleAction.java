@@ -41,7 +41,7 @@ public class exampleAction implements ServerActionInterface{
                     }else{
                         player.payRentTo(owner, rent);
 
-                        server.broadcast(MainActivityType+":"+PREFIX_PLAYER_RENTPAID+" "+id+" "+player.getCash()+" "+owner.getId()+" "+owner.getCash());
+                        server.broadcast(MAIN_ACTIVITY_TYPE +":"+PREFIX_PLAYER_RENTPAID+" "+id+" "+player.getCash()+" "+owner.getId()+" "+owner.getCash());
                     }
 
                 }

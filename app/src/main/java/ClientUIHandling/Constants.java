@@ -5,11 +5,11 @@ public class Constants {
         // No instantiation of class
     }
 
-    public static final String MainActivityType="main";
-    public static final String GameViewActivityType="game";
-    public static final String MainMenuActivityType="menu";
-    public static final String PropertyListActivityType="list";
-    public static final String LobbyViewActivityType="lobby";
+    public static final String MAIN_ACTIVITY_TYPE = "main";
+    public static final String GAMEVIEW_ACTIVITY_TYPE = "game";
+    public static final String MAINMENU_ACTIVITY_TYPE = "menu";
+    public static final String PROPERTYLIST_ACTIVITY_TYPE = "list";
+    public static final String LOBBYVIEW_ACTIVITY_TYPE = "lobby";
     public static final String PREFIX_PLAYER_MOVE = "move";
 
     public static final String PREFIX_PLAYER_RENTPAID = "RENTPAID";
