@@ -47,8 +47,10 @@ public class MainMenuActivity extends AppCompatActivity {
         Button join = findViewById(R.id.join_button);
         String newUser = getIntent().getStringExtra(INTENT_PARAMETER);
 
-
+        //If clicked on "Host Game", the popUp Window will show up and proceed to the Player Lobby
         host.setOnClickListener(view -> showServerPopUpWindow());
+
+
 
         join.setOnClickListener(view -> {
             Intent intent = new Intent(getApplicationContext(), LobbyViewActivity.class);
@@ -60,6 +62,7 @@ public class MainMenuActivity extends AppCompatActivity {
 
     }
 
+    // This method will show the User a popUP Window to enter a Server name. When clicked on OK, it will proceed with Start Server method.
     public void showServerPopUpWindow() {
 
         ConstraintLayout popUpConstraintLayout = findViewById(R.id.popUpConstraintLayout);
@@ -88,9 +91,11 @@ public class MainMenuActivity extends AppCompatActivity {
             alertDialog.getWindow().setBackgroundDrawable(new ColorDrawable(0));
         }
         alertDialog.show();
-
     }
 
+
+
+    // This Method will start with the Server and trigger the Action "HOST_NEW_GAME"
     public void startServer(String serverName){
         server = new ServerNetworkClient();
         server.start();
@@ -98,6 +103,9 @@ public class MainMenuActivity extends AppCompatActivity {
         ServerActionHandler.triggerAction(PREFIX_HOST_NEW_GAME, null);
     }
 
+
+
+    // This method returns the current time
     public static String getTime() {
         SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss");
         return sdf.format(new Date());
