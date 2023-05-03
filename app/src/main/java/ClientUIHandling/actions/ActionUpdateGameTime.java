@@ -23,9 +23,9 @@ public class ActionUpdateGameTime implements ClientActionInterface {
     private void updateGameTime(String args, AppCompatActivity activity) {
         int milliseconds = Integer.parseInt(args);
 
-        int seconds = (milliseconds / 1000);
-        int minutes = (milliseconds / 60000);
-        int hours = (milliseconds / 3600000);
+        int hours = (milliseconds / (1000 * 60 * 60)) % 24;
+        int minutes = (milliseconds / (1000 * 60)) % 60;
+        int seconds = (milliseconds / 1000) % 60;
 
         // Sets the text for the playing time ( != 1 -> pluralText)
         String hoursLocale = hours != 1 ? activity.getString(R.string.hours_plural_text) : activity.getString(R.string.hour_sing_text);

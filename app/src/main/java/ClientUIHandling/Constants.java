@@ -1,6 +1,9 @@
 package ClientUIHandling;
 
 public class Constants {
+    private Constants() {
+        // No instantiation of class
+    }
 
     public static final String MainActivityType="main";
     public static final String GameViewActivityType="game";
