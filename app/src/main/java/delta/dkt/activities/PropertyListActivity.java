@@ -5,14 +5,10 @@ import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentTransaction;
 
-import android.content.pm.ActivityInfo;
-import android.os.Bundle;
-
 import ClientUIHandling.Constants;
 import delta.dkt.fragments.BlockFragment;
 
 import delta.dkt.R;
-import delta.dkt.fragments.BlockFragment;
 
 public class PropertyListActivity extends AppCompatActivity {
 
@@ -24,7 +20,7 @@ public class PropertyListActivity extends AppCompatActivity {
         findViewById(R.id.button_backToGame).setOnClickListener(view -> switchToGameActivity());
         sendDataToFragment(); // Gets replaced later with server
 
-        MainActivity.subscribeToLogic(Constants.PropertyListActivityType, this);
+        MainActivity.subscribeToLogic(Constants.PROPERTYLIST_ACTIVITY_TYPE, this);
     }
 
 

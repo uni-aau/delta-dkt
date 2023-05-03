@@ -151,7 +151,8 @@
             app:layout_constraintTop_toTopOf="@+id/imageView"
             app:layout_constraintHorizontal_bias="0.963"
             app:layout_constraintVertical_bias="0.906"
-            android:visibility="invisible" />
+            android:visibility="invisible"
+            android:contentDescription="@string/img_description_player5_text" />
 
     <ImageView
             android:layout_width="13dp"
@@ -164,7 +165,8 @@
             app:layout_constraintTop_toTopOf="@+id/imageView"
             app:layout_constraintHorizontal_bias="0.929"
             app:layout_constraintVertical_bias="0.906"
-            android:visibility="invisible" />
+            android:visibility="invisible"
+            android:contentDescription="@string/img_description_player6_text" />
 
     <ImageView
             android:layout_width="13dp"
@@ -177,7 +179,8 @@
             app:layout_constraintTop_toTopOf="@+id/imageView"
             app:layout_constraintHorizontal_bias="0.963"
             app:layout_constraintVertical_bias="0.943"
-            android:visibility="invisible" />
+            android:visibility="invisible"
+            android:contentDescription="@string/img_description_player3_text" />
 
     <ImageView
             android:layout_width="13dp"
@@ -190,7 +193,8 @@
             app:layout_constraintTop_toTopOf="@+id/imageView"
             app:layout_constraintHorizontal_bias="0.929"
             app:layout_constraintVertical_bias="0.943"
-            android:visibility="invisible" />
+            android:visibility="invisible"
+            android:contentDescription="@string/img_description_player4_text" />
 
     <ImageView
             android:layout_width="13dp"
@@ -203,7 +207,8 @@
             app:layout_constraintTop_toTopOf="@+id/imageView"
             app:layout_constraintHorizontal_bias="0.929"
             app:layout_constraintVertical_bias="0.981"
-            android:visibility="invisible" />
+            android:visibility="invisible"
+            android:contentDescription="@string/img_description_player2_text" />
 
     <ImageView
             android:layout_width="13dp"
@@ -216,6 +221,7 @@
             app:layout_constraintTop_toTopOf="@+id/imageView"
             app:layout_constraintHorizontal_bias="0.963"
             app:layout_constraintVertical_bias="0.981"
-            android:visibility="invisible" />
+            android:visibility="invisible"
+            android:contentDescription="@string/img_description_player1_text" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
