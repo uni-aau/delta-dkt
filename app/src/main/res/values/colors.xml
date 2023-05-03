@@ -9,6 +9,8 @@
     <color name="white">#FFFFFFFF</color>
     <color name="dkt_red">#E40429</color>
     <color name="dkt_yellow">#FFE500</color>
+    <color name="button_gray">#848484</color>
+    <color name="whiteSpecial">#FFFFFF</color>
 
 
 </resources>

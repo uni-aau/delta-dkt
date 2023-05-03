@@ -1,6 +1,9 @@
 package ClientUIHandling;
 
 public class Constants {
+    private Constants() {
+        // No instantiation of class
+    }
 
     public static final String MainActivityType="main";
     public static final String GameViewActivityType="game";
@@ -14,4 +17,10 @@ public class Constants {
     public static final String PREFIX_PLAYER_PAYRENT = "PAYRENT";
 
     public static final String PREFIX_HOST_NEW_GAME = "host";
+    public static final String PREFIX_ROLL_DICE_REQUEST = "roll dice request";
+    public static final String PREFIX_GET_SERVER_TIME = "servertime";
+    public static final String PREFIX_GAME_START = "GAMESTART";
+    public static final String PREFIX_REGISTER = "REGISTERUSER";
+    public static final String PREFIX_INIT_PLAYERS = "init players";
+    public static final String PREFIX_GAME_START_STATS = "start stats";
 }

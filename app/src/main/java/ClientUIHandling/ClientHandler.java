@@ -1,5 +1,10 @@
 package ClientUIHandling;
 
+import ClientUIHandling.actions.ActionBroadcastStartStats;
+import ClientUIHandling.actions.ActionMove;
+import ClientUIHandling.actions.ActionRollDice;
+import ClientUIHandling.actions.ActionUpdateGameTime;
+
 import android.os.Handler;
 import android.os.Message;
 
@@ -7,6 +12,9 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.ArrayList;
+
+import ClientUIHandling.actions.ActionStartGame;
+import ClientUIHandling.actions.ActionPlayerInit;
 
 public class ClientHandler extends Handler {
 
@@ -20,15 +28,29 @@ public class ClientHandler extends Handler {
         actions = new ArrayList<>();
         actionPrefixes = new ArrayList<>();
 
-        actions.add(new ActionExample());
-        actionPrefixes.add(Constants.PREFIX_PLAYER_MOVE);
-
         actions.add(new ActionRentPaid());
         actionPrefixes.add(Constants.PREFIX_PLAYER_RENTPAID);
 
         actions.add(new ActionHostGame());
         actionPrefixes.add(Constants.PREFIX_HOST_NEW_GAME);
 
+        actions.add(new ActionStartGame());
+        actionPrefixes.add(Constants.PREFIX_GAME_START);
+        
+        actions.add(new ActionMove());
+        actionPrefixes.add(Constants.PREFIX_PLAYER_MOVE);
+
+        actions.add(new ActionRollDice());
+        actionPrefixes.add(Constants.PREFIX_ROLL_DICE_REQUEST);
+        
+        actions.add(new ActionUpdateGameTime());
+        actionPrefixes.add(Constants.PREFIX_GET_SERVER_TIME);
+        
+        actions.add(new ActionPlayerInit());
+        actionPrefixes.add(Constants.PREFIX_INIT_PLAYERS);
+
+        actions.add(new ActionBroadcastStartStats());
+        actionPrefixes.add(Constants.PREFIX_GAME_START_STATS);
     }
 
 
