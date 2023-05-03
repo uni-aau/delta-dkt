@@ -5,6 +5,10 @@ package delta.dkt.logic.structure;
  */
 public class TaskHandler {
 
+    private TaskHandler() {
+        // no instantiation of class
+    }
+
     /**
      * Gets a random task out of the BankTaskCollection/RiskTaskCollection of a given position
      * @param position The position of the property.
