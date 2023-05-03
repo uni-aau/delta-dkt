@@ -89,7 +89,7 @@ public class NetworkConnection extends Thread { //execute each instance within a
                 if (reader.ready()) {
                     String msg = reader.readLine();
                     //if we have received a message , handle it
-                    System.out.println(TAG + ":Incoming message " + msg);
+                    System.out.println(TAG + " Incoming message " + msg);
                     this.lastMsgReceived = msg;
                     //TODO: Implement a handler that handles incoming game-related messages
                     System.out.println("RECEIVED");
@@ -153,7 +153,7 @@ public class NetworkConnection extends Thread { //execute each instance within a
             while (!outputBuffer.isEmpty()) {
                 try {
                     String message = outputBuffer.pop();
-                    System.out.println(TAG + "Sending following message to server: " + message);
+                    System.out.println(TAG + " Sending following message to server: " + message);
                     writer.write(message);
                     writer.newLine(); //adds newline == NULLBYTE termination of messages (EOF signal)
                     writer.flush(); //flushes the message within the OUTPUTBUFFER -> sends to cient/server via Socket

@@ -1,7 +1,5 @@
 package delta.dkt.activities;
 
-import static ClientUIHandling.Constants.PREFIX_PLAYER_PAYRENT;
-
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
@@ -11,8 +9,6 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 
-import java.io.IOException;
-import java.net.ServerSocket;
 import java.util.HashMap;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -56,9 +52,8 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
 
-            ServerActionHandler.triggerAction(PREFIX_PLAYER_PAYRENT, 0);
         });
-        subscribeToLogic(Constants.MainActivityType, this);
+        subscribeToLogic(Constants.MAIN_ACTIVITY_TYPE, this);
         try {
             establishServerConnection();
         } catch (InterruptedException e) {
@@ -87,8 +82,6 @@ public class MainActivity extends AppCompatActivity {
         client.start();
         Thread.sleep(100);
         ServerActionHandler.setServer(server);
-        server.broadcast(Constants.MainActivityType+":"+Constants.PREFIX_PLAYER_MOVE+" CHANGED NAME");
-
     }
 
     public static void subscribeToLogic(String type, AppCompatActivity activity) {

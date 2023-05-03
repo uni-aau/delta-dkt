@@ -28,6 +28,10 @@ public class exampleAction implements ServerActionInterface{
             System.out.println("LOCATION: "+fieldLocation);
             if(Game.getMap().getField(fieldLocation) instanceof Property){
                 Property property = (Property) Game.getMap().getField(fieldLocation);
+
+                //? moved here - from the GameMap.
+                property.setOwner(Player.testInstance); 
+
                 Player owner = property.getOwner();
                 if(owner != null && !property.getOwner().equals(player)){
                     int rent = property.calculateRent();
@@ -37,7 +41,7 @@ public class exampleAction implements ServerActionInterface{
                     }else{
                         player.payRentTo(owner, rent);
 
-                        server.broadcast(MainActivityType+":"+PREFIX_PLAYER_RENTPAID+" "+id+" "+player.getCash()+" "+owner.getId()+" "+owner.getCash());
+                        server.broadcast(MAIN_ACTIVITY_TYPE +":"+PREFIX_PLAYER_RENTPAID+" "+id+" "+player.getCash()+" "+owner.getId()+" "+owner.getCash());
                     }
 
                 }

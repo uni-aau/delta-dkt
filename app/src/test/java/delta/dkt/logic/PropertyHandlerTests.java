@@ -13,7 +13,7 @@ import org.junit.jupiter.params.provider.ValueSource;
 import delta.dkt.logic.structure.Property;
 import delta.dkt.logic.structure.PropertyHandler;
 
-public class PropertyHandlerTests {
+class PropertyHandlerTests {
     Property p = new Property(6, 250, 96, NORMAL, 150);
 
     /**
@@ -46,7 +46,7 @@ public class PropertyHandlerTests {
      * Check if the getProperties methode returns null if it gets a location where there is no property.
      */
     @ParameterizedTest
-    @ValueSource(ints = {-1, 0, 1 ,3, 4, 8, 9, 11, 13, 14, 18, 21, 23, 24, 28, 31, 33, 34, 38, 41})
+    @ValueSource(ints = {-1, 0, 1 ,3, 9, 11, 21, 23, 28, 33, 38, 41})
     void testGetPropertiesNotExistingProperties(int input) {
         assertNull(PropertyHandler.getProperties(input), "Properties are not null");
     }

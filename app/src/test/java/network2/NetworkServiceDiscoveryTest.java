@@ -17,7 +17,7 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
-public class NetworkServiceDiscoveryTest {
+class NetworkServiceDiscoveryTest {
 
     private Context context;
     private NsdManager nsdManager;
@@ -39,7 +39,7 @@ public class NetworkServiceDiscoveryTest {
     }
 
     @Test
-    public void testRegisterService() throws InterruptedException {
+    void testRegisterService() throws InterruptedException {
         /**
 
         nsd.registerService(1234);
