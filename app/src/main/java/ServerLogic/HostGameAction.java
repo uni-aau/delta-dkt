@@ -1,6 +1,6 @@
 package ServerLogic;
 
-import static ClientUIHandling.Constants.MainMenuActivityType;
+import static ClientUIHandling.Constants.MAINMENU_ACTIVITY_TYPE;
 import static ClientUIHandling.Constants.PREFIX_HOST_NEW_GAME;
 
 import android.util.Log;
@@ -13,7 +13,7 @@ public class HostGameAction implements ServerActionInterface{
     public void execute(ServerNetworkClient server, Object parameters) {
 
         Log.d("SERVER_HOST", "Server started!!");
-        server.broadcast(MainMenuActivityType+":"+ PREFIX_HOST_NEW_GAME);
+        server.broadcast(MAINMENU_ACTIVITY_TYPE+":"+ PREFIX_HOST_NEW_GAME);
 
     }
 }
