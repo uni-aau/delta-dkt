@@ -39,7 +39,7 @@ public class LobbyViewActivity extends AppCompatActivity {
         String newUser = getIntent().getStringExtra(INTENT_PARAMETER);
         userList.add(newUser);
 
-
+        String hello;
         recyclerView = findViewById(R.id.lobbyRecyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         adapter = new UserNameAdapter(this, userList);
