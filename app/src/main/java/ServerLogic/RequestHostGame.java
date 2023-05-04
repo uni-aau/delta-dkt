@@ -7,12 +7,12 @@ import android.util.Log;
 
 import network2.ServerNetworkClient;
 
-public class HostGameAction implements ServerActionInterface{
+public class RequestHostGame implements ServerActionInterface{
 
     @Override
     public void execute(ServerNetworkClient server, Object parameters) {
 
-        Log.d("SERVER_HOST", "Server started!!");
+        Log.d("[SERVER]:Host_Game", "Server started!!");
         server.broadcast(MAINMENU_ACTIVITY_TYPE+":"+ PREFIX_HOST_NEW_GAME);
 
     }
