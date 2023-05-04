@@ -61,8 +61,8 @@ public class ServerActionHandler {
 
     public static void triggerAction(String name, Object parameters){
         if(server == null){
-
-            Log.e("ERROR","Server not set");
+            //Use a java class here to avoid not-mocked exception when a test reaches here.
+           System.err.println("SERVER NOT SET");
             return;
         }
         if(!actionPrefixes.contains(name)){
