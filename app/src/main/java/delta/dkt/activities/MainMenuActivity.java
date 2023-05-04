@@ -42,27 +42,32 @@ public class MainMenuActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main_menu_view);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT); // Force portrait screen at activity level
 
-
+        // Get Views from the MainMenu xml:
         Button host = findViewById(R.id.host_button);
         Button join = findViewById(R.id.join_button);
-        String newUser = getIntent().getStringExtra(INTENT_PARAMETER);
 
-        //If clicked on "Host Game", the popUp Window will show up and proceed to the Player Lobby
+
+        //---HOST BUTTON---  (Everything that happens when host button is clicked)
         host.setOnClickListener(view -> showServerPopUpWindow());
 
 
-
+        //---JOIN BUTTON---  (Everything that happens when join button is clicked)
         join.setOnClickListener(view -> {
             Intent intent = new Intent(getApplicationContext(), LobbyViewActivity.class);
-            intent.putExtra(INTENT_PARAMETER, newUser);
+            intent.putExtra(INTENT_PARAMETER, returnNewUser());
             startActivity(intent);
         });
 
         MainActivity.subscribeToLogic(Constants.MAINMENU_ACTIVITY_TYPE, this);
-
     }
 
-    // This method will show the User a popUP Window to enter a Server name. When clicked on OK, it will proceed with Start Server method.
+
+
+    //---------------------------ALL METHODS:---------------------------//
+
+
+    // This method will show the User a popUP Window to enter a Server name.
+    // When clicked on OK, it will proceed with "Start Server" method.
     public void showServerPopUpWindow() {
 
         ConstraintLayout popUpConstraintLayout = findViewById(R.id.popUpConstraintLayout);
@@ -111,6 +116,11 @@ public class MainMenuActivity extends AppCompatActivity {
         return sdf.format(new Date());
     }
 
+
+    // This method returns the New User name
+    public String returnNewUser(){
+        return getIntent().getStringExtra(INTENT_PARAMETER);
+    }
 
 
 }
