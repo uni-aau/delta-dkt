@@ -2,6 +2,7 @@ package ClientUIHandling;
 
 import ClientUIHandling.actions.ActionBroadcastStartStats;
 import ClientUIHandling.actions.ActionMove;
+import ClientUIHandling.actions.ActionPlayerLost;
 import ClientUIHandling.actions.ActionRollDice;
 import ClientUIHandling.actions.ActionUpdateGameTime;
 
@@ -48,6 +49,9 @@ public class ClientHandler extends Handler {
 
         actions.add(new ActionBroadcastStartStats());
         actionPrefixes.add(Constants.PREFIX_GAME_START_STATS);
+
+        actions.add(new ActionPlayerLost());
+        actionPrefixes.add(Constants.PREFIX_PLAYER_LOST);
     }
 
 

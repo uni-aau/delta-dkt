@@ -2,6 +2,8 @@ package ServerLogic;
 
 import static ClientUIHandling.Constants.*;
 
+import ServerLogic.actions.GameStartStatsRequest;
+import ServerLogic.actions.PlayerLost;
 import ServerLogic.actions.RequestPlayerMovement;
 import android.util.Log;
 
@@ -50,7 +52,8 @@ public class ServerActionHandler {
         actions.add(new RequestRollDicePerm());
         actionPrefixes.add(PREFIX_ROLL_DICE_REQUEST);
 
-
+        actions.add(new PlayerLost());
+        actionPrefixes.add(PREFIX_PLAYER_LOST);
 
         actions.add(new RequestGameStartTime());
         actionPrefixes.add(PREFIX_GET_SERVER_TIME);

@@ -14,6 +14,7 @@ import delta.dkt.R;
 
 public class MainMenuActivity extends AppCompatActivity {
 
+    public static String username;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
