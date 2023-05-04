@@ -32,7 +32,7 @@ public class ServerActionHandler {
         actions.add(new exampleAction());
         actionPrefixes.add(PREFIX_PLAYER_PAYRENT);
 
-        actions.add(new HostGameAction());
+        actions.add(new RequestHostGame());
         actionPrefixes.add(PREFIX_HOST_NEW_GAME);
 
         actions.add(new RequestGameStart());
