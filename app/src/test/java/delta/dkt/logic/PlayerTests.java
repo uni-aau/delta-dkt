@@ -320,12 +320,17 @@ class PlayerTests {
      * @param steps Steps that the player will move from its current position.
      */
     @ParameterizedTest
-    @ValueSource(ints = {1, 2, 3, 4, 5, 6, 10})
+    @ValueSource(ints = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10})
     void checkPlayerMovement_bySteps (int steps) {
 
         //? sets the return value for getField method with its given arguments to a valid property.
         int location = player.getPosition().getLocation() + steps;
-        when(mockMapHandling.getField(location)).thenReturn(generateDummyProperty(location));
+        if(steps%2==0) {
+            when(mockMapHandling.getField(location)).thenReturn(generateDummyProperty(location));
+        }else{
+            //Test for movement on a special location
+            when(mockMapHandling.getField(location)).thenReturn(new SpecialField(location));
+        }
         when(mockMapHandling.getFields()).thenReturn(generateDummyList());
 
         player.moveSteps(steps);

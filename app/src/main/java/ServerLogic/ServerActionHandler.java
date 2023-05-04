@@ -3,6 +3,7 @@ package ServerLogic;
 import static ClientUIHandling.Constants.*;
 
 import ServerLogic.actions.GameStartStatsRequest;
+import ServerLogic.actions.PlayerLost;
 import ServerLogic.actions.RequestPlayerMovement;
 import android.util.Log;
 
@@ -29,7 +30,7 @@ public class ServerActionHandler {
         actions = new ArrayList<>();
         actionPrefixes = new ArrayList<>();
 
-        actions.add(new exampleAction());
+        actions.add(new ActionPayRent());
         actionPrefixes.add(PREFIX_PLAYER_PAYRENT);
 
         actions.add(new RequestGameStart());
@@ -51,6 +52,8 @@ public class ServerActionHandler {
         actions.add(new RequestRollDicePerm());
         actionPrefixes.add(PREFIX_ROLL_DICE_REQUEST);
 
+        actions.add(new PlayerLost());
+        actionPrefixes.add(PREFIX_PLAYER_LOST);
 
         actions.add(new RequestGameStartTime());
         actionPrefixes.add(PREFIX_GET_SERVER_TIME);
@@ -58,8 +61,8 @@ public class ServerActionHandler {
 
     public static void triggerAction(String name, Object parameters){
         if(server == null){
-
-            Log.e("ERROR","Server not set");
+            //Use a java class here to avoid not-mocked exception when a test reaches here.
+           System.err.println("SERVER NOT SET");
             return;
         }
         if(!actionPrefixes.contains(name)){
