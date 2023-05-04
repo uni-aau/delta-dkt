@@ -1,7 +1,5 @@
 package ServerLogic;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import network2.ServerNetworkClient;
 
 public interface ServerActionInterface {

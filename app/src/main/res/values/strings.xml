@@ -12,13 +12,13 @@
     <string name="textCD_prop4">Property 4</string>
     <string name="text_backToGame">Back</string>
     <string name="general_information">General Information</string>
-    <string name="players_online">Players online: {0}/{1}</string>
+    <string name="players_online">Players online: %d / %d</string>
     <string name="cash_text">Cash: {0}$</string>
     <string name="my_properties_text">My Properties: {0}</string>
-    <string name="playing_time_text">Playing Time: {0}</string>
+    <string name="playing_time_text">Playing Time: %d %s, %d %s, %d %s</string>
     <string name="roll_the_dice">Roll the dice</string>
     <string name="property_information">Property Information</string>
-    <string name="dice_information_text">{0} rolls the dice\n{1} left to roll the dice</string>
+    <string name="dice_information_text">%s rolls the dice\n{1} left to roll the dice</string>
     <string name="gameview_image_description">DKT-Board</string>
     <string name="activity_text">Activity: {0}</string>
     <string name="EnterButton">Enter</string>
@@ -34,4 +34,17 @@
 
     <string name="NSDServiceName">delta_dkt</string>
     <string name="NSDServiceType">_delta_dkt.tcp</string>
+    <string name="hours_plural_text">hours</string>
+    <string name="hour_sing_text">hour</string>
+    <string name="minutes_plural_text">minutes</string>
+    <string name="minute_sing_text">minute</string>
+    <string name="seconds_plural_text">seconds</string>
+    <string name="second_sing_text">second</string>
+    <string name="start_broadcast_toast_text">The game successfully started with %s players</string>
+    <string name="img_description_player6_text">Player 6</string>
+    <string name="img_description_player5_text">Player 5</string>
+    <string name="img_description_player3_text">Player 3</string>
+    <string name="img_description_player4_text">Player 4</string>
+    <string name="img_description_player2_text">Player 2</string>
+    <string name="img_description_player1_text">Player 1</string>
 </resources>

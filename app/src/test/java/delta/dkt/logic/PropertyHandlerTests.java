@@ -13,7 +13,7 @@ import org.junit.jupiter.params.provider.ValueSource;
 import delta.dkt.logic.structure.Property;
 import delta.dkt.logic.structure.PropertyHandler;
 
-public class PropertyHandlerTests {
+class PropertyHandlerTests {
     Property p = new Property(6, 250, 96, NORMAL, 150);
 
     /**
