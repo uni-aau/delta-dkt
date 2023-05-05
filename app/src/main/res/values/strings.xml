@@ -13,7 +13,7 @@
     <string name="text_backToGame">Back</string>
     <string name="general_information">General Information</string>
     <string name="players_online">Players online: %d / %d</string>
-    <string name="cash_text">Cash: {0}$</string>
+    <string name="cash_text">Cash: %d$</string>
     <string name="my_properties_text">My Properties: {0}</string>
     <string name="playing_time_text">Playing Time: %d %s, %d %s, %d %s</string>
     <string name="roll_the_dice">Roll the dice</string>
