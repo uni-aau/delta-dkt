@@ -1,5 +1,7 @@
 package delta.dkt.activities;
 
+import static delta.dkt.activities.LobbyViewActivity.userList;
+
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
@@ -38,22 +40,29 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT); // Force portrait screen at activity level
 
+        // Get Views from the MainActivity xml:
         EditText edtxt = findViewById(R.id.username_edittext);
         Button enter = findViewById(R.id.enter_btn);
 
+
+        //---ENTER BUTTON---    (Everything that happens when ENTER Button is pressed)
         enter.setOnClickListener(view -> {
             Intent intent = new Intent(getApplicationContext(), MainMenuActivity.class);
             String username = edtxt.getText().toString();
             if (username.isEmpty()) {
                 Toast.makeText(MainActivity.this, "Please enter Username", Toast.LENGTH_SHORT).show();
+            } else if (checkIfUsernameAlreadyExists(username)){
+                Toast.makeText(MainActivity.this, "This Username already exists", Toast.LENGTH_SHORT).show();
             } else {
                 Toast.makeText(MainActivity.this, "Welcome " + username + "!", Toast.LENGTH_SHORT).show();
                 intent.putExtra(INTENT_PARAMETER, username);
                 MainMenuActivity.username = username;
                 startActivity(intent);
             }
-
         });
+
+
+
         subscribeToLogic(Constants.MAIN_ACTIVITY_TYPE, this);
         try {
             establishServerConnection();
@@ -68,13 +77,13 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
+    //--------------------------ALL METHODS-----------------------------//
+
     public void establishServerConnection() throws InterruptedException, RuntimeException {
 
         ClientLogic.isTEST = false;
 
-
         ServerNetworkClient server = new ServerNetworkClient(this.getApplicationContext());
-
 
         server.start();
 
@@ -85,8 +94,15 @@ public class MainActivity extends AppCompatActivity {
         ServerActionHandler.setServer(server);
     }
 
+
     public static void subscribeToLogic(String type, AppCompatActivity activity) {
         logic.getHandler().put(type, new ClientHandler(activity));
     }
+
+
+    public boolean checkIfUsernameAlreadyExists (String newUsername){
+        return (userList.contains(newUsername));
+    }
+
 
 }

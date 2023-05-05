@@ -14,7 +14,7 @@
         android:contentDescription="@string/DktLogoDescription"
         app:srcCompat="@drawable/dkt_logo_2"
         android:layout_marginTop="10dp"
-        android:layout_marginLeft="10dp"/>
+        android:layout_marginStart="10dp"/>
 
     <TextView
         android:id="@+id/textView"
@@ -31,7 +31,7 @@
         android:id="@+id/currentPlayersTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/NumberOfPlayers"
+        android:text="@string/TotalPlayers"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="1dp"
         android:fontFamily="@font/bangers"

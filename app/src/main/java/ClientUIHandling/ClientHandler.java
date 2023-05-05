@@ -57,6 +57,14 @@ public class ClientHandler extends Handler {
 
         actions.add(new ActionBroadcastStartStats());
         actionPrefixes.add(Constants.PREFIX_GAME_START_STATS);
+
+        actions.add(new ActionUpdateUserList());
+        actionPrefixes.add(Constants.PREFIX_UPDATE_USER_LIST);
+
+        actions.add(new ActionAddUserToUserList());
+        actionPrefixes.add(Constants.PREFIX_ADD_USER_TO_LIST);
+
+
     }
 
 

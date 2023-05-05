@@ -37,7 +37,7 @@ public class ServerActionHandler {
         actionMap.put(PREFIX_PLAYER_LOST, new PlayerLost());
         //TODO: Change the registration
 
-        actions.add(new HostGameAction());
+        actions.add(new RequestHostGame());
         actionPrefixes.add(PREFIX_HOST_NEW_GAME);
 
         actions.add(new RequestGameStart());
@@ -61,6 +61,12 @@ public class ServerActionHandler {
 
         actions.add(new RequestGameStartTime());
         actionPrefixes.add(PREFIX_GET_SERVER_TIME);
+
+        actions.add(new RequestAddUserToUserList());
+        actionPrefixes.add(PREFIX_ADD_USER_TO_LIST);
+
+        actions.add(new RequestUpdateUserList());
+        actionPrefixes.add(PREFIX_UPDATE_USER_LIST);
     }
 
     public static void triggerAction(String name, Object parameters){

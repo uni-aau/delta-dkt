@@ -1,14 +1,13 @@
 package delta.dkt.activities;
 
+import static ClientUIHandling.Constants.PREFIX_ADD_USER_TO_LIST;
 import static ClientUIHandling.Constants.PREFIX_HOST_NEW_GAME;
 import static delta.dkt.activities.MainActivity.INTENT_PARAMETER;
 
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
-import android.text.InputType;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
@@ -18,9 +17,6 @@ import android.widget.Toast;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
-
-import com.google.android.material.dialog.MaterialAlertDialogBuilder;
-import com.google.android.material.textfield.TextInputEditText;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -42,24 +38,33 @@ public class MainMenuActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main_menu_view);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT); // Force portrait screen at activity level
 
-
+        // Get Views from the MainMenu xml:
         Button host = findViewById(R.id.host_button);
         Button join = findViewById(R.id.join_button);
-        String newUser = getIntent().getStringExtra(INTENT_PARAMETER);
 
 
+        //---HOST BUTTON---  (Everything that happens when host button is clicked)
         host.setOnClickListener(view -> showServerPopUpWindow());
 
+
+
+        //---JOIN BUTTON---  (Everything that happens when join button is clicked)
         join.setOnClickListener(view -> {
             Intent intent = new Intent(getApplicationContext(), LobbyViewActivity.class);
-            intent.putExtra(INTENT_PARAMETER, newUser);
+            intent.putExtra(INTENT_PARAMETER, returnNewUser());
             startActivity(intent);
         });
 
         MainActivity.subscribeToLogic(Constants.MAINMENU_ACTIVITY_TYPE, this);
-
     }
 
+
+
+    //---------------------------ALL METHODS:---------------------------//
+
+
+    // This method will show the User a popUP Window to enter a Server name.
+    // When clicked on OK, it will proceed with "Start Server" method.
     public void showServerPopUpWindow() {
 
         ConstraintLayout popUpConstraintLayout = findViewById(R.id.popUpConstraintLayout);
@@ -88,21 +93,31 @@ public class MainMenuActivity extends AppCompatActivity {
             alertDialog.getWindow().setBackgroundDrawable(new ColorDrawable(0));
         }
         alertDialog.show();
-
     }
 
+
+
+    // This Method will start with the Server and trigger the Action "HOST_NEW_GAME"
     public void startServer(String serverName){
         server = new ServerNetworkClient();
         server.start();
         Toast.makeText(MainMenuActivity.this, "Server "+serverName+" started on "+getTime(), Toast.LENGTH_SHORT).show();
-        ServerActionHandler.triggerAction(PREFIX_HOST_NEW_GAME, null);
+        ServerActionHandler.triggerAction(PREFIX_HOST_NEW_GAME, returnNewUser());
     }
 
+
+
+    // This method returns the current time
     public static String getTime() {
         SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss");
         return sdf.format(new Date());
     }
 
+
+    // This method always returns the Name of the current User:
+    public String returnNewUser(){
+        return getIntent().getStringExtra(INTENT_PARAMETER);
+    }
 
 
 }
