@@ -13,17 +13,23 @@ public class RequestRollDicePerm implements ServerActionInterface {
     @Override
     public void execute(ServerNetworkClient server, Object parameters) {
         int nextClient;
+        String tag = "[Server] Roll Dice Request";
         int oldClientId = (int) parameters;
-        Log.d("[Server] Roll Dice Request", "Received next client request - Old client: " + parameters);
+        Log.d(tag, "Received next client request - Old client: " + parameters);
 
         // Check if clientID is last ID in game
-        if (oldClientId % Game.getPlayers().size() == 0) {
-            nextClient = 1; // swap to first player
-        } else {
-            nextClient = oldClientId + 1;
-        }
+        int size = Game.getPlayers().size();
+        if (size != 0) {
+            if (oldClientId % size == 0) {
+                nextClient = 1; // swap to first player
+            } else {
+                nextClient = oldClientId + 1;
+            }
 
-        Log.d("[Server] Roll Dice Request", "OldClientId = " + oldClientId + " NewClient = " + nextClient);
-        server.broadcast(GAMEVIEW_ACTIVITY_TYPE, PREFIX_ROLL_DICE_REQUEST, new String[]{String.valueOf(nextClient)});
+            Log.d(tag, "OldClientId = " + oldClientId + " NewClient = " + nextClient);
+            server.broadcast(GAMEVIEW_ACTIVITY_TYPE, PREFIX_ROLL_DICE_REQUEST, new String[]{String.valueOf(nextClient)});
+        } else {
+            Log.e(tag, "Error - No players available in GameView");
+        }
     }
 }

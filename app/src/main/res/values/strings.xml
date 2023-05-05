@@ -14,13 +14,13 @@
     <string name="general_information">General Information</string>
     <string name="players_online">Players online: %d / %d</string>
     <string name="cash_text">Cash: %d$</string>
-    <string name="my_properties_text">My Properties: {0}</string>
+    <string name="my_properties_text">My Properties: %d</string>
     <string name="playing_time_text">Playing Time: %d %s, %d %s, %d %s</string>
     <string name="roll_the_dice">Roll the dice</string>
     <string name="property_information">Property Information</string>
     <string name="dice_information_text">%s rolls the dice\n{1} left to roll the dice</string>
     <string name="gameview_image_description">DKT-Board</string>
-    <string name="activity_text">Activity: {0}</string>
+    <string name="activity_text">Activity: %s</string>
     <string name="EnterButton">Enter</string>
     <string name="HostGameButton">Host Game</string>
     <string name="JoinGameButton">Join Game</string>
