@@ -26,7 +26,7 @@ import delta.dkt.R;
 public class LobbyViewActivity extends AppCompatActivity {
     RecyclerView recyclerView;
     UserNameAdapter adapter;
-    public static ArrayList<String> userList;
+    public static ArrayList<String> userList = new ArrayList<>();
 
 
     @Override
@@ -43,10 +43,9 @@ public class LobbyViewActivity extends AppCompatActivity {
 
         // Get User Name, add it to the List and set the TotalPlayersNumber:
         String newUser = getIntent().getStringExtra(INTENT_PARAMETER);
-        userList= new ArrayList<>();
-        addUserToUserList(newUser);
-        String combinedString = getString(R.string.TotalPlayers) + userList.size();
-        totalPlayers.setText(combinedString);
+        //userList.add();
+        //String combinedString = getString(R.string.TotalPlayers) + userList.size();
+        //totalPlayers.setText("???");
 
 
 
