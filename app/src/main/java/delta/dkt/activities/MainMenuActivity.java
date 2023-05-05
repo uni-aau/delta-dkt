@@ -31,6 +31,7 @@ import network2.ServerNetworkClient;
 public class MainMenuActivity extends AppCompatActivity {
 
     ServerNetworkClient server;
+    public static String username; // Todo
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
