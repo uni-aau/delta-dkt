@@ -4,12 +4,14 @@ import static ClientUIHandling.Constants.PREFIX_INIT_PLAYERS;
 
 import android.util.Log;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import ClientUIHandling.ClientActionInterface;
 import ClientUIHandling.Config;
+import delta.dkt.R;
 import delta.dkt.activities.GameViewActivity;
 import delta.dkt.logic.structure.Game;
 
@@ -30,6 +32,7 @@ public class ActionPlayerInit implements ClientActionInterface {
         }
 
         enablePlayers(activity, clientId);
+        setInitCash(activity); //
     }
 
     // Shows for every clientId a specific player marker in the gui
@@ -45,5 +48,10 @@ public class ActionPlayerInit implements ClientActionInterface {
             Log.e("[UI] Action Error", String.format("Error - Less player markers (%d) than players (%d)!", Config.MAX_CLIENTS, clientId));
             Toast.makeText(activity, "There was an error while adding another player - Check error logs!", Toast.LENGTH_SHORT).show();
         }
+    }
+
+    // Sets initial cash in TextView
+    private void setInitCash(AppCompatActivity activity) {
+        ((TextView) activity.findViewById(R.id.textView_cash)).setText(String.format(activity.getString(R.string.cash_text), Config.INITIAL_CASH));
     }
 }
