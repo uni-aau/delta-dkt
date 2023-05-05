@@ -1,16 +1,18 @@
-package ServerLogic;
+package ServerLogic.actions;
 
 import static ClientUIHandling.Constants.*;
 
 
 import android.util.Log;
 
+import ServerLogic.ServerActionHandler;
+import ServerLogic.ServerActionInterface;
 import delta.dkt.logic.structure.Game;
 import delta.dkt.logic.structure.Player;
 import delta.dkt.logic.structure.Property;
 import network2.ServerNetworkClient;
 
-public class exampleAction implements ServerActionInterface{
+public class ActionPayRent implements ServerActionInterface {
     @Override
     public void execute(ServerNetworkClient server, Object parameters) {
         {
@@ -36,12 +38,14 @@ public class exampleAction implements ServerActionInterface{
                 if(owner != null && !property.getOwner().equals(player)){
                     int rent = property.calculateRent();
                     if(player.getCash() < rent){
-                        //TODO: Call player lose event
+                        ServerActionHandler.triggerAction(PREFIX_PLAYER_LOST, player.getId());
 
                     }else{
                         player.payRentTo(owner, rent);
 
-                        server.broadcast(MainActivityType+":"+PREFIX_PLAYER_RENTPAID+" "+id+" "+player.getCash()+" "+owner.getId()+" "+owner.getCash());
+
+
+                        server.broadcast(GAMEVIEW_ACTIVITY_TYPE +":"+PREFIX_PLAYER_RENTPAID+" "+player.getNickname()+"(id= "+player.getId()+" ) "+player.getCash()+" "+owner.getNickname()+"(id= "+owner.getId()+" ) "+owner.getCash());
                     }
 
                 }

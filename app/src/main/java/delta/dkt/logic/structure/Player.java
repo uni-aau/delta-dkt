@@ -1,6 +1,10 @@
 package delta.dkt.logic.structure;
 
+import static ClientUIHandling.Constants.PREFIX_PLAYER_PAYRENT;
+
 import java.util.ArrayList;
+
+import ServerLogic.ServerActionHandler;
 
 public class Player {
     private static int startCash = 500;
@@ -148,7 +152,13 @@ public class Player {
 
         if (location == 0) location++;
 
+
+
         this.position = Game.getMap().getField(location);
+
+        if(this.position instanceof Property){
+            ServerActionHandler.triggerAction(PREFIX_PLAYER_PAYRENT, this.getId());
+        }
     }
 
     /**

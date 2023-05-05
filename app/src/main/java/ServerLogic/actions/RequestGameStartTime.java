@@ -1,6 +1,6 @@
 package ServerLogic.actions;
 
-import static ClientUIHandling.Constants.GameViewActivityType;
+import static ClientUIHandling.Constants.GAMEVIEW_ACTIVITY_TYPE;
 import static ClientUIHandling.Constants.PREFIX_GET_SERVER_TIME;
 
 import android.os.CountDownTimer;
@@ -28,7 +28,7 @@ public class RequestGameStartTime implements ServerActionInterface {
                 Log.d("[Server] Request Time", "CurrentMinute = " + currentMinute + "PreviousMinute = " + previousMinute);
 
                 // if(currentMinute != previousMinute) { // Todo - Check, ob nur eine Request pro Minute?
-                server.broadcast(GameViewActivityType, PREFIX_GET_SERVER_TIME, new String[]{String.valueOf(elapsedTime)});
+                server.broadcast(GAMEVIEW_ACTIVITY_TYPE, PREFIX_GET_SERVER_TIME, new String[]{String.valueOf(elapsedTime)});
                 previousMinute = currentMinute;
             }
 

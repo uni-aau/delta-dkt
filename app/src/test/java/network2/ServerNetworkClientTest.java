@@ -9,7 +9,7 @@ import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
 
-public class ServerNetworkClientTest {
+class ServerNetworkClientTest {
     private static ServerNetworkClient server;
     private static NetworkClientConnection client;
     private static int dynServerPORT;
@@ -56,7 +56,7 @@ public class ServerNetworkClientTest {
     }
 
     @Test
-    public void testGetter(){
+    void testGetter(){
         assertEquals(dynServerPORT, server.getPort());
     }
 

@@ -1,5 +1,6 @@
 package ServerLogic.actions;
 
+import ServerLogic.ServerActionHandler;
 import ServerLogic.ServerActionInterface;
 import android.util.Log;
 import delta.dkt.logic.structure.Game;
@@ -24,14 +25,14 @@ public class RequestPlayerMovement implements ServerActionInterface {
         } catch (NumberFormatException e) {
             Log.e("Movement", String.format("Parsing the clientsID failed, as its format is invalid! (%s)", parameters));
 
-            server.broadcast(GameViewActivityType, PREFIX_PLAYER_MOVE, new String[]{"error", "Someone tried to move but provided an invalid id."});
+            server.broadcast(GAMEVIEW_ACTIVITY_TYPE, PREFIX_PLAYER_MOVE, new String[]{"error", "Someone tried to move but provided an invalid id."});
             return;
         }
 
         //? Player is not inside the players 'collection' of the game, thus cannot be worked with.
         if (!Game.getPlayers().containsKey(clientID)) {
             Log.e(tag, String.format("A player with the id: %s requested to move, but is not yet registered on the server side. Aborting request!", clientID));
-            server.broadcast(GameViewActivityType, PREFIX_PLAYER_MOVE, new String[]{"error", String.format("Player %s tried to move but is not registed on the server!", clientID)});
+            server.broadcast(GAMEVIEW_ACTIVITY_TYPE, PREFIX_PLAYER_MOVE, new String[]{"error", String.format("Player %s tried to move but is not registed on the server!", clientID)});
 
             return;
         }
@@ -59,7 +60,7 @@ public class RequestPlayerMovement implements ServerActionInterface {
 
         Log.d(tag, String.format("Sending out messages to %s players.", Game.getPlayers().size()));
         Log.d(tag, "");
-        server.broadcast(GameViewActivityType, PREFIX_PLAYER_MOVE, args);
+        server.broadcast(GAMEVIEW_ACTIVITY_TYPE, PREFIX_PLAYER_MOVE, args);
     }
 
     /**
