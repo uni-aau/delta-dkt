@@ -12,8 +12,9 @@ public class RequestHostGame implements ServerActionInterface{
     @Override
     public void execute(ServerNetworkClient server, Object parameters) {
 
-        Log.d("[SERVER]:Host_Game", "Server started!!");
-        server.broadcast(MAINMENU_ACTIVITY_TYPE+":"+ PREFIX_HOST_NEW_GAME);
+        Log.d("[SERVER]:Host_Game", "Host Game Request received. UserName: " + parameters.toString());
+        server.broadcast(MAINMENU_ACTIVITY_TYPE, PREFIX_HOST_NEW_GAME, new String[]{(String) parameters});
+
 
     }
 }
