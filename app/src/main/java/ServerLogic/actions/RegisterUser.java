@@ -14,10 +14,10 @@ public class RegisterUser implements ServerActionInterface {
         Log.d("[Server] Register User", "Register User request received! Server: " + server + " parameters: " + parameters);
 
         int clientId = Game.getPlayers().size() + 1; // Starts at id 1 instead of 0
-        String uniqueNickName = "Player" + clientId;
+        String uuid = (String) parameters;
         Log.d("[Server] Register User", "Debug - ClientID: " + clientId);
 
-        Game.getPlayers().put(clientId, new Player(uniqueNickName));
+        Game.getPlayers().put(clientId, new Player(uuid));
 
         GameViewActivity.clientID = clientId; // Set gameview client ID
     }
