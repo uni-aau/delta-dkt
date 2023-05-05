@@ -2,12 +2,14 @@ package ServerLogic;
 
 import static ClientUIHandling.Constants.*;
 
+import ServerLogic.actions.ActionPayRent;
 import ServerLogic.actions.GameStartStatsRequest;
 import ServerLogic.actions.PlayerLost;
 import ServerLogic.actions.RequestPlayerMovement;
 import android.util.Log;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import ServerLogic.actions.RequestRollDicePerm;
 import ServerLogic.actions.RequestGameStartTime;
@@ -19,6 +21,7 @@ import network2.ServerNetworkClient;
 public class ServerActionHandler {
     public static final ArrayList<ServerActionInterface> actions;
     public static final ArrayList<String> actionPrefixes;
+    public static HashMap<String, ServerActionInterface> actionMap;
 
     private static ServerNetworkClient server;
 
@@ -29,9 +32,10 @@ public class ServerActionHandler {
     static{
         actions = new ArrayList<>();
         actionPrefixes = new ArrayList<>();
-
-        actions.add(new ActionPayRent());
-        actionPrefixes.add(PREFIX_PLAYER_PAYRENT);
+        actionMap = new HashMap<>();
+        actionMap.put(PREFIX_PLAYER_PAYRENT, new ActionPayRent());
+        actionMap.put(PREFIX_PLAYER_LOST, new PlayerLost());
+        //TODO: Change the registration
 
         actions.add(new RequestGameStart());
         actionPrefixes.add(PREFIX_GAME_START);
@@ -52,9 +56,6 @@ public class ServerActionHandler {
         actions.add(new RequestRollDicePerm());
         actionPrefixes.add(PREFIX_ROLL_DICE_REQUEST);
 
-        actions.add(new PlayerLost());
-        actionPrefixes.add(PREFIX_PLAYER_LOST);
-
         actions.add(new RequestGameStartTime());
         actionPrefixes.add(PREFIX_GET_SERVER_TIME);
     }
@@ -65,7 +66,12 @@ public class ServerActionHandler {
            System.err.println("SERVER NOT SET");
             return;
         }
+        //Still include old registration handling for legacy compatibility
         if(!actionPrefixes.contains(name)){
+            if (actionMap.containsKey(name)) {
+                actionMap.get(name).execute(server, parameters);
+                return;
+            }
             Log.e("ERROR","Server action does not exist: "+name);
             return;
         }
