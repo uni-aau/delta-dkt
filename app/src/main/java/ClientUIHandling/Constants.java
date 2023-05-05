@@ -23,4 +23,8 @@ public class Constants {
     public static final String PREFIX_REGISTER = "REGISTERUSER";
     public static final String PREFIX_INIT_PLAYERS = "init players";
     public static final String PREFIX_GAME_START_STATS = "start stats";
+
+    public static final String PREFIX_ADD_USER_TO_LIST = "Add User To List";
+
+    public static final String PREFIX_UPDATE_USER_LIST = "Update UserList";
 }
