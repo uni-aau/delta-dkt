@@ -3,6 +3,7 @@ package ClientUIHandling;
 import ClientUIHandling.actions.ActionBroadcastStartStats;
 import ClientUIHandling.actions.ActionMove;
 import ClientUIHandling.actions.ActionPlayerLost;
+import ClientUIHandling.actions.ActionRentPaid;
 import ClientUIHandling.actions.ActionRollDice;
 import ClientUIHandling.actions.ActionUpdateGameTime;
 
@@ -31,11 +32,10 @@ public class ClientHandler extends Handler {
         actions = new ArrayList<>();
         actionPrefixes = new ArrayList<>();
         actionMap = new HashMap<>();
-        actionMap.put(Constants.PREFIX_PLAYER_MOVE, new ActionExample());
         actionMap.put(Constants.PREFIX_PLAYER_RENTPAID, new ActionRentPaid());
+        actionMap.put(Constants.PREFIX_PLAYER_LOST, new ActionPlayerLost());
 
-        actions.add(new ActionRentPaid());
-        actionPrefixes.add(Constants.PREFIX_PLAYER_RENTPAID);
+        //TODO: Change the registration
 
         actions.add(new ActionStartGame());
         actionPrefixes.add(Constants.PREFIX_GAME_START);
@@ -54,9 +54,6 @@ public class ClientHandler extends Handler {
 
         actions.add(new ActionBroadcastStartStats());
         actionPrefixes.add(Constants.PREFIX_GAME_START_STATS);
-
-        actions.add(new ActionPlayerLost());
-        actionPrefixes.add(Constants.PREFIX_PLAYER_LOST);
     }
 
 

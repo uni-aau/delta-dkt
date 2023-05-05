@@ -1,4 +1,4 @@
-package ClientUIHandling;
+package ClientUIHandling.actions;
 
 import android.util.Log;
 import android.widget.TextView;
@@ -6,10 +6,11 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import ClientUIHandling.ClientActionInterface;
 import delta.dkt.R;
 import delta.dkt.activities.MainActivity;
 
-public class ActionRentPaid implements ClientActionInterface{
+public class ActionRentPaid implements ClientActionInterface {
     @Override
     public void execute(AppCompatActivity activity, String clientMessage) {
         Log.i("INFO", "RENTPAIDRECEIVED");

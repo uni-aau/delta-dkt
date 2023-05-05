@@ -2,6 +2,7 @@ package ServerLogic;
 
 import static ClientUIHandling.Constants.*;
 
+import ServerLogic.actions.ActionPayRent;
 import ServerLogic.actions.GameStartStatsRequest;
 import ServerLogic.actions.PlayerLost;
 import ServerLogic.actions.RequestPlayerMovement;
@@ -33,9 +34,8 @@ public class ServerActionHandler {
         actionPrefixes = new ArrayList<>();
         actionMap = new HashMap<>();
         actionMap.put(PREFIX_PLAYER_PAYRENT, new ActionPayRent());
-
-        actions.add(new ActionPayRent());
-        actionPrefixes.add(PREFIX_PLAYER_PAYRENT);
+        actionMap.put(PREFIX_PLAYER_LOST, new PlayerLost());
+        //TODO: Change the registration
 
         actions.add(new RequestGameStart());
         actionPrefixes.add(PREFIX_GAME_START);
@@ -56,9 +56,6 @@ public class ServerActionHandler {
         actions.add(new RequestRollDicePerm());
         actionPrefixes.add(PREFIX_ROLL_DICE_REQUEST);
 
-        actions.add(new PlayerLost());
-        actionPrefixes.add(PREFIX_PLAYER_LOST);
-
         actions.add(new RequestGameStartTime());
         actionPrefixes.add(PREFIX_GET_SERVER_TIME);
     }
@@ -69,6 +66,7 @@ public class ServerActionHandler {
            System.err.println("SERVER NOT SET");
             return;
         }
+        //Still include old registration handling for legacy compatibility
         if(!actionPrefixes.contains(name)){
             if (actionMap.containsKey(name)) {
                 actionMap.get(name).execute(server, parameters);
