@@ -57,6 +57,12 @@ public class ServerActionHandler {
 
         actions.add(new RequestGameStartTime());
         actionPrefixes.add(PREFIX_GET_SERVER_TIME);
+
+        actions.add(new RequestAddUserToUserList());
+        actionPrefixes.add(PREFIX_ADD_USER_TO_LIST);
+
+        actions.add(new RequestUpdateUserList());
+        actionPrefixes.add(PREFIX_UPDATE_USER_LIST);
     }
 
     public static void triggerAction(String name, Object parameters){
