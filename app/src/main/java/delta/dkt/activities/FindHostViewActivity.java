@@ -5,6 +5,7 @@ import static delta.dkt.activities.MainActivity.INTENT_PARAMETER;
 
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
+import android.net.nsd.NsdServiceInfo;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -17,14 +18,23 @@ import java.util.ArrayList;
 
 import ClientUIHandling.Constants;
 import delta.dkt.R;
+import network2.DiscoveryListener;
+import network2.NetworkServiceDiscoveryClient;
 
 
 public class FindHostViewActivity extends AppCompatActivity{
 
     RecyclerView recyclerView;
     HostAdapter adapter;
-    ArrayList<String> hostList;
+    //ArrayList<String> hostList;
+    private ArrayList<NsdServiceInfo> hosts = new ArrayList<>();
     public static Button joinButton;
+
+    private static final String SERVICE_NAME = "_delta-dkt";
+
+    private static final String SERVICE_PROTOCOLL ="_tcp";
+    private static final String SERVICE_TYPE = SERVICE_NAME+"."+SERVICE_PROTOCOLL;
+
 
 
     @Override
@@ -37,16 +47,20 @@ public class FindHostViewActivity extends AppCompatActivity{
         joinButton = findViewById(R.id.joinbtn);
         String newUser = getIntent().getStringExtra(INTENT_PARAMETER);
 
-        hostList = new ArrayList<>();
+        NetworkServiceDiscoveryClient discoveryClient = new NetworkServiceDiscoveryClient(this, SERVICE_TYPE);
 
-        hostList.add("Host1");
-        hostList.add("Host2");
-        hostList.add("Host3");
+        discoveryClient.startDiscovery(new DiscoveryListener(this));
 
-        recyclerView = findViewById(R.id.RecyclerView);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        adapter = new HostAdapter(this, hostList);
-        recyclerView.setAdapter(adapter);
+        //hostList = new ArrayList<>();
+
+        //hostList.add("Host1");
+        //hostList.add("Host2");
+        //hostList.add("Host3");
+
+        //recyclerView = findViewById(R.id.RecyclerView);
+        //recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        //adapter = new HostAdapter(this, hostList);
+        //recyclerView.setAdapter(adapter);
 
 
         backButton.setOnClickListener(view -> {
@@ -63,5 +77,17 @@ public class FindHostViewActivity extends AppCompatActivity{
 
         MainActivity.subscribeToLogic(Constants.FindHostViewActivityType, this);
 
+    }
+
+    private void updateHostList(){
+        recyclerView = findViewById(R.id.RecyclerView);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+        ArrayList<String> hostNames = new ArrayList<>();
+
+        this.hosts.forEach(h -> hostNames.add(h.getHost()+":"+h.getPort()));
+
+        adapter = new HostAdapter(this, hostNames);
+        recyclerView.setAdapter(adapter);
     }
 }
