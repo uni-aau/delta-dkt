@@ -37,9 +37,9 @@ public class ClientHandler extends Handler {
         actionMap.put(Constants.PREFIX_PLAYER_LOST, new ActionPlayerLost());
         actionMap.put(Constants.PREFIX_GAME_START, new ActionStartGame());
         actionMap.put(Constants.PREFIX_ROLL_DICE_REQUEST, new ActionRollDice());
-        actionMap.put(Constants.PREFIX_GET_SERVER_TIME, new ActionUpdateGameTime());
         actionMap.put(Constants.PREFIX_INIT_PLAYERS, new ActionPlayerInit());
         actionMap.put(Constants.PREFIX_GAME_START_STATS, new ActionBroadcastStartStats());
+        actionMap.put(Constants.PREFIX_GET_SERVER_TIME, new ActionUpdateGameTime());
         actionMap.put(Constants.PREFIX_PLAYER_MOVE, new ActionMove());
     }
 

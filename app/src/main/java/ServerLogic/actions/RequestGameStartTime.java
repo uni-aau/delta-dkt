@@ -18,6 +18,7 @@ public class RequestGameStartTime implements ServerActionInterface {
     @Override
     public void execute(ServerNetworkClient server, Object parameters) {
         Log.d("Server Start Time", "Received Server Start Time request!");
+        int clientID = (int) parameters;
 
         timer = new CountDownTimer(Config.END_TIME, 1000) {
             @Override
@@ -38,6 +39,9 @@ public class RequestGameStartTime implements ServerActionInterface {
                 // Todo - Game wird abgebrochen und ein Gewinner eruiert - CountDown oder StoppUhr
             }
         };
-        timer.start();
+        // Only first person starts timer (will be recoded in next sprint)
+        if (clientID == 1) {
+            timer.start();
+        }
     }
 }

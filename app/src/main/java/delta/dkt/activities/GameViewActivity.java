@@ -42,11 +42,11 @@ public class GameViewActivity extends AppCompatActivity {
         findViewById(R.id.button_property_infos).setOnClickListener(view -> switchToPropertyActivity());
 
         MainActivity.subscribeToLogic(Constants.GAMEVIEW_ACTIVITY_TYPE, this);
-        ServerActionHandler.triggerAction(PREFIX_GET_SERVER_TIME, 1); // Get game time
         ServerActionHandler.triggerAction(PREFIX_INIT_PLAYERS, String.valueOf(clientID)); // Set player & handle dice perms
         ServerActionHandler.triggerAction(PREFIX_GAME_START_STATS, String.valueOf(Game.getPlayers().size())); // Update player stats
+        ServerActionHandler.triggerAction(PREFIX_GET_SERVER_TIME, clientID); // Get game time
 
-        displayPlayers(4);
+//        displayPlayers(4);
 
         handleMovementRequests();
     }
