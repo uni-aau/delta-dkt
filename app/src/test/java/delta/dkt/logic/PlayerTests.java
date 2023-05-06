@@ -55,7 +55,20 @@ class PlayerTests {
     void checkDefaultSuspension() {
         assertEquals(0, player.getSuspention());
     }
-    
+
+    /**
+     * Checks whether the amount of players of a Game can be retrieved correctly.
+     */
+    @Test
+    void checkGameGetPlayers() {
+        assertEquals(0, Game.getPlayers().size());
+
+        Game.getPlayers().put(1, null);
+        assertEquals(1, Game.getPlayers().size());
+
+        Game.getPlayers().clear();
+        assertEquals(0, Game.getPlayers().size());
+    }
 
     /**
      * Checks whether the default nickname is set.
