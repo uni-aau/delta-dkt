@@ -89,7 +89,7 @@ public class FindHostViewActivity extends AppCompatActivity{
             startActivity(intent);
         });
 
-        MainActivity.subscribeToLogic(Constants.FindHostViewActivityType, this);
+        MainActivity.subscribeToLogic(Constants.FIND_HOST_VIEW_ACTIVITY_TYPE, this);
 
     }
 
