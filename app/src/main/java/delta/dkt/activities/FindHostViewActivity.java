@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.net.nsd.NsdServiceInfo;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
@@ -15,10 +16,13 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
+import ClientUIHandling.ClientLogic;
 import ClientUIHandling.Constants;
 import delta.dkt.R;
 import network2.DiscoveryListener;
+import network2.NetworkClientConnection;
 import network2.NetworkServiceDiscoveryClient;
 
 
@@ -29,13 +33,15 @@ public class FindHostViewActivity extends AppCompatActivity{
     //ArrayList<String> hostList;
     private ArrayList<NsdServiceInfo> hosts = new ArrayList<>();
     public static Button joinButton;
-
+    private NsdServiceInfo selection = null;
     private static final String SERVICE_NAME = "_delta-dkt";
-
     private static final String SERVICE_PROTOCOLL ="_tcp";
     private static final String SERVICE_TYPE = SERVICE_NAME+"."+SERVICE_PROTOCOLL;
 
 
+    public void setSelectedHost(int hostId) {
+        selection = hosts.get(hostId);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,6 +56,8 @@ public class FindHostViewActivity extends AppCompatActivity{
         NetworkServiceDiscoveryClient discoveryClient = new NetworkServiceDiscoveryClient(this, SERVICE_TYPE);
 
         discoveryClient.startDiscovery(new DiscoveryListener(this));
+
+        Log.d("Game-", "Discovery has been started!");
 
         updateHostList();
         //hostList = new ArrayList<>();
@@ -73,6 +81,11 @@ public class FindHostViewActivity extends AppCompatActivity{
         joinButton.setOnClickListener(view -> {
             Intent intent = new Intent(getApplicationContext(), LobbyViewActivity.class);
             intent.putExtra(INTENT_PARAMETER, newUser);
+            if(selection != null){
+                NetworkClientConnection client = new NetworkClientConnection(selection.getHost().getHostName(), selection.getPort(), 1000, new ClientLogic(new HashMap<>()));
+                client.start();
+            }
+
             startActivity(intent);
         });
 

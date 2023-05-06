@@ -19,6 +19,7 @@ public class HostAdapter extends RecyclerView.Adapter<HostAdapter.HostViewHolder
     Context context;
     ArrayList<String> hostId;
     public static View selectedView;
+    private int position;
 
     public HostAdapter (Context context, ArrayList<String> hostId) {
         this.context=context;
@@ -36,6 +37,7 @@ public class HostAdapter extends RecyclerView.Adapter<HostAdapter.HostViewHolder
     @Override
     public void onBindViewHolder(@NonNull HostViewHolder holder, int position) {
         holder.hostId.setText(hostId.get(position));
+        this.position = position;
     }
 
     @Override
@@ -65,6 +67,9 @@ public class HostAdapter extends RecyclerView.Adapter<HostAdapter.HostViewHolder
             }
 
             FindHostViewActivity.joinButton.setVisibility(View.VISIBLE);
+
+            FindHostViewActivity findHostViewActivity = (FindHostViewActivity) context;
+            findHostViewActivity.setSelectedHost(position);
 
             Toast.makeText(context, "Selected host: " + selectedHost, Toast.LENGTH_SHORT).show();
         }

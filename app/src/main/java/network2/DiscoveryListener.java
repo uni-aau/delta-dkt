@@ -2,6 +2,7 @@ package network2;
 
 import android.net.nsd.NsdManager;
 import android.net.nsd.NsdServiceInfo;
+import android.util.Log;
 import android.view.View;
 
 import ClientUIHandling.handlers.notifications.SnackBarHandler;
@@ -65,16 +66,19 @@ public class DiscoveryListener implements NsdManager.DiscoveryListener{
             @Override
             public void onServiceResolved(NsdServiceInfo nsdServiceInfo) {
                 printStatusMessage("Successfully resolved service!");
+                Log.d("Game-", nsdServiceInfo.toString());
                 activity.runOnUiThread(() -> {
                     activity.addHost(nsdServiceInfo);
                 });
             }
         });
         printStatusMessage("A new service has been found!");
+        Log.d("Client-HostList", "I have found a new service!");
     }
 
     @Override
     public void onServiceLost(NsdServiceInfo nsdServiceInfo) {
+        Log.d("Client-HostList", "I have lost a service!");
         printStatusMessage("A new service has been lost!");
         this.activity.removeHost(nsdServiceInfo);
     }
