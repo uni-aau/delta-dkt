@@ -50,7 +50,7 @@ public class RequestPlayerMovement implements ServerActionInterface {
 
         //* detailed logs
         Log.d(tag, String.format("Moving player (id=%s) to (pos=%s)!", clientID, destination));
-        Log.d(tag + "-detail", String.format("\told position: (pos=%s), new position: (pos=%s), steps: (steps=%s)", clientID, currentPosition, destination, steps));
+        Log.d(tag + "-detail", String.format("\told position: (pos=%s), new position: (pos=%s), steps: (steps=%s)", currentPosition, destination, steps));
 
         requestPlayer.moveTo(destination);
 
