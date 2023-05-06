@@ -193,6 +193,7 @@ public class PropertyHandler {
                 bregenz3.setName("Rathausstraße");
                 return bregenz3;
             }
+            default: break;
         }
 
         return property;
