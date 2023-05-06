@@ -1,14 +1,18 @@
 package delta.dkt.activities;
 
+import static ClientUIHandling.Constants.PREFIX_ADD_USER_TO_LIST;
 import static ClientUIHandling.Constants.PREFIX_GAME_START;
+import static ClientUIHandling.Constants.PREFIX_REMOVE_USER_FROM_LIST;
+import static ClientUIHandling.Constants.PREFIX_UPDATE_USER_LIST;
 import static delta.dkt.activities.MainActivity.INTENT_PARAMETER;
+import static delta.dkt.activities.MainMenuActivity.username;
 
-import android.content.Intent;
+
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Button;
-import android.widget.TextView;
+
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -16,7 +20,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
-import java.util.List;
+
 
 import ClientUIHandling.Constants;
 import ServerLogic.ServerActionHandler;
@@ -38,14 +42,6 @@ public class LobbyViewActivity extends AppCompatActivity {
         // Get Views from the Lobby xml:
         Button backButton = findViewById(R.id.backbtn);
         Button startButton = findViewById(R.id.startbtn);
-        TextView totalPlayers = findViewById(R.id.currentPlayersTextView);
-
-
-        // Get User Name, add it to the List and set the TotalPlayersNumber:
-        String newUser = getIntent().getStringExtra(INTENT_PARAMETER);
-        //userList.add();
-        //String combinedString = getString(R.string.TotalPlayers) + userList.size();
-        //totalPlayers.setText("???");
 
 
 
@@ -55,13 +51,13 @@ public class LobbyViewActivity extends AppCompatActivity {
         adapter = new UserNameAdapter(this, userList);
         recyclerView.setAdapter(adapter);
 
+        // Adding User to the UserList
+        addUserToUserListAndUpdate();
+
 
         //---BACK BUTTON---  (Everything that happens when back button is clicked)
         backButton.setOnClickListener(view -> {
-            Intent intent = new Intent(getApplicationContext(), MainMenuActivity.class);
-            intent.putExtra(INTENT_PARAMETER, newUser);
-            removeUserFromUserList(newUser);
-            startActivity(intent);
+            removeUserFromUserList();
         });
 
 
@@ -79,15 +75,18 @@ public class LobbyViewActivity extends AppCompatActivity {
     //---------------------------ALL METHODS:---------------------------//
 
 
-    // This Method adds new User to the UserList
-    public void addUserToUserList(String newUser){
-        userList.add(newUser);
+
+
+    // This Method removes the User from the UserList
+    public void removeUserFromUserList() {
+        ServerActionHandler.triggerAction(PREFIX_REMOVE_USER_FROM_LIST, username);
+        ServerActionHandler.triggerAction(PREFIX_UPDATE_USER_LIST,null);
         Toast.makeText(LobbyViewActivity.this, "Users Total: "+userList.size(), Toast.LENGTH_SHORT).show();
     }
 
-    // This Method removes the User from the UserList
-    public void removeUserFromUserList(String newUser) {
-        userList.removeAll(List.of(newUser));
+    public void addUserToUserListAndUpdate () {
+        ServerActionHandler.triggerAction(PREFIX_ADD_USER_TO_LIST, username);
+        ServerActionHandler.triggerAction(PREFIX_UPDATE_USER_LIST, null);
         Toast.makeText(LobbyViewActivity.this, "Users Total: "+userList.size(), Toast.LENGTH_SHORT).show();
     }
 }
