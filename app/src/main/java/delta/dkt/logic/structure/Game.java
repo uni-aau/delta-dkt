@@ -17,7 +17,6 @@ public class Game {
     }
 
     private static GameMap map;
-    private static int playerCount;
 
 
     public static void setMap(GameMap map) {
@@ -26,10 +25,6 @@ public class Game {
 
     public static GameMap getMap() {
         return map;
-    }
-
-    public static int getPlayerCount() {
-        return playerCount;
     }
 
     public static HashMap<Integer, Player> getPlayers() {
