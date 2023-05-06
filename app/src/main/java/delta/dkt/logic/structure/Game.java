@@ -32,10 +32,6 @@ public class Game {
         return playerCount;
     }
 
-    public static void setPlayerCount(int playerCount) {
-        Game.playerCount = playerCount;
-    }
-
     public static HashMap<Integer, Player> getPlayers() {
         return players;
     }
