@@ -27,7 +27,9 @@ public class NetworkServiceDiscoveryClient {
     public void startDiscovery(DiscoveryListener listener) {
         stopDiscovery();
         discoveredServices.clear();
+        listener.setManager(nsdManager);
         discoveryListener = listener;
+        nsdManager.discoverServices(serviceType, NsdManager.PROTOCOL_DNS_SD, discoveryListener);
     }
 
     public void stopDiscovery() {
