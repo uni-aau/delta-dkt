@@ -11,6 +11,7 @@ public class Constants {
     public static final String PROPERTYLIST_ACTIVITY_TYPE = "list";
     public static final String LOBBYVIEW_ACTIVITY_TYPE = "lobby";
     public static final String PREFIX_PLAYER_MOVE = "move";
+    public static final String FIND_HOST_VIEW_ACTIVITY_TYPE="findHost";
 
     public static final String PREFIX_PLAYER_RENTPAID = "RENTPAID";
 
