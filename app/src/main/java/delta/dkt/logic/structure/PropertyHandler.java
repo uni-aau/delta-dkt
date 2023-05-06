@@ -8,6 +8,7 @@ import static delta.dkt.logic.structure.PropertyLevel.PREMIUM;
  * This class represents a PropertyHandler to handle all the properties.
  */
 public class PropertyHandler {
+    private PropertyHandler(){}
 
     /**
      * Gets the property of a given position
