@@ -1,5 +1,7 @@
 package ClientUIHandling;
 
+import static ClientUIHandling.Constants.PREFIX_REMOVE_USER_FROM_LIST;
+
 import ClientUIHandling.actions.ActionBroadcastStartStats;
 import ClientUIHandling.actions.ActionMove;
 import ClientUIHandling.actions.ActionPlayerLost;
@@ -18,6 +20,10 @@ import java.util.HashMap;
 
 import ClientUIHandling.actions.ActionStartGame;
 import ClientUIHandling.actions.ActionPlayerInit;
+import ClientUIHandling.hostGameActions.ActionAddUserToUserList;
+import ClientUIHandling.hostGameActions.ActionHostGame;
+import ClientUIHandling.hostGameActions.ActionRemoveUserFromUserList;
+import ClientUIHandling.hostGameActions.ActionUpdateUserList;
 
 public class ClientHandler extends Handler {
 
@@ -63,6 +69,9 @@ public class ClientHandler extends Handler {
 
         actions.add(new ActionAddUserToUserList());
         actionPrefixes.add(Constants.PREFIX_ADD_USER_TO_LIST);
+
+        actions.add(new ActionRemoveUserFromUserList());
+        actionPrefixes.add(Constants.PREFIX_REMOVE_USER_FROM_LIST);
 
 
     }

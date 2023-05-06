@@ -16,6 +16,10 @@ import ServerLogic.actions.RequestGameStartTime;
 import ServerLogic.actions.RegisterUser;
 import ServerLogic.actions.RequestPlayerInit;
 import ServerLogic.actions.RequestGameStart;
+import ServerLogic.hostGameActions.RequestAddUserToUserList;
+import ServerLogic.hostGameActions.RequestHostGame;
+import ServerLogic.hostGameActions.RequestRemoveUserFromList;
+import ServerLogic.hostGameActions.RequestUpdateUserList;
 import network2.ServerNetworkClient;
 
 public class ServerActionHandler {
@@ -64,6 +68,9 @@ public class ServerActionHandler {
 
         actions.add(new RequestAddUserToUserList());
         actionPrefixes.add(PREFIX_ADD_USER_TO_LIST);
+
+        actions.add(new RequestRemoveUserFromList());
+        actionPrefixes.add(PREFIX_REMOVE_USER_FROM_LIST);
 
         actions.add(new RequestUpdateUserList());
         actionPrefixes.add(PREFIX_UPDATE_USER_LIST);
