@@ -40,8 +40,7 @@ public class ClientHandler extends Handler {
         actions.add(new ActionStartGame());
         actionPrefixes.add(Constants.PREFIX_GAME_START);
 
-        actions.add(new ActionMove());
-        actionPrefixes.add(Constants.PREFIX_PLAYER_MOVE);
+        actionMap.put(Constants.PREFIX_PLAYER_MOVE, new ActionMove());
 
         actions.add(new ActionRollDice());
         actionPrefixes.add(Constants.PREFIX_ROLL_DICE_REQUEST);
