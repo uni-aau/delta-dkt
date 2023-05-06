@@ -334,16 +334,16 @@ class PlayerTests {
      * @param location The location to which the player should be moved.
      */
     @ParameterizedTest
-    @ValueSource(ints = {1, 2, 3, 4, 5, 6, 10})
+    @ValueSource(ints = {0, 1, 2, 3, 4, 5, 6, 10})
     void checkPlayerMovement_moveTo(int location) {
 
         //? sets the return value for getField method with its given arguments to a valid property.
-        when(mockMapHandling.getField(location)).thenReturn(generateDummyProperty(location));
+        when(mockMapHandling.getField(location == 0 ? location + 1 : location)).thenReturn(generateDummyProperty(location == 0 ? location + 1 : location));
 
         player.moveTo(location);
-        assertEquals(location, player.getPosition().getLocation());
+        assertEquals(location == 0 ? location + 1 : location, player.getPosition().getLocation());
 
-        verify(mockMapHandling, atLeastOnce()).getField(location);
+        verify(mockMapHandling, atLeastOnce()).getField(location == 0 ? location + 1 : location);
     }
 
 
