@@ -51,6 +51,7 @@ public class FindHostViewActivity extends AppCompatActivity{
 
         discoveryClient.startDiscovery(new DiscoveryListener(this));
 
+        updateHostList();
         //hostList = new ArrayList<>();
 
         //hostList.add("Host1");
@@ -77,6 +78,16 @@ public class FindHostViewActivity extends AppCompatActivity{
 
         MainActivity.subscribeToLogic(Constants.FindHostViewActivityType, this);
 
+    }
+
+    public void addHost(NsdServiceInfo host){
+        this.hosts.add(host);
+        updateHostList();
+    }
+
+    public void removeHost(NsdServiceInfo host){
+        this.hosts.remove(host);
+        updateHostList();
     }
 
     private void updateHostList(){
