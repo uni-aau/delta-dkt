@@ -37,7 +37,7 @@ public class HostAdapter extends RecyclerView.Adapter<HostAdapter.HostViewHolder
     @Override
     public void onBindViewHolder(@NonNull HostViewHolder holder, int position) {
         holder.hostId.setText(hostId.get(position));
-        this.position = position;
+        this.position = holder.getAdapterPosition();
     }
 
     @Override
