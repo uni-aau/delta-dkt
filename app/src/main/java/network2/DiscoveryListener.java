@@ -2,7 +2,10 @@ package network2;
 
 import android.net.nsd.NsdManager;
 import android.net.nsd.NsdServiceInfo;
+import android.view.View;
 
+import ClientUIHandling.handlers.notifications.SnackBarHandler;
+import delta.dkt.R;
 import delta.dkt.activities.FindHostViewActivity;
 
 public class DiscoveryListener implements NsdManager.DiscoveryListener{
@@ -15,6 +18,20 @@ public class DiscoveryListener implements NsdManager.DiscoveryListener{
 
     public void setManager(NsdManager manager){
         this.manager = manager;
+    }
+
+    private void printErrorMessage(String message){
+        this.activity.runOnUiThread(() -> {
+            View v = activity.findViewById(R.id.joinbtn);
+            SnackBarHandler.createSnackbar(v, message, 2000, true, "#ffffff", "#e77373").show();
+        });
+    }
+
+    private void printStatusMessage(String message){
+        this.activity.runOnUiThread(() -> {
+            View v = activity.findViewById(R.id.joinbtn);
+            SnackBarHandler.createSnackbar(v, message, 2000, true, "#ffffff", "#47964b").show();
+        });
     }
 
     @Override
