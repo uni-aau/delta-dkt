@@ -1,6 +1,5 @@
 package delta.dkt.activities;
 
-import static ClientUIHandling.Constants.PREFIX_ADD_USER_TO_LIST;
 import static ClientUIHandling.Constants.PREFIX_HOST_NEW_GAME;
 import static delta.dkt.activities.MainActivity.INTENT_PARAMETER;
 
@@ -43,16 +42,19 @@ public class MainMenuActivity extends AppCompatActivity {
         Button host = findViewById(R.id.host_button);
         Button join = findViewById(R.id.join_button);
 
+        username = getIntent().getStringExtra(INTENT_PARAMETER);
+
 
         //---HOST BUTTON---  (Everything that happens when host button is clicked)
-        host.setOnClickListener(view -> showServerPopUpWindow());
+        host.setOnClickListener(view -> {
+            showServerPopUpWindow();
+        });
 
 
 
         //---JOIN BUTTON---  (Everything that happens when join button is clicked)
         join.setOnClickListener(view -> {
             Intent intent = new Intent(getApplicationContext(), LobbyViewActivity.class);
-            intent.putExtra(INTENT_PARAMETER, returnNewUser());
             startActivity(intent);
         });
 
@@ -84,7 +86,7 @@ public class MainMenuActivity extends AppCompatActivity {
             if (serverName.isEmpty()) {
                 Toast.makeText(MainMenuActivity.this, "Please enter Servername", Toast.LENGTH_SHORT).show();
             }else {
-                startServer(serverName);
+                    startServer(serverName);
             }
         });
 
@@ -99,11 +101,12 @@ public class MainMenuActivity extends AppCompatActivity {
 
 
     // This Method will start with the Server and trigger the Action "HOST_NEW_GAME"
-    public void startServer(String serverName){
-        server = new ServerNetworkClient();
+    public void startServer(String serverName) {
+        server = new ServerNetworkClient(this.getApplicationContext());
         server.start();
+        //ServerActionHandler.setServer(server);
         Toast.makeText(MainMenuActivity.this, "Server "+serverName+" started on "+getTime(), Toast.LENGTH_SHORT).show();
-        ServerActionHandler.triggerAction(PREFIX_HOST_NEW_GAME, returnNewUser());
+        ServerActionHandler.triggerAction(PREFIX_HOST_NEW_GAME, username);
     }
 
 
@@ -113,14 +116,6 @@ public class MainMenuActivity extends AppCompatActivity {
         SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss");
         return sdf.format(new Date());
     }
-
-
-    // This method always returns the Name of the current User:
-    public String returnNewUser(){
-        return getIntent().getStringExtra(INTENT_PARAMETER);
-    }
-
-
 }
 
 
