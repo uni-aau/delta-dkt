@@ -27,6 +27,7 @@ import delta.dkt.logic.structure.Game;
 
 public class GameViewActivity extends AppCompatActivity {
     public static int clientID = -1; // ID gets set by server
+    public static String uuid = ""; // uuid gets set by server
     int[] locations = {1, 1, 1, 1, 1, 1};
     Button btnDice;
     ImageView map;

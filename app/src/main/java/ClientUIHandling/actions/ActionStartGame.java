@@ -24,6 +24,7 @@ public class ActionStartGame implements ClientActionInterface {
 
         // Register players
         String uniqueID = UUID.randomUUID().toString(); // Unique ID for register command
+        GameViewActivity.uuid = uniqueID;
         ServerActionHandler.triggerAction(PREFIX_REGISTER, uniqueID);
     }
 }
