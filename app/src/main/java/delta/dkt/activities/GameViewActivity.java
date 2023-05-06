@@ -46,6 +46,8 @@ public class GameViewActivity extends AppCompatActivity {
         ServerActionHandler.triggerAction(PREFIX_INIT_PLAYERS, String.valueOf(clientID)); // Set player & handle dice perms
         ServerActionHandler.triggerAction(PREFIX_GAME_START_STATS, String.valueOf(Game.getPlayers().size())); // Update player stats
 
+        displayPlayers(4);
+
         handleMovementRequests();
     }
 
@@ -114,5 +116,19 @@ public class GameViewActivity extends AppCompatActivity {
         btnDice.setEnabled(false);
         btnDice.setBackgroundResource(R.drawable.host_btn_background_disabled);
         map.setEnabled(false); // prevent touch event
+    }
+
+    /**
+     * This method will set the figure's for the request amount of players visible.
+     * @param count Amount of players of which the figures are going to be made visible.
+     */
+    public void displayPlayers(int count){
+        for(int i = 1; i <= count; i++) {
+            ImageView figure = findViewById(getResources().getIdentifier("player" + i, "id", getPackageName()));
+
+            if(figure == null) continue;
+
+            figure.setVisibility(View.VISIBLE);
+        }
     }
 }
