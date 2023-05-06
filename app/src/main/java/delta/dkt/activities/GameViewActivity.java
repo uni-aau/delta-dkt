@@ -61,7 +61,7 @@ public class GameViewActivity extends AppCompatActivity {
     @SuppressLint("ClickableViewAccessibility")
     private void handleMovementRequests() {
         //? Places all figures on their designated position inside the start field.
-        for(int i = 0; i < locations.length; i++) {
+        for (int i = 0; i < locations.length; i++) {
             int index = i;
             map.post(() -> updatePlayerPosition(locations[index], index + 1));
         }
