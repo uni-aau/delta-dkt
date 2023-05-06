@@ -56,11 +56,26 @@ public class DiscoveryListener implements NsdManager.DiscoveryListener{
 
     @Override
     public void onServiceFound(NsdServiceInfo nsdServiceInfo) {
+        this.manager.resolveService(nsdServiceInfo, new NsdManager.ResolveListener() {
+            @Override
+            public void onResolveFailed(NsdServiceInfo nsdServiceInfo, int i) {
+                printErrorMessage("Failed to resolve service!");
+            }
 
+            @Override
+            public void onServiceResolved(NsdServiceInfo nsdServiceInfo) {
+                printStatusMessage("Successfully resolved service!");
+                activity.runOnUiThread(() -> {
+                    activity.addHost(nsdServiceInfo);
+                });
+            }
+        });
+        printStatusMessage("A new service has been found!");
     }
 
     @Override
     public void onServiceLost(NsdServiceInfo nsdServiceInfo) {
-
+        printStatusMessage("A new service has been lost!");
+        this.activity.removeHost(nsdServiceInfo);
     }
 }
