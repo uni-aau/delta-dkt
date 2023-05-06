@@ -4,19 +4,10 @@ import static ClientUIHandling.Constants.PREFIX_PLAYER_PAYRENT;
 
 import java.util.ArrayList;
 
+import ClientUIHandling.Config;
 import ServerLogic.ServerActionHandler;
 
 public class Player {
-    private static int startCash = 500;
-
-    public static int getStartCash() {
-        return startCash;
-    }
-
-    public static void setStartCash(int startCash) {
-        Player.startCash = startCash;
-    }
-
     public static Player testInstance = new Player("testPlayer");
 
 
@@ -27,7 +18,7 @@ public class Player {
     private String nickname = "Player-" + id;
 
     private Field position = Game.getMap().getField(1);
-    private int cash = Player.startCash;
+    private int cash = Config.INITIAL_CASH;
     private ArrayList<Property> properties = new ArrayList<>();
 
     //? May be used to check whether a player is timeoutet, e.g. prison, or not.
@@ -153,10 +144,9 @@ public class Player {
         if (location == 0) location++;
 
 
-
         this.position = Game.getMap().getField(location);
 
-        if(this.position instanceof Property){
+        if (this.position instanceof Property) {
             ServerActionHandler.triggerAction(PREFIX_PLAYER_PAYRENT, this.getId());
         }
     }
