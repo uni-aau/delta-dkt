@@ -1,7 +1,7 @@
 package delta.dkt.activities;
 
 import static ClientUIHandling.Constants.PREFIX_HOST_NEW_GAME;
-import static delta.dkt.activities.MainActivity.INTENT_PARAMETER;
+import static delta.dkt.activities.MainActivity.user;
 
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
@@ -24,13 +24,16 @@ import ClientUIHandling.Constants;
 import ServerLogic.ServerActionHandler;
 import delta.dkt.R;
 
+import network2.NetworkClientConnection;
 import network2.ServerNetworkClient;
 
 
 public class MainMenuActivity extends AppCompatActivity {
 
     ServerNetworkClient server;
-    public static String username; // Todo
+    public static String username; // Todo - Move into Main Activity??
+    public static boolean role;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,12 +44,15 @@ public class MainMenuActivity extends AppCompatActivity {
         // Get Views from the MainMenu xml:
         Button host = findViewById(R.id.host_button);
         Button join = findViewById(R.id.join_button);
+        MainActivity.subscribeToLogic(Constants.MAINMENU_ACTIVITY_TYPE, this);
+        //username = getIntent().getStringExtra(INTENT_PARAMETER);
 
-        username = getIntent().getStringExtra(INTENT_PARAMETER);
+
 
 
         //---HOST BUTTON---  (Everything that happens when host button is clicked)
         host.setOnClickListener(view -> {
+            role = true;
             showServerPopUpWindow();
         });
 
@@ -54,11 +60,12 @@ public class MainMenuActivity extends AppCompatActivity {
 
         //---JOIN BUTTON---  (Everything that happens when join button is clicked)
         join.setOnClickListener(view -> {
+            role=false;
             Intent intent = new Intent(getApplicationContext(), LobbyViewActivity.class);
             startActivity(intent);
         });
 
-        MainActivity.subscribeToLogic(Constants.MAINMENU_ACTIVITY_TYPE, this);
+
     }
 
 
@@ -86,7 +93,11 @@ public class MainMenuActivity extends AppCompatActivity {
             if (serverName.isEmpty()) {
                 Toast.makeText(MainMenuActivity.this, "Please enter Servername", Toast.LENGTH_SHORT).show();
             }else {
+                try {
                     startServer(serverName);
+                } catch (InterruptedException e) {
+                    throw new RuntimeException(e);
+                }
             }
         });
 
@@ -101,12 +112,18 @@ public class MainMenuActivity extends AppCompatActivity {
 
 
     // This Method will start with the Server and trigger the Action "HOST_NEW_GAME"
-    public void startServer(String serverName) {
+    public void startServer(String serverName)throws InterruptedException, RuntimeException {
         server = new ServerNetworkClient(this.getApplicationContext());
         server.start();
-        //ServerActionHandler.setServer(server);
+        Thread.sleep(100);
+
+        NetworkClientConnection client = new NetworkClientConnection("localhost", server.getPort(), 1000, MainActivity.logic);
+        ServerActionHandler.setServer(server);
+        client.start();
+        Thread.sleep(100);
+
         Toast.makeText(MainMenuActivity.this, "Server "+serverName+" started on "+getTime(), Toast.LENGTH_SHORT).show();
-        ServerActionHandler.triggerAction(PREFIX_HOST_NEW_GAME, username);
+        ServerActionHandler.triggerAction(PREFIX_HOST_NEW_GAME, user);
     }
 
 
