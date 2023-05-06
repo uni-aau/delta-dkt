@@ -73,9 +73,7 @@ public class SnackBarHandler {
         var snack = Snackbar.make(parent, message, duration);
 
         if (closeButton) {
-            snack.setAction("Close", view -> {
-                snack.dismiss();
-            });
+            snack.setAction("Close", view -> snack.dismiss());
         }
 
         if (backgroundColor != null && !backgroundColor.isEmpty())
