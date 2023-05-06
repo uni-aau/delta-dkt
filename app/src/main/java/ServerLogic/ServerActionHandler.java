@@ -33,29 +33,16 @@ public class ServerActionHandler {
         actions = new ArrayList<>();
         actionPrefixes = new ArrayList<>();
         actionMap = new HashMap<>();
+
         actionMap.put(PREFIX_PLAYER_PAYRENT, new ActionPayRent());
         actionMap.put(PREFIX_PLAYER_LOST, new PlayerLost());
-        //TODO: Change the registration
-
-        actions.add(new RequestGameStart());
-        actionPrefixes.add(PREFIX_GAME_START);
-
-        actions.add(new RegisterUser());
-        actionPrefixes.add(PREFIX_REGISTER);
-
-        actions.add(new RequestPlayerInit());
-        actionPrefixes.add(PREFIX_INIT_PLAYERS);
-
-        actions.add(new GameStartStatsRequest());
-        actionPrefixes.add(PREFIX_GAME_START_STATS);
-        
+        actionMap.put(PREFIX_GAME_START, new RequestGameStart());
+        actionMap.put(PREFIX_REGISTER, new RegisterUser());
+        actionMap.put(PREFIX_INIT_PLAYERS, new RequestPlayerInit());
+        actionMap.put(PREFIX_GAME_START_STATS, new GameStartStatsRequest());
+        actionMap.put(PREFIX_ROLL_DICE_REQUEST, new RequestRollDicePerm());
+        actionMap.put(PREFIX_GET_SERVER_TIME, new RequestGameStartTime());
         actionMap.put(PREFIX_PLAYER_MOVE, new RequestPlayerMovement());
-
-        actions.add(new RequestRollDicePerm());
-        actionPrefixes.add(PREFIX_ROLL_DICE_REQUEST);
-
-        actions.add(new RequestGameStartTime());
-        actionPrefixes.add(PREFIX_GET_SERVER_TIME);
     }
 
     public static void triggerAction(String name, Object parameters){
