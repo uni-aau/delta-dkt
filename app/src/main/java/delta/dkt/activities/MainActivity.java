@@ -27,7 +27,8 @@ public class MainActivity extends AppCompatActivity {
 
     public static final String INTENT_PARAMETER = "username";
 
-    private static ClientLogic logic;
+    public static ClientLogic logic;
+    public static String user; // remove after static string username is moved in this class.
 
     static {
         HashMap<String, ClientHandler> handlers = new HashMap<>();
@@ -44,26 +45,24 @@ public class MainActivity extends AppCompatActivity {
         EditText edtxt = findViewById(R.id.username_edittext);
         Button enter = findViewById(R.id.enter_btn);
 
+        subscribeToLogic(Constants.MAIN_ACTIVITY_TYPE, this);
 
         //---ENTER BUTTON---    (Everything that happens when ENTER Button is pressed)
         enter.setOnClickListener(view -> {
             Intent intent = new Intent(getApplicationContext(), MainMenuActivity.class);
-            String username = edtxt.getText().toString();
-            if (username.isEmpty()) {
+            user = edtxt.getText().toString();
+            if (user.isEmpty()) {
                 Toast.makeText(MainActivity.this, "Please enter Username", Toast.LENGTH_SHORT).show();
-            } else if (checkIfUsernameAlreadyExists(username)){
+            } else if (checkIfUsernameAlreadyExists(user)){
                 Toast.makeText(MainActivity.this, "This Username already exists", Toast.LENGTH_SHORT).show();
             } else {
-                Toast.makeText(MainActivity.this, "Welcome " + username + "!", Toast.LENGTH_SHORT).show();
-                intent.putExtra(INTENT_PARAMETER, username);
-                MainMenuActivity.username = username;
+                Toast.makeText(MainActivity.this, "Welcome " + user + "!", Toast.LENGTH_SHORT).show();
+                intent.putExtra(INTENT_PARAMETER, user);
+                //MainMenuActivity.username = user;
                 startActivity(intent);
             }
         });
 
-
-
-        subscribeToLogic(Constants.MAIN_ACTIVITY_TYPE, this);
         try {
             establishServerConnection();
         } catch (InterruptedException e) {
@@ -81,7 +80,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void establishServerConnection() throws InterruptedException, RuntimeException {
 
-        ClientLogic.isTEST = false;
+       /* ClientLogic.isTEST = false;
 
         ServerNetworkClient server = new ServerNetworkClient(this.getApplicationContext());
 
@@ -91,7 +90,7 @@ public class MainActivity extends AppCompatActivity {
         NetworkClientConnection client = new NetworkClientConnection("localhost", server.getPort(), 1000, logic);
         client.start();
         Thread.sleep(100);
-        ServerActionHandler.setServer(server);
+        ServerActionHandler.setServer(server);*/
     }
 
 
