@@ -58,14 +58,12 @@ public class GameViewActivity extends AppCompatActivity {
      * This method handles the movement requests of a client, thus sending the request to server.
      */
     private void handleMovementRequests() {
-        //* Wait for the imageView to load, then update the default locations.
-        // Update only those player positions, that are in the game
-        for (int i = 0; i < Game.getPlayers().size(); i++) {
-            if (i <= Config.MAX_CLIENTS - 1) {
-                int value = i;
-                map.post(() -> updatePlayerPosition(locations[value], value + 1));
-            }
+        //? Places all figures on their designated position inside the start field.
+        for(int i = 0; i < locations.length; i++) {
+            int index = i;
+            map.post(() -> updatePlayerPosition(locations[index], index + 1));
         }
+
         map.post(() -> PositionHandler.setLogs(true));
 
 
