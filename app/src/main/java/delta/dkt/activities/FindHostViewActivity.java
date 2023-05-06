@@ -82,7 +82,7 @@ public class FindHostViewActivity extends AppCompatActivity{
             Intent intent = new Intent(getApplicationContext(), LobbyViewActivity.class);
             intent.putExtra(INTENT_PARAMETER, newUser);
             if(selection != null){
-                NetworkClientConnection client = new NetworkClientConnection(selection.getHost().getHostName(), selection.getPort(), 1000, new ClientLogic(new HashMap<>()));
+                NetworkClientConnection client = new NetworkClientConnection(selection.getHost().getHostAddress(), selection.getPort(), 1000, new ClientLogic(new HashMap<>()));
                 client.start();
             }
 
