@@ -187,6 +187,15 @@ public class Player {
         return cash;
     }
 
+    /**
+     * This method will set the players cash.
+     *
+     * @param cash The new amount of cash the player is able to spend.
+     */
+    public void setCash(int cash) {
+        this.cash = cash;
+    }
+
     public ArrayList<Property> getProperties() {
         return properties;
     }
