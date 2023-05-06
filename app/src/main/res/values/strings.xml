@@ -38,6 +38,9 @@
     <string name="UserRole">UserRole</string>
     <string name="JoiningTime">Joined on:</string>
     <string name="TotalPlayers">Total Players: </string>
+    <string name="Host">HOST </string>
+    <string name="Player">PLAYER</string>
+    <string name="JoinedOn">Joined On</string>
 
 
     <string name="NSDServiceName">delta_dkt</string>
