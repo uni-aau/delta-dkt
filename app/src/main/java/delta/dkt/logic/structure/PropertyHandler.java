@@ -15,6 +15,7 @@ public class PropertyHandler {
      * @param position The position of the property.
      */
     public static Field getProperties(int position){
+        Property property = null;
 
         Property bregenz1;
         Property bregenz2;
@@ -40,6 +41,7 @@ public class PropertyHandler {
         Property innsbruck2;
         Property innsbruck3;
 
+        //todo clean up the other switch-cases
         switch (position){
             case 2:{
                 bregenz1 = new Property(2,220, 80, CHEAP, 160);
@@ -47,9 +49,9 @@ public class PropertyHandler {
                 return bregenz1;
             }
             case 4: {
-                Property kraftZentrale = new Property(4, 250, 80, PREMIUM, -1);
-                kraftZentrale.setName("Kraft Zentrale");
-                return kraftZentrale;
+                property = new Property(4, 250, 80, PREMIUM, -1);
+                property.setName("Kraft Zentrale");
+                break;
             }
             case 5: {
                 graz1 = new Property(5, 300, 120, NORMAL, 200);
@@ -67,9 +69,9 @@ public class PropertyHandler {
                 return graz3;
             }
             case 8: {
-                Property eisenbahn = new Property(8, 230, 20, NORMAL, -1);
-                eisenbahn.setName("Eisenbahn Wien-Graz");
-                return eisenbahn;
+                property = new Property(8, 230, 20, NORMAL, -1);
+                property.setName("Eisenbahn Wien-Graz");
+                break;
             }
             case 10: {
                 eisenstadt1 = new Property(10, 100, 24, CHEAP, 50);
@@ -82,14 +84,14 @@ public class PropertyHandler {
                 return eisenstadt2;
             }
             case 13: {
-                Property schiff = new Property(13, 230, 20, NORMAL, -1);
-                schiff.setName("Schifffahrt Wien-Budapest");
-                return schiff;
+                property = new Property(13, 230, 20, NORMAL, -1);
+                property.setName("Schifffahrt Wien-Budapest");
+                break;
             }
             case 14: {
-                Property seilbahn = new Property(14, 250, 20, NORMAL, -1);
-                seilbahn.setName("Seilbahn");
-                return seilbahn;
+                property = new Property(14, 250, 20, NORMAL, -1);
+                property.setName("Seilbahn");
+                break;
             }
             case 15:{
                 wien1 = new Property(15,380, 200, PREMIUM, 220);
@@ -107,9 +109,9 @@ public class PropertyHandler {
                 return wien3;
             }
             case 18: {
-                Property bahn = new Property(18, 230, 20, NORMAL, -1);
-                bahn.setName("Elektr. Bahn Wien-Innsburck");
-                return bahn;
+                property = new Property(18, 230, 20, NORMAL, -1);
+                property.setName("Elektr. Bahn Wien-Innsburck");
+                break;
             }
             case 19:{
                 linz1 = new Property(19,300, 120, NORMAL, 200);
@@ -127,9 +129,9 @@ public class PropertyHandler {
                 return linz3;
             }
             case 24: {
-                Property autobus = new Property(24, 230, 20, NORMAL, -1);
-                autobus.setName("Autobus Glockner");
-                return autobus;
+                property = new Property(24, 230, 20, NORMAL, -1);
+                property.setName("Autobus Glockner");
+                break;
             }
             case 25:{
                 salzburg1 = new Property(25,250, 96, NORMAL, 150);
@@ -162,9 +164,9 @@ public class PropertyHandler {
                 return klagenfurt3;
             }
             case 34: {
-                Property flugzeug = new Property(34, 230, 20, NORMAL, -1);
-                flugzeug.setName("Fluglinie Wien-Venedig");
-                return flugzeug;
+                property = new Property(34, 230, 20, NORMAL, -1);
+                property.setName("Fluglinie Wien-Venedig");
+                break;
             }
             case 35:{
                 innsbruck1 = new Property(35,300, 120, NORMAL, 200);
@@ -191,8 +193,9 @@ public class PropertyHandler {
                 bregenz3.setName("Rathausstraße");
                 return bregenz3;
             }
-            default: return null;
         }
+
+        return property;
     }
 
 }
