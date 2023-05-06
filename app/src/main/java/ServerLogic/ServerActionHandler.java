@@ -13,7 +13,7 @@ import java.util.HashMap;
 
 import ServerLogic.actions.RequestRollDicePerm;
 import ServerLogic.actions.RequestGameStartTime;
-import ServerLogic.actions.RegisterUser;
+import ServerLogic.actions.RequestRegisterUser;
 import ServerLogic.actions.RequestPlayerInit;
 import ServerLogic.actions.RequestGameStart;
 import network2.ServerNetworkClient;
@@ -40,7 +40,7 @@ public class ServerActionHandler {
         actions.add(new RequestGameStart());
         actionPrefixes.add(PREFIX_GAME_START);
 
-        actions.add(new RegisterUser());
+        actions.add(new RequestRegisterUser());
         actionPrefixes.add(PREFIX_REGISTER);
 
         actions.add(new RequestPlayerInit());
