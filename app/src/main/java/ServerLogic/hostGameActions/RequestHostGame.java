@@ -1,13 +1,14 @@
-package ServerLogic;
+package ServerLogic.hostGameActions;
 
 import static ClientUIHandling.Constants.MAINMENU_ACTIVITY_TYPE;
 import static ClientUIHandling.Constants.PREFIX_HOST_NEW_GAME;
 
 import android.util.Log;
 
+import ServerLogic.ServerActionInterface;
 import network2.ServerNetworkClient;
 
-public class RequestHostGame implements ServerActionInterface{
+public class RequestHostGame implements ServerActionInterface {
 
     @Override
     public void execute(ServerNetworkClient server, Object parameters) {
