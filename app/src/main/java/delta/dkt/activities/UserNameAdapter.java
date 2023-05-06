@@ -11,9 +11,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 
 import delta.dkt.R;
 
@@ -21,10 +19,12 @@ class UserNameAdapter extends RecyclerView.Adapter<UserNameAdapter.UserViewHolde
 
     Context context;
     ArrayList<String> usernames;
+    boolean role;
 
-    public UserNameAdapter (Context context, ArrayList<String> usernames) {
+    public UserNameAdapter (Context context, ArrayList<String> usernames, boolean role) {
         this.context=context;
         this.usernames= usernames;
+        this.role = role;
     }
 
     @NonNull
@@ -42,8 +42,11 @@ class UserNameAdapter extends RecyclerView.Adapter<UserNameAdapter.UserViewHolde
         // based on the position of the recycler view
 
         holder.username.setText(usernames.get(position));
-        holder.userRole.setText("Host");
-        holder.joiningTime.setText("Joined on: "+ getTime());
+
+        if (role) holder.userRole.setText(R.string.Host);
+        else holder.userRole.setText(R.string.Player);
+
+        holder.joiningTime.setText(R.string.JoinedOn + getTime());
 
     }
 
