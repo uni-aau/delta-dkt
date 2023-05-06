@@ -23,7 +23,5 @@ public class RequestRegisterUser implements ServerActionInterface {
         Game.getPlayers().put(clientId, new Player(nickname));
 
         server.broadcast(Constants.LOBBYVIEW_ACTIVITY_TYPE, Constants.PREFIX_REGISTER, new String[]{uuid, String.valueOf(clientId)});
-
-//        GameViewActivity.clientID = clientId; // Set gameview client ID
     }
 }
