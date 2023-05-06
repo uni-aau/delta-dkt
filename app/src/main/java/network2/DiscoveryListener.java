@@ -36,22 +36,22 @@ public class DiscoveryListener implements NsdManager.DiscoveryListener{
 
     @Override
     public void onStartDiscoveryFailed(String s, int i) {
-
+        printErrorMessage(s);
     }
 
     @Override
     public void onStopDiscoveryFailed(String s, int i) {
-
+        printErrorMessage(s);
     }
 
     @Override
     public void onDiscoveryStarted(String s) {
-
+        printStatusMessage(s);
     }
 
     @Override
     public void onDiscoveryStopped(String s) {
-
+        printStatusMessage(s);
     }
 
     @Override
