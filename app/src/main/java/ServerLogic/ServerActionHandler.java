@@ -48,10 +48,8 @@ public class ServerActionHandler {
 
         actions.add(new GameStartStatsRequest());
         actionPrefixes.add(PREFIX_GAME_START_STATS);
-
-        //* Request movement when pressing dice
-        actions.add(new RequestPlayerMovement());
-        actionPrefixes.add(PREFIX_PLAYER_MOVE);
+        
+        actionMap.put(PREFIX_PLAYER_MOVE, new RequestPlayerMovement());
 
         actions.add(new RequestRollDicePerm());
         actionPrefixes.add(PREFIX_ROLL_DICE_REQUEST);

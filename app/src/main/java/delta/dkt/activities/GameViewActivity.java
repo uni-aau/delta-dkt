@@ -6,6 +6,7 @@ import static ClientUIHandling.Constants.PREFIX_INIT_PLAYERS;
 import static ClientUIHandling.Constants.PREFIX_PLAYER_MOVE;
 import static delta.dkt.R.id.imageView;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.PointF;
 import android.os.Bundle;
@@ -57,15 +58,14 @@ public class GameViewActivity extends AppCompatActivity {
     /**
      * This method handles the movement requests of a client, thus sending the request to server.
      */
+    @SuppressLint("ClickableViewAccessibility")
     private void handleMovementRequests() {
-        //* Wait for the imageView to load, then update the default locations.
-        // Update only those player positions, that are in the game
-        for (int i = 0; i < Game.getPlayers().size(); i++) {
-            if (i <= Config.MAX_CLIENTS - 1) {
-                int value = i;
-                map.post(() -> updatePlayerPosition(locations[value], value + 1));
-            }
+        //? Places all figures on their designated position inside the start field.
+        for (int i = 0; i < locations.length; i++) {
+            int index = i;
+            map.post(() -> updatePlayerPosition(locations[index], index + 1));
         }
+
         map.post(() -> PositionHandler.setLogs(true));
 
 
@@ -75,29 +75,11 @@ public class GameViewActivity extends AppCompatActivity {
         });
 
 
-        var imageView = findViewById(R.id.imageView);
-        imageView.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                if (event.getAction() != MotionEvent.ACTION_DOWN) return false;
+        map.setOnTouchListener((v, event) -> {
+            if (event.getAction() != MotionEvent.ACTION_DOWN) return false;
 
-                map = findViewById(R.id.imageView);
-
-                float x = event.getX();
-                float y = event.getY();
-
-                float relativeX = x / map.getWidth();
-                float relativeY = y / map.getHeight();
-
-                float absoluteX = map.getX() + (relativeX * map.getWidth());
-                float absoluteY = map.getY() + (relativeY * map.getHeight());
-
-                Log.d("Movement", "Relative coordinates: " + new PointF(absoluteX, absoluteY) + " " + new PointF(relativeX, relativeY));
-
-                btnDice.performClick();
-
-                return true;
-            }
+            btnDice.performClick();
+            return true;
         });
 
     }
