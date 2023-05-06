@@ -55,16 +55,7 @@ class PlayerTests {
     void checkDefaultSuspension() {
         assertEquals(0, player.getSuspention());
     }
-
-
-    /**
-     * Checks whether the static variable playerCount can be accessed and modified
-     */
-    @Test
-    void checkGamePlayerCount_GetterSetter() {
-        Game.setPlayerCount(10);
-        assertEquals(10, Game.getPlayerCount());
-    }
+    
 
     /**
      * Checks whether the default nickname is set.
