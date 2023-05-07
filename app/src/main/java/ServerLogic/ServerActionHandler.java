@@ -40,32 +40,16 @@ public class ServerActionHandler {
         actionMap = new HashMap<>();
         actionMap.put(PREFIX_PLAYER_PAYRENT, new ActionPayRent());
         actionMap.put(PREFIX_PLAYER_LOST, new PlayerLost());
-        //TODO: Change the registration
+        actionMap.put(PREFIX_GAME_START, new RequestGameStart());
+        actionMap.put(PREFIX_REGISTER, new RegisterUser());
+        actionMap.put(PREFIX_INIT_PLAYERS, new RequestPlayerInit());
+        actionMap.put(PREFIX_GAME_START_STATS, new RequestGameStartStats());
+        actionMap.put(PREFIX_ROLL_DICE_REQUEST, new RequestRollDicePerm());
+        actionMap.put(PREFIX_GET_SERVER_TIME, new RequestGameStartTime());
+        actionMap.put(PREFIX_PLAYER_MOVE, new RequestPlayerMovement());
 
         actions.add(new RequestHostGame());
         actionPrefixes.add(PREFIX_HOST_NEW_GAME);
-
-        actions.add(new RequestGameStart());
-        actionPrefixes.add(PREFIX_GAME_START);
-
-        actions.add(new RegisterUser());
-        actionPrefixes.add(PREFIX_REGISTER);
-
-        actions.add(new RequestPlayerInit());
-        actionPrefixes.add(PREFIX_INIT_PLAYERS);
-
-        actions.add(new GameStartStatsRequest());
-        actionPrefixes.add(PREFIX_GAME_START_STATS);
-
-        //* Request movement when pressing dice
-        actions.add(new RequestPlayerMovement());
-        actionPrefixes.add(PREFIX_PLAYER_MOVE);
-
-        actions.add(new RequestRollDicePerm());
-        actionPrefixes.add(PREFIX_ROLL_DICE_REQUEST);
-
-        actions.add(new RequestGameStartTime());
-        actionPrefixes.add(PREFIX_GET_SERVER_TIME);
 
         actions.add(new RequestAddUserToUserList());
         actionPrefixes.add(PREFIX_ADD_USER_TO_LIST);

@@ -1,7 +1,6 @@
 package delta.dkt.activities;
 
-import static ClientUIHandling.Constants.PREFIX_HOST_NEW_GAME;
-import static delta.dkt.activities.MainActivity.user;
+import static delta.dkt.activities.MainActivity.INTENT_PARAMETER;
 
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
@@ -46,8 +45,7 @@ public class MainMenuActivity extends AppCompatActivity {
         // Get Views from the MainMenu xml:
         Button host = findViewById(R.id.host_button);
         Button join = findViewById(R.id.join_button);
-        MainActivity.subscribeToLogic(Constants.MAINMENU_ACTIVITY_TYPE, this);
-        //username = getIntent().getStringExtra(INTENT_PARAMETER);
+        String newUser = getIntent().getStringExtra(INTENT_PARAMETER);
 
 
         //---HOST BUTTON---  (Everything that happens when host button is clicked)
@@ -59,12 +57,12 @@ public class MainMenuActivity extends AppCompatActivity {
 
         //---JOIN BUTTON---  (Everything that happens when join button is clicked)
         join.setOnClickListener(view -> {
-            role = false;
-            Intent intent = new Intent(getApplicationContext(), LobbyViewActivity.class);
+            Intent intent = new Intent(getApplicationContext(), FindHostViewActivity.class);
+            intent.putExtra(INTENT_PARAMETER, newUser);
             startActivity(intent);
         });
 
-
+        MainActivity.subscribeToLogic(Constants.MAINMENU_ACTIVITY_TYPE, this);
     }
 
 
