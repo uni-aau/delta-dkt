@@ -40,7 +40,7 @@
     <string name="TotalPlayers">Total Players: </string>
     <string name="Host">HOST </string>
     <string name="Player">PLAYER</string>
-    <string name="JoinedOn">Joined On</string>
+    <string name="Joined">Joined:</string>
 
 
     <string name="NSDServiceName">delta_dkt</string>

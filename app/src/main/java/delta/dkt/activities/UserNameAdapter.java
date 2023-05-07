@@ -46,7 +46,8 @@ class UserNameAdapter extends RecyclerView.Adapter<UserNameAdapter.UserViewHolde
         if (role) holder.userRole.setText(R.string.Host);
         else holder.userRole.setText(R.string.Player);
 
-        holder.joiningTime.setText(R.string.JoinedOn + getTime());
+
+        holder.joiningTime.setText("Joined: "+ getTime());
 
     }
 
