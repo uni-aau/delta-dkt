@@ -15,6 +15,8 @@ import static org.mockito.Mockito.when;
 
 import android.util.Log;
 
+import delta.dkt.activities.MainMenuActivity;
+
 
 class NetworkConnectionTest {
 
@@ -25,6 +27,7 @@ class NetworkConnectionTest {
 
     @BeforeAll
     static void setUp() throws IOException {
+        MainMenuActivity.role = true;
         serverSocket = new ServerSocket(PORT);
         new Thread(() -> {
             try {

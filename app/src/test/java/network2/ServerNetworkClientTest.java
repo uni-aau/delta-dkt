@@ -9,6 +9,8 @@ import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
 
+import delta.dkt.activities.MainMenuActivity;
+
 class ServerNetworkClientTest {
     private static ServerNetworkClient server;
     private static NetworkClientConnection client;
@@ -21,6 +23,7 @@ class ServerNetworkClientTest {
      */
     @BeforeAll
     static void setup() throws IOException, InterruptedException{
+        MainMenuActivity.role = true;
         server = new ServerNetworkClient();
         System.out.println("TRYING TO START");
         server.start();
@@ -39,6 +42,7 @@ class ServerNetworkClientTest {
 
     @Test
     void testSendMessageToServer() throws Exception {
+
         String message = "Hello, server!";
         client.sendMessage(message);
         Thread.sleep(1000);
@@ -47,13 +51,15 @@ class ServerNetworkClientTest {
     }
 
     @Test
-    void testBroadcastMessageToClients() throws InterruptedException {
+    void testIPToClients() throws InterruptedException {
         String message = "Hello, clients!";
         server.broadcast(message);
         Thread.sleep(1000);
         String receivedMessage = client.getConnection().getLastMsgReceived();
         assertEquals(message, receivedMessage);
     }
+
+
 
     @Test
     void testGetter(){

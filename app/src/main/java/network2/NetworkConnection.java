@@ -73,7 +73,8 @@ public class NetworkConnection extends Thread { //execute each instance within a
 
         this.socket = socket;
     }
-    public String getIP(){
+
+    public String getIP() {
         return socket.getInetAddress().getHostAddress();
     }
 
@@ -88,12 +89,12 @@ public class NetworkConnection extends Thread { //execute each instance within a
             reader = new BufferedReader(new InputStreamReader(this.socket.getInputStream()));
             writer = new BufferedWriter(new OutputStreamWriter(this.socket.getOutputStream()));
 
-            if(!MainMenuActivity.role) {
+            if (!MainMenuActivity.role) {
                 System.out.println("WAITING FOR MY ID");
                 String id = reader.readLine();
 
                 GameViewActivity.clientID = Integer.parseInt(id.split(":")[1]);
-            }else{
+            } else {
                 GameViewActivity.clientID = 1;
             }
             System.out.println(TAG + ":Waiting for incoming messages");
@@ -106,13 +107,14 @@ public class NetworkConnection extends Thread { //execute each instance within a
                     this.lastMsgReceived = msg;
                     //TODO: Implement a handler that handles incoming game-related messages
                     System.out.println("RECEIVED");
-                    System.out.println("I AM SERVER="+ MainMenuActivity.role+" received="+msg);
+                    System.out.println("I AM SERVER=" + MainMenuActivity.role + " received=" + msg);
                     // BEGIN-NOSCAN
                     if (logic != null) {
 
                         String[] messageSplit = msg.split(":");
-                        logic.sendHandle(messageSplit[1], messageSplit[0]);
-
+                        if (messageSplit.length >= 2) {
+                            logic.sendHandle(messageSplit[1], messageSplit[0]);
+                        }
                     }
                     // END-NOSCAN
                     //TODO: CALL CLIENT LOGIC
@@ -187,9 +189,15 @@ public class NetworkConnection extends Thread { //execute each instance within a
     }
 
     public void close() throws IOException {
-        if(this.reader != null){ this.reader.close(); }
-        if(this.writer != null){ this.writer.close(); }
-        if(this.socket != null){ this.socket.close(); }
+        if (this.reader != null) {
+            this.reader.close();
+        }
+        if (this.writer != null) {
+            this.writer.close();
+        }
+        if (this.socket != null) {
+            this.socket.close();
+        }
         synchronized (runningToken) {
             isRunning = false;
         }
