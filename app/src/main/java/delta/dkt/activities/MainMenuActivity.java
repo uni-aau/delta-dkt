@@ -130,6 +130,7 @@ public class MainMenuActivity extends AppCompatActivity {
         return sdf.format(new Date());
     }
 
+    // TO DO->
     /*
     public void closeServer() {
         try {

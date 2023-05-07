@@ -87,7 +87,9 @@ public class LobbyViewActivity extends AppCompatActivity {
     public void leavingTheLobby() {
         ServerActionHandler.triggerAction(PREFIX_REMOVE_USER_FROM_LIST, user);
         ServerActionHandler.triggerAction(PREFIX_UPDATE_USER_LIST,null);
-        ServerActionHandler.triggerAction(PREFIX_CLOSE_GAME,"");
+
+        ServerActionHandler.triggerAction(PREFIX_CLOSE_GAME,""); // TO DO -> (implement close server and close client in actions)
+
         Toast.makeText(LobbyViewActivity.this, "Users Total: "+userList.size(), Toast.LENGTH_SHORT).show();
     }
 
