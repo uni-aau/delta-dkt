@@ -80,7 +80,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void establishServerConnection() throws InterruptedException, RuntimeException {
 
-       /* ClientLogic.isTEST = false;
+       ClientLogic.isTEST = false;
 
         ServerNetworkClient server = new ServerNetworkClient(this.getApplicationContext());
 
@@ -90,7 +90,7 @@ public class MainActivity extends AppCompatActivity {
         NetworkClientConnection client = new NetworkClientConnection("localhost", server.getPort(), 1000, logic);
         client.start();
         Thread.sleep(100);
-        ServerActionHandler.setServer(server);*/
+        ServerActionHandler.setServer(server);
     }
 
 
