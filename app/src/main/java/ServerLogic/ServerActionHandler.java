@@ -3,7 +3,7 @@ package ServerLogic;
 import static ClientUIHandling.Constants.*;
 
 import ServerLogic.actions.ActionPayRent;
-import ServerLogic.actions.GameStartStatsRequest;
+import ServerLogic.actions.RequestGameStartStats;
 import ServerLogic.actions.PlayerLost;
 import ServerLogic.actions.RequestPlayerMovement;
 import android.util.Log;
@@ -33,31 +33,16 @@ public class ServerActionHandler {
         actions = new ArrayList<>();
         actionPrefixes = new ArrayList<>();
         actionMap = new HashMap<>();
+
         actionMap.put(PREFIX_PLAYER_PAYRENT, new ActionPayRent());
         actionMap.put(PREFIX_PLAYER_LOST, new PlayerLost());
-        //TODO: Change the registration
-
-        actions.add(new RequestGameStart());
-        actionPrefixes.add(PREFIX_GAME_START);
-
-        actions.add(new RequestRegisterUser());
-        actionPrefixes.add(PREFIX_REGISTER);
-
-        actions.add(new RequestPlayerInit());
-        actionPrefixes.add(PREFIX_INIT_PLAYERS);
-
-        actions.add(new GameStartStatsRequest());
-        actionPrefixes.add(PREFIX_GAME_START_STATS);
-
-        //* Request movement when pressing dice
-        actions.add(new RequestPlayerMovement());
-        actionPrefixes.add(PREFIX_PLAYER_MOVE);
-
-        actions.add(new RequestRollDicePerm());
-        actionPrefixes.add(PREFIX_ROLL_DICE_REQUEST);
-
-        actions.add(new RequestGameStartTime());
-        actionPrefixes.add(PREFIX_GET_SERVER_TIME);
+        actionMap.put(PREFIX_GAME_START, new RequestGameStart());
+        actionMap.put(PREFIX_REGISTER, new RequestRegisterUser());
+        actionMap.put(PREFIX_INIT_PLAYERS, new RequestPlayerInit());
+        actionMap.put(PREFIX_GAME_START_STATS, new RequestGameStartStats());
+        actionMap.put(PREFIX_ROLL_DICE_REQUEST, new RequestRollDicePerm());
+        actionMap.put(PREFIX_GET_SERVER_TIME, new RequestGameStartTime());
+        actionMap.put(PREFIX_PLAYER_MOVE, new RequestPlayerMovement());
     }
 
     public static void triggerAction(String name, Object parameters){

@@ -27,6 +27,9 @@
             android:name=".activities.LobbyViewActivity"
             android:exported="false" />
         <activity
+            android:name=".activities.FindHostViewActivity"
+            android:exported="false" />
+        <activity
             android:name=".activities.GameViewActivity"
             android:permission=""
                 android:screenOrientation="landscape"
