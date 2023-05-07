@@ -36,11 +36,15 @@ public class LobbyViewActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        MainActivity.subscribeToLogic(Constants.LOBBYVIEW_ACTIVITY_TYPE, this);
+        if(!role) {
+            System.out.println("SUBSCRIBED IN LOBBY");
+        }
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lobby_view);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT); // Force portrait screen at activity level
 
-        MainActivity.subscribeToLogic(Constants.LOBBYVIEW_ACTIVITY_TYPE, this);
+
 
         // Get Views from the Lobby xml:
         Button backButton = findViewById(R.id.backbtn);
@@ -78,15 +82,17 @@ public class LobbyViewActivity extends AppCompatActivity {
 
     // This Method ass user to UserList und updates the List
     public void welcomeToLobby () {
-        ServerActionHandler.triggerAction(PREFIX_ADD_USER_TO_LIST, user);
-        ServerActionHandler.triggerAction(PREFIX_UPDATE_USER_LIST, null);
-        Toast.makeText(LobbyViewActivity.this, "Users Total: "+userList.size(), Toast.LENGTH_SHORT).show();
+        if(role) {
+            ServerActionHandler.triggerAction(PREFIX_ADD_USER_TO_LIST, user);
+
+            Toast.makeText(LobbyViewActivity.this, "Users Total: " + userList.size(), Toast.LENGTH_SHORT).show();
+        }
     }
 
     // This Method removes the User from the UserList, updates the List and Closes the game/server
     public void leavingTheLobby() {
         ServerActionHandler.triggerAction(PREFIX_REMOVE_USER_FROM_LIST, user);
-        ServerActionHandler.triggerAction(PREFIX_UPDATE_USER_LIST,null);
+
 
         ServerActionHandler.triggerAction(PREFIX_CLOSE_GAME,""); // TO DO -> (implement close server and close client in actions)
 

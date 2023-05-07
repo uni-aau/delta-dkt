@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import ClientUIHandling.ClientActionInterface;
 import delta.dkt.R;
+import delta.dkt.activities.GameViewActivity;
 import delta.dkt.activities.MainActivity;
 
 public class ActionRentPaid implements ClientActionInterface {
@@ -20,13 +21,13 @@ public class ActionRentPaid implements ClientActionInterface {
 
         String[] splitMessage = clientMessage.split(" ");
 
-        //int id = Integer.parseInt(splitMessage[2]);
+        int id = Integer.parseInt(splitMessage[2]);
 
 
+        if (id == GameViewActivity.clientID) {
 
-        //TODO: Check if the ID matches with this client and set the appropriate cash text field
-
-        ((TextView) activity.findViewById(R.id.textView_cash)).setText(String.format(activity.getString(R.string.cash_text), Integer.parseInt(splitMessage[4])));
+            ((TextView) activity.findViewById(R.id.textView_cash)).setText(String.format(activity.getString(R.string.cash_text), Integer.parseInt(splitMessage[4])));
+        }
 
     }
 }

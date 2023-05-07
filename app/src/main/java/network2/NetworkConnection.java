@@ -13,6 +13,8 @@ import java.net.Socket;
 import java.util.ArrayDeque;
 
 import ClientUIHandling.ClientLogic;
+import delta.dkt.activities.GameViewActivity;
+import delta.dkt.activities.MainMenuActivity;
 
 
 /**
@@ -71,6 +73,9 @@ public class NetworkConnection extends Thread { //execute each instance within a
 
         this.socket = socket;
     }
+    public String getIP(){
+        return socket.getInetAddress().getHostAddress();
+    }
 
     @Override
     public void run() {   //equivalent to the read method .. always active
@@ -83,6 +88,14 @@ public class NetworkConnection extends Thread { //execute each instance within a
             reader = new BufferedReader(new InputStreamReader(this.socket.getInputStream()));
             writer = new BufferedWriter(new OutputStreamWriter(this.socket.getOutputStream()));
 
+            if(!MainMenuActivity.role) {
+                System.out.println("WAITING FOR MY ID");
+                String id = reader.readLine();
+
+                GameViewActivity.clientID = Integer.parseInt(id.split(":")[1]);
+            }else{
+                GameViewActivity.clientID = 1;
+            }
             System.out.println(TAG + ":Waiting for incoming messages");
             while (true) {
                 //System.out.println("WAITING1");
@@ -93,6 +106,7 @@ public class NetworkConnection extends Thread { //execute each instance within a
                     this.lastMsgReceived = msg;
                     //TODO: Implement a handler that handles incoming game-related messages
                     System.out.println("RECEIVED");
+                    System.out.println("I AM SERVER="+ MainMenuActivity.role+" received="+msg);
                     // BEGIN-NOSCAN
                     if (logic != null) {
 

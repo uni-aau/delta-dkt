@@ -63,14 +63,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        try {
-            establishServerConnection();
-        } catch (InterruptedException e) {
-            Log.d("MainActivity::oncreate- interrupted", e.getMessage());
-            Thread.currentThread().interrupt();
-        } catch (RuntimeException e) {
-            Log.d("MainActivity::oncreate - Runtime exception", e.getMessage());
-        }
+
 
 
     }
@@ -78,20 +71,7 @@ public class MainActivity extends AppCompatActivity {
 
     //--------------------------ALL METHODS-----------------------------//
 
-    public void establishServerConnection() throws InterruptedException, RuntimeException {
 
-       ClientLogic.isTEST = false;
-
-        ServerNetworkClient server = new ServerNetworkClient(this.getApplicationContext());
-
-        server.start();
-
-        Thread.sleep(100);
-        NetworkClientConnection client = new NetworkClientConnection("localhost", server.getPort(), 1000, logic);
-        client.start();
-        Thread.sleep(100);
-        ServerActionHandler.setServer(server);
-    }
 
 
     public static void subscribeToLogic(String type, AppCompatActivity activity) {

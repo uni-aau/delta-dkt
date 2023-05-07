@@ -89,6 +89,8 @@ public class NetworkClientConnection {
         connection.close();
     }
 
+
+
     public NetworkConnection getConnection() {
         return connection;
     }

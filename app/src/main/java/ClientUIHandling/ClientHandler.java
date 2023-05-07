@@ -3,6 +3,7 @@ package ClientUIHandling;
 import static ClientUIHandling.Constants.PREFIX_REMOVE_USER_FROM_LIST;
 
 import ClientUIHandling.actions.ActionBroadcastStartStats;
+import ClientUIHandling.actions.ActionGetIP;
 import ClientUIHandling.actions.ActionMove;
 import ClientUIHandling.actions.ActionPlayerLost;
 import ClientUIHandling.actions.ActionRentPaid;
@@ -20,11 +21,14 @@ import java.util.HashMap;
 
 import ClientUIHandling.actions.ActionStartGame;
 import ClientUIHandling.actions.ActionPlayerInit;
+import ClientUIHandling.actions.RollDiceReceive;
 import ClientUIHandling.hostGameActions.ActionAddUserToUserList;
 import ClientUIHandling.hostGameActions.ActionCloseGame;
 import ClientUIHandling.hostGameActions.ActionHostGame;
 import ClientUIHandling.hostGameActions.ActionRemoveUserFromUserList;
 import ClientUIHandling.hostGameActions.ActionUpdateUserList;
+import network2.NetworkClientConnection;
+import network2.NetworkConnection;
 
 public class ClientHandler extends Handler {
 
@@ -34,6 +38,8 @@ public class ClientHandler extends Handler {
 
     private AppCompatActivity UIActivity;
     private static HashMap<String, ClientActionInterface> actionMap;
+
+    private static NetworkClientConnection client;
 
     static{
         actions = new ArrayList<>();
@@ -47,7 +53,8 @@ public class ClientHandler extends Handler {
         actionMap.put(Constants.PREFIX_GAME_START_STATS, new ActionBroadcastStartStats());
         actionMap.put(Constants.PREFIX_GET_SERVER_TIME, new ActionUpdateGameTime());
         actionMap.put(Constants.PREFIX_PLAYER_MOVE, new ActionMove());
-
+        actionMap.put(Constants.PREFIX_GET_IP, new ActionGetIP());
+        actionMap.put(Constants.PREFIX_ROLL_DICE_RECEIVE, new RollDiceReceive());
         actions.add(new ActionHostGame());
         actionPrefixes.add(Constants.PREFIX_HOST_NEW_GAME);
 
@@ -62,6 +69,14 @@ public class ClientHandler extends Handler {
 
         actions.add(new ActionCloseGame());
         actionPrefixes.add(Constants.PREFIX_CLOSE_GAME);
+    }
+
+    public static void setClient(NetworkClientConnection connection){
+        client = connection;
+    }
+
+    public static void sendMessageToServer(String message){
+        client.sendMessage(message);
     }
 
 
@@ -88,8 +103,12 @@ public class ClientHandler extends Handler {
 
         String[] actionSplit = message.split("[: ]");
         if (actionMap.containsKey(actionSplit[0])) {
+            System.out.println("TRIGGERED "+actionSplit[0]);
             actionMap.get(actionSplit[0]).execute(UIActivity, message);
+            return;
         }
+
+        System.err.println(actionSplit[0]+" NOT FOUND");
 
     }
 

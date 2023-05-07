@@ -3,7 +3,7 @@ package ServerLogic;
 import static ClientUIHandling.Constants.*;
 
 import ServerLogic.actions.ActionPayRent;
-import ServerLogic.actions.GameStartStatsRequest;
+import ServerLogic.actions.*;
 import ServerLogic.actions.PlayerLost;
 import ServerLogic.actions.RequestPlayerMovement;
 import android.util.Log;
@@ -16,6 +16,7 @@ import ServerLogic.actions.RequestGameStartTime;
 import ServerLogic.actions.RegisterUser;
 import ServerLogic.actions.RequestPlayerInit;
 import ServerLogic.actions.RequestGameStart;
+import ServerLogic.hostGameActions.GetIp;
 import ServerLogic.hostGameActions.RequestAddUserToUserList;
 import ServerLogic.hostGameActions.RequestCloseGame;
 import ServerLogic.hostGameActions.RequestHostGame;
@@ -30,11 +31,14 @@ public class ServerActionHandler {
 
     private static ServerNetworkClient server;
 
+    public static ArrayList<String> serverUserList;
+
     private ServerActionHandler() {
         // no instantiation of class
     }
 
     static{
+        serverUserList = new ArrayList<>();
         actions = new ArrayList<>();
         actionPrefixes = new ArrayList<>();
         actionMap = new HashMap<>();
@@ -47,6 +51,7 @@ public class ServerActionHandler {
         actionMap.put(PREFIX_ROLL_DICE_REQUEST, new RequestRollDicePerm());
         actionMap.put(PREFIX_GET_SERVER_TIME, new RequestGameStartTime());
         actionMap.put(PREFIX_PLAYER_MOVE, new RequestPlayerMovement());
+        actionMap.put(PREFIX_GET_IP, new GetIp());
 
         actions.add(new RequestHostGame());
         actionPrefixes.add(PREFIX_HOST_NEW_GAME);

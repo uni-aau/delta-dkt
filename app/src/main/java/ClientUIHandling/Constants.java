@@ -28,10 +28,16 @@ public class Constants {
     public static final String PREFIX_GAME_START_STATS = "START_STATS";
 
     public static final String PREFIX_PLAYER_LOST = "LOST";
-    public static final String PREFIX_ADD_USER_TO_LIST = "Add User To List";
-    public static final String PREFIX_REMOVE_USER_FROM_LIST = "Remove User from List";
+    public static final String PREFIX_ADD_USER_TO_LIST = "Add_User_To_List";
+    public static final String PREFIX_REMOVE_USER_FROM_LIST = "Remove_User_from_List";
 
-    public static final String PREFIX_UPDATE_USER_LIST = "Update UserList";
+    public static final String PREFIX_UPDATE_USER_LIST = "Update_UserList";
 
-    public static final String PREFIX_CLOSE_GAME = "Close Game";
+    public static final String PREFIX_CLOSE_GAME = "Close_Game";
+
+    public static final String PREFIX_SERVER = "SERVER";
+
+    public static final String PREFIX_GET_IP = "IP";
+
+    public static final String PREFIX_ROLL_DICE_RECEIVE = "ROLLRECEIVE";
 }

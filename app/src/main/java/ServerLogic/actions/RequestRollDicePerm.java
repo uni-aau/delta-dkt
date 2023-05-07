@@ -1,10 +1,12 @@
 package ServerLogic.actions;
 
 import static ClientUIHandling.Constants.GAMEVIEW_ACTIVITY_TYPE;
+import static ClientUIHandling.Constants.PREFIX_PLAYER_MOVE;
 import static ClientUIHandling.Constants.PREFIX_ROLL_DICE_REQUEST;
 
 import android.util.Log;
 
+import ServerLogic.ServerActionHandler;
 import ServerLogic.ServerActionInterface;
 import delta.dkt.logic.structure.Game;
 import network2.ServerNetworkClient;
@@ -28,6 +30,7 @@ public class RequestRollDicePerm implements ServerActionInterface {
 
             Log.d(tag, "OldClientId = " + oldClientId + " NewClient = " + nextClient);
             server.broadcast(GAMEVIEW_ACTIVITY_TYPE, PREFIX_ROLL_DICE_REQUEST, new String[]{String.valueOf(nextClient)});
+            ServerActionHandler.triggerAction(PREFIX_PLAYER_MOVE, oldClientId);
         } else {
             Log.e(tag, "Error - No players available in GameView");
         }

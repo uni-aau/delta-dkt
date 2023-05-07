@@ -27,20 +27,37 @@ public class ClientLogic {
         //This distinction is necessary because the JUNIT environment does not have the android class implementation
         //The error messages refers to a dead website
         //https://g.co/androidstudio/not-mocked
+        System.out.println("TRYING"+type+" "+message);
         if(!isTEST) {
+            System.out.println("TRYING2"+type+" "+message);
             if(handlers.containsKey(type)) {
-                android.os.Message handleMessage = new Message();
-                Bundle b = new Bundle();
-                b.putString("payload", message);
-                handleMessage.setData(b);
-                handlers.get(type).sendMessage(handleMessage);
+                send(message,type);
             }else{
-                Log.e("ERROR", "Wrong type used: "+type);
+                try {
+                    Thread.sleep(1000);
+                } catch (InterruptedException e) {
+                    throw new RuntimeException(e);
+                }
+                if(handlers.containsKey(type)) {
+                    send(message, type);
+                }else{
+                    Log.i("ERROR","INVALID UI TYPE "+type);
+                }
+
             }
         }
 
     }
 
+    private void send(String message, String type){
+        System.out.println("TRYING3"+type+" "+message);
+        android.os.Message handleMessage = new Message();
+        Bundle b = new Bundle();
+        b.putString("payload", message);
+        handleMessage.setData(b);
+
+        handlers.get(type).sendMessage(handleMessage);
+    }
     public HashMap<String, ClientHandler> getHandler() {
         return handlers;
     }
