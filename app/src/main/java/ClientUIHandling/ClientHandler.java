@@ -1,6 +1,7 @@
 package ClientUIHandling;
 
 import ClientUIHandling.actions.ActionBroadcastStartStats;
+import ClientUIHandling.actions.ActionGetIP;
 import ClientUIHandling.actions.ActionMove;
 import ClientUIHandling.actions.ActionPlayerLost;
 import ClientUIHandling.actions.ActionRentPaid;
@@ -18,6 +19,13 @@ import java.util.HashMap;
 
 import ClientUIHandling.actions.ActionStartGame;
 import ClientUIHandling.actions.ActionPlayerInit;
+import ClientUIHandling.actions.RollDiceReceive;
+import ClientUIHandling.actions.ActionAddUserToUserList;
+import ClientUIHandling.actions.ActionCloseGame;
+import ClientUIHandling.actions.ActionHostGame;
+import ClientUIHandling.actions.ActionRemoveUserFromUserList;
+import ClientUIHandling.actions.ActionUpdateUserList;
+import network2.NetworkClientConnection;
 
 public class ClientHandler extends Handler {
 
@@ -28,11 +36,12 @@ public class ClientHandler extends Handler {
     private AppCompatActivity UIActivity;
     private static HashMap<String, ClientActionInterface> actionMap;
 
+    private static NetworkClientConnection client;
+
     static{
         actions = new ArrayList<>();
         actionPrefixes = new ArrayList<>();
         actionMap = new HashMap<>();
-
         actionMap.put(Constants.PREFIX_PLAYER_RENTPAID, new ActionRentPaid());
         actionMap.put(Constants.PREFIX_PLAYER_LOST, new ActionPlayerLost());
         actionMap.put(Constants.PREFIX_GAME_START, new ActionStartGame());
@@ -41,6 +50,30 @@ public class ClientHandler extends Handler {
         actionMap.put(Constants.PREFIX_GAME_START_STATS, new ActionBroadcastStartStats());
         actionMap.put(Constants.PREFIX_GET_SERVER_TIME, new ActionUpdateGameTime());
         actionMap.put(Constants.PREFIX_PLAYER_MOVE, new ActionMove());
+        actionMap.put(Constants.PREFIX_GET_IP, new ActionGetIP());
+        actionMap.put(Constants.PREFIX_ROLL_DICE_RECEIVE, new RollDiceReceive());
+        actions.add(new ActionHostGame());
+        actionPrefixes.add(Constants.PREFIX_HOST_NEW_GAME);
+
+        actions.add(new ActionUpdateUserList());
+        actionPrefixes.add(Constants.PREFIX_UPDATE_USER_LIST);
+
+        actions.add(new ActionAddUserToUserList());
+        actionPrefixes.add(Constants.PREFIX_ADD_USER_TO_LIST);
+
+        actions.add(new ActionRemoveUserFromUserList());
+        actionPrefixes.add(Constants.PREFIX_REMOVE_USER_FROM_LIST);
+
+        actions.add(new ActionCloseGame());
+        actionPrefixes.add(Constants.PREFIX_CLOSE_GAME);
+    }
+
+    public static void setClient(NetworkClientConnection connection){
+        client = connection;
+    }
+
+    public static void sendMessageToServer(String message){
+        client.sendMessage(message);
     }
 
 
@@ -67,8 +100,12 @@ public class ClientHandler extends Handler {
 
         String[] actionSplit = message.split("[: ]");
         if (actionMap.containsKey(actionSplit[0])) {
+            System.out.println("TRIGGERED "+actionSplit[0]);
             actionMap.get(actionSplit[0]).execute(UIActivity, message);
+            return;
         }
+
+        System.err.println(actionSplit[0]+" NOT FOUND");
 
     }
 

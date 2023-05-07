@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="300dp"
+    android:layout_height="wrap_content"
+    android:id = "@+id/popUpConstraintLayout">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/layoutPopUp"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/pop_up_background"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <TextView
+            android:id="@+id/popUpTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/EnterServerName"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            android:paddingTop="28dp"
+            android:gravity="center_horizontal"
+            android:fontFamily="@font/bangers"
+            app:layout_constraintTop_toTopOf="@id/layoutPopUp"/>
+
+        <EditText
+            android:id="@+id/popUpEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginStart="20dp"
+            android:textSize="18sp"
+            android:inputType="text"
+            android:autofillHints="name"
+            android:hint="@string/EnterServerName"
+            app:layout_constraintTop_toBottomOf="@id/popUpTitle"
+            app:layout_constraintBottom_toTopOf="@id/okButton"
+            />
+
+        <Button
+            android:id="@+id/okButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:backgroundTint="@color/dkt_red"
+            android:text="@string/OK"
+            android:textSize="14sp"
+            app:cornerRadius="12dp"
+            android:fontFamily="@font/bangers"
+            android:textColor="@color/dkt_yellow"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.094"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/popUpEditText" />
+
+        <Button
+            android:id="@+id/cancelButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:backgroundTint="@color/dkt_red"
+            android:text="@string/Cancel"
+            android:textSize="14sp"
+            app:cornerRadius="12dp"
+            android:fontFamily="@font/bangers"
+            android:textColor="@color/dkt_yellow"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.905"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/popUpEditText" />
+
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <ImageView
+        android:contentDescription="@string/DktLogoDescription"
+        android:id="@+id/dktLogo"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:src="@drawable/dkt_logo_2"
+        android:layout_marginEnd="40dp"
+        android:layout_marginStart="40dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/layoutPopUp"
+        app:layout_constraintBottom_toTopOf="@id/layoutPopUp"/>
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

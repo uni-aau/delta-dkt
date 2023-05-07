@@ -20,6 +20,8 @@ public class NetworkServiceDiscovery {
     public NsdServiceInfo nsdServiceInfo;
 
 
+
+
     public NetworkServiceDiscovery(Context context) {
         this.nsdManager = (NsdManager) context.getSystemService(Context.NSD_SERVICE);
 
@@ -42,12 +44,16 @@ public class NetworkServiceDiscovery {
         }
     }
 
+
+
     private void initializeRegistrationListener() {
         registrationListener = new NsdManager.RegistrationListener() {
 
             @Override
             public void onServiceRegistered(NsdServiceInfo serviceInfo) {
+
                 System.out.println(TAG+" onServiceRegistered: " + serviceInfo);
+
             }
 
             @Override

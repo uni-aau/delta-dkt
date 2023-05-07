@@ -45,6 +45,8 @@ public class ServerNetworkClient extends Thread { //always executed on a separat
 
     private NetworkServiceDiscovery nsd;
 
+    private static int idCounter = 1;
+
 
     public ServerNetworkClient(){
       initProperties();
@@ -55,6 +57,14 @@ public class ServerNetworkClient extends Thread { //always executed on a separat
         this.nsd = new NetworkServiceDiscovery(context);
 
         initProperties();
+    }
+
+    public String getIP(){
+        if(clientConnections.size() == 1) {
+            return clientConnections.get(0).getIP();
+        }else{
+            return clientConnections.get(1).getIP();
+        }
     }
 
     private void initProperties(){
@@ -72,14 +82,19 @@ public class ServerNetworkClient extends Thread { //always executed on a separat
             //before start listening, register the service.. the port has been set
             if(nsd != null){ //for testcases this class has to be called without service registration
                 nsd.registerService(getPort());
+                System.out.println("REGISTERED SERVICE");
             }
 
             System.out.println("Server started on port " + port);
             while (serverInterrupted == false) {
                 Socket socket = serverSocket.accept();
-                NetworkConnection clientSocket = new NetworkConnection(socket, null);
+                NetworkConnection clientSocket = new NetworkConnection(socket, MainActivity.logic);
                 clientConnections.add(clientSocket);
                 clientSocket.start();
+
+                clientSocket.send("IPINNIT:"+idCounter++);
+
+
             }
         }catch (IOException e) {
             e.printStackTrace();

@@ -1,7 +1,10 @@
 package delta.dkt.activities;
 
 
+import static ClientUIHandling.Constants.PREFIX_ADD_USER_TO_LIST;
+
 import static delta.dkt.activities.MainActivity.INTENT_PARAMETER;
+import static delta.dkt.activities.MainActivity.user;
 
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
@@ -18,6 +21,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import ClientUIHandling.ClientHandler;
 import ClientUIHandling.ClientLogic;
 import ClientUIHandling.Constants;
 import delta.dkt.R;
@@ -82,8 +86,12 @@ public class FindHostViewActivity extends AppCompatActivity{
             Intent intent = new Intent(getApplicationContext(), LobbyViewActivity.class);
             intent.putExtra(INTENT_PARAMETER, newUser);
             if(selection != null){
-                NetworkClientConnection client = new NetworkClientConnection(selection.getHost().getHostAddress(), selection.getPort(), 1000, new ClientLogic(new HashMap<>()));
+                NetworkClientConnection client = new NetworkClientConnection(selection.getHost().getHostAddress(), selection.getPort(), 1000, MainActivity.logic);
                 client.start();
+                ClientHandler.setClient(client);
+
+
+                client.sendMessage(Constants.PREFIX_SERVER+":"+PREFIX_ADD_USER_TO_LIST+" "+user);
             }
 
             startActivity(intent);

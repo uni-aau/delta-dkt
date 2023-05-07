@@ -1,5 +1,7 @@
 package delta.dkt.activities;
 
+import static delta.dkt.activities.MainMenuActivity.getTime;
+
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,10 +19,12 @@ class UserNameAdapter extends RecyclerView.Adapter<UserNameAdapter.UserViewHolde
 
     Context context;
     ArrayList<String> usernames;
+    boolean role;
 
-    public UserNameAdapter (Context context, ArrayList<String> usernames) {
+    public UserNameAdapter (Context context, ArrayList<String> usernames, boolean role) {
         this.context=context;
         this.usernames= usernames;
+        this.role = role;
     }
 
     @NonNull
@@ -38,6 +42,13 @@ class UserNameAdapter extends RecyclerView.Adapter<UserNameAdapter.UserViewHolde
         // based on the position of the recycler view
 
         holder.username.setText(usernames.get(position));
+
+        if (role) holder.userRole.setText(R.string.Host);
+        else holder.userRole.setText(R.string.Player);
+
+
+        holder.joiningTime.setText("Joined: "+ getTime());
+
     }
 
     @Override
@@ -51,10 +62,16 @@ class UserNameAdapter extends RecyclerView.Adapter<UserNameAdapter.UserViewHolde
         // Grabs informations thats needed from the recycler_view_user_row.xml
 
         TextView username;
+        TextView userRole;
+        TextView joiningTime;
 
         public UserViewHolder (@NonNull View itemView) {
             super(itemView);
             username = itemView.findViewById(R.id.userName_txt);
+            userRole = itemView.findViewById(R.id.userRole);
+            joiningTime = itemView.findViewById(R.id.joiningTime);
         }
     }
+
+
 }

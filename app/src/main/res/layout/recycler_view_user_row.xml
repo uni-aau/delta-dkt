@@ -1,35 +1,58 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-    <RelativeLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
-        android:layout_width="350dp"
-        android:layout_height="100dp"
-        android:background="@drawable/user_card_background"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="10dp"
-        android:layout_marginStart="5dp">
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="350dp"
+    android:layout_height="100dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@drawable/user_card_background"
+    android:layout_alignParentStart="true"
+    android:layout_marginTop="10dp"
+    android:layout_marginStart="5dp"
+    android:id="@+id/userCardConstraintLayout">
 
 
-        <ImageView
-            android:contentDescription="@string/Avatar"
-            android:id="@+id/avatar"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="10dp"
-            tools:srcCompat="@tools:sample/avatars"/>
+    <TextView
+        android:id="@+id/userName_txt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_marginBottom="15dp"
+        android:fontFamily="@font/bangers"
+        android:padding="20dp"
+        android:text="@string/UserName"
+        android:textColor="@color/dkt_yellow"
+        android:textSize="40sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/userRole"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:text="@string/UserRole"
+        android:textSize="25sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/userName_txt"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/joiningTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="8dp"
+        android:text="@string/JoiningTime"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/userName_txt"
+        app:layout_constraintTop_toBottomOf="@+id/userRole" />
 
 
-        <TextView
-            android:id="@+id/userName_txt"
-            android:layout_width="180dp"
-            android:layout_height="70dp"
-            android:layout_alignParentEnd="true"
-            android:text = "@string/UserName"
-            android:textSize="30sp"
-            android:textColor="@color/dkt_yellow"
-            android:padding="10dp"/>
-    <!--android:fontFamily="@font/bangers"-->
-
-
-    </RelativeLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

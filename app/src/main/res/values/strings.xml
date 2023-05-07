@@ -31,6 +31,16 @@
     <string name="DktLogoDescription">DKTLogo</string>
     <string name="Avatar">Avatar</string>
     <string name="PlayerLobby">Player Lobby</string>
+    <string name="EnterServerName">Please enter Server name</string>
+    <string name="OK">OK</string>
+    <string name="Cancel">Cancel</string>
+    <string name="ServerName">ServerName</string>
+    <string name="UserRole">UserRole</string>
+    <string name="JoiningTime">Joined on:</string>
+    <string name="TotalPlayers">Total Players: </string>
+    <string name="Host">HOST </string>
+    <string name="Player">PLAYER</string>
+    <string name="Joined">Joined:</string>
     <string name="FindHost">Find Host</string>
     <string name="JoinBtn">Join</string>
     <string name="HostId">Host ID</string>

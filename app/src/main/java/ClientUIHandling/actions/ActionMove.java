@@ -1,6 +1,7 @@
 package ClientUIHandling.actions;
 
 import ClientUIHandling.ClientActionInterface;
+import ClientUIHandling.ClientHandler;
 import ClientUIHandling.Constants;
 import ClientUIHandling.handlers.notifications.SnackBarHandler;
 import android.util.Log;
@@ -10,6 +11,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import ServerLogic.ServerActionHandler;
 import delta.dkt.R;
 import delta.dkt.activities.GameViewActivity;
+import delta.dkt.activities.MainMenuActivity;
 
 public class ActionMove implements ClientActionInterface {
     private String tag = "Movement-" + this.getClass().getSimpleName();
@@ -46,6 +48,10 @@ public class ActionMove implements ClientActionInterface {
         var snack = SnackBarHandler.createSnackbar(activity.findViewById(R.id.imageView), result, 2000, true, "#6481d5", null);
         snack.show();
 
-        ServerActionHandler.triggerAction(Constants.PREFIX_ROLL_DICE_REQUEST, clientID); // Sets the next player to roll the dice
+        /*if(MainMenuActivity.role) {
+            ServerActionHandler.triggerAction(Constants.PREFIX_ROLL_DICE_REQUEST, clientID); // Sets the next player to roll the dice
+        }else{
+            ClientHandler.sendMessageToServer(Constants.GAMEVIEW_ACTIVITY_TYPE+":"+Constants.PREFIX_ROLL_DICE_REQUEST+" "+clientID);
+        }*/
     }
 }

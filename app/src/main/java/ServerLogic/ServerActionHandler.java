@@ -3,7 +3,7 @@ package ServerLogic;
 import static ClientUIHandling.Constants.*;
 
 import ServerLogic.actions.ActionPayRent;
-import ServerLogic.actions.RequestGameStartStats;
+import ServerLogic.actions.*;
 import ServerLogic.actions.PlayerLost;
 import ServerLogic.actions.RequestPlayerMovement;
 import android.util.Log;
@@ -16,6 +16,12 @@ import ServerLogic.actions.RequestGameStartTime;
 import ServerLogic.actions.RegisterUser;
 import ServerLogic.actions.RequestPlayerInit;
 import ServerLogic.actions.RequestGameStart;
+import ServerLogic.actions.GetIp;
+import ServerLogic.actions.RequestAddUserToUserList;
+import ServerLogic.actions.RequestCloseGame;
+import ServerLogic.actions.RequestHostGame;
+import ServerLogic.actions.RequestRemoveUserFromList;
+import ServerLogic.actions.RequestUpdateUserList;
 import network2.ServerNetworkClient;
 
 public class ServerActionHandler {
@@ -25,15 +31,17 @@ public class ServerActionHandler {
 
     private static ServerNetworkClient server;
 
+    public static ArrayList<String> serverUserList;
+
     private ServerActionHandler() {
         // no instantiation of class
     }
 
     static{
+        serverUserList = new ArrayList<>();
         actions = new ArrayList<>();
         actionPrefixes = new ArrayList<>();
         actionMap = new HashMap<>();
-
         actionMap.put(PREFIX_PLAYER_PAYRENT, new ActionPayRent());
         actionMap.put(PREFIX_PLAYER_LOST, new PlayerLost());
         actionMap.put(PREFIX_GAME_START, new RequestGameStart());
@@ -43,6 +51,22 @@ public class ServerActionHandler {
         actionMap.put(PREFIX_ROLL_DICE_REQUEST, new RequestRollDicePerm());
         actionMap.put(PREFIX_GET_SERVER_TIME, new RequestGameStartTime());
         actionMap.put(PREFIX_PLAYER_MOVE, new RequestPlayerMovement());
+        actionMap.put(PREFIX_GET_IP, new GetIp());
+
+        actions.add(new RequestHostGame());
+        actionPrefixes.add(PREFIX_HOST_NEW_GAME);
+
+        actions.add(new RequestAddUserToUserList());
+        actionPrefixes.add(PREFIX_ADD_USER_TO_LIST);
+
+        actions.add(new RequestRemoveUserFromList());
+        actionPrefixes.add(PREFIX_REMOVE_USER_FROM_LIST);
+
+        actions.add(new RequestUpdateUserList());
+        actionPrefixes.add(PREFIX_UPDATE_USER_LIST);
+
+        actions.add(new RequestCloseGame());
+        actionPrefixes.add(PREFIX_CLOSE_GAME);
     }
 
     public static void triggerAction(String name, Object parameters){
