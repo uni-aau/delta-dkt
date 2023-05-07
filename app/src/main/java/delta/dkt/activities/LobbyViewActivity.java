@@ -1,6 +1,7 @@
 package delta.dkt.activities;
 
 import static ClientUIHandling.Constants.PREFIX_ADD_USER_TO_LIST;
+import static ClientUIHandling.Constants.PREFIX_CLOSE_GAME;
 import static ClientUIHandling.Constants.PREFIX_GAME_START;
 import static ClientUIHandling.Constants.PREFIX_REMOVE_USER_FROM_LIST;
 import static ClientUIHandling.Constants.PREFIX_UPDATE_USER_LIST;
@@ -54,12 +55,12 @@ public class LobbyViewActivity extends AppCompatActivity {
         recyclerView.setAdapter(adapter);
 
         // Adding User to the UserList
-        addUserToUserListAndUpdate();
+        welcomeToLobby();
 
 
         //---BACK BUTTON---  (Everything that happens when back button is clicked)
         backButton.setOnClickListener(view -> {
-            removeUserFromUserList();
+            leavingTheLobby();
         });
 
 
@@ -75,19 +76,21 @@ public class LobbyViewActivity extends AppCompatActivity {
 
     //---------------------------ALL METHODS:---------------------------//
 
-
-
-
-    // This Method removes the User from the UserList
-    public void removeUserFromUserList() {
-        ServerActionHandler.triggerAction(PREFIX_REMOVE_USER_FROM_LIST, user);
-        ServerActionHandler.triggerAction(PREFIX_UPDATE_USER_LIST,null);
-        Toast.makeText(LobbyViewActivity.this, "Users Total: "+userList.size(), Toast.LENGTH_SHORT).show();
-    }
-
-    public void addUserToUserListAndUpdate () {
+    // This Method ass user to UserList und updates the List
+    public void welcomeToLobby () {
         ServerActionHandler.triggerAction(PREFIX_ADD_USER_TO_LIST, user);
         ServerActionHandler.triggerAction(PREFIX_UPDATE_USER_LIST, null);
         Toast.makeText(LobbyViewActivity.this, "Users Total: "+userList.size(), Toast.LENGTH_SHORT).show();
     }
+
+    // This Method removes the User from the UserList, updates the List and Closes the game/server
+    public void leavingTheLobby() {
+        ServerActionHandler.triggerAction(PREFIX_REMOVE_USER_FROM_LIST, user);
+        ServerActionHandler.triggerAction(PREFIX_UPDATE_USER_LIST,null);
+        ServerActionHandler.triggerAction(PREFIX_CLOSE_GAME,"");
+        Toast.makeText(LobbyViewActivity.this, "Users Total: "+userList.size(), Toast.LENGTH_SHORT).show();
+    }
+
+
+
 }
