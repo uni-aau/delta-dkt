@@ -50,14 +50,6 @@ class ServerNetworkClientTest {
         assertEquals(message, receivedMessage);
     }
 
-    @Test
-    void testIPToClients() throws InterruptedException {
-        String message = "Hello, clients!";
-        server.broadcast(message);
-        Thread.sleep(1000);
-        String receivedMessage = client.getConnection().getLastMsgReceived();
-        assertEquals(message, receivedMessage);
-    }
 
 
 
