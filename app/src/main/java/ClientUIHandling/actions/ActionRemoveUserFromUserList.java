@@ -1,4 +1,4 @@
-package ClientUIHandling.hostGameActions;
+package ClientUIHandling.actions;
 
 import static ClientUIHandling.Constants.PREFIX_ADD_USER_TO_LIST;
 import static ClientUIHandling.Constants.PREFIX_REMOVE_USER_FROM_LIST;

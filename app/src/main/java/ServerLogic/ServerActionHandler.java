@@ -16,12 +16,12 @@ import ServerLogic.actions.RequestGameStartTime;
 import ServerLogic.actions.RegisterUser;
 import ServerLogic.actions.RequestPlayerInit;
 import ServerLogic.actions.RequestGameStart;
-import ServerLogic.hostGameActions.GetIp;
-import ServerLogic.hostGameActions.RequestAddUserToUserList;
-import ServerLogic.hostGameActions.RequestCloseGame;
-import ServerLogic.hostGameActions.RequestHostGame;
-import ServerLogic.hostGameActions.RequestRemoveUserFromList;
-import ServerLogic.hostGameActions.RequestUpdateUserList;
+import ServerLogic.actions.GetIp;
+import ServerLogic.actions.RequestAddUserToUserList;
+import ServerLogic.actions.RequestCloseGame;
+import ServerLogic.actions.RequestHostGame;
+import ServerLogic.actions.RequestRemoveUserFromList;
+import ServerLogic.actions.RequestUpdateUserList;
 import network2.ServerNetworkClient;
 
 public class ServerActionHandler {

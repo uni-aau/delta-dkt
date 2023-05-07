@@ -1,4 +1,4 @@
-package ClientUIHandling.hostGameActions;
+package ClientUIHandling.actions;
 
 
 import static ClientUIHandling.Constants.PREFIX_HOST_NEW_GAME;

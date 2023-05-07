@@ -1,7 +1,5 @@
 package ClientUIHandling;
 
-import static ClientUIHandling.Constants.PREFIX_REMOVE_USER_FROM_LIST;
-
 import ClientUIHandling.actions.ActionBroadcastStartStats;
 import ClientUIHandling.actions.ActionGetIP;
 import ClientUIHandling.actions.ActionMove;
@@ -22,13 +20,12 @@ import java.util.HashMap;
 import ClientUIHandling.actions.ActionStartGame;
 import ClientUIHandling.actions.ActionPlayerInit;
 import ClientUIHandling.actions.RollDiceReceive;
-import ClientUIHandling.hostGameActions.ActionAddUserToUserList;
-import ClientUIHandling.hostGameActions.ActionCloseGame;
-import ClientUIHandling.hostGameActions.ActionHostGame;
-import ClientUIHandling.hostGameActions.ActionRemoveUserFromUserList;
-import ClientUIHandling.hostGameActions.ActionUpdateUserList;
+import ClientUIHandling.actions.ActionAddUserToUserList;
+import ClientUIHandling.actions.ActionCloseGame;
+import ClientUIHandling.actions.ActionHostGame;
+import ClientUIHandling.actions.ActionRemoveUserFromUserList;
+import ClientUIHandling.actions.ActionUpdateUserList;
 import network2.NetworkClientConnection;
-import network2.NetworkConnection;
 
 public class ClientHandler extends Handler {
 

@@ -1,4 +1,4 @@
-package ClientUIHandling.hostGameActions;
+package ClientUIHandling.actions;
 
 
 import static ClientUIHandling.Constants.PREFIX_UPDATE_USER_LIST;

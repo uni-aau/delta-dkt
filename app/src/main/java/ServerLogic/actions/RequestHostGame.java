@@ -1,4 +1,4 @@
-package ServerLogic.hostGameActions;
+package ServerLogic.actions;
 
 import static ClientUIHandling.Constants.MAINMENU_ACTIVITY_TYPE;
 import static ClientUIHandling.Constants.PREFIX_HOST_NEW_GAME;

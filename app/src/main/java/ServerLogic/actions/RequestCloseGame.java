@@ -1,4 +1,4 @@
-package ServerLogic.hostGameActions;
+package ServerLogic.actions;
 
 import static ClientUIHandling.Constants.LOBBYVIEW_ACTIVITY_TYPE;
 import static ClientUIHandling.Constants.PREFIX_CLOSE_GAME;
