@@ -17,6 +17,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -31,6 +32,7 @@ import network2.ServerNetworkClient;
 public class MainMenuActivity extends AppCompatActivity {
 
     ServerNetworkClient server;
+    NetworkClientConnection client;
     public static String username; // Todo - Move into Main Activity??
     public static boolean role;
 
@@ -48,8 +50,6 @@ public class MainMenuActivity extends AppCompatActivity {
         //username = getIntent().getStringExtra(INTENT_PARAMETER);
 
 
-
-
         //---HOST BUTTON---  (Everything that happens when host button is clicked)
         host.setOnClickListener(view -> {
             role = true;
@@ -57,17 +57,15 @@ public class MainMenuActivity extends AppCompatActivity {
         });
 
 
-
         //---JOIN BUTTON---  (Everything that happens when join button is clicked)
         join.setOnClickListener(view -> {
-            role=false;
+            role = false;
             Intent intent = new Intent(getApplicationContext(), LobbyViewActivity.class);
             startActivity(intent);
         });
 
 
     }
-
 
 
     //---------------------------ALL METHODS:---------------------------//
@@ -92,7 +90,7 @@ public class MainMenuActivity extends AppCompatActivity {
             String serverName = editText.getText().toString();
             if (serverName.isEmpty()) {
                 Toast.makeText(MainMenuActivity.this, "Please enter Servername", Toast.LENGTH_SHORT).show();
-            }else {
+            } else {
                 try {
                     startServer(serverName);
                 } catch (InterruptedException e) {
@@ -110,22 +108,20 @@ public class MainMenuActivity extends AppCompatActivity {
     }
 
 
-
     // This Method will start with the Server and trigger the Action "HOST_NEW_GAME"
-    public void startServer(String serverName)throws InterruptedException, RuntimeException {
+    public void startServer(String serverName) throws InterruptedException, RuntimeException {
         server = new ServerNetworkClient(this.getApplicationContext());
         server.start();
         Thread.sleep(100);
 
-        NetworkClientConnection client = new NetworkClientConnection("localhost", server.getPort(), 1000, MainActivity.logic);
+        client = new NetworkClientConnection("localhost", server.getPort(), 1000, MainActivity.logic);
         ServerActionHandler.setServer(server);
         client.start();
         Thread.sleep(100);
 
-        Toast.makeText(MainMenuActivity.this, "Server "+serverName+" started on "+getTime(), Toast.LENGTH_SHORT).show();
+        Toast.makeText(MainMenuActivity.this, "Server " + serverName + " started on " + getTime(), Toast.LENGTH_SHORT).show();
         ServerActionHandler.triggerAction(PREFIX_HOST_NEW_GAME, user);
     }
-
 
 
     // This method returns the current time
@@ -133,6 +129,24 @@ public class MainMenuActivity extends AppCompatActivity {
         SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss");
         return sdf.format(new Date());
     }
+
+    /*
+    public void closeServer() {
+        try {
+            server.tearDown();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public void closeClient() {
+        try {
+            client.stopConnection();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+*/
 }
 
 
