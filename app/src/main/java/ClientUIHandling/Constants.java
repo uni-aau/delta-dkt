@@ -4,8 +4,7 @@ public class Constants {
     private Constants() {
         // No instantiation of class
     }
-
-    public static final String MAIN_ACTIVITY_TYPE = "main";
+   public static final String MAIN_ACTIVITY_TYPE = "main";
     public static final String GAMEVIEW_ACTIVITY_TYPE = "game";
     public static final String MAINMENU_ACTIVITY_TYPE = "menu";
     public static final String PROPERTYLIST_ACTIVITY_TYPE = "list";
