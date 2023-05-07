@@ -8,7 +8,6 @@ import static delta.dkt.R.id.imageView;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
-import android.graphics.PointF;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MotionEvent;
@@ -18,7 +17,6 @@ import android.widget.ImageView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import ClientUIHandling.Config;
 import ClientUIHandling.Constants;
 import ClientUIHandling.handlers.positioning.PositionHandler;
 import ServerLogic.ServerActionHandler;
@@ -45,8 +43,6 @@ public class GameViewActivity extends AppCompatActivity {
         ServerActionHandler.triggerAction(PREFIX_INIT_PLAYERS, String.valueOf(clientID)); // Set player & handle dice perms
         ServerActionHandler.triggerAction(PREFIX_GAME_START_STATS, String.valueOf(Game.getPlayers().size())); // Update player stats
         ServerActionHandler.triggerAction(PREFIX_GET_SERVER_TIME, clientID); // Get game time
-
-//        displayPlayers(4);
 
         handleMovementRequests();
     }
@@ -120,13 +116,14 @@ public class GameViewActivity extends AppCompatActivity {
 
     /**
      * This method will set the figure's for the request amount of players visible.
+     *
      * @param count Amount of players of which the figures are going to be made visible.
      */
-    public void displayPlayers(int count){
-        for(int i = 1; i <= count; i++) {
+    public void displayPlayers(int count) {
+        for (int i = 1; i <= count; i++) {
             ImageView figure = findViewById(getResources().getIdentifier("player" + i, "id", getPackageName()));
 
-            if(figure == null) continue;
+            if (figure == null) continue;
 
             figure.setVisibility(View.VISIBLE);
         }
