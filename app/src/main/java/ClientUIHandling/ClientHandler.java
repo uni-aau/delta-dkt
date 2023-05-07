@@ -21,6 +21,7 @@ import java.util.HashMap;
 import ClientUIHandling.actions.ActionStartGame;
 import ClientUIHandling.actions.ActionPlayerInit;
 import ClientUIHandling.hostGameActions.ActionAddUserToUserList;
+import ClientUIHandling.hostGameActions.ActionCloseGame;
 import ClientUIHandling.hostGameActions.ActionHostGame;
 import ClientUIHandling.hostGameActions.ActionRemoveUserFromUserList;
 import ClientUIHandling.hostGameActions.ActionUpdateUserList;
@@ -72,6 +73,9 @@ public class ClientHandler extends Handler {
 
         actions.add(new ActionRemoveUserFromUserList());
         actionPrefixes.add(Constants.PREFIX_REMOVE_USER_FROM_LIST);
+
+        actions.add(new ActionCloseGame());
+        actionPrefixes.add(Constants.PREFIX_CLOSE_GAME);
 
 
     }

@@ -17,6 +17,7 @@ import ServerLogic.actions.RegisterUser;
 import ServerLogic.actions.RequestPlayerInit;
 import ServerLogic.actions.RequestGameStart;
 import ServerLogic.hostGameActions.RequestAddUserToUserList;
+import ServerLogic.hostGameActions.RequestCloseGame;
 import ServerLogic.hostGameActions.RequestHostGame;
 import ServerLogic.hostGameActions.RequestRemoveUserFromList;
 import ServerLogic.hostGameActions.RequestUpdateUserList;
@@ -74,6 +75,9 @@ public class ServerActionHandler {
 
         actions.add(new RequestUpdateUserList());
         actionPrefixes.add(PREFIX_UPDATE_USER_LIST);
+
+        actions.add(new RequestCloseGame());
+        actionPrefixes.add(PREFIX_CLOSE_GAME);
     }
 
     public static void triggerAction(String name, Object parameters){

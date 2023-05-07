@@ -29,4 +29,6 @@ public class Constants {
     public static final String PREFIX_REMOVE_USER_FROM_LIST = "Remove User from List";
 
     public static final String PREFIX_UPDATE_USER_LIST = "Update UserList";
+
+    public static final String PREFIX_CLOSE_GAME = "Close Game";
 }
