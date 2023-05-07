@@ -4,6 +4,8 @@ import android.graphics.Color;
 import android.view.View;
 import com.google.android.material.snackbar.Snackbar;
 
+import static com.google.android.material.snackbar.BaseTransientBottomBar.LENGTH_SHORT;
+
 /**
  * This handler provides different methods to create Snackbars
  */
@@ -18,7 +20,7 @@ public class SnackBarHandler {
      * @param message The message that the Snackbar should display.
      */
     public static Snackbar createSnackbar(View parent, String message) {
-        return SnackBarHandler.createSnackbar(parent, message, Snackbar.LENGTH_SHORT, false);
+        return SnackBarHandler.createSnackbar(parent, message, LENGTH_SHORT, false);
     }
 
     /**
@@ -73,9 +75,7 @@ public class SnackBarHandler {
         var snack = Snackbar.make(parent, message, duration);
 
         if (closeButton) {
-            snack.setAction("Close", view -> {
-                snack.dismiss();
-            });
+            snack.setAction("Close", view -> snack.dismiss());
         }
 
         if (backgroundColor != null && !backgroundColor.isEmpty())

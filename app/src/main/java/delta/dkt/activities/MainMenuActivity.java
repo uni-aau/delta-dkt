@@ -59,8 +59,10 @@ public class MainMenuActivity extends AppCompatActivity {
 
         //---JOIN BUTTON---  (Everything that happens when join button is clicked)
         join.setOnClickListener(view -> {
-            role = false;
-            Intent intent = new Intent(getApplicationContext(), LobbyViewActivity.class);
+
+            Intent intent = new Intent(getApplicationContext(), FindHostViewActivity.class);
+            intent.putExtra(INTENT_PARAMETER, newUser);
+
             startActivity(intent);
         });
 

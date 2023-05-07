@@ -18,26 +18,35 @@ public class RequestGameStartTime implements ServerActionInterface {
     @Override
     public void execute(ServerNetworkClient server, Object parameters) {
         Log.d("Server Start Time", "Received Server Start Time request!");
+        int clientID = (int) parameters;
 
-        timer = new CountDownTimer(Config.END_TIME, 1000) {
-            @Override
-            public void onTick(long l) {
-                elapsedTime += 1000; // + 1000 millisekunden pro Tick -> +1 sekunde
-
-                int currentMinute = (int) (elapsedTime / 60000);
-                Log.d("[Server] Request Time", "CurrentMinute = " + currentMinute + "PreviousMinute = " + previousMinute);
-
-                // if(currentMinute != previousMinute) { // Todo - Check, ob nur eine Request pro Minute?
-                server.broadcast(GAMEVIEW_ACTIVITY_TYPE, PREFIX_GET_SERVER_TIME, new String[]{String.valueOf(elapsedTime)});
-                previousMinute = currentMinute;
+        // Only first person starts timer (will be recoded in next sprint)
+        if (clientID == 1) {
+            if (timer != null) {
+                timer.cancel(); // Cancel previous timer if it exists
             }
+            elapsedTime = 0;
+            previousMinute = -1;
+            timer = new CountDownTimer(Config.END_TIME, 1000) {
+                @Override
+                public void onTick(long l) {
+                    elapsedTime += 1000; // + 1000 millisekunden pro Tick -> +1 sekunde
 
-            @Override
-            public void onFinish() {
-                timer.cancel();
-                // Todo - Game wird abgebrochen und ein Gewinner eruiert - CountDown oder StoppUhr
-            }
-        };
-        timer.start();
+                    int currentMinute = (int) (elapsedTime / 60000);
+                    Log.d("[Server] Request Time", "CurrentMinute = " + currentMinute + "PreviousMinute = " + previousMinute);
+
+                    // if(currentMinute != previousMinute) { // Todo - Check, ob nur eine Request pro Minute?
+                    server.broadcast(GAMEVIEW_ACTIVITY_TYPE, PREFIX_GET_SERVER_TIME, new String[]{String.valueOf(elapsedTime)});
+                    previousMinute = currentMinute;
+                }
+
+                @Override
+                public void onFinish() {
+                    // Todo - Game wird abgebrochen und ein Gewinner eruiert - CountDown oder StoppUhr
+                    timer.cancel();
+                }
+            };
+            timer.start();
+        }
     }
 }

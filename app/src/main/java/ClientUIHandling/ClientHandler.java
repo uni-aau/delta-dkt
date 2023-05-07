@@ -41,29 +41,16 @@ public class ClientHandler extends Handler {
         actionMap = new HashMap<>();
         actionMap.put(Constants.PREFIX_PLAYER_RENTPAID, new ActionRentPaid());
         actionMap.put(Constants.PREFIX_PLAYER_LOST, new ActionPlayerLost());
-
-        //TODO: Change the registration
-
+        actionMap.put(Constants.PREFIX_GAME_START, new ActionStartGame());
+        actionMap.put(Constants.PREFIX_ROLL_DICE_REQUEST, new ActionRollDice());
+        actionMap.put(Constants.PREFIX_INIT_PLAYERS, new ActionPlayerInit());
+        actionMap.put(Constants.PREFIX_GAME_START_STATS, new ActionBroadcastStartStats());
+        actionMap.put(Constants.PREFIX_GET_SERVER_TIME, new ActionUpdateGameTime());
+        actionMap.put(Constants.PREFIX_PLAYER_MOVE, new ActionMove());
+        actionMap.put(Constants.PREFIX_GET_IP, new ActionGetIP());
+        actionMap.put(Constants.PREFIX_ROLL_DICE_RECEIVE, new RollDiceReceive());
         actions.add(new ActionHostGame());
         actionPrefixes.add(Constants.PREFIX_HOST_NEW_GAME);
-
-        actions.add(new ActionStartGame());
-        actionPrefixes.add(Constants.PREFIX_GAME_START);
-
-        actions.add(new ActionMove());
-        actionPrefixes.add(Constants.PREFIX_PLAYER_MOVE);
-
-        actions.add(new ActionRollDice());
-        actionPrefixes.add(Constants.PREFIX_ROLL_DICE_REQUEST);
-
-        actions.add(new ActionUpdateGameTime());
-        actionPrefixes.add(Constants.PREFIX_GET_SERVER_TIME);
-
-        actions.add(new ActionPlayerInit());
-        actionPrefixes.add(Constants.PREFIX_INIT_PLAYERS);
-
-        actions.add(new ActionBroadcastStartStats());
-        actionPrefixes.add(Constants.PREFIX_GAME_START_STATS);
 
         actions.add(new ActionUpdateUserList());
         actionPrefixes.add(Constants.PREFIX_UPDATE_USER_LIST);
@@ -76,8 +63,6 @@ public class ClientHandler extends Handler {
 
         actions.add(new ActionCloseGame());
         actionPrefixes.add(Constants.PREFIX_CLOSE_GAME);
-
-
     }
 
 

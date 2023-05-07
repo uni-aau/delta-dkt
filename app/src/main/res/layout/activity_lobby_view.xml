@@ -34,9 +34,11 @@
         android:text="@string/TotalPlayers"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="1dp"
+
         android:fontFamily="@font/bangers"
         android:textSize="20sp"
         android:layout_below="@id/dkt_logo"/>
+
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/lobbyRecyclerView"
@@ -56,8 +58,8 @@
         android:layout_marginStart="20dp"
         android:textColor="@color/dkt_yellow"
         android:textSize="20sp"
-        android:fontFamily="@font/bangers"
         android:background="@drawable/host_btn_background"/>
+    <!--android:fontFamily="@font/bangers"-->
 
     <Button
         android:id="@+id/startbtn"
@@ -69,8 +71,8 @@
         android:layout_marginStart="270dp"
         android:textColor="@color/dkt_yellow"
         android:textSize="20sp"
-        android:fontFamily="@font/bangers"
         android:background="@drawable/host_btn_background"/>
+    <!--android:fontFamily="@font/bangers"-->
 
 
 
