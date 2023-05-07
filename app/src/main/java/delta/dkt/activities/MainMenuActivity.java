@@ -125,7 +125,9 @@ public class MainMenuActivity extends AppCompatActivity {
                     startServer(serverName);
 
                 } catch (InterruptedException e) {
-                    throw new RuntimeException(e);
+                    Log.w("Warning", "Interrupted!", e);
+                    // Restore interrupted state...
+                    Thread.currentThread().interrupt();
                 }
             }
         });

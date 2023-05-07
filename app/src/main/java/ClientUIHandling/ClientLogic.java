@@ -36,7 +36,9 @@ public class ClientLogic {
                 try {
                     Thread.sleep(1000);
                 } catch (InterruptedException e) {
-                    throw new RuntimeException(e);
+                    Log.w("Warning", "Interrupted!", e);
+                    // Restore interrupted state...
+                    Thread.currentThread().interrupt();
                 }
                 if(handlers.containsKey(type)) {
                     send(message, type);
