@@ -19,6 +19,7 @@ import java.util.HashMap;
 
 import ClientUIHandling.actions.ActionStartGame;
 import ClientUIHandling.actions.ActionPlayerInit;
+import ClientUIHandling.actions.PropertyBoughtAction;
 import ClientUIHandling.actions.RollDiceReceive;
 import ClientUIHandling.actions.ActionAddUserToUserList;
 import ClientUIHandling.actions.ActionCloseGame;
@@ -52,6 +53,7 @@ public class ClientHandler extends Handler {
         actionMap.put(Constants.PREFIX_PLAYER_MOVE, new ActionMove());
         actionMap.put(Constants.PREFIX_GET_IP, new ActionGetIP());
         actionMap.put(Constants.PREFIX_ROLL_DICE_RECEIVE, new RollDiceReceive());
+        actionMap.put(Constants.PREFIX_PLAYER_PROPERTYBOUGHT, new PropertyBoughtAction());
         actions.add(new ActionHostGame());
         actionPrefixes.add(Constants.PREFIX_HOST_NEW_GAME);
 

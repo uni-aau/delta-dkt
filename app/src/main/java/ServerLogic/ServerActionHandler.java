@@ -52,6 +52,7 @@ public class ServerActionHandler {
         actionMap.put(PREFIX_GET_SERVER_TIME, new RequestGameStartTime());
         actionMap.put(PREFIX_PLAYER_MOVE, new RequestPlayerMovement());
         actionMap.put(PREFIX_GET_IP, new GetIp());
+        actionMap.put(PREFIX_PLAYER_BUYPROPERTY, new BuyPropertyAction());
 
         actions.add(new RequestHostGame());
         actionPrefixes.add(PREFIX_HOST_NEW_GAME);
@@ -67,6 +68,7 @@ public class ServerActionHandler {
 
         actions.add(new RequestCloseGame());
         actionPrefixes.add(PREFIX_CLOSE_GAME);
+
     }
 
     public static void triggerAction(String name, Object parameters){
