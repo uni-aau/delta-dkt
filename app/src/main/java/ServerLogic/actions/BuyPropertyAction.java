@@ -17,16 +17,15 @@ public class BuyPropertyAction implements ServerActionInterface {
     @Override
     public void execute(ServerNetworkClient server, Object parameters) {
         {
-            Log.i("INFO", "BuyPropertyAction");
-            int id = (int)parameters;
-            if (! Game.getPlayers().containsKey(id)) {
-                Log.e("ERROR","The playerId provided to the BuyPropertyAction class does not exist. Id:  " + id);
+            Log.d("INFO", "BuyPropertyAction");
+
+            if (! Game.getPlayers().containsKey((int)parameters)) {
+                Log.e("ERROR","The playerId provided to the BuyPropertyAction class does not exist. Id:  " + parameters.toString());
                 return;
             }
 
             //fetch player object
-            Player player = Game.getPlayers().get(id);
-
+            Player player = Game.getPlayers().get((int)parameters);
 
             int fieldLocation = player.getPosition().getLocation();
 

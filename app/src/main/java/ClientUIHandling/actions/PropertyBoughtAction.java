@@ -10,7 +10,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import ClientUIHandling.ClientActionInterface;
 import delta.dkt.R;
 import delta.dkt.activities.GameViewActivity;
-import delta.dkt.logic.structure.Game;
 
 public class PropertyBoughtAction implements ClientActionInterface {
 
@@ -38,7 +37,8 @@ public class PropertyBoughtAction implements ClientActionInterface {
             }
             //increase value
             intVal += 1;
-            ((TextView) activity.findViewById(R.id.textView_my_properties)).setText(fixedPart+(Integer.toString(intVal)));
+            String newFieldVal = fixedPart+(intVal);
+            ((TextView) activity.findViewById(R.id.textView_my_properties)).setText(newFieldVal);
 
             //set new cashValue
             ((TextView) activity.findViewById(R.id.textView_cash)).setText(String.format(activity.getString(R.string.cash_text), Integer.parseInt(splitMessage[4])));
