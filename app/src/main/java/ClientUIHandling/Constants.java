@@ -14,6 +14,9 @@ public class Constants {
 
     public static final String PREFIX_PLAYER_RENTPAID = "RENTPAID";
 
+    public static final String PREFIX_PLAYER_BUYPROPERTY="PROPERTY_BUY";
+    public static final String PREFIX_PLAYER_PROPERTYBOUGHT = "PROPERTY_BOUGHT";
+
     public static final String PREFIX_PLAYER_PAYRENT = "PAYRENT";
 
     public static final String PREFIX_HOST_NEW_GAME = "host";

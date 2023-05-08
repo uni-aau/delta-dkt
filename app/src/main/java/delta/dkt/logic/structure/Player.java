@@ -1,6 +1,8 @@
 package delta.dkt.logic.structure;
 
+import static ClientUIHandling.Constants.PREFIX_PLAYER_BUYPROPERTY;
 import static ClientUIHandling.Constants.PREFIX_PLAYER_PAYRENT;
+import static ClientUIHandling.Constants.PREFIX_PLAYER_PROPERTYBOUGHT;
 
 import java.util.ArrayList;
 
@@ -147,7 +149,11 @@ public class Player {
         this.position = Game.getMap().getField(location);
 
         if (this.position instanceof Property) {
-            ServerActionHandler.triggerAction(PREFIX_PLAYER_PAYRENT, this.getId());
+            if(((Property) this.position).getOwner() != null) {
+                ServerActionHandler.triggerAction(PREFIX_PLAYER_PAYRENT, this.getId());
+            }else{ //property can be bought , ask user
+                ServerActionHandler.triggerAction(PREFIX_PLAYER_BUYPROPERTY, this.getId()); //we only need one parameter , and thates the id of the player
+            }
         }
     }
 
