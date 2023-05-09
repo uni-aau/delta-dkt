@@ -1,17 +1,15 @@
 package ClientUIHandling.actions;
 
-import ClientUIHandling.ClientActionInterface;
-import ClientUIHandling.ClientHandler;
-import ClientUIHandling.Constants;
-import ClientUIHandling.handlers.notifications.SnackBarHandler;
 import android.util.Log;
 import android.widget.Toast;
+
 import androidx.appcompat.app.AppCompatActivity;
 
-import ServerLogic.ServerActionHandler;
+import ClientUIHandling.ClientActionInterface;
+import ClientUIHandling.Constants;
+import ClientUIHandling.handlers.notifications.SnackBarHandler;
 import delta.dkt.R;
 import delta.dkt.activities.GameViewActivity;
-import delta.dkt.activities.MainMenuActivity;
 
 public class ActionMove implements ClientActionInterface {
     private String tag = "Movement-" + this.getClass().getSimpleName();

@@ -4,7 +4,6 @@ package ClientUIHandling.actions;
 import static ClientUIHandling.Constants.PREFIX_UPDATE_USER_LIST;
 import static delta.dkt.activities.LobbyViewActivity.userList;
 
-
 import android.app.Activity;
 import android.util.Log;
 import android.widget.TextView;

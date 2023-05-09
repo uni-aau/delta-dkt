@@ -1,9 +1,6 @@
 package ClientUIHandling.actions;
 
-import static ClientUIHandling.Constants.LOBBYVIEW_ACTIVITY_TYPE;
 import static ClientUIHandling.Constants.PREFIX_ADD_USER_TO_LIST;
-
-import static ClientUIHandling.Constants.PREFIX_UPDATE_USER_LIST;
 
 import android.util.Log;
 

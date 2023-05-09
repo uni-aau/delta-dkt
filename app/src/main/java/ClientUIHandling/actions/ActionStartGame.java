@@ -1,16 +1,12 @@
 package ClientUIHandling.actions;
 
-import static ClientUIHandling.Constants.PREFIX_REGISTER;
-
 import android.content.Intent;
 import android.util.Log;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import ClientUIHandling.ClientActionInterface;
-import ServerLogic.ServerActionHandler;
 import delta.dkt.activities.GameViewActivity;
-import delta.dkt.activities.MainMenuActivity;
 
 public class ActionStartGame implements ClientActionInterface {
     @Override

@@ -4,10 +4,8 @@ import android.util.Log;
 
 import ClientUIHandling.Config;
 import ClientUIHandling.Constants;
-import ServerLogic.ServerActionHandler;
 import ServerLogic.ServerActionInterface;
 import delta.dkt.activities.GameViewActivity;
-import delta.dkt.activities.MainMenuActivity;
 import delta.dkt.logic.structure.Game;
 import delta.dkt.logic.structure.Player;
 import network2.ServerNetworkClient;

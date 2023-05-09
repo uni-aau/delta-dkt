@@ -10,7 +10,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import ClientUIHandling.ClientActionInterface;
 import delta.dkt.R;
 import delta.dkt.activities.GameViewActivity;
-import delta.dkt.activities.MainActivity;
 
 public class ActionRentPaid implements ClientActionInterface {
     @SuppressLint("StringFormatInvalid")

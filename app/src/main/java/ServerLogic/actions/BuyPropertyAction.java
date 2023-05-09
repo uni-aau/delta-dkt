@@ -1,11 +1,10 @@
 package ServerLogic.actions;
 
-import static ClientUIHandling.Constants.*;
-
+import static ClientUIHandling.Constants.GAMEVIEW_ACTIVITY_TYPE;
+import static ClientUIHandling.Constants.PREFIX_PLAYER_PROPERTYBOUGHT;
 
 import android.util.Log;
 
-import ServerLogic.ServerActionHandler;
 import ServerLogic.ServerActionInterface;
 import delta.dkt.logic.structure.Field;
 import delta.dkt.logic.structure.Game;

@@ -2,13 +2,11 @@ package ClientUIHandling.actions;
 
 import android.content.Intent;
 import android.util.Log;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import ClientUIHandling.ClientActionInterface;
-import delta.dkt.R;
 import delta.dkt.activities.MainActivity;
 import delta.dkt.activities.MainMenuActivity;
 
