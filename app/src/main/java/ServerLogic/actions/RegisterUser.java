@@ -16,13 +16,15 @@ public class RegisterUser implements ServerActionInterface {
     @Override
     public void execute(ServerNetworkClient server, Object parameters) {
         Log.d("[Server] Register User", "Register User request received! Server: " + server + " parameters: " + parameters);
+        String[] receivedParameters = (String[]) parameters;
+
 
         if(Game.getPlayers().size() > Config.MAX_CLIENTS) return; // Prevent registering > max size
 
 
         int clientId = Game.getPlayers().size() + 1; // Starts at id 1 instead of 0
-        String nickname = "Player" + clientId; // Todo change to lobby names in next sprint
-        String uuid = (String) parameters;
+        String uuid = receivedParameters[0];
+        String nickname = receivedParameters[1];
 
         Game.getPlayers().put(clientId, new Player(nickname));
 
