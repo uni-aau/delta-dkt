@@ -18,7 +18,6 @@ import delta.dkt.activities.MainMenuActivity;
 public class ActionAddUserToUserList implements ClientActionInterface {
     @Override
     public void execute(AppCompatActivity activity, String clientMessage) {
-
         String[] args = clientMessage.replace(PREFIX_ADD_USER_TO_LIST, "").trim().split(";"); // Holt sich Args nach dem Prefix
         Log.d("[CLIENT]_Add_User_To_User_List", "JUHU! User was added to the List. Parameter: "+ args[0] );
         if(MainMenuActivity.role){

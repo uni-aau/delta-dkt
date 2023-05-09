@@ -10,7 +10,6 @@ import delta.dkt.activities.LobbyViewActivity;
 
 
 public class ActionHostGame implements ClientActionInterface {
-
     @Override
     public void execute(AppCompatActivity activity, String clientMessage) {
 

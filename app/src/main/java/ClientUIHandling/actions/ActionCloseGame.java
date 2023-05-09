@@ -16,8 +16,6 @@ import delta.dkt.activities.MainMenuActivity;
 public class ActionCloseGame implements ClientActionInterface {
     @Override
     public void execute(AppCompatActivity activity, String clientMessage) {
-
-
         MainMenuActivity mainMenuActivity = new MainMenuActivity();
         //mainMenuActivity.closeClient();
         Log.d("[CLIENT]:Close_Game ", "Client closed");

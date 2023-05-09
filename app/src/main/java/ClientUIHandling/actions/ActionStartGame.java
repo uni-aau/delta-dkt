@@ -23,10 +23,5 @@ public class ActionStartGame implements ClientActionInterface {
         // Starts game and switches to game activity
         Intent switchToGameViewIntent = new Intent(activity, GameViewActivity.class);
         activity.startActivity(switchToGameViewIntent);
-
-        // Register players
-        /*if(MainMenuActivity.role) {
-            ServerActionHandler.triggerAction(PREFIX_REGISTER, 1);
-        }*/
     }
 }

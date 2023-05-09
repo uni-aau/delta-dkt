@@ -12,7 +12,6 @@ import delta.dkt.R;
 import delta.dkt.activities.GameViewActivity;
 
 public class PropertyBoughtAction implements ClientActionInterface {
-
     private static String fixedPart = "My Properties: ";
     @SuppressLint("StringFormatInvalid")
     @Override

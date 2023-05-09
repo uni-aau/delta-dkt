@@ -13,11 +13,9 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import ClientUIHandling.ClientActionInterface;
 import delta.dkt.R;
-import delta.dkt.activities.LobbyViewActivity;
 
 
 public class ActionUpdateUserList implements ClientActionInterface {
-
     @Override
     public void execute(AppCompatActivity activity, String clientMessage) {
 

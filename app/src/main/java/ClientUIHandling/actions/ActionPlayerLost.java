@@ -29,6 +29,5 @@ public class ActionPlayerLost implements ClientActionInterface {
 
         intent.putExtra(MainActivity.INTENT_PARAMETER, MainMenuActivity.username);
         activity.startActivity(intent);
-
     }
 }
