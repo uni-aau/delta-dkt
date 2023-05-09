@@ -10,7 +10,7 @@ import delta.dkt.logic.structure.Game;
 import delta.dkt.logic.structure.Player;
 import network2.ServerNetworkClient;
 
-public class PlayerLost implements ServerActionInterface {
+public class RequestPlayerLost implements ServerActionInterface {
     @Override
     public void execute(ServerNetworkClient server, Object parameters) {
         if(parameters == null){

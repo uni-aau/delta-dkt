@@ -12,7 +12,7 @@ import delta.dkt.logic.structure.Player;
 import delta.dkt.logic.structure.Property;
 import network2.ServerNetworkClient;
 
-public class BuyPropertyAction implements ServerActionInterface {
+public class RequestBuyProperty implements ServerActionInterface {
     @Override
     public void execute(ServerNetworkClient server, Object parameters) {
         {

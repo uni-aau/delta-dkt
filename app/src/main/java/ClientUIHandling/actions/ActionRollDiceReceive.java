@@ -12,7 +12,7 @@ import ServerLogic.ServerActionHandler;
 import delta.dkt.activities.MainMenuActivity;
 import delta.dkt.logic.structure.Game;
 
-public class RollDiceReceive implements ClientActionInterface {
+public class ActionRollDiceReceive implements ClientActionInterface {
     @Override
     public void execute(AppCompatActivity activity, String clientMessage) {
         String[] args = clientMessage.replace(PREFIX_ROLL_DICE_RECEIVE, "").trim().split(" ");

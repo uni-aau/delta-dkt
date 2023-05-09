@@ -10,7 +10,7 @@ import delta.dkt.logic.structure.Game;
 import delta.dkt.logic.structure.Player;
 import network2.ServerNetworkClient;
 
-public class RegisterUser implements ServerActionInterface {
+public class RequestRegisterUser implements ServerActionInterface {
     @Override
     public void execute(ServerNetworkClient server, Object parameters) {
         Log.d("[Server] Register User", "Register User request received! Server: " + server + " parameters: " + parameters);
