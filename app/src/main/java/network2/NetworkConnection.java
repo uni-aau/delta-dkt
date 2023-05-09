@@ -1,6 +1,5 @@
 package network2;
 
-import android.nfc.Tag;
 import android.util.Log;
 
 import java.io.BufferedReader;

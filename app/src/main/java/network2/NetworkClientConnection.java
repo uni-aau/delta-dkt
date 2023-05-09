@@ -1,17 +1,4 @@
-package network2; 
-
-import android.annotation.SuppressLint;
-import android.content.Context;
-import android.net.nsd.NsdManager;
-import android.net.nsd.NsdManager.ResolveListener;
-import android.net.nsd.NsdServiceInfo;
-import android.util.Log;
-
-import java.net.InetAddress;
-import java.net.InetSocketAddress;
-import java.net.Socket;
-import java.util.ArrayList;
-import java.util.List;
+package network2;
 
 import ClientUIHandling.ClientLogic;
 

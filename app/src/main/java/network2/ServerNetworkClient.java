@@ -1,29 +1,12 @@
 package network2;
 
 import android.content.Context;
-import android.net.Network;
-import android.net.nsd.NsdManager;
-import android.net.nsd.NsdManager.RegistrationListener;
-import android.net.nsd.NsdServiceInfo;
-import android.os.Bundle;
-import android.os.Handler;
-import android.os.Looper;
-import android.util.Log;
-import android.widget.Toast;
 
-import androidx.appcompat.app.AppCompatActivity;
-
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.ArrayList;
 import java.util.List;
-
-
-import java.net.ServerSocket;
 
 import delta.dkt.activities.MainActivity;
 

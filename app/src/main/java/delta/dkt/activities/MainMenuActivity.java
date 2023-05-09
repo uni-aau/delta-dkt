@@ -1,6 +1,5 @@
 package delta.dkt.activities;
 
-import static ClientUIHandling.Constants.PREFIX_GET_IP;
 import static ClientUIHandling.Constants.PREFIX_HOST_NEW_GAME;
 import static delta.dkt.activities.MainActivity.INTENT_PARAMETER;
 import static delta.dkt.activities.MainActivity.logic;
@@ -21,7 +20,6 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
-import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -30,7 +28,6 @@ import ClientUIHandling.ClientLogic;
 import ClientUIHandling.Constants;
 import ServerLogic.ServerActionHandler;
 import delta.dkt.R;
-
 import network2.NetworkClientConnection;
 import network2.ServerNetworkClient;
 

@@ -1,7 +1,8 @@
 package ServerLogic.actions;
 
-import static ClientUIHandling.Constants.*;
-
+import static ClientUIHandling.Constants.GAMEVIEW_ACTIVITY_TYPE;
+import static ClientUIHandling.Constants.PREFIX_PLAYER_LOST;
+import static ClientUIHandling.Constants.PREFIX_PLAYER_RENTPAID;
 
 import android.util.Log;
 

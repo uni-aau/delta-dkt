@@ -1,9 +1,6 @@
 package ClientUIHandling.actions;
 
-import static ClientUIHandling.Constants.LOBBYVIEW_ACTIVITY_TYPE;
 import static ClientUIHandling.Constants.PREFIX_ADD_USER_TO_LIST;
-
-import static ClientUIHandling.Constants.PREFIX_UPDATE_USER_LIST;
 
 import android.util.Log;
 
@@ -18,7 +15,6 @@ import delta.dkt.activities.MainMenuActivity;
 public class ActionAddUserToUserList implements ClientActionInterface {
     @Override
     public void execute(AppCompatActivity activity, String clientMessage) {
-
         String[] args = clientMessage.replace(PREFIX_ADD_USER_TO_LIST, "").trim().split(";"); // Holt sich Args nach dem Prefix
         Log.d("[CLIENT]_Add_User_To_User_List", "JUHU! User was added to the List. Parameter: "+ args[0] );
         if(MainMenuActivity.role){

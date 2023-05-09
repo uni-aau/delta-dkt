@@ -2,7 +2,8 @@
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="300dp"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="300dp"
     android:layout_height="wrap_content"
     android:id = "@+id/popUpConstraintLayout">
 
@@ -28,19 +29,19 @@
             app:layout_constraintTop_toTopOf="@id/layoutPopUp"/>
 
         <EditText
-            android:id="@+id/popUpEditText"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="20dp"
-            android:layout_marginStart="20dp"
-            android:textSize="18sp"
-            android:inputType="text"
-            android:autofillHints="name"
-            android:hint="@string/EnterServerName"
-            app:layout_constraintTop_toBottomOf="@id/popUpTitle"
-            app:layout_constraintBottom_toTopOf="@id/okButton"
-            />
+                android:id="@+id/popUpEditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:textSize="18sp"
+                android:inputType="text"
+                android:autofillHints="name"
+                android:hint="@string/EnterServerName"
+                app:layout_constraintTop_toBottomOf="@id/popUpTitle"
+                app:layout_constraintBottom_toTopOf="@id/okButton"
+                tools:layout_editor_absoluteX="20dp"
+                android:textColor="#000000"
+                android:textColorHint="@color/whiteSpecial" />
 
         <Button
             android:id="@+id/okButton"

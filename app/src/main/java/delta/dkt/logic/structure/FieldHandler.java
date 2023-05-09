@@ -1,7 +1,6 @@
 package delta.dkt.logic.structure;
 
 import java.util.ArrayList;
-import java.util.Optional;
 
 public class FieldHandler {
 

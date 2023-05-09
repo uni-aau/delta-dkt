@@ -1,13 +1,14 @@
 package ServerLogic.actions;
 
-import ServerLogic.ServerActionHandler;
-import ServerLogic.ServerActionInterface;
+import static ClientUIHandling.Constants.GAMEVIEW_ACTIVITY_TYPE;
+import static ClientUIHandling.Constants.PREFIX_PLAYER_MOVE;
+
 import android.util.Log;
+
+import ServerLogic.ServerActionInterface;
 import delta.dkt.logic.structure.Game;
 import delta.dkt.logic.structure.Player;
 import network2.ServerNetworkClient;
-
-import static ClientUIHandling.Constants.*;
 
 @SuppressWarnings("FieldCanBeLocal")
 public class RequestPlayerMovement implements ServerActionInterface {
