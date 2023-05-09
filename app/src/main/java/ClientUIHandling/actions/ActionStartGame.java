@@ -18,7 +18,7 @@ public class ActionStartGame implements ClientActionInterface {
         Log.d("Client UI Action", "Successfully received action from server handler: Activity: " + activity + " Message: " + clientMessage);
         String[] split = clientMessage.split(";");
 
-        GameViewActivity.players = Integer.parseInt(split[1]);
+//        GameViewActivity.players = Integer.parseInt(split[1]);
 
         // Starts game and switches to game activity
         Intent switchToGameViewIntent = new Intent(activity, GameViewActivity.class);

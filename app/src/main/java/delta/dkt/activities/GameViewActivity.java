@@ -28,6 +28,7 @@ import delta.dkt.logic.structure.Game;
 
 public class GameViewActivity extends AppCompatActivity {
     public static int clientID = -1; // ID gets set by server
+    public static String uuid = ""; // uuid gets set by server
     int[] locations = {1, 1, 1, 1, 1, 1};
     Button btnDice;
     ImageView map;
@@ -45,12 +46,10 @@ public class GameViewActivity extends AppCompatActivity {
 
         MainActivity.subscribeToLogic(Constants.GAMEVIEW_ACTIVITY_TYPE, this);
         if (MainMenuActivity.role) {
+            ServerActionHandler.triggerAction(PREFIX_GET_SERVER_TIME, clientID); // Get game time
             ServerActionHandler.triggerAction(PREFIX_INIT_PLAYERS, String.valueOf(clientID)); // Set player & handle dice perms
             ServerActionHandler.triggerAction(PREFIX_GAME_START_STATS, String.valueOf(Game.getPlayers().size())); // Update player stats
-            ServerActionHandler.triggerAction(PREFIX_GET_SERVER_TIME, clientID); // Get game time
         }
-
-        displayPlayers(players);
 
         handleMovementRequests();
     }

@@ -2,6 +2,7 @@ package ServerLogic.actions;
 
 import android.util.Log;
 
+import ClientUIHandling.Config;
 import ClientUIHandling.Constants;
 import ServerLogic.ServerActionHandler;
 import ServerLogic.ServerActionInterface;
@@ -16,16 +17,20 @@ public class RegisterUser implements ServerActionInterface {
     public void execute(ServerNetworkClient server, Object parameters) {
         Log.d("[Server] Register User", "Register User request received! Server: " + server + " parameters: " + parameters);
 
-        int clientId = Game.getPlayers().size() + 1; // Starts at id 1 instead of 0
-        String uniqueNickName = "Player" + clientId;
-        Log.d("[Server] Register User", "Debug - ClientID: " + clientId);
+        if(Game.getPlayers().size() > Config.MAX_CLIENTS) return; // Prevent registering > max size
 
-        Game.getPlayers().put(clientId, new Player(uniqueNickName));
+
+        int clientId = Game.getPlayers().size() + 1; // Starts at id 1 instead of 0
+        String nickname = "Player" + clientId; // Todo change to lobby names in next sprint
+        String uuid = (String) parameters;
+
+        Game.getPlayers().put(clientId, new Player(nickname));
 
         if(GameViewActivity.clientID == -1) {
             GameViewActivity.clientID = clientId; // Set gameview client ID
         }
 
-        ServerActionHandler.triggerAction(Constants.PREFIX_GET_IP, MainMenuActivity.ip);
+        server.broadcast(Constants.LOBBYVIEW_ACTIVITY_TYPE, Constants.PREFIX_REGISTER, new String[]{uuid, String.valueOf(clientId)});
+//        ServerActionHandler.triggerAction(Constants.PREFIX_GET_IP, MainMenuActivity.ip);
     }
 }

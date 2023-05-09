@@ -11,8 +11,11 @@ import static delta.dkt.activities.LobbyViewActivity.userList;
 
 import android.util.Log;
 
+import java.util.UUID;
+
 import ServerLogic.ServerActionHandler;
 import ServerLogic.ServerActionInterface;
+import delta.dkt.activities.GameViewActivity;
 import network2.ServerNetworkClient;
 
 public class RequestAddUserToUserList implements ServerActionInterface {
@@ -22,7 +25,10 @@ public class RequestAddUserToUserList implements ServerActionInterface {
         Log.d("[SERVER]:Add_User_To_UserList", "Add User to UserList Request received. Parameter: " + parameters);
         addUserToUserList(parameters.toString());
         System.out.println("SERVERLIST HAS SIZE"+serverUserList.size());
-        ServerActionHandler.triggerAction(PREFIX_REGISTER, 1);
+
+        String uniqueID = UUID.randomUUID().toString(); // Unique ID for register command
+        GameViewActivity.uuid = uniqueID;
+        ServerActionHandler.triggerAction(PREFIX_REGISTER, uniqueID);
         ServerActionHandler.triggerAction(PREFIX_UPDATE_USER_LIST, serverUserList);
        // server.broadcast(MAINMENU_ACTIVITY_TYPE, PREFIX_ADD_USER_TO_LIST, new String[]{(String) parameters});
     }
