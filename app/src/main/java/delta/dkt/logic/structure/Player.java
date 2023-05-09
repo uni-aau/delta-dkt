@@ -2,7 +2,6 @@ package delta.dkt.logic.structure;
 
 import static ClientUIHandling.Constants.PREFIX_PLAYER_BUYPROPERTY;
 import static ClientUIHandling.Constants.PREFIX_PLAYER_PAYRENT;
-import static ClientUIHandling.Constants.PREFIX_PLAYER_PROPERTYBOUGHT;
 
 import java.util.ArrayList;
 

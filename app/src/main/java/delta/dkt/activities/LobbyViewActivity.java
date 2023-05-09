@@ -4,16 +4,13 @@ import static ClientUIHandling.Constants.PREFIX_ADD_USER_TO_LIST;
 import static ClientUIHandling.Constants.PREFIX_CLOSE_GAME;
 import static ClientUIHandling.Constants.PREFIX_GAME_START;
 import static ClientUIHandling.Constants.PREFIX_REMOVE_USER_FROM_LIST;
-import static ClientUIHandling.Constants.PREFIX_UPDATE_USER_LIST;
 import static delta.dkt.activities.MainActivity.user;
 import static delta.dkt.activities.MainMenuActivity.role;
-
 
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Button;
-
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -21,7 +18,6 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
-
 
 import ClientUIHandling.Constants;
 import ServerLogic.ServerActionHandler;

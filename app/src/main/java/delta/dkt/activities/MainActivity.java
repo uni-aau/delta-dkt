@@ -5,23 +5,18 @@ import static delta.dkt.activities.LobbyViewActivity.userList;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-
-import java.util.HashMap;
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.util.HashMap;
 
 import ClientUIHandling.ClientHandler;
 import ClientUIHandling.ClientLogic;
 import ClientUIHandling.Constants;
-import ServerLogic.ServerActionHandler;
 import delta.dkt.R;
-import network2.NetworkClientConnection;
-import network2.ServerNetworkClient;
 
 public class MainActivity extends AppCompatActivity {
 
