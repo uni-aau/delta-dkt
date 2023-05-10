@@ -22,14 +22,11 @@ public class RequestRegisterUser implements ServerActionInterface {
 
         int clientId = Game.getPlayers().size() + 1; // Starts at id 1 instead of 0
         String uuid = receivedParameters[0];
-        String nickname = receivedParameters[1];
+//        String nickname = receivedParameters[1];
+        String nickname = "null";
 
         Game.getPlayers().put(clientId, new Player(nickname));
-
-        if(GameViewActivity.clientID == -1) {
-            GameViewActivity.clientID = clientId; // Set gameview client ID
-        }
-
+        Log.d("TEST", "Test " + clientId + " " + uuid);
         server.broadcast(Constants.LOBBYVIEW_ACTIVITY_TYPE, Constants.PREFIX_REGISTER, new String[]{uuid, String.valueOf(clientId)});
 //        ServerActionHandler.triggerAction(Constants.PREFIX_GET_IP, MainMenuActivity.ip);
     }

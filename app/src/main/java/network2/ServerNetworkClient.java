@@ -1,13 +1,17 @@
 package network2;
 
 import android.content.Context;
+import android.util.Log;
 
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
+import ClientUIHandling.Constants;
+import ServerLogic.ServerActionHandler;
 import delta.dkt.activities.MainActivity;
 
 /**
@@ -75,7 +79,11 @@ public class ServerNetworkClient extends Thread { //always executed on a separat
                 clientConnections.add(clientSocket);
                 clientSocket.start();
 
-                clientSocket.send("IPINNIT:"+idCounter++);
+                String uuid = UUID.randomUUID().toString();
+//                clientSocket.send("IPINNIT:" + idCounter++);
+                clientSocket.send("IPINNIT:" + uuid + "\r\n");
+
+//                ServerActionHandler.triggerAction(Constants.PREFIX_REGISTER, new String[]{uuid});
 
 
             }

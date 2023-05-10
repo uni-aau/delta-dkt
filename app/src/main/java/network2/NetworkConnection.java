@@ -88,14 +88,18 @@ public class NetworkConnection extends Thread { //execute each instance within a
             reader = new BufferedReader(new InputStreamReader(this.socket.getInputStream()));
             writer = new BufferedWriter(new OutputStreamWriter(this.socket.getOutputStream()));
 
-            if (!MainMenuActivity.role) {
+            String uuid = reader.readLine();
+            GameViewActivity.uuid = uuid.split(":")[1];
+            System.out.println("Hier noch was?");
+
+/*            if (!MainMenuActivity.role) {
                 System.out.println("WAITING FOR MY ID");
                 String id = reader.readLine();
 
                 GameViewActivity.clientID = Integer.parseInt(id.split(":")[1]);
             } else {
                 GameViewActivity.clientID = 1;
-            }
+            }*/
             System.out.println(TAG + ":Waiting for incoming messages");
             while (true) {
                 //System.out.println("WAITING1");
