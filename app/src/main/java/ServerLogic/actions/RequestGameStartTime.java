@@ -7,6 +7,8 @@ import android.os.CountDownTimer;
 import android.util.Log;
 
 import ClientUIHandling.Config;
+import ClientUIHandling.Constants;
+import ServerLogic.ServerActionHandler;
 import ServerLogic.ServerActionInterface;
 import network2.ServerNetworkClient;
 
@@ -30,6 +32,10 @@ public class RequestGameStartTime implements ServerActionInterface {
             timer = new CountDownTimer(Config.END_TIME, 1000) {
                 @Override
                 public void onTick(long l) {
+                    if(!server.isAlive()){
+                        timer.cancel();
+                    }
+
                     elapsedTime += 1000; // + 1000 millisekunden pro Tick -> +1 sekunde
 
                     int currentMinute = (int) (elapsedTime / 60000);
@@ -38,11 +44,12 @@ public class RequestGameStartTime implements ServerActionInterface {
                     // if(currentMinute != previousMinute) { // Todo - Check, ob nur eine Request pro Minute?
                     server.broadcast(GAMEVIEW_ACTIVITY_TYPE, PREFIX_GET_SERVER_TIME, new String[]{String.valueOf(elapsedTime)});
                     previousMinute = currentMinute;
+
                 }
 
                 @Override
                 public void onFinish() {
-                    // Todo - Game wird abgebrochen und ein Gewinner eruiert - CountDown oder StoppUhr
+                    ServerActionHandler.triggerAction(Constants.PREFIX_END_GAME, "TIME RAN OUT");
                     timer.cancel();
                 }
             };

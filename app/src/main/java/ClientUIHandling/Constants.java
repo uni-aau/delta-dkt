@@ -37,6 +37,8 @@ public class Constants {
 
     public static final String PREFIX_CLOSE_GAME = "Close_Game";
 
+    public static final String PREFIX_END_GAME = "ENDGAME";
+
     public static final String PREFIX_SERVER = "SERVER";
 
     public static final String PREFIX_GET_IP = "IP";

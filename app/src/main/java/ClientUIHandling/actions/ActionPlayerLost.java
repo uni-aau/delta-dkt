@@ -7,25 +7,32 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import ClientUIHandling.ClientActionInterface;
+import delta.dkt.activities.GameViewActivity;
+import delta.dkt.activities.LobbyViewActivity;
 import delta.dkt.activities.MainActivity;
 import delta.dkt.activities.MainMenuActivity;
+import delta.dkt.logic.structure.Game;
 
 public class ActionPlayerLost implements ClientActionInterface {
     @Override
     public void execute(AppCompatActivity activity, String clientMessage) {
         Log.i("INFO", "PLAYERLOSTRECEIVED");
 
-        // String[] splitMessage = clientMessage.split(" ");
+        String[] splitMessage = clientMessage.split(" ");
 
-        //int id = Integer.parseInt(splitMessage[2]);
+        int id = Integer.parseInt(splitMessage[2]);
 
-        //TODO: Check if the ID matches with this client and redirect him to the main screen.
+        if(GameViewActivity.clientID == id) {
 
-        Toast.makeText(activity, "YOU LOST!", Toast.LENGTH_LONG).show();
+            Game.reset();
+            LobbyViewActivity.userList.clear();
 
-        Intent intent = new Intent(activity.getApplicationContext(), MainMenuActivity.class);
+            Toast.makeText(activity, "YOU LOST!", Toast.LENGTH_LONG).show();
 
-        intent.putExtra(MainActivity.INTENT_PARAMETER, MainMenuActivity.username);
-        activity.startActivity(intent);
+            Intent intent = new Intent(activity.getApplicationContext(), MainMenuActivity.class);
+
+            intent.putExtra(MainActivity.INTENT_PARAMETER, MainMenuActivity.username);
+            activity.startActivity(intent);
+        }
     }
 }
