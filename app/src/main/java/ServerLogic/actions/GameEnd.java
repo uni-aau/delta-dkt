@@ -1,5 +1,7 @@
 package ServerLogic.actions;
 
+import android.util.Log;
+
 import java.io.IOException;
 
 import ClientUIHandling.Constants;
@@ -21,8 +23,10 @@ public class GameEnd implements ServerActionInterface {
             ServerActionHandler.serverUserList.clear();
         } catch (IOException e) {
             throw new RuntimeException(e);
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
+        }catch (InterruptedException e) {
+            Log.w("Warning", "Interrupted!", e);
+            // Restore interrupted state...
+            Thread.currentThread().interrupt();
         }
 
     }

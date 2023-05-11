@@ -19,9 +19,8 @@ public class Game {
 
     private static GameMap map;
 
-    public static int roundStartID = -1;
-
-    public static int rounds = 0;
+    private static int roundStartID = -1;
+    private static int rounds = 0;
     public static void setMap(GameMap map) {
         Game.map = map;
     }
@@ -32,6 +31,22 @@ public class Game {
 
     public static HashMap<Integer, Player> getPlayers() {
         return players;
+    }
+
+    public static int getRoundStartID() {
+        return roundStartID;
+    }
+
+    public static void setRoundStartID(int roundStartID) {
+        Game.roundStartID = roundStartID;
+    }
+
+    public static int getRounds() {
+        return rounds;
+    }
+
+    public static void setRounds(int rounds) {
+        Game.rounds = rounds;
     }
 
     public static void incrementRounds(int playerID){
