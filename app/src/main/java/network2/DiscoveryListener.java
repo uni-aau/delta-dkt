@@ -80,8 +80,6 @@ public class DiscoveryListener implements NsdManager.DiscoveryListener{
     public void onServiceLost(NsdServiceInfo nsdServiceInfo) {
         Log.d("Client-HostList", "I have lost a service!");
         printStatusMessage("A new service has been lost!");
-        activity.runOnUiThread(() -> {
-            this.activity.removeHost(nsdServiceInfo);
-        });
+        activity.runOnUiThread(() -> this.activity.removeHost(nsdServiceInfo));
     }
 }
