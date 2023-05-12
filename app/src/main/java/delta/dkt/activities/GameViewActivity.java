@@ -1,9 +1,6 @@
 package delta.dkt.activities;
 
-import static ClientUIHandling.Constants.PREFIX_GAME_START_STATS;
-import static ClientUIHandling.Constants.PREFIX_GET_SERVER_TIME;
-import static ClientUIHandling.Constants.PREFIX_INIT_PLAYERS;
-import static ClientUIHandling.Constants.PREFIX_ROLL_DICE_RECEIVE;
+import static ClientUIHandling.Constants.*;
 import static delta.dkt.R.id.imageView;
 
 import android.annotation.SuppressLint;
@@ -88,7 +85,7 @@ public class GameViewActivity extends AppCompatActivity {
             Log.d("Movement", "Sending movement request to server!");
 
             Log.d("Cheat", LightSensor.value + " is the current value on when the button is pressed");
-            ClientHandler.sendMessageToServer(Constants.GAMEVIEW_ACTIVITY_TYPE + ":" + PREFIX_ROLL_DICE_RECEIVE + " " + clientID);
+            ClientHandler.sendMessageToServer(GAMEVIEW_ACTIVITY_TYPE, PREFIX_PLAYER_MOVE, new Object[]{String.valueOf(clientID), String.valueOf(LightSensor.isCovered())});
         });
 
 
