@@ -7,7 +7,10 @@ import static ClientUIHandling.Constants.PREFIX_ROLL_DICE_RECEIVE;
 import static delta.dkt.R.id.imageView;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.Intent;
+import android.hardware.Sensor;
+import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MotionEvent;
@@ -33,6 +36,7 @@ public class GameViewActivity extends AppCompatActivity {
     ImageView map;
 
     public static int players = 6;
+    private SensorManager manager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,6 +81,9 @@ public class GameViewActivity extends AppCompatActivity {
             Log.d("Movement", "Sending movement request to server!");
 
             ClientHandler.sendMessageToServer(Constants.GAMEVIEW_ACTIVITY_TYPE + ":" + PREFIX_ROLL_DICE_RECEIVE + " " + clientID);
+
+            float light = manager.getDefaultSensor(Sensor.TYPE_LIGHT).getMaximumRange();
+            Log.d("Cheat-Mode", "Light sensor's value is: "+light);
 
 
         });
