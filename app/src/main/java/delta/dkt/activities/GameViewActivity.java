@@ -85,7 +85,7 @@ public class GameViewActivity extends AppCompatActivity {
             Log.d("Movement", "Sending movement request to server!");
 
             Log.d("Cheat", LightSensor.value + " is the current value on when the button is pressed");
-            ClientHandler.sendMessageToServer(GAMEVIEW_ACTIVITY_TYPE, PREFIX_PLAYER_MOVE, new Object[]{String.valueOf(clientID), String.valueOf(LightSensor.isCovered())});
+            ClientHandler.sendMessageToServer(GAMEVIEW_ACTIVITY_TYPE, PREFIX_ROLL_DICE_RECEIVE, new Object[]{String.valueOf(clientID), String.valueOf(LightSensor.isCovered())});
         });
 
 
