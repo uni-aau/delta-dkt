@@ -10,4 +10,6 @@ public class Config {
     public static final int END_TIME = 30000; // end_time in milliseconds
     public static final int INITIAL_CASH = 1000; // end_time in milliseconds
 
+    public static final boolean DEBUG = true;
+
 }
