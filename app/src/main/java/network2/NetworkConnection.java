@@ -12,7 +12,10 @@ import java.net.Socket;
 import java.util.ArrayDeque;
 
 import ClientUIHandling.ClientLogic;
+import ClientUIHandling.Constants;
+import ServerLogic.ServerActionHandler;
 import delta.dkt.activities.GameViewActivity;
+import delta.dkt.activities.MainActivity;
 import delta.dkt.activities.MainMenuActivity;
 
 
@@ -88,17 +91,16 @@ public class NetworkConnection extends Thread { //execute each instance within a
             reader = new BufferedReader(new InputStreamReader(this.socket.getInputStream()));
             writer = new BufferedWriter(new OutputStreamWriter(this.socket.getOutputStream()));
 
-            String uuid = reader.readLine();
-            GameViewActivity.uuid = uuid.split(":")[1];
-            System.out.println("Hier noch was?");
+//            String uuid = reader.readLine();
+//            GameViewActivity.uuid = uuid.split(":")[1];
+//            System.out.println("Hier noch was?");
 
-/*            if (!MainMenuActivity.role) {
+            /*if (!MainMenuActivity.role) {
                 System.out.println("WAITING FOR MY ID");
-                String id = reader.readLine();
-
-                GameViewActivity.clientID = Integer.parseInt(id.split(":")[1]);
-            } else {
-                GameViewActivity.clientID = 1;
+                String uuid = reader.readLine();
+                GameViewActivity.uuid = uuid.split(":")[1];
+//                ServerActionHandler.triggerAction(Constants.PREFIX_REGISTER, new String[]{uuid});
+//                GameViewActivity.clientID = Integer.parseInt(id.split(":")[1]);
             }*/
             System.out.println(TAG + ":Waiting for incoming messages");
             while (true) {

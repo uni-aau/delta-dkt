@@ -13,6 +13,7 @@ import java.util.UUID;
 import ClientUIHandling.Constants;
 import ServerLogic.ServerActionHandler;
 import delta.dkt.activities.MainActivity;
+import delta.dkt.activities.MainMenuActivity;
 
 /**
  * This class maintains a set of clientNetworkConnections and listens to a
@@ -79,11 +80,12 @@ public class ServerNetworkClient extends Thread { //always executed on a separat
                 clientConnections.add(clientSocket);
                 clientSocket.start();
 
+                // TODO
                 String uuid = UUID.randomUUID().toString();
-//                clientSocket.send("IPINNIT:" + idCounter++);
-                clientSocket.send("IPINNIT:" + uuid + "\r\n");
-
-//                ServerActionHandler.triggerAction(Constants.PREFIX_REGISTER, new String[]{uuid});
+//                clientSocket.send("IPINNIT:" + "1");
+//                clientSocket.send("IPINNIT:"+10);
+//                System.out.println("Kommt hier hin?");
+//                clientSocket.send("IPINNIT:" + uuid);
 
 
             }

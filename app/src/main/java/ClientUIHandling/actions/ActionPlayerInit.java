@@ -52,6 +52,6 @@ public class ActionPlayerInit implements ClientActionInterface {
 
     // Sets initial cash in TextView
     private void setInitCash(AppCompatActivity activity) {
-        ((TextView) activity.findViewById(R.id.textView_cash)).setText(String.format(activity.getString(R.string.cash_text), Config.INITIAL_CASH));
+        ((TextView) activity.findViewById(R.id.textView_cash)).setText(String.format(activity.getString(R.string.cash_text), GameViewActivity.clientID));
     }
 }
