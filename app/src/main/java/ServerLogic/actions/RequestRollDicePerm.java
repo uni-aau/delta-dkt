@@ -4,6 +4,7 @@ import static ClientUIHandling.Constants.GAMEVIEW_ACTIVITY_TYPE;
 import static ClientUIHandling.Constants.PREFIX_PLAYER_MOVE;
 import static ClientUIHandling.Constants.PREFIX_ROLL_DICE_REQUEST;
 
+import ClientUIHandling.Config;
 import android.util.Log;
 
 import ServerLogic.ServerActionHandler;
@@ -24,7 +25,7 @@ public class RequestRollDicePerm implements ServerActionInterface {
 
         // Check if clientID is last ID in game
         int size = Game.getPlayers().size();
-        if (size != 0) {
+        if (size != 0 || Config.DEBUG) {
             if (oldClientId % size == 0) {
                 nextClient = 1; // swap to first player
             } else {
