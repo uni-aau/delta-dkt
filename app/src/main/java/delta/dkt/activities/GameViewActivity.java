@@ -36,13 +36,14 @@ public class GameViewActivity extends AppCompatActivity {
     ImageView map;
 
     public static int players = 6;
-    private SensorManager manager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
+    private SensorManager manager = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game_view);
 
+        manager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
         btnDice = findViewById(R.id.button_roll_dice);
         map = findViewById(imageView);
         findViewById(R.id.button_property_infos).setOnClickListener(view -> switchToPropertyActivity());
