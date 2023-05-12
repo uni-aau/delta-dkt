@@ -14,9 +14,12 @@ import network2.ServerNetworkClient;
 public class RequestRollDicePerm implements ServerActionInterface {
     @Override
     public void execute(ServerNetworkClient server, Object parameters) {
+        String prefix = parameters.toString().split(" ")[0];
+        String[] args = parameters.toString().substring(prefix.length()+1).split(";");
+
         int nextClient;
         String tag = "[Server] Roll Dice Request";
-        int oldClientId = (int) parameters;
+        int oldClientId = Integer.parseInt(args[0]);
         Log.d(tag, "Received next client request - Old client: " + parameters);
 
         // Check if clientID is last ID in game
@@ -30,7 +33,7 @@ public class RequestRollDicePerm implements ServerActionInterface {
 
             Log.d(tag, "OldClientId = " + oldClientId + " NewClient = " + nextClient);
             server.broadcast(GAMEVIEW_ACTIVITY_TYPE, PREFIX_ROLL_DICE_REQUEST, new String[]{String.valueOf(nextClient)});
-            ServerActionHandler.triggerAction(PREFIX_PLAYER_MOVE, oldClientId);
+            ServerActionHandler.triggerAction(PREFIX_PLAYER_MOVE, parameters);
         } else {
             Log.e(tag, "Error - No players available in GameView");
         }
