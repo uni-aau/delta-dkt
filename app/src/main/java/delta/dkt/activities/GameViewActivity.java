@@ -52,7 +52,7 @@ public class GameViewActivity extends AppCompatActivity {
             ServerActionHandler.triggerAction(PREFIX_GAME_START_STATS, String.valueOf(Game.getPlayers().size())); // Update player stats
         }
 
-        registerLightSensor();
+//        registerLightSensor();
         handleMovementRequests();
     }
 
