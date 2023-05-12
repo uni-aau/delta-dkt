@@ -11,10 +11,12 @@ import ClientUIHandling.actions.ActionUpdateGameTime;
 import android.os.Handler;
 import android.os.Message;
 
+import android.util.Log;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 
 import ClientUIHandling.actions.ActionStartGame;
@@ -76,6 +78,19 @@ public class ClientHandler extends Handler {
 
     public static void sendMessageToServer(String message){
         client.sendMessage(message);
+    }
+
+    public static void sendMessageToServer(String activity, String prefix, String args){
+        client.sendMessage(activity+":"+prefix+" "+args);
+    }
+
+    public static void sendMessageToServer(String activity, String prefix, Object[] _args){
+        StringBuilder message = new StringBuilder();
+        for(Object element : _args) {
+            message.append(element);
+            if(_args.length-1 != Arrays.asList(_args).indexOf(element)) message.append(";"); //? Splits arguments from another with ';'
+        }
+        ClientHandler.sendMessageToServer(activity, prefix, message.toString());
     }
 
 
