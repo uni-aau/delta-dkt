@@ -10,6 +10,8 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.hardware.Sensor;
+import android.hardware.SensorEvent;
+import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.util.Log;
@@ -26,6 +28,7 @@ import ClientUIHandling.handlers.positioning.PositionHandler;
 import ServerLogic.ServerActionHandler;
 import delta.dkt.R;
 import delta.dkt.logic.structure.Game;
+import delta.dkt.sensors.LightSensor;
 
 
 public class GameViewActivity extends AppCompatActivity {
@@ -34,16 +37,13 @@ public class GameViewActivity extends AppCompatActivity {
     int[] locations = {1, 1, 1, 1, 1, 1};
     Button btnDice;
     ImageView map;
-
     public static int players = 6;
-    private SensorManager manager = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game_view);
 
-        manager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
         btnDice = findViewById(R.id.button_roll_dice);
         map = findViewById(imageView);
         findViewById(R.id.button_property_infos).setOnClickListener(view -> switchToPropertyActivity());
@@ -55,6 +55,7 @@ public class GameViewActivity extends AppCompatActivity {
             ServerActionHandler.triggerAction(PREFIX_GAME_START_STATS, String.valueOf(Game.getPlayers().size())); // Update player stats
         }
 
+        registerLightSensor();
         handleMovementRequests();
     }
 
@@ -63,6 +64,11 @@ public class GameViewActivity extends AppCompatActivity {
         startActivity(switchIntent);
     }
 
+    private void registerLightSensor() {
+        SensorManager manager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
+        Sensor lightSensor = manager.getDefaultSensor(Sensor.TYPE_LIGHT);
+        manager.registerListener(new LightSensor(), lightSensor, SensorManager.SENSOR_DELAY_FASTEST);
+    }
 
     /**
      * This method handles the movement requests of a client, thus sending the request to server.
@@ -81,12 +87,8 @@ public class GameViewActivity extends AppCompatActivity {
         btnDice.setOnClickListener(view -> {
             Log.d("Movement", "Sending movement request to server!");
 
+            Log.d("Cheat", LightSensor.value + " is the current value on when the button is pressed");
             ClientHandler.sendMessageToServer(Constants.GAMEVIEW_ACTIVITY_TYPE + ":" + PREFIX_ROLL_DICE_RECEIVE + " " + clientID);
-
-            float light = manager.getDefaultSensor(Sensor.TYPE_LIGHT).getMaximumRange();
-            Log.d("Cheat-Mode", "Light sensor's value is: "+light);
-
-
         });
 
 
@@ -103,7 +105,7 @@ public class GameViewActivity extends AppCompatActivity {
      * This method will set update the location of a players figure to the requested destination.
      *
      * @param destination The destinations number, from 1: Start to 39: Last field.
-     * @param _player     The player figure that is to be moved, ranging from 1 to 6.
+     * @param _player The player figure that is to be moved, ranging from 1 to 6.
      */
     public void updatePlayerPosition(int destination, int _player) {
         int figureIdentifier = getResources().getIdentifier("player" + _player, "id", getPackageName());
