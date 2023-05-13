@@ -57,17 +57,10 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
-
-
-
     }
 
 
     //--------------------------ALL METHODS-----------------------------//
-
-
-
 
     public static void subscribeToLogic(String type, AppCompatActivity activity) {
         logic.getHandler().put(type, new ClientHandler(activity));
@@ -77,6 +70,4 @@ public class MainActivity extends AppCompatActivity {
     public boolean checkIfUsernameAlreadyExists (String newUsername){
         return (userList.contains(newUsername));
     }
-
-
 }

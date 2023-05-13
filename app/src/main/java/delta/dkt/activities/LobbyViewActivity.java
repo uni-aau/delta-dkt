@@ -28,6 +28,8 @@ public class LobbyViewActivity extends AppCompatActivity {
     RecyclerView recyclerView;
     UserNameAdapter adapter;
     public static ArrayList<String> userList = new ArrayList<>();
+    private Button startButton;
+    private Button backButton;
 
 
     @Override
@@ -41,13 +43,15 @@ public class LobbyViewActivity extends AppCompatActivity {
         setContentView(R.layout.activity_lobby_view);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT); // Force portrait screen at activity level
 
-
-
         // Get Views from the Lobby xml:
-        Button backButton = findViewById(R.id.backbtn);
-        Button startButton = findViewById(R.id.startbtn);
+        backButton = findViewById(R.id.backbtn);
+        startButton = findViewById(R.id.startbtn);
         //boolean role = getIntent().getExtras().getBoolean("role");
 
+        // Visualizes grayed out start button for non hoster
+        if(!role) {
+            disableStartButton();
+        }
 
         // Everything which belongs to the Recycler View:
         recyclerView = findViewById(R.id.lobbyRecyclerView);
@@ -55,23 +59,19 @@ public class LobbyViewActivity extends AppCompatActivity {
         adapter = new UserNameAdapter(this, userList, role);
         recyclerView.setAdapter(adapter);
 
-
         // Adding User to the UserList
         welcomeToLobby();
-
 
         //---BACK BUTTON---  (Everything that happens when back button is clicked)
         backButton.setOnClickListener(view -> {
             leavingTheLobby();
         });
 
-
         //---START BUTTON---  (Everything that happens when Start button is clicked)
         startButton.setOnClickListener(view -> {
             Log.d("Start", "Sending start action to server!");
             ServerActionHandler.triggerAction(PREFIX_GAME_START, "");
         });
-
     }
 
 
@@ -90,11 +90,14 @@ public class LobbyViewActivity extends AppCompatActivity {
     // This Method removes the User from the UserList, updates the List and Closes the game/server
     public void leavingTheLobby() {
         ServerActionHandler.triggerAction(PREFIX_REMOVE_USER_FROM_LIST, user);
-
-
         ServerActionHandler.triggerAction(PREFIX_CLOSE_GAME,""); // TO DO -> (implement close server and close client in actions)
 
         Toast.makeText(LobbyViewActivity.this, "Users Total: "+userList.size(), Toast.LENGTH_SHORT).show();
+    }
+
+    private void disableStartButton() {
+        startButton.setEnabled(false);
+        startButton.setBackgroundResource(R.drawable.host_btn_background_disabled);
     }
 
 
