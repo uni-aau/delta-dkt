@@ -15,7 +15,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import ServerLogic.ServerActionHandler;
 import delta.dkt.activities.MainActivity;
 import delta.dkt.logic.structure.Game;
 import delta.dkt.logic.structure.Player;
@@ -106,7 +105,7 @@ public class ServerNetworkClient extends Thread { //always executed on a separat
                 clientSocket.start();
 
                 // sets clientID & username
-                // todo check if username setting works
+                // todo rework username setting
                 int clientID = Game.getPlayers().size() + 1;
                 String userName = MainActivity.user;
                 clientSocket.send("IPINNIT:"+ clientID);

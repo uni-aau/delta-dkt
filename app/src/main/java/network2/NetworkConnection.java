@@ -91,10 +91,11 @@ public class NetworkConnection extends Thread { //execute each instance within a
             if (!MainMenuActivity.role) {
                 String clientID = reader.readLine();
                 System.out.println("WAITING FOR MY ID");
-                GameViewActivity.clientID = Integer.parseInt(clientID .split(":")[1]);
+                GameViewActivity.clientID = Integer.parseInt(clientID.split(":")[1]);
             } else {
                 GameViewActivity.clientID = 1;
             }
+
             System.out.println(TAG + ":Waiting for incoming messages");
             while (true) {
                 //System.out.println("WAITING1");
