@@ -29,8 +29,6 @@ public class LobbyViewActivity extends AppCompatActivity {
     UserNameAdapter adapter;
     public static ArrayList<String> userList = new ArrayList<>();
     private Button startButton;
-    private Button backButton;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,7 +42,7 @@ public class LobbyViewActivity extends AppCompatActivity {
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT); // Force portrait screen at activity level
 
         // Get Views from the Lobby xml:
-        backButton = findViewById(R.id.backbtn);
+        Button backButton = findViewById(R.id.backbtn);
         startButton = findViewById(R.id.startbtn);
         //boolean role = getIntent().getExtras().getBoolean("role");
 
