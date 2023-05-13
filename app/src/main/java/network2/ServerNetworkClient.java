@@ -8,12 +8,10 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
 
-import ClientUIHandling.Constants;
-import ServerLogic.ServerActionHandler;
 import delta.dkt.activities.MainActivity;
-import delta.dkt.activities.MainMenuActivity;
+import delta.dkt.logic.structure.Game;
+import delta.dkt.logic.structure.Player;
 
 /**
  * This class maintains a set of clientNetworkConnections and listens to a
@@ -74,18 +72,21 @@ public class ServerNetworkClient extends Thread { //always executed on a separat
             }
 
             System.out.println("Server started on port " + port);
-            while (serverInterrupted == false) {
+            while (!serverInterrupted) {
                 Socket socket = serverSocket.accept();
                 NetworkConnection clientSocket = new NetworkConnection(socket, MainActivity.logic);
                 clientConnections.add(clientSocket);
                 clientSocket.start();
 
-                // TODO
-                String uuid = UUID.randomUUID().toString();
-//                clientSocket.send("IPINNIT:" + "1");
-//                clientSocket.send("IPINNIT:"+10);
-//                System.out.println("Kommt hier hin?");
-//                clientSocket.send("IPINNIT:" + uuid);
+                // sets clientID & username
+                // todo check if username setting works
+                int clientID = Game.getPlayers().size() + 1;
+                String userName = MainActivity.user;
+                clientSocket.send("IPINNIT:"+ clientID);
+
+                Log.d("[SERVER] ID", "Setting clientID " + clientID + " with username " + userName);
+
+                Game.getPlayers().put(clientID, new Player(userName));
 
 
             }
