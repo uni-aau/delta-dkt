@@ -79,7 +79,7 @@ public class MainMenuActivity extends AppCompatActivity {
         MainActivity.subscribeToLogic(Constants.MAINMENU_ACTIVITY_TYPE, this);
     }
 
-    public void establishServerConnection() throws InterruptedException, RuntimeException {
+    public void establishServerConnection() throws InterruptedException {
 
         ClientLogic.isTEST = false;
 
@@ -139,7 +139,7 @@ public class MainMenuActivity extends AppCompatActivity {
 
 
     // This Method will start with the Server and trigger the Action "HOST_NEW_GAME"
-    public void startServer(String serverName) throws InterruptedException, RuntimeException {
+    public void startServer(String serverName) throws InterruptedException {
         MainActivity.subscribeToLogic(Constants.PREFIX_SERVER, this);
         server = new ServerNetworkClient(this.getApplicationContext());
         server.start();

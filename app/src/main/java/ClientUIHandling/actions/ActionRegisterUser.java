@@ -16,9 +16,6 @@ public class ActionRegisterUser implements ClientActionInterface {
         String uuid = args[0];
         int clientId = Integer.parseInt(args[1]);
 
-        // Check if uuid equals with client uuid
-//        if (!uuid.equals(GameViewActivity.uuid)) return;
-
         GameViewActivity.clientID = clientId;
         Log.d("[Client] Register", "Success - Registered user with userId " + uuid + " and clientID " + clientId);
     }

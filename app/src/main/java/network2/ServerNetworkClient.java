@@ -38,8 +38,6 @@ public class ServerNetworkClient extends Thread { //always executed on a separat
 
     private NetworkServiceDiscovery nsd;
 
-    private static int idCounter = 1;
-
 
     public ServerNetworkClient() {
         initProperties();
@@ -169,7 +167,6 @@ public class ServerNetworkClient extends Thread { //always executed on a separat
             clientConn.close();
             clientConn.interrupt();
         }//after disposing all the clients, get rid of nsd service (unregister) and stop the server
-        idCounter = 1;
         if (nsd != null) {
             nsd.tearDown();
         }
