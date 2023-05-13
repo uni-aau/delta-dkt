@@ -1,9 +1,6 @@
 package network2;
 
-import static ClientUIHandling.Constants.PREFIX_REGISTER;
-
 import android.content.Context;
-import android.util.Log;
 
 import java.io.IOException;
 import java.net.InetAddress;
