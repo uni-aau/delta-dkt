@@ -30,11 +30,11 @@ public class RequestRollDicePerm implements ServerActionInterface {
                 nextClient = oldClientId + 1;
             }
 
-
-
+            String nickName = Game.getPlayers().get(nextClient).getNickname();
+            Log.d("[SERVER]", "New roll dice server request - prevClientID " + oldClientId + " nextClient " + nextClient + " nickName " + nickName);
 
             Log.d(tag, "OldClientId = " + oldClientId + " NewClient = " + nextClient);
-            server.broadcast(GAMEVIEW_ACTIVITY_TYPE, PREFIX_ROLL_DICE_REQUEST, new String[]{String.valueOf(nextClient)});
+            server.broadcast(GAMEVIEW_ACTIVITY_TYPE, PREFIX_ROLL_DICE_REQUEST, new String[]{String.valueOf(nextClient), nickName});
             ServerActionHandler.triggerAction(PREFIX_PLAYER_MOVE, oldClientId);
 
             Game.incrementRounds(oldClientId);

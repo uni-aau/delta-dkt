@@ -3,6 +3,7 @@ package network2;
 import static ClientUIHandling.Constants.PREFIX_REGISTER;
 
 import android.content.Context;
+import android.util.Log;
 
 import java.io.IOException;
 import java.net.InetAddress;
@@ -14,8 +15,9 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import ServerLogic.ServerActionHandler;
 import delta.dkt.activities.MainActivity;
+import delta.dkt.logic.structure.Game;
+import delta.dkt.logic.structure.Player;
 
 /**
  * This class maintains a set of clientNetworkConnections and listens to a
@@ -34,8 +36,6 @@ public class ServerNetworkClient extends Thread { //always executed on a separat
     private Context context;
 
     private NetworkServiceDiscovery nsd;
-
-    private static int idCounter = 1;
 
 
     public ServerNetworkClient() {
@@ -98,15 +98,19 @@ public class ServerNetworkClient extends Thread { //always executed on a separat
             }
 
             System.out.println("Server started on port " + port);
-            while (serverInterrupted == false) {
+            while (!serverInterrupted) {
                 Socket socket = serverSocket.accept();
                 NetworkConnection clientSocket = new NetworkConnection(socket, MainActivity.logic);
                 clientConnections.add(clientSocket);
                 clientSocket.start();
 
-                clientSocket.send("IPINNIT:" + idCounter++);
+                // sets clientID & username
+                // todo rework username setting
+                int clientID = Game.getPlayers().size() + 1;
+                String userName = "-";
+                clientSocket.send("IPINNIT:"+ clientID);
 
-
+                Game.getPlayers().put(clientID, new Player(userName));
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -160,7 +164,6 @@ public class ServerNetworkClient extends Thread { //always executed on a separat
             clientConn.close();
             clientConn.interrupt();
         }//after disposing all the clients, get rid of nsd service (unregister) and stop the server
-        idCounter = 1;
         if (nsd != null) {
             nsd.tearDown();
         }
