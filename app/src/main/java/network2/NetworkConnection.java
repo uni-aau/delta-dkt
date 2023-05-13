@@ -89,8 +89,8 @@ public class NetworkConnection extends Thread { //execute each instance within a
             writer = new BufferedWriter(new OutputStreamWriter(this.socket.getOutputStream()));
 
             if (!MainMenuActivity.role) {
-                System.out.println("WAITING FOR MY ID");
                 String clientID = reader.readLine();
+                System.out.println("WAITING FOR MY ID");
                 GameViewActivity.clientID = Integer.parseInt(clientID .split(":")[1]);
             } else {
                 GameViewActivity.clientID = 1;

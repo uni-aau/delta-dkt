@@ -34,8 +34,9 @@ public class LobbyViewActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         MainActivity.subscribeToLogic(Constants.LOBBYVIEW_ACTIVITY_TYPE, this);
         if(!role) {
-            System.out.println("SUBSCRIBED IN LOBBY");
+            Log.d("INFO","SUBSCRIBED IN LOBBY");
         }
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lobby_view);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT); // Force portrait screen at activity level
@@ -53,6 +54,7 @@ public class LobbyViewActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         adapter = new UserNameAdapter(this, userList, role);
         recyclerView.setAdapter(adapter);
+
 
         // Adding User to the UserList
         welcomeToLobby();
