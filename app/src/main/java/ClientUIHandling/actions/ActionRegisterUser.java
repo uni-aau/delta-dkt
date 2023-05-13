@@ -9,6 +9,7 @@ import ClientUIHandling.Constants;
 import delta.dkt.activities.GameViewActivity;
 
 public class ActionRegisterUser implements ClientActionInterface {
+    // Todo marked for removal
     @Override
     public void execute(AppCompatActivity activity, String clientMessage) {
         String[] args = clientMessage.replace(Constants.PREFIX_REGISTER, "").trim().split(";"); // Holt sich Args nach dem Prefix
@@ -16,7 +17,7 @@ public class ActionRegisterUser implements ClientActionInterface {
         int clientId = Integer.parseInt(args[1]);
 
         // Check if uuid equals with client uuid
-        if (!uuid.equals(GameViewActivity.uuid)) return;
+//        if (!uuid.equals(GameViewActivity.uuid)) return;
 
         GameViewActivity.clientID = clientId;
         Log.d("[Client] Register", "Success - Registered user with userId " + uuid + " and clientID " + clientId);
