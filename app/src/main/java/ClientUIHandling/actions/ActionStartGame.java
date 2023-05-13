@@ -21,6 +21,13 @@ public class ActionStartGame implements ClientActionInterface {
 
         GameViewActivity.players = Integer.parseInt(split[1]);
 
+               // TODO
+/*        System.out.println("Game " + Game.getPlayers().size());
+        System.out.println("Game " + Game.getPlayers());
+        System.out.println("Game " + Game.getPlayers().get(GameViewActivity.clientID));
+        System.out.println("Game " + Game.getPlayers().get(GameViewActivity.clientID).getNickname());*/
+
+
         // Starts game and switches to game activity
         Intent switchToGameViewIntent = new Intent(activity, GameViewActivity.class);
         activity.startActivity(switchToGameViewIntent);

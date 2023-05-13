@@ -113,8 +113,6 @@ public class ServerNetworkClient extends Thread { //always executed on a separat
                 String userName = MainActivity.user;
                 clientSocket.send("IPINNIT:"+ clientID);
 
-                Log.d("[SERVER] ID", "Setting clientID " + clientID + " with username " + userName);
-
                 Game.getPlayers().put(clientID, new Player(userName));
 
 
