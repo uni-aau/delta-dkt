@@ -63,13 +63,13 @@ public class RequestPlayerMovement implements ServerActionInterface {
 
         requestPlayer.moveTo(destination);
 
-        String[] args = new String[2];
-        args[0] = String.valueOf(clientID);
-        args[1] = String.valueOf(destination);
+        String[] sendArgs = new String[2];
+        sendArgs[0] = String.valueOf(clientID);
+        sendArgs[1] = String.valueOf(destination);
 
         Log.d(tag, String.format("Sending out messages to %s players.", Game.getPlayers().size()));
         Log.d(tag, "");
-        server.broadcast(GAMEVIEW_ACTIVITY_TYPE, PREFIX_PLAYER_MOVE, args);
+        server.broadcast(GAMEVIEW_ACTIVITY_TYPE, PREFIX_PLAYER_MOVE, sendArgs);
     }
 
     /**
