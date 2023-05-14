@@ -16,7 +16,7 @@ public class FieldHandler {
             if (TaskHandler.getTask(i) != null) fields.add(TaskHandler.getTask(i));
 
             if (i == 1) fields.add(new SpecialField(i, "Start"));
-            if (i == 11) fields.add(new SpecialField(i, "Gesetztes Verletzung"));
+            if (i == 11) fields.add(new SpecialField(i, "Gesetzes Verletzung"));
             if (i == 21) fields.add(new SpecialField(i, "Vermögens Abgabe"));
             if (i == 31) fields.add(new PrisonField(i, "Gefängnis"));
         }
