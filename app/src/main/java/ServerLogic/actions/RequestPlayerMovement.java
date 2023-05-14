@@ -22,10 +22,12 @@ public class RequestPlayerMovement implements ServerActionInterface {
         String prefix = parameters.toString().split(" ")[0];
         parameters = parameters.toString().substring(prefix.length()+1);
 
+        String[] args = parameters.toString().split(";");
+
         int clientID;
         //? Checking whether the id of the request-player is valid.
         try {
-            clientID = Integer.parseInt(parameters.toString());
+            clientID = Integer.parseInt(args[0]);
         } catch (NumberFormatException e) {
             Log.e("Movement", String.format("Parsing the clientsID failed, as its format is invalid! (%s)", parameters));
 
