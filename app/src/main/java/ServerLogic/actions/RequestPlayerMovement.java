@@ -54,6 +54,8 @@ public class RequestPlayerMovement implements ServerActionInterface {
         int currentPosition = requestPlayer.getPosition().getLocation();
 
         int steps = useDice(1, 6);
+        if(isCheating) steps = useDice(6, 12); //? super-dice
+
         int destination = (currentPosition + steps) % maxFields;
         if (destination == 0) destination++;
 
