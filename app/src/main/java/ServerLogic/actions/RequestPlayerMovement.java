@@ -43,8 +43,11 @@ public class RequestPlayerMovement implements ServerActionInterface {
             return;
         }
 
+        boolean isCheating = args.length >= 2 && args[1].equalsIgnoreCase("true");
+
         Log.d(tag, "");
         Log.d(tag, String.format("Performing move request for client: (%s).", clientID));
+        if(isCheating) Log.w(tag, "Cheatmode has been enabled for this move by the player!");
 
 
         Player requestPlayer = Game.getPlayers().get(clientID);
