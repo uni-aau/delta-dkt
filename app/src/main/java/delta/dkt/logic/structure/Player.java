@@ -152,7 +152,8 @@ public class Player {
                 ServerActionHandler.triggerAction(PREFIX_PLAYER_PAYRENT, this.getId());
             }else{ //property can be bought , ask user
                 //START-NOSCAN
-                ServerActionHandler.triggerAction(PREFIX_PLAYER_BUYPROPERTY, this.getId()); //we only need one parameter , and thates the id of the player
+                //TODO: Ask the user if he wants to buy the property.
+               // ServerActionHandler.triggerAction(PREFIX_PLAYER_BUYPROPERTY, this.getId()); //we only need one parameter , and thates the id of the player
                 //END-NOSCAN
             }
         }

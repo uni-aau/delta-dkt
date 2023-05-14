@@ -4,6 +4,7 @@ import static ClientUIHandling.Constants.PREFIX_INIT_PLAYERS;
 
 import android.util.Log;
 import android.view.View;
+
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -18,24 +19,25 @@ import delta.dkt.logic.structure.Game;
 public class ActionPlayerInit implements ClientActionInterface {
     @Override
     public void execute(AppCompatActivity activity, String clientMessage) {
+        GameViewActivity gameViewActivity = (GameViewActivity) activity;
         String[] args = clientMessage.replace(PREFIX_INIT_PLAYERS, "").trim().split(";");
         int clientId = Integer.parseInt(args[0]);
-        GameViewActivity gameViewActivity = (GameViewActivity) activity;
+        String userName = args[1];
 
-        Log.d("[UI] Roll Dice Perm", "Successfully received roll dice perm action from server handler: Activity: " + activity + " ClientID: " + clientId);
+        Log.d("[UI] Roll Dice Perm", "Successfully received roll dice perm action from server handler: Activity: " + activity + " ClientID: " + clientId + " Start-Username: " + userName);
 
         // Initial State (only client ID 1 can roll the dice)
-        if (clientId == 1) {
+        ((TextView) activity.findViewById(R.id.textView_dice_information)).setText(String.format(activity.getString(R.string.dice_information_text), userName));
+        if (GameViewActivity.clientID == 1) {
             gameViewActivity.enableDice();
         } else {
             gameViewActivity.disableDice();
         }
 
-        enablePlayers(activity, clientId);
-        setInitCash(activity); //
+        setInitTextViewValues(activity);
     }
 
-    // Shows for every clientId a specific player marker in the gui
+    // Shows for every clientId a specific player marker in the gui (todo)
     private void enablePlayers(AppCompatActivity activity, int clientId) {
         Log.d("[UI] Action", "Received client ID for player enabling: " + clientId);
 
@@ -50,8 +52,9 @@ public class ActionPlayerInit implements ClientActionInterface {
         }
     }
 
-    // Sets initial cash in TextView
-    private void setInitCash(AppCompatActivity activity) {
+    // Sets initial textview values in GameView
+    private void setInitTextViewValues(AppCompatActivity activity) {
         ((TextView) activity.findViewById(R.id.textView_cash)).setText(String.format(activity.getString(R.string.cash_text), Config.INITIAL_CASH));
+        ((TextView) activity.findViewById(R.id.textView_my_properties)).setText(String.format(activity.getString(R.string.my_properties_text), 0));
     }
 }

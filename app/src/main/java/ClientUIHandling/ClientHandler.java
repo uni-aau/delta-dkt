@@ -1,6 +1,7 @@
 package ClientUIHandling;
 
 import ClientUIHandling.actions.ActionBroadcastStartStats;
+import ClientUIHandling.actions.ActionGameEnd;
 import ClientUIHandling.actions.ActionGetIP;
 import ClientUIHandling.actions.ActionMove;
 import ClientUIHandling.actions.ActionPlayerLost;
@@ -56,6 +57,8 @@ public class ClientHandler extends Handler {
         actionMap.put(Constants.PREFIX_GET_IP, new ActionGetIP());
         actionMap.put(Constants.PREFIX_ROLL_DICE_RECEIVE, new ActionRollDiceReceive());
         actionMap.put(Constants.PREFIX_PLAYER_PROPERTYBOUGHT, new ActionBuyProperty());
+        actionMap.put(Constants.PREFIX_END_GAME, new ActionGameEnd());
+
         actions.add(new ActionHostGame());
         actionPrefixes.add(Constants.PREFIX_HOST_NEW_GAME);
 
@@ -74,6 +77,10 @@ public class ClientHandler extends Handler {
 
     public static void setClient(NetworkClientConnection connection){
         client = connection;
+    }
+
+    public static NetworkClientConnection getClient() {
+        return client;
     }
 
     public static void sendMessageToServer(String message){
