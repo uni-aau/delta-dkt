@@ -10,10 +10,10 @@ import delta.dkt.R;
 public class ActionGetIP implements ClientActionInterface {
     @Override
     public void execute(AppCompatActivity activity, String clientMessage) {
-        String[] splitMessage = clientMessage.split(" ");
-        if(splitMessage.length == 2) {
+        String[] splitMessage = clientMessage.split(";");
+        if(splitMessage.length >= 1) {
             System.out.println("IP: " + clientMessage);
-            ((TextView) activity.findViewById(R.id.IP)).setText("ip: " + splitMessage[1]);
+            ((TextView) activity.findViewById(R.id.IP)).setText("ip: " + splitMessage[0]);
         }else{
             ((TextView) activity.findViewById(R.id.IP)).setText("");
         }
