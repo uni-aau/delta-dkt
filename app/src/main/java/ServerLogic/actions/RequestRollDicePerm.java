@@ -25,9 +25,14 @@ public class RequestRollDicePerm implements ServerActionInterface {
         int oldClientId = Integer.parseInt(args[0]);
         Log.d(tag, "Received next client request - Old client: " + parameters);
 
+        if(Config.DEBUG) {
+            ServerActionHandler.triggerAction(PREFIX_PLAYER_MOVE, parameters);
+            return;
+        }
+
         // Check if clientID is last ID in game
         int size = Game.getPlayers().size();
-        if (size != 0 || Config.DEBUG) {
+        if (size != 0) {
             if (oldClientId % size == 0) {
                 nextClient = 1; // swap to first player
             } else {
