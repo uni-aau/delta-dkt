@@ -42,10 +42,12 @@ public class GameViewActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game_view);
+        Config.Skip = false;
 
+        Button btnPropertyInfos = findViewById(R.id.button_property_infos);
         btnDice = findViewById(R.id.button_roll_dice);
         map = findViewById(imageView);
-        findViewById(R.id.button_property_infos).setOnClickListener(view -> switchToPropertyActivity());
+        btnPropertyInfos.setOnClickListener(view -> switchToPropertyActivity());
 
         MainActivity.subscribeToLogic(Constants.GAMEVIEW_ACTIVITY_TYPE, this);
         if (MainMenuActivity.role) {
@@ -58,6 +60,10 @@ public class GameViewActivity extends AppCompatActivity {
 //        registerLightSensor();
         displayPlayers(players);
         handleMovementRequests();
+
+        if(Config.Skip && Config.DEBUG){
+            btnPropertyInfos.performClick();
+        }
     }
 
     protected void switchToPropertyActivity() {
