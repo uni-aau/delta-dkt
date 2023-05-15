@@ -1,14 +1,11 @@
 package ServerLogic.actions;
 
+import static ClientUIHandling.Config.DEBUG;
 import static ClientUIHandling.Constants.GAMEVIEW_ACTIVITY_TYPE;
 import static ClientUIHandling.Constants.PREFIX_PLAYER_MOVE;
 import static ClientUIHandling.Constants.PREFIX_ROLL_DICE_REQUEST;
-
-import ClientUIHandling.Config;
 import android.util.Log;
 
-import ClientUIHandling.Config;
-import ClientUIHandling.Constants;
 import ServerLogic.ServerActionHandler;
 import ServerLogic.ServerActionInterface;
 import delta.dkt.logic.structure.Game;
@@ -18,14 +15,14 @@ public class RequestRollDicePerm implements ServerActionInterface {
     @Override
     public void execute(ServerNetworkClient server, Object parameters) {
         String prefix = parameters.toString().split(" ")[0];
-        String[] args = parameters.toString().substring(prefix.length()+1).split(";");
+        String[] args = parameters.toString().substring(prefix.length() + 1).split(";");
 
         int nextClient;
         String tag = "[Server] Roll Dice Request";
         int oldClientId = Integer.parseInt(args[0]);
         Log.d(tag, "Received next client request - Old client: " + parameters);
 
-        if(Config.DEBUG) {
+        if (DEBUG) {
             ServerActionHandler.triggerAction(PREFIX_PLAYER_MOVE, parameters);
             return;
         }
