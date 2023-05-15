@@ -23,6 +23,7 @@ public class RequestSetStartMoney implements ServerActionInterface {
         }
 
         Player player = Game.getPlayers().get(clientID);
+        String playerName = player.getNickname();
         int fieldLocation = player.getPosition().getLocation();
         Field mapField = Game.getMap().getField(fieldLocation);
 
@@ -33,6 +34,8 @@ public class RequestSetStartMoney implements ServerActionInterface {
             player.setCash(playerCash);
 
             server.broadcast(Constants.GAMEVIEW_ACTIVITY_TYPE, Constants.PREFIX_START_CASH_VALUE, new String[]{String.valueOf(clientID), String.valueOf(playerCash)});
+            // Todo rework
+            server.broadcast(Constants.GAMEVIEW_ACTIVITY_TYPE, Constants.PREFIX_ACTIVITY_BROADCAST, new String[]{playerName, " hat start geld erhalten"});
         }
 
     }
