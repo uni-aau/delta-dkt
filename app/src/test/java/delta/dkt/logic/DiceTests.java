@@ -12,7 +12,7 @@ public class DiceTests {
     Dice dice = null;
 
     @BeforeEach
-    void setup(){
+    void setup() {
         dice = new Dice(1, 6);
     }
 
@@ -20,14 +20,27 @@ public class DiceTests {
      * Checks whether a random value is calculated and if it is within the bound of the dice.
      */
     @Test
-    void randomValueCheck(){
+    void randomValueCheck() {
         //* Check multiple times
-        for(int i = 0; i < 50; i++){
+        for (int i = 0; i < 50; i++) {
             int random = dice.getRandomValue();
             Assertions.assertTrue(random >= dice.getMin());
             Assertions.assertTrue(random <= dice.getMax());
         }
     }
 
+    /**
+     * Checks whether the random value of a modified dice is still withing its range.
+     */
+    @Test
+    void randomValueCheck_cheatDice() {
+        dice = new Dice(7, 10);
+        //* Check multiple times
+        for (int i = 0; i < 50; i++) {
+            int random = dice.getRandomValue();
+            Assertions.assertTrue(random >= dice.getMin());
+            Assertions.assertTrue(random <= dice.getMax());
+        }
+    }
 
 }
