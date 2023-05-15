@@ -9,6 +9,7 @@ import ClientUIHandling.Constants;
 import delta.dkt.R;
 
 public class ActionActivityBroadcast implements ClientActionInterface {
+    // Todo add var for additional values
     @Override
     public void execute(AppCompatActivity activity, String clientMessage) {
         String[] args = clientMessage.replace(Constants.PREFIX_ACTIVITY_BROADCAST, "").trim().split(";"); // Holt sich Args nach dem PREFIX
@@ -26,6 +27,6 @@ public class ActionActivityBroadcast implements ClientActionInterface {
 
         String activityMessage = String.format(activityMessageValue, playerName); // sets playername
 
-        ((TextView) activity.findViewById(R.id.textView_activity)).setText(String.format(activity.getString(activityMessageIdentifier), activityMessage));
+        ((TextView) activity.findViewById(R.id.textView_activity)).setText(String.format(activity.getString(R.string.activity_text), activityMessage));
     }
 }
