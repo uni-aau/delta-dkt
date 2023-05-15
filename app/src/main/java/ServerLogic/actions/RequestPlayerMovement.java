@@ -84,7 +84,7 @@ public class RequestPlayerMovement implements ServerActionInterface {
      */
     public static int useDice(DiceRange range) {
         //START-NOSCAN
-        return (int) (Math.random() * range.getMax() + range.getMin());
+        return (int) (Math.random() * (range.getMax() - range.getMin() + 1) + range.getMin());
         //END-NOSCAN
     }
 
