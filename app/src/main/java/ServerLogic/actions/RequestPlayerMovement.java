@@ -55,8 +55,8 @@ public class RequestPlayerMovement implements ServerActionInterface {
         Player requestPlayer = Game.getPlayers().get(clientID);
         int currentPosition = requestPlayer.getPosition().getLocation();
 
-        int steps = useDice(Config.diceRange);
-        if(isCheating) steps = useDice(Config.CheatRange); //? super-dice
+        int steps = Config.diceRange.getRandomValue();
+        if(isCheating) steps = Config.CheatRange.getRandomValue(); //? super-dice
 
         int destination = (currentPosition + steps) % maxFields;
         if (destination == 0) destination++;
@@ -75,17 +75,4 @@ public class RequestPlayerMovement implements ServerActionInterface {
         Log.d(tag, "");
         server.broadcast(GAMEVIEW_ACTIVITY_TYPE, PREFIX_PLAYER_MOVE, sendArgs);
     }
-
-    /**
-     * This method will return a number in a given range.
-     *
-     * @param range The range of numbers that can be thrown.
-     * @return Returns a random value in between the given range.
-     */
-    public static int useDice(DiceRange range) {
-        //START-NOSCAN
-        return (int) (Math.random() * (range.getMax() - range.getMin() + 1) + range.getMin());
-        //END-NOSCAN
-    }
-
 }
