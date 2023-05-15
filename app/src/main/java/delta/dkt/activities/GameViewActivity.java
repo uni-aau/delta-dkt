@@ -33,7 +33,10 @@ import delta.dkt.sensors.LightSensor;
 public class GameViewActivity extends AppCompatActivity {
     public static int clientID = -1; // ID gets set by server
     public static int players = -1; // players gets set by server
-    int[] locations = {1, 1, 1, 1, 1, 1};
+    private int[] locations = {1, 1, 1, 1, 1, 1};
+    private SensorManager manager = null;
+    private LightSensor lightSensorListener = new LightSensor();
+    private Sensor lightSensor = null;
     Button btnDice;
     ImageView map;
 
@@ -57,7 +60,7 @@ public class GameViewActivity extends AppCompatActivity {
         }
 
 
-//        registerLightSensor();
+        registerLightSensor();
         displayPlayers(players);
         handleMovementRequests();
 
@@ -72,9 +75,21 @@ public class GameViewActivity extends AppCompatActivity {
     }
 
     private void registerLightSensor() {
-        SensorManager manager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
-        Sensor lightSensor = manager.getDefaultSensor(Sensor.TYPE_LIGHT);
-        manager.registerListener(new LightSensor(), lightSensor, SensorManager.SENSOR_DELAY_FASTEST);
+        manager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
+        if(lightSensor == null) lightSensor = manager.getDefaultSensor(Sensor.TYPE_LIGHT);
+        manager.registerListener(lightSensorListener, lightSensor, SensorManager.SENSOR_DELAY_FASTEST);
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        manager.unregisterListener(lightSensorListener);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        manager.registerListener(lightSensorListener, lightSensor, SensorManager.SENSOR_DELAY_FASTEST);
     }
 
     /**
@@ -93,8 +108,6 @@ public class GameViewActivity extends AppCompatActivity {
 
         btnDice.setOnClickListener(view -> {
             Log.d("Movement", "Sending movement request to server!");
-
-            Log.d("Cheat", LightSensor.value + " is the current value on when the button is pressed");
             ClientHandler.sendMessageToServer(GAMEVIEW_ACTIVITY_TYPE, PREFIX_ROLL_DICE_RECEIVE, new Object[]{String.valueOf(clientID), String.valueOf(LightSensor.isCovered())});
         });
 
