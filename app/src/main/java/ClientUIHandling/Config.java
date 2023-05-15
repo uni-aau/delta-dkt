@@ -1,5 +1,7 @@
 package ClientUIHandling;
 
+import delta.dkt.logic.structure.DiceRange;
+
 public class Config {
 
     private Config() {
@@ -14,4 +16,6 @@ public class Config {
     public static final boolean DEBUG = true;
     public static final int ENDROUNDS = 10; //Number of rounds until the game ends
 
+    public static final DiceRange diceRange = new DiceRange(1, 6);
+    public static final DiceRange CheatRange = new DiceRange(7, 9);
 }

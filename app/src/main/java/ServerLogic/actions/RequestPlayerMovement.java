@@ -3,9 +3,11 @@ package ServerLogic.actions;
 import static ClientUIHandling.Constants.GAMEVIEW_ACTIVITY_TYPE;
 import static ClientUIHandling.Constants.PREFIX_PLAYER_MOVE;
 
+import ClientUIHandling.Config;
 import android.util.Log;
 
 import ServerLogic.ServerActionInterface;
+import delta.dkt.logic.structure.DiceRange;
 import delta.dkt.logic.structure.Game;
 import delta.dkt.logic.structure.Player;
 import network2.ServerNetworkClient;
@@ -53,8 +55,8 @@ public class RequestPlayerMovement implements ServerActionInterface {
         Player requestPlayer = Game.getPlayers().get(clientID);
         int currentPosition = requestPlayer.getPosition().getLocation();
 
-        int steps = useDice(1, 6);
-        if(isCheating) steps = useDice(6, 12); //? super-dice
+        int steps = useDice(Config.diceRange);
+        if(isCheating) steps = useDice(Config.CheatRange); //? super-dice
 
         int destination = (currentPosition + steps) % maxFields;
         if (destination == 0) destination++;
@@ -77,13 +79,12 @@ public class RequestPlayerMovement implements ServerActionInterface {
     /**
      * This method will return a number in a given range.
      *
-     * @param min The minimum value that is to be returned.
-     * @param max The value that should be exceeded.
+     * @param range The range of numbers that can be thrown.
      * @return Returns a random value in between the given range.
      */
-    public static int useDice(int min, int max) {
+    public static int useDice(DiceRange range) {
         //START-NOSCAN
-        return (int) (Math.random() * max + min);
+        return (int) (Math.random() * range.getMax() + range.getMin());
         //END-NOSCAN
     }
 
