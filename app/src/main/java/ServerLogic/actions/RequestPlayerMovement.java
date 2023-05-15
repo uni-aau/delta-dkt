@@ -7,7 +7,6 @@ import ClientUIHandling.Config;
 import android.util.Log;
 
 import ServerLogic.ServerActionInterface;
-import delta.dkt.logic.structure.DiceRange;
 import delta.dkt.logic.structure.Game;
 import delta.dkt.logic.structure.Player;
 import network2.ServerNetworkClient;

@@ -1,9 +1,9 @@
 package delta.dkt.logic.structure;
 
-public class DiceRange {
+public class Dice {
     private int min, max;
 
-    public DiceRange(int min, int max) {
+    public Dice(int min, int max) {
         this.min = min;
         this.max = max;
     }
