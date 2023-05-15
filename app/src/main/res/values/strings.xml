@@ -60,4 +60,6 @@
     <string name="img_description_player4_text">Player 4</string>
     <string name="img_description_player2_text">Player 2</string>
     <string name="img_description_player1_text">Player 1</string>
+
+    <string name="start_money_activity_text">%s received start money</string>
 </resources>
