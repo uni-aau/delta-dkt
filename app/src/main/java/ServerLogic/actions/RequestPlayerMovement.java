@@ -48,7 +48,7 @@ public class RequestPlayerMovement implements ServerActionInterface {
         boolean isCheating = args.length >= 2 && args[1].equalsIgnoreCase("true");
 
         Log.d(tag, "");
-        Log.d(tag, String.format("Performing move request for client: (%s).", clientID));
+        Log.d(tag, String.format("Performing move request for Player%s: ", clientID));
         if(isCheating) Log.w(tag, "Cheatmode has been enabled for this move by the player!");
 
 
@@ -62,14 +62,14 @@ public class RequestPlayerMovement implements ServerActionInterface {
         if (destination == 0) destination++;
 
         //* detailed logs
-        Log.d(tag, String.format("Moving player (id=%s) to (pos=%s)!", clientID, destination));
-        Log.d(tag + "-detail", String.format("\told position: (pos=%s), new position: (pos=%s), steps: (steps=%s)", currentPosition, destination, steps));
+        Log.d(tag, String.format("Moving Player%s to position=%s, dice value=%s!", clientID, destination, steps));
 
         requestPlayer.moveTo(destination);
 
-        String[] sendArgs = new String[2];
+        String[] sendArgs = new String[3];
         sendArgs[0] = String.valueOf(clientID);
         sendArgs[1] = String.valueOf(destination);
+        sendArgs[2] = String.valueOf(steps);
 
         Log.d(tag, String.format("Sending out messages to %s players.", Game.getPlayers().size()));
         Log.d(tag, "");
