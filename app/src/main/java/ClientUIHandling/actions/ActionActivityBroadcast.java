@@ -11,18 +11,20 @@ import delta.dkt.R;
 
 public class ActionActivityBroadcast implements ClientActionInterface {
     String combinedActivityMessage = "Error formatting string";
+    String tag = "[CLIENT] ActivityBroadcast";
 
     @Override
     public void execute(AppCompatActivity activity, String clientMessage) {
         String[] args = clientMessage.replace(Constants.PREFIX_ACTIVITY_BROADCAST, "").trim().split(";");
         String messageTag = args[0]; // get message tag
+        Log.d(tag, "Received activity broadcast: messageTAG " + messageTag + " args size = " + args.length);
 
         int activityMessageIdentifier = activity.getResources().getIdentifier(messageTag, "string", activity.getPackageName()); // get resource key from identifier
         if (activityMessageIdentifier != 0) {
             String activityMessageValue = activity.getResources().getString(activityMessageIdentifier); // get string from resource key
             formatActivityMessage(activityMessageValue, args);
         } else {
-            Log.e("[CLIENT]", "Wrong message tag defined messageTag = " + messageTag);
+            Log.e(tag, "Wrong message tag defined messageTag = " + messageTag);
         }
 
         ((TextView) activity.findViewById(R.id.textView_activity)).setText(String.format(activity.getString(R.string.activity_text), combinedActivityMessage));
@@ -44,8 +46,11 @@ public class ActionActivityBroadcast implements ClientActionInterface {
             case 4:
                 combinedActivityMessage = String.format(message, args[1], args[2], args[3]);
                 break;
+            case 5:
+                combinedActivityMessage = String.format(message, args[1], args[2], args[3], args[4]);
+                break;
             default:
-                Log.e("[Client] ActivityBroadcast", "Error, too much args!");
+                Log.e(tag, "Error, too much args! ArgsSize = " + argsSize);
                 break;
         }
     }
