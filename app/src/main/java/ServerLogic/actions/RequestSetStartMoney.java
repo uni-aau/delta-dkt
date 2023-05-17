@@ -5,10 +5,8 @@ import android.util.Log;
 import ClientUIHandling.Config;
 import ClientUIHandling.Constants;
 import ServerLogic.ServerActionInterface;
-import delta.dkt.logic.structure.Field;
 import delta.dkt.logic.structure.Game;
 import delta.dkt.logic.structure.Player;
-import delta.dkt.logic.structure.SpecialField;
 import network2.ServerNetworkClient;
 
 public class RequestSetStartMoney implements ServerActionInterface {
@@ -24,10 +22,7 @@ public class RequestSetStartMoney implements ServerActionInterface {
 
         Player player = Game.getPlayers().get(clientID);
         String playerName = player.getNickname();
-        int fieldLocation = player.getPosition().getLocation();
-        Field mapField = Game.getMap().getField(fieldLocation);
 
-        if (mapField instanceof SpecialField && mapField.getName().equals("Start")) {
             int playerCash = player.getCash();
             playerCash += Config.START_CASH;
             Log.d("[Server] Start Money", "Setting start cash of player: oldCash = " + player.getCash() + " / newCash = " + playerCash);
@@ -35,7 +30,6 @@ public class RequestSetStartMoney implements ServerActionInterface {
 
             server.broadcast(Constants.GAMEVIEW_ACTIVITY_TYPE, Constants.PREFIX_START_CASH_VALUE, new String[]{String.valueOf(clientID), String.valueOf(playerCash)});
             server.broadcast(Constants.GAMEVIEW_ACTIVITY_TYPE, Constants.PREFIX_ACTIVITY_BROADCAST, new String[]{"start_money_activity_text", playerName});
-        }
 
     }
 }

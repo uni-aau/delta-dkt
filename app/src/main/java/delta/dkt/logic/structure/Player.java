@@ -2,7 +2,6 @@ package delta.dkt.logic.structure;
 
 import static ClientUIHandling.Constants.PREFIX_PLAYER_BUYPROPERTY;
 import static ClientUIHandling.Constants.PREFIX_PLAYER_PAYRENT;
-import static ClientUIHandling.Constants.PREFIX_START_CASH_VALUE;
 
 import java.util.ArrayList;
 
@@ -157,8 +156,6 @@ public class Player {
                // ServerActionHandler.triggerAction(PREFIX_PLAYER_BUYPROPERTY, this.getId()); //we only need one parameter , and thates the id of the player
                 //END-NOSCAN
             }
-        } else if (this.position instanceof SpecialField && this.position.getName().equals("Start")) {
-            ServerActionHandler.triggerAction(PREFIX_START_CASH_VALUE, this.getId());
         }
     }
 
