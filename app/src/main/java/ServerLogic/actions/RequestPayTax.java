@@ -32,11 +32,11 @@ public class RequestPayTax implements ServerActionInterface {
 
         if (mapField instanceof SpecialField && mapField.getName().equals("VermögensAbgabe")) {
             int playerCashTaxAmount = (int) (playerCashOld * Config.TAX_PERCENTAGE);
-            int playerCashNew;
-            if (playerCashTaxAmount > Config.MAX_TAX_AMOUNT) {
-                playerCashNew = playerCashOld - Config.MAX_TAX_AMOUNT;
-            } else {
-                playerCashNew = playerCashOld - playerCashTaxAmount;
+            int playerCashNew = playerCashOld - playerCashTaxAmount;
+            if (Config.MAX_TAX_AMOUNT != -1) { // If MAX_TAX_AMOUNT = -1 player money always gets reduced
+                if (playerCashTaxAmount > Config.MAX_TAX_AMOUNT) {
+                    playerCashNew = playerCashOld - Config.MAX_TAX_AMOUNT;
+                }
             }
 
             Log.d(tag, "Setting new player cash: OldPlayerCash = " + playerCashOld + " NewPlayerCash = " + playerCashNew + " ClientID = " + clientID);
