@@ -46,4 +46,5 @@ public class Constants {
     public static final String PREFIX_ROLL_DICE_RECEIVE = "ROLLRECEIVE";
     public static final String PREFIX_START_CASH_VALUE = "START_CASH";
     public static final String PREFIX_ACTIVITY_BROADCAST = "ACTIVITY_BROADCAST";
+    public static final String PREFIX_PAY_TAX = "PAY_TAX";
 }
