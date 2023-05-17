@@ -12,7 +12,7 @@ import delta.dkt.logic.structure.SpecialField;
 import network2.ServerNetworkClient;
 
 public class RequestPayTax implements ServerActionInterface {
-    private String tag = "";
+    private final String tag = "[SERVER] PAY TAX";
 
     @Override
     public void execute(ServerNetworkClient server, Object parameters) {

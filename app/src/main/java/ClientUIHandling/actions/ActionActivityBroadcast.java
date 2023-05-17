@@ -10,8 +10,8 @@ import ClientUIHandling.Constants;
 import delta.dkt.R;
 
 public class ActionActivityBroadcast implements ClientActionInterface {
-    String combinedActivityMessage = "Error formatting string";
-    String tag = "[CLIENT] ActivityBroadcast";
+    private String combinedActivityMessage = "Error formatting string";
+    private final String tag = "[CLIENT] ActivityBroadcast";
 
     @Override
     public void execute(AppCompatActivity activity, String clientMessage) {
