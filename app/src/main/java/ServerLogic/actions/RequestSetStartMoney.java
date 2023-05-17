@@ -11,6 +11,7 @@ import network2.ServerNetworkClient;
 
 public class RequestSetStartMoney implements ServerActionInterface {
     private String tag = "[SERVER] Start Money";
+
     @Override
     public void execute(ServerNetworkClient server, Object parameters) {
         int clientID = (int) parameters;
@@ -24,13 +25,13 @@ public class RequestSetStartMoney implements ServerActionInterface {
         Player player = Game.getPlayers().get(clientID);
         String playerName = player.getNickname();
 
-            int playerCash = player.getCash();
-            playerCash += Config.START_CASH;
-            Log.d(tag, "Setting start cash of player: oldCash = " + player.getCash() + " / newCash = " + playerCash);
-            player.setCash(playerCash);
+        int playerCash = player.getCash();
+        playerCash += Config.START_CASH;
+        Log.d(tag, "Setting start cash of player: oldCash = " + player.getCash() + " / newCash = " + playerCash);
+        player.setCash(playerCash);
 
-            server.broadcast(Constants.GAMEVIEW_ACTIVITY_TYPE, Constants.PREFIX_START_CASH_VALUE, new String[]{String.valueOf(clientID), String.valueOf(playerCash)});
-            server.broadcast(Constants.GAMEVIEW_ACTIVITY_TYPE, Constants.PREFIX_ACTIVITY_BROADCAST, new String[]{"start_money_activity_text", playerName});
+        server.broadcast(Constants.GAMEVIEW_ACTIVITY_TYPE, Constants.PREFIX_START_CASH_VALUE, new String[]{String.valueOf(clientID), String.valueOf(playerCash)});
+        server.broadcast(Constants.GAMEVIEW_ACTIVITY_TYPE, Constants.PREFIX_ACTIVITY_BROADCAST, new String[]{"start_money_activity_text", playerName});
 
     }
 }
