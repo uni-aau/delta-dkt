@@ -6,6 +6,7 @@ import static ClientUIHandling.Constants.PREFIX_PLAYER_PAYRENT;
 import java.util.ArrayList;
 
 import ClientUIHandling.Config;
+import ClientUIHandling.Constants;
 import ServerLogic.ServerActionHandler;
 
 public class Player {
@@ -156,6 +157,8 @@ public class Player {
                // ServerActionHandler.triggerAction(PREFIX_PLAYER_BUYPROPERTY, this.getId()); //we only need one parameter , and thates the id of the player
                 //END-NOSCAN
             }
+        } else if (this.position instanceof SpecialField && this.position.getName().equals("VermögensAbgabe")) {
+            ServerActionHandler.triggerAction(Constants.PREFIX_PAY_TAX, this.getId());
         }
     }
 
