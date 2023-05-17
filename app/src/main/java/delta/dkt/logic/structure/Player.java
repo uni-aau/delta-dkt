@@ -11,8 +11,8 @@ import ServerLogic.ServerActionHandler;
 
 public class Player {
     public static Player testInstance = new Player("testPlayer");
-
-
+    private boolean youGetOutOfPrisonCard = false;
+    private boolean goToPrisonField = false;
     private static int _id = 1;
 
     //? May be used to sync player data across clients
@@ -191,6 +191,16 @@ public class Player {
 
     public int getCash() {
         return cash;
+    }
+
+    public boolean getGoToPrisonField(){return goToPrisonField;}
+    public boolean getYouGetOutOfPrisonCard(){return goToPrisonField;}
+
+    public void setGoToPrisonField(boolean goToPrisonField){
+        this.goToPrisonField = goToPrisonField;
+    }
+    public void setYouGetOutOfPrisonCard(boolean youGetOutOfPrisonCard){
+        this.youGetOutOfPrisonCard = youGetOutOfPrisonCard;
     }
 
     /**
