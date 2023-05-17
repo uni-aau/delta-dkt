@@ -8,7 +8,7 @@ import ClientUIHandling.actions.ActionMove;
 import ClientUIHandling.actions.ActionPlayerLost;
 import ClientUIHandling.actions.ActionRentPaid;
 import ClientUIHandling.actions.ActionInitRollDice;
-import ClientUIHandling.actions.ActionSetStartMoney;
+import ClientUIHandling.actions.ActionSetMoney;
 import ClientUIHandling.actions.ActionUpdateGameTime;
 
 import android.os.Handler;
@@ -59,7 +59,7 @@ public class ClientHandler extends Handler {
         actionMap.put(Constants.PREFIX_PLAYER_PROPERTYBOUGHT, new ActionBuyProperty());
         actionMap.put(Constants.PREFIX_ACTIVITY_BROADCAST, new ActionActivityBroadcast());
         actionMap.put(Constants.PREFIX_END_GAME, new ActionGameEnd());
-        actionMap.put(Constants.PREFIX_START_CASH_VALUE, new ActionSetStartMoney());
+        actionMap.put(Constants.PREFIX_SET_MONEY, new ActionSetMoney());
 
         actions.add(new ActionHostGame());
         actionPrefixes.add(Constants.PREFIX_HOST_NEW_GAME);
