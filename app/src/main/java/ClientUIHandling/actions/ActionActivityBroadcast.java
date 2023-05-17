@@ -43,8 +43,10 @@ public class ActionActivityBroadcast implements ClientActionInterface {
                 break;
             case 4:
                 combinedActivityMessage = String.format(message, args[1], args[2], args[3]);
+                break;
             default:
                 Log.e("[Client] ActivityBroadcast", "Error, too much args!");
+                break;
         }
     }
 }
