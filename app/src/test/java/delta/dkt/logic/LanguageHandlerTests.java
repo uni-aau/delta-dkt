@@ -4,7 +4,7 @@ import ClientUIHandling.handlers.languages.LanguageHandler;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-public class LanguageHandlerTests {
+class LanguageHandlerTests {
     String template = "Currently its %s and the sun is %s very bright!";
 
     /**
