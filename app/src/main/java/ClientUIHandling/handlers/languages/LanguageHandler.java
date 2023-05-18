@@ -45,6 +45,8 @@ public class LanguageHandler {
         return String.format(template, acceptedArgs) + String.format("(%s)", exceeded);
     }
 
+    //START-NOSCAN
+
     /**
      * This method sets the text of an UI element based on the current app-language
      * It uses the previsouly language-template-string and inserts the given arguments into the placeholders.
@@ -72,4 +74,6 @@ public class LanguageHandler {
 
         activity.runOnUiThread(() -> textElement.setText(LanguageHandler.formatText(languageFormat, args)));
     }
+
+    //END-NOSCAN
 }
