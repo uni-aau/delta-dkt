@@ -35,8 +35,18 @@ public class LanguageHandler {
 
         return String.format(template, acceptedArgs) + String.format("(%s)", exceeded);
     }
-    
 
+    /**
+     * This method sets the text of an UI element based on the current app-language
+     * It uses the previsouly language-template-string and inserts the given arguments into the placeholders.
+     * In case there are to few placeholders, the remaining arguments will be added to the end of the string.
+     * In case there are to few arguments, the template strings placeholders will be filled with '(missing)', indicating it.
+     *
+     * @param activity The activitity in which the text element is to be set
+     * @param fieldName The field of which the text is to be updated
+     * @param strings The xml string name, that is to be used as a template
+     * @param args The arguments that should be inserted into the template
+     */
     @SuppressLint("DiscouragedApi")
     public static void updateTextElement(Activity activity, String fieldName, String strings, String[] args) {
         int textElementIdentifier = activity.getResources().getIdentifier(fieldName, "id", activity.getPackageName());
