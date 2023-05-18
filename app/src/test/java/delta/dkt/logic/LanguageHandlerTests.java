@@ -43,4 +43,13 @@ public class LanguageHandlerTests {
         String formation = LanguageHandler.formatText(template, new String[]{});
         Assertions.assertEquals(String.format(template, "(missing)", "(missing)"), formation);
     }
+
+    /**
+     * Checks whether the template is formatted correclty when there are more is more than placeholder missing
+     */
+    @Test
+    void checkTemplateInsertion_MultipleMissingPlaceholders() {
+        String formation = LanguageHandler.formatText(template, new String[]{"Monday", "shining", "hot", "sand", "italy"});
+        Assertions.assertEquals(String.format(template, "Monday", "shining") + " -> (hot|sand|italy)", formation);
+    }
 }
