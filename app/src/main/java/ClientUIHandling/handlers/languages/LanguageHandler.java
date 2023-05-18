@@ -11,6 +11,15 @@ public class LanguageHandler {
     private LanguageHandler() {
     }
 
+    /**
+     * This method inserts the given arguments into a given template string.
+     * If there are to few placeholders, the remaining arguments are attached to the end of the formation.
+     * If there are to many placeholders, the remaining placeholders are filled with '(missing)'.
+     *
+     * @param template The template string that should contain placeholders ('%s')
+     * @param args The arguments that should be inserted into the template
+     * @return The formatted string, based on the given template and arguments
+     */
     public static String formatText(String template, Object[] args) {
         int requestedArgs = 0;
         if (template.contains("%s")) requestedArgs = template.split("%s").length - 1;
