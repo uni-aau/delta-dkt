@@ -44,4 +44,8 @@ public class Constants {
     public static final String PREFIX_GET_IP = "IP";
 
     public static final String PREFIX_ROLL_DICE_RECEIVE = "ROLLRECEIVE";
+
+    public static final String PREFIX_PLAYER_CHEATED = "CHEATED";
+
+    public static final String PREFIX_PLAYER_REPORTED_WRONGLY = "REPORTED_WRONGLY";
 }
