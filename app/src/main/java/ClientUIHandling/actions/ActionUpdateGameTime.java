@@ -33,6 +33,6 @@ public class ActionUpdateGameTime implements ClientActionInterface {
         String secondsLocale = seconds != 1 ? activity.getString(R.string.seconds_plural_text) : activity.getString(R.string.second_sing_text);
 
         // %d %s, %d %s, %d, %s
-        ((TextView) activity.findViewById(R.id.textView_playing_time)).setText(String.format(activity.getString(R.string.playing_time_text), hours, hoursLocale, minutes, minutesLocale, seconds, secondsLocale));
+        ((TextView) activity.findViewById(R.id.textView_playing_time)).setText(String.format(activity.getString(R.string.playing_time_text), String.valueOf(hours), hoursLocale, String.valueOf(minutes), minutesLocale, String.valueOf(seconds), secondsLocale));
     }
 }

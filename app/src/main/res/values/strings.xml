@@ -2,7 +2,7 @@
     <string name="app_name">DKT</string>
     <string name="text_propNumber">{0}</string>
     <string name="text_propName">Property Name: %s</string>
-    <string name="text_price">Price: %d$</string>
+    <string name="text_price">Price: %s$</string>
     <string name="text_ownedBy">Owned by: %s</string>
     <string name="text_propertiesAmountTitle">Properties:</string>
     <string name="text_propInfoTitle">Property Information</string>
@@ -12,10 +12,10 @@
     <string name="textCD_prop4">Property 4</string>
     <string name="text_backToGame">Back</string>
     <string name="general_information">General Information</string>
-    <string name="players_online">Players online: %d / %d</string>
-    <string name="cash_text">Cash: %d$</string>
-    <string name="my_properties_text">My Properties: %d</string>
-    <string name="playing_time_text">Playing Time: %d %s, %d %s, %d %s</string>
+    <string name="players_online">Players online: %s / %s</string>
+    <string name="cash_text">Cash: %s$</string>
+    <string name="my_properties_text">My Properties: %s</string>
+    <string name="playing_time_text">Playing Time: %s %s, %s, %s, %s %s</string>
     <string name="roll_the_dice">Roll the dice</string>
     <string name="property_information">Property Information</string>
     <string name="dice_information_text">%s rolls the dice\n{1} left to roll the dice</string>
@@ -37,8 +37,8 @@
     <string name="ServerName">ServerName</string>
     <string name="UserRole">UserRole</string>
     <string name="JoiningTime">Joined on:</string>
-    <string name="TotalPlayers">Total Players: </string>
-    <string name="Host">HOST </string>
+    <string name="TotalPlayers">Total Players:</string>
+    <string name="Host">HOST</string>
     <string name="Player">PLAYER</string>
     <string name="Joined">Joined:</string>
     <string name="FindHost">Find Host</string>
