@@ -30,7 +30,7 @@ public class LanguageHandler {
         //* Fill requested args if provided.
         if (args.length != 0) {
             for (int i = 0; i < acceptedArgs.length; i++) {
-                if (args.length > i) acceptedArgs[i] = args[i];
+                if (args.length > i) acceptedArgs[i] = args[i].toString();
                 else acceptedArgs[i] = "(missing)";
             }
         }
@@ -42,7 +42,7 @@ public class LanguageHandler {
             if (i != args.length - 1) exceeded.append("|");
         }
 
-        return String.format(template, acceptedArgs) + String.format("(%s)", exceeded);
+        return String.format(template, acceptedArgs) + String.format(" -> (%s)", exceeded);
     }
 
     //START-NOSCAN
@@ -69,10 +69,14 @@ public class LanguageHandler {
         }
 
         //? get the template string
-        int stringsXMLIdentifier = activity.getResources().getIdentifier(strings, "strings", activity.getPackageName());
+        int stringsXMLIdentifier = activity.getResources().getIdentifier(strings, "string", activity.getPackageName());
+        if (stringsXMLIdentifier == 0) {
+            Log.w("Game-Translation", String.format("Translation failed, as the templateString (%s) was not found!", strings));
+            return;
+        }
         String languageFormat = activity.getResources().getString(stringsXMLIdentifier);
 
-        activity.runOnUiThread(() -> textElement.setText(LanguageHandler.formatText(languageFormat, args)));
+        textElement.setText(LanguageHandler.formatText(languageFormat, args));
     }
 
     //END-NOSCAN
