@@ -27,6 +27,8 @@ public class LanguageHandler {
         Object[] acceptedArgs = new String[requestedArgs];
         Arrays.fill(acceptedArgs, "(missing)");
 
+        if (args == null) return String.format(template, acceptedArgs);
+
         //* Fill requested args if provided.
         if (args.length != 0) {
             for (int i = 0; i < acceptedArgs.length; i++) {

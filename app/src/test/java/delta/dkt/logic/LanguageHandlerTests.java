@@ -62,4 +62,13 @@ class LanguageHandlerTests {
         String formation = LanguageHandler.formatText(template, new String[]{"Monday", "shining", "hot", "sand", "italy"});
         Assertions.assertEquals(template + " -> (Monday|shining|hot|sand|italy)", formation);
     }
+
+    /**
+     * Checks whether the template formation works even if no arguments are provided.
+     */
+    @Test
+    void checkTemplateInsertion_NullArguments() {
+        String formation = LanguageHandler.formatText(template, null);
+        Assertions.assertEquals(String.format(template, "(missing)", "(missing)"), formation);
+    }
 }
