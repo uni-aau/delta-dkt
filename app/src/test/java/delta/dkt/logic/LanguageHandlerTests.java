@@ -25,4 +25,13 @@ public class LanguageHandlerTests {
         String formation = LanguageHandler.formatText(template, new String[]{"Monday", "shining", "hot"});
         Assertions.assertEquals(String.format(template, "Monday", "shining") + " -> (hot)", formation);
     }
+
+    /**
+     * Checks whether the template is formatted correctly when there are to few arguments provided.
+     */
+    @Test
+    void checkTemplateInsertion_MissingArguments() {
+        String formation = LanguageHandler.formatText(template, new String[]{"Monday"});
+        Assertions.assertEquals(String.format(template, "Monday", "(missing)"), formation);
+    }
 }
