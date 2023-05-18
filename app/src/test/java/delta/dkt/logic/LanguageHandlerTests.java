@@ -34,4 +34,13 @@ public class LanguageHandlerTests {
         String formation = LanguageHandler.formatText(template, new String[]{"Monday"});
         Assertions.assertEquals(String.format(template, "Monday", "(missing)"), formation);
     }
+
+    /**
+     * Checks whether the template is formatted correctly when there are no arguments provided.
+     */
+    @Test
+    void checkTemplateInsertion_NoArguments() {
+        String formation = LanguageHandler.formatText(template, new String[]{});
+        Assertions.assertEquals(String.format(template, "(missing)", "(missing)"), formation);
+    }
 }
