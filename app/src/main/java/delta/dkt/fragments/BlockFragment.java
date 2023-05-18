@@ -11,6 +11,8 @@ import androidx.fragment.app.Fragment;
 
 import delta.dkt.R;
 
+import static java.lang.String.valueOf;
+
 public class BlockFragment extends Fragment {
     private static final String ARG_PROP_NUMBER = "propNumberInput";
     private static final String ARG_PROP_NAME = "propNameInput";
@@ -71,7 +73,7 @@ public class BlockFragment extends Fragment {
 
         propNumber.setText(propNumberInput);
         propName.setText(String.format(getString(R.string.text_propName), propNameInput));
-        price.setText(String.format(getString(R.string.text_price), propPriceInput));
+        price.setText(String.format(getString(R.string.text_price), valueOf(propPriceInput)));
         ownedBy.setText(String.format(getString(R.string.text_ownedBy), propOwnerInput));
 
         setPropertyAmount(view);
