@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 public class LanguageHandlerTests {
+    String template = "Currently its %s and the sun is %s very bright!";
 
     /**
      * Checks whether the given arguments are inserted correctly into a template string
@@ -12,9 +13,16 @@ public class LanguageHandlerTests {
      */
     @Test
     void checkTemplateInsertion_MatchingPlaceholders() {
-        String template = "Currently its %s and the sun is %s very bright!";
-
         String formation = LanguageHandler.formatText(template, new String[]{"Monday", "shining"});
         Assertions.assertEquals(String.format(template, "Monday", "shining"), formation);
+    }
+
+    /**
+     * Check whether the template is formatted correctly when there are not enough placeholders.
+     */
+    @Test
+    void checkTemplateInsertion_MissingPlaceholders() {
+        String formation = LanguageHandler.formatText(template, new String[]{"Monday", "shining", "hot"});
+        Assertions.assertEquals(String.format(template, "Monday", "shining") + " -> (hot)", formation);
     }
 }
