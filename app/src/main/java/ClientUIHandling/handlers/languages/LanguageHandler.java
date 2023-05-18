@@ -42,7 +42,7 @@ public class LanguageHandler {
             if (i != args.length - 1) exceeded.append("|");
         }
 
-        return String.format(template, acceptedArgs) + String.format(" -> (%s)", exceeded);
+        return String.format(template, acceptedArgs) + (exceeded.toString().isBlank() ? "" : String.format(" -> (%s)", exceeded));
     }
 
     //START-NOSCAN
