@@ -77,6 +77,8 @@ public class LanguageHandler {
         String languageFormat = activity.getResources().getString(stringsXMLIdentifier);
 
         textElement.setText(LanguageHandler.formatText(languageFormat, args));
+
+        Log.d("Game-Translation", "Successfully updated UI elements text using a language template!");
     }
 
     //END-NOSCAN
