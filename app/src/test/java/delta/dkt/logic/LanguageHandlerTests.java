@@ -52,4 +52,14 @@ public class LanguageHandlerTests {
         String formation = LanguageHandler.formatText(template, new String[]{"Monday", "shining", "hot", "sand", "italy"});
         Assertions.assertEquals(String.format(template, "Monday", "shining") + " -> (hot|sand|italy)", formation);
     }
+
+    /**
+     * Checks whether the arguments are attached to the end of the formation, when there are no placeholders at all.
+     */
+    @Test
+    void checkTemplateInsertion_NoPlacerholders() {
+        template = "I am missing placeholders.";
+        String formation = LanguageHandler.formatText(template, new String[]{"Monday", "shining", "hot", "sand", "italy"});
+        Assertions.assertEquals(template + " -> (Monday|shining|hot|sand|italy)", formation);
+    }
 }
