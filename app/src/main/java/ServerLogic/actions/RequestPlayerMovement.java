@@ -2,10 +2,12 @@ package ServerLogic.actions;
 
 import static ClientUIHandling.Constants.GAMEVIEW_ACTIVITY_TYPE;
 import static ClientUIHandling.Constants.PREFIX_PLAYER_MOVE;
+import static ClientUIHandling.Constants.PREFIX_START_CASH_VALUE;
 
 import ClientUIHandling.Config;
 import android.util.Log;
 
+import ServerLogic.ServerActionHandler;
 import ServerLogic.ServerActionInterface;
 import delta.dkt.logic.structure.Game;
 import delta.dkt.logic.structure.Player;
@@ -58,6 +60,9 @@ public class RequestPlayerMovement implements ServerActionInterface {
         if(isCheating) steps = Config.CheatRange.getRandomValue(); //? super-dice
 
         int destination = (currentPosition + steps) % maxFields;
+        if (currentPosition + steps >= maxFields) {
+            ServerActionHandler.triggerAction(PREFIX_START_CASH_VALUE, clientID);
+        }
         if (destination == 0) destination++;
 
         //* detailed logs

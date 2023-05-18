@@ -14,7 +14,7 @@ class GameTest {
 
     void setUpReset() {
         Game.getPlayers().put(0, new Player());
-        Game.setRounds(5);
+        Game.setRounds(Config.ENDROUNDS);
         Game.setRoundStartID(3);
     }
 
@@ -27,7 +27,7 @@ class GameTest {
             }
         }
         Game.incrementRounds(1);
-        assertEquals(10, Game.getRounds());
+        assertEquals(Config.ENDROUNDS, Game.getRounds());
     }
 
     @Test

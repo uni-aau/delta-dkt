@@ -14,7 +14,10 @@ public class Config {
 
     public static boolean Skip = true; //? Used for quick development, skips activities until false.
     public static final boolean DEBUG = true;
-    public static final int ENDROUNDS = 10; //Number of rounds until the game ends
+
+    public static final int START_CASH = 1000; //Number of rounds until the game ends
+    public static final int ENDROUNDS = 100; //Number of rounds until the game ends
+
 
     public static final Dice diceRange = new Dice(1, 6);
     public static final Dice CheatRange = new Dice(7, 9);

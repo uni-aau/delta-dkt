@@ -1,5 +1,6 @@
 package ClientUIHandling;
 
+import ClientUIHandling.actions.ActionActivityBroadcast;
 import ClientUIHandling.actions.ActionBroadcastStartStats;
 import ClientUIHandling.actions.ActionGameEnd;
 import ClientUIHandling.actions.ActionGetIP;
@@ -7,6 +8,7 @@ import ClientUIHandling.actions.ActionMove;
 import ClientUIHandling.actions.ActionPlayerLost;
 import ClientUIHandling.actions.ActionRentPaid;
 import ClientUIHandling.actions.ActionInitRollDice;
+import ClientUIHandling.actions.ActionSetStartMoney;
 import ClientUIHandling.actions.ActionUpdateGameTime;
 
 import android.os.Handler;
@@ -57,7 +59,9 @@ public class ClientHandler extends Handler {
         actionMap.put(Constants.PREFIX_GET_IP, new ActionGetIP());
         actionMap.put(Constants.PREFIX_ROLL_DICE_RECEIVE, new ActionRollDiceReceive());
         actionMap.put(Constants.PREFIX_PLAYER_PROPERTYBOUGHT, new ActionBuyProperty());
+        actionMap.put(Constants.PREFIX_ACTIVITY_BROADCAST, new ActionActivityBroadcast());
         actionMap.put(Constants.PREFIX_END_GAME, new ActionGameEnd());
+        actionMap.put(Constants.PREFIX_START_CASH_VALUE, new ActionSetStartMoney());
 
         actions.add(new ActionHostGame());
         actionPrefixes.add(Constants.PREFIX_HOST_NEW_GAME);
