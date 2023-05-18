@@ -20,7 +20,7 @@ public class ActionSetStartMoney implements ClientActionInterface {
         Log.d("[Client] Start Money", "Client start money action received - ClientID = " + clientId);
 
         if (GameViewActivity.clientID == clientId) {
-            ((TextView) activity.findViewById(R.id.textView_cash)).setText(String.format(activity.getString(R.string.cash_text), newCashValue));
+            ((TextView) activity.findViewById(R.id.textView_cash)).setText(String.format(activity.getString(R.string.cash_text), String.valueOf(newCashValue)));
         }
 
     }

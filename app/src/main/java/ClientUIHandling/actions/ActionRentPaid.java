@@ -25,7 +25,7 @@ public class ActionRentPaid implements ClientActionInterface {
 
         if (id == GameViewActivity.clientID) {
 
-            ((TextView) activity.findViewById(R.id.textView_cash)).setText(String.format(activity.getString(R.string.cash_text), Integer.parseInt(splitMessage[4])));
+            ((TextView) activity.findViewById(R.id.textView_cash)).setText(String.format(activity.getString(R.string.cash_text), splitMessage[4]));
         }
 
     }
