@@ -59,7 +59,7 @@ public class LanguageHandler {
      * @param args The arguments that should be inserted into the template
      */
     @SuppressLint("DiscouragedApi")
-    public static void updateTextElement(Activity activity, String fieldName, String strings, String[] args) {
+    public static void updateTextElement(Activity activity, String fieldName, String strings, Object[] args) {
         int textElementIdentifier = activity.getResources().getIdentifier(fieldName, "id", activity.getPackageName());
         TextView textElement = activity.findViewById(textElementIdentifier);
 
