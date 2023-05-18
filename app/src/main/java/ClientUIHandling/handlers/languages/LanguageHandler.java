@@ -25,9 +25,16 @@ public class LanguageHandler {
             }
         }
 
-        return String.format(template, acceptedArgs);
-    }
+        //? Add arguments to the format, that exceed its placeholder count.
+        StringBuilder exceeded = new StringBuilder();
+        for(int i = acceptedArgs.length; i < args.length; i++){
+            exceeded.append(args[i]);
+            if(i != args.length -1) exceeded.append("|");
+        }
 
+        return String.format(template, acceptedArgs) + String.format("(%s)", exceeded);
+    }
+    
     @SuppressLint("DiscouragedApi")
     public static void updateTextElement(Activity activity, String fieldName, String strings, String[] args){
         int textElementIdentifier = activity.getResources().getIdentifier(fieldName, "id", activity.getPackageName());
