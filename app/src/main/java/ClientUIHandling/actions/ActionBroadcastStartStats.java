@@ -27,7 +27,7 @@ public class ActionBroadcastStartStats implements ClientActionInterface {
     }
 
     private void updateGeneralInfo(AppCompatActivity activity, String playerAmount) {
-        String inputValue = String.format(activity.getString(R.string.players_online), Integer.parseInt(playerAmount), Config.MAX_CLIENTS);
+        String inputValue = String.format(activity.getString(R.string.players_online), playerAmount, String.valueOf(Config.MAX_CLIENTS));
         ((TextView) activity.findViewById(R.id.textView_players_online)).setText(inputValue);
     }
 }

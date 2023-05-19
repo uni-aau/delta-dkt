@@ -49,9 +49,6 @@ public class RequestPlayerMovement implements ServerActionInterface {
 
         int steps = useDice(1, 6);
         int destination = (currentPosition + steps) % maxFields;
-        if (currentPosition + steps >= maxFields) {
-            ServerActionHandler.triggerAction(PREFIX_START_CASH_VALUE, clientID);
-        }
         if (destination == 0) destination++;
 
         //* detailed logs
@@ -67,6 +64,10 @@ public class RequestPlayerMovement implements ServerActionInterface {
         Log.d(tag, String.format("Sending out messages to %s players.", Game.getPlayers().size()));
         Log.d(tag, "");
         server.broadcast(GAMEVIEW_ACTIVITY_TYPE, PREFIX_PLAYER_MOVE, args);
+
+
+        //? Add start-cash for passing over the start field.
+        if (currentPosition > destination) ServerActionHandler.triggerAction(PREFIX_START_CASH_VALUE, clientID);
     }
 
     /**

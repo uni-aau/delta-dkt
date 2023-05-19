@@ -54,7 +54,7 @@ public class ActionPlayerInit implements ClientActionInterface {
 
     // Sets initial textview values in GameView
     private void setInitTextViewValues(AppCompatActivity activity) {
-        ((TextView) activity.findViewById(R.id.textView_cash)).setText(String.format(activity.getString(R.string.cash_text), Config.INITIAL_CASH));
-        ((TextView) activity.findViewById(R.id.textView_my_properties)).setText(String.format(activity.getString(R.string.my_properties_text), 0));
+        ((TextView) activity.findViewById(R.id.textView_cash)).setText(String.format(activity.getString(R.string.cash_text), String.valueOf(Config.INITIAL_CASH)));
+        ((TextView) activity.findViewById(R.id.textView_my_properties)).setText(String.format(activity.getString(R.string.my_properties_text), String.valueOf(0)));
     }
 }
