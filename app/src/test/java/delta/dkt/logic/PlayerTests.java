@@ -314,6 +314,7 @@ class PlayerTests {
     @ParameterizedTest
     @ValueSource(ints = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10})
     void checkPlayerMovement_bySteps(int steps) {
+        Field mockField = mock(Field.class);
 
         //? sets the return value for getField method with its given arguments to a valid property.
         int location = player.getPosition().getLocation() + steps;
@@ -321,7 +322,9 @@ class PlayerTests {
             when(mockMapHandling.getField(location)).thenReturn(generateDummyProperty(location));
         } else {
             //Test for movement on a special location
-            when(mockMapHandling.getField(location)).thenReturn(new SpecialField(location));
+            mockField = new SpecialField(location);
+            mockField.setName("VermögensAbgabe");
+            when(mockMapHandling.getField(location)).thenReturn(mockField);
         }
         when(mockMapHandling.getFields()).thenReturn(generateDummyList());
 
