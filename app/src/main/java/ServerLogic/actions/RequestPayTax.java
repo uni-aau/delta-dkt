@@ -47,8 +47,8 @@ public class RequestPayTax implements ServerActionInterface {
                 server.broadcast(Constants.GAMEVIEW_ACTIVITY_TYPE, Constants.PREFIX_ACTIVITY_BROADCAST, new String[]{"pay_static_tax_activity_text", playerName, String.valueOf(Config.STATIC_TAX_AMOUNT), String.valueOf(playerCashOld), String.valueOf(playerCashNew)});
             }
 
-            Log.d(TAG, "Setting new player cash: OldPlayerCash = " + playerCashOld + " NewPlayerCash = " + playerCashNew + " ClientID = " + clientID);
             player.setCash(playerCashNew);
+            Log.d(TAG, "Setting new player cash: OldPlayerCash = " + playerCashOld + " NewPlayerCash = " + playerCashNew + " ClientID = " + clientID);
 
             server.broadcast(Constants.GAMEVIEW_ACTIVITY_TYPE, Constants.PREFIX_SET_MONEY, new String[]{String.valueOf(clientID), String.valueOf(playerCashNew)});
         } else {

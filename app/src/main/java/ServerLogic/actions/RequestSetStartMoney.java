@@ -24,11 +24,11 @@ public class RequestSetStartMoney implements ServerActionInterface {
 
         Player player = Game.getPlayers().get(clientID);
         String playerName = player.getNickname();
-
         int playerCash = player.getCash();
+
         playerCash += Config.START_CASH;
-        Log.d(TAG, "Setting start cash of player: oldCash = " + player.getCash() + " / newCash = " + playerCash);
         player.setCash(playerCash);
+        Log.d(TAG, "Setting start cash of player: oldCash = " + player.getCash() + " / newCash = " + playerCash);
 
         server.broadcast(Constants.GAMEVIEW_ACTIVITY_TYPE, Constants.PREFIX_SET_MONEY, new String[]{String.valueOf(clientID), String.valueOf(playerCash)});
         server.broadcast(Constants.GAMEVIEW_ACTIVITY_TYPE, Constants.PREFIX_ACTIVITY_BROADCAST, new String[]{"start_money_activity_text", playerName});
