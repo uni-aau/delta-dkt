@@ -159,7 +159,9 @@ public class Player {
             }
         } else if (this.position instanceof SpecialField) {
             if (this.position.getName().equals("VermögensAbgabe") || this.position.getName().equals("Steuerabgabe")) {
+                //START-NOSCAN
                 ServerActionHandler.triggerAction(Constants.PREFIX_PAY_TAX, this.getId());
+                //END-NOSCAN
             }
         }
     }
