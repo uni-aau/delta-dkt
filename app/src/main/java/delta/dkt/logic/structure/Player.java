@@ -194,7 +194,7 @@ public class Player {
     }
 
     public boolean getGoToPrisonField(){return goToPrisonField;}
-    public boolean getYouGetOutOfPrisonCard(){return goToPrisonField;}
+    public boolean getYouGetOutOfPrisonCard(){return youGetOutOfPrisonCard;}
 
     public void setGoToPrisonField(boolean goToPrisonField){
         this.goToPrisonField = goToPrisonField;
