@@ -14,6 +14,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RadioButton;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
@@ -119,6 +120,7 @@ public class MainMenuActivity extends AppCompatActivity {
                 Toast.makeText(MainMenuActivity.this, "Please enter Servername", Toast.LENGTH_SHORT).show();
             } else {
                 try {
+                    onRadioButtonClicked(view);
                     startServer(serverName);
 
                 } catch (InterruptedException e) {
@@ -164,24 +166,22 @@ public class MainMenuActivity extends AppCompatActivity {
         return sdf.format(new Date());
     }
 
-    // TO DO->
-    /*
-    public void closeServer() {
-        try {
-            server.tearDown();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-    }
+    public void onRadioButtonClicked(View view) {
+        // Is the button now checked?
+        boolean checked = ((RadioButton) view).isChecked();
 
-    public void closeClient() {
-        try {
-            client.stopConnection();
-        } catch (Exception e) {
-            throw new RuntimeException(e);
+        // Check which radio button was clicked
+        switch(view.getId()) {
+            case R.id.roundsButton:
+                if (checked)
+                    // We have a Game on Rounds!
+                    break;
+            case R.id.timeButton:
+                if (checked)
+                    // We have a Game on Time!
+                    break;
         }
     }
-*/
 }
 
 
