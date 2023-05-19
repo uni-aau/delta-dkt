@@ -36,14 +36,14 @@ public class RequestPayTax implements ServerActionInterface {
                 int playerCashTaxAmount = (int) (playerCashOld * Config.TAX_PERCENTAGE);
                 playerCashNew = playerCashOld - playerCashTaxAmount;
 
-                if (Config.MAX_TAX_AMOUNT != -1) { // If MAX_TAX_AMOUNT = -1 player money always gets reduced
-                    if (playerCashTaxAmount > Config.MAX_TAX_AMOUNT) {
-                        playerCashNew = playerCashOld - Config.MAX_TAX_AMOUNT;
-                    }
+                if (Config.MAX_TAX_AMOUNT != -1 && playerCashTaxAmount > Config.MAX_TAX_AMOUNT) { // If MAX_TAX_AMOUNT = -1 player money always gets reduced
+                    playerCashNew = playerCashOld - Config.MAX_TAX_AMOUNT;
                 }
+
                 server.broadcast(Constants.GAMEVIEW_ACTIVITY_TYPE, Constants.PREFIX_ACTIVITY_BROADCAST, new String[]{"pay_tax_activity_text", playerName, String.valueOf(Config.TAX_PERCENTAGE), String.valueOf(playerCashOld), String.valueOf(playerCashNew)});
             } else if (mapField.getName().equals("Steuerabgabe")) { // Reduce playercash with static tax amount
                 playerCashNew = playerCashOld - Config.STATIC_TAX_AMOUNT;
+
                 server.broadcast(Constants.GAMEVIEW_ACTIVITY_TYPE, Constants.PREFIX_ACTIVITY_BROADCAST, new String[]{"pay_static_tax_activity_text", playerName, String.valueOf(Config.STATIC_TAX_AMOUNT), String.valueOf(playerCashOld), String.valueOf(playerCashNew)});
             }
 
