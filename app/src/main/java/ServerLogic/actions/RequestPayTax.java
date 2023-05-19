@@ -12,21 +12,21 @@ import delta.dkt.logic.structure.SpecialField;
 import network2.ServerNetworkClient;
 
 public class RequestPayTax implements ServerActionInterface {
-    private final static String tag = "[SERVER] PAY TAX";
+    private static final String TAG = "[SERVER] PAY TAX";
 
     @Override
     public void execute(ServerNetworkClient server, Object parameters) {
         int clientID = (int) parameters;
-        Log.i(tag, "Received pay tax request with clientID " + clientID);
+        Log.i(TAG, "Received pay tax request with clientID " + clientID);
 
         if (!Game.getPlayers().containsKey(clientID)) {
-            Log.e(tag, "Error no player in game view with clientID" + clientID);
+            Log.e(TAG, "Error no player in game view with clientID" + clientID);
             return;
         }
 
         Player player = Game.getPlayers().get(clientID);
-        String playerName = player.getNickname();
         int fieldLocation = player.getPosition().getLocation();
+        String playerName = player.getNickname();
         Field mapField = Game.getMap().getField(fieldLocation);
         int playerCashOld = player.getCash();
         int playerCashNew = playerCashOld;
@@ -47,12 +47,12 @@ public class RequestPayTax implements ServerActionInterface {
                 server.broadcast(Constants.GAMEVIEW_ACTIVITY_TYPE, Constants.PREFIX_ACTIVITY_BROADCAST, new String[]{"pay_static_tax_activity_text", playerName, String.valueOf(Config.STATIC_TAX_AMOUNT), String.valueOf(playerCashOld), String.valueOf(playerCashNew)});
             }
 
-            Log.d(tag, "Setting new player cash: OldPlayerCash = " + playerCashOld + " NewPlayerCash = " + playerCashNew + " ClientID = " + clientID);
+            Log.d(TAG, "Setting new player cash: OldPlayerCash = " + playerCashOld + " NewPlayerCash = " + playerCashNew + " ClientID = " + clientID);
             player.setCash(playerCashNew);
 
             server.broadcast(Constants.GAMEVIEW_ACTIVITY_TYPE, Constants.PREFIX_SET_MONEY, new String[]{String.valueOf(clientID), String.valueOf(playerCashNew)});
         } else {
-            Log.e(tag, "Error triggerAction RequestPayTax executed but player is not on specific field! ClientID = " + clientID);
+            Log.e(TAG, "Error triggerAction RequestPayTax executed but player is not on specific field! ClientID = " + clientID);
         }
     }
 }
