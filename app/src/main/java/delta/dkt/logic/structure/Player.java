@@ -157,8 +157,12 @@ public class Player {
                // ServerActionHandler.triggerAction(PREFIX_PLAYER_BUYPROPERTY, this.getId()); //we only need one parameter , and thates the id of the player
                 //END-NOSCAN
             }
-        } else if (this.position instanceof SpecialField && this.position.getName().equals("VermögensAbgabe")) {
-            ServerActionHandler.triggerAction(Constants.PREFIX_PAY_TAX, this.getId());
+        } else if (this.position instanceof SpecialField) {
+            if (this.position.getName().equals("VermögensAbgabe")) {
+                ServerActionHandler.triggerAction(Constants.PREFIX_PAY_TAX, this.getId());
+            } else if(this.position.getName().equals("Steuerabgabe")) {
+                ServerActionHandler.triggerAction(Constants.PREFIX_PAY_TAX, this.getId());
+            }
         }
     }
 
