@@ -33,8 +33,10 @@ class TaskHandlerTests {
     /**
      * Check the location of the task by calling the getLocation methode.
      */
+    /*
     @Test
     void testGetTaskLocation(){
-//        assertEquals(33, TaskHandler.getTask(33).getLocation());
+        assertEquals(33, TaskHandler.getTask(33).getLocation());
     }
+     */
 }

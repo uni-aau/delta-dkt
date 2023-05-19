@@ -10,7 +10,7 @@ import delta.dkt.logic.structure.Player;
 import network2.ServerNetworkClient;
 
 public class RequestSetStartMoney implements ServerActionInterface {
-    private final String tag = "[SERVER] Start Money";
+    private final static String tag = "[SERVER] Start Money";
 
     @Override
     public void execute(ServerNetworkClient server, Object parameters) {
