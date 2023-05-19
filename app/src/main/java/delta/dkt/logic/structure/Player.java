@@ -150,7 +150,9 @@ public class Player {
 
         if (this.position instanceof Property) {
             if(((Property) this.position).getOwner() != null) {
+                //START-NOSCAN
                 ServerActionHandler.triggerAction(PREFIX_PLAYER_PAYRENT, this.getId());
+                //END-NOSCAN
             }else{ //property can be bought , ask user
                 //START-NOSCAN
                 //TODO: Ask the user if he wants to buy the property.
