@@ -16,16 +16,16 @@ public class ActionPunish implements ServerActionInterface {
     @Override
     public void execute(ServerNetworkClient server, Object parameters) {
         if(!(parameters instanceof Object[])){
-            System.err.println("WRONG PARAMETERS FOR ActionPunish!");
+            System.err.println("WRONG PARAMETERS FOR ActionPunish, expected an array!");
             return;
         }
         Object[] parameterArray = (Object[]) parameters;
         if(!(parameterArray[0] instanceof Boolean)){
-            System.err.println("WRONG PARAMETERS FOR ActionPunish!");
+            System.err.println("WRONG PARAMETERS FOR ActionPunish, expected boolean as first element!");
             return;
         }
         if(!(parameterArray[1] instanceof Integer)){
-            System.err.println("WRONG PARAMETERS FOR ActionPunish!");
+            System.err.println("WRONG PARAMETERS FOR ActionPunish, expected integer as second element!");
             return;
         }
 
@@ -34,12 +34,12 @@ public class ActionPunish implements ServerActionInterface {
         Player player = Game.getPlayers().get(id);
         if(isCheater){
             player.setCash(player.getCash()- Config.punishmentForCheating);
-            server.broadcast(GAMEVIEW_ACTIVITY_TYPE +":"+PREFIX_PLAYER_CHEATED+" 1 "+player.getNickname()+"(id= "+player.getId()+" ) "+player.getCash());
+            server.broadcast(GAMEVIEW_ACTIVITY_TYPE +":"+PREFIX_PLAYER_CHEATED+" 1 "+player.getNickname()+" "+player.getId()+" "+player.getCash());
 
             //TODO SET PLAYER FIELD "hasCheated" to true
         }else{
             player.setCash(player.getCash()- Config.punishmentForWrongReport);
-            server.broadcast(GAMEVIEW_ACTIVITY_TYPE +":"+PREFIX_PLAYER_CHEATED+" 0 "+player.getNickname()+"(id= "+player.getId()+" ) "+player.getCash());
+            server.broadcast(GAMEVIEW_ACTIVITY_TYPE +":"+PREFIX_PLAYER_CHEATED+" 0 "+player.getNickname()+" "+player.getId()+" "+player.getCash());
         }
 
         if(player.getCash() < 0){
