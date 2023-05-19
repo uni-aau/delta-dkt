@@ -20,7 +20,7 @@ public class ActionRollDiceReceive implements ClientActionInterface {
 
         if (MainMenuActivity.role) {
             Log.d("[UI] Roll Dice Next Player", "Successfully received roll dice request: Activity: " + activity + " ClientID: " + clientId + " ClientGameID: " + Game.getPlayers().get(clientId).getId());
-            Log.d("TEST", "SERVER RECEIVED REQUEST with ID" + clientId);
+            Log.d("TEST", "SERVER RECEIVED REQUEST with ID " + clientId);
             ServerActionHandler.triggerAction(PREFIX_ROLL_DICE_REQUEST, clientId);
         } else {
             Log.e("ERROR", "NON SERVER USER CALLED ROLLDICERECEIVE!");

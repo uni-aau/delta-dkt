@@ -1,5 +1,6 @@
 package ClientUIHandling.actions;
 
+import ClientUIHandling.handlers.languages.LanguageHandler;
 import android.util.Log;
 import android.widget.Toast;
 

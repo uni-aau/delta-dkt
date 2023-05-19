@@ -13,7 +13,6 @@ import java.util.HashMap;
 
 import ServerLogic.actions.RequestRollDicePerm;
 import ServerLogic.actions.RequestGameStartTime;
-import ServerLogic.actions.RequestRegisterUser;
 import ServerLogic.actions.RequestPlayerInit;
 import ServerLogic.actions.RequestGameStart;
 import ServerLogic.actions.RequestGetIp;
@@ -45,7 +44,6 @@ public class ServerActionHandler {
         actionMap.put(PREFIX_PLAYER_PAYRENT, new ActionPayRent());
         actionMap.put(PREFIX_PLAYER_LOST, new RequestPlayerLost());
         actionMap.put(PREFIX_GAME_START, new RequestGameStart());
-        actionMap.put(PREFIX_REGISTER, new RequestRegisterUser());
         actionMap.put(PREFIX_INIT_PLAYERS, new RequestPlayerInit());
         actionMap.put(PREFIX_GAME_START_STATS, new RequestGameStartStats());
         actionMap.put(PREFIX_ROLL_DICE_REQUEST, new RequestRollDicePerm());
@@ -55,6 +53,7 @@ public class ServerActionHandler {
         actionMap.put(PREFIX_PLAYER_BUYPROPERTY, new RequestBuyProperty());
         actionMap.put(PREFIX_END_GAME, new GameEnd());
         actionMap.put(PREFIX_PLAYER_CHEATED, new ActionPunish());
+        actionMap.put(PREFIX_START_CASH_VALUE, new RequestSetStartMoney());
 
         actions.add(new RequestHostGame());
         actionPrefixes.add(PREFIX_HOST_NEW_GAME);

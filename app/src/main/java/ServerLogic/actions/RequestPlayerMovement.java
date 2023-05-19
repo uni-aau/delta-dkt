@@ -2,9 +2,11 @@ package ServerLogic.actions;
 
 import static ClientUIHandling.Constants.GAMEVIEW_ACTIVITY_TYPE;
 import static ClientUIHandling.Constants.PREFIX_PLAYER_MOVE;
+import static ClientUIHandling.Constants.PREFIX_START_CASH_VALUE;
 
 import android.util.Log;
 
+import ServerLogic.ServerActionHandler;
 import ServerLogic.ServerActionInterface;
 import delta.dkt.logic.structure.Game;
 import delta.dkt.logic.structure.Player;
@@ -62,6 +64,10 @@ public class RequestPlayerMovement implements ServerActionInterface {
         Log.d(tag, String.format("Sending out messages to %s players.", Game.getPlayers().size()));
         Log.d(tag, "");
         server.broadcast(GAMEVIEW_ACTIVITY_TYPE, PREFIX_PLAYER_MOVE, args);
+
+
+        //? Add start-cash for passing over the start field.
+        if (currentPosition > destination) ServerActionHandler.triggerAction(PREFIX_START_CASH_VALUE, clientID);
     }
 
     /**

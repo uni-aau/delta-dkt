@@ -23,7 +23,7 @@ public class MainActivity extends AppCompatActivity {
     public static final String INTENT_PARAMETER = "username";
 
     public static ClientLogic logic;
-    public static String user; // remove after static string username is moved in this class.
+    public static String user; // remove after static string username is moved in this class. (Hint: check for usage e.g. in ServerNetworkClass)
 
     static {
         HashMap<String, ClientHandler> handlers = new HashMap<>();
@@ -57,17 +57,10 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
-
-
-
     }
 
 
     //--------------------------ALL METHODS-----------------------------//
-
-
-
 
     public static void subscribeToLogic(String type, AppCompatActivity activity) {
         logic.getHandler().put(type, new ClientHandler(activity));
@@ -77,6 +70,4 @@ public class MainActivity extends AppCompatActivity {
     public boolean checkIfUsernameAlreadyExists (String newUsername){
         return (userList.contains(newUsername));
     }
-
-
 }
