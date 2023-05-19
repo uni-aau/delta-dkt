@@ -77,6 +77,7 @@ public class GameViewActivity extends AppCompatActivity {
         btnDice.setOnClickListener(view -> {
             Log.d("Movement", "Sending movement request to server!");
 
+
             ClientHandler.sendMessageToServer(Constants.GAMEVIEW_ACTIVITY_TYPE + ":" + PREFIX_ROLL_DICE_RECEIVE + " " + clientID);
 
 

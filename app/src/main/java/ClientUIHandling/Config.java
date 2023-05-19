@@ -12,4 +12,7 @@ public class Config {
     public static final int START_CASH = 1000; //Number of rounds until the game ends
     public static final int ENDROUNDS = 100; //Number of rounds until the game ends
 
+    public static final int punishmentForCheating = 500;
+
+    public static final int punishmentForWrongReport = 200;
 }

@@ -52,6 +52,7 @@ public class ServerActionHandler {
         actionMap.put(PREFIX_GET_IP, new RequestGetIp());
         actionMap.put(PREFIX_PLAYER_BUYPROPERTY, new RequestBuyProperty());
         actionMap.put(PREFIX_END_GAME, new GameEnd());
+        actionMap.put(PREFIX_PLAYER_CHEATED, new ActionPunish());
         actionMap.put(PREFIX_START_CASH_VALUE, new RequestSetStartMoney());
 
         actions.add(new RequestHostGame());
