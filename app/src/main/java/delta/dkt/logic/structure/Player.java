@@ -158,9 +158,7 @@ public class Player {
                 //END-NOSCAN
             }
         } else if (this.position instanceof SpecialField) {
-            if (this.position.getName().equals("VermögensAbgabe")) {
-                ServerActionHandler.triggerAction(Constants.PREFIX_PAY_TAX, this.getId());
-            } else if(this.position.getName().equals("Steuerabgabe")) {
+            if (this.position.getName().equals("VermögensAbgabe") || this.position.getName().equals("Steuerabgabe")) {
                 ServerActionHandler.triggerAction(Constants.PREFIX_PAY_TAX, this.getId());
             }
         }
