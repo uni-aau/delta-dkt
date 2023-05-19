@@ -18,6 +18,7 @@ public class FieldHandler {
             if (i == 11) fields.add(new SpecialField(i, "Gesetztes Verletzung"));
             if (i == 21) fields.add(new SpecialField(i, "VermögensAbgabe"));
             if (i == 31) fields.add(new SpecialField(i, "Gefängnis"));
+            if (i == 33) fields.add(new SpecialField(i, "Steuerabgabe"));
         }
 
         return fields;
