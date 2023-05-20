@@ -48,10 +48,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:autofillHints="name"
             android:hint="@string/EnterMaxPlayers"
-            android:inputType="text"
+            android:inputType="number"
             android:textSize="20sp"
+            android:autofillHints="Max Players"
             app:layout_constraintBottom_toTopOf="@id/okButton"
             app:layout_constraintTop_toBottomOf="@id/popUpEditText"
             app:layout_constraintVertical_bias="0.081"
@@ -72,7 +72,6 @@
                 android:id="@+id/roundsButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:onClick="onRadioButtonClicked"
                 android:text="@string/Rounds"
                 android:textSize="20sp" />
 
@@ -80,7 +79,6 @@
                 android:id="@+id/timeButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:onClick="onRadioButtonClicked"
                 android:text="@string/Time"
                 android:layout_marginStart="40dp"
                 android:textSize="20sp" />
@@ -91,10 +89,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:autofillHints="name"
             android:hint="@string/enterRoundsOrTime"
             android:inputType="number"
             android:textSize="20sp"
+            android:autofillHints="Round and Time"
             app:layout_constraintBottom_toTopOf="@id/okButton"
             app:layout_constraintTop_toBottomOf="@id/buttonGroup"
             app:layout_constraintVertical_bias="0.0"
@@ -120,7 +118,7 @@
             android:id="@+id/cancelButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="148dp"
+            android:layout_marginTop="20dp"
             android:backgroundTint="@color/dkt_red"
             android:fontFamily="@font/bangers"
             android:text="@string/Cancel"
@@ -130,7 +128,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.924"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/maxPLayersEdTxt" />
+            app:layout_constraintTop_toBottomOf="@id/roundAndTimeEdtxt" />
 
 
 
