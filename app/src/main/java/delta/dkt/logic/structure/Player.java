@@ -6,6 +6,7 @@ import static ClientUIHandling.Constants.PREFIX_PLAYER_PAYRENT;
 import java.util.ArrayList;
 
 import ClientUIHandling.Config;
+import ClientUIHandling.Constants;
 import ServerLogic.ServerActionHandler;
 
 public class Player {
@@ -149,11 +150,19 @@ public class Player {
 
         if (this.position instanceof Property) {
             if(((Property) this.position).getOwner() != null) {
+                //START-NOSCAN
                 ServerActionHandler.triggerAction(PREFIX_PLAYER_PAYRENT, this.getId());
+                //END-NOSCAN
             }else{ //property can be bought , ask user
                 //START-NOSCAN
                 //TODO: Ask the user if he wants to buy the property.
                // ServerActionHandler.triggerAction(PREFIX_PLAYER_BUYPROPERTY, this.getId()); //we only need one parameter , and thates the id of the player
+                //END-NOSCAN
+            }
+        } else if (this.position instanceof SpecialField) {
+            if (this.position.getName().equals("VermögensAbgabe") || this.position.getName().equals("Steuerabgabe")) {
+                //START-NOSCAN
+                ServerActionHandler.triggerAction(Constants.PREFIX_PAY_TAX, this.getId());
                 //END-NOSCAN
             }
         }
