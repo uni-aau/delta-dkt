@@ -6,10 +6,10 @@ public class Config {
         // No instantiation of class
     }
 
-    public static final int MAX_CLIENTS = 6;
-    public static final int END_TIME = 3000000; // end_time in milliseconds
+    public static  int MAX_CLIENTS = 6;
+    public static  int END_TIME = 3000000; // end_time in milliseconds
     public static final int INITIAL_CASH = 1000; // end_time in milliseconds
     public static final int START_CASH = 1000; //Number of rounds until the game ends
-    public static final int ENDROUNDS = 100; //Number of rounds until the game ends
+    public static  int ENDROUNDS = 100; //Number of rounds until the game ends
 
 }
