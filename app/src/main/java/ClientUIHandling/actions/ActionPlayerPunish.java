@@ -1,35 +1,41 @@
 package ClientUIHandling.actions;
 
-import android.annotation.SuppressLint;
 import android.util.Log;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.nio.file.LinkOption;
+
 import ClientUIHandling.ClientActionInterface;
 import ClientUIHandling.handlers.languages.LanguageHandler;
 import delta.dkt.R;
 import delta.dkt.activities.GameViewActivity;
 
-public class ActionRentPaid implements ClientActionInterface {
-    @SuppressLint("StringFormatInvalid")
+public class ActionPlayerPunish implements ClientActionInterface {
     @Override
     public void execute(AppCompatActivity activity, String clientMessage) {
-        Log.i("INFO", "RENTPAIDRECEIVED");
-        Toast.makeText(activity, clientMessage, Toast.LENGTH_LONG).show();
+        Log.i("INFO", "PUNISHRECEIVED");
+
 
         String[] splitMessage = clientMessage.split(" ");
 
-        int id = Integer.parseInt(splitMessage[2]);
-
-
-        if (id == GameViewActivity.clientID) {
-            //OLD UI SETTER:
-            //((TextView) activity.findViewById(R.id.textView_cash)).setText(String.format(activity.getString(R.string.cash_text), splitMessage[4]));
-            //NEW UI SETTER:
-            LanguageHandler.updateTextElement(activity, "textView_cash","cash_text" , new Object[]{Integer.parseInt(splitMessage[4])});
+        for (int i = 0; i < splitMessage.length; i++) {
+            System.out.println(splitMessage[i]);
         }
 
+        int cheater = Integer.parseInt(splitMessage[1]);
+        int id = Integer.parseInt(splitMessage[3]);
+        String name = splitMessage[2];
+        if(cheater == 1) {
+            Toast.makeText(activity, name + " has cheated!", Toast.LENGTH_LONG).show();
+        }else{
+            Toast.makeText(activity, name + " has wrongfully reported someone!", Toast.LENGTH_LONG).show();
+        }
+
+        if (id == GameViewActivity.clientID) {
+            LanguageHandler.updateTextElement(activity, "textView_cash","cash_text" , new Object[]{Integer.parseInt(splitMessage[4])});
+        }
     }
 }
