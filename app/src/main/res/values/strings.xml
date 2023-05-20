@@ -31,7 +31,7 @@
     <string name="DktLogoDescription">DKTLogo</string>
     <string name="Avatar">Avatar</string>
     <string name="PlayerLobby">Player Lobby</string>
-    <string name="HostGame">Host Game:</string>
+    <string name="HostGame">New Host Game:</string>
     <string name="OK">OK</string>
     <string name="Cancel">Cancel</string>
     <string name="ServerName">ServerName</string>
