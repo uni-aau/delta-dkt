@@ -23,9 +23,11 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 import ClientUIHandling.ClientHandler;
 import ClientUIHandling.ClientLogic;
+import ClientUIHandling.Config;
 import ClientUIHandling.Constants;
 import ServerLogic.ServerActionHandler;
 import delta.dkt.R;
@@ -99,38 +101,91 @@ public class MainMenuActivity extends AppCompatActivity {
     //---------------------------ALL METHODS:---------------------------//
 
 
-    // This method will show the User a popUP Window to enter a Server name.
+    // This method will show the User a popUP Window to start a new Host Game.
     // When clicked on OK, it will proceed with "Start Server" method.
     public void showServerPopUpWindow() {
 
+        // Everything that is needed to create the popUp Window:
         ConstraintLayout popUpConstraintLayout = findViewById(R.id.popUpConstraintLayout);
         View view = LayoutInflater.from(MainMenuActivity.this).inflate(R.layout.server_name_pop_up_window, popUpConstraintLayout);
-
-        Button okButton = view.findViewById(R.id.okButton);
-        Button cancelButton = view.findViewById(R.id.cancelButton);
-        EditText editText = view.findViewById(R.id.popUpEditText);
-
         AlertDialog.Builder builder = new AlertDialog.Builder(MainMenuActivity.this);
         builder.setView(view);
         final AlertDialog alertDialog = builder.create();
 
+
+        // Getting all needed Views from the xml:
+        Button okButton = view.findViewById(R.id.okButton);
+        Button cancelButton = view.findViewById(R.id.cancelButton);
+        EditText editText = view.findViewById(R.id.popUpEditText);
+        EditText gameRoundsAndTime = view.findViewById(R.id.roundAndTimeEdtxt);
+        EditText maxPlayersEDT = view.findViewById(R.id.maxPLayersEdTxt);
+        RadioButton roundsButton = view.findViewById(R.id.roundsButton);
+        RadioButton timeButton = view.findViewById(R.id.timeButton);
+
+
+        // Check which Radio Button for Round Game or Time Game is selected:
+        AtomicBoolean isRoundsSelected = new AtomicBoolean(true);
+        AtomicBoolean isTimeSelected = new AtomicBoolean(false);
+
+        roundsButton.setOnClickListener(v -> {
+            isRoundsSelected.set(true);
+            isTimeSelected.set(false);
+        });
+
+        timeButton.setOnClickListener(v -> {
+            isRoundsSelected.set(false);
+            isTimeSelected.set(true);
+        });
+
+
+        // When the OK Button is pressed, this is happening: ->
         okButton.setOnClickListener(view1 -> {
+
+
+
+            // Creating temp Strings for checking inputs:
             String serverName = editText.getText().toString();
+            String tempGameRoundsOrTime = gameRoundsAndTime.getText().toString();
+            String tempMaxPlayers = maxPlayersEDT.getText().toString();
+
+            // First checking if some fields are empty - if everything is filled it continues with else path ->
             if (serverName.isEmpty()) {
                 Toast.makeText(MainMenuActivity.this, "Please enter Servername", Toast.LENGTH_SHORT).show();
+            } else if (tempMaxPlayers.isEmpty()) {
+                Toast.makeText(MainMenuActivity.this, "Please enter Max Players (2-6)", Toast.LENGTH_SHORT).show();
+            } else if (!roundsButton.isChecked() && !timeButton.isChecked()) {
+                Toast.makeText(MainMenuActivity.this, "Please choose Round or Time Game", Toast.LENGTH_SHORT).show();
+            } else if (tempGameRoundsOrTime.isEmpty()) {
+                Toast.makeText(MainMenuActivity.this, "Please enter Rounds/Time", Toast.LENGTH_SHORT).show();
             } else {
-                try {
-                    onRadioButtonClicked(view);
-                    startServer(serverName);
+                int timeOrRounds = Integer.parseInt(tempGameRoundsOrTime);
+                int maxPlayers = Integer.parseInt(tempMaxPlayers);
 
-                } catch (InterruptedException e) {
-                    Log.w("Warning", "Interrupted!", e);
-                    // Restore interrupted state...
-                    Thread.currentThread().interrupt();
+                // Checking if inputs are valid - if so, it continues with else path ->
+                if (maxPlayers < 2 || maxPlayers > 6) {
+                    Toast.makeText(MainMenuActivity.this, "Choose players between 2 - 6", Toast.LENGTH_SHORT).show();
+                } else if (timeOrRounds <= 0) {
+                    Toast.makeText(MainMenuActivity.this, "Time/Rounds <= 0 not allowed", Toast.LENGTH_SHORT).show();
+                } else {
+                    try {
+                        Config.MAX_CLIENTS = maxPlayers;
+                        if (isRoundsSelected.get()) {
+                            Config.ENDROUNDS = timeOrRounds;
+                        }
+                        if (isTimeSelected.get()) {
+                            Config.END_TIME = timeOrRounds;
+                        }
+                        startServer(serverName);
+                    } catch (InterruptedException e) {
+                        Log.w("Warning", "Interrupted!", e);
+                        // Restore interrupted state...
+                        Thread.currentThread().interrupt();
+                    }
                 }
             }
         });
 
+        //When the CANCEL Button is pressed, this is happening: ->
         cancelButton.setOnClickListener(view1 -> alertDialog.dismiss());
 
         if (alertDialog.getWindow() != null) {
@@ -166,22 +221,6 @@ public class MainMenuActivity extends AppCompatActivity {
         return sdf.format(new Date());
     }
 
-    public void onRadioButtonClicked(View view) {
-        // Is the button now checked?
-        boolean checked = ((RadioButton) view).isChecked();
-
-        // Check which radio button was clicked
-        switch(view.getId()) {
-            case R.id.roundsButton:
-                if (checked)
-                    // We have a Game on Rounds!
-                    break;
-            case R.id.timeButton:
-                if (checked)
-                    // We have a Game on Time!
-                    break;
-        }
-    }
 }
 
 
