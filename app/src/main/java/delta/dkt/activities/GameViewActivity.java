@@ -3,7 +3,6 @@ package delta.dkt.activities;
 import static ClientUIHandling.Constants.PREFIX_GAME_START_STATS;
 import static ClientUIHandling.Constants.PREFIX_GET_SERVER_TIME;
 import static ClientUIHandling.Constants.PREFIX_INIT_PLAYERS;
-import static ClientUIHandling.Constants.PREFIX_PLAYER_MOVE;
 import static ClientUIHandling.Constants.PREFIX_ROLL_DICE_RECEIVE;
 import static delta.dkt.R.id.imageView;
 
@@ -15,10 +14,12 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import ClientUIHandling.ClientHandler;
+import ClientUIHandling.Config;
 import ClientUIHandling.Constants;
 import ClientUIHandling.handlers.positioning.PositionHandler;
 import ServerLogic.ServerActionHandler;
@@ -28,11 +29,10 @@ import delta.dkt.logic.structure.Game;
 
 public class GameViewActivity extends AppCompatActivity {
     public static int clientID = -1; // ID gets set by server
+    public static int players = -1; // players gets set by server
     int[] locations = {1, 1, 1, 1, 1, 1};
     Button btnDice;
     ImageView map;
-
-    public static int players = 6;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,13 +45,12 @@ public class GameViewActivity extends AppCompatActivity {
 
         MainActivity.subscribeToLogic(Constants.GAMEVIEW_ACTIVITY_TYPE, this);
         if (MainMenuActivity.role) {
+            ServerActionHandler.triggerAction(PREFIX_GET_SERVER_TIME, clientID); // Get game time
             ServerActionHandler.triggerAction(PREFIX_INIT_PLAYERS, String.valueOf(clientID)); // Set player & handle dice perms
             ServerActionHandler.triggerAction(PREFIX_GAME_START_STATS, String.valueOf(Game.getPlayers().size())); // Update player stats
-            ServerActionHandler.triggerAction(PREFIX_GET_SERVER_TIME, clientID); // Get game time
         }
 
         displayPlayers(players);
-
         handleMovementRequests();
     }
 
@@ -78,6 +77,7 @@ public class GameViewActivity extends AppCompatActivity {
         btnDice.setOnClickListener(view -> {
             Log.d("Movement", "Sending movement request to server!");
 
+
             ClientHandler.sendMessageToServer(Constants.GAMEVIEW_ACTIVITY_TYPE + ":" + PREFIX_ROLL_DICE_RECEIVE + " " + clientID);
 
 
@@ -97,7 +97,7 @@ public class GameViewActivity extends AppCompatActivity {
      * This method will set update the location of a players figure to the requested destination.
      *
      * @param destination The destinations number, from 1: Start to 39: Last field.
-     * @param _player     The player figure that is to be moved, ranging from 1 to 6.
+     * @param _player The player figure that is to be moved, ranging from 1 to 6.
      */
     public void updatePlayerPosition(int destination, int _player) {
         int figureIdentifier = getResources().getIdentifier("player" + _player, "id", getPackageName());
@@ -131,12 +131,19 @@ public class GameViewActivity extends AppCompatActivity {
      * @param count Amount of players of which the figures are going to be made visible.
      */
     public void displayPlayers(int count) {
-        for (int i = 1; i <= count; i++) {
-            ImageView figure = findViewById(getResources().getIdentifier("player" + i, "id", getPackageName()));
+        Log.d("[GameView] Action", "Enabling players " + count);
 
-            if (figure == null) continue;
+        if (count <= Config.MAX_CLIENTS) {
+            for (int i = 1; i <= count; i++) {
+                ImageView figure = findViewById(getResources().getIdentifier("player" + i, "id", getPackageName()));
 
-            figure.setVisibility(View.VISIBLE);
+                if (figure == null) continue;
+
+                figure.setVisibility(View.VISIBLE);
+            }
+        } else {
+            Log.e("[UI] Action Error", String.format("Error - Less player markers (%d) than players (%d)!", Config.MAX_CLIENTS, count));
+            Toast.makeText(this, "There was an error while adding another player - Check error logs!", Toast.LENGTH_SHORT).show();
         }
     }
 }

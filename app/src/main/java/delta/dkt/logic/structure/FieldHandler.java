@@ -1,7 +1,6 @@
 package delta.dkt.logic.structure;
 
 import java.util.ArrayList;
-import java.util.Optional;
 
 public class FieldHandler {
 
@@ -17,8 +16,9 @@ public class FieldHandler {
 
             if (i == 1) fields.add(new SpecialField(i, "Start"));
             if (i == 11) fields.add(new SpecialField(i, "Gesetzes Verletzung"));
-            if (i == 21) fields.add(new SpecialField(i, "Vermögens Abgabe"));
+            if (i == 21) fields.add(new SpecialField(i, "VermögensAbgabe"));
             if (i == 31) fields.add(new PrisonField(i, "Gefängnis"));
+            if (i == 33) fields.add(new SpecialField(i, "Steuerabgabe"));
         }
 
         return fields;

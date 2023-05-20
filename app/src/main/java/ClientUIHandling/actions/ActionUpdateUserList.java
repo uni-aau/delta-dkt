@@ -4,7 +4,6 @@ package ClientUIHandling.actions;
 import static ClientUIHandling.Constants.PREFIX_UPDATE_USER_LIST;
 import static delta.dkt.activities.LobbyViewActivity.userList;
 
-
 import android.app.Activity;
 import android.util.Log;
 import android.widget.TextView;
@@ -13,11 +12,9 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import ClientUIHandling.ClientActionInterface;
 import delta.dkt.R;
-import delta.dkt.activities.LobbyViewActivity;
 
 
 public class ActionUpdateUserList implements ClientActionInterface {
-
     @Override
     public void execute(AppCompatActivity activity, String clientMessage) {
 

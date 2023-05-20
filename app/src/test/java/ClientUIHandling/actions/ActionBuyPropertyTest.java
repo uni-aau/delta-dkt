@@ -16,7 +16,7 @@ import delta.dkt.logic.structure.GameMap;
 import delta.dkt.logic.structure.Player;
 import delta.dkt.logic.structure.Property;
 
-class PropertyBoughtActionTest {
+class ActionBuyPropertyTest {
 
     @Test
     void execute() {

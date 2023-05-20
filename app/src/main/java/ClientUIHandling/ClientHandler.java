@@ -1,11 +1,15 @@
 package ClientUIHandling;
 
+import ClientUIHandling.actions.ActionActivityBroadcast;
 import ClientUIHandling.actions.ActionBroadcastStartStats;
+import ClientUIHandling.actions.ActionGameEnd;
 import ClientUIHandling.actions.ActionGetIP;
 import ClientUIHandling.actions.ActionMove;
 import ClientUIHandling.actions.ActionPlayerLost;
+import ClientUIHandling.actions.ActionPlayerPunish;
 import ClientUIHandling.actions.ActionRentPaid;
-import ClientUIHandling.actions.ActionRollDice;
+import ClientUIHandling.actions.ActionInitRollDice;
+import ClientUIHandling.actions.ActionSetMoney;
 import ClientUIHandling.actions.ActionUpdateGameTime;
 
 import android.os.Handler;
@@ -19,8 +23,8 @@ import java.util.HashMap;
 
 import ClientUIHandling.actions.ActionStartGame;
 import ClientUIHandling.actions.ActionPlayerInit;
-import ClientUIHandling.actions.PropertyBoughtAction;
-import ClientUIHandling.actions.RollDiceReceive;
+import ClientUIHandling.actions.ActionBuyProperty;
+import ClientUIHandling.actions.ActionRollDiceReceive;
 import ClientUIHandling.actions.ActionAddUserToUserList;
 import ClientUIHandling.actions.ActionCloseGame;
 import ClientUIHandling.actions.ActionHostGame;
@@ -46,14 +50,19 @@ public class ClientHandler extends Handler {
         actionMap.put(Constants.PREFIX_PLAYER_RENTPAID, new ActionRentPaid());
         actionMap.put(Constants.PREFIX_PLAYER_LOST, new ActionPlayerLost());
         actionMap.put(Constants.PREFIX_GAME_START, new ActionStartGame());
-        actionMap.put(Constants.PREFIX_ROLL_DICE_REQUEST, new ActionRollDice());
+        actionMap.put(Constants.PREFIX_ROLL_DICE_REQUEST, new ActionInitRollDice());
         actionMap.put(Constants.PREFIX_INIT_PLAYERS, new ActionPlayerInit());
         actionMap.put(Constants.PREFIX_GAME_START_STATS, new ActionBroadcastStartStats());
         actionMap.put(Constants.PREFIX_GET_SERVER_TIME, new ActionUpdateGameTime());
         actionMap.put(Constants.PREFIX_PLAYER_MOVE, new ActionMove());
         actionMap.put(Constants.PREFIX_GET_IP, new ActionGetIP());
-        actionMap.put(Constants.PREFIX_ROLL_DICE_RECEIVE, new RollDiceReceive());
-        actionMap.put(Constants.PREFIX_PLAYER_PROPERTYBOUGHT, new PropertyBoughtAction());
+        actionMap.put(Constants.PREFIX_ROLL_DICE_RECEIVE, new ActionRollDiceReceive());
+        actionMap.put(Constants.PREFIX_PLAYER_PROPERTYBOUGHT, new ActionBuyProperty());
+        actionMap.put(Constants.PREFIX_ACTIVITY_BROADCAST, new ActionActivityBroadcast());
+        actionMap.put(Constants.PREFIX_END_GAME, new ActionGameEnd());
+        actionMap.put(Constants.PREFIX_SET_MONEY, new ActionSetMoney());
+        actionMap.put(Constants.PREFIX_PLAYER_CHEATED, new ActionPlayerPunish());
+
         actions.add(new ActionHostGame());
         actionPrefixes.add(Constants.PREFIX_HOST_NEW_GAME);
 
@@ -72,6 +81,10 @@ public class ClientHandler extends Handler {
 
     public static void setClient(NetworkClientConnection connection){
         client = connection;
+    }
+
+    public static NetworkClientConnection getClient() {
+        return client;
     }
 
     public static void sendMessageToServer(String message){

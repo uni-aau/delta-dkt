@@ -2,7 +2,6 @@ package delta.dkt.activities;
 
 
 import static ClientUIHandling.Constants.PREFIX_ADD_USER_TO_LIST;
-
 import static delta.dkt.activities.MainActivity.INTENT_PARAMETER;
 import static delta.dkt.activities.MainActivity.user;
 
@@ -11,7 +10,6 @@ import android.content.pm.ActivityInfo;
 import android.net.nsd.NsdServiceInfo;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
 import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -19,10 +17,8 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 
 import ClientUIHandling.ClientHandler;
-import ClientUIHandling.ClientLogic;
 import ClientUIHandling.Constants;
 import delta.dkt.R;
 import network2.DiscoveryListener;

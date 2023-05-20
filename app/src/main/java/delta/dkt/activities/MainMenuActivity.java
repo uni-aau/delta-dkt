@@ -1,6 +1,5 @@
 package delta.dkt.activities;
 
-import static ClientUIHandling.Constants.PREFIX_GET_IP;
 import static ClientUIHandling.Constants.PREFIX_HOST_NEW_GAME;
 import static delta.dkt.activities.MainActivity.INTENT_PARAMETER;
 import static delta.dkt.activities.MainActivity.logic;
@@ -21,7 +20,6 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
-import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -30,7 +28,6 @@ import ClientUIHandling.ClientLogic;
 import ClientUIHandling.Constants;
 import ServerLogic.ServerActionHandler;
 import delta.dkt.R;
-
 import network2.NetworkClientConnection;
 import network2.ServerNetworkClient;
 
@@ -82,7 +79,7 @@ public class MainMenuActivity extends AppCompatActivity {
         MainActivity.subscribeToLogic(Constants.MAINMENU_ACTIVITY_TYPE, this);
     }
 
-    public void establishServerConnection() throws InterruptedException, RuntimeException {
+    public void establishServerConnection() throws InterruptedException {
 
         ClientLogic.isTEST = false;
 
@@ -142,7 +139,7 @@ public class MainMenuActivity extends AppCompatActivity {
 
 
     // This Method will start with the Server and trigger the Action "HOST_NEW_GAME"
-    public void startServer(String serverName) throws InterruptedException, RuntimeException {
+    public void startServer(String serverName) throws InterruptedException {
         MainActivity.subscribeToLogic(Constants.PREFIX_SERVER, this);
         server = new ServerNetworkClient(this.getApplicationContext());
         server.start();
@@ -157,13 +154,7 @@ public class MainMenuActivity extends AppCompatActivity {
 
         Toast.makeText(MainMenuActivity.this, "Server " + serverName + " started on " + getTime(), Toast.LENGTH_SHORT).show();
 
-
-
         ServerActionHandler.triggerAction(PREFIX_HOST_NEW_GAME, user);
-
-
-
-
     }
 
 

@@ -23,7 +23,6 @@ public class TaskHandler {
             case 9: return new BankTaskField(9,b.getRandomBankTask());
             case 23: return new RiskTaskField(23,r.getRandomRiskTask());
             case 28: return new BankTaskField(28,b.getRandomBankTask());
-            case 33: return new BankTaskField(33,b.getRandomBankTask());
             case 38: return new RiskTaskField(38,r.getRandomRiskTask());
             default: return null;
         }

@@ -1,6 +1,5 @@
 package network2;
 
-import android.nfc.Tag;
 import android.util.Log;
 
 import java.io.BufferedReader;
@@ -90,13 +89,13 @@ public class NetworkConnection extends Thread { //execute each instance within a
             writer = new BufferedWriter(new OutputStreamWriter(this.socket.getOutputStream()));
 
             if (!MainMenuActivity.role) {
+                String clientID = reader.readLine();
                 System.out.println("WAITING FOR MY ID");
-                String id = reader.readLine();
-
-                GameViewActivity.clientID = Integer.parseInt(id.split(":")[1]);
+                GameViewActivity.clientID = Integer.parseInt(clientID.split(":")[1]);
             } else {
                 GameViewActivity.clientID = 1;
             }
+
             System.out.println(TAG + ":Waiting for incoming messages");
             while (true) {
                 //System.out.println("WAITING1");

@@ -6,9 +6,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentTransaction;
 
 import ClientUIHandling.Constants;
-import delta.dkt.fragments.BlockFragment;
-
 import delta.dkt.R;
+import delta.dkt.fragments.BlockFragment;
 
 public class PropertyListActivity extends AppCompatActivity {
 

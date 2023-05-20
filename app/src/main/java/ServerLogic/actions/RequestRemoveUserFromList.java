@@ -1,11 +1,8 @@
 package ServerLogic.actions;
 
 import static ClientUIHandling.Constants.LOBBYVIEW_ACTIVITY_TYPE;
-import static ClientUIHandling.Constants.MAINMENU_ACTIVITY_TYPE;
-import static ClientUIHandling.Constants.PREFIX_ADD_USER_TO_LIST;
 import static ClientUIHandling.Constants.PREFIX_REMOVE_USER_FROM_LIST;
 import static ServerLogic.ServerActionHandler.serverUserList;
-import static delta.dkt.activities.LobbyViewActivity.userList;
 
 import android.util.Log;
 

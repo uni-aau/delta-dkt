@@ -1,16 +1,17 @@
 package ClientUIHandling.actions;
 
-import static ClientUIHandling.Constants.PREFIX_REGISTER;
-
 import android.content.Intent;
 import android.util.Log;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.util.UUID;
+
 import ClientUIHandling.ClientActionInterface;
+import ClientUIHandling.Constants;
 import ServerLogic.ServerActionHandler;
 import delta.dkt.activities.GameViewActivity;
-import delta.dkt.activities.MainMenuActivity;
+import delta.dkt.logic.structure.Game;
 
 public class ActionStartGame implements ClientActionInterface {
     @Override
@@ -23,10 +24,5 @@ public class ActionStartGame implements ClientActionInterface {
         // Starts game and switches to game activity
         Intent switchToGameViewIntent = new Intent(activity, GameViewActivity.class);
         activity.startActivity(switchToGameViewIntent);
-
-        // Register players
-        /*if(MainMenuActivity.role) {
-            ServerActionHandler.triggerAction(PREFIX_REGISTER, 1);
-        }*/
     }
 }

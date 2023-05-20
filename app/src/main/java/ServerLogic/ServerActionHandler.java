@@ -4,7 +4,7 @@ import static ClientUIHandling.Constants.*;
 
 import ServerLogic.actions.ActionPayRent;
 import ServerLogic.actions.*;
-import ServerLogic.actions.PlayerLost;
+import ServerLogic.actions.RequestPlayerLost;
 import ServerLogic.actions.RequestPlayerMovement;
 import android.util.Log;
 
@@ -13,10 +13,9 @@ import java.util.HashMap;
 
 import ServerLogic.actions.RequestRollDicePerm;
 import ServerLogic.actions.RequestGameStartTime;
-import ServerLogic.actions.RegisterUser;
 import ServerLogic.actions.RequestPlayerInit;
 import ServerLogic.actions.RequestGameStart;
-import ServerLogic.actions.GetIp;
+import ServerLogic.actions.RequestGetIp;
 import ServerLogic.actions.RequestAddUserToUserList;
 import ServerLogic.actions.RequestCloseGame;
 import ServerLogic.actions.RequestHostGame;
@@ -43,16 +42,19 @@ public class ServerActionHandler {
         actionPrefixes = new ArrayList<>();
         actionMap = new HashMap<>();
         actionMap.put(PREFIX_PLAYER_PAYRENT, new ActionPayRent());
-        actionMap.put(PREFIX_PLAYER_LOST, new PlayerLost());
+        actionMap.put(PREFIX_PLAYER_LOST, new RequestPlayerLost());
         actionMap.put(PREFIX_GAME_START, new RequestGameStart());
-        actionMap.put(PREFIX_REGISTER, new RegisterUser());
         actionMap.put(PREFIX_INIT_PLAYERS, new RequestPlayerInit());
         actionMap.put(PREFIX_GAME_START_STATS, new RequestGameStartStats());
         actionMap.put(PREFIX_ROLL_DICE_REQUEST, new RequestRollDicePerm());
         actionMap.put(PREFIX_GET_SERVER_TIME, new RequestGameStartTime());
         actionMap.put(PREFIX_PLAYER_MOVE, new RequestPlayerMovement());
-        actionMap.put(PREFIX_GET_IP, new GetIp());
-        actionMap.put(PREFIX_PLAYER_BUYPROPERTY, new BuyPropertyAction());
+        actionMap.put(PREFIX_GET_IP, new RequestGetIp());
+        actionMap.put(PREFIX_PLAYER_BUYPROPERTY, new RequestBuyProperty());
+        actionMap.put(PREFIX_END_GAME, new GameEnd());
+        actionMap.put(PREFIX_PLAYER_CHEATED, new ActionPunish());
+        actionMap.put(PREFIX_START_CASH_VALUE, new RequestSetStartMoney());
+        actionMap.put(PREFIX_PAY_TAX, new RequestPayTax());
 
         actions.add(new RequestHostGame());
         actionPrefixes.add(PREFIX_HOST_NEW_GAME);
