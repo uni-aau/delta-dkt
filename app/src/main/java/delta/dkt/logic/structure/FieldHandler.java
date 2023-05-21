@@ -15,7 +15,7 @@ public class FieldHandler {
             if (TaskHandler.getTask(i) != null) fields.add(TaskHandler.getTask(i));
 
             if (i == 1) fields.add(new SpecialField(i, "Start"));
-            if (i == 11) fields.add(new SpecialField(i, "Gesetzes Verletzung"));
+            if (i == 11) fields.add(new GoToPrisonField(i, "Gesetzes Verletzung"));
             if (i == 21) fields.add(new SpecialField(i, "VermögensAbgabe"));
             if (i == 31) fields.add(new PrisonField(i, "Gefängnis"));
             if (i == 33) fields.add(new SpecialField(i, "Steuerabgabe"));
