@@ -14,6 +14,7 @@ import ClientUIHandling.actions.ActionUpdateGameTime;
 
 import android.os.Handler;
 import android.os.Message;
+import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -115,12 +116,12 @@ public class ClientHandler extends Handler {
 
         String[] actionSplit = message.split("[: ]");
         if (actionMap.containsKey(actionSplit[0])) {
-            System.out.println("TRIGGERED "+actionSplit[0]);
+            Log.i("INFO","TRIGGERED "+actionSplit[0]);
             actionMap.get(actionSplit[0]).execute(UIActivity, message);
             return;
         }
 
-        System.err.println(actionSplit[0]+" NOT FOUND");
+        Log.e("ERROR",actionSplit[0] + " NOT FOUND");
 
     }
 
