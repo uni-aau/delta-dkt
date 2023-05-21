@@ -2,7 +2,7 @@ package ServerLogic.actions;
 
 import static ClientUIHandling.Constants.LOBBYVIEW_ACTIVITY_TYPE;
 import static ClientUIHandling.Constants.PREFIX_REMOVE_USER_FROM_LIST;
-import static ServerLogic.ServerActionHandler.serverUserList;
+
 
 import android.util.Log;
 
@@ -20,6 +20,7 @@ public class RequestRemoveUserFromList implements ServerActionInterface {
     }
 
     public void removeUserFromList (String user) {
-        serverUserList.removeAll(List.of(user));
+        //serverUserList.removeAll(List.of(user));
+        //TODO REMOVE IN GAME.PLAYERS
     }
 }

@@ -1,5 +1,8 @@
 package network2;
 
+import static ClientUIHandling.Constants.PREFIX_ADD_USER_TO_LIST;
+import static delta.dkt.activities.MainActivity.user;
+
 import android.util.Log;
 
 import java.io.BufferedReader;
@@ -12,6 +15,7 @@ import java.net.Socket;
 import java.util.ArrayDeque;
 
 import ClientUIHandling.ClientLogic;
+import ClientUIHandling.Constants;
 import delta.dkt.activities.GameViewActivity;
 import delta.dkt.activities.MainMenuActivity;
 
@@ -92,6 +96,7 @@ public class NetworkConnection extends Thread { //execute each instance within a
                 String clientID = reader.readLine();
                 System.out.println("WAITING FOR MY ID");
                 GameViewActivity.clientID = Integer.parseInt(clientID.split(":")[1]);
+                send(Constants.PREFIX_SERVER+":"+PREFIX_ADD_USER_TO_LIST+" "+user+" "+GameViewActivity.clientID);
             } else {
                 GameViewActivity.clientID = 1;
             }
