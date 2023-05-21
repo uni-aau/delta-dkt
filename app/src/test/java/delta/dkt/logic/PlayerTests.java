@@ -428,6 +428,18 @@ class PlayerTests {
 
         return dummy;
     }
+
+    @Test
+    void testSetGoToPrisonField() {
+        player.setGoToPrisonField(true);
+        assertTrue(player.getGoToPrisonField());
+    }
+
+    @Test
+    void testSetYouGetOutOfPrisonCard() {
+        player.setYouGetOutOfPrisonCard(true);
+        assertTrue(player.getYouGetOutOfPrisonCard());
+    }
 }
 
 
