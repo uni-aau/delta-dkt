@@ -27,10 +27,10 @@ public class PropertyListActivity extends AppCompatActivity {
     protected void sendDataToFragment() {
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
 
-        BlockFragment blockNumber1 = BlockFragment.newInstance("1", "Testprop", 5, "Player1", 1);
-        BlockFragment blockNumber2 = BlockFragment.newInstance("2", "Testprop2", 10, "Player2", 2);
-        BlockFragment blockNumber3 = BlockFragment.newInstance("3", "Testprop3", 100, "Player3", 3);
-        BlockFragment blockNumber4 = BlockFragment.newInstance("4", "Testprop4", 5, "Player4", 4);
+        BlockFragment blockNumber1 = BlockFragment.newInstance("1", "Testprop", 5, 1, "Player1", 1);
+        BlockFragment blockNumber2 = BlockFragment.newInstance("2", "Testprop2", 10, 2, "Player2", 2);
+        BlockFragment blockNumber3 = BlockFragment.newInstance("3", "Testprop3", 100, 3, "Player3", 3);
+        BlockFragment blockNumber4 = BlockFragment.newInstance("4", "Testprop4", 5, 4, "Player4", 4);
 
         transaction.add(R.id.linearLayout_Fragments, blockNumber1);
         transaction.add(R.id.linearLayout_Fragments, blockNumber2);
