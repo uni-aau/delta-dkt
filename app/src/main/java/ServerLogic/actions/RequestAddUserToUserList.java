@@ -16,7 +16,7 @@ public class RequestAddUserToUserList implements ServerActionInterface {
     public void execute(ServerNetworkClient server, Object parameters) {
         Log.d("[SERVER]:Add_User_To_UserList", "Add User to UserList Request received. Parameter: " + parameters);
         addUserToUserList(parameters.toString());
-        System.out.println("SERVERLIST HAS SIZE" + serverUserList.size());
+        Log.i("INFO","SERVERLIST HAS SIZE" + serverUserList.size());
 
         ServerActionHandler.triggerAction(PREFIX_UPDATE_USER_LIST, serverUserList);
         // server.broadcast(MAINMENU_ACTIVITY_TYPE, PREFIX_ADD_USER_TO_LIST, new String[]{(String) parameters});
