@@ -55,6 +55,9 @@ public class ServerActionHandler {
         actionMap.put(PREFIX_PLAYER_CHEATED, new ActionPunish());
         actionMap.put(PREFIX_START_CASH_VALUE, new RequestSetStartMoney());
         actionMap.put(PREFIX_PAY_TAX, new RequestPayTax());
+        actionMap.put(PREFIX_HAS_PRISONCARD, new ActionPrison());
+        actionMap.put(PREFIX_GO_TO_PRISON_FIELD, new ActionGoToPrison());
+        actionMap.put(PREFIX_PRISON, new ActionPrison());
 
         actions.add(new RequestHostGame());
         actionPrefixes.add(PREFIX_HOST_NEW_GAME);

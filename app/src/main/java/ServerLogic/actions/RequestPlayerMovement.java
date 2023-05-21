@@ -45,12 +45,20 @@ public class RequestPlayerMovement implements ServerActionInterface {
 
 
         Player requestPlayer = Game.getPlayers().get(clientID);
+
+        if(requestPlayer.isSuspended()){
+            requestPlayer.reduceSuspension();
+            Log.d(tag, String.format("Aborting move request for client: (%s), because he is in prison", clientID));
+            //server.broadcast();
+            return;
+        }
+
         int currentPosition = requestPlayer.getPosition().getLocation();
 
         int steps = useDice(1, 6);
         int destination = (currentPosition + steps) % maxFields;
         if (destination == 0) destination++;
-
+        //destination = 11;
         //* detailed logs
         Log.d(tag, String.format("Moving player (id=%s) to (pos=%s)!", clientID, destination));
         Log.d(tag + "-detail", String.format("\told position: (pos=%s), new position: (pos=%s), steps: (steps=%s)", currentPosition, destination, steps));
