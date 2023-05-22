@@ -53,4 +53,5 @@ public class Constants {
     public static final String PREFIX_PLAYER_REPORTED_WRONGLY = "REPORTED_WRONGLY";
     public static final String PREFIX_GO_TO_PRISON_FIELD = "Go_To_Prison";
     public static final String PREFIX_PRISON = "You_Are_In_Prison";
+    public static final String PREFIX_HAS_PRISONCARD = "Player_Has_A_YouGetOutOfPrison_Card";
 }
