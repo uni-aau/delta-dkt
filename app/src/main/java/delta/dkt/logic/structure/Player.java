@@ -1,6 +1,5 @@
 package delta.dkt.logic.structure;
 
-import static ClientUIHandling.Constants.PREFIX_PLAYER_BUYPROPERTY;
 import static ClientUIHandling.Constants.PREFIX_PLAYER_PAYRENT;
 
 import java.util.ArrayList;
@@ -23,8 +22,10 @@ public class Player {
     private int cash = Config.INITIAL_CASH;
     private ArrayList<Property> properties = new ArrayList<>();
 
-    //? May be used to check whether a player is timeoutet, e.g. prison, or not.
-    private int suspention = 0;
+    private int outOfJailFreeCards = 0;
+
+    //? May be used to check whether a player was timed out, e.g. prison, or not.
+    private int suspension = 0;
 
     public Player(String nickname) {
         this.nickname = nickname;
@@ -108,28 +109,28 @@ public class Player {
      * Will time out this player from moving for a given amount of rounds.
      */
     public void setSuspension(int rounds) {
-        this.suspention = rounds;
+        this.suspension = rounds;
     }
 
     /**
      * @return Returns whether the player is prohibited from moving, thus has a suspension / timeout.
      */
     public boolean isSuspended() {
-        return this.suspention > 0;
+        return this.suspension > 0;
     }
 
     /**
      * This function may be called when a player is supposed to move, but is prohibited from doing so, thus the remaining amount of suspended rounds, can be decreased by 1.
      */
     public void reduceSuspension() {
-        if (this.suspention > 0) this.suspention--;
+        if (this.suspension > 0) this.suspension--;
     }
 
     /**
      * This function may be called when the player uses his 'jail-free-card' or receives any other action, that removes his suspension / timeout.
      */
     public void resetSuspension() {
-        this.suspention = 0;
+        this.suspension = 0;
     }
 
     //? Positioning
@@ -218,7 +219,7 @@ public class Player {
     }
 
     public int getSuspention() {
-        return suspention;
+        return suspension;
     }
 
     public void payRentTo(Player recipient, int amount) {
