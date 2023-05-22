@@ -15,12 +15,7 @@ public class ActionPrison implements ServerActionInterface {
     @Override
     public void execute(ServerNetworkClient server, Object parameters) {
         {
-            Log.i("INFO", "TRIGGERED ACTION");
             int id = (int) parameters;
-            if (!Game.getPlayers().containsKey(id)) {
-                Log.e("ERROR", "Wrong player id: " + id);
-                return;
-            }
 
             Player player = Game.getPlayers().get(id);
 
