@@ -69,9 +69,7 @@ public class GameViewActivity extends AppCompatActivity {
         }
 
         Button btnReportCheat = findViewById(R.id.btnReportCheater);
-        btnReportCheat.setOnClickListener(view -> {
-            createSelectionPopup();
-        });
+        btnReportCheat.setOnClickListener(view -> createSelectionPopup());
 
         registerLightSensor();
         displayPlayers(players);
