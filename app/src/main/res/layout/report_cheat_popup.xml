@@ -13,7 +13,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             android:layout_marginTop="4dp"
-            android:id="@+id/cheatContrraint"
+            android:id="@+id/cheatConstraint"
             android:background="@drawable/pop_up_background">
 
         <TextView

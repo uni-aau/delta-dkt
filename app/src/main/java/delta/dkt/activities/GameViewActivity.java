@@ -191,7 +191,7 @@ public class GameViewActivity extends AppCompatActivity {
 
     @SuppressLint("DefaultLocale")
     public void createSelectionPopup() {
-        ConstraintLayout popUpConstraintLayout = findViewById(R.id.cheatContrraint);
+        ConstraintLayout popUpConstraintLayout = findViewById(R.id.cheatConstraint);
         View view = LayoutInflater.from(this).inflate(R.layout.report_cheat_popup, popUpConstraintLayout);
 
 
