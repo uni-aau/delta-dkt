@@ -3,21 +3,23 @@ package delta.dkt.activities;
 import static ClientUIHandling.Constants.*;
 import static delta.dkt.R.id.imageView;
 
+import ClientUIHandling.handlers.notifications.SnackBarHandler;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.drawable.ColorDrawable;
 import android.hardware.Sensor;
-import android.hardware.SensorEvent;
-import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import ClientUIHandling.ClientHandler;
@@ -25,9 +27,14 @@ import ClientUIHandling.Config;
 import ClientUIHandling.Constants;
 import ClientUIHandling.handlers.positioning.PositionHandler;
 import ServerLogic.ServerActionHandler;
+import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import delta.dkt.R;
 import delta.dkt.logic.structure.Game;
 import delta.dkt.sensors.LightSensor;
+
+import java.util.ArrayList;
 
 
 public class GameViewActivity extends AppCompatActivity {
@@ -37,6 +44,8 @@ public class GameViewActivity extends AppCompatActivity {
     private SensorManager manager = null;
     private LightSensor lightSensorListener = new LightSensor();
     private Sensor lightSensor = null;
+    public int cheatSelection = -1;
+
     Button btnDice;
     ImageView map;
 
@@ -59,12 +68,14 @@ public class GameViewActivity extends AppCompatActivity {
             ServerActionHandler.triggerAction(PREFIX_GAME_START_STATS, String.valueOf(Game.getPlayers().size())); // Update player stats
         }
 
+        Button btnReportCheat = findViewById(R.id.btnReportCheater);
+        btnReportCheat.setOnClickListener(view -> createSelectionPopup());
 
         registerLightSensor();
         displayPlayers(players);
         handleMovementRequests();
 
-        if(Config.Skip && Config.DEBUG){
+        if (Config.Skip && Config.DEBUG) {
             btnPropertyInfos.performClick();
         }
     }
@@ -76,7 +87,7 @@ public class GameViewActivity extends AppCompatActivity {
 
     private void registerLightSensor() {
         manager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
-        if(lightSensor == null) lightSensor = manager.getDefaultSensor(Sensor.TYPE_LIGHT);
+        if (lightSensor == null) lightSensor = manager.getDefaultSensor(Sensor.TYPE_LIGHT);
         manager.registerListener(lightSensorListener, lightSensor, SensorManager.SENSOR_DELAY_FASTEST);
     }
 
@@ -173,5 +184,44 @@ public class GameViewActivity extends AppCompatActivity {
             Log.e("[UI] Action Error", String.format("Error - Less player markers (%d) than players (%d)!", Config.MAX_CLIENTS, count));
             Toast.makeText(this, "There was an error while adding another player - Check error logs!", Toast.LENGTH_SHORT).show();
         }
+    }
+
+    @SuppressLint("DefaultLocale")
+    public void createSelectionPopup() {
+        ConstraintLayout popUpConstraintLayout = findViewById(R.id.cheatConstraint);
+        View view = LayoutInflater.from(this).inflate(R.layout.report_cheat_popup, popUpConstraintLayout);
+
+
+        RecyclerView recyclerView = view.findViewById(R.id.rececylerCheatPlayer);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        ArrayList<String> names = new ArrayList<>();
+        names.add("Player1");
+        names.add("Player2");
+        names.add("Player3");
+        names.add("Player4");
+        names.add("Player5");
+        names.add("Player6");
+        CheatUserAdapter adapter = new CheatUserAdapter(this, names);
+        recyclerView.setAdapter(adapter);
+
+        Button submitCheater = view.findViewById(R.id.btnSubmitCheater);
+        Button cancelCheater = view.findViewById(R.id.btnCancelCheater);
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setView(view);
+        final AlertDialog alertDialog = builder.create();
+
+        submitCheater.setOnClickListener(view1 -> {
+            Log.w("Report-Cheater", "A cheater has been reported! => " + (this.cheatSelection + 1));
+            SnackBarHandler.createSnackbar(map, String.format("Successfully reported Player%d as a cheater!", (this.cheatSelection + 1))).show();
+            alertDialog.dismiss();
+        });
+
+        cancelCheater.setOnClickListener(view1 -> alertDialog.dismiss());
+
+        if (alertDialog.getWindow() != null) {
+            alertDialog.getWindow().setBackgroundDrawable(new ColorDrawable(0));
+        }
+        alertDialog.show();
     }
 }
