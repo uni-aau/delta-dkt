@@ -48,7 +48,7 @@
     <string name="EnterMaxPlayers">Please enter Max Players:</string>
     <string name="Time">Time</string>
     <string name="Rounds">Rounds</string>
-    <string name="enterRoundsOrTime">Enter Rounds Or Time</string>
+    <string name="enterRoundsOrTime">Enter Rounds Or Minutes</string>
 
 
     <string name="NSDServiceName">delta_dkt</string>
