@@ -68,11 +68,14 @@ public class GameViewActivity extends AppCompatActivity {
             ServerActionHandler.triggerAction(PREFIX_GAME_START_STATS, String.valueOf(Game.getPlayers().size())); // Update player stats
         }
 
+        Button btnReportCheat = findViewById(R.id.btnReportCheater);
+        btnReportCheat.setOnClickListener(view -> {
+            createSelectionPopup();
+        });
 
         registerLightSensor();
         displayPlayers(players);
         handleMovementRequests();
-        createSelectionPopup();
 
         if (Config.Skip && Config.DEBUG) {
             btnPropertyInfos.performClick();
