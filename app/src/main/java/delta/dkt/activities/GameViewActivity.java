@@ -2,7 +2,6 @@ package delta.dkt.activities;
 
 import static ClientUIHandling.Constants.*;
 import static delta.dkt.R.id.imageView;
-import static delta.dkt.activities.MainMenuActivity.role;
 
 import ClientUIHandling.handlers.notifications.SnackBarHandler;
 import android.annotation.SuppressLint;
@@ -10,8 +9,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
 import android.hardware.Sensor;
-import android.hardware.SensorEvent;
-import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.util.Log;
@@ -19,7 +16,6 @@ import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
