@@ -49,6 +49,16 @@
     <string name="Time">Time</string>
     <string name="Rounds">Rounds</string>
     <string name="enterRoundsOrTime">Enter Rounds Or Minutes</string>
+    <string name="AwardCeremony">Award Ceremony</string>
+    <string name="FirstPlace">First Place</string>
+    <string name="SecondPlace">Second Place</string>
+    <string name="ThirdPlace">Third Place</string>
+    <string name="Wealth">Wealth</string>
+
+
+
+
+
 
 
     <string name="NSDServiceName">delta_dkt</string>
