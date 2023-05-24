@@ -191,6 +191,18 @@ public class GameViewActivity extends AppCompatActivity {
         View view = LayoutInflater.from(this).inflate(R.layout.report_cheat_popup, popUpConstraintLayout);
 
 
+        RecyclerView recyclerView = view.findViewById(R.id.rececylerCheatPlayer);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        ArrayList<String> names = new ArrayList<>();
+        names.add("Player1");
+        names.add("Player2");
+        names.add("Player3");
+        names.add("Player4");
+        names.add("Player5");
+        names.add("Player6");
+        CheatUserAdapter adapter = new CheatUserAdapter(names);
+        recyclerView.setAdapter(adapter);
+
         Button submitCheater = view.findViewById(R.id.btnSubmitCheater);
         Button cancelCheater = view.findViewById(R.id.btnCancelCheater);
 
