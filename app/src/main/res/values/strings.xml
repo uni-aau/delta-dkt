@@ -65,6 +65,7 @@
 
 
     <!-- #START Cheating Texts -->
+    <string name="cheat_open_report_menu">Report Cheater</string>
 
     <!-- ##START Cheating-ReportMenu Texts -->
     <string name="cheat_popup_selection_menu_heading">Report Menu</string>
