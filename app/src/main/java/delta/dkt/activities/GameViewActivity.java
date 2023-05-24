@@ -2,22 +2,27 @@ package delta.dkt.activities;
 
 import static ClientUIHandling.Constants.*;
 import static delta.dkt.R.id.imageView;
+import static delta.dkt.activities.MainMenuActivity.role;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.drawable.ColorDrawable;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import ClientUIHandling.ClientHandler;
@@ -25,9 +30,14 @@ import ClientUIHandling.Config;
 import ClientUIHandling.Constants;
 import ClientUIHandling.handlers.positioning.PositionHandler;
 import ServerLogic.ServerActionHandler;
+import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import delta.dkt.R;
 import delta.dkt.logic.structure.Game;
 import delta.dkt.sensors.LightSensor;
+
+import java.util.ArrayList;
 
 
 public class GameViewActivity extends AppCompatActivity {
@@ -63,8 +73,9 @@ public class GameViewActivity extends AppCompatActivity {
         registerLightSensor();
         displayPlayers(players);
         handleMovementRequests();
+        createSelectionPopup();
 
-        if(Config.Skip && Config.DEBUG){
+        if (Config.Skip && Config.DEBUG) {
             btnPropertyInfos.performClick();
         }
     }
@@ -76,7 +87,7 @@ public class GameViewActivity extends AppCompatActivity {
 
     private void registerLightSensor() {
         manager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
-        if(lightSensor == null) lightSensor = manager.getDefaultSensor(Sensor.TYPE_LIGHT);
+        if (lightSensor == null) lightSensor = manager.getDefaultSensor(Sensor.TYPE_LIGHT);
         manager.registerListener(lightSensorListener, lightSensor, SensorManager.SENSOR_DELAY_FASTEST);
     }
 
@@ -173,5 +184,29 @@ public class GameViewActivity extends AppCompatActivity {
             Log.e("[UI] Action Error", String.format("Error - Less player markers (%d) than players (%d)!", Config.MAX_CLIENTS, count));
             Toast.makeText(this, "There was an error while adding another player - Check error logs!", Toast.LENGTH_SHORT).show();
         }
+    }
+
+    public void createSelectionPopup() {
+        ConstraintLayout popUpConstraintLayout = findViewById(R.id.cheatContrraint);
+        View view = LayoutInflater.from(this).inflate(R.layout.report_cheat_popup, popUpConstraintLayout);
+
+
+        Button submitCheater = view.findViewById(R.id.btnSubmitCheater);
+        Button cancelCheater = view.findViewById(R.id.btnCancelCheater);
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setView(view);
+        final AlertDialog alertDialog = builder.create();
+
+        submitCheater.setOnClickListener(view1 -> {
+
+        });
+
+        cancelCheater.setOnClickListener(view1 -> alertDialog.dismiss());
+
+        if (alertDialog.getWindow() != null) {
+            alertDialog.getWindow().setBackgroundDrawable(new ColorDrawable(0));
+        }
+        alertDialog.show();
     }
 }
