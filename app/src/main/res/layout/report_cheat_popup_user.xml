@@ -7,25 +7,34 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="38dp" app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toTopOf="parent"
-            android:layout_marginTop="4dp" app:layout_constraintHorizontal_bias="0.0"
+            android:layout_height="38dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginTop="4dp"
+            app:layout_constraintHorizontal_bias="0.0"
             android:id="@+id/contrainCheatUser">
 
         <ImageView
                 android:layout_width="29dp"
-                android:layout_height="28dp" app:srcCompat="@drawable/circle_blue"
+                android:layout_height="28dp"
+                app:srcCompat="@drawable/circle_blue"
                 android:id="@+id/imgCheatUser"
-                app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent" android:layout_marginStart="8dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:layout_marginStart="8dp"
         />
         <TextView
                 android:text="Player Name"
                 android:layout_width="236dp"
-                android:layout_height="19dp" android:id="@+id/lblCheatUserName"
+                android:layout_height="19dp"
+                android:id="@+id/lblCheatUserName"
                 app:layout_constraintStart_toEndOf="@+id/imgCheatUser"
                 app:layout_constraintTop_toTopOf="@+id/imgCheatUser"
-                app:layout_constraintBottom_toBottomOf="@+id/imgCheatUser" android:layout_marginStart="12dp"
-                app:layout_constraintEnd_toEndOf="parent" app:layout_constraintHorizontal_bias="0.0"/>
+                app:layout_constraintBottom_toBottomOf="@+id/imgCheatUser"
+                android:layout_marginStart="12dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
