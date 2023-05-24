@@ -4,6 +4,7 @@ import static ClientUIHandling.Constants.*;
 import static delta.dkt.R.id.imageView;
 import static delta.dkt.activities.MainMenuActivity.role;
 
+import ClientUIHandling.handlers.notifications.SnackBarHandler;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
@@ -188,6 +189,7 @@ public class GameViewActivity extends AppCompatActivity {
         }
     }
 
+    @SuppressLint("DefaultLocale")
     public void createSelectionPopup() {
         ConstraintLayout popUpConstraintLayout = findViewById(R.id.cheatContrraint);
         View view = LayoutInflater.from(this).inflate(R.layout.report_cheat_popup, popUpConstraintLayout);
@@ -213,7 +215,9 @@ public class GameViewActivity extends AppCompatActivity {
         final AlertDialog alertDialog = builder.create();
 
         submitCheater.setOnClickListener(view1 -> {
-
+            Log.w("Report-Cheater", "A cheater has been reported! => " + (this.cheatSelection + 1));
+            SnackBarHandler.createSnackbar(map, String.format("Successfully reported Player%d as a cheater!", (this.cheatSelection + 1))).show();
+            alertDialog.dismiss();
         });
 
         cancelCheater.setOnClickListener(view1 -> alertDialog.dismiss());
