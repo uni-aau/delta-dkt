@@ -28,7 +28,7 @@
             app:layout_constraintHorizontal_bias="0.528"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:srcCompat="@drawable/dkttestmap"
+            app:srcCompat="@drawable/dktmap"
             android:contentDescription="@string/gameview_image_description"
     />
 
@@ -39,7 +39,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintEnd_toStartOf="@+id/imageView"
-            android:src="@drawable/dkttestmap"
+            android:src="@drawable/dktmap"
             android:text="@string/general_information"
             android:textStyle="bold"
             android:textSize="16sp"

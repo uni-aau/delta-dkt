@@ -52,7 +52,9 @@ public class ServerActionHandler {
         actionMap.put(PREFIX_GET_IP, new RequestGetIp());
         actionMap.put(PREFIX_PLAYER_BUYPROPERTY, new RequestBuyProperty());
         actionMap.put(PREFIX_END_GAME, new GameEnd());
+        actionMap.put(PREFIX_PLAYER_CHEATED, new ActionPunish());
         actionMap.put(PREFIX_START_CASH_VALUE, new RequestSetStartMoney());
+        actionMap.put(PREFIX_PAY_TAX, new RequestPayTax());
 
         actions.add(new RequestHostGame());
         actionPrefixes.add(PREFIX_HOST_NEW_GAME);
@@ -74,7 +76,8 @@ public class ServerActionHandler {
     public static void triggerAction(String name, Object parameters){
         if(server == null){
             //Use a java class here to avoid not-mocked exception when a test reaches here.
-           System.err.println("SERVER NOT SET");
+            //But due to sonarcloud, we simply do not log it instead...
+            //System.err.println("SERVER NOT SET");
             return;
         }
         //Still include old registration handling for legacy compatibility

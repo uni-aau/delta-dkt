@@ -45,11 +45,5 @@ public class ActionMove implements ClientActionInterface {
 
         var snack = SnackBarHandler.createSnackbar(activity.findViewById(R.id.imageView), result, 2000, true, "#6481d5", null);
         snack.show();
-
-        /*if(MainMenuActivity.role) {
-            ServerActionHandler.triggerAction(Constants.PREFIX_ROLL_DICE_REQUEST, clientID); // Sets the next player to roll the dice
-        }else{
-            ClientHandler.sendMessageToServer(Constants.GAMEVIEW_ACTIVITY_TYPE+":"+Constants.PREFIX_ROLL_DICE_REQUEST+" "+clientID);
-        }*/
     }
 }

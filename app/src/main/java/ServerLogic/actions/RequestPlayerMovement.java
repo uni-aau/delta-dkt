@@ -60,9 +60,6 @@ public class RequestPlayerMovement implements ServerActionInterface {
         if(isCheating) steps = Config.CheatRange.getRandomValue(); //? super-dice
 
         int destination = (currentPosition + steps) % maxFields;
-        if (currentPosition + steps >= maxFields) {
-            ServerActionHandler.triggerAction(PREFIX_START_CASH_VALUE, clientID);
-        }
         if (destination == 0) destination++;
 
         //* detailed logs
@@ -78,5 +75,8 @@ public class RequestPlayerMovement implements ServerActionInterface {
         Log.d(tag, String.format("Sending out messages to %s players.", Game.getPlayers().size()));
         Log.d(tag, "");
         server.broadcast(GAMEVIEW_ACTIVITY_TYPE, PREFIX_PLAYER_MOVE, sendArgs);
+
+        //? Add start-cash for passing over the start field.
+        if (currentPosition > destination) ServerActionHandler.triggerAction(PREFIX_START_CASH_VALUE, clientID);
     }
 }
