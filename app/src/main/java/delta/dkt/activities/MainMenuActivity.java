@@ -79,7 +79,7 @@ public class MainMenuActivity extends AppCompatActivity {
 
         MainActivity.subscribeToLogic(Constants.MAINMENU_ACTIVITY_TYPE, this);
 
-        if(Config.Skip && Config.DEBUG) host.performClick();
+        if (Config.Skip && Config.DEBUG) host.performClick();
     }
 
     public void establishServerConnection() throws InterruptedException {
@@ -139,8 +139,8 @@ public class MainMenuActivity extends AppCompatActivity {
         }
         alertDialog.show();
 
-        if(Config.Skip && Config.DEBUG) {
-            editText.setText("Server1");
+        if (Config.Skip && Config.DEBUG) {
+            editText.setText(R.string.cheat_user_element_username_placeholder);
             okButton.performClick();
         }
     }

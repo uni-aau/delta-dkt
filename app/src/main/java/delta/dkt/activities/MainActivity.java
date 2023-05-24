@@ -49,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
             user = edtxt.getText().toString();
             if (user.isEmpty()) {
                 Toast.makeText(MainActivity.this, "Please enter Username", Toast.LENGTH_SHORT).show();
-            } else if (checkIfUsernameAlreadyExists(user)){
+            } else if (checkIfUsernameAlreadyExists(user)) {
                 Toast.makeText(MainActivity.this, "This Username already exists", Toast.LENGTH_SHORT).show();
             } else {
                 Toast.makeText(MainActivity.this, "Welcome " + user + "!", Toast.LENGTH_SHORT).show();
@@ -59,8 +59,8 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        if(Config.Skip && Config.DEBUG) {
-            edtxt.setText("Debug-User");
+        if (Config.Skip && Config.DEBUG) {
+            edtxt.setText(R.string.cheat_user_element_username_placeholder);
             enter.performClick();
         }
     }
@@ -72,7 +72,7 @@ public class MainActivity extends AppCompatActivity {
         logic.getHandler().put(type, new ClientHandler(activity));
     }
 
-    public boolean checkIfUsernameAlreadyExists (String newUsername){
+    public boolean checkIfUsernameAlreadyExists(String newUsername) {
         return (userList.contains(newUsername));
     }
 }

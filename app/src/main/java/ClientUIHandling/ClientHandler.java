@@ -16,7 +16,6 @@ import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
 
-import android.util.Log;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -98,11 +97,11 @@ public class ClientHandler extends Handler {
         client.sendMessage(activity+":"+prefix+" "+args);
     }
 
-    public static void sendMessageToServer(String activity, String prefix, Object[] _args){
+    public static void sendMessageToServer(String activity, String prefix, Object[] args){
         StringBuilder message = new StringBuilder();
-        for(Object element : _args) {
+        for(Object element : args) {
             message.append(element);
-            if(_args.length-1 != Arrays.asList(_args).indexOf(element)) message.append(";"); //? Splits arguments from another with ';'
+            if(args.length-1 != Arrays.asList(args).indexOf(element)) message.append(";"); //? Splits arguments from another with ';'
         }
         ClientHandler.sendMessageToServer(activity, prefix, message.toString());
     }
