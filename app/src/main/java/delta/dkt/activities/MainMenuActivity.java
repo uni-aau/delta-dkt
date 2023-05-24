@@ -39,6 +39,7 @@ public class MainMenuActivity extends AppCompatActivity {
 
     ServerNetworkClient server;
     NetworkClientConnection client;
+
     public static String username; // Todo - Move into Main Activity??
     public static boolean role;
 
@@ -74,6 +75,7 @@ public class MainMenuActivity extends AppCompatActivity {
 
         //---JOIN BUTTON---  (Everything that happens when join button is clicked)
         join.setOnClickListener(view -> {
+            role=false;
             Intent intent = new Intent(getApplicationContext(), FindHostViewActivity.class);
             intent.putExtra(INTENT_PARAMETER, newUser);
             startActivity(intent);
@@ -152,18 +154,18 @@ public class MainMenuActivity extends AppCompatActivity {
             if (serverName.isEmpty()) {
                 Toast.makeText(MainMenuActivity.this, "Please enter Servername", Toast.LENGTH_SHORT).show();
             } else if (tempMaxPlayers.isEmpty()) {
-                Toast.makeText(MainMenuActivity.this, "Please enter Max Players (2-6)", Toast.LENGTH_SHORT).show();
+                Toast.makeText(MainMenuActivity.this, "Please enter Max Players (1-6)", Toast.LENGTH_SHORT).show();
             } else if (!roundsButton.isChecked() && !timeButton.isChecked()) {
                 Toast.makeText(MainMenuActivity.this, "Please choose Round or Time Game", Toast.LENGTH_SHORT).show();
             } else if (tempGameRoundsOrTime.isEmpty()) {
-                Toast.makeText(MainMenuActivity.this, "Please enter Rounds/Time", Toast.LENGTH_SHORT).show();
+                Toast.makeText(MainMenuActivity.this, "Please enter Rounds or Time (Minutes)", Toast.LENGTH_SHORT).show();
             } else {
                 int timeOrRounds = Integer.parseInt(tempGameRoundsOrTime);
                 int maxPlayers = Integer.parseInt(tempMaxPlayers);
 
                 // Checking if inputs are valid - if so, it continues with else path ->
-                if (maxPlayers < 2 || maxPlayers > 6) {
-                    Toast.makeText(MainMenuActivity.this, "Choose players between 2 - 6", Toast.LENGTH_SHORT).show();
+                if (maxPlayers < Config.MIN_CLIENTS || maxPlayers > Config.MAX_CLIENTS) {
+                    Toast.makeText(MainMenuActivity.this, "Choose players between 1 - 6", Toast.LENGTH_SHORT).show();
                 } else if (timeOrRounds <= 0) {
                     Toast.makeText(MainMenuActivity.this, "Time/Rounds <= 0 not allowed", Toast.LENGTH_SHORT).show();
                 } else {
@@ -173,7 +175,7 @@ public class MainMenuActivity extends AppCompatActivity {
                             Config.ENDROUNDS = timeOrRounds;
                         }
                         if (isTimeSelected.get()) {
-                            Config.END_TIME = timeOrRounds;
+                            Config.END_TIME = timeOrRounds*60000;
                         }
                         startServer(serverName);
                     } catch (InterruptedException e) {
