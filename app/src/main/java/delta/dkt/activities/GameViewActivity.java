@@ -47,6 +47,8 @@ public class GameViewActivity extends AppCompatActivity {
     private SensorManager manager = null;
     private LightSensor lightSensorListener = new LightSensor();
     private Sensor lightSensor = null;
+    public int cheatSelection = -1;
+
     Button btnDice;
     ImageView map;
 
@@ -200,7 +202,7 @@ public class GameViewActivity extends AppCompatActivity {
         names.add("Player4");
         names.add("Player5");
         names.add("Player6");
-        CheatUserAdapter adapter = new CheatUserAdapter(names);
+        CheatUserAdapter adapter = new CheatUserAdapter(this, names);
         recyclerView.setAdapter(adapter);
 
         Button submitCheater = view.findViewById(R.id.btnSubmitCheater);
