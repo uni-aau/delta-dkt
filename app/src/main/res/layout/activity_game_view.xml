@@ -219,7 +219,7 @@
             android:visibility="invisible"
             android:contentDescription="@string/img_description_player1_text"/>
     <Button
-            android:text="Report Cheater"
+            android:text="@string/cheat_open_report_menu"
             android:layout_width="130dp"
             android:layout_height="55dp" android:id="@+id/btnReportCheater"
             android:background="@drawable/host_btn_background"
