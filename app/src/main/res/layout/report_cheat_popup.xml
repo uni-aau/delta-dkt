@@ -17,7 +17,7 @@
             android:background="@drawable/pop_up_background">
 
         <TextView
-                android:text="Report Menu"
+                android:text="@string/cheat_popup_selection_menu_heading"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/textView2"
@@ -30,7 +30,6 @@
                 android:textColor="@color/dkt_red"
                 android:textStyle="bold"/>
         <TextView
-                android:text="Select a cheating-player from the list down below to report him as such. Act with caution."
                 android:layout_width="289dp"
                 android:layout_height="27dp"
                 android:id="@+id/textView3"
@@ -40,7 +39,7 @@
                 android:textColor="@color/button_gray"
                 app:layout_constraintTop_toBottomOf="@+id/textView2"
                 android:layout_marginTop="8dp"
-                android:textAlignment="center"/>
+                android:textAlignment="center" android:text="@string/cheat_popup_selection_menu_description"/>
         <androidx.recyclerview.widget.RecyclerView
                 android:layout_width="284dp"
                 android:layout_height="223dp"
@@ -52,7 +51,7 @@
                 app:layout_constraintHorizontal_bias="0.555"
                 app:layout_constraintVertical_bias="0.565"/>
         <Button
-                android:text="Report"
+                android:text="@string/cheat_popup_selection_menu_submit_button"
                 android:layout_width="120dp"
                 android:layout_height="40dp"
                 android:id="@+id/btnSubmitCheater"
@@ -65,7 +64,7 @@
                 android:textSize="14sp"
                 app:layout_constraintHorizontal_bias="0.852"/>
         <Button
-                android:text="Cancel"
+                android:text="@string/cheat_popup_selection_menu_canel_button"
                 android:layout_width="120dp"
                 android:layout_height="40dp"
                 android:id="@+id/btnCancelCheater"
