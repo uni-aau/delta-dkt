@@ -7,6 +7,8 @@ public class Config {
     }
 
     public static  int MAX_CLIENTS = 6;
+
+    public static  int MIN_CLIENTS = 1;
     public static  int END_TIME = 3000000; // end_time in milliseconds
     public static final int INITIAL_CASH = 1000; // end_time in milliseconds
     public static final int START_CASH = 1000; //Number of rounds until the game ends
@@ -19,4 +21,6 @@ public class Config {
     public static final int punishmentForCheating = 500;
 
     public static final int punishmentForWrongReport = 200;
+
+
 }
