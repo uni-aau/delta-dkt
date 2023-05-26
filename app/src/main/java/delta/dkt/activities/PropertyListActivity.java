@@ -4,6 +4,10 @@ import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+import java.util.ArrayList;
 
 import ClientUIHandling.Constants;
 import delta.dkt.R;
@@ -25,19 +29,15 @@ public class PropertyListActivity extends AppCompatActivity {
 
     // Will be moved to server in the next sprint - Only test values
     protected void sendDataToFragment() {
-        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        ArrayList<String> messages = new ArrayList<>();
+        messages.add("Test1");
 
-        BlockFragment blockNumber1 = BlockFragment.newInstance("1", "Testprop", 5, 1, "Player1", 1);
-        BlockFragment blockNumber2 = BlockFragment.newInstance("2", "Testprop2", 10, 2, "Player2", 2);
-        BlockFragment blockNumber3 = BlockFragment.newInstance("3", "Testprop3", 100, 3, "Player3", 3);
-        BlockFragment blockNumber4 = BlockFragment.newInstance("4", "Testprop4", 5, 4, "Player4", 4);
+        PropListAdapter viewAdapter = new PropListAdapter(messages);
+        RecyclerView.LayoutManager viewManager = new LinearLayoutManager(this);
 
-        transaction.add(R.id.linearLayout_Fragments, blockNumber1);
-        transaction.add(R.id.linearLayout_Fragments, blockNumber2);
-        transaction.add(R.id.linearLayout_Fragments, blockNumber3);
-        transaction.add(R.id.linearLayout_Fragments, blockNumber4);
-
-        transaction.commit();
+        RecyclerView recView = findViewById(R.id.recyclerViewPropList);
+        recView.setLayoutManager(viewManager);
+        recView.setAdapter(viewAdapter);
     }
 
     protected void switchToGameActivity() {
