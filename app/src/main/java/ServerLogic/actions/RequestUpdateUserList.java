@@ -20,7 +20,7 @@ public class RequestUpdateUserList implements ServerActionInterface {
     public void execute(ServerNetworkClient server, Object parameters) {
         Log.d("[SERVER]:Update_UserList", "Update UserList Request received");
         if(!(parameters instanceof ArrayList)){
-            System.err.println("WRONG PARAMETER, EXPECTED ARRAYLIST");
+            Log.e("ERROR","WRONG PARAMETER, EXPECTED ARRAYLIST");
             return;
         }
         ArrayList<String> list = (ArrayList<String>) parameters;
