@@ -29,29 +29,21 @@
 
     </LinearLayout>
 
-    <ScrollView
-            android:id="@+id/scrollView"
+    <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerViewPropList"
             android:layout_width="0dp"
             android:layout_height="0dp"
             app:layout_constraintTop_toBottomOf="@id/headerLayout"
             app:layout_constraintBottom_toTopOf="@id/button_backToGame"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent">
-
-        <LinearLayout
-                android:id="@+id/linearLayout_Fragments"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical" />
-
-    </ScrollView>
+            app:layout_constraintEnd_toEndOf="parent"/>
 
     <Button
             android:id="@+id/button_backToGame"
             android:text="@string/text_backToGame"
             android:layout_width="116dp"
             android:layout_height="49dp"
-            app:layout_constraintTop_toBottomOf="@id/scrollView"
+            app:layout_constraintTop_toBottomOf="@id/recyclerViewPropList"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
