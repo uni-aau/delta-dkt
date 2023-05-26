@@ -10,6 +10,7 @@ import java.util.ArrayList;
 
 import ClientUIHandling.Constants;
 import delta.dkt.R;
+import delta.dkt.logic.structure.PropertyListElement;
 
 public class PropertyListActivity extends AppCompatActivity {
 
@@ -27,10 +28,10 @@ public class PropertyListActivity extends AppCompatActivity {
 
     // Will be moved to server in the next sprint - Only test values
     protected void sendDataToFragment() {
-        ArrayList<String> messages = new ArrayList<>();
-        messages.add("Test1");
+        ArrayList<PropertyListElement> messages = new ArrayList<>();
+        messages.add(new PropertyListElement("1", "Test1", "10", "50", "Test4", 4));
 
-        PropertyListAdapter viewAdapter = new PropertyListAdapter(messages);
+        PropertyListAdapter viewAdapter = new PropertyListAdapter(messages, this);
         RecyclerView.LayoutManager viewManager = new LinearLayoutManager(this);
 
         RecyclerView recView = findViewById(R.id.recyclerViewPropList);
