@@ -16,8 +16,8 @@ import delta.dkt.R;
 import delta.dkt.logic.structure.PropertyListElement;
 
 public class PropertyListAdapter extends RecyclerView.Adapter<PropertyListAdapter.CustomViewHolder> {
-    private ArrayList<PropertyListElement> propListElement;
-    private Context context;
+    private final ArrayList<PropertyListElement> propListElement;
+    private final Context context;
 
     public PropertyListAdapter(ArrayList<PropertyListElement> list, Context context) {
         this.propListElement = list;
@@ -72,15 +72,11 @@ public class PropertyListAdapter extends RecyclerView.Adapter<PropertyListAdapte
     }
 
     class CustomViewHolder extends RecyclerView.ViewHolder {
-        private View layoutView;
+        private final View layoutView;
 
         public CustomViewHolder(View layoutView) {
             super(layoutView);
             this.layoutView = layoutView;
-        }
-
-        public View getLayoutView() {
-            return layoutView;
         }
     }
 }
