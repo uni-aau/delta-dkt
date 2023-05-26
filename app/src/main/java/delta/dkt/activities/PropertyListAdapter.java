@@ -1,35 +1,74 @@
 package delta.dkt.activities;
 
+import android.content.Context;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 
-public class PropertyListAdapter extends RecyclerView.Adapter<PropertyListAdapter.CustomViewHolder> {
-    private ArrayList<String> list;
+import delta.dkt.R;
+import delta.dkt.logic.structure.PropertyListElement;
 
-    public PropertyListAdapter(ArrayList<String> list) {
-        this.list = list;
+public class PropertyListAdapter extends RecyclerView.Adapter<PropertyListAdapter.CustomViewHolder> {
+    private ArrayList<PropertyListElement> propListElement;
+    private Context context;
+
+    public PropertyListAdapter(ArrayList<PropertyListElement> list, Context context) {
+        this.propListElement = list;
+        this.context = context;
     }
 
 
     @NonNull
     @Override
     public CustomViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return null;
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.fragment_block, parent, false);
+        return new CustomViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull CustomViewHolder holder, int position) {
+        TextView propNumber = holder.layoutView.findViewById(R.id.textview_propNumber);
+        TextView propName = holder.layoutView.findViewById(R.id.textView_propName);
+        TextView price = holder.layoutView.findViewById(R.id.textView_price);
+        TextView propRent = holder.layoutView.findViewById(R.id.textView_propRent);
+        TextView ownedBy = holder.layoutView.findViewById(R.id.textView_ownedBy);
 
+        propName.setText(String.format(context.getString(R.string.text_propName), propListElement.get(position).getPropName()));
+        propNumber.setText(propListElement.get(position).getPropNumber());
+        price.setText(String.format(context.getString(R.string.text_price), propListElement.get(position).getPropPrice()));
+        propRent.setText(String.format(context.getString(R.string.text_rent), propListElement.get(position).getPropRent()));
+        ownedBy.setText(String.format(context.getString(R.string.text_ownedBy), propListElement.get(position).getPropOwner()));
+        
+        int propAmount = propListElement.get(position).getPropAmount();
+        setPropertyAmount(holder, propAmount);
+    }
+
+    private void setPropertyAmount(CustomViewHolder holder, int propPlotAmountInput) {
+        if (propPlotAmountInput > 4) // todo set Constant
+            throw new IllegalArgumentException("Too much inserted properties!");
+
+        ImageView[] properties = new ImageView[]{
+                holder.layoutView.findViewById(R.id.imageView_prop1),
+                holder.layoutView.findViewById(R.id.imageView_prop2),
+                holder.layoutView.findViewById(R.id.imageView_prop3),
+                holder.layoutView.findViewById(R.id.imageView_prop4)
+        };
+
+        for (int i = 0; i < propPlotAmountInput; i++) {
+            properties[i].setVisibility(View.VISIBLE);
+        }
     }
 
     @Override
     public int getItemCount() {
-        return 0;
+        return propListElement.size();
     }
 
     class CustomViewHolder extends RecyclerView.ViewHolder {
