@@ -3,7 +3,6 @@ package delta.dkt.activities;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -11,7 +10,6 @@ import java.util.ArrayList;
 
 import ClientUIHandling.Constants;
 import delta.dkt.R;
-import delta.dkt.fragments.BlockFragment;
 
 public class PropertyListActivity extends AppCompatActivity {
 
@@ -32,7 +30,7 @@ public class PropertyListActivity extends AppCompatActivity {
         ArrayList<String> messages = new ArrayList<>();
         messages.add("Test1");
 
-        PropListAdapter viewAdapter = new PropListAdapter(messages);
+        PropertyListAdapter viewAdapter = new PropertyListAdapter(messages);
         RecyclerView.LayoutManager viewManager = new LinearLayoutManager(this);
 
         RecyclerView recView = findViewById(R.id.recyclerViewPropList);

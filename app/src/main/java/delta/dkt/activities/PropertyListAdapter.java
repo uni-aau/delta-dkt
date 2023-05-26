@@ -8,10 +8,10 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 
-public class PropListAdapter extends RecyclerView.Adapter<PropListAdapter.CustomViewHolder> {
+public class PropertyListAdapter extends RecyclerView.Adapter<PropertyListAdapter.CustomViewHolder> {
     private ArrayList<String> list;
 
-    public PropListAdapter(ArrayList<String> list) {
+    public PropertyListAdapter(ArrayList<String> list) {
         this.list = list;
     }
 
