@@ -16,8 +16,8 @@ public class RequestPropertyListUpdate implements ServerActionInterface {
         ArrayList<Field> fields = Game.getMap().getFields();
 
         for (int i = 1; i < fields.size(); i++) {
-            Field field = fields.get(i);
-            if (Game.getMap().getField(i) instanceof Property) {
+            Field field = Game.getMap().getField(i);
+            if (field instanceof Property) {
                 Property property = (Property) field;
                 String owner = (property.getOwner() == null) ? "-/-" : property.getOwner().getNickname();
 
