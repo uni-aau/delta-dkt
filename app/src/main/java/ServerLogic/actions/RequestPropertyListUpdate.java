@@ -3,6 +3,7 @@ package ServerLogic.actions;
 import java.util.ArrayList;
 import java.util.Locale;
 
+import ClientUIHandling.Config;
 import ClientUIHandling.Constants;
 import ServerLogic.ServerActionInterface;
 import delta.dkt.logic.structure.Field;
@@ -22,11 +23,16 @@ public class RequestPropertyListUpdate implements ServerActionInterface {
                 Property property = (Property) field;
                 String owner = (property.getOwner() == null) ? "-/-" : property.getOwner().getNickname();
 
-                // Hint: Only a maximum of 1460-2000 letters can be sent via socket at once
-                String arg = String.format(Locale.getDefault(), "%d#%d#%d#%s#%d", i, property.getPrice(), property.getBaseRent(), owner, property.getHouses());
-                args.add(arg);
+                // Adds all properties or only properties with owner
+                boolean shouldAddProperty = (!Config.ONLY_SHOW_PROPERTY_WITH_OWNER) || (property.getOwner() != null);
+
+                if (shouldAddProperty) {
+                    // Hint: Only a maximum of 1460-2000 letters can be sent via socket at once
+                    String arg = String.format(Locale.getDefault(), "%d#%d#%d#%s#%d", i, property.getPrice(), property.getBaseRent(), owner, property.getHouses());
+                    args.add(arg);
+                }
             }
         }
-        server.broadcast(Constants.GAMEVIEW_ACTIVITY_TYPE, Constants.PREFIX_PROPLIST_UPDATE, args.toArray(new String[args.size()]));
+        if(args.size() != 0) server.broadcast(Constants.GAMEVIEW_ACTIVITY_TYPE, Constants.PREFIX_PROPLIST_UPDATE, args.toArray(new String[args.size()]));
     }
 }

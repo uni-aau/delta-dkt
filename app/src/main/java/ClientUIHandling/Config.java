@@ -16,6 +16,7 @@ public class Config {
     public static int STATIC_TAX_AMOUNT = 100; // Specify the static tax amount that would get removed from player cash
     // -1 for disabling MAX_TAX_AMOUNT check
     public static int MAX_TAX_AMOUNT = 1500; // Specify the max tax amount that would get removed from player cash
+    public static final boolean ONLY_SHOW_PROPERTY_WITH_OWNER = false;
 
     public static final int punishmentForCheating = 500;
 
