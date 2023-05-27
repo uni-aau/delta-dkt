@@ -1,9 +1,6 @@
 package ServerLogic.actions;
 
-import android.util.Log;
-
 import java.util.ArrayList;
-import java.util.Arrays;
 
 import ClientUIHandling.Constants;
 import ServerLogic.ServerActionInterface;
@@ -29,11 +26,9 @@ public class RequestPropertyListUpdate implements ServerActionInterface {
                     owner = property.getOwner().getNickname();
                 }
                 System.out.println("Prop: " + Game.getMap().getField(i).getName() + " / " + i);
-                args.add(String.format("%d#%s#%d", i, owner, property.getPrice()));
+                args.add(String.format("%d#%d#%d#%s#%d", i, property.getPrice(), property.getBaseRent(), owner, property.getHouses()));
             }
         }
-
-        Log.d("SERVER", "Test " + Arrays.toString(args.toArray(new String[args.size()])) + " Size:");
 
         server.broadcast(Constants.GAMEVIEW_ACTIVITY_TYPE, Constants.PREFIX_PROPLIST_UPDATE, args.toArray(new String[args.size()]));
 
