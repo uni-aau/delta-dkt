@@ -29,7 +29,7 @@ public class PropertyListAdapter extends RecyclerView.Adapter<PropertyListAdapte
     @NonNull
     @Override
     public CustomViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.fragment_block, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.recycler_view_property_element, parent, false);
         return new CustomViewHolder(view);
     }
 
