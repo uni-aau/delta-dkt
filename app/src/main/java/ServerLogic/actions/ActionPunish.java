@@ -5,6 +5,8 @@ import static ClientUIHandling.Constants.PREFIX_PLAYER_CHEATED;
 import static ClientUIHandling.Constants.PREFIX_PLAYER_LOST;
 import static ClientUIHandling.Constants.PREFIX_PLAYER_REPORTED_WRONGLY;
 
+import android.util.Log;
+
 import ClientUIHandling.Config;
 import ServerLogic.ServerActionHandler;
 import ServerLogic.ServerActionInterface;
@@ -16,16 +18,16 @@ public class ActionPunish implements ServerActionInterface {
     @Override
     public void execute(ServerNetworkClient server, Object parameters) {
         if(!(parameters instanceof Object[])){
-            System.err.println("WRONG PARAMETERS FOR ActionPunish, expected an array!");
+            Log.e("ERROR","WRONG PARAMETERS FOR ActionPunish, expected an array!");
             return;
         }
         Object[] parameterArray = (Object[]) parameters;
         if(!(parameterArray[0] instanceof Boolean)){
-            System.err.println("WRONG PARAMETERS FOR ActionPunish, expected boolean as first element!");
+            Log.e("ERROR","WRONG PARAMETERS FOR ActionPunish, expected boolean as first element!");
             return;
         }
         if(!(parameterArray[1] instanceof Integer)){
-            System.err.println("WRONG PARAMETERS FOR ActionPunish, expected integer as second element!");
+            Log.e("ERROR","WRONG PARAMETERS FOR ActionPunish, expected integer as second element!");
             return;
         }
 

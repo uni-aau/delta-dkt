@@ -21,7 +21,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/HostGame"
-            android:textColor="@color/black"
+            android:textColor="@color/blackSpecial"
             android:textSize="20sp"
             android:paddingTop="28dp"
             android:gravity="center_horizontal"

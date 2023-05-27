@@ -28,7 +28,7 @@ public class ActionPayRent implements ServerActionInterface {
 
 
             int fieldLocation = player.getPosition().getLocation();
-            System.out.println("LOCATION: "+fieldLocation);
+            Log.i("INFO","LOCATION: "+fieldLocation);
             if(Game.getMap().getField(fieldLocation) instanceof Property){
                 Property property = (Property) Game.getMap().getField(fieldLocation);
 
