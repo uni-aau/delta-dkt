@@ -13,7 +13,7 @@ import delta.dkt.R;
 import delta.dkt.logic.structure.PropertyListElement;
 
 public class PropertyListActivity extends AppCompatActivity {
-
+    public static ArrayList<PropertyListElement> messages;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,7 +28,7 @@ public class PropertyListActivity extends AppCompatActivity {
 
     // Will be moved to server in the next sprint - Only test values
     protected void sendDataToFragment() {
-        ArrayList<PropertyListElement> messages = new ArrayList<>();
+//        ArrayList<PropertyListElement> messages = new ArrayList<>();
         messages.add(new PropertyListElement("1", "Test1", "10", "50", "Test4", 4));
 
         PropertyListAdapter viewAdapter = new PropertyListAdapter(messages, this);
