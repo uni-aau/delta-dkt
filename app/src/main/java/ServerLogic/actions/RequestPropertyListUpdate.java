@@ -1,6 +1,7 @@
 package ServerLogic.actions;
 
 import java.util.ArrayList;
+import java.util.Locale;
 
 import ClientUIHandling.Constants;
 import ServerLogic.ServerActionInterface;
@@ -22,7 +23,7 @@ public class RequestPropertyListUpdate implements ServerActionInterface {
                 String owner = (property.getOwner() == null) ? "-/-" : property.getOwner().getNickname();
 
                 // Hint: Only a maximum of 1460-2000 letters can be sent via socket at once
-                String arg = String.format("%d#%d#%d#%s#%d", i, property.getPrice(), property.getBaseRent(), owner, property.getHouses());
+                String arg = String.format(Locale.getDefault(), "%d#%d#%d#%s#%d", i, property.getPrice(), property.getBaseRent(), owner, property.getHouses());
                 args.add(arg);
             }
         }
