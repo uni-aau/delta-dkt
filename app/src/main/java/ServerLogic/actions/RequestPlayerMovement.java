@@ -1,6 +1,7 @@
 package ServerLogic.actions;
 
 import static ClientUIHandling.Constants.GAMEVIEW_ACTIVITY_TYPE;
+import static ClientUIHandling.Constants.PREFIX_ACTIVITY_BROADCAST;
 import static ClientUIHandling.Constants.PREFIX_PLAYER_MOVE;
 import static ClientUIHandling.Constants.PREFIX_START_CASH_VALUE;
 
@@ -63,6 +64,9 @@ public class RequestPlayerMovement implements ServerActionInterface {
 
         Log.d(tag, String.format("Sending out messages to %s players.", Game.getPlayers().size()));
         Log.d(tag, "");
+
+        String activityMessage = steps == 1 ? "roll_dice_activity_sing_text" : "roll_dice_activity_plural_text";
+        server.broadcast(GAMEVIEW_ACTIVITY_TYPE, PREFIX_ACTIVITY_BROADCAST, new String[]{activityMessage, requestPlayer.getNickname(), String.valueOf(steps)});
         server.broadcast(GAMEVIEW_ACTIVITY_TYPE, PREFIX_PLAYER_MOVE, args);
 
 

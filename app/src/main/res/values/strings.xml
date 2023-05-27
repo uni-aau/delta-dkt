@@ -65,4 +65,6 @@
     <string name="pay_tax_activity_text">%s had to pay %s%% taxes. Old cash %s$, new cash %s$</string>
     <string name="pay_static_tax_activity_text">%s had to pay %s$ taxes. Old cash %s$, new cash %s$</string>
     <string name="game_started_acitivty_text">Game started!</string>
+    <string name="roll_dice_activity_sing_text">%s moved %s step!</string>
+    <string name="roll_dice_activity_plural_text">%s moved %s steps!</string>
 </resources>
