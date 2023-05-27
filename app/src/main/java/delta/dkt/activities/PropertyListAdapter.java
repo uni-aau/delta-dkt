@@ -39,24 +39,24 @@ public class PropertyListAdapter extends RecyclerView.Adapter<PropertyListAdapte
         TextView price = holder.layoutView.findViewById(R.id.textView_price);
         TextView propRent = holder.layoutView.findViewById(R.id.textView_propRent);
         TextView ownedBy = holder.layoutView.findViewById(R.id.textView_ownedBy);
-        TextView propListAmount = holder.layoutView.findViewById(R.id.textView_propertiesAmountTitle);
-        int propAmount = propListElement.get(position).getPropAmount();
+        TextView housesAmountView = holder.layoutView.findViewById(R.id.textView_propertiesAmountTitle);
+        int housesAmount = propListElement.get(position).getHousesAmount();
 
         propName.setText(String.format(context.getString(R.string.text_propName), propListElement.get(position).getPropName()));
         propNumber.setText(propListElement.get(position).getPropNumber());
         price.setText(String.format(context.getString(R.string.text_price), propListElement.get(position).getPropPrice()));
         propRent.setText(String.format(context.getString(R.string.text_rent), propListElement.get(position).getPropRent()));
         ownedBy.setText(String.format(context.getString(R.string.text_ownedBy), propListElement.get(position).getPropOwner()));
-        propListAmount.setText(String.format(context.getString(R.string.text_propertiesAmountTitle), propAmount));
+        housesAmountView.setText(String.format(context.getString(R.string.text_housesAmount), housesAmount));
 
-        setPropertyAmount(holder, propAmount);
+        setPropertyAmount(holder, housesAmount);
     }
 
     private void setPropertyAmount(CustomViewHolder holder, int propPlotAmountInput) {
         if (propPlotAmountInput > 4) // todo set Constant
-            throw new IllegalArgumentException("Too much inserted properties!");
+            throw new IllegalArgumentException("Too much inserted houses!");
 
-        ImageView[] properties = new ImageView[]{
+        ImageView[] houses = new ImageView[]{
                 holder.layoutView.findViewById(R.id.imageView_prop1),
                 holder.layoutView.findViewById(R.id.imageView_prop2),
                 holder.layoutView.findViewById(R.id.imageView_prop3),
@@ -64,10 +64,10 @@ public class PropertyListAdapter extends RecyclerView.Adapter<PropertyListAdapte
         };
 
         for (int i = 0; i < propPlotAmountInput; i++) {
-            properties[i].setVisibility(View.VISIBLE);
+            houses[i].setVisibility(View.VISIBLE);
         }
         if (propPlotAmountInput <= 0) {
-            ((TextView) holder.layoutView.findViewById(R.id.textView_propertiesAmountTitle)).setText(String.format(context.getString(R.string.text_propertiesAmountTitle), 0));
+            ((TextView) holder.layoutView.findViewById(R.id.textView_propertiesAmountTitle)).setText(String.format(context.getString(R.string.text_housesAmount), 0));
         }
     }
 

@@ -4,7 +4,7 @@
     <string name="text_propName">Property Name: %s</string>
     <string name="text_price">Price: %s$</string>
     <string name="text_ownedBy">Owned by: %s</string>
-    <string name="text_propertiesAmountTitle">Properties: %d</string>
+    <string name="text_housesAmount">Houses: %d</string>
     <string name="text_propInfoTitle">Property Information</string>
     <string name="textCD_prop1">Property 1</string>
     <string name="textCD_prop2">Property 2</string>
