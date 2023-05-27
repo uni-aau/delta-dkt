@@ -66,7 +66,8 @@ public class RequestPlayerMovement implements ServerActionInterface {
         Log.d(tag, "");
 
         String activityMessage = steps == 1 ? "roll_dice_activity_sing_text" : "roll_dice_activity_plural_text";
-        server.broadcast(GAMEVIEW_ACTIVITY_TYPE, PREFIX_ACTIVITY_BROADCAST, new String[]{activityMessage, requestPlayer.getNickname(), String.valueOf(steps)});
+        int stepsAmount = Math.min(steps, 6); // set steps to max. 6 steps to prevent cheating recognition
+        server.broadcast(GAMEVIEW_ACTIVITY_TYPE, PREFIX_ACTIVITY_BROADCAST, new String[]{activityMessage, requestPlayer.getNickname(), String.valueOf(stepsAmount)});
         server.broadcast(GAMEVIEW_ACTIVITY_TYPE, PREFIX_PLAYER_MOVE, args);
 
 
