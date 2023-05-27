@@ -13,7 +13,7 @@ import delta.dkt.R;
 import delta.dkt.logic.structure.PropertyListElement;
 
 public class PropertyListActivity extends AppCompatActivity {
-    public static ArrayList<PropertyListElement> messages;
+    public static ArrayList<PropertyListElement> propertyElements;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,7 +28,7 @@ public class PropertyListActivity extends AppCompatActivity {
 
     // Will be moved to server in the next sprint - Only test values
     protected void sendDataToFragment() {
-        PropertyListAdapter viewAdapter = new PropertyListAdapter(messages, this);
+        PropertyListAdapter viewAdapter = new PropertyListAdapter(propertyElements, this);
         RecyclerView.LayoutManager viewManager = new LinearLayoutManager(this);
 
         RecyclerView recView = findViewById(R.id.recyclerViewPropList);
