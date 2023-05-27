@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 
+import ClientUIHandling.Config;
 import delta.dkt.R;
 import delta.dkt.logic.structure.PropertyListElement;
 
@@ -53,7 +54,7 @@ public class PropertyListAdapter extends RecyclerView.Adapter<PropertyListAdapte
     }
 
     private void setPropertyAmount(CustomViewHolder holder, int propPlotAmountInput) {
-        if (propPlotAmountInput > 4) // todo set Constant
+        if (propPlotAmountInput > Config.MAX_HOUSES)
             throw new IllegalArgumentException("Too much inserted houses!");
 
         ImageView[] houses = new ImageView[]{
