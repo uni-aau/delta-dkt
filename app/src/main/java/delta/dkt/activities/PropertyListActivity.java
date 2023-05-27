@@ -13,21 +13,19 @@ import delta.dkt.R;
 import delta.dkt.logic.structure.PropertyListElement;
 
 public class PropertyListActivity extends AppCompatActivity {
-    public static ArrayList<PropertyListElement> propertyElements;
+    public static ArrayList<PropertyListElement> propertyElements = new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_property_list);
 
         findViewById(R.id.button_backToGame).setOnClickListener(view -> switchToGameActivity());
-        sendDataToFragment(); // Gets replaced later with server
+        sendDataToRecyclerView();
 
         MainActivity.subscribeToLogic(Constants.PROPERTYLIST_ACTIVITY_TYPE, this);
     }
 
-
-    // Will be moved to server in the next sprint - Only test values
-    protected void sendDataToFragment() {
+    protected void sendDataToRecyclerView() {
         PropertyListAdapter viewAdapter = new PropertyListAdapter(propertyElements, this);
         RecyclerView.LayoutManager viewManager = new LinearLayoutManager(this);
 
