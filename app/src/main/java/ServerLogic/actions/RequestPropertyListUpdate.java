@@ -14,23 +14,18 @@ public class RequestPropertyListUpdate implements ServerActionInterface {
     public void execute(ServerNetworkClient server, Object parameters) {
         ArrayList<String> args = new ArrayList<>();
         ArrayList<Field> fields = Game.getMap().getFields();
-        String owner;
-
 
         for (int i = 1; i < fields.size(); i++) {
+            Field field = fields.get(i);
             if (Game.getMap().getField(i) instanceof Property) {
-                Property property = (Property) Game.getMap().getField(i);
-                if (property.getOwner() == null) {
-                    owner = "-/-";
-                } else {
-                    owner = property.getOwner().getNickname();
-                }
-                System.out.println("Prop: " + Game.getMap().getField(i).getName() + " / " + i);
-                args.add(String.format("%d#%d#%d#%s#%d", i, property.getPrice(), property.getBaseRent(), owner, property.getHouses()));
+                Property property = (Property) field;
+                String owner = (property.getOwner() == null) ? "-/-" : property.getOwner().getNickname();
+
+                // Hint: Only a maximum of 1460-2000 letters can be sent via socket at once
+                String arg = String.format("%d#%d#%d#%s#%d", i, property.getPrice(), property.getBaseRent(), owner, property.getHouses());
+                args.add(arg);
             }
         }
-
         server.broadcast(Constants.GAMEVIEW_ACTIVITY_TYPE, Constants.PREFIX_PROPLIST_UPDATE, args.toArray(new String[args.size()]));
-
     }
 }
