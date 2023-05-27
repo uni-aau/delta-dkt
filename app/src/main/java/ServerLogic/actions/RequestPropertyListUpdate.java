@@ -1,5 +1,7 @@
 package ServerLogic.actions;
 
+import android.util.Log;
+
 import java.util.ArrayList;
 import java.util.Locale;
 
@@ -14,6 +16,7 @@ import network2.ServerNetworkClient;
 public class RequestPropertyListUpdate implements ServerActionInterface {
     @Override
     public void execute(ServerNetworkClient server, Object parameters) {
+        Log.d("PropertyListUpdate", "Received a property list update!");
         ArrayList<String> args = new ArrayList<>();
         ArrayList<Field> fields = Game.getMap().getFields();
 
@@ -33,6 +36,7 @@ public class RequestPropertyListUpdate implements ServerActionInterface {
                 }
             }
         }
-        if(args.size() != 0) server.broadcast(Constants.GAMEVIEW_ACTIVITY_TYPE, Constants.PREFIX_PROPLIST_UPDATE, args.toArray(new String[args.size()]));
+        if (args.size() != 0)
+            server.broadcast(Constants.GAMEVIEW_ACTIVITY_TYPE, Constants.PREFIX_PROPLIST_UPDATE, args.toArray(new String[args.size()]));
     }
 }
