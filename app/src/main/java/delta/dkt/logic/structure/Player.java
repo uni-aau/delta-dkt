@@ -25,7 +25,7 @@ public class Player {
     private int outOfJailFreeCards = 0;
 
     //? May be used to check whether a player was timed out, e.g. prison, or not.
-    private int suspension = 0;
+    private int suspendedRounds = 0;
 
     public Player(String nickname) {
         this.nickname = nickname;
@@ -108,29 +108,29 @@ public class Player {
     /**
      * Will time out this player from moving for a given amount of rounds.
      */
-    public void setSuspension(int rounds) {
-        this.suspension = rounds;
+    public void setSuspendedRounds(int rounds) {
+        this.suspendedRounds = rounds;
     }
 
     /**
      * @return Returns whether the player is prohibited from moving, thus has a suspension / timeout.
      */
     public boolean isSuspended() {
-        return this.suspension > 0;
+        return this.suspendedRounds > 0;
     }
 
     /**
      * This function may be called when a player is supposed to move, but is prohibited from doing so, thus the remaining amount of suspended rounds, can be decreased by 1.
      */
     public void reduceSuspension() {
-        if (this.suspension > 0) this.suspension--;
+        if (this.suspendedRounds > 0) this.suspendedRounds--;
     }
 
     /**
      * This function may be called when the player uses his 'jail-free-card' or receives any other action, that removes his suspension / timeout.
      */
     public void resetSuspension() {
-        this.suspension = 0;
+        this.suspendedRounds = 0;
     }
 
     //? Positioning
@@ -215,8 +215,8 @@ public class Player {
         return properties;
     }
 
-    public int getSuspension() {
-        return suspension;
+    public int getSuspendedRounds() {
+        return suspendedRounds;
     }
 
     public void payRentTo(Player recipient, int amount) {
