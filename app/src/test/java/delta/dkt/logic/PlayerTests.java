@@ -224,7 +224,7 @@ class PlayerTests {
      */
     @Test
     void checkSettingPlayerTimeout() {
-        player.setSuspendedRounds(10);
+        player.suspendPlayerForRounds(10);
         assertEquals(10, player.getSuspendedRounds());
     }
 
@@ -363,7 +363,7 @@ class PlayerTests {
     void checkPlayerMovement_Suspended() {
         when(mockMapHandling.getFields()).thenReturn(generateDummyList());
 
-        player.setSuspendedRounds(10);
+        player.suspendPlayerForRounds(10);
         assertTrue(player.isSuspended());
 
         int previous = player.getPosition().getLocation();
