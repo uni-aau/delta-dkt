@@ -11,7 +11,7 @@ import ClientUIHandling.ClientActionInterface;
 import delta.dkt.R;
 import delta.dkt.activities.GameViewActivity;
 
-public class ActionBuyProperty implements ClientActionInterface {
+public class ActionPropertyBought implements ClientActionInterface {
     private static String fixedPart = "My Properties: ";
 
     @SuppressLint("StringFormatInvalid")
