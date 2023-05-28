@@ -5,6 +5,7 @@ public class Constants {
         // No instantiation of class
     }
 
+    public static final String PREFIX_PLAYER_MOVED_TO_PRISON = "prison";
     public static final String MAIN_ACTIVITY_TYPE = "main";
     public static final String GAMEVIEW_ACTIVITY_TYPE = "game";
     public static final String MAINMENU_ACTIVITY_TYPE = "menu";
