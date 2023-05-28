@@ -27,7 +27,7 @@ public class RequestRollDicePerm implements ServerActionInterface {
         nextClient = 0;
         if (size != 0) {
             nextClient = (oldClientId % size) + 1;
-            
+
             String nickName = Game.getPlayers().get(nextClient).getNickname();
             Log.d("[SERVER]", "New roll dice server request - prevClientID " + oldClientId + " nextClient " + nextClient + " nickName " + nickName);
 
