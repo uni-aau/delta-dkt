@@ -235,4 +235,15 @@ public class Player {
     public void removeOutOfJailCard(){
         this.outOfJailFreeCards--;
     }
+
+
+    /** This method only executes code if a player is in prison.
+     * This method handles all the related properties to the prison edge-case
+     * If a player is suspended = went to prison if checks
+     */
+    public void handlePrisonRound(){
+        if(this.isSuspended()){
+            
+        }
+    }
 }
