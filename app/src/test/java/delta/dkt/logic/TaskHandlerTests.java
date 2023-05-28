@@ -4,7 +4,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
 
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
@@ -18,7 +17,7 @@ class TaskHandlerTests {
     @ParameterizedTest
     @ValueSource(ints = {3, 9, 23, 28, 38})
     void testGetTaskExistingTask(int input){
-        assertNotNull(TaskHandler.getTask(input));
+        assertNotNull(TaskHandler.getTaskFieldForPosition(input));
     }
 
     /**
@@ -27,7 +26,7 @@ class TaskHandlerTests {
     @ParameterizedTest
     @ValueSource(ints = {-1, 0, 8, 22, 30, 37, 39, 50})
     void testGetTaskNotExistingTask(int input){
-        assertNull(TaskHandler.getTask(input));
+        assertNull(TaskHandler.getTaskFieldForPosition(input));
     }
 
     /**

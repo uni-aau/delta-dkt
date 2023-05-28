@@ -53,7 +53,7 @@ class PlayerTests {
      */
     @Test
     void checkDefaultSuspension() {
-        assertEquals(0, player.getSuspension());
+        assertEquals(0, player.getSuspendedRounds());
     }
 
     /**
@@ -224,8 +224,8 @@ class PlayerTests {
      */
     @Test
     void checkSettingPlayerTimeout() {
-        player.setSuspension(10);
-        assertEquals(10, player.getSuspension());
+        player.setSuspendedRounds(10);
+        assertEquals(10, player.getSuspendedRounds());
     }
 
     /**
@@ -245,7 +245,7 @@ class PlayerTests {
         checkSettingPlayerTimeout();
         player.resetSuspension();
         assertFalse(player.isSuspended());
-        assertEquals(0, player.getSuspension());
+        assertEquals(0, player.getSuspendedRounds());
     }
 
     /**
@@ -256,19 +256,19 @@ class PlayerTests {
         checkSettingPlayerTimeout();
 
         for (int i = 10; i > 0; i--) {
-            assertEquals(i, player.getSuspension());
+            assertEquals(i, player.getSuspendedRounds());
             player.reduceSuspension();
-            assertEquals(i - 1, player.getSuspension());
+            assertEquals(i - 1, player.getSuspendedRounds());
 
             // there is still a suspension
             if (i - 1 > 0) assertTrue(player.isSuspended());
         }
 
-        assertEquals(0, player.getSuspension());
+        assertEquals(0, player.getSuspendedRounds());
         assertFalse(player.isSuspended());
 
         player.reduceSuspension();
-        assertEquals(0, player.getSuspension());
+        assertEquals(0, player.getSuspendedRounds());
     }
 
 
@@ -363,7 +363,7 @@ class PlayerTests {
     void checkPlayerMovement_Suspended() {
         when(mockMapHandling.getFields()).thenReturn(generateDummyList());
 
-        player.setSuspension(10);
+        player.setSuspendedRounds(10);
         assertTrue(player.isSuspended());
 
         int previous = player.getPosition().getLocation();

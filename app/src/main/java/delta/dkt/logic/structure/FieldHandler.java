@@ -12,7 +12,7 @@ public class FieldHandler {
 
         for (int i = 1; i <= 40; i++) {
             if (PropertyHandler.getProperties(i) != null) fields.add(PropertyHandler.getProperties(i));
-            if (TaskHandler.getTask(i) != null) fields.add(TaskHandler.getTask(i));
+            if (TaskHandler.getTaskFieldForPosition(i) != null) fields.add(TaskHandler.getTaskFieldForPosition(i));
 
             if (i == 1) fields.add(new SpecialField(i, "Start"));
             if (i == 11) fields.add(new SpecialField(i, "Gesetztes Verletzung"));
