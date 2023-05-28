@@ -2,6 +2,7 @@ package delta.dkt.logic.structure;
 
 import java.util.ArrayList;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 public class GameMap {
     private ArrayList<Field> fields = FieldHandler.getFields();
@@ -15,6 +16,10 @@ public class GameMap {
     public Field getField(int location) {
         Optional<Field> field = fields.stream().filter(f -> f.getLocation() == location).findFirst();
         return field.orElse(null);
+    }
+
+    public Optional<Field> getPrisonField(){
+        return this.fields.stream().filter(f -> f.getName() == "Gefängnis").collect(Collectors.toList()).stream().findFirst();
     }
 
     /**
