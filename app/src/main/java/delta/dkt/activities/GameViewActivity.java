@@ -3,10 +3,12 @@ package delta.dkt.activities;
 import static ClientUIHandling.Constants.PREFIX_GAME_START_STATS;
 import static ClientUIHandling.Constants.PREFIX_GET_SERVER_TIME;
 import static ClientUIHandling.Constants.PREFIX_INIT_PLAYERS;
+import static ClientUIHandling.Constants.PREFIX_PLAYER_BUYPROPERTY;
 import static ClientUIHandling.Constants.PREFIX_ROLL_DICE_RECEIVE;
 import static delta.dkt.R.id.imageView;
 
 import android.annotation.SuppressLint;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -16,6 +18,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import ClientUIHandling.ClientHandler;
@@ -24,7 +27,10 @@ import ClientUIHandling.Constants;
 import ClientUIHandling.handlers.positioning.PositionHandler;
 import ServerLogic.ServerActionHandler;
 import delta.dkt.R;
+import delta.dkt.logic.structure.Field;
 import delta.dkt.logic.structure.Game;
+import delta.dkt.logic.structure.Player;
+import delta.dkt.logic.structure.Property;
 
 
 public class GameViewActivity extends AppCompatActivity {
@@ -111,6 +117,36 @@ public class GameViewActivity extends AppCompatActivity {
         var pos = PositionHandler.calculateFigurePosition(destination, _player, figure, map);
         figure.setX(pos.x);
         figure.setY(pos.y);
+        //always
+        checkIfPropertyCanBeBought(destination);
+    }
+
+
+    public void checkIfPropertyCanBeBought(int destination){
+        Field field = Game.getMap().getField(destination);
+        Player player = Game.getPlayers().get(players);
+        if(field instanceof Property &&  ((Property) field).getOwner() == null && ((Property) field).getPrice() <= player.getCash()){
+           AlertDialog dialog = createBuilder((Property) field, player);
+           dialog.show();
+        }
+    }
+
+    private AlertDialog createBuilder(Property prop, Player player){
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage("Willst du das Grundstück \""+ prop.getName()+"\" für "+prop.getPrice()+"€ kaufen?")
+                .setPositiveButton("Kaufen", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        //buy the property .. send the request to the server
+                        ServerActionHandler.triggerAction(PREFIX_PLAYER_BUYPROPERTY, players);
+                    }
+                })
+                .setNegativeButton("Nicht kaufen", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        // User cancelled the dialog
+                        //Usually nothing happens
+                    }
+                });
+        return builder.create();
     }
 
     public void enableDice() {
