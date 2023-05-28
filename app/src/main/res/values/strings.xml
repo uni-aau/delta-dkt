@@ -53,6 +53,9 @@
     <string name="FirstPlace">First Place</string>
     <string name="SecondPlace">Second Place</string>
     <string name="ThirdPlace">Third Place</string>
+    <string name="FourthPlace">4</string>
+    <string name="FifthPlace">5</string>
+    <string name="SixthPlace">6</string>
     <string name="Wealth">Wealth</string>
 
 
