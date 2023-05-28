@@ -150,14 +150,11 @@ public class Player {
         this.position = Game.getMap().getField(location);
 
         if (this.position instanceof Property) {
-            if(((Property) this.position).getOwner() != null) {
+            //get owner
+            Player owner = ((Property) this.position).getOwner();
+            if( owner!= null && owner.getId() != this.getId()) {
                 //START-NOSCAN
                 ServerActionHandler.triggerAction(PREFIX_PLAYER_PAYRENT, this.getId());
-                //END-NOSCAN
-            }else{ //property can be bought , ask user
-                //START-NOSCAN
-                //TODO: Ask the user if he wants to buy the property.
-               // ServerActionHandler.triggerAction(PREFIX_PLAYER_BUYPROPERTY, this.getId()); //we only need one parameter , and thates the id of the player
                 //END-NOSCAN
             }
         } else if (this.position instanceof SpecialField) {
