@@ -24,7 +24,7 @@ import java.util.HashMap;
 
 import ClientUIHandling.actions.ActionStartGame;
 import ClientUIHandling.actions.ActionPlayerInit;
-import ClientUIHandling.actions.ActionBuyProperty;
+import ClientUIHandling.actions.ActionPropertyBought;
 import ClientUIHandling.actions.ActionRollDiceReceive;
 import ClientUIHandling.actions.ActionAddUserToUserList;
 import ClientUIHandling.actions.ActionCloseGame;
@@ -58,7 +58,7 @@ public class ClientHandler extends Handler {
         actionMap.put(Constants.PREFIX_PLAYER_MOVE, new ActionMove());
         actionMap.put(Constants.PREFIX_GET_IP, new ActionGetIP());
         actionMap.put(Constants.PREFIX_ROLL_DICE_RECEIVE, new ActionRollDiceReceive());
-        actionMap.put(Constants.PREFIX_PLAYER_PROPERTYBOUGHT, new ActionBuyProperty());
+        actionMap.put(Constants.PREFIX_PLAYER_PROPERTYBOUGHT, new ActionPropertyBought());
         actionMap.put(Constants.PREFIX_ACTIVITY_BROADCAST, new ActionActivityBroadcast());
         actionMap.put(Constants.PREFIX_END_GAME, new ActionGameEnd());
         actionMap.put(Constants.PREFIX_SET_MONEY, new ActionSetMoney());

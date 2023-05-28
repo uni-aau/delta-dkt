@@ -218,7 +218,7 @@ public class Player {
         return properties;
     }
 
-    public int getSuspention() {
+    public int getSuspension() {
         return suspension;
     }
 
@@ -226,5 +226,13 @@ public class Player {
         this.cash -= amount;
         recipient.cash += amount;
 
+    }
+
+    public void addGetOutOfJailCard(){
+        this.outOfJailFreeCards++;
+    }
+
+    public void removeOutOfJailCard(){
+        this.outOfJailFreeCards--;
     }
 }
