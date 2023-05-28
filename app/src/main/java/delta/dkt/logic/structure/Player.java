@@ -2,7 +2,11 @@ package delta.dkt.logic.structure;
 
 import static ClientUIHandling.Constants.PREFIX_PLAYER_PAYRENT;
 
+import android.util.Log;
+
+import java.io.InvalidClassException;
 import java.util.ArrayList;
+import java.util.Optional;
 
 import ClientUIHandling.Config;
 import ClientUIHandling.Constants;
@@ -108,8 +112,23 @@ public class Player {
     /**
      * Will time out this player from moving for a given amount of rounds.
      */
-    public void setSuspendedRounds(int rounds) {
+    private void setSuspendedRounds(int rounds) {
         this.suspendedRounds = rounds;
+    }
+
+    public void suspendPlayerForRounds(int rounds){
+        this.setSuspendedRounds(rounds);
+        //get posisiton of prison field
+        try{ //move player to prison
+            Optional<Field> optionalPrisonField = Game.getMap().getPrisonField();
+            //throws an NoSuchElement-Exception if Optional is empty
+            Field prisonField = optionalPrisonField.get();
+            move(prisonField.getLocation());
+        }catch(Exception ex){
+            Log.d("Error", ex.getMessage());
+            ex.printStackTrace();
+        }
+
     }
 
     /**
@@ -142,7 +161,9 @@ public class Player {
      */
     private void move(int location) {
         //? Player has a suspension and is prohibited from moving.
-        if (this.isSuspended()) return;
+        if (this.isSuspended()){
+            return;
+        }
 
         if (location == 0) location++;
 
@@ -162,6 +183,13 @@ public class Player {
                 //START-NOSCAN
                 ServerActionHandler.triggerAction(Constants.PREFIX_PAY_TAX, this.getId());
                 //END-NOSCAN
+            } else if (this.position.getName().equals("Gefängnis")) {
+                if(this.isSuspended() == false){
+                    //player just moved on prison field, was not yet there
+                    this.setSuspendedRounds(3);
+                    ServerActionHandler.triggerAction(Constants.PLAYER_MOVED_TO_PRISON, this.getId());
+                }
+
             }
         }
     }

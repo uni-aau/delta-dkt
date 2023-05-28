@@ -5,7 +5,6 @@ package delta.dkt.logic.structure;
  */
 public class RiskTask extends Task{
 
-    public String descriptionString;
 
     /**
      * Creates a new risk task.
@@ -14,7 +13,11 @@ public class RiskTask extends Task{
      * @param descriptionString Tells you what task you have to do
      */
     public RiskTask(int id, String name, String descriptionString) {
-        super(id, name);
-        this.descriptionString = descriptionString;
+        super(id, name, descriptionString);
+    }
+
+    @Override
+    public void execute(Player asignee) {
+
     }
 }

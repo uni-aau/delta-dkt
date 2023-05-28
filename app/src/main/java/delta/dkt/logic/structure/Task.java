@@ -7,6 +7,7 @@ public abstract class Task {
     public int id;
 
     public String name;
+
     public String descriptionString;
 
     /**
@@ -14,12 +15,12 @@ public abstract class Task {
      * @param id The id of the task
      * @param name The name of the task
      */
-    public Task(int id, String name){
+    public Task(int id, String name, String descriptionString){
         this.id = id;
         this.name = name;
         this.descriptionString = descriptionString;
     }
 
-    public abstract void execute();
+    public abstract void execute(Player asignee);
 
 }
