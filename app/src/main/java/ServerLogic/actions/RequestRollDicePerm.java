@@ -51,8 +51,9 @@ public class RequestRollDicePerm implements ServerActionInterface {
     private boolean handlePrisonCase(Player nextPlayer){
     if(nextPlayer.isSuspended()){
             //check if the player has a get-out-of-prison-card
-            if(nextPlayer.)
+           // if(nextPlayer.)
         }
+    return true;
     }
 
 
