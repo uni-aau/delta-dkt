@@ -11,6 +11,7 @@ import ClientUIHandling.Constants;
 import ServerLogic.ServerActionHandler;
 import ServerLogic.ServerActionInterface;
 import delta.dkt.logic.structure.Game;
+import delta.dkt.logic.structure.Player;
 import network2.ServerNetworkClient;
 
 public class RequestRollDicePerm implements ServerActionInterface {
@@ -23,13 +24,10 @@ public class RequestRollDicePerm implements ServerActionInterface {
 
         // Check if clientID is last ID in game
         int size = Game.getPlayers().size();
+        nextClient = 0;
         if (size != 0) {
-            if (oldClientId % size == 0) {
-                nextClient = 1; // swap to first player
-            } else {
-                nextClient = oldClientId + 1;
-            }
-
+            nextClient = (oldClientId % size) + 1;
+            
             String nickName = Game.getPlayers().get(nextClient).getNickname();
             Log.d("[SERVER]", "New roll dice server request - prevClientID " + oldClientId + " nextClient " + nextClient + " nickName " + nickName);
 
@@ -43,4 +41,19 @@ public class RequestRollDicePerm implements ServerActionInterface {
             Log.e(tag, "Error - No players available in GameView");
         }
     }
+
+
+
+    /**
+     * @param nextPlayer: the player who´s turn it is going to be next
+     * @return a boolean if the player was freed from prison via card
+     */
+    private boolean handlePrisonCase(Player nextPlayer){
+    if(nextPlayer.isSuspended()){
+            //check if the player has a get-out-of-prison-card
+            if(nextPlayer.)
+        }
+    }
+
+
 }
