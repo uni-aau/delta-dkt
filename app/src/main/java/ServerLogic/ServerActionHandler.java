@@ -52,6 +52,7 @@ public class ServerActionHandler {
         actionMap.put(PREFIX_GET_IP, new RequestGetIp());
         actionMap.put(PREFIX_PLAYER_BUYPROPERTY, new RequestBuyProperty());
         actionMap.put(PREFIX_END_GAME, new GameEnd());
+        actionMap.put(PREFIX_PLAYER_MOVED_TO_PRISON, new PlayerToPrison());
         actionMap.put(PREFIX_PLAYER_CHEATED, new ActionPunish());
         actionMap.put(PREFIX_START_CASH_VALUE, new RequestSetStartMoney());
         actionMap.put(PREFIX_PAY_TAX, new RequestPayTax());
@@ -70,7 +71,6 @@ public class ServerActionHandler {
 
         actions.add(new RequestCloseGame());
         actionPrefixes.add(PREFIX_CLOSE_GAME);
-
     }
 
     public static void triggerAction(String name, Object parameters){

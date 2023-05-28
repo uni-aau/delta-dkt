@@ -67,5 +67,12 @@
     <string name="game_started_acitivty_text">Game started!</string>
 
 
+    <string name="special_field_start">Start</string>
+    <string name="special_field_law_violation">Gesetztes Verletzung</string>
+    <string name="special_field_wealth_taxation">VermögensAbgabe</string>
+    <string name="special_field_prison">Gefängnis</string>
+    <string name="special_field_tax_payment">Steuerabgabe</string>
+
+
     <integer name="default_suspension_rounds">3</integer>
 </resources>
