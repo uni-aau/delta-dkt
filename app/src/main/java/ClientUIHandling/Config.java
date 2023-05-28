@@ -6,11 +6,13 @@ public class Config {
         // No instantiation of class
     }
 
-    public static final int MAX_CLIENTS = 6;
-    public static final int END_TIME = 3000000; // end_time in milliseconds
+    public static  int MAX_CLIENTS = 6;
+
+    public static  int MIN_CLIENTS = 1;
+    public static  int END_TIME = 3000000; // end_time in milliseconds
     public static final int INITIAL_CASH = 1000; // end_time in milliseconds
     public static final int START_CASH = 1000; //Number of rounds until the game ends
-    public static final int ENDROUNDS = 100; //Number of rounds until the game ends
+    public static int ENDROUNDS = 100; //Number of rounds until the game ends
     public static float TAX_PERCENTAGE = 0.1F; // Percentage of money that gets removed from player cash
     public static int STATIC_TAX_AMOUNT = 100; // Specify the static tax amount that would get removed from player cash
     // -1 for disabling MAX_TAX_AMOUNT check
@@ -19,4 +21,6 @@ public class Config {
     public static final int punishmentForCheating = 500;
 
     public static final int punishmentForWrongReport = 200;
+
+
 }
