@@ -1,6 +1,7 @@
 package ServerLogic.actions;
 
 import static ClientUIHandling.Constants.GAMEVIEW_ACTIVITY_TYPE;
+import static ClientUIHandling.Constants.PREFIX_PLAYER_BUYPROPERTY;
 import static ClientUIHandling.Constants.PREFIX_PLAYER_PROPERTYBOUGHT;
 
 import android.util.Log;
@@ -37,7 +38,7 @@ public class RequestBuyProperty implements ServerActionInterface {
                 //player.buyProperty again checks if the values provided are valid (field isnt owned by anybody, player has enough cash etc.)
                 boolean success = player.buyProperty(property.getLocation());
                 if(success)
-                server.broadcast(GAMEVIEW_ACTIVITY_TYPE +":"+PREFIX_PLAYER_PROPERTYBOUGHT+" "+player.getNickname()+"(id= "+player.getId()+" ) "+player.getCash()+" "+property.getName()+"(Pos= "+property.getLocation()+" )");
+                    server.broadcast(GAMEVIEW_ACTIVITY_TYPE +":"+PREFIX_PLAYER_PROPERTYBOUGHT+" "+player.getNickname()+"(id= "+player.getId()+" ) "+player.getCash()+" "+property.getName()+"(Pos= "+property.getLocation()+" )");
                 else{
                     throw new RuntimeException("BuyPropertyAction::execute():Failed to buy a property");
                 }
