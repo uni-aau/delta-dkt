@@ -47,9 +47,11 @@ public class MainActivity extends AppCompatActivity {
             Intent intent = new Intent(getApplicationContext(), MainMenuActivity.class);
             user = edtxt.getText().toString();
             if (user.isEmpty()) {
-                Toast.makeText(MainActivity.this, "Please enter Username", Toast.LENGTH_SHORT).show();
+                Toast.makeText(MainActivity.this, "Please enter Username (Max. 12 characters!)", Toast.LENGTH_SHORT).show();
             } else if (checkIfUsernameAlreadyExists(user)){
                 Toast.makeText(MainActivity.this, "This Username already exists", Toast.LENGTH_SHORT).show();
+            } else if (user.length()>12) {
+                Toast.makeText(MainActivity.this, "This Username is too long -> Max 12 chars!!", Toast.LENGTH_SHORT).show();
             } else {
                 Toast.makeText(MainActivity.this, "Welcome " + user + "!", Toast.LENGTH_SHORT).show();
                 intent.putExtra(INTENT_PARAMETER, user);
