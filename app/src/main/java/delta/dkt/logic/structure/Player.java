@@ -5,7 +5,6 @@ import static ClientUIHandling.Constants.PREFIX_PLAYER_PAYRENT;
 import android.util.Log;
 
 import java.util.ArrayList;
-import java.util.Optional;
 
 import ClientUIHandling.Config;
 import ClientUIHandling.Constants;
@@ -119,9 +118,8 @@ public class Player {
         this.setSuspendedRounds(rounds);
         //get posisiton of prison field
         try{ //move player to prison
-            Optional<Field> optionalPrisonField = Game.getMap().getPrisonField();
-            //throws an NoSuchElement-Exception if Optional is empty
-            Field prisonField = optionalPrisonField.get();
+            Field prisonField = Game.getMap().getPrisonField();
+            if(prisonField == null){ throw new RuntimeException("No prisonFieldFound");}
             move(prisonField.getLocation());
         }catch(Exception ex){
             Log.d("Error", ex.getMessage());
