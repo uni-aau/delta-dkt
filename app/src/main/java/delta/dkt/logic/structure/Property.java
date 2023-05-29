@@ -214,6 +214,10 @@ public class Property extends Field {
         return hotelPrice;
     }
 
+    public int getBaseRent() {
+        return baseRent;
+    }
+
     /**
      * @return Returns the current accesssories on the property, thus a hotel, its houses or an empty list.
      */
