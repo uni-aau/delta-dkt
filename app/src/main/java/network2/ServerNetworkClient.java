@@ -102,7 +102,7 @@ public class ServerNetworkClient extends Thread { //always executed on a separat
                 clientConnections.add(clientSocket);
                 clientSocket.start();
 
-                if(Game.getPlayers().size() >= Config.MAX_CLIENTS-1){
+                if(Game.getPlayers().size() >= Config.MAX_CLIENTS){
                     clientSocket.send("IPINNIT:-1");
                     continue;
                 }
