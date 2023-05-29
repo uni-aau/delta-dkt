@@ -40,15 +40,17 @@ public class RequestCheatMenu implements ServerActionInterface {
         ArrayList<Integer> sortedKeys = new ArrayList<>(Game.getPlayers().keySet());
         Collections.sort(sortedKeys);
 
-        String[] playerNames = new String[sortedKeys.size()];
+        ArrayList<String> sendArgs = new ArrayList<>();
+        sendArgs.add(String.valueOf(clientID));
+
         for (int key : sortedKeys) {
             Player p = Game.getPlayers().get(key);
 
             //? => 1#!#MaxMuster;2#!#MoritzMuster;3#!#MiaMuster; ....
-            playerNames[sortedKeys.indexOf(key)] = String.format("%d#!#%s", key, p.getNickname());
+            sendArgs.add(String.format("%d#!#%s", key, p.getNickname()));
         }
 
-        Log.v(LOG_Cheat, String.format("RequestCheatMenu: Sending playerNames (size=%s) to client with id: %d", playerNames.length, clientID));
-        server.broadcast(GAMEVIEW_ACTIVITY_TYPE, PREFIX_PLAYER_CHEAT_MENU, playerNames);
+        Log.v(LOG_Cheat, String.format("RequestCheatMenu: Sending playerNames (size=%s) to client with id: %d", (sendArgs.size() - 1), clientID));
+        server.broadcast(GAMEVIEW_ACTIVITY_TYPE, PREFIX_PLAYER_CHEAT_MENU, sendArgs.toArray(new String[0]));
     }
 }
