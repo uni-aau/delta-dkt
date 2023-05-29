@@ -1,6 +1,7 @@
 package delta.dkt.activities;
 
 
+import static ClientUIHandling.Constants.LOG_BACKTRACE;
 import static ClientUIHandling.Constants.PREFIX_ADD_USER_TO_LIST;
 import static delta.dkt.activities.MainActivity.INTENT_PARAMETER;
 import static delta.dkt.activities.MainActivity.user;
@@ -56,7 +57,7 @@ public class FindHostViewActivity extends AppCompatActivity{
         NetworkServiceDiscoveryClient discoveryClient = new NetworkServiceDiscoveryClient(this, SERVICE_TYPE);
 
         discoveryClient.startDiscovery(new DiscoveryListener(this));
-
+        Log.v(LOG_BACKTRACE, "Discorvery has been started!");
         Log.d("Game-", "Discovery has been started!");
 
         updateHostList();
@@ -112,6 +113,7 @@ public class FindHostViewActivity extends AppCompatActivity{
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         ArrayList<String> hostNames = new ArrayList<>();
+        Log.v(LOG_BACKTRACE, "Client-Server-List will be updated with "+hosts.size()+" hosts!");
 
         this.hosts.forEach(h -> hostNames.add(h.getHost()+":"+h.getPort()));
 
