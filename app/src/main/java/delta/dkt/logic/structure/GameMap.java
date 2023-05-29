@@ -5,7 +5,7 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 public class GameMap {
-    private ArrayList<Field> fields = FieldHandler.getFields();
+    private final ArrayList<Field> fields = FieldHandler.getFields();
 
     /**
      * This method returns a field based on the requested location.
@@ -18,8 +18,12 @@ public class GameMap {
         return field.orElse(null);
     }
 
-    public Optional<Field> getPrisonField(){
-        return this.fields.stream().filter(f -> f.getName() == "Gefängnis").collect(Collectors.toList()).stream().findFirst();
+    public Field getPrisonField(){
+        return this.fields.stream().filter(f -> f.getName().equals("Gefängnis")).collect(Collectors.toList()).stream().findFirst().orElseGet(null);
+    }
+
+    public Field getFieldByName(String name){
+        return this.fields.stream().filter(f -> f.getName().contains(name)).findFirst().orElseGet(null);
     }
 
     /**
