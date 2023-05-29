@@ -1,5 +1,6 @@
 package delta.dkt.activities;
 
+import static ClientUIHandling.Constants.LOG_BACKTRACE;
 import static ClientUIHandling.Constants.PREFIX_HOST_NEW_GAME;
 import static delta.dkt.activities.MainActivity.INTENT_PARAMETER;
 import static delta.dkt.activities.MainActivity.logic;
@@ -72,6 +73,7 @@ public class MainMenuActivity extends AppCompatActivity {
 
         //---JOIN BUTTON---  (Everything that happens when join button is clicked)
         join.setOnClickListener(view -> {
+            Log.v(LOG_BACKTRACE, "Join Button has been pressed");
             Intent intent = new Intent(getApplicationContext(), FindHostViewActivity.class);
             intent.putExtra(INTENT_PARAMETER, newUser);
             startActivity(intent);
