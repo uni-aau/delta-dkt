@@ -18,10 +18,10 @@ public class RequestAddUserToUserList implements ServerActionInterface {
         Log.d("[SERVER]:Add_User_To_UserList", "Add User to UserList Request received. Parameter: " + parameters);
         Object[] args = (Object[]) parameters;
         addUserToUserList((String)args[0],(int)args[1]);
-       // Log.i("INFO","SERVERLIST HAS SIZE" + serverUserList.size());
+
 
         ServerActionHandler.triggerAction(PREFIX_UPDATE_USER_LIST, null);
-        // server.broadcast(MAINMENU_ACTIVITY_TYPE, PREFIX_ADD_USER_TO_LIST, new String[]{(String) parameters});
+
     }
 
     public void addUserToUserList(String user, int id) {

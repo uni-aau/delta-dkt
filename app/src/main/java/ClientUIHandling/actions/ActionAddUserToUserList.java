@@ -22,6 +22,6 @@ public class ActionAddUserToUserList implements ClientActionInterface {
         if(MainMenuActivity.role){
             ServerActionHandler.triggerAction(PREFIX_ADD_USER_TO_LIST,new Object[]{ args[0], Integer.parseInt(args[1])});
         }
-        //LobbyViewActivity.userList.add(args[0]);
+
     }
 }

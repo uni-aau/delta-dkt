@@ -20,7 +20,7 @@ public class RequestRemoveUserFromList implements ServerActionInterface {
     }
 
     public void removeUserFromList (String user) {
-        //serverUserList.removeAll(List.of(user));
+
         //TODO REMOVE IN GAME.PLAYERS
     }
 }

@@ -22,7 +22,7 @@ public class ActionUpdateUserList implements ClientActionInterface {
         String[] args = clientMessage.replace(PREFIX_UPDATE_USER_LIST, "").trim().split(";"); // Holt sich Args nach dem Prefix
 
 
-        System.out.println(clientMessage+" "+ MainMenuActivity.role);
+        Log.d("[CLIENT]_Update_User_List", clientMessage+" "+ MainMenuActivity.role);
         userList.clear();
         for (String user : args) {
             userList.add(user);
