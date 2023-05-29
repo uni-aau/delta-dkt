@@ -42,6 +42,7 @@ public class ActionGameEnd implements ClientActionInterface {
         AlertDialog.Builder builder = new AlertDialog.Builder(activity);
         builder.setView(view);
         final AlertDialog alertDialog = builder.create();
+        alertDialog.setCanceledOnTouchOutside(false);  // Prevent closing when touching outside the window
         Button okButtonWinner = view.findViewById(R.id.okButtonWinner);
 
 
@@ -69,6 +70,8 @@ public class ActionGameEnd implements ClientActionInterface {
             intent.putExtra(MainActivity.INTENT_PARAMETER, MainMenuActivity.username);
             activity.startActivity(intent);
             Log.d("[CLIENT]_GAME_END", "End of On Click");
+
+            alertDialog.dismiss();
         });
 
         if (alertDialog.getWindow() != null) {
