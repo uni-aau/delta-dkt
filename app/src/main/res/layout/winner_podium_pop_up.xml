@@ -255,7 +255,7 @@
             android:layout_marginTop="5dp"
             android:backgroundTint="@color/dkt_red"
             android:fontFamily="@font/bangers"
-            android:text="@string/OK"
+            android:text="@string/Finish"
             android:textColor="@color/dkt_yellow"
             android:textSize="14sp"
             app:cornerRadius="12dp"
