@@ -212,7 +212,7 @@ public class Player {
             wealth+= property.getHouses()*property.getHousePrice();
             wealth+= property.getHotels()* property.getHotelPrice();
         }
-        return wealth+=cash;
+        return wealth+cash;
     }
 
     /**
