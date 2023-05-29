@@ -7,6 +7,7 @@ import java.io.IOException;
 import ClientUIHandling.Constants;
 import ServerLogic.ServerActionHandler;
 import ServerLogic.ServerActionInterface;
+import delta.dkt.logic.structure.Game;
 import network2.ServerNetworkClient;
 
 public class GameEnd implements ServerActionInterface {
@@ -20,7 +21,7 @@ public class GameEnd implements ServerActionInterface {
             //Wait for the message to be sent, then close the server
             Thread.sleep(100);
             server.tearDown();
-            ServerActionHandler.serverUserList.clear();
+            Game.getPlayers().clear();
         } catch (IOException e) {
             throw new RuntimeException(e);
         }catch (InterruptedException e) {
