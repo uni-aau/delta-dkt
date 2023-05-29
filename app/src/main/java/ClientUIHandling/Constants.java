@@ -55,4 +55,5 @@ public class Constants {
 
     public static final String LOG_Main = "Main";
     public static final String LOG_Cheat = String.format("%s-Cheat", LOG_Main);
+    public static final String LOG_BACKTRACE = String.format("%s-Backtrace", LOG_Main);
 }
