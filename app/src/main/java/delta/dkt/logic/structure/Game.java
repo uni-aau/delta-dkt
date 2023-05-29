@@ -1,6 +1,10 @@
 package delta.dkt.logic.structure;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
+import java.util.Optional;
+import java.util.Set;
 
 import ClientUIHandling.Config;
 import ClientUIHandling.Constants;
@@ -31,6 +35,34 @@ public class Game {
 
     public static HashMap<Integer, Player> getPlayers() {
         return players;
+    }
+
+
+    public static Player findPlayerByClientId(int clientId){
+        return players.get(clientId);
+    }
+    public static ArrayList<Player> getPlayerList(){
+       return new ArrayList<>(players.values());
+    }
+    public static Integer getClientIdByPlayerObject(Player player){
+        return getClientIdByPlayerId(player.getId());
+    }
+
+    public static Player getPlayerById(int playerId){
+        Optional<Player> player = players.values().stream().filter(p -> p.getId() == playerId).findFirst();
+        return player.orElse(null);
+    }
+
+    public static Integer getClientIdByPlayerId(int playerId){
+        Set<Map.Entry<Integer, Player>> map =  Game.getPlayers().entrySet();
+        Integer clientId = -1;
+        for(Map.Entry<Integer,Player> e : map){
+            if(e.getValue().getId() == playerId) {
+                clientId = e.getKey();
+                return clientId;
+            }
+        }
+        return clientId; //if we reach this statement we haven´t found any entry for the given playerId
     }
 
     public static int getRoundStartID() {
