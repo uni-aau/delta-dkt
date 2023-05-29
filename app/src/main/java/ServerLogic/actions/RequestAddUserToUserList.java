@@ -26,6 +26,6 @@ public class RequestAddUserToUserList implements ServerActionInterface {
 
     public void addUserToUserList(String user, int id) {
         Game.getPlayers().get(id).setNickname(user);
-        Game.getPlayers().get(id).setId(id);
+        Log.d("[SERVER]:Add_User_To_UserList", user+" "+id);
     }
 }

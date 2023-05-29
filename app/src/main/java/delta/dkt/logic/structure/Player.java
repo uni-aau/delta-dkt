@@ -238,6 +238,6 @@ public class Player implements Comparable<Player>{
 
     @Override
     public int compareTo(Player o) {
-        return o.id-this.id;
+        return this.id-o.id;
     }
 }

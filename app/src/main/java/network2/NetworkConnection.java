@@ -14,6 +14,7 @@ import java.net.InetSocketAddress;
 import java.net.Socket;
 import java.util.ArrayDeque;
 
+import ClientUIHandling.ClientHandler;
 import ClientUIHandling.ClientLogic;
 import ClientUIHandling.Constants;
 import delta.dkt.activities.GameViewActivity;
@@ -96,6 +97,13 @@ public class NetworkConnection extends Thread { //execute each instance within a
                 String clientID = reader.readLine();
                 System.out.println("WAITING FOR MY ID");
                 GameViewActivity.clientID = Integer.parseInt(clientID.split(":")[1]);
+
+                if(GameViewActivity.clientID == -1){
+                    if(logic != null){
+                        logic.sendHandle(Constants.PREFIX_SERVER_FULL, Constants.MAINMENU_ACTIVITY_TYPE);
+                    }
+                    return;
+                }
                 send(Constants.PREFIX_SERVER+":"+PREFIX_ADD_USER_TO_LIST+" "+user+" "+GameViewActivity.clientID);
             } else {
                 GameViewActivity.clientID = 1;
