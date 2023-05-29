@@ -51,6 +51,7 @@ public class Constants {
     public static final String PREFIX_PAY_TAX = "PAY_TAX";
     public static final String PREFIX_PLAYER_CHEATED = "CHEATED";
     public static final String PREFIX_PLAYER_REPORTED_WRONGLY = "REPORTED_WRONGLY";
+    public static final String PREFIX_PLAYER_CHEAT_MENU = "CHEAT_MENU";
 
     public static final String LOG_Main = "Main";
     public static final String LOG_Cheat = String.format("%s-Cheat", LOG_Main);
