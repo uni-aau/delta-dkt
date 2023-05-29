@@ -12,7 +12,7 @@ public class Config {
     public static final int END_TIME = 3000000; // end_time in milliseconds
     public static final int INITIAL_CASH = 1000; // end_time in milliseconds
 
-    public static boolean Skip = true; //? Used for quick development, skips activities until false.
+    public static boolean Skip = false; //? Used for quick development, skips activities until false.
     public static final boolean DEBUG = true;
 
     public static final int START_CASH = 1000; //Number of rounds until the game ends

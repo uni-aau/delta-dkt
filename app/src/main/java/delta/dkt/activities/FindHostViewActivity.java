@@ -100,10 +100,12 @@ public class FindHostViewActivity extends AppCompatActivity{
 
     public void addHost(NsdServiceInfo host){
         this.hosts.add(host);
+        Log.v(LOG_BACKTRACE, "A new host has been added to the list!");
         updateHostList();
     }
 
     public void removeHost(NsdServiceInfo host){
+        Log.v(LOG_BACKTRACE, "A host has been removed from the list!");
         this.hosts.remove(host);
         updateHostList();
     }

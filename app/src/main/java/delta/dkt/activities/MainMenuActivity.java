@@ -124,6 +124,7 @@ public class MainMenuActivity extends AppCompatActivity {
                 Toast.makeText(MainMenuActivity.this, "Please enter Servername", Toast.LENGTH_SHORT).show();
             } else {
                 try {
+                    Log.v(LOG_BACKTRACE, "Game Server is about to be started!");
                     startServer(serverName);
 
                 } catch (InterruptedException e) {
@@ -154,6 +155,7 @@ public class MainMenuActivity extends AppCompatActivity {
         server = new ServerNetworkClient(this.getApplicationContext());
         server.start();
         Thread.sleep(100);
+        Log.v(LOG_BACKTRACE, "Server has been started on: "+server.getIP()+":"+server.getPort());
 
         client = new NetworkClientConnection("localhost", server.getPort(), 1000, logic);
         ServerActionHandler.setServer(server);
