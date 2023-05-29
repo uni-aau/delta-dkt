@@ -69,7 +69,12 @@ public class GameViewActivity extends AppCompatActivity {
         }
 
         Button btnReportCheat = findViewById(R.id.btnReportCheater);
-        btnReportCheat.setOnClickListener(view -> createSelectionPopup());
+        btnReportCheat.setOnClickListener(view -> {
+            Log.v(LOG_Cheat, "Report Menu is requested.");
+            btnReportCheat.setEnabled(false);
+
+            //todo request user names from the server
+        });
 
         registerLightSensor();
         displayPlayers(players);
@@ -218,6 +223,7 @@ public class GameViewActivity extends AppCompatActivity {
         });
 
         cancelCheater.setOnClickListener(view1 -> alertDialog.dismiss());
+        alertDialog.setOnDismissListener(dialogInterface -> findViewById(R.id.btnReportCheater).setEnabled(true));
 
         if (alertDialog.getWindow() != null) {
             alertDialog.getWindow().setBackgroundDrawable(new ColorDrawable(0));
