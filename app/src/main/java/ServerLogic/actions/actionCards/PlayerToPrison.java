@@ -1,18 +1,10 @@
-package ServerLogic.actions;
+package ServerLogic.actions.actionCards;
 
 import static ClientUIHandling.Constants.GAMEVIEW_ACTIVITY_TYPE;
 import static ClientUIHandling.Constants.PREFIX_PLAYER_MOVE;
 
 import android.util.Log;
 
-import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Set;
-import java.util.stream.Collectors;
-
-import ClientUIHandling.Constants;
-import ServerLogic.ServerActionHandler;
 import ServerLogic.ServerActionInterface;
 import delta.dkt.logic.structure.Game;
 import delta.dkt.logic.structure.Player;
@@ -22,20 +14,12 @@ public class PlayerToPrison implements ServerActionInterface {
     @Override
     public void execute(ServerNetworkClient server, Object parameters) {
         try {
-            Set<Map.Entry<Integer, Player>> map =  Game.getPlayers().entrySet();
 
             int playerId = Integer.parseInt(parameters.toString());
-            Player imprisonedPlayer=null;
-            int clientId = -1;
+            int clientId = Game.getClientIdByPlayerId(playerId);
+            Player imprisonedPlayer = Game.getPlayerById(playerId);
 
-            for(Map.Entry<Integer,Player> e : map){
-                if(e.getValue().getId() == playerId) {
-                  imprisonedPlayer = e.getValue();
-                  clientId = e.getKey();
-                }
-            }
-
-            if(!(imprisonedPlayer instanceof Player) || clientId < 0){
+            if(imprisonedPlayer == null || clientId < 0){
                 throw new IllegalArgumentException();
             }
 
@@ -44,7 +28,7 @@ public class PlayerToPrison implements ServerActionInterface {
             args[0] = String.valueOf(clientId);
             args[1] = String.valueOf(imprisonedPlayer.getPosition().getLocation());
 
-
+            //TODO: Implement own action with we want to do something special in ClientLogic after player went to prison
             server.broadcast(GAMEVIEW_ACTIVITY_TYPE, PREFIX_PLAYER_MOVE, args);
 
         }catch(Exception ex){
