@@ -4,7 +4,6 @@ import static ClientUIHandling.Constants.PREFIX_PLAYER_PAYRENT;
 
 import android.util.Log;
 
-import java.io.InvalidClassException;
 import java.util.ArrayList;
 import java.util.Optional;
 
@@ -187,7 +186,7 @@ public class Player {
                 if(this.isSuspended() == false){
                     //player just moved on prison field, was not yet there
                     this.setSuspendedRounds(3);
-                    ServerActionHandler.triggerAction(Constants.PLAYER_MOVED_TO_PRISON, this.getId());
+                    ServerActionHandler.triggerAction(Constants.PREFIX_ACTIONCARD_PRISON, this.getId());
                 }
 
             }
@@ -236,6 +235,7 @@ public class Player {
      * @param cash The new amount of cash the player is able to spend.
      */
     public void setCash(int cash) {
+        //TODO: make the inquiry about cash < 0 here and trigger a loose procedure instead of asking 10 times throughout code
         this.cash = cash;
     }
 
@@ -265,10 +265,17 @@ public class Player {
     /** This method only executes code if a player is in prison.
      * This method handles all the related properties to the prison edge-case
      * If a player is suspended = went to prison if checks
+     * TODO: there is no event triggered right now , when a player uses the OOJ-Card
      */
     public void handlePrisonRound(){
         if(this.isSuspended()){
-            
+            if(this.outOfJailFreeCards > 0){
+                removeOutOfJailCard();
+                resetSuspension();
+            }else{
+                reduceSuspension();
+            }
+
         }
     }
 }
