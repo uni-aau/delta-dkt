@@ -3,7 +3,6 @@ package ServerLogic.actions;
 import static ClientUIHandling.Constants.GAMEVIEW_ACTIVITY_TYPE;
 import static ClientUIHandling.Constants.PREFIX_PLAYER_CHEATED;
 import static ClientUIHandling.Constants.PREFIX_PLAYER_LOST;
-import static ClientUIHandling.Constants.PREFIX_PLAYER_REPORTED_WRONGLY;
 
 import android.util.Log;
 
@@ -35,12 +34,12 @@ public class ActionPunish implements ServerActionInterface {
         int id = (int) parameterArray[1];
         Player player = Game.getPlayers().get(id);
         if(isCheater){
-            player.setCash(player.getCash()- Config.punishmentForCheating);
+            player.setCash(player.getCash()- Config.PUNISHMENT_FOR_CHEATING);
             server.broadcast(GAMEVIEW_ACTIVITY_TYPE +":"+PREFIX_PLAYER_CHEATED+" 1 "+player.getNickname()+" "+player.getId()+" "+player.getCash());
 
             //TODO SET PLAYER FIELD "hasCheated" to true
         }else{
-            player.setCash(player.getCash()- Config.punishmentForWrongReport);
+            player.setCash(player.getCash()- Config.PUNISHMENT_FOR_WRONG_REPORT);
             server.broadcast(GAMEVIEW_ACTIVITY_TYPE +":"+PREFIX_PLAYER_CHEATED+" 0 "+player.getNickname()+" "+player.getId()+" "+player.getCash());
         }
 

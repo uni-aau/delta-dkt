@@ -18,8 +18,8 @@ public class Config {
     public static final int START_CASH = 1000; //Number of rounds until the game ends
     public static final boolean ONLY_SHOW_PROPERTY_WITH_OWNER = false;
     public static final int MAX_HOUSES = 4; // also used in displaying house amount (currently max. 4)
-    public static final int punishmentForCheating = 500;
-    public static final int punishmentForWrongReport = 200;
+    public static final int PUNISHMENT_FOR_CHEATING = 500;
+    public static final int PUNISHMENT_FOR_WRONG_REPORT = 200;
 
 
 }
