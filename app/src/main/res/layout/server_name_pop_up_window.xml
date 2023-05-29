@@ -10,7 +10,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/layoutPopUp"
         android:layout_width="300dp"
-        android:layout_height="wrap_content"
+        android:layout_height="450dp"
         android:background="@drawable/pop_up_background"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -20,60 +20,116 @@
             android:id="@+id/popUpTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/EnterServerName"
-            android:textColor="@color/black"
+            android:text="@string/HostGame"
+            android:textColor="@color/blackSpecial"
             android:textSize="20sp"
             android:paddingTop="28dp"
             android:gravity="center_horizontal"
             android:fontFamily="@font/bangers"
             app:layout_constraintTop_toTopOf="@id/layoutPopUp"/>
 
+
         <EditText
-                android:id="@+id/popUpEditText"
-                android:layout_width="match_parent"
+            android:id="@+id/popUpEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:autofillHints="name"
+            android:hint="@string/EnterServerName"
+            android:inputType="text"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toTopOf="@id/maxPLayersEdTxt"
+            app:layout_constraintTop_toBottomOf="@id/popUpTitle"
+            app:layout_constraintVertical_bias="0.0"
+            tools:layout_editor_absoluteX="-16dp" />
+
+        <EditText
+            android:id="@+id/maxPLayersEdTxt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:hint="@string/EnterMaxPlayers"
+            android:inputType="number"
+            android:textSize="20sp"
+            android:autofillHints="Max Players"
+            app:layout_constraintBottom_toTopOf="@id/okButton"
+            app:layout_constraintTop_toBottomOf="@id/popUpEditText"
+            app:layout_constraintVertical_bias="0.081"
+            tools:layout_editor_absoluteX="0dp" />
+
+
+        <RadioGroup
+            android:id="@+id/buttonGroup"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toTopOf="@id/roundAndTimeEdtxt"
+            app:layout_constraintTop_toBottomOf="@id/maxPLayersEdTxt"
+            app:layout_constraintVertical_bias="0.198"
+            tools:layout_editor_absoluteX="0dp">
+
+            <RadioButton
+                android:id="@+id/roundsButton"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:textSize="18sp"
-                android:inputType="text"
-                android:autofillHints="name"
-                android:hint="@string/EnterServerName"
-                app:layout_constraintTop_toBottomOf="@id/popUpTitle"
-                app:layout_constraintBottom_toTopOf="@id/okButton"
-                tools:layout_editor_absoluteX="20dp"
-                android:textColor="#000000"
-                android:textColorHint="@color/whiteSpecial" />
+                android:text="@string/Rounds"
+                android:textSize="20sp" />
+
+            <RadioButton
+                android:id="@+id/timeButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/Time"
+                android:layout_marginStart="40dp"
+                android:textSize="20sp" />
+        </RadioGroup>
+
+        <EditText
+            android:id="@+id/roundAndTimeEdtxt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:hint="@string/enterRoundsOrTime"
+            android:inputType="number"
+            android:textSize="20sp"
+            android:autofillHints="Round and Time"
+            app:layout_constraintBottom_toTopOf="@id/okButton"
+            app:layout_constraintTop_toBottomOf="@id/buttonGroup"
+            app:layout_constraintVertical_bias="0.0"
+            tools:layout_editor_absoluteX="-16dp" />
 
         <Button
             android:id="@+id/okButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="148dp"
             android:backgroundTint="@color/dkt_red"
+            android:fontFamily="@font/bangers"
             android:text="@string/OK"
+            android:textColor="@color/dkt_yellow"
             android:textSize="14sp"
             app:cornerRadius="12dp"
-            android:fontFamily="@font/bangers"
-            android:textColor="@color/dkt_yellow"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.094"
+            app:layout_constraintHorizontal_bias="0.075"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/popUpEditText" />
+            app:layout_constraintTop_toBottomOf="@id/maxPLayersEdTxt" />
 
         <Button
             android:id="@+id/cancelButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="20dp"
             android:backgroundTint="@color/dkt_red"
+            android:fontFamily="@font/bangers"
             android:text="@string/Cancel"
+            android:textColor="@color/dkt_yellow"
             android:textSize="14sp"
             app:cornerRadius="12dp"
-            android:fontFamily="@font/bangers"
-            android:textColor="@color/dkt_yellow"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.905"
+            app:layout_constraintHorizontal_bias="0.924"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/popUpEditText" />
+            app:layout_constraintTop_toBottomOf="@id/roundAndTimeEdtxt" />
+
 
 
 
