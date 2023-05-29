@@ -73,7 +73,8 @@ public class GameViewActivity extends AppCompatActivity {
             Log.v(LOG_Cheat, "Report Menu is requested.");
             btnReportCheat.setEnabled(false);
 
-            //todo request user names from the server
+            //? Request the usernames from the server to display them in the menu later on.
+            ClientHandler.sendMessageToServer(GAMEVIEW_ACTIVITY_TYPE, PREFIX_PLAYER_CHEAT_MENU, String.valueOf(clientID));
         });
 
         registerLightSensor();
