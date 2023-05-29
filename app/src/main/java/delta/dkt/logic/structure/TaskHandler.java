@@ -15,14 +15,14 @@ public class TaskHandler {
      */
     public static Field getTaskFieldForPosition(int position){
 
-        RiskTaskCollection r = new RiskTaskCollection();
+        TaskCollection r = new TaskCollection();
 
         switch (position){
-            case 3: return new RiskTaskField(3,r.getRandomRiskTask());
-            case 9: return new RiskTaskField(9,r.getRandomRiskTask());
-            case 23: return new RiskTaskField(23,r.getRandomRiskTask());
-            case 28: return new RiskTaskField(28,r.getRandomRiskTask());
-            case 38: return new RiskTaskField(38,r.getRandomRiskTask());
+            case 3: return new RiskTaskField(3,r.getRandomTask());
+            case 9: return new RiskTaskField(9,r.getRandomTask());
+            case 23: return new RiskTaskField(23,r.getRandomTask());
+            case 28: return new RiskTaskField(28,r.getRandomTask());
+            case 38: return new RiskTaskField(38,r.getRandomTask());
             default: return null;
         }
     }
