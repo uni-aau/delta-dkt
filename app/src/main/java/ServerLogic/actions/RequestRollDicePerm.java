@@ -63,6 +63,4 @@ public class RequestRollDicePerm implements ServerActionInterface {
         return -1;
     }
 
-  
-
 }
