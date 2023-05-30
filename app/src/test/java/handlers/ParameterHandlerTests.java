@@ -34,7 +34,7 @@ class ParameterHandlerTests {
         Assertions.assertFalse(ParameterHandler.hasValue(array, 10, Integer.class));; // 10f
         Assertions.assertFalse(ParameterHandler.hasValue(array, 11, Integer.class));; // string
         Assertions.assertFalse(ParameterHandler.hasValue(array, 13, Integer.class));; // "10L"
-        Assertions.assertFalse(ParameterHandler.hasValue(array, 14, Integer.class));; // nullpointer
+        Assertions.assertFalse(ParameterHandler.hasValue(array, array.length, Integer.class));; // nullpointer
     }
 
     /**
@@ -57,7 +57,7 @@ class ParameterHandlerTests {
         Assertions.assertFalse(ParameterHandler.hasValue(array, 7, Double.class)); // "false"
         Assertions.assertFalse(ParameterHandler.hasValue(array, 11, Double.class)); // string
         Assertions.assertFalse(ParameterHandler.hasValue(array, 13, Double.class)); // "10L"
-        Assertions.assertFalse(ParameterHandler.hasValue(array, 14, Double.class)); // nullpointer
+        Assertions.assertFalse(ParameterHandler.hasValue(array, array.length, Double.class)); // nullpointer
     }
 
     /**
@@ -80,7 +80,7 @@ class ParameterHandlerTests {
         Assertions.assertFalse(ParameterHandler.hasValue(array, 7, Float.class)); // "false"
         Assertions.assertFalse(ParameterHandler.hasValue(array, 11, Float.class)); // string
         Assertions.assertFalse(ParameterHandler.hasValue(array, 13, Float.class)); // "10L
-        Assertions.assertFalse(ParameterHandler.hasValue(array, 14, Float.class)); // nullpointer
+        Assertions.assertFalse(ParameterHandler.hasValue(array, array.length, Float.class)); // nullpointer
     }
 
 
@@ -104,7 +104,7 @@ class ParameterHandlerTests {
         Assertions.assertFalse(ParameterHandler.hasValue(array, 11, Boolean.class)); // string
         Assertions.assertFalse(ParameterHandler.hasValue(array, 12, Boolean.class)); // 10L
         Assertions.assertFalse(ParameterHandler.hasValue(array, 13, Boolean.class)); // "10L"
-        Assertions.assertFalse(ParameterHandler.hasValue(array, 14, Boolean.class)); // nullpointer
+        Assertions.assertFalse(ParameterHandler.hasValue(array, array.length, Boolean.class)); // nullpointer
     }
 
     /**
@@ -120,7 +120,7 @@ class ParameterHandlerTests {
         Assertions.assertFalse(ParameterHandler.hasValue(array, 9, String.class)); // 10.0
         Assertions.assertFalse(ParameterHandler.hasValue(array, 10, String.class)); // 10f
         Assertions.assertFalse(ParameterHandler.hasValue(array, 12, String.class)); // 10L
-        Assertions.assertFalse(ParameterHandler.hasValue(array, 14, String.class)); // nullpointer
+        Assertions.assertFalse(ParameterHandler.hasValue(array, array.length, String.class)); // nullpointer
 
         Assertions.assertTrue(ParameterHandler.hasValue(array, 2, String.class)); // "0"
         Assertions.assertTrue(ParameterHandler.hasValue(array, 3, String.class)); // "1"
@@ -151,7 +151,7 @@ class ParameterHandlerTests {
         Assertions.assertFalse(ParameterHandler.hasValue(array, 10, Long.class)); // 10f
         Assertions.assertFalse(ParameterHandler.hasValue(array, 11, Long.class)); // string
         Assertions.assertFalse(ParameterHandler.hasValue(array, 13, Long.class)); // "10L"
-        Assertions.assertFalse(ParameterHandler.hasValue(array, 14, Long.class)); // nullpointer
+        Assertions.assertFalse(ParameterHandler.hasValue(array, array.length, Long.class)); // nullpointer
     }
 
     //? getValue function
@@ -176,7 +176,7 @@ class ParameterHandlerTests {
         Assertions.assertNull(ParameterHandler.getValue(array, 7, Integer.class)); // "false"
         Assertions.assertNull(ParameterHandler.getValue(array, 11, Integer.class)); // string
         Assertions.assertNull(ParameterHandler.getValue(array, 13, Integer.class)); // "10L"
-        Assertions.assertNull(ParameterHandler.getValue(array, 14, Integer.class)); // nullpointer
+        Assertions.assertNull(ParameterHandler.getValue(array, array.length, Integer.class)); // nullpointer
     }
 
 
@@ -194,7 +194,7 @@ class ParameterHandlerTests {
         Assertions.assertEquals(10.0, ParameterHandler.getValue(array, 10, Double.class)); // 10f
         Assertions.assertEquals(10.0, ParameterHandler.getValue(array, 12, Double.class)); // 10L
 
-        Assertions.assertNull(ParameterHandler.getValue(array, 14, Double.class)); // nullpointer
+        Assertions.assertNull(ParameterHandler.getValue(array, array.length, Double.class)); // nullpointer
         Assertions.assertNull(ParameterHandler.getValue(array, 4, Double.class)); // true
         Assertions.assertNull(ParameterHandler.getValue(array, 5, Double.class)); // false
         Assertions.assertNull(ParameterHandler.getValue(array, 6, Double.class)); // "true"
@@ -217,7 +217,7 @@ class ParameterHandlerTests {
         Assertions.assertEquals(10f, ParameterHandler.getValue(array, 10, Float.class)); // 10f
         Assertions.assertEquals(10f, ParameterHandler.getValue(array, 12, Float.class)); // 10L
 
-        Assertions.assertNull(ParameterHandler.getValue(array, 14, Float.class)); // nullpointer
+        Assertions.assertNull(ParameterHandler.getValue(array, array.length, Float.class)); // nullpointer
         Assertions.assertNull(ParameterHandler.getValue(array, 4, Float.class)); // true
         Assertions.assertNull(ParameterHandler.getValue(array, 5, Float.class)); // false
         Assertions.assertNull(ParameterHandler.getValue(array, 6, Float.class)); // "true"
@@ -246,7 +246,7 @@ class ParameterHandlerTests {
         Assertions.assertNull(ParameterHandler.getValue(array, 9, String.class)); // 10.0
         Assertions.assertNull(ParameterHandler.getValue(array, 10, String.class)); // 10f
         Assertions.assertNull(ParameterHandler.getValue(array, 12, String.class)); // 10L
-        Assertions.assertNull(ParameterHandler.getValue(array, 14, String.class)); // nullpointer
+        Assertions.assertNull(ParameterHandler.getValue(array, array.length, String.class)); // nullpointer
 
     }
 
@@ -270,6 +270,6 @@ class ParameterHandlerTests {
         Assertions.assertNull(ParameterHandler.getValue(array, 10, Long.class)); // 10f
         Assertions.assertNull(ParameterHandler.getValue(array, 11, Long.class)); // string
         Assertions.assertNull(ParameterHandler.getValue(array, 13, Long.class)); // "10L"
-        Assertions.assertNull(ParameterHandler.getValue(array, 14, Long.class)); // nullpointer
+        Assertions.assertNull(ParameterHandler.getValue(array, array.length, Long.class)); // nullpointer
     }
 }
