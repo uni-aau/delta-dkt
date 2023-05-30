@@ -186,4 +186,26 @@ class ParameterHandlerTests {
         Assertions.assertNull(ParameterHandler.getValue(array, 7, Float.class)); // "false"
         Assertions.assertNull(ParameterHandler.getValue(array, 11, Float.class)); // string
     }
+
+    /**
+     * Checks whether the values of the dummy array are parsed correctly.
+     */
+    @Test
+    void check_GetValue_String(){
+        Assertions.assertEquals("0", ParameterHandler.getValue(array, 2, String.class)); // "0"
+        Assertions.assertEquals("1", ParameterHandler.getValue(array, 3, String.class)); // "1"
+        Assertions.assertEquals("true", ParameterHandler.getValue(array, 6, String.class)); // "true"
+        Assertions.assertEquals("false", ParameterHandler.getValue(array, 7, String.class)); // "false"
+        Assertions.assertEquals("string", ParameterHandler.getValue(array, 11, String.class)); // string
+
+        Assertions.assertNull(ParameterHandler.getValue(array, 0, String.class)); // 0
+        Assertions.assertNull(ParameterHandler.getValue(array, 1, String.class)); // 1
+        Assertions.assertNull(ParameterHandler.getValue(array, 8, String.class)); // 10
+        Assertions.assertNull(ParameterHandler.getValue(array, 9, String.class)); // 10.0
+        Assertions.assertNull(ParameterHandler.getValue(array, 10, String.class)); // 10f
+        Assertions.assertNull(ParameterHandler.getValue(array, 12, String.class)); // nullpointer
+        Assertions.assertNull(ParameterHandler.getValue(array, 4, String.class)); // true
+        Assertions.assertNull(ParameterHandler.getValue(array, 5, String.class)); // false
+
+    }
 }
