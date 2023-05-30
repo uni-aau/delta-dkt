@@ -26,7 +26,7 @@ public class GameEnd implements ServerActionInterface {
             args.add(String.format(Locale.getDefault(),"%s#!#%d", p.getNickname(), p.getWealth()));
         }
 
-        Log.d("[SERVER]_GAME_END", "JUHU! Game has ended// Name: "  + " "+ args);
+        Log.d("[SERVER]_GAME_END", "Before Teardown");
 
 
         server.broadcast(Constants.GAMEVIEW_ACTIVITY_TYPE,Constants.PREFIX_END_GAME, args.toArray(new String[0]));
@@ -36,6 +36,7 @@ public class GameEnd implements ServerActionInterface {
             //Wait for the message to be sent, then close the server
             Thread.sleep(100);
             server.tearDown();
+            Log.d("[SERVER]_GAME_END", "After Teardown");
             ServerActionHandler.serverUserList.clear();
         } catch (IOException e) {
             throw new RuntimeException(e);
