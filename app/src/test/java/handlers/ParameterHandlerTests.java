@@ -102,7 +102,9 @@ class ParameterHandlerTests {
         Assertions.assertFalse(ParameterHandler.hasValue(array, 9, Boolean.class)); // 10.0
         Assertions.assertFalse(ParameterHandler.hasValue(array, 10, Boolean.class)); // 10f
         Assertions.assertFalse(ParameterHandler.hasValue(array, 11, Boolean.class)); // string
-        Assertions.assertFalse(ParameterHandler.hasValue(array, 12, Boolean.class)); // nullpointer
+        Assertions.assertFalse(ParameterHandler.hasValue(array, 12, Boolean.class)); // 10L
+        Assertions.assertFalse(ParameterHandler.hasValue(array, 13, Boolean.class)); // "10L"
+        Assertions.assertFalse(ParameterHandler.hasValue(array, 14, Boolean.class)); // nullpointer
     }
 
     /**
