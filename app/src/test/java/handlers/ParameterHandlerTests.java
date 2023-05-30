@@ -19,19 +19,19 @@ class ParameterHandlerTests {
      */
     @Test
     void checkIntegers(){
-        Assertions.assertTrue(ParameterHandler.hasValue(array, 0, Integer.class));
-        Assertions.assertTrue(ParameterHandler.hasValue(array, 1, Integer.class));
-        Assertions.assertTrue(ParameterHandler.hasValue(array, 2, Integer.class));;
-        Assertions.assertTrue(ParameterHandler.hasValue(array, 3, Integer.class));;
-        Assertions.assertTrue(ParameterHandler.hasValue(array, 8, Integer.class));
+        Assertions.assertTrue(ParameterHandler.hasValue(array, 0, Integer.class)); // 0
+        Assertions.assertTrue(ParameterHandler.hasValue(array, 1, Integer.class)); // 1
+        Assertions.assertTrue(ParameterHandler.hasValue(array, 2, Integer.class));; // "0"
+        Assertions.assertTrue(ParameterHandler.hasValue(array, 3, Integer.class));; //"1"
+        Assertions.assertTrue(ParameterHandler.hasValue(array, 8, Integer.class)); // 10
 
-        Assertions.assertFalse(ParameterHandler.hasValue(array, 4, Integer.class));;
-        Assertions.assertFalse(ParameterHandler.hasValue(array, 5, Integer.class));;
-        Assertions.assertFalse(ParameterHandler.hasValue(array, 6, Integer.class));;
-        Assertions.assertFalse(ParameterHandler.hasValue(array, 7, Integer.class));;
-        Assertions.assertFalse(ParameterHandler.hasValue(array, 9, Integer.class));;
-        Assertions.assertFalse(ParameterHandler.hasValue(array, 10, Integer.class));;
-        Assertions.assertFalse(ParameterHandler.hasValue(array, 11, Integer.class));;
+        Assertions.assertFalse(ParameterHandler.hasValue(array, 4, Integer.class)); // true
+        Assertions.assertFalse(ParameterHandler.hasValue(array, 5, Integer.class));; // false
+        Assertions.assertFalse(ParameterHandler.hasValue(array, 6, Integer.class));; // "true"
+        Assertions.assertFalse(ParameterHandler.hasValue(array, 7, Integer.class));; // "false"
+        Assertions.assertFalse(ParameterHandler.hasValue(array, 9, Integer.class));; // "10.0"
+        Assertions.assertFalse(ParameterHandler.hasValue(array, 10, Integer.class));; // 10f
+        Assertions.assertFalse(ParameterHandler.hasValue(array, 11, Integer.class));; // string
     }
 
     /**
