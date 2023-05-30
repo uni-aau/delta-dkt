@@ -1,6 +1,7 @@
 package ServerLogic.actions.cheating;
 
 import ServerLogic.ServerActionInterface;
+import ServerLogic.handlers.ParameterHandler;
 import android.annotation.SuppressLint;
 import android.util.Log;
 import delta.dkt.logic.structure.Game;
@@ -27,13 +28,13 @@ public class RequestCheatMenu implements ServerActionInterface {
             Log.w(LOG_Cheat, "RequestCheatMenu: Aborting request => No arguments provided!");
             return;
         }
-
+        
         int clientID;
-        try {
-            clientID = Integer.parseInt(args[0]);
-        } catch (Exception e) {
+        if(!ParameterHandler.hasValue(args, 0, Integer.class)) {
             Log.w(LOG_Cheat, "RequestCheatMenu: Aborting request => Invalid clientID provided!");
             return;
+        }else {
+            clientID = ParameterHandler.getValue(args, 0, Integer.class);
         }
 
 
