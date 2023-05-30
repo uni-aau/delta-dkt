@@ -17,6 +17,7 @@ public class ParameterHandler {
      * @return Returns true or false depending on the fact
      */
     public static <T> boolean hasValue(Object[] array, int index, Class<T> indexType) {
+        if(array == null) return false;
         if (array.length == 0) return false;
         if (array.length - 1 < index) return false;
 
