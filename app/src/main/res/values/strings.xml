@@ -88,7 +88,9 @@
 
     <!-- END Cheating Texts -->
 
-  
+    <string name="movement_info_message_singular">Player %s has moved by %s step and is now positioned at position=%s</string>
+    <string name="movement_info_message_plural">Player %s has moved by %s steps and is now positioned at position=%s</string>
+
     <string name="pay_tax_activity_text">%s had to pay %s%% taxes. Old cash %s$, new cash %s$</string>
     <string name="pay_static_tax_activity_text">%s had to pay %s$ taxes. Old cash %s$, new cash %s$</string>
     <string name="game_started_acitivty_text">Game started!</string>
