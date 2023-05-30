@@ -2,6 +2,7 @@ package ServerLogic.actions.cheating;
 
 import ServerLogic.ServerActionHandler;
 import ServerLogic.ServerActionInterface;
+import ServerLogic.handlers.ParameterHandler;
 import android.annotation.SuppressLint;
 import android.util.Log;
 import delta.dkt.logic.structure.Game;
@@ -29,21 +30,18 @@ public class RequestReportCheater implements ServerActionInterface {
             return;
         }
 
-        int clientID;
-        try {
-            clientID = Integer.parseInt(args[0]);
-        } catch (Exception e) {
+        if(!ParameterHandler.hasValue(args, 0, Integer.class)) {
             Log.w(LOG_Cheat, "RequestReportCheater: Aborting request => Invalid clientID provided!");
             return;
         }
-
-        Integer accusedClientID;
-        try{
-            accusedClientID = Integer.parseInt(args[1]);
-        }catch (Exception e){
+        if(!ParameterHandler.hasValue(args, 1, Integer.class)){
             Log.w(LOG_Cheat, "RequestReportCheater: Aborting request => Invalid accused-clientID provided!");
             return;
         }
+
+        int clientID = ParameterHandler.getValue(args, 0, Integer.class);
+        Integer accusedClientID = ParameterHandler.getValue(args, 1, Integer.class);
+
 
         Player accusedCheater = Game.getPlayers().get(accusedClientID);
 
