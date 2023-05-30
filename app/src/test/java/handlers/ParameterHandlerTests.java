@@ -42,13 +42,14 @@ class ParameterHandlerTests {
         Assertions.assertTrue(ParameterHandler.hasValue(array, 1, Double.class)); // 1
         Assertions.assertTrue(ParameterHandler.hasValue(array, 2, Double.class)); // "0"
         Assertions.assertTrue(ParameterHandler.hasValue(array, 3, Double.class)); // "1"
+        Assertions.assertTrue(ParameterHandler.hasValue(array, 8, Double.class)); // 10
+        Assertions.assertTrue(ParameterHandler.hasValue(array, 9, Double.class)); // 10.0
+        Assertions.assertTrue(ParameterHandler.hasValue(array, 10, Double.class)); // 10f
+        
         Assertions.assertFalse(ParameterHandler.hasValue(array, 4, Double.class)); // true
         Assertions.assertFalse(ParameterHandler.hasValue(array, 5, Double.class)); // false
         Assertions.assertFalse(ParameterHandler.hasValue(array, 6, Double.class)); // "true"
         Assertions.assertFalse(ParameterHandler.hasValue(array, 7, Double.class)); // "false"
-        Assertions.assertTrue(ParameterHandler.hasValue(array, 8, Double.class)); // 10
-        Assertions.assertTrue(ParameterHandler.hasValue(array, 9, Double.class)); // 10.0
-        Assertions.assertTrue(ParameterHandler.hasValue(array, 10, Double.class)); // 10f
         Assertions.assertFalse(ParameterHandler.hasValue(array, 11, Double.class)); // string
         Assertions.assertFalse(ParameterHandler.hasValue(array, 12, Double.class)); // nullpointer
     }
