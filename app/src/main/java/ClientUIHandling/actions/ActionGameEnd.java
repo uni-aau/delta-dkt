@@ -32,6 +32,7 @@ import delta.dkt.logic.structure.Game;
 public class ActionGameEnd implements ClientActionInterface {
 
     private HashMap<String, Integer> ranking;
+
     @Override
     public void execute(AppCompatActivity activity, String clientMessage) {
 
@@ -49,22 +50,23 @@ public class ActionGameEnd implements ClientActionInterface {
         // Receiving the WinnerRankingList from the Server:
         ranking= receiveWinnerRanking(clientMessage);
 
-
         // Setting TextViews with Values:
         setTextViews(view);
 
+        // Close client connection and reset the game:
+        try {
+            ClientHandler.getClient().stopConnection();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+        Game.reset();
+        LobbyViewActivity.userList.clear();
 
-        // Closing the Client Connection and switching to the Main Menu
+
+
+        // Switching to the Main Menu when ok Button is clicked:
         okButtonWinner.setOnClickListener(view1 -> {
             Log.d("[CLIENT]_GAME_END", "Beginning of Onclick");
-            try {
-                ClientHandler.getClient().stopConnection();
-            } catch (Exception e) {
-                throw new RuntimeException(e);
-            }
-
-            Game.reset();
-            LobbyViewActivity.userList.clear();
 
             Intent intent = new Intent(activity.getApplicationContext(), MainMenuActivity.class);
             intent.putExtra(MainActivity.INTENT_PARAMETER, MainMenuActivity.username);
