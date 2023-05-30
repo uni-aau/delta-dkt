@@ -72,5 +72,5 @@
     <string name="pay_static_tax_activity_text">%s had to pay %s$ taxes. Old cash %s$, new cash %s$</string>
     <string name="game_started_acitivty_text">Game started!</string>
     <string name="text_rent">Rent: %s$</string>
-    <string name="you_are_info_text">You are: %s</string>
+    <string name="playerName_info_text">You are: %s</string>
 </resources>

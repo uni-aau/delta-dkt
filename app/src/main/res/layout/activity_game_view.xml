@@ -224,7 +224,7 @@
             android:contentDescription="@string/img_description_player1_text" />
 
     <TextView
-            android:text="@string/you_are_info_text"
+            android:text="@string/playerName_info_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/textView_playerName_spec"
