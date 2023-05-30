@@ -105,6 +105,10 @@ public class ParameterHandler {
         if (indexType == Float.class) {
             return (T) (Float.valueOf(Float.parseFloat(array[index].toString())));
         }
+        
+        if (indexType == Long.class) {
+            return (T) (Long.valueOf(Long.parseLong(array[index].toString())));
+        }
 
         if (indexType == Boolean.class) {
             if (array[index].toString().trim().equalsIgnoreCase("true"))
