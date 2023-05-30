@@ -49,6 +49,7 @@ public class MainMenuActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        role = false;
         setContentView(R.layout.activity_main_menu_view);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT); // Force portrait screen at activity level
 
@@ -150,40 +151,53 @@ public class MainMenuActivity extends AppCompatActivity {
             String tempGameRoundsOrTime = gameRoundsAndTime.getText().toString();
             String tempMaxPlayers = maxPlayersEDT.getText().toString();
 
-            // First checking if some fields are empty - if everything is filled it continues with else path ->
+            // Check if TextViews are empty and valid:
             if (serverName.isEmpty()) {
                 Toast.makeText(MainMenuActivity.this, "Please enter Servername", Toast.LENGTH_SHORT).show();
-            } else if (tempMaxPlayers.isEmpty()) {
-                Toast.makeText(MainMenuActivity.this, "Please enter Max Players (1-6)", Toast.LENGTH_SHORT).show();
-            } else if (!roundsButton.isChecked() && !timeButton.isChecked()) {
-                Toast.makeText(MainMenuActivity.this, "Please choose Round or Time Game", Toast.LENGTH_SHORT).show();
-            } else if (tempGameRoundsOrTime.isEmpty()) {
-                Toast.makeText(MainMenuActivity.this, "Please enter Rounds or Time (Minutes)", Toast.LENGTH_SHORT).show();
-            } else {
-                int timeOrRounds = Integer.parseInt(tempGameRoundsOrTime);
-                int maxPlayers = Integer.parseInt(tempMaxPlayers);
+                return;
+            }
 
-                // Checking if inputs are valid - if so, it continues with else path ->
-                if (maxPlayers < Config.MIN_CLIENTS || maxPlayers > Config.MAX_CLIENTS) {
-                    Toast.makeText(MainMenuActivity.this, "Choose players between 1 - 6", Toast.LENGTH_SHORT).show();
-                } else if (timeOrRounds <= 0) {
-                    Toast.makeText(MainMenuActivity.this, "Time/Rounds <= 0 not allowed", Toast.LENGTH_SHORT).show();
-                } else {
-                    try {
-                        Config.MAX_CLIENTS = maxPlayers;
-                        if (isRoundsSelected.get()) {
-                            Config.ENDROUNDS = timeOrRounds;
-                        }
-                        if (isTimeSelected.get()) {
-                            Config.END_TIME = timeOrRounds*60000;
-                        }
-                        startServer(serverName);
-                    } catch (InterruptedException e) {
-                        Log.w("Warning", "Interrupted!", e);
-                        // Restore interrupted state...
-                        Thread.currentThread().interrupt();
-                    }
+            if (tempMaxPlayers.isEmpty()) {
+                Toast.makeText(MainMenuActivity.this, "Please enter Max Players (1-6)", Toast.LENGTH_SHORT).show();
+                return;
+            }
+
+            if (!roundsButton.isChecked() && !timeButton.isChecked()) {
+                Toast.makeText(MainMenuActivity.this, "Please choose Round or Time Game", Toast.LENGTH_SHORT).show();
+                return;
+            }
+
+            if (tempGameRoundsOrTime.isEmpty()) {
+                Toast.makeText(MainMenuActivity.this, "Please enter Rounds or Time (Minutes)", Toast.LENGTH_SHORT).show();
+                return;
+            }
+
+            int timeOrRounds = Integer.parseInt(tempGameRoundsOrTime);
+            int maxPlayers = Integer.parseInt(tempMaxPlayers);
+
+            if (!isValidMaxPlayers(maxPlayers)) {
+                Toast.makeText(MainMenuActivity.this, "Choose players between 1 - 6", Toast.LENGTH_SHORT).show();
+                return;
+            }
+
+            if (!isValidTimeOrRounds(timeOrRounds)) {
+                Toast.makeText(MainMenuActivity.this, "Time/Rounds <= 0 not allowed", Toast.LENGTH_SHORT).show();
+                return;
+            }
+
+            try {
+                Config.MAX_CLIENTS = maxPlayers;
+                if (isRoundsSelected.get()) {
+                    Config.ENDROUNDS = timeOrRounds;
                 }
+                if (isTimeSelected.get()) {
+                    Config.END_TIME = timeOrRounds * 60000;
+                }
+                startServer(serverName);
+            } catch (InterruptedException e) {
+                Log.w("Warning", "Interrupted!", e);
+                // Restore interrupted state...
+                Thread.currentThread().interrupt();
             }
         });
 
@@ -194,6 +208,16 @@ public class MainMenuActivity extends AppCompatActivity {
             alertDialog.getWindow().setBackgroundDrawable(new ColorDrawable(0));
         }
         alertDialog.show();
+    }
+
+
+    // Check if valid Methods:
+    private boolean isValidMaxPlayers(int maxPlayers) {
+        return maxPlayers >= Config.MIN_CLIENTS && maxPlayers <= Config.MAX_CLIENTS;
+    }
+
+    private boolean isValidTimeOrRounds(int timeOrRounds) {
+        return timeOrRounds > 0;
     }
 
 

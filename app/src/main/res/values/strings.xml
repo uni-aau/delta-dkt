@@ -4,7 +4,7 @@
     <string name="text_propName">Property Name: %s</string>
     <string name="text_price">Price: %s$</string>
     <string name="text_ownedBy">Owned by: %s</string>
-    <string name="text_propertiesAmountTitle">Properties:</string>
+    <string name="text_housesAmount">Houses: %d</string>
     <string name="text_propInfoTitle">Property Information</string>
     <string name="textCD_prop1">Property 1</string>
     <string name="textCD_prop2">Property 2</string>
@@ -85,4 +85,5 @@
     <string name="pay_tax_activity_text">%s had to pay %s%% taxes. Old cash %s$, new cash %s$</string>
     <string name="pay_static_tax_activity_text">%s had to pay %s$ taxes. Old cash %s$, new cash %s$</string>
     <string name="game_started_acitivty_text">Game started!</string>
+    <string name="text_rent">Rent: %s$</string>
 </resources>

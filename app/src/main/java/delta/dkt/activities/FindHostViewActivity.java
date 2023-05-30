@@ -87,7 +87,7 @@ public class FindHostViewActivity extends AppCompatActivity{
                 ClientHandler.setClient(client);
 
 
-                client.sendMessage(Constants.PREFIX_SERVER+":"+PREFIX_ADD_USER_TO_LIST+" "+user);
+
             }
 
             startActivity(intent);
