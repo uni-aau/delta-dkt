@@ -111,13 +111,10 @@ public class ParameterHandler {
         }
 
         if (indexType == Boolean.class) {
-            if (array[index].toString().trim().equalsIgnoreCase("true"))
-                return (T) Boolean.valueOf(array[index].toString().trim().equalsIgnoreCase("true"));
-
-            else if (array[index].toString().trim().length() == 1)
+            if (array[index].toString().trim().length() == 1)
                 return (T) Boolean.valueOf(array[index].toString().trim().equalsIgnoreCase("1"));
 
-            return (T) (Boolean.valueOf(array[index].toString().equals("true")).toString());
+            return (T) Boolean.valueOf(array[index].toString().trim().equalsIgnoreCase("true"));
         }
 
         return (T) String.valueOf(array[index]);
