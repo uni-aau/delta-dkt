@@ -264,6 +264,32 @@ class ParameterHandlerTests {
      * Checks whether the values of the dummy array are parsed correctly.
      */
     @Test
+    void check_GetValue_Boolean(){
+        Assertions.assertFalse(ParameterHandler.getValue(array, 2, Boolean.class)); // "0"
+        Assertions.assertTrue(ParameterHandler.getValue(array, 3, Boolean.class)); // "1"
+        Assertions.assertTrue(ParameterHandler.getValue(array, 6, Boolean.class)); // "true"
+        Assertions.assertFalse(ParameterHandler.getValue(array, 7, Boolean.class)); // "false"
+        Assertions.assertNull(ParameterHandler.getValue(array, 11, Boolean.class)); // string
+        Assertions.assertNull(ParameterHandler.getValue(array, 13, Boolean.class)); // "10L"
+
+        Assertions.assertFalse(ParameterHandler.getValue(array, 0, Boolean.class)); // 0
+        Assertions.assertTrue(ParameterHandler.getValue(array, 1, Boolean.class)); // 1
+        Assertions.assertTrue(ParameterHandler.getValue(array, 4, Boolean.class)); // true
+        Assertions.assertFalse(ParameterHandler.getValue(array, 5, Boolean.class)); // false
+        Assertions.assertNull(ParameterHandler.getValue(array, 8, Boolean.class)); // 10
+        Assertions.assertNull(ParameterHandler.getValue(array, 9, Boolean.class)); // 10.0
+        Assertions.assertNull(ParameterHandler.getValue(array, 10, Boolean.class)); // 10f
+        Assertions.assertNull(ParameterHandler.getValue(array, 12, Boolean.class)); // 10L
+        Assertions.assertNull(ParameterHandler.getValue(array, 14, Boolean.class)); // null
+        Assertions.assertNull(ParameterHandler.getValue(array, array.length, Boolean.class)); // index-out-of-bounce
+
+    }
+
+
+    /**
+     * Checks whether the values of the dummy array are parsed correctly.
+     */
+    @Test
     void check_GetValue_Long(){
         Assertions.assertEquals(0L, ParameterHandler.getValue(array, 0, Long.class)); // 0
         Assertions.assertEquals(1L, ParameterHandler.getValue(array, 1, Long.class)); // 1
