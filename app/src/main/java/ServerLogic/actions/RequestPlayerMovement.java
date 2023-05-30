@@ -71,6 +71,7 @@ public class RequestPlayerMovement implements ServerActionInterface {
         sendArgs.add(String.valueOf(clientID));
         sendArgs.add(String.valueOf(destination));
         sendArgs.add(String.valueOf(steps));
+        sendArgs.add(requestPlayer.getNickname());
 
         Log.d(tag, String.format("Sending out messages to %s players.", Game.getPlayers().size()));
         Log.d(tag, "");
