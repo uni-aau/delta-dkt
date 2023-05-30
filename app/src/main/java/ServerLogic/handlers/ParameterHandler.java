@@ -59,7 +59,10 @@ public class ParameterHandler {
             try {
                 if (array[index].toString().trim().length() == 1) {
                     //? "0" or "1"  &&  0 or 1
-                    return Boolean.valueOf((array[index].toString().trim().equalsIgnoreCase("1") || array[index].toString().trim().equalsIgnoreCase("0")));
+                    if(array[index].toString().trim().equalsIgnoreCase("0"))
+                        return true;
+
+                    return Boolean.valueOf((array[index].toString().trim().equalsIgnoreCase("1")));
                 }
                 return array[index].toString().trim().equalsIgnoreCase("true") || array[index].toString().trim().equalsIgnoreCase("false");
             } catch (Exception e) { //* Prevent possible NullPointerException
