@@ -53,5 +53,25 @@ class ParameterHandlerTests {
         Assertions.assertFalse(ParameterHandler.hasValue(array, 12, Double.class)); // nullpointer
     }
 
+    /**
+     * Checks whether the values of the dummy array are handled correclty.
+     */
+    @Test
+    void checkFloats(){
+        Assertions.assertTrue(ParameterHandler.hasValue(array, 0, Float.class)); // 0
+        Assertions.assertTrue(ParameterHandler.hasValue(array, 1, Float.class)); // 1
+        Assertions.assertTrue(ParameterHandler.hasValue(array, 2, Float.class)); // "0"
+        Assertions.assertTrue(ParameterHandler.hasValue(array, 3, Float.class)); // "1"
+        Assertions.assertFalse(ParameterHandler.hasValue(array, 4, Float.class)); // true
+        Assertions.assertFalse(ParameterHandler.hasValue(array, 5, Float.class)); // false
+        Assertions.assertFalse(ParameterHandler.hasValue(array, 6, Float.class)); // "true"
+        Assertions.assertFalse(ParameterHandler.hasValue(array, 7, Float.class)); // "false"
+        Assertions.assertTrue(ParameterHandler.hasValue(array, 8, Float.class)); // 10
+        Assertions.assertTrue(ParameterHandler.hasValue(array, 9, Float.class)); // 10.0
+        Assertions.assertTrue(ParameterHandler.hasValue(array, 10, Float.class)); // 10f
+        Assertions.assertFalse(ParameterHandler.hasValue(array, 11, Float.class)); // string
+        Assertions.assertFalse(ParameterHandler.hasValue(array, 12, Float.class)); // nullpointer
+    }
+
 
 }
