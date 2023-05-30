@@ -11,7 +11,7 @@ class ParameterHandlerTests {
 
     @BeforeEach
     void setup(){
-        array = new Object[]{0, 1, "0", "1", true, false, "true", "false", 10, 10.0, 10f, "string"};
+        array = new Object[]{0, 1, "0", "1", true, false, "true", "false", 10, 10.0, 10f, "string", 10L, "10L"};
     }
 
     /**
@@ -120,6 +120,29 @@ class ParameterHandlerTests {
         Assertions.assertTrue(ParameterHandler.hasValue(array, 11, String.class)); // string
     }
 
+    /**
+     * Checks whether the values of the dummy array are handled correclty.
+     */
+    @Test
+    void checkLongs(){
+        Assertions.assertTrue(ParameterHandler.hasValue(array, 0, Long.class)); // 0
+        Assertions.assertTrue(ParameterHandler.hasValue(array, 1, Long.class)); // 1
+        Assertions.assertTrue(ParameterHandler.hasValue(array, 2, Long.class)); // "0"
+        Assertions.assertTrue(ParameterHandler.hasValue(array, 3, Long.class)); // "1"
+        Assertions.assertTrue(ParameterHandler.hasValue(array, 8, Long.class)); // 10
+        Assertions.assertTrue(ParameterHandler.hasValue(array, 12, Long.class)); // 10L
+
+
+        Assertions.assertFalse(ParameterHandler.hasValue(array, 4, Long.class)); // true
+        Assertions.assertFalse(ParameterHandler.hasValue(array, 5, Long.class)); // false
+        Assertions.assertFalse(ParameterHandler.hasValue(array, 6, Long.class)); // "true"
+        Assertions.assertFalse(ParameterHandler.hasValue(array, 7, Long.class)); // "false"
+        Assertions.assertFalse(ParameterHandler.hasValue(array, 9, Long.class)); // 10.0
+        Assertions.assertFalse(ParameterHandler.hasValue(array, 10, Long.class)); // 10f
+        Assertions.assertFalse(ParameterHandler.hasValue(array, 11, Long.class)); // string
+        Assertions.assertFalse(ParameterHandler.hasValue(array, 13, Long.class)); // "10L"
+        Assertions.assertFalse(ParameterHandler.hasValue(array, 14, Long.class)); // nullpointer
+    }
 
     //? getValue function
 
