@@ -1,5 +1,7 @@
 package ClientUIHandling.actions;
 
+import ClientUIHandling.handlers.languages.LanguageHandler;
+import ServerLogic.handlers.ParameterHandler;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -23,18 +25,19 @@ public class ActionMove implements ClientActionInterface {
             return;
         }
 
-        int clientID, destination;
-
-        try {
-            clientID = Integer.parseInt(args[0]);
-            destination = Integer.parseInt(args[1]);
-        } catch (NumberFormatException e) {
-            String msg = String.format("Parsing the clientID or location has failed, thus the map cannot be updated! (ID: (%s), destination: (%s))", args[0], args[1]);
-            Log.e(tag, msg);
-            Toast.makeText(activity, msg, Toast.LENGTH_LONG).show();
-
+        if(!ParameterHandler.hasValue(args, 0, Integer.class)) {
+            Log.e(tag, "ClientActionMove: the clientID is invalid! => Aborting movement update!");
             return;
         }
+
+        if(!ParameterHandler.hasValue(args, 1, Integer.class)) {
+            Log.e(tag, "ClientActionMove: the destination is invalid! => Aborting movement update!");
+            return;
+        }
+
+        int clientID = ParameterHandler.getValue(args, 0, Integer.class);
+        int destination = ParameterHandler.getValue(args, 1, Integer.class);
+
 
         GameViewActivity gameViewActivity = (GameViewActivity) activity;
 
