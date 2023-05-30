@@ -26,8 +26,6 @@ public class Player implements Comparable<Player>{
     //? May be used to check whether a player is timeoutet, e.g. prison, or not.
     private int suspention = 0;
 
-    private int wealth = 0;
-
     public Player(String nickname) {
         this.nickname = nickname;
     }
@@ -216,12 +214,15 @@ public class Player implements Comparable<Player>{
     }
 
     public int getWealth() {
+
+        int wealth = 0;
         for (Property property : properties){
             wealth+=property.getPrice();
             wealth+= property.getHouses()*property.getHousePrice();
             wealth+= property.getHotels()* property.getHotelPrice();
         }
-        return wealth+cash;
+        wealth+=cash;
+        return wealth;
     }
 
     /**
