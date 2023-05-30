@@ -32,6 +32,7 @@ class ParameterHandlerTests {
         Assertions.assertFalse(ParameterHandler.hasValue(array, 9, Integer.class));; // "10.0"
         Assertions.assertFalse(ParameterHandler.hasValue(array, 10, Integer.class));; // 10f
         Assertions.assertFalse(ParameterHandler.hasValue(array, 11, Integer.class));; // string
+        Assertions.assertFalse(ParameterHandler.hasValue(array, 12, Integer.class));; // string
     }
 
     /**
