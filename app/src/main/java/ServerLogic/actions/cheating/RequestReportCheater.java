@@ -21,18 +21,18 @@ public class RequestReportCheater implements ServerActionInterface {
         parameters = parameters.toString().substring(actionPrefix.length() + 1);
         String[] actionArgs = parameters.toString().split(";");
 
-        Log.v(LOG_Cheat, "RequestReportCheater: initate server-side-process");
+        Log.v(LOG_CHEAT, "RequestReportCheater: initate server-side-process");
         if (actionArgs.length == 0) {
-            Log.w(LOG_Cheat, "RequestReportCheater: Aborting request => No arguments provided!");
+            Log.w(LOG_CHEAT, "RequestReportCheater: Aborting request => No arguments provided!");
             return;
         }
 
         if(!ParameterHandler.hasValue(actionArgs, 0, Integer.class)) {
-            Log.w(LOG_Cheat, "RequestReportCheater: Aborting request => Invalid clientID provided!");
+            Log.w(LOG_CHEAT, "RequestReportCheater: Aborting request => Invalid clientID provided!");
             return;
         }
         if(!ParameterHandler.hasValue(actionArgs, 1, Integer.class)){
-            Log.w(LOG_Cheat, "RequestReportCheater: Aborting request => Invalid accused-clientID provided!");
+            Log.w(LOG_CHEAT, "RequestReportCheater: Aborting request => Invalid accused-clientID provided!");
             return;
         }
 
@@ -43,17 +43,17 @@ public class RequestReportCheater implements ServerActionInterface {
         Player accusedCheater = Game.getPlayers().get(accusedClientID);
 
         if(accusedCheater.hasCheated()){
-            Log.d(LOG_Cheat, String.format("RequestReportCheater: Player%d has cheated and will be punished for it!", accusedClientID));
+            Log.d(LOG_CHEAT, String.format("RequestReportCheater: Player%d has cheated and will be punished for it!", accusedClientID));
 
             //? reported player has actually cheated and will get punished for it
             ServerActionHandler.triggerAction(PREFIX_PLAYER_CHEATED, new Object[]{true, accusedClientID});
         }else{
-            Log.d(LOG_Cheat, String.format("RequestReportCheater: Player%d has falsely reported a player and will get punished for it!", clientID));
+            Log.d(LOG_CHEAT, String.format("RequestReportCheater: Player%d has falsely reported a player and will get punished for it!", clientID));
 
             //? user has falsely reported a player and will get punished for it
             ServerActionHandler.triggerAction(PREFIX_PLAYER_CHEATED, new Object[]{false, clientID});
         }
 
-        Log.v(LOG_Cheat, "RequestReportCheater: Server-side-process finished!");
+        Log.v(LOG_CHEAT, "RequestReportCheater: Server-side-process finished!");
     }
 }

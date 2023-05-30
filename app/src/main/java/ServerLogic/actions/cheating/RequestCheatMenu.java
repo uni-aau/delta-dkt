@@ -23,15 +23,15 @@ public class RequestCheatMenu implements ServerActionInterface {
         parameters = parameters.toString().substring(prefix.length() + 1);
         String[] args = parameters.toString().split(";");
 
-        Log.v(LOG_Cheat, "RequestCheatMenu: initate server-side-process");
+        Log.v(LOG_CHEAT, "RequestCheatMenu: initate server-side-process");
         if (args.length == 0) {
-            Log.w(LOG_Cheat, "RequestCheatMenu: Aborting request => No arguments provided!");
+            Log.w(LOG_CHEAT, "RequestCheatMenu: Aborting request => No arguments provided!");
             return;
         }
         
         int clientID;
         if(!ParameterHandler.hasValue(args, 0, Integer.class)) {
-            Log.w(LOG_Cheat, "RequestCheatMenu: Aborting request => Invalid clientID provided!");
+            Log.w(LOG_CHEAT, "RequestCheatMenu: Aborting request => Invalid clientID provided!");
             return;
         }else {
             clientID = ParameterHandler.getValue(args, 0, Integer.class);
@@ -51,7 +51,7 @@ public class RequestCheatMenu implements ServerActionInterface {
             sendArgs.add(String.format("%d#!#%s", key, p.getNickname()));
         }
 
-        Log.v(LOG_Cheat, String.format("RequestCheatMenu: Sending playerNames (size=%s) to client with id: %d", (sendArgs.size() - 1), clientID));
+        Log.v(LOG_CHEAT, String.format("RequestCheatMenu: Sending playerNames (size=%s) to client with id: %d", (sendArgs.size() - 1), clientID));
         server.broadcast(GAMEVIEW_ACTIVITY_TYPE, PREFIX_PLAYER_CHEAT_MENU, sendArgs.toArray(new String[0]));
     }
 }

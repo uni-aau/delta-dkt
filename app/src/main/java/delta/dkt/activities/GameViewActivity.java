@@ -36,8 +36,6 @@ import delta.dkt.logic.structure.Game;
 import delta.dkt.sensors.LightSensor;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
 
 
 public class GameViewActivity extends AppCompatActivity {
@@ -74,7 +72,7 @@ public class GameViewActivity extends AppCompatActivity {
 
         Button btnReportCheat = findViewById(R.id.btnReportCheater);
         btnReportCheat.setOnClickListener(view -> {
-            Log.v(LOG_Cheat, "Report Menu is requested.");
+            Log.v(LOG_CHEAT, "Report Menu is requested.");
             btnReportCheat.setEnabled(false);
 
             //? Request the usernames from the server to display them in the menu later on.
@@ -202,7 +200,7 @@ public class GameViewActivity extends AppCompatActivity {
         View view = LayoutInflater.from(this).inflate(R.layout.report_cheat_popup, popUpConstraintLayout);
 
         if(playerNames.size() == 0){
-            Log.v(LOG_Cheat, "No players found, using default names.");
+            Log.v(LOG_CHEAT, "No players found, using default names.");
             playerNames.add("Player1");
             playerNames.add("Player2");
             playerNames.add("Player3");
@@ -224,7 +222,7 @@ public class GameViewActivity extends AppCompatActivity {
         final AlertDialog alertDialog = builder.create();
 
         submitCheater.setOnClickListener(view1 -> {
-            Log.d(LOG_Cheat, "A player has been reported as a cheater! => id=" + (this.cheatSelection + 1));
+            Log.d(LOG_CHEAT, "A player has been reported as a cheater! => id=" + (this.cheatSelection + 1));
             SnackBarHandler.createSnackbar(map, String.format("Successfully reported Player%d as a cheater!", (this.cheatSelection + 1))).show();
             ClientHandler.sendMessageToServer(GAMEVIEW_ACTIVITY_TYPE, PREFIX_PLAYER_REPORT_CHEATER, new Object[]{String.valueOf(clientID), String.valueOf(this.cheatSelection + 1)});
             alertDialog.dismiss();
