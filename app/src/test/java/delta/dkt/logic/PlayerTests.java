@@ -413,6 +413,19 @@ class PlayerTests {
 
     }
 
+
+    //? isCheating property tests
+
+    /**
+     * Check whether the default value of is false.
+     */
+    @Test
+    void check_hasCheating_Getter(){
+        assertFalse(player.hasCheated());
+    }
+
+
+
     /**
      * This method will create a property object that is being used as a valid field.
      *
