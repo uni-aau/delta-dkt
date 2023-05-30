@@ -52,7 +52,7 @@ public class ParameterHandler {
                     //? "0" or "1"  &&  0 or 1
                     return Boolean.valueOf((array[index].toString().trim().equalsIgnoreCase("1") || array[index].toString().trim().equalsIgnoreCase("0")));
                 }
-                return array[index].toString().trim().equalsIgnoreCase("true");
+                return array[index].toString().trim().equalsIgnoreCase("true") || array[index].toString().trim().equalsIgnoreCase("false");
             } catch (Exception e) { //* Prevent possible NullPointerException
                 return false;
             }
