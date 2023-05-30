@@ -5,6 +5,7 @@ import android.util.Log;
 import androidx.appcompat.app.AppCompatActivity;
 import delta.dkt.activities.GameViewActivity;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 import static ClientUIHandling.Constants.LOG_Cheat;
@@ -39,7 +40,8 @@ public class ActionOpenCheatMenu implements ClientActionInterface {
 
         Log.v(LOG_Cheat, String.format("ActionOpenCheatMenu: Attempting to open cheat-menu with %d players", playerInfos.size()));
 
+        Log.d(LOG_Cheat, "ActionOpenCheatMenu: Creating selection-report-popup");
         GameViewActivity gameViewActivity = (GameViewActivity) activity;
-//        gameViewActivity.createSelectionPopup();
+        gameViewActivity.createSelectionPopup(new ArrayList<>(playerInfos.values()));
     }
 }
