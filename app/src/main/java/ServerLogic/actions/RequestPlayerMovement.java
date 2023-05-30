@@ -54,6 +54,7 @@ public class RequestPlayerMovement implements ServerActionInterface {
 
 
         Player requestPlayer = Game.getPlayers().get(clientID);
+        requestPlayer.setCheat(isCheating);
         int currentPosition = requestPlayer.getPosition().getLocation();
 
         int steps = Config.diceRange.getRandomValue();
