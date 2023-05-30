@@ -84,7 +84,7 @@ public class LobbyViewActivity extends AppCompatActivity {
     // This Method ass user to UserList und updates the List
     public void welcomeToLobby () {
         if(role) {
-            ServerActionHandler.triggerAction(PREFIX_ADD_USER_TO_LIST, user);
+            ServerActionHandler.triggerAction(PREFIX_ADD_USER_TO_LIST, new Object[]{user, 1});
 
             Toast.makeText(LobbyViewActivity.this, "Users Total: " + userList.size(), Toast.LENGTH_SHORT).show();
         }

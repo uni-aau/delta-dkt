@@ -43,7 +43,7 @@ class UserNameAdapter extends RecyclerView.Adapter<UserNameAdapter.UserViewHolde
 
         holder.username.setText(usernames.get(position));
 
-        if (role) holder.userRole.setText(R.string.Host);
+        if (position == 0) holder.userRole.setText(R.string.Host);
         else holder.userRole.setText(R.string.Player);
 
 

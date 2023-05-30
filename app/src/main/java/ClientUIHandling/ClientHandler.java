@@ -10,6 +10,7 @@ import ClientUIHandling.actions.ActionPlayerPunish;
 import ClientUIHandling.actions.ActionPropertyListUpdate;
 import ClientUIHandling.actions.ActionRentPaid;
 import ClientUIHandling.actions.ActionInitRollDice;
+import ClientUIHandling.actions.ActionServerIsFull;
 import ClientUIHandling.actions.ActionSetMoney;
 import ClientUIHandling.actions.ActionUpdateGameTime;
 
@@ -67,6 +68,7 @@ public class ClientHandler extends Handler {
         actionMap.put(Constants.PREFIX_PLAYER_CHEATED, new ActionPlayerPunish());
         actionMap.put(PREFIX_PLAYER_CHEAT_MENU, new ActionOpenCheatMenu());
         actionMap.put(Constants.PREFIX_PROPLIST_UPDATE, new ActionPropertyListUpdate());
+        actionMap.put(Constants.PREFIX_SERVER_FULL, new ActionServerIsFull());
 
         actions.add(new ActionHostGame());
         actionPrefixes.add(Constants.PREFIX_HOST_NEW_GAME);

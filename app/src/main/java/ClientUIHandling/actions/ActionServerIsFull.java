@@ -1,23 +1,20 @@
 package ClientUIHandling.actions;
 
-import static ClientUIHandling.Constants.PREFIX_REMOVE_USER_FROM_LIST;
 import static delta.dkt.activities.MainActivity.INTENT_PARAMETER;
 
 import android.content.Intent;
-import android.util.Log;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import ClientUIHandling.ClientActionInterface;
 import delta.dkt.activities.MainMenuActivity;
 
-public class ActionRemoveUserFromUserList implements ClientActionInterface {
+public class ActionServerIsFull implements ClientActionInterface {
+
     @Override
     public void execute(AppCompatActivity activity, String clientMessage) {
-
-        String[] args = clientMessage.replace(PREFIX_REMOVE_USER_FROM_LIST, "").trim().split(";"); // Holt sich Args nach dem Prefix
-        Log.d("[CLIENT]_Remove_User_From_User_List", "JUHU! User was removed from List. Parameter: "+ args[0] );
-
+        Toast.makeText(activity, "SERVER IS FULL!", Toast.LENGTH_LONG).show();
         Intent intent = new Intent(activity, MainMenuActivity.class);
         intent.putExtra(INTENT_PARAMETER, MainMenuActivity.username);
         activity.startActivity(intent);

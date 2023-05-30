@@ -435,6 +435,22 @@ class PlayerTests {
     }
 
 
+    //? Nickname & ID - Getter and Setters
+  
+    @Test
+    void testSetNickName(){
+        Player player = new Player();
+        player.setNickname("testNickName");
+        assertEquals("testNickName", player.getNickname());
+    }
+
+    @Test
+    void testSetID(){
+        Player player = new Player();
+        player.setId(5);
+        assertEquals(5, player.getId());
+    }
+
     /**
      * This method will create a property object that is being used as a valid field.
      *

@@ -9,10 +9,7 @@ import ClientUIHandling.Config;
 import ClientUIHandling.Constants;
 import ServerLogic.ServerActionHandler;
 
-public class Player {
-    public static Player testInstance = new Player("testPlayer");
-
-
+public class Player implements Comparable<Player>{
     private static int _id = 1;
 
     //? May be used to sync player data across clients
@@ -34,6 +31,15 @@ public class Player {
     public Player() {
 
     }
+
+    public void setNickname(String nickname) {
+        this.nickname = nickname;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
 
     //? Property handling
 
@@ -234,5 +240,11 @@ public class Player {
 
     public void setCheat(boolean state){
         hasCheated = state;
+    }
+  
+  
+    @Override
+    public int compareTo(Player o) {
+        return this.id-o.id;
     }
 }

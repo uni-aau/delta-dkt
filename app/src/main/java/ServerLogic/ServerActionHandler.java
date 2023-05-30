@@ -32,14 +32,13 @@ public class ServerActionHandler {
 
     private static ServerNetworkClient server;
 
-    public static ArrayList<String> serverUserList;
+
 
     private ServerActionHandler() {
         // no instantiation of class
     }
 
     static{
-        serverUserList = new ArrayList<>();
         actions = new ArrayList<>();
         actionPrefixes = new ArrayList<>();
         actionMap = new HashMap<>();
