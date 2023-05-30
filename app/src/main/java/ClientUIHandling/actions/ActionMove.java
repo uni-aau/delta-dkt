@@ -57,7 +57,10 @@ public class ActionMove implements ClientActionInterface {
         String result = String.format("Successfully moved (id=%s) to (pos=%s)", clientID, destination);
         Log.d(tag + "-ClientSide", result);
 
-        var snack = SnackBarHandler.createSnackbar(activity.findViewById(R.id.imageView), result, 2000, true, "#6481d5", null);
-        snack.show();
+        
+        //? select the corresponding template for the message based on the amount of steps
+        String templateName = steps > 1 ? "movement_info_message_plural" : "movement_info_message_singular";
+
+        LanguageHandler.updateTextElement(activity, "textView_activity", templateName, new Object[]{nickName, steps, destination});
     }
 }
