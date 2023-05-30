@@ -61,6 +61,6 @@ public class ActionMove implements ClientActionInterface {
         //? select the corresponding template for the message based on the amount of steps
         String templateName = steps > 1 ? "movement_info_message_plural" : "movement_info_message_singular";
 
-        LanguageHandler.updateTextElement(activity, "textView_activity", templateName, new Object[]{nickName, steps, destination});
+        LanguageHandler.updateTextElement(activity, "textView_activity", templateName, new Object[]{nickName, String.valueOf(steps), String.valueOf(destination)});
     }
 }
