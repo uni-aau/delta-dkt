@@ -226,6 +226,7 @@ public class GameViewActivity extends AppCompatActivity {
         submitCheater.setOnClickListener(view1 -> {
             Log.d(LOG_Cheat, "A player has been reported as a cheater! => id=" + (this.cheatSelection + 1));
             SnackBarHandler.createSnackbar(map, String.format("Successfully reported Player%d as a cheater!", (this.cheatSelection + 1))).show();
+            ClientHandler.sendMessageToServer(GAMEVIEW_ACTIVITY_TYPE, PREFIX_PLAYER_REPORT_CHEATER, new Object[]{String.valueOf(clientID), String.valueOf(this.cheatSelection + 1)});
             alertDialog.dismiss();
         });
 
