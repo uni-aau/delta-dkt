@@ -30,28 +30,15 @@ public class ActionActivityBroadcast implements ClientActionInterface {
         ((TextView) activity.findViewById(R.id.textView_activity)).setText(String.format(activity.getString(R.string.activity_text), combinedActivityMessage));
     }
 
-    // Can add up to 3 variables in activity string
+    // Dynamically adds a specific amount of variables to a string
     private void formatActivityMessage(String message, String[] args) {
         int argsSize = args.length;
-        switch (argsSize) {
-            case 1:
-                combinedActivityMessage = String.format(message);
-                break;
-            case 2:
-                combinedActivityMessage = String.format(message, args[1]);
-                break;
-            case 3:
-                combinedActivityMessage = String.format(message, args[1], args[2]);
-                break;
-            case 4:
-                combinedActivityMessage = String.format(message, args[1], args[2], args[3]);
-                break;
-            case 5:
-                combinedActivityMessage = String.format(message, args[1], args[2], args[3], args[4]);
-                break;
-            default:
-                Log.e(TAG, "Error, too much args! ArgsSize = " + argsSize);
-                break;
+        try {
+            Object[] formattedArgs = new Object[argsSize - 1];
+            System.arraycopy(args, 1, formattedArgs, 0, argsSize - 1);
+            combinedActivityMessage = String.format(message, formattedArgs);
+        } catch (Exception e) {
+            Log.e(TAG, "Error formatting activity broadcast message: " + e.getMessage());
         }
     }
 }

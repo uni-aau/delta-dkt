@@ -1,5 +1,6 @@
 package delta.dkt.activities;
 
+
 import static ClientUIHandling.Constants.*;
 import static delta.dkt.R.id.imageView;
 
@@ -66,6 +67,7 @@ public class GameViewActivity extends AppCompatActivity {
             ServerActionHandler.triggerAction(PREFIX_GET_SERVER_TIME, clientID); // Get game time
             ServerActionHandler.triggerAction(PREFIX_INIT_PLAYERS, String.valueOf(clientID)); // Set player & handle dice perms
             ServerActionHandler.triggerAction(PREFIX_GAME_START_STATS, String.valueOf(Game.getPlayers().size())); // Update player stats
+            ServerActionHandler.triggerAction(PREFIX_PROPLIST_UPDATE, 1); // initializes propertylist
         }
 
         Button btnReportCheat = findViewById(R.id.btnReportCheater);
