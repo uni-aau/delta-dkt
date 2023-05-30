@@ -214,6 +214,9 @@ public class MainMenuActivity extends AppCompatActivity {
 
         if (Config.Skip && Config.DEBUG) {
             editText.setText(R.string.cheat_user_element_username_placeholder);
+            gameRoundsAndTime.setText("6");
+            maxPlayersEDT.setText("6");
+            roundsButton.setChecked(true);
             okButton.performClick();
         }
     }
