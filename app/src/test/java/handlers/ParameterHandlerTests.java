@@ -14,6 +14,12 @@ class ParameterHandlerTests {
         array = new Object[]{0, 1, "0", "1", true, false, "true", "false", 10, 10.0, 10f, "string", 10L, "10L", null};
     }
 
+
+    @Test
+    void checkNullArray(){
+        Assertions.assertFalse(ParameterHandler.hasValue(null, 0, Integer.class));
+    }
+
     @Test
     void checkEmptyArray(){
         Assertions.assertFalse(ParameterHandler.hasValue(new Object[]{}, 0, Integer.class));
