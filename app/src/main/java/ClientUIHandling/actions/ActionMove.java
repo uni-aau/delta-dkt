@@ -35,9 +35,20 @@ public class ActionMove implements ClientActionInterface {
             return;
         }
 
+        if(!ParameterHandler.hasValue(args, 2, Integer.class)) {
+            Log.e(tag, "ClientActionMove: the given steps is invalid! => Aborting movement update!");
+            return;
+        }
+
+        if(!ParameterHandler.hasValue(args, 3, String.class)) {
+            Log.e(tag, "ClientActionMove: the players-nickname is invalid! => Aborting movement update!");
+            return;
+        }
+
         int clientID = ParameterHandler.getValue(args, 0, Integer.class);
         int destination = ParameterHandler.getValue(args, 1, Integer.class);
-
+        int steps = ParameterHandler.getValue(args, 2, Integer.class);
+        String nickName = ParameterHandler.getValue(args, 3, String.class);
 
         GameViewActivity gameViewActivity = (GameViewActivity) activity;
 
