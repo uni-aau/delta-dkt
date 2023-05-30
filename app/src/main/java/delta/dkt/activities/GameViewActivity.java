@@ -36,6 +36,8 @@ import delta.dkt.logic.structure.Game;
 import delta.dkt.sensors.LightSensor;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 
 
 public class GameViewActivity extends AppCompatActivity {
@@ -195,21 +197,23 @@ public class GameViewActivity extends AppCompatActivity {
     }
 
     @SuppressLint("DefaultLocale")
-    public void createSelectionPopup() {
+    public void createSelectionPopup(ArrayList<String> playerNames) {
         ConstraintLayout popUpConstraintLayout = findViewById(R.id.cheatConstraint);
         View view = LayoutInflater.from(this).inflate(R.layout.report_cheat_popup, popUpConstraintLayout);
 
-
+        if(playerNames.size() == 0){
+            Log.v(LOG_Cheat, "No players found, using default names.");
+            playerNames.add("Player1");
+            playerNames.add("Player2");
+            playerNames.add("Player3");
+            playerNames.add("Player4");
+            playerNames.add("Player5");
+            playerNames.add("Player6");
+        }
         RecyclerView recyclerView = view.findViewById(R.id.rececylerCheatPlayer);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        ArrayList<String> names = new ArrayList<>();
-        names.add("Player1");
-        names.add("Player2");
-        names.add("Player3");
-        names.add("Player4");
-        names.add("Player5");
-        names.add("Player6");
-        CheatUserAdapter adapter = new CheatUserAdapter(this, names);
+
+        CheatUserAdapter adapter = new CheatUserAdapter(this, playerNames);
         recyclerView.setAdapter(adapter);
 
         Button submitCheater = view.findViewById(R.id.btnSubmitCheater);
