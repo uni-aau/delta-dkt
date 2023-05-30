@@ -35,6 +35,7 @@ public class RequestPayTax implements ServerActionInterface {
         int playerCashNew = playerCashOld;
 
         if (mapField instanceof SpecialField) {
+            ServerActionHandler.triggerAction(PREFIX_PLAYER_LOST, player.getId());
             if (mapField.getName().equals("VermögensAbgabe")) { // Reduce playercash with dynamic tax amount
                 int playerCashTaxAmount = (int) (playerCashOld * Config.TAX_PERCENTAGE);
                 playerCashNew = playerCashOld - playerCashTaxAmount;
