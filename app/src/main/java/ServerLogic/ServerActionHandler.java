@@ -7,6 +7,7 @@ import ServerLogic.actions.*;
 import ServerLogic.actions.RequestPlayerLost;
 import ServerLogic.actions.RequestPlayerMovement;
 import ServerLogic.actions.cheating.RequestCheatMenu;
+import ServerLogic.actions.cheating.RequestReportCheater;
 import android.util.Log;
 
 import java.util.ArrayList;
@@ -57,6 +58,7 @@ public class ServerActionHandler {
         actionMap.put(PREFIX_START_CASH_VALUE, new RequestSetStartMoney());
         actionMap.put(PREFIX_PAY_TAX, new RequestPayTax());
         actionMap.put(PREFIX_PLAYER_CHEAT_MENU, new RequestCheatMenu());
+        actionMap.put(PREFIX_PLAYER_REPORT_CHEATER, new RequestReportCheater());
         actionMap.put(PREFIX_PROPLIST_UPDATE, new RequestPropertyListUpdate());
 
 
