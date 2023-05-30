@@ -9,9 +9,6 @@ import delta.dkt.logic.structure.Game;
 import delta.dkt.logic.structure.Player;
 import network2.ServerNetworkClient;
 
-import java.util.ArrayList;
-import java.util.Collections;
-
 import static ClientUIHandling.Constants.*;
 
 @SuppressWarnings("DataFlowIssue")
@@ -20,27 +17,27 @@ public class RequestReportCheater implements ServerActionInterface {
     @SuppressLint("DefaultLocale")
     @Override
     public void execute(ServerNetworkClient server, Object parameters) {
-        String prefix = parameters.toString().split(" ")[0];
-        parameters = parameters.toString().substring(prefix.length() + 1);
-        String[] args = parameters.toString().split(";");
+        String actionPrefix = parameters.toString().split(" ")[0];
+        parameters = parameters.toString().substring(actionPrefix.length() + 1);
+        String[] actionArgs = parameters.toString().split(";");
 
         Log.v(LOG_Cheat, "RequestReportCheater: initate server-side-process");
-        if (args.length == 0) {
+        if (actionArgs.length == 0) {
             Log.w(LOG_Cheat, "RequestReportCheater: Aborting request => No arguments provided!");
             return;
         }
 
-        if(!ParameterHandler.hasValue(args, 0, Integer.class)) {
+        if(!ParameterHandler.hasValue(actionArgs, 0, Integer.class)) {
             Log.w(LOG_Cheat, "RequestReportCheater: Aborting request => Invalid clientID provided!");
             return;
         }
-        if(!ParameterHandler.hasValue(args, 1, Integer.class)){
+        if(!ParameterHandler.hasValue(actionArgs, 1, Integer.class)){
             Log.w(LOG_Cheat, "RequestReportCheater: Aborting request => Invalid accused-clientID provided!");
             return;
         }
 
-        int clientID = ParameterHandler.getValue(args, 0, Integer.class);
-        Integer accusedClientID = ParameterHandler.getValue(args, 1, Integer.class);
+        int clientID = ParameterHandler.getValue(actionArgs, 0, Integer.class);
+        Integer accusedClientID = ParameterHandler.getValue(actionArgs, 1, Integer.class);
 
 
         Player accusedCheater = Game.getPlayers().get(accusedClientID);
