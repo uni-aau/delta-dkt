@@ -14,8 +14,7 @@ import network2.ServerNetworkClient;
 public class RequestRollDicePerm implements ServerActionInterface {
     @Override
     public void execute(ServerNetworkClient server, Object parameters) {
-        String prefix = parameters.toString().split(" ")[0];
-        String[] args = parameters.toString().substring(prefix.length() + 1).split(";");
+        String[] args = parameters.toString().trim().split(";");
 
         int nextClient;
         String tag = "[Server] Roll Dice Request";
