@@ -32,6 +32,7 @@ class PlayerTests {
 
     //? Getters
 
+
     /**
      * Checks whether the initialized nickname, via the constructor, has been set and is accesible.
      */
@@ -427,6 +428,12 @@ class PlayerTests {
         assertEquals(5, player.getId());
     }
 
+
+    @Test
+    void getWealthTest() {assertEquals(1000, player.getWealth());}
+
+
+
     /**
      * This method will create a property object that is being used as a valid field.
      *
@@ -443,6 +450,7 @@ class PlayerTests {
         return dummy;
     }
 }
+
 
 
 class SomeTestField extends Field {
