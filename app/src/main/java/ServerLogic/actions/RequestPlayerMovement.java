@@ -13,6 +13,8 @@ import delta.dkt.logic.structure.Game;
 import delta.dkt.logic.structure.Player;
 import network2.ServerNetworkClient;
 
+import java.util.ArrayList;
+
 @SuppressWarnings("FieldCanBeLocal")
 public class RequestPlayerMovement implements ServerActionInterface {
     private String tag = "Movement-" + getClass().getSimpleName();
@@ -65,14 +67,14 @@ public class RequestPlayerMovement implements ServerActionInterface {
 
         requestPlayer.moveTo(destination);
 
-        String[] sendArgs = new String[3];
-        sendArgs[0] = String.valueOf(clientID);
-        sendArgs[1] = String.valueOf(destination);
-        sendArgs[2] = String.valueOf(steps);
+        ArrayList<String> sendArgs = new ArrayList<>();
+        sendArgs.add(String.valueOf(clientID));
+        sendArgs.add(String.valueOf(destination));
+        sendArgs.add(String.valueOf(steps));
 
         Log.d(tag, String.format("Sending out messages to %s players.", Game.getPlayers().size()));
         Log.d(tag, "");
-        server.broadcast(GAMEVIEW_ACTIVITY_TYPE, PREFIX_PLAYER_MOVE, sendArgs);
+        server.broadcast(GAMEVIEW_ACTIVITY_TYPE, PREFIX_PLAYER_MOVE, sendArgs.toArray(new String[0]));
 
         //? Add start-cash for passing over the start field.
         if (currentPosition > destination) ServerActionHandler.triggerAction(PREFIX_START_CASH_VALUE, clientID);
