@@ -6,6 +6,7 @@ import static ClientUIHandling.Constants.PREFIX_ADD_USER_TO_LIST;
 import static delta.dkt.activities.MainActivity.INTENT_PARAMETER;
 import static delta.dkt.activities.MainActivity.user;
 
+import ClientUIHandling.Config;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.net.nsd.NsdServiceInfo;
@@ -17,6 +18,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.net.InetAddress;
+import java.net.InetSocketAddress;
+import java.net.UnknownHostException;
 import java.util.ArrayList;
 
 import ClientUIHandling.ClientHandler;
@@ -57,7 +61,7 @@ public class FindHostViewActivity extends AppCompatActivity{
         NetworkServiceDiscoveryClient discoveryClient = new NetworkServiceDiscoveryClient(this, SERVICE_TYPE);
 
         discoveryClient.startDiscovery(new DiscoveryListener(this));
-        Log.v(LOG_BACKTRACE, "Discorvery has been started!");
+        Log.v(LOG_BACKTRACE, "Discorvery has been from the FindHostActivity started!");
         Log.d("Game-", "Discovery has been started!");
 
         updateHostList();
@@ -71,7 +75,31 @@ public class FindHostViewActivity extends AppCompatActivity{
         //recyclerView.setLayoutManager(new LinearLayoutManager(this));
         //adapter = new HostAdapter(this, hostList);
         //recyclerView.setAdapter(adapter);
+        if(GameViewActivity.clientID == -1 && Config.DEBUG){
 
+            NsdServiceInfo i = new NsdServiceInfo();
+            byte[] ipAddr = new byte[]{10, 0, 2, 2};
+
+            InetAddress addr = null;
+            try {
+                addr = InetAddress.getByAddress(ipAddr);
+            } catch (UnknownHostException e) {
+                throw new RuntimeException(e);
+            }
+            i.setHost(addr);
+            addHost(i);
+            //            joinButton.setEnabled(true);
+//            joinButton.setClickable(true);
+//            Log.v(LOG_BACKTRACE, "Manually starting client!");
+//            NetworkClientConnection client = new NetworkClientConnection("10.0.2.15", 33009, 1000, MainActivity.logic);
+//            client.start();
+//            ClientHandler.setClient(client);
+//
+//            Log.v(LOG_BACKTRACE, "Client has started!");
+//            Intent intent = new Intent(getApplicationContext(), LobbyViewActivity.class);
+//            intent.putExtra(INTENT_PARAMETER, newUser);
+//            startActivity(intent);
+        }
 
         backButton.setOnClickListener(view -> {
             Intent intent = new Intent(getApplicationContext(), MainMenuActivity.class);
@@ -83,11 +111,12 @@ public class FindHostViewActivity extends AppCompatActivity{
             Intent intent = new Intent(getApplicationContext(), LobbyViewActivity.class);
             intent.putExtra(INTENT_PARAMETER, newUser);
             if(selection != null){
-                NetworkClientConnection client = new NetworkClientConnection(selection.getHost().getHostAddress(), selection.getPort(), 1000, MainActivity.logic);
+                NetworkClientConnection client = new NetworkClientConnection("10.0.2.2", 37335, 1000, MainActivity.logic);
                 client.start();
                 ClientHandler.setClient(client);
 
-
+                Log.v(LOG_BACKTRACE, "client has started!");
+                client.sendMessage(Constants.PREFIX_SERVER+":" + Constants.PREFIX_PLAYER_CHEAT_MENU + " " +123123);
                 client.sendMessage(Constants.PREFIX_SERVER+":"+PREFIX_ADD_USER_TO_LIST+" "+user);
             }
 
@@ -115,7 +144,6 @@ public class FindHostViewActivity extends AppCompatActivity{
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         ArrayList<String> hostNames = new ArrayList<>();
-        Log.v(LOG_BACKTRACE, "Client-Server-List will be updated with "+hosts.size()+" hosts!");
 
         this.hosts.forEach(h -> hostNames.add(h.getHost()+":"+h.getPort()));
 
