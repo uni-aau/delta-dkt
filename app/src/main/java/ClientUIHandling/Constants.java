@@ -52,4 +52,10 @@ public class Constants {
     public static final String PREFIX_PLAYER_CHEATED = "CHEATED";
     public static final String PREFIX_PLAYER_REPORTED_WRONGLY = "REPORTED_WRONGLY";
     public static final String PREFIX_PROPLIST_UPDATE = "PROPLIST_UPDATE";
+  
+    public static final String PREFIX_PLAYER_CHEAT_MENU = "CHEAT_MENU";
+    public static final String PREFIX_PLAYER_REPORT_CHEATER = "REPORT_CHEATER";
+
+    public static final String LOG_MAIN = "Main";
+    public static final String LOG_CHEAT = String.format("%s-Cheat", LOG_MAIN);
 }

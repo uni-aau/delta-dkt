@@ -13,7 +13,7 @@ import ClientUIHandling.actions.ActionInitRollDice;
 import ClientUIHandling.actions.ActionSetMoney;
 import ClientUIHandling.actions.ActionUpdateGameTime;
 
-import android.os.Handler;
+import ClientUIHandling.actions.cheating.ActionOpenCheatMenu;import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
 
@@ -33,7 +33,7 @@ import ClientUIHandling.actions.ActionCloseGame;
 import ClientUIHandling.actions.ActionHostGame;
 import ClientUIHandling.actions.ActionRemoveUserFromUserList;
 import ClientUIHandling.actions.ActionUpdateUserList;
-import network2.NetworkClientConnection;
+import network2.NetworkClientConnection;import static ClientUIHandling.Constants.PREFIX_PLAYER_CHEAT_MENU;
 
 public class ClientHandler extends Handler {
 
@@ -65,6 +65,7 @@ public class ClientHandler extends Handler {
         actionMap.put(Constants.PREFIX_END_GAME, new ActionGameEnd());
         actionMap.put(Constants.PREFIX_SET_MONEY, new ActionSetMoney());
         actionMap.put(Constants.PREFIX_PLAYER_CHEATED, new ActionPlayerPunish());
+        actionMap.put(PREFIX_PLAYER_CHEAT_MENU, new ActionOpenCheatMenu());
         actionMap.put(Constants.PREFIX_PROPLIST_UPDATE, new ActionPropertyListUpdate());
 
         actions.add(new ActionHostGame());

@@ -45,7 +45,7 @@ public class GameViewActivity extends AppCompatActivity {
     private SensorManager manager = null;
     private LightSensor lightSensorListener = new LightSensor();
     private Sensor lightSensor = null;
-    public int cheatSelection = -1;
+    public int cheatSelection = -1; //? represents the index / position of the player-element selected, in the report-menu.
 
     Button btnDice;
     ImageView map;
@@ -71,7 +71,13 @@ public class GameViewActivity extends AppCompatActivity {
         }
 
         Button btnReportCheat = findViewById(R.id.btnReportCheater);
-        btnReportCheat.setOnClickListener(view -> createSelectionPopup());
+        btnReportCheat.setOnClickListener(view -> {
+            Log.v(LOG_CHEAT, "Report Menu is requested.");
+            btnReportCheat.setEnabled(false);
+
+            //? Request the usernames from the server to display them in the menu later on.
+            ClientHandler.sendMessageToServer(GAMEVIEW_ACTIVITY_TYPE, PREFIX_PLAYER_CHEAT_MENU, String.valueOf(clientID));
+        });
 
         registerLightSensor();
         displayPlayers(players);
@@ -189,21 +195,23 @@ public class GameViewActivity extends AppCompatActivity {
     }
 
     @SuppressLint("DefaultLocale")
-    public void createSelectionPopup() {
+    public void createSelectionPopup(ArrayList<String> playerNames) {
         ConstraintLayout popUpConstraintLayout = findViewById(R.id.cheatConstraint);
         View view = LayoutInflater.from(this).inflate(R.layout.report_cheat_popup, popUpConstraintLayout);
 
-
+        if(playerNames.size() == 0){
+            Log.v(LOG_CHEAT, "No players found, using default names.");
+            playerNames.add("Player1");
+            playerNames.add("Player2");
+            playerNames.add("Player3");
+            playerNames.add("Player4");
+            playerNames.add("Player5");
+            playerNames.add("Player6");
+        }
         RecyclerView recyclerView = view.findViewById(R.id.rececylerCheatPlayer);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        ArrayList<String> names = new ArrayList<>();
-        names.add("Player1");
-        names.add("Player2");
-        names.add("Player3");
-        names.add("Player4");
-        names.add("Player5");
-        names.add("Player6");
-        CheatUserAdapter adapter = new CheatUserAdapter(this, names);
+
+        CheatUserAdapter adapter = new CheatUserAdapter(this, playerNames);
         recyclerView.setAdapter(adapter);
 
         Button submitCheater = view.findViewById(R.id.btnSubmitCheater);
@@ -214,12 +222,14 @@ public class GameViewActivity extends AppCompatActivity {
         final AlertDialog alertDialog = builder.create();
 
         submitCheater.setOnClickListener(view1 -> {
-            Log.w("Report-Cheater", "A cheater has been reported! => " + (this.cheatSelection + 1));
+            Log.d(LOG_CHEAT, "A player has been reported as a cheater! => id=" + (this.cheatSelection + 1));
             SnackBarHandler.createSnackbar(map, String.format("Successfully reported Player%d as a cheater!", (this.cheatSelection + 1))).show();
+            ClientHandler.sendMessageToServer(GAMEVIEW_ACTIVITY_TYPE, PREFIX_PLAYER_REPORT_CHEATER, new Object[]{String.valueOf(clientID), String.valueOf(this.cheatSelection + 1)});
             alertDialog.dismiss();
         });
 
         cancelCheater.setOnClickListener(view1 -> alertDialog.dismiss());
+        alertDialog.setOnDismissListener(dialogInterface -> findViewById(R.id.btnReportCheater).setEnabled(true));
 
         if (alertDialog.getWindow() != null) {
             alertDialog.getWindow().setBackgroundDrawable(new ColorDrawable(0));
