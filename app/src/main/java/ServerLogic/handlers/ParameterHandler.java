@@ -45,6 +45,14 @@ public class ParameterHandler {
                 return false;
             }
         }
+        if (indexType == Long.class) {
+            try {
+                Long.parseLong(array[index].toString());
+                return true;
+            } catch (Exception e) {
+                return false;
+            }
+        }
         if (indexType == Boolean.class) {
             //* value could be 0 or 1, "0" or "1", true or false, "true" or "false"
             try {
