@@ -47,7 +47,7 @@ public class GameViewActivity extends AppCompatActivity {
     private SensorManager manager = null;
     private LightSensor lightSensorListener = new LightSensor();
     private Sensor lightSensor = null;
-    public int cheatSelection = -1;
+    public int cheatSelection = -1; //? represents the index / position of the player-element selected, in the report-menu.
 
     Button btnDice;
     ImageView map;
@@ -224,7 +224,7 @@ public class GameViewActivity extends AppCompatActivity {
         final AlertDialog alertDialog = builder.create();
 
         submitCheater.setOnClickListener(view1 -> {
-            Log.w("Report-Cheater", "A cheater has been reported! => " + (this.cheatSelection + 1));
+            Log.d(LOG_Cheat, "A player has been reported as a cheater! => id=" + (this.cheatSelection + 1));
             SnackBarHandler.createSnackbar(map, String.format("Successfully reported Player%d as a cheater!", (this.cheatSelection + 1))).show();
             alertDialog.dismiss();
         });
