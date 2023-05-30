@@ -433,7 +433,7 @@ class PlayerTests {
     void getWealthWithNoPropertiesTest() {
         player.getProperties().clear(); // Ensure player has no properties
         player.setCash(500);
-        assertEquals(1000, player.getWealth());
+        assertEquals(500, player.getWealth());
     }
 
     @Test
