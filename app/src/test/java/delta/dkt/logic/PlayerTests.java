@@ -424,6 +424,15 @@ class PlayerTests {
         assertFalse(player.hasCheated());
     }
 
+    /**
+     * Check whether hasCheated property can be modified.
+     */
+    @Test
+    void check_hasCheating_Setter(){
+        assertFalse(player.hasCheated());
+        player.setCheat(true);
+        assertTrue(player.hasCheated());
+    }
 
 
     /**
