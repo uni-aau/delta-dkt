@@ -67,4 +67,48 @@ public class ParameterHandler {
         return false;
     }
 
+    /**
+     * This method attempt to parse the value on the given index of the array to the requested type.
+     * <p>
+     * <p>
+     * <p>
+     * * This method will try to parse the value to the requested type, thus if the value is of type String but is "0" and the requested type is Integer or Boolean a value will be returned
+     * <p>
+     * <p>
+     * <p>
+     * * If the value cannot be parsed and does not match the requested type, null will be returned.
+     *
+     * @param array The array that should contain a value on a given index.
+     * @param index The index of the value
+     * @param indexType The type the value should have. e.g. Integer.class, Double.class, Float.class, Boolean.class
+     * @return Returns the value on the given index of the array as the requested type. (Will attempt to parse the value to the requested type)
+     */
+    public static <T> T getValue(Object[] array, int index, Class<T> indexType) {
+        if (!hasValue(array, index, indexType)) return null;
+
+        if (indexType == Integer.class) {
+            return (T) (Integer.valueOf(Integer.parseInt(array[index].toString())));
+        }
+
+        if (indexType == Double.class) {
+            return (T) (Double.valueOf(Double.parseDouble(array[index].toString())));
+        }
+
+        if (indexType == Float.class) {
+            return (T) (Float.valueOf(Float.parseFloat(array[index].toString())));
+        }
+
+        if (indexType == Boolean.class) {
+            if (array[index].toString().trim().equalsIgnoreCase("true"))
+                return (T) Boolean.valueOf(array[index].toString().trim().equalsIgnoreCase("true"));
+
+            else if (array[index].toString().trim().length() == 1)
+                return (T) Boolean.valueOf(array[index].toString().trim().equalsIgnoreCase("1"));
+
+            return (T) (Boolean.valueOf(array[index].toString().equals("true")).toString());
+        }
+
+        return (T) String.valueOf(array[index]);
+    }
+
 }
