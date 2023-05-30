@@ -34,14 +34,13 @@ public class ServerActionHandler {
 
     private static ServerNetworkClient server;
 
-    public static ArrayList<String> serverUserList;
+
 
     private ServerActionHandler() {
         // no instantiation of class
     }
 
     static{
-        serverUserList = new ArrayList<>();
         actions = new ArrayList<>();
         actionPrefixes = new ArrayList<>();
         actionMap = new HashMap<>();
@@ -59,6 +58,7 @@ public class ServerActionHandler {
         actionMap.put(PREFIX_PLAYER_CHEATED, new ActionPunish());
         actionMap.put(PREFIX_START_CASH_VALUE, new RequestSetStartMoney());
         actionMap.put(PREFIX_PAY_TAX, new RequestPayTax());
+        actionMap.put(PREFIX_PROPLIST_UPDATE, new RequestPropertyListUpdate());
 
         actionMap.put(PREFIX_ACTIONCARD_PRISON, new PlayerToPrison());
         actionMap.put(PREFIX_ACTIONCARD_OUT_OF_PRISON, new OutOfPrisonAwarded());

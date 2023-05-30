@@ -1,5 +1,6 @@
 package ClientUIHandling.actions;
 
+import static delta.dkt.activities.MainActivity.INTENT_PARAMETER;
 import static delta.dkt.activities.MainMenuActivity.role;
 
 import android.content.Intent;
@@ -21,9 +22,12 @@ public class ActionCloseGame implements ClientActionInterface {
             //mainMenuActivity.closeServer();
             Log.d("[CLIENT]:Close_Game ", "Server closed");
             Intent intent = new Intent(activity, MainMenuActivity.class);
+            intent.putExtra(INTENT_PARAMETER, MainMenuActivity.username);
             activity.startActivity(intent);
+
         }else{
             Intent intent = new Intent(activity, MainMenuActivity.class);
+            intent.putExtra(INTENT_PARAMETER, MainMenuActivity.username);
             activity.startActivity(intent);
         }
 

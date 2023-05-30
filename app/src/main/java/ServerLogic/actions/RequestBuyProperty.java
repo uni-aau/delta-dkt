@@ -3,9 +3,11 @@ package ServerLogic.actions;
 import static ClientUIHandling.Constants.GAMEVIEW_ACTIVITY_TYPE;
 import static ClientUIHandling.Constants.PREFIX_PLAYER_BUYPROPERTY;
 import static ClientUIHandling.Constants.PREFIX_PLAYER_PROPERTYBOUGHT;
+import static ClientUIHandling.Constants.PREFIX_PROPLIST_UPDATE;
 
 import android.util.Log;
 
+import ServerLogic.ServerActionHandler;
 import ServerLogic.ServerActionInterface;
 import delta.dkt.logic.structure.Field;
 import delta.dkt.logic.structure.Game;
@@ -37,8 +39,10 @@ public class RequestBuyProperty implements ServerActionInterface {
                 Property property = (Property) field;
                 //player.buyProperty again checks if the values provided are valid (field isnt owned by anybody, player has enough cash etc.)
                 boolean success = player.buyProperty(property.getLocation());
-                if(success)
+                if(success) {
+                    ServerActionHandler.triggerAction(PREFIX_PROPLIST_UPDATE, fieldLocation); // initializes propertylist
                     server.broadcast(GAMEVIEW_ACTIVITY_TYPE +":"+PREFIX_PLAYER_PROPERTYBOUGHT+" "+player.getNickname()+"(id= "+player.getId()+" ) "+player.getCash()+" "+property.getName()+"(Pos= "+property.getLocation()+" )");
+                }
                 else{
                     throw new RuntimeException("BuyPropertyAction::execute():Failed to buy a property");
                 }

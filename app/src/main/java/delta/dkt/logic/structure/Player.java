@@ -10,7 +10,7 @@ import ClientUIHandling.Config;
 import ClientUIHandling.Constants;
 import ServerLogic.ServerActionHandler;
 
-public class Player {
+public class Player implements Comparable<Player>{
     public static Player testInstance = new Player("testPlayer");
 
 
@@ -36,6 +36,15 @@ public class Player {
     public Player() {
 
     }
+
+    public void setNickname(String nickname) {
+        this.nickname = nickname;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
 
     //? Property handling
 
@@ -275,5 +284,9 @@ public class Player {
             }
 
         }
+
+    @Override
+    public int compareTo(Player o) {
+        return this.id-o.id;
     }
 }
