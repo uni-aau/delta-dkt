@@ -74,4 +74,23 @@ class ParameterHandlerTests {
     }
 
 
+    /**
+     * Checks whether the values of the dummy array are handled correclty.
+     */
+    @Test
+    void checkBooleans(){
+        Assertions.assertTrue(ParameterHandler.hasValue(array, 0, Boolean.class)); // 0
+        Assertions.assertTrue(ParameterHandler.hasValue(array, 1, Boolean.class)); // 1
+        Assertions.assertTrue(ParameterHandler.hasValue(array, 2, Boolean.class)); // "0"
+        Assertions.assertTrue(ParameterHandler.hasValue(array, 3, Boolean.class)); // "1"
+        Assertions.assertTrue(ParameterHandler.hasValue(array, 4, Boolean.class)); // true
+        Assertions.assertTrue(ParameterHandler.hasValue(array, 5, Boolean.class)); // false
+        Assertions.assertTrue(ParameterHandler.hasValue(array, 6, Boolean.class)); // "true"
+        Assertions.assertTrue(ParameterHandler.hasValue(array, 7, Boolean.class)); // "false"
+        Assertions.assertFalse(ParameterHandler.hasValue(array, 8, Boolean.class)); // 10
+        Assertions.assertFalse(ParameterHandler.hasValue(array, 9, Boolean.class)); // 10.0
+        Assertions.assertFalse(ParameterHandler.hasValue(array, 10, Boolean.class)); // 10f
+        Assertions.assertFalse(ParameterHandler.hasValue(array, 11, Boolean.class)); // string
+        Assertions.assertFalse(ParameterHandler.hasValue(array, 12, Boolean.class)); // nullpointer
+    }
 }
