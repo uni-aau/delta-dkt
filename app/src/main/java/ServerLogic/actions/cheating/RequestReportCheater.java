@@ -37,7 +37,7 @@ public class RequestReportCheater implements ServerActionInterface {
             return;
         }
 
-        int accusedClientID;
+        Integer accusedClientID;
         try{
             accusedClientID = Integer.parseInt(args[1]);
         }catch (Exception e){
