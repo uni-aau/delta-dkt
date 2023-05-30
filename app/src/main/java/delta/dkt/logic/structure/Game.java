@@ -20,7 +20,7 @@ public class Game {
         players = new HashMap<>();
     }
 
-    public static ArrayList<Player> winnerRankingList;
+    static final ArrayList<Player> winnerRankingList = new ArrayList<>();
 
     private static GameMap map;
 
@@ -50,8 +50,10 @@ public class Game {
         return rounds;
     }
 
+
     public static ArrayList<Player> getWinnerList(){
-        winnerRankingList = new ArrayList<>(players.values());
+        winnerRankingList.clear();
+        winnerRankingList.addAll(players.values());
 
         // Sort the playerList by Wealth
         Collections.sort(winnerRankingList, Comparator.comparingInt(Player::getWealth).reversed());
