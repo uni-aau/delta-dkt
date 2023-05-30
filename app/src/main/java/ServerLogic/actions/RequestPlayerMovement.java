@@ -22,9 +22,6 @@ public class RequestPlayerMovement implements ServerActionInterface {
     @SuppressWarnings("DataFlowIssue")
     @Override
     public void execute(ServerNetworkClient server, Object parameters) {
-        String prefix = parameters.toString().split(" ")[0];
-        parameters = parameters.toString().substring(prefix.length()+1);
-
         String[] args = parameters.toString().split(";");
 
         int clientID;
