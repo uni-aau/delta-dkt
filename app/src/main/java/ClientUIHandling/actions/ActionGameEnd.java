@@ -29,9 +29,11 @@ import delta.dkt.activities.MainMenuActivity;
 import delta.dkt.logic.structure.Game;
 
 
+
 public class ActionGameEnd implements ClientActionInterface {
 
     private HashMap<String, Integer> ranking;
+    public static final String LOG_MESSAGE = "[CLIENT]_GAME_END";
 
     @Override
     public void execute(AppCompatActivity activity, String clientMessage) {
@@ -66,12 +68,12 @@ public class ActionGameEnd implements ClientActionInterface {
 
         // Switching to the Main Menu when ok Button is clicked:
         okButtonWinner.setOnClickListener(view1 -> {
-            Log.d("[CLIENT]_GAME_END", "Beginning of Onclick");
+            Log.d(LOG_MESSAGE, "Beginning of Onclick");
 
             Intent intent = new Intent(activity.getApplicationContext(), MainMenuActivity.class);
             intent.putExtra(MainActivity.INTENT_PARAMETER, MainMenuActivity.username);
             activity.startActivity(intent);
-            Log.d("[CLIENT]_GAME_END", "End of On Click");
+            Log.d(LOG_MESSAGE, "End of On Click");
 
             alertDialog.dismiss();
         });
@@ -208,7 +210,7 @@ public class ActionGameEnd implements ClientActionInterface {
             int wealth = Integer.parseInt(parts[1]);
             stats.put(name, wealth);
         }
-        Log.d("[CLIENT]_GAME_END", "JUHU! Game has ended// Name: "  + " "+ stats.keySet());
+        Log.d(LOG_MESSAGE, "JUHU! Game has ended// Name: "  + " "+ stats.keySet());
         return stats;
     }
 
