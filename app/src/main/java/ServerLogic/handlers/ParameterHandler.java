@@ -2,6 +2,8 @@ package ServerLogic.handlers;
 
 public class ParameterHandler {
 
+    private ParameterHandler(){}
+
     /**
      * This checks whether a given array has a value at the given index and whether the value is of the given type.
      * <p>
