@@ -34,7 +34,7 @@ public class ActionPlayerInit implements ClientActionInterface {
             gameViewActivity.disableDice();
         }
 
-        setInitTextViewValues(activity);
+        setInitTextViewValues(activity, userName);
     }
 
     // Shows for every clientId a specific player marker in the gui (todo)
@@ -53,9 +53,12 @@ public class ActionPlayerInit implements ClientActionInterface {
     }
 
     // Sets initial textview values in GameView
-    private void setInitTextViewValues(AppCompatActivity activity) {
+    private void setInitTextViewValues(AppCompatActivity activity, String userName) {
         ((TextView) activity.findViewById(R.id.textView_cash)).setText(String.format(activity.getString(R.string.cash_text), String.valueOf(Config.INITIAL_CASH)));
         ((TextView) activity.findViewById(R.id.textView_my_properties)).setText(String.format(activity.getString(R.string.my_properties_text), String.valueOf(0)));
         ((TextView) activity.findViewById(R.id.textView_activity)).setText(String.format(activity.getString(R.string.activity_text), activity.getString(R.string.game_started_acitivty_text)));
+
+        String playerNameInputValue = String.format(activity.getString(R.string.playerName_info_text), userName);
+        ((TextView) activity.findViewById(R.id.textView_playerName_spec)).setText(playerNameInputValue);
     }
 }
