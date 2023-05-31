@@ -161,7 +161,9 @@ public class Player implements Comparable<Player>{
 
         if (this.position instanceof Property) {
             if(((Property) this.position).getOwner() != null) {
+                //START-NOSCAN
                 ServerActionHandler.triggerAction(PREFIX_PLAYER_PAYRENT, this.getId());
+                //END-NOSCAN
             }else{ //property can be bought , ask user
                 //START-NOSCAN
                 //TODO: Ask the user if he wants to buy the property.
@@ -174,7 +176,9 @@ public class Player implements Comparable<Player>{
                 ServerActionHandler.triggerAction(Constants.PREFIX_PAY_TAX, this.getId());
                 //END-NOSCAN
             } else if(this.position instanceof GoToPrisonField){
+                //START-NOSCAN
                 ServerActionHandler.triggerAction(PREFIX_GO_TO_PRISON_FIELD, this.getId());
+                //END-NOSCAN
             }
         }
     }
