@@ -55,21 +55,11 @@ public class ServerActionHandler {
         actionMap.put(PREFIX_START_CASH_VALUE, new RequestSetStartMoney());
         actionMap.put(PREFIX_PAY_TAX, new RequestPayTax());
         actionMap.put(PREFIX_PROPLIST_UPDATE, new RequestPropertyListUpdate());
-
-        actions.add(new RequestHostGame());
-        actionPrefixes.add(PREFIX_HOST_NEW_GAME);
-
-        actions.add(new RequestAddUserToUserList());
-        actionPrefixes.add(PREFIX_ADD_USER_TO_LIST);
-
-        actions.add(new RequestRemoveUserFromList());
-        actionPrefixes.add(PREFIX_REMOVE_USER_FROM_LIST);
-
-        actions.add(new RequestUpdateUserList());
-        actionPrefixes.add(PREFIX_UPDATE_USER_LIST);
-
-        actions.add(new RequestCloseGame());
-        actionPrefixes.add(PREFIX_CLOSE_GAME);
+        actionMap.put(PREFIX_HOST_NEW_GAME, new RequestHostGame());
+        actionMap.put(PREFIX_ADD_USER_TO_LIST, new RequestAddUserToUserList());
+        actionMap.put(PREFIX_REMOVE_USER_FROM_LIST, new RequestRemoveUserFromList());
+        actionMap.put(PREFIX_UPDATE_USER_LIST, new RequestUpdateUserList());
+        actionMap.put(PREFIX_CLOSE_GAME, new RequestCloseGame());
 
     }
 
