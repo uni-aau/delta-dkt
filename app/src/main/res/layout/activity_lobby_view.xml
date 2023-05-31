@@ -18,7 +18,7 @@
 
     <TextView
         android:id="@+id/textView"
-        android:layout_width="wrap_content"
+        android:layout_width="140dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:layout_centerHorizontal="true"
@@ -33,20 +33,20 @@
         android:layout_height="wrap_content"
         android:text="@string/TotalPlayers"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="1dp"
         android:fontFamily="@font/bangers"
         android:textSize="20sp"
+        android:layout_marginTop="2dp"
         android:layout_below="@id/dkt_logo"/>
 
     <TextView
         android:id="@+id/IP"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="ip: "
+        android:text="@string/IP"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="1dp"
-        android:fontFamily="@font/bangers"
-        android:textSize="20sp"
+        android:textStyle="bold"
+        android:textSize="18sp"
+        android:layout_marginTop="2dp"
         android:layout_below="@id/currentPlayersTextView"/>
 
     <androidx.recyclerview.widget.RecyclerView
