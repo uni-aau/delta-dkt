@@ -11,9 +11,6 @@ import ClientUIHandling.Constants;
 import ServerLogic.ServerActionHandler;
 
 public class Player implements Comparable<Player>{
-    public static Player testInstance = new Player("testPlayer");
-
-
     private static int _id = 1;
 
     //? May be used to sync player data across clients
@@ -234,6 +231,18 @@ public class Player implements Comparable<Player>{
 
     public int getCash() {
         return cash;
+    }
+
+    public int getWealth() {
+
+        int wealth = 0;
+        for (Property property : properties){
+            wealth+=property.getPrice();
+            wealth+= property.getHouses()*property.getHousePrice();
+            wealth+= property.getHotels()* property.getHotelPrice();
+        }
+        wealth+=cash;
+        return wealth;
     }
 
     /**

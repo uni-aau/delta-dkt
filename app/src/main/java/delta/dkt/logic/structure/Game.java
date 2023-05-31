@@ -1,6 +1,8 @@
 package delta.dkt.logic.structure;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
@@ -20,6 +22,8 @@ public class Game {
         map = new GameMap();
         players = new HashMap<>();
     }
+
+    static final ArrayList<Player> winnerRankingList = new ArrayList<>();
 
     private static GameMap map;
 
@@ -76,6 +80,17 @@ public class Game {
     public static int getRounds() {
         return rounds;
     }
+
+
+    public static ArrayList<Player> getWinnerList(){
+        winnerRankingList.clear();
+        winnerRankingList.addAll(players.values());
+
+        // Sort the playerList by Wealth
+        Collections.sort(winnerRankingList, Comparator.comparingInt(Player::getWealth).reversed());
+        return winnerRankingList;
+    }
+
 
     public static void setRounds(int rounds) {
         Game.rounds = rounds;
