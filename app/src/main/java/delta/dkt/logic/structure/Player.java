@@ -9,6 +9,7 @@ import static ClientUIHandling.Constants.PREFIX_PRISON;
 import java.util.ArrayList;
 
 import ClientUIHandling.Config;
+import ClientUIHandling.Constants;
 import ServerLogic.ServerActionHandler;
 
 public class Player implements Comparable<Player>{
@@ -162,11 +163,19 @@ public class Player implements Comparable<Player>{
             if(((Property) this.position).getOwner() != null) {
                 ServerActionHandler.triggerAction(PREFIX_PLAYER_PAYRENT, this.getId());
             }else{ //property can be bought , ask user
-                ServerActionHandler.triggerAction(PREFIX_PLAYER_BUYPROPERTY, this.getId()); //we only need one parameter , and thates the id of the player
+                //START-NOSCAN
+                //TODO: Ask the user if he wants to buy the property.
+                // ServerActionHandler.triggerAction(PREFIX_PLAYER_BUYPROPERTY, this.getId()); //we only need one parameter , and thates the id of the player
+                //END-NOSCAN
             }
-        }
-        if(this.position instanceof GoToPrisonField){
-            ServerActionHandler.triggerAction(PREFIX_GO_TO_PRISON_FIELD, this.getId());
+        } else if (this.position instanceof SpecialField) {
+            if (this.position.getName().equals("VermögensAbgabe") || this.position.getName().equals("Steuerabgabe")) {
+                //START-NOSCAN
+                ServerActionHandler.triggerAction(Constants.PREFIX_PAY_TAX, this.getId());
+                //END-NOSCAN
+            } else if(this.position instanceof GoToPrisonField){
+                ServerActionHandler.triggerAction(PREFIX_GO_TO_PRISON_FIELD, this.getId());
+            }
         }
     }
 
@@ -215,7 +224,7 @@ public class Player implements Comparable<Player>{
     public void setYouGetOutOfPrisonCard(boolean youGetOutOfPrisonCard) {
         this.youGetOutOfPrisonCard = youGetOutOfPrisonCard;
     }
-        
+
     public int getWealth() {
 
         int wealth = 0;
