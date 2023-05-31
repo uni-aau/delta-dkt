@@ -212,8 +212,9 @@ public class Player implements Comparable<Player>{
     public void setGoToPrisonField(boolean goToPrisonField){
         this.goToPrisonField = goToPrisonField;
     }
-    public void setYouGetOutOfPrisonCard(boolean youGetOutOfPrisonCard){
+    public void setYouGetOutOfPrisonCard(boolean youGetOutOfPrisonCard) {
         this.youGetOutOfPrisonCard = youGetOutOfPrisonCard;
+    }
         
     public int getWealth() {
 
