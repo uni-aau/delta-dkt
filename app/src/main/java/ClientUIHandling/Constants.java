@@ -60,4 +60,5 @@ public class Constants {
 
     public static final String LOG_MAIN = "Main";
     public static final String LOG_CHEAT = String.format("%s-Cheat", LOG_MAIN);
+    public static final String LOG_LIGHT_SENSOR = String.format("%s-LightSensor", LOG_MAIN);
 }
