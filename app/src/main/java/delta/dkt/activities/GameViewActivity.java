@@ -4,6 +4,7 @@ package delta.dkt.activities;
 import static ClientUIHandling.Constants.*;
 import static delta.dkt.R.id.imageView;
 
+import ClientUIHandling.handlers.languages.LanguageHandler;
 import ClientUIHandling.handlers.notifications.SnackBarHandler;
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -223,7 +224,7 @@ public class GameViewActivity extends AppCompatActivity {
 
         submitCheater.setOnClickListener(view1 -> {
             Log.d(LOG_CHEAT, "A player has been reported as a cheater! => id=" + (this.cheatSelection + 1));
-            SnackBarHandler.createSnackbar(map, String.format("Successfully reported Player%d as a cheater!", (this.cheatSelection + 1))).show();
+            LanguageHandler.updateTextElement(this, "textView_activity", "reportCheater_message", new Object[]{playerNames.get(cheatSelection)});
             ClientHandler.sendMessageToServer(GAMEVIEW_ACTIVITY_TYPE, PREFIX_PLAYER_REPORT_CHEATER, new Object[]{String.valueOf(clientID), String.valueOf(this.cheatSelection + 1)});
             alertDialog.dismiss();
         });
