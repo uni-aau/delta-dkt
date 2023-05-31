@@ -36,10 +36,10 @@ public class CheatUserAdapter extends RecyclerView.Adapter<CheatUserAdapter.Chea
         view.setOnClickListener(view1 -> {
             if (this.parent.cheatSelection >= 0) {
                 View previous = parent.getChildAt(this.parent.cheatSelection);
-                previous.setBackgroundResource(R.color.white);
+                previous.setBackgroundResource(R.color.whiteSpecial);
             }
             this.parent.cheatSelection = parent.indexOfChild(view);
-            view.setBackgroundResource(R.color.teal_200);
+            view.setBackgroundResource(R.color.cheatSelection);
         });
         return new CheatUserViewHolder(view);
     }
