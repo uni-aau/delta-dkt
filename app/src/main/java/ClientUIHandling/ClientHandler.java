@@ -67,21 +67,12 @@ public class ClientHandler extends Handler {
         actionMap.put(Constants.PREFIX_PLAYER_CHEATED, new ActionPlayerPunish());
         actionMap.put(Constants.PREFIX_PROPLIST_UPDATE, new ActionPropertyListUpdate());
         actionMap.put(Constants.PREFIX_SERVER_FULL, new ActionServerIsFull());
+        actionMap.put(Constants.PREFIX_HOST_NEW_GAME, new ActionHostGame());
+        actionMap.put(Constants.PREFIX_UPDATE_USER_LIST, new ActionUpdateUserList());
+        actionMap.put(Constants.PREFIX_ADD_USER_TO_LIST, new ActionAddUserToUserList());
+        actionMap.put(Constants.PREFIX_REMOVE_USER_FROM_LIST, new ActionRemoveUserFromUserList());
+        actionMap.put(Constants.PREFIX_CLOSE_GAME, new ActionCloseGame());
 
-        actions.add(new ActionHostGame());
-        actionPrefixes.add(Constants.PREFIX_HOST_NEW_GAME);
-
-        actions.add(new ActionUpdateUserList());
-        actionPrefixes.add(Constants.PREFIX_UPDATE_USER_LIST);
-
-        actions.add(new ActionAddUserToUserList());
-        actionPrefixes.add(Constants.PREFIX_ADD_USER_TO_LIST);
-
-        actions.add(new ActionRemoveUserFromUserList());
-        actionPrefixes.add(Constants.PREFIX_REMOVE_USER_FROM_LIST);
-
-        actions.add(new ActionCloseGame());
-        actionPrefixes.add(Constants.PREFIX_CLOSE_GAME);
     }
 
     public static void setClient(NetworkClientConnection connection){
