@@ -1,9 +1,12 @@
 package delta.dkt.sensors;
 
+import ClientUIHandling.Constants;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.util.Log;
+
+import static ClientUIHandling.Constants.LOG_LIGHT_SENSOR;
 
 public class LightSensor implements SensorEventListener {
     public static float value;
@@ -17,7 +20,7 @@ public class LightSensor implements SensorEventListener {
     public void onSensorChanged(SensorEvent sensorEvent) {
         if(Math.abs(LightSensor.value - sensorEvent.values[0]) >= COVER_THRESHOLD / 2){
             //* Only notify about value update when there is a significant change.
-            Log.v("Movement-LightSensor", "Value has significantly changed to: "+sensorEvent.values[0]);
+            Log.v(LOG_LIGHT_SENSOR, "Value has significantly changed to: "+sensorEvent.values[0]);
         }
 
         LightSensor.value = sensorEvent.values[0];
