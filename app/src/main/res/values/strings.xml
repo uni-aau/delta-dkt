@@ -81,16 +81,16 @@
     </string>
     <string name="cheat_popup_selection_menu_canel_button">Cancel</string>
     <string name="cheat_popup_selection_menu_submit_button">Report</string>
-    <!-- ##END Cheating-ReportMenu Texts -->
 
     <!-- ##START Cheating-ReportMenu Texts -->
     <string name="cheat_user_element_username_placeholder">Player Placeholder 1</string>
     <string name="cheat_user_element_image_description">Represents the players figure in the current game.</string>
-    <!-- ##END Cheating-ReportMenu Texts -->
 
     <!-- END Cheating Texts -->
 
-  
+    <string name="movement_info_message_singular">%s moved %s step and is now located at pos: %s</string>
+    <string name="movement_info_message_plural">%s moved %s steps and is now located at pos: %s</string>
+
     <string name="pay_tax_activity_text">%s had to pay %s%% taxes. Old cash %s$, new cash %s$</string>
     <string name="pay_static_tax_activity_text">%s had to pay %s$ taxes. Old cash %s$, new cash %s$</string>
     <string name="game_started_acitivty_text">Game started!</string>
