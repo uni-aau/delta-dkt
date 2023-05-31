@@ -211,6 +211,18 @@ public class Player implements Comparable<Player>{
         return cash;
     }
 
+    public int getWealth() {
+
+        int wealth = 0;
+        for (Property property : properties){
+            wealth+=property.getPrice();
+            wealth+= property.getHouses()*property.getHousePrice();
+            wealth+= property.getHotels()* property.getHotelPrice();
+        }
+        wealth+=cash;
+        return wealth;
+    }
+
     /**
      * This method will set the players cash.
      *
