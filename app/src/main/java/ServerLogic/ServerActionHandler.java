@@ -30,14 +30,13 @@ public class ServerActionHandler {
 
     private static ServerNetworkClient server;
 
-    public static ArrayList<String> serverUserList;
+
 
     private ServerActionHandler() {
         // no instantiation of class
     }
 
     static{
-        serverUserList = new ArrayList<>();
         actions = new ArrayList<>();
         actionPrefixes = new ArrayList<>();
         actionMap = new HashMap<>();
@@ -58,6 +57,7 @@ public class ServerActionHandler {
         actionMap.put(PREFIX_HAS_PRISONCARD, new ActionPrison());
         actionMap.put(PREFIX_GO_TO_PRISON_FIELD, new ActionGoToPrison());
         actionMap.put(PREFIX_PRISON, new ActionPrison());
+        actionMap.put(PREFIX_PROPLIST_UPDATE, new RequestPropertyListUpdate());
 
         actions.add(new RequestHostGame());
         actionPrefixes.add(PREFIX_HOST_NEW_GAME);
@@ -79,7 +79,8 @@ public class ServerActionHandler {
     public static void triggerAction(String name, Object parameters){
         if(server == null){
             //Use a java class here to avoid not-mocked exception when a test reaches here.
-           System.err.println("SERVER NOT SET");
+            //But due to sonarcloud, we simply do not log it instead...
+            //System.err.println("SERVER NOT SET");
             return;
         }
         //Still include old registration handling for legacy compatibility

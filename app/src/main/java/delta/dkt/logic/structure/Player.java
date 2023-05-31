@@ -11,8 +11,7 @@ import java.util.ArrayList;
 import ClientUIHandling.Config;
 import ServerLogic.ServerActionHandler;
 
-public class Player {
-    public static Player testInstance = new Player("testPlayer");
+public class Player implements Comparable<Player>{
     private boolean youGetOutOfPrisonCard = false;
     private boolean goToPrisonField = false;
     private static int _id = 1;
@@ -35,6 +34,15 @@ public class Player {
     public Player() {
 
     }
+
+    public void setNickname(String nickname) {
+        this.nickname = nickname;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
 
     //? Property handling
 
@@ -206,6 +214,17 @@ public class Player {
     }
     public void setYouGetOutOfPrisonCard(boolean youGetOutOfPrisonCard){
         this.youGetOutOfPrisonCard = youGetOutOfPrisonCard;
+        
+    public int getWealth() {
+
+        int wealth = 0;
+        for (Property property : properties){
+            wealth+=property.getPrice();
+            wealth+= property.getHouses()*property.getHousePrice();
+            wealth+= property.getHotels()* property.getHotelPrice();
+        }
+        wealth+=cash;
+        return wealth;
     }
 
     /**
@@ -229,5 +248,10 @@ public class Player {
         this.cash -= amount;
         recipient.cash += amount;
 
+    }
+
+    @Override
+    public int compareTo(Player o) {
+        return this.id-o.id;
     }
 }

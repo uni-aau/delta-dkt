@@ -1,6 +1,7 @@
 package ClientUIHandling.actions;
 
 import static ClientUIHandling.Constants.PREFIX_REMOVE_USER_FROM_LIST;
+import static delta.dkt.activities.MainActivity.INTENT_PARAMETER;
 
 import android.content.Intent;
 import android.util.Log;
@@ -18,6 +19,7 @@ public class ActionRemoveUserFromUserList implements ClientActionInterface {
         Log.d("[CLIENT]_Remove_User_From_User_List", "JUHU! User was removed from List. Parameter: "+ args[0] );
 
         Intent intent = new Intent(activity, MainMenuActivity.class);
+        intent.putExtra(INTENT_PARAMETER, MainMenuActivity.username);
         activity.startActivity(intent);
     }
 }
