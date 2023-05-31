@@ -22,7 +22,7 @@ public class LanguageHandler {
      */
     public static String formatText(String template, Object[] args) {
         int requestedArgs = 0;
-        if (template.contains("%s")) requestedArgs = template.split("%s").length;
+        if (template.contains("%s")) requestedArgs = String.valueOf(template +" ").split("%s").length -1;
 
         Object[] acceptedArgs = new String[requestedArgs];
         Arrays.fill(acceptedArgs, "(missing)");
