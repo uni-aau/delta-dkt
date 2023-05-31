@@ -1,6 +1,5 @@
 package delta.dkt.sensors;
 
-import ClientUIHandling.Constants;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
