@@ -88,8 +88,8 @@
 
     <!-- END Cheating Texts -->
 
-    <string name="movement_info_message_singular">%s has moved by %s step and is now located at pos: %s</string>
-    <string name="movement_info_message_plural">%s has moved by %s steps and is now located at pos: %s</string>
+    <string name="movement_info_message_singular">%s moved %s step and is now located at pos: %s</string>
+    <string name="movement_info_message_plural">%s moved %s steps and is now located at pos: %s</string>
 
     <string name="pay_tax_activity_text">%s had to pay %s%% taxes. Old cash %s$, new cash %s$</string>
     <string name="pay_static_tax_activity_text">%s had to pay %s$ taxes. Old cash %s$, new cash %s$</string>
