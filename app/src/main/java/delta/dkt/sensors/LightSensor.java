@@ -15,8 +15,12 @@ public class LightSensor implements SensorEventListener {
 
     @Override
     public void onSensorChanged(SensorEvent sensorEvent) {
+        if(Math.abs(LightSensor.value - sensorEvent.values[0]) >= COVER_THRESHOLD / 2){
+            //* Only notify about value update when there is a significant change.
+            Log.v("Movement-LightSensor", "Value has significantly changed to: "+sensorEvent.values[0]);
+        }
+
         LightSensor.value = sensorEvent.values[0];
-        Log.d("Movement-LightSensor", "Value has changed to: "+sensorEvent.values[0]);
     }
 
     @Override
