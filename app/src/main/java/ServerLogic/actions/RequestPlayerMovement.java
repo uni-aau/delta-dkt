@@ -63,7 +63,7 @@ public class RequestPlayerMovement implements ServerActionInterface {
         Log.d(tag, String.format("Moving player (id=%s) to (pos=%s)!", clientID, destination));
         Log.d(tag + "-detail", String.format("\told position: (pos=%s), new position: (pos=%s), steps: (steps=%s)", currentPosition, destination, steps));
 
-        requestPlayer.moveTo(destination);
+
 
         String[] args = new String[2];
         args[0] = String.valueOf(clientID);
@@ -72,6 +72,8 @@ public class RequestPlayerMovement implements ServerActionInterface {
         Log.d(tag, String.format("Sending out messages to %s players.", Game.getPlayers().size()));
         Log.d(tag, "");
         server.broadcast(GAMEVIEW_ACTIVITY_TYPE, PREFIX_PLAYER_MOVE, args);
+
+        requestPlayer.moveTo(destination); //Moved after Move-Broadcast to move the player to the PrisonField after he landed on the GoToPrisonField
 
 
         //? Add start-cash for passing over the start field.
