@@ -9,10 +9,10 @@ import static ClientUIHandling.Constants.PREFIX_PRISON;
 import java.util.ArrayList;
 
 import ClientUIHandling.Config;
+import ClientUIHandling.Constants;
 import ServerLogic.ServerActionHandler;
 
-public class Player {
-    public static Player testInstance = new Player("testPlayer");
+public class Player implements Comparable<Player>{
     private boolean youGetOutOfPrisonCard = false;
     private boolean goToPrisonField = false;
     private static int _id = 1;
@@ -35,6 +35,15 @@ public class Player {
     public Player() {
 
     }
+
+    public void setNickname(String nickname) {
+        this.nickname = nickname;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
 
     //? Property handling
 
@@ -152,13 +161,25 @@ public class Player {
 
         if (this.position instanceof Property) {
             if(((Property) this.position).getOwner() != null) {
+                //START-NOSCAN
                 ServerActionHandler.triggerAction(PREFIX_PLAYER_PAYRENT, this.getId());
+                //END-NOSCAN
             }else{ //property can be bought , ask user
-                ServerActionHandler.triggerAction(PREFIX_PLAYER_BUYPROPERTY, this.getId()); //we only need one parameter , and thates the id of the player
+                //START-NOSCAN
+                //TODO: Ask the user if he wants to buy the property.
+                // ServerActionHandler.triggerAction(PREFIX_PLAYER_BUYPROPERTY, this.getId()); //we only need one parameter , and thates the id of the player
+                //END-NOSCAN
             }
-        }
-        if(this.position instanceof GoToPrisonField){
-            ServerActionHandler.triggerAction(PREFIX_GO_TO_PRISON_FIELD, this.getId());
+        } else if (this.position instanceof SpecialField) {
+            if (this.position.getName().equals("VermögensAbgabe") || this.position.getName().equals("Steuerabgabe")) {
+                //START-NOSCAN
+                ServerActionHandler.triggerAction(Constants.PREFIX_PAY_TAX, this.getId());
+                //END-NOSCAN
+            } else if(this.position instanceof GoToPrisonField){
+                //START-NOSCAN
+                ServerActionHandler.triggerAction(PREFIX_GO_TO_PRISON_FIELD, this.getId());
+                //END-NOSCAN
+            }
         }
     }
 
@@ -204,8 +225,20 @@ public class Player {
     public void setGoToPrisonField(boolean goToPrisonField){
         this.goToPrisonField = goToPrisonField;
     }
-    public void setYouGetOutOfPrisonCard(boolean youGetOutOfPrisonCard){
+    public void setYouGetOutOfPrisonCard(boolean youGetOutOfPrisonCard) {
         this.youGetOutOfPrisonCard = youGetOutOfPrisonCard;
+    }
+
+    public int getWealth() {
+
+        int wealth = 0;
+        for (Property property : properties){
+            wealth+=property.getPrice();
+            wealth+= property.getHouses()*property.getHousePrice();
+            wealth+= property.getHotels()* property.getHotelPrice();
+        }
+        wealth+=cash;
+        return wealth;
     }
 
     /**
@@ -229,5 +262,10 @@ public class Player {
         this.cash -= amount;
         recipient.cash += amount;
 
+    }
+
+    @Override
+    public int compareTo(Player o) {
+        return this.id-o.id;
     }
 }

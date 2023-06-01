@@ -8,13 +8,16 @@ import ClientUIHandling.actions.ActionMove;
 import ClientUIHandling.actions.ActionPlayerLost;
 import ClientUIHandling.actions.ActionPlayerPunish;
 import ClientUIHandling.actions.ActionPrisonNotification;
+import ClientUIHandling.actions.ActionPropertyListUpdate;
 import ClientUIHandling.actions.ActionRentPaid;
 import ClientUIHandling.actions.ActionInitRollDice;
+import ClientUIHandling.actions.ActionServerIsFull;
 import ClientUIHandling.actions.ActionSetMoney;
 import ClientUIHandling.actions.ActionUpdateGameTime;
 
 import android.os.Handler;
 import android.os.Message;
+import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -64,6 +67,8 @@ public class ClientHandler extends Handler {
         actionMap.put(Constants.PREFIX_SET_MONEY, new ActionSetMoney());
         actionMap.put(Constants.PREFIX_PLAYER_CHEATED, new ActionPlayerPunish());
         actionMap.put(Constants.PREFIX_NOTIFICATION, new ActionPrisonNotification());
+        actionMap.put(Constants.PREFIX_PROPLIST_UPDATE, new ActionPropertyListUpdate());
+        actionMap.put(Constants.PREFIX_SERVER_FULL, new ActionServerIsFull());
 
         actions.add(new ActionHostGame());
         actionPrefixes.add(Constants.PREFIX_HOST_NEW_GAME);
@@ -117,12 +122,12 @@ public class ClientHandler extends Handler {
 
         String[] actionSplit = message.split("[: ]");
         if (actionMap.containsKey(actionSplit[0])) {
-            System.out.println("TRIGGERED "+actionSplit[0]);
+            Log.i("INFO","TRIGGERED "+actionSplit[0]);
             actionMap.get(actionSplit[0]).execute(UIActivity, message);
             return;
         }
 
-        System.err.println(actionSplit[0]+" NOT FOUND");
+        Log.e("ERROR",actionSplit[0] + " NOT FOUND");
 
     }
 

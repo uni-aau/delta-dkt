@@ -38,4 +38,13 @@ class GameTest {
         assertTrue(Game.getRoundStartID() == -1);
         assertTrue(Game.getRounds() == 0);
     }
+
+
+    @Test
+    void getWinnerListTest(){
+        Game.getPlayers().put(0, new Player("Jay"));
+        Game.getPlayers().put(1, new Player("Tom"));
+        Game.getPlayers().put(2, new Player("Nick"));
+        assertEquals(3, Game.getWinnerList().size());
+    }
 }

@@ -1,66 +1,57 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/framelayout2"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".activities.PropertyListActivity"
-        android:orientation="vertical"
-        android:id="@+id/framelayout2">
+        tools:context=".activities.PropertyListActivity">
 
     <LinearLayout
+            android:id="@+id/headerLayout"
             android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="51dp">
+            android:layout_height="51dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
         <TextView
-                android:text="@string/text_propInfoTitle"
-                android:layout_width="0dp"
-                android:layout_height="39dp"
                 android:id="@+id/textView_propInfoTitle"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
+                android:text="@string/text_propInfoTitle"
                 android:textSize="20sp"
                 android:gravity="center"
                 android:textStyle="bold" />
 
     </LinearLayout>
 
-    <LinearLayout
-            android:orientation="vertical"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+    <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerViewPropList"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintTop_toBottomOf="@id/headerLayout"
+            app:layout_constraintBottom_toTopOf="@id/button_backToGame"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
 
-        <ScrollView
-                android:layout_width="match_parent"
-                android:layout_height="274dp">
+    <Button
+            android:id="@+id/button_backToGame"
+            android:text="@string/text_backToGame"
+            android:layout_width="116dp"
+            android:layout_height="49dp"
+            app:layout_constraintTop_toBottomOf="@id/recyclerViewPropList"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:background="@drawable/host_btn_background"
+            android:textColor="@color/dkt_yellow" />
 
-            <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:id="@+id/linearLayout_Fragments"/>
-        </ScrollView>
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="81dp">
-
-            <Button
-                    android:text="@string/text_backToGame"
-                    android:layout_width="116dp"
-                    android:layout_height="49dp"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    android:id="@+id/button_backToGame"
-                    android:background="@drawable/host_btn_background"
-                    android:textColor="@color/dkt_yellow"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintHorizontal_bias="0.5"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintVertical_bias="0.5"
-                    android:layout_marginBottom="20dp"
-                    android:layout_marginTop="8dp" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-    </LinearLayout>
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

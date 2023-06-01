@@ -4,7 +4,7 @@
     <string name="text_propName">Property Name: %s</string>
     <string name="text_price">Price: %s$</string>
     <string name="text_ownedBy">Owned by: %s</string>
-    <string name="text_propertiesAmountTitle">Properties:</string>
+    <string name="text_housesAmount">Houses: %d</string>
     <string name="text_propInfoTitle">Property Information</string>
     <string name="textCD_prop1">Property 1</string>
     <string name="textCD_prop2">Property 2</string>
@@ -31,7 +31,7 @@
     <string name="DktLogoDescription">DKTLogo</string>
     <string name="Avatar">Avatar</string>
     <string name="PlayerLobby">Player Lobby</string>
-    <string name="EnterServerName">Please enter Server name</string>
+    <string name="HostGame">New Host Game:</string>
     <string name="OK">OK</string>
     <string name="Cancel">Cancel</string>
     <string name="ServerName">ServerName</string>
@@ -44,6 +44,26 @@
     <string name="FindHost">Find Host</string>
     <string name="JoinBtn">Join</string>
     <string name="HostId">Host ID</string>
+    <string name="EnterServerName">Please enter Server name:</string>
+    <string name="EnterMaxPlayers">Please enter Max Players:</string>
+    <string name="Time">Time</string>
+    <string name="Rounds">Rounds</string>
+    <string name="enterRoundsOrTime">Enter Rounds Or Minutes</string>
+    <string name="Congratulations">Congratulations!!!</string>
+    <string name="FirstPlace">First Place</string>
+    <string name="SecondPlace">Second Place</string>
+    <string name="ThirdPlace">Third Place</string>
+    <string name="FourthPlace">4</string>
+    <string name="FifthPlace">5</string>
+    <string name="SixthPlace">6</string>
+    <string name="Wealth">Wealth</string>
+    <string name="Finish">Finish</string>
+
+
+
+
+
+
 
     <string name="NSDServiceName">delta_dkt</string>
     <string name="NSDServiceType">_delta_dkt.tcp</string>
@@ -66,4 +86,5 @@
     <string name="pay_static_tax_activity_text">%s had to pay %s$ taxes. Old cash %s$, new cash %s$</string>
     <string name="game_started_acitivty_text">Game started!</string>
     <string name="notify_inprisonment">Player %s has been sent to prison!</string>
+    <string name="text_rent">Rent: %s$</string>
 </resources>

@@ -3,7 +3,8 @@ package ServerLogic.actions;
 import static ClientUIHandling.Constants.GAMEVIEW_ACTIVITY_TYPE;
 import static ClientUIHandling.Constants.PREFIX_PLAYER_CHEATED;
 import static ClientUIHandling.Constants.PREFIX_PLAYER_LOST;
-import static ClientUIHandling.Constants.PREFIX_PLAYER_REPORTED_WRONGLY;
+
+import android.util.Log;
 
 import ClientUIHandling.Config;
 import ServerLogic.ServerActionHandler;
@@ -16,16 +17,16 @@ public class ActionPunish implements ServerActionInterface {
     @Override
     public void execute(ServerNetworkClient server, Object parameters) {
         if(!(parameters instanceof Object[])){
-            System.err.println("WRONG PARAMETERS FOR ActionPunish, expected an array!");
+            Log.e("ERROR","WRONG PARAMETERS FOR ActionPunish, expected an array!");
             return;
         }
         Object[] parameterArray = (Object[]) parameters;
         if(!(parameterArray[0] instanceof Boolean)){
-            System.err.println("WRONG PARAMETERS FOR ActionPunish, expected boolean as first element!");
+            Log.e("ERROR","WRONG PARAMETERS FOR ActionPunish, expected boolean as first element!");
             return;
         }
         if(!(parameterArray[1] instanceof Integer)){
-            System.err.println("WRONG PARAMETERS FOR ActionPunish, expected integer as second element!");
+            Log.e("ERROR","WRONG PARAMETERS FOR ActionPunish, expected integer as second element!");
             return;
         }
 
@@ -33,12 +34,12 @@ public class ActionPunish implements ServerActionInterface {
         int id = (int) parameterArray[1];
         Player player = Game.getPlayers().get(id);
         if(isCheater){
-            player.setCash(player.getCash()- Config.punishmentForCheating);
+            player.setCash(player.getCash()- Config.PUNISHMENT_FOR_CHEATING);
             server.broadcast(GAMEVIEW_ACTIVITY_TYPE +":"+PREFIX_PLAYER_CHEATED+" 1 "+player.getNickname()+" "+player.getId()+" "+player.getCash());
 
             //TODO SET PLAYER FIELD "hasCheated" to true
         }else{
-            player.setCash(player.getCash()- Config.punishmentForWrongReport);
+            player.setCash(player.getCash()- Config.PUNISHMENT_FOR_WRONG_REPORT);
             server.broadcast(GAMEVIEW_ACTIVITY_TYPE +":"+PREFIX_PLAYER_CHEATED+" 0 "+player.getNickname()+" "+player.getId()+" "+player.getCash());
         }
 

@@ -22,7 +22,7 @@ public class ActionPlayerPunish implements ClientActionInterface {
         String[] splitMessage = clientMessage.split(" ");
 
         for (int i = 0; i < splitMessage.length; i++) {
-            System.out.println(splitMessage[i]);
+            Log.i("INFO", splitMessage[i]);
         }
 
         int cheater = Integer.parseInt(splitMessage[1]);

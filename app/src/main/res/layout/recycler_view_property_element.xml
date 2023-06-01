@@ -3,8 +3,8 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:context=".fragments.BlockFragment"
+        android:layout_height="wrap_content"
+        tools:context=".activities.PropertyListActivity"
         tools:layout_editor_absoluteY="-8dp"
         tools:layout_editor_absoluteX="9dp">
 
@@ -25,7 +25,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 android:layout_marginTop="24dp"
-                android:layout_marginStart="16dp" />
+                android:layout_marginStart="30dp" />
 
         <LinearLayout
                 android:orientation="vertical"
@@ -35,21 +35,29 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 android:id="@+id/linearLayout2"
                 app:layout_constraintStart_toEndOf="@+id/textview_propNumber"
-                android:layout_marginStart="16dp">
+                android:layout_marginStart="30dp">
 
             <TextView
                     android:text="@string/text_propName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/textView_propName"
-                    android:layout_marginTop="24dp" />
+                    android:layout_marginTop="14dp" />
 
             <TextView
                     android:text="@string/text_price"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/textView_price"
-                    android:layout_marginTop="11dp" />
+                    android:layout_marginTop="7dp" />
+
+            <TextView
+                    android:text="@string/text_rent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    android:id="@+id/textView_propRent"
+                    android:layout_marginTop="7dp" />
         </LinearLayout>
 
         <LinearLayout
@@ -63,14 +71,14 @@
                 app:layout_constraintStart_toEndOf="@+id/linearLayout2"
                 android:layout_marginStart="252dp"
                 app:layout_constraintHorizontal_bias="1.0"
-                android:layout_marginEnd="32dp">
+                android:layout_marginEnd="50dp">
 
             <TextView
                     android:text="@string/text_ownedBy"
                     android:layout_width="250dp"
                     android:layout_height="wrap_content"
                     android:id="@+id/textView_ownedBy"
-                    android:layout_marginTop="16dp"
+                    android:layout_marginTop="14dp"
                     android:layout_marginEnd="120dp" />
 
             <LinearLayout
@@ -80,7 +88,7 @@
                     android:layout_marginTop="8dp">
 
                 <TextView
-                        android:text="@string/text_propertiesAmountTitle"
+                        android:text="@string/text_housesAmount"
                         android:layout_width="115dp"
                         android:layout_height="35dp"
                         app:layout_constraintBottom_toBottomOf="parent"

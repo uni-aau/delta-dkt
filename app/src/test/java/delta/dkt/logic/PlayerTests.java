@@ -32,6 +32,7 @@ class PlayerTests {
 
     //? Getters
 
+
     /**
      * Checks whether the initialized nickname, via the constructor, has been set and is accesible.
      */
@@ -413,6 +414,40 @@ class PlayerTests {
 
     }
 
+    @Test
+    void testSetNickName(){
+        Player player = new Player();
+        player.setNickname("testNickName");
+        assertEquals("testNickName", player.getNickname());
+    }
+
+    @Test
+    void testSetID(){
+        Player player = new Player();
+        player.setId(5);
+        assertEquals(5, player.getId());
+    }
+
+
+    @Test
+    void getWealthWithNoPropertiesTest() {
+        player.getProperties().clear(); // Ensure player has no properties
+        player.setCash(500);
+        assertEquals(500, player.getWealth());
+    }
+
+    @Test
+    void getWealthWithPropertiesOnlyTest(){
+        player.getProperties().clear();
+        player.getProperties().add(testProperty1);
+        player.getProperties().add(testProperty2);
+
+        player.setCash(500);
+
+        assertEquals(player.getCash()+testProperty1.getPrice() + testProperty2.getPrice(), player.getWealth());
+    }
+
+
     /**
      * This method will create a property object that is being used as a valid field.
      *
@@ -441,6 +476,7 @@ class PlayerTests {
         assertTrue(player.getYouGetOutOfPrisonCard());
     }
 }
+
 
 
 class SomeTestField extends Field {
