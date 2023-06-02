@@ -17,7 +17,7 @@ public class ActionPrisonNotification implements ClientActionInterface {
     public void execute(AppCompatActivity activity, String clientMessage) {
         String[] args = clientMessage.replace(PREFIX_NOTIFICATION, "").trim().split(";");
 
-        Toast.makeText(activity.getApplicationContext(), LanguageHandler.formatText("notify_inprisonment", new Object[]{args[0]}), Toast.LENGTH_SHORT);
+        Toast.makeText(activity.getApplicationContext(), LanguageHandler.formatText("notify_inprisonment", new Object[]{args[0]}), Toast.LENGTH_SHORT).show();
     }
 }
 
