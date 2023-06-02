@@ -1,2 +1,90 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources></resources>
+<resources>
+    <string name="app_name">DKT</string>
+    <string name="text_propNumber">{0}</string>
+    <string name="text_propName">Grundstück Name: %s</string>
+    <string name="text_price">Preis: %s$</string>
+    <string name="text_ownedBy">Gehört: %s</string>
+    <string name="text_housesAmount">Häuser: %d</string>
+    <string name="text_propInfoTitle">Grundstück Information</string>
+    <string name="textCD_prop1">Grundstück 1</string>
+    <string name="textCD_prop2">Grundstück 2</string>
+    <string name="textCD_prop3">Grundstück 3</string>
+    <string name="textCD_prop4">Grundstück 4</string>
+    <string name="text_backToGame">Zurück</string>
+    <string name="general_information">Allgemeine Information</string>
+    <string name="players_online">Spieler online: %s / %s</string>
+    <string name="cash_text">Geld: %s$</string>
+    <string name="my_properties_text">Meine Grundstücke: %s</string>
+    <string name="playing_time_text">Spielzeit: %s %s, %s, %s, %s %s</string>
+    <string name="roll_the_dice">Würfeln</string>
+    <string name="property_information">Grundstück Information</string>
+    <string name="dice_information_text">%s würfelt\n{1} Würfe übrig</string>
+    <string name="gameview_image_description">DKT-Board</string>
+    <string name="activity_text">Activity: %s</string>
+    <string name="EnterButton">Weiter</string>
+    <string name="HostGameButton">Spiel hosten</string>
+    <string name="JoinGameButton">Spiel beitreten</string>
+    <string name="BackButton">Zurück</string>
+    <string name="StartButton">Start</string>
+    <string name="PleaseEnterUsername">Bitte gib Deinen Namen ein:</string>
+    <string name="UserName">Spielername</string>
+    <string name="DktLogoDescription">DKTLogo</string>
+    <string name="Avatar">Avatar</string>
+    <string name="PlayerLobby">Spieler Lobby</string>
+    <string name="HostGame">Neues Spiel hosten:</string>
+    <string name="OK">OK</string>
+    <string name="Cancel">Abbrechen</string>
+    <string name="ServerName">Server Name</string>
+    <string name="UserRole">User Rolle</string>
+    <string name="JoiningTime">Beigetreten auf:</string>
+    <string name="TotalPlayers">Spieleranzahl:</string>
+    <string name="Host">HOST</string>
+    <string name="Player">SPIELER</string>
+    <string name="Joined">Beigetreten:</string>
+    <string name="FindHost">Finde Host</string>
+    <string name="JoinBtn">Beitreten</string>
+    <string name="HostId">Host ID</string>
+    <string name="EnterServerName">Servernamen:</string>
+    <string name="EnterMaxPlayers">Maximale Spieleranzahl:</string>
+    <string name="Time">Zeit</string>
+    <string name="Rounds">Runden</string>
+    <string name="enterRoundsOrTime">Gib Runden oder Minuten an</string>
+    <string name="Congratulations">Glückwunsch!!!</string>
+    <string name="FirstPlace">Erster Platz</string>
+    <string name="SecondPlace">Zweiter Platz</string>
+    <string name="ThirdPlace">Dritter Platz</string>
+    <string name="FourthPlace">4</string>
+    <string name="FifthPlace">5</string>
+    <string name="SixthPlace">6</string>
+    <string name="Wealth">Vermögen</string>
+    <string name="Finish">Beenden</string>
+
+
+
+
+
+
+
+    <string name="NSDServiceName">delta_dkt</string>
+    <string name="NSDServiceType">_delta_dkt.tcp</string>
+    <string name="hours_plural_text">Stunden</string>
+    <string name="hour_sing_text">Stunde</string>
+    <string name="minutes_plural_text">Minuten</string>
+    <string name="minute_sing_text">Minute</string>
+    <string name="seconds_plural_text">Sekunden</string>
+    <string name="second_sing_text">Sekunde</string>
+    <string name="start_broadcast_toast_text">Das Spiel wurde erfolgreich mit %s Spielern gestartet</string>
+    <string name="img_description_player6_text">Spieler 6</string>
+    <string name="img_description_player5_text">Spieler 5</string>
+    <string name="img_description_player3_text">Spieler 3</string>
+    <string name="img_description_player4_text">Spieler 4</string>
+    <string name="img_description_player2_text">Spieler 2</string>
+    <string name="img_description_player1_text">Spieler 1</string>
+
+    <string name="start_money_activity_text">%s erhält Start-Geld</string>
+    <string name="pay_tax_activity_text">%s muss %s%% Miete zahlen. Alter Betrag: %s$, neuer Betrag: %s$</string>
+    <string name="pay_static_tax_activity_text">%s muss %s$ Miete zahlen. Alter Betrag: %s$, neuer Betrag: %s$</string>
+    <string name="game_started_acitivty_text">Spiel wurde gestertet!</string>
+    <string name="text_rent">Miete: %s$</string>
+</resources>
