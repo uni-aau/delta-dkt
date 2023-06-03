@@ -58,4 +58,5 @@ public class Constants {
 
     public static final String PREFIX_SERVER_FULL = "SERVER_FULL";
     public static final String PREFIX_PROPLIST_UPDATE = "PROPLIST_UPDATE";
+    public static final String PREFIX_SUSPENSION_COUNT = "SUSPENSION_COUNT";
 }
