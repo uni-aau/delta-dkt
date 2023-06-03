@@ -37,12 +37,12 @@ public class ActionPunish implements ServerActionInterface {
         Player player = Game.getPlayers().get(id);
         if(isCheater){
             player.setCash(player.getCash()- Config.PUNISHMENT_FOR_CHEATING);
-            server.broadcast(GAMEVIEW_ACTIVITY_TYPE +":"+PREFIX_PLAYER_CHEATED+" 1 "+player.getNickname()+" "+player.getId()+" "+player.getCash());
+            server.broadcast(GAMEVIEW_ACTIVITY_TYPE +":"+PREFIX_PLAYER_CHEATED+" 1;"+player.getNickname()+";"+player.getId()+";"+player.getCash());
 
             //TODO SET PLAYER FIELD "hasCheated" to true
         }else{
             player.setCash(player.getCash()- Config.PUNISHMENT_FOR_WRONG_REPORT);
-            server.broadcast(GAMEVIEW_ACTIVITY_TYPE +":"+PREFIX_PLAYER_CHEATED+" 0 "+player.getNickname()+" "+player.getId()+" "+player.getCash());
+            server.broadcast(GAMEVIEW_ACTIVITY_TYPE +":"+PREFIX_PLAYER_CHEATED+" 0;"+player.getNickname()+";"+player.getId()+";"+player.getCash());
         }
 
         if(player.getCash() < 0){

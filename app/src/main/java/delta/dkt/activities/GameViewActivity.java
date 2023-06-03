@@ -32,6 +32,7 @@ import ServerLogic.ServerActionHandler;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import com.google.android.material.snackbar.Snackbar;
 import delta.dkt.R;
 import delta.dkt.logic.structure.Game;
 import delta.dkt.sensors.LightSensor;
@@ -223,6 +224,11 @@ public class GameViewActivity extends AppCompatActivity {
         final AlertDialog alertDialog = builder.create();
 
         submitCheater.setOnClickListener(view1 -> {
+            if(this.cheatSelection < 0){
+                SnackBarHandler.createSnackbar(recyclerView, "Please select a player before reporting!", Snackbar.LENGTH_SHORT, true).show();
+                return;
+            }
+
             Log.d(LOG_CHEAT, "A player has been reported as a cheater! => id=" + (this.cheatSelection + 1));
             LanguageHandler.updateTextElement(this, "textView_activity", "reportCheater_message", new Object[]{playerNames.get(cheatSelection)});
             ClientHandler.sendMessageToServer(GAMEVIEW_ACTIVITY_TYPE, PREFIX_REQUEST_SERVER_ACTION_AS_CLIENT, new Object[]{PREFIX_PLAYER_REPORT_CHEATER, String.valueOf(clientID), String.valueOf(this.cheatSelection + 1)});
