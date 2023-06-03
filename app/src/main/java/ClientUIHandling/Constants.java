@@ -57,6 +57,7 @@ public class Constants {
   
     public static final String PREFIX_PLAYER_CHEAT_MENU = "CHEAT_MENU";
     public static final String PREFIX_PLAYER_REPORT_CHEATER = "REPORT_CHEATER";
+    public static final String PREFIX_REQUEST_SERVER_ACTION_AS_CLIENT = "REQUEST_SERVER_ACTION";
 
     public static final String LOG_MAIN = "Main";
     public static final String LOG_CHEAT = String.format("%s-Cheat", LOG_MAIN);
