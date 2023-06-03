@@ -2,6 +2,7 @@ package delta.dkt.activities;
 
 
 import static ClientUIHandling.Constants.*;
+import static com.google.android.material.snackbar.BaseTransientBottomBar.LENGTH_SHORT;
 import static delta.dkt.R.id.imageView;
 
 import ClientUIHandling.handlers.languages.LanguageHandler;
@@ -32,7 +33,6 @@ import ServerLogic.ServerActionHandler;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import com.google.android.material.snackbar.Snackbar;
 import delta.dkt.R;
 import delta.dkt.logic.structure.Game;
 import delta.dkt.sensors.LightSensor;
@@ -225,7 +225,7 @@ public class GameViewActivity extends AppCompatActivity {
 
         submitCheater.setOnClickListener(view1 -> {
             if(this.cheatSelection < 0){
-                SnackBarHandler.createSnackbar(recyclerView, "Please select a player before reporting!", Snackbar.LENGTH_SHORT, true).show();
+                SnackBarHandler.createSnackbar(recyclerView, "Please select a player before reporting!", LENGTH_SHORT, true).show();
                 return;
             }
 
