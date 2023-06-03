@@ -3,6 +3,7 @@ package ServerLogic.actions;
 import static ClientUIHandling.Constants.GAMEVIEW_ACTIVITY_TYPE;
 import static ClientUIHandling.Constants.PREFIX_PLAYER_MOVE;
 import static ClientUIHandling.Constants.PREFIX_START_CASH_VALUE;
+import static ClientUIHandling.Constants.PREFIX_SUSPENSION_COUNT;
 
 import android.util.Log;
 
@@ -49,7 +50,10 @@ public class RequestPlayerMovement implements ServerActionInterface {
         if(requestPlayer.isSuspended()){
             requestPlayer.reduceSuspension();
             Log.d(tag, String.format("Aborting move request for client: (%s), because he is in prison", clientID));
-            //server.broadcast();
+            String[] args = new String[1];
+            //args[0] = String.valueOf(requestPlayer.getId());
+            args[0] = String.valueOf(requestPlayer.getSuspention());
+            server.broadcast(GAMEVIEW_ACTIVITY_TYPE, PREFIX_SUSPENSION_COUNT, args);
             return;
         }
 
