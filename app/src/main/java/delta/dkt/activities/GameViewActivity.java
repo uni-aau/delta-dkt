@@ -1,22 +1,27 @@
 package delta.dkt.activities;
 
-import static ClientUIHandling.Constants.PREFIX_GAME_START_STATS;
-import static ClientUIHandling.Constants.PREFIX_GET_SERVER_TIME;
-import static ClientUIHandling.Constants.PREFIX_INIT_PLAYERS;
-import static ClientUIHandling.Constants.PREFIX_PROPLIST_UPDATE;
-import static ClientUIHandling.Constants.PREFIX_ROLL_DICE_RECEIVE;
+
+import static ClientUIHandling.Constants.*;
 import static delta.dkt.R.id.imageView;
 
+import ClientUIHandling.handlers.languages.LanguageHandler;
+import ClientUIHandling.handlers.notifications.SnackBarHandler;
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.Intent;
+import android.graphics.drawable.ColorDrawable;
+import android.hardware.Sensor;
+import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import ClientUIHandling.ClientHandler;
@@ -24,25 +29,39 @@ import ClientUIHandling.Config;
 import ClientUIHandling.Constants;
 import ClientUIHandling.handlers.positioning.PositionHandler;
 import ServerLogic.ServerActionHandler;
+import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import delta.dkt.R;
 import delta.dkt.logic.structure.Game;
+import delta.dkt.sensors.LightSensor;
+
+import java.util.ArrayList;
 
 
 public class GameViewActivity extends AppCompatActivity {
     public static int clientID = -1; // ID gets set by server
     public static int players = -1; // players gets set by server
-    int[] locations = {1, 1, 1, 1, 1, 1};
+    private int[] locations = {1, 1, 1, 1, 1, 1};
+    private SensorManager manager = null;
+    private LightSensor lightSensorListener = new LightSensor();
+    private Sensor lightSensor = null;
+    public int cheatSelection = -1; //? represents the index / position of the player-element selected, in the report-menu.
+
     Button btnDice;
     ImageView map;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game_view);
+        Config.Skip = false;
 
+        Button btnPropertyInfos = findViewById(R.id.button_property_infos);
         btnDice = findViewById(R.id.button_roll_dice);
         map = findViewById(imageView);
-        findViewById(R.id.button_property_infos).setOnClickListener(view -> switchToPropertyActivity());
+        btnPropertyInfos.setOnClickListener(view -> switchToPropertyActivity());
 
         MainActivity.subscribeToLogic(Constants.GAMEVIEW_ACTIVITY_TYPE, this);
         if (MainMenuActivity.role) {
@@ -52,8 +71,22 @@ public class GameViewActivity extends AppCompatActivity {
             ServerActionHandler.triggerAction(PREFIX_PROPLIST_UPDATE, 1); // initializes propertylist
         }
 
+        Button btnReportCheat = findViewById(R.id.btnReportCheater);
+        btnReportCheat.setOnClickListener(view -> {
+            Log.v(LOG_CHEAT, "Report Menu is requested.");
+            btnReportCheat.setEnabled(false);
+
+            //? Request the usernames from the server to display them in the menu later on.
+            ClientHandler.sendMessageToServer(GAMEVIEW_ACTIVITY_TYPE, PREFIX_PLAYER_CHEAT_MENU, String.valueOf(clientID));
+        });
+
+        registerLightSensor();
         displayPlayers(players);
         handleMovementRequests();
+
+        if (Config.Skip && Config.DEBUG) {
+            btnPropertyInfos.performClick();
+        }
     }
 
     protected void switchToPropertyActivity() {
@@ -61,6 +94,23 @@ public class GameViewActivity extends AppCompatActivity {
         startActivity(switchIntent);
     }
 
+    private void registerLightSensor() {
+        manager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
+        if (lightSensor == null) lightSensor = manager.getDefaultSensor(Sensor.TYPE_LIGHT);
+        manager.registerListener(lightSensorListener, lightSensor, SensorManager.SENSOR_DELAY_FASTEST);
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        manager.unregisterListener(lightSensorListener);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        manager.registerListener(lightSensorListener, lightSensor, SensorManager.SENSOR_DELAY_FASTEST);
+    }
 
     /**
      * This method handles the movement requests of a client, thus sending the request to server.
@@ -78,11 +128,7 @@ public class GameViewActivity extends AppCompatActivity {
 
         btnDice.setOnClickListener(view -> {
             Log.d("Movement", "Sending movement request to server!");
-
-
-            ClientHandler.sendMessageToServer(Constants.GAMEVIEW_ACTIVITY_TYPE + ":" + PREFIX_ROLL_DICE_RECEIVE + " " + clientID);
-
-
+            ClientHandler.sendMessageToServer(GAMEVIEW_ACTIVITY_TYPE, PREFIX_ROLL_DICE_RECEIVE, new Object[]{String.valueOf(clientID), String.valueOf(LightSensor.isCovered())});
         });
 
 
@@ -147,5 +193,48 @@ public class GameViewActivity extends AppCompatActivity {
             Log.e("[UI] Action Error", String.format("Error - Less player markers (%d) than players (%d)!", Config.MAX_CLIENTS, count));
             Toast.makeText(this, "There was an error while adding another player - Check error logs!", Toast.LENGTH_SHORT).show();
         }
+    }
+
+    @SuppressLint("DefaultLocale")
+    public void createSelectionPopup(ArrayList<String> playerNames) {
+        ConstraintLayout popUpConstraintLayout = findViewById(R.id.cheatConstraint);
+        View view = LayoutInflater.from(this).inflate(R.layout.report_cheat_popup, popUpConstraintLayout);
+
+        if(playerNames.size() == 0){
+            Log.v(LOG_CHEAT, "No players found, using default names.");
+            playerNames.add("Player1");
+            playerNames.add("Player2");
+            playerNames.add("Player3");
+            playerNames.add("Player4");
+            playerNames.add("Player5");
+            playerNames.add("Player6");
+        }
+        RecyclerView recyclerView = view.findViewById(R.id.rececylerCheatPlayer);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+        CheatUserAdapter adapter = new CheatUserAdapter(this, playerNames);
+        recyclerView.setAdapter(adapter);
+
+        Button submitCheater = view.findViewById(R.id.btnSubmitCheater);
+        Button cancelCheater = view.findViewById(R.id.btnCancelCheater);
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setView(view);
+        final AlertDialog alertDialog = builder.create();
+
+        submitCheater.setOnClickListener(view1 -> {
+            Log.d(LOG_CHEAT, "A player has been reported as a cheater! => id=" + (this.cheatSelection + 1));
+            LanguageHandler.updateTextElement(this, "textView_activity", "reportCheater_message", new Object[]{playerNames.get(cheatSelection)});
+            ClientHandler.sendMessageToServer(GAMEVIEW_ACTIVITY_TYPE, PREFIX_PLAYER_REPORT_CHEATER, new Object[]{String.valueOf(clientID), String.valueOf(this.cheatSelection + 1)});
+            alertDialog.dismiss();
+        });
+
+        cancelCheater.setOnClickListener(view1 -> alertDialog.dismiss());
+        alertDialog.setOnDismissListener(dialogInterface -> findViewById(R.id.btnReportCheater).setEnabled(true));
+
+        if (alertDialog.getWindow() != null) {
+            alertDialog.getWindow().setBackgroundDrawable(new ColorDrawable(0));
+        }
+        alertDialog.show();
     }
 }

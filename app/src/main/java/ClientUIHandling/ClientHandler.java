@@ -14,7 +14,7 @@ import ClientUIHandling.actions.ActionServerIsFull;
 import ClientUIHandling.actions.ActionSetMoney;
 import ClientUIHandling.actions.ActionUpdateGameTime;
 
-import android.os.Handler;
+import ClientUIHandling.actions.cheating.ActionOpenCheatMenu;import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
 
@@ -22,6 +22,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 
 import ClientUIHandling.actions.ActionStartGame;
@@ -33,7 +34,7 @@ import ClientUIHandling.actions.ActionCloseGame;
 import ClientUIHandling.actions.ActionHostGame;
 import ClientUIHandling.actions.ActionRemoveUserFromUserList;
 import ClientUIHandling.actions.ActionUpdateUserList;
-import network2.NetworkClientConnection;
+import network2.NetworkClientConnection;import static ClientUIHandling.Constants.PREFIX_PLAYER_CHEAT_MENU;
 
 public class ClientHandler extends Handler {
 
@@ -65,6 +66,7 @@ public class ClientHandler extends Handler {
         actionMap.put(Constants.PREFIX_END_GAME, new ActionGameEnd());
         actionMap.put(Constants.PREFIX_SET_MONEY, new ActionSetMoney());
         actionMap.put(Constants.PREFIX_PLAYER_CHEATED, new ActionPlayerPunish());
+        actionMap.put(PREFIX_PLAYER_CHEAT_MENU, new ActionOpenCheatMenu());
         actionMap.put(Constants.PREFIX_PROPLIST_UPDATE, new ActionPropertyListUpdate());
         actionMap.put(Constants.PREFIX_SERVER_FULL, new ActionServerIsFull());
 
@@ -94,6 +96,19 @@ public class ClientHandler extends Handler {
 
     public static void sendMessageToServer(String message){
         client.sendMessage(message);
+    }
+
+    public static void sendMessageToServer(String activity, String prefix, String args){
+        client.sendMessage(activity+":"+prefix+" "+args);
+    }
+
+    public static void sendMessageToServer(String activity, String prefix, Object[] args){
+        StringBuilder message = new StringBuilder();
+        for(Object element : args) {
+            message.append(element);
+            if(args.length-1 != Arrays.asList(args).indexOf(element)) message.append(";"); //? Splits arguments from another with ';'
+        }
+        ClientHandler.sendMessageToServer(activity, prefix, message.toString());
     }
 
 

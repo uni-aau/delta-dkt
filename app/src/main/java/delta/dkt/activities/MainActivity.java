@@ -2,6 +2,7 @@ package delta.dkt.activities;
 
 import static delta.dkt.activities.LobbyViewActivity.userList;
 
+import ClientUIHandling.Config;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
@@ -59,6 +60,11 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        if (Config.Skip && Config.DEBUG) {
+            edtxt.setText((R.string.cash_text));
+            enter.performClick();
+        }
     }
 
 
@@ -68,8 +74,7 @@ public class MainActivity extends AppCompatActivity {
         logic.getHandler().put(type, new ClientHandler(activity));
     }
 
-
-    public boolean checkIfUsernameAlreadyExists (String newUsername){
+    public boolean checkIfUsernameAlreadyExists(String newUsername) {
         return (userList.contains(newUsername));
     }
 }
