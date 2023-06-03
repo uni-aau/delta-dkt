@@ -15,6 +15,7 @@ import static ClientUIHandling.Constants.LOG_MAIN;
 public class ActionSendServerRequest implements ClientActionInterface {
     @Override
     public void execute(AppCompatActivity activity, String clientMessage) {
+        Log.v(LOG_MAIN, "ActionSendServerRequest: received message: " + clientMessage + " from client");
         String[] args = clientMessage.split(";"); //? Handle the case in which the message has no prefix
         String prefix = clientMessage.split(" ")[0];
         if(!prefix.contains(";")){
@@ -34,8 +35,8 @@ public class ActionSendServerRequest implements ClientActionInterface {
             ArrayList<String> parameters = new ArrayList<>(Arrays.asList(args));
             parameters.remove(0); //? parameters => purely the arguments that are passed to the action (no prefix)
 
-            //? Format the message to start with the prefix, sperated by space and then the arguments for legacy actions
-            String message = serverActionPrefix + " " + String.join(" ", parameters);
+            //? Format the message to start with the prefix, sperated by semicolon and then the arguments for legacy actions
+            String message = serverActionPrefix + " " + String.join(";", parameters);
 
             Log.d(LOG_MAIN, "ActionSendServerRequest: Triggering server-action: prefix=" + serverActionPrefix + " with message: " + message);
             ServerActionHandler.triggerAction(serverActionPrefix, message);
