@@ -65,7 +65,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
         if (Config.Skip && Config.DEBUG) {
-            edtxt.setText((R.string.cash_text));
+            edtxt.setText((R.string.cheat_popup_selection_menu_heading));
             enter.performClick();
         }
     }
