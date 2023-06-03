@@ -16,6 +16,8 @@ import network2.ServerNetworkClient;
 public class ActionPunish implements ServerActionInterface {
     @Override
     public void execute(ServerNetworkClient server, Object parameters) {
+        //! Parameter format: [<correctlyReported>, <playerID>]
+
         if(!(parameters instanceof Object[])){
             Log.e("ERROR","WRONG PARAMETERS FOR ActionPunish, expected an array!");
             return;
