@@ -22,7 +22,7 @@ public class RequestCheatMenu implements ServerActionInterface {
         String[] args = parameters.toString().split(";");
         String prefix = parameters.toString().split(" ")[0];
         if(!prefix.contains(";")){ //? Handle the case in which no prefix is provided
-            if(args.length == 1){
+            if(String.join(" ", args).equals(prefix)){
                 //? there is no prefix but also only one argument.
                 args = new String[]{prefix};
             }else{
