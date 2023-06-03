@@ -13,6 +13,7 @@ import ClientUIHandling.actions.ActionRentPaid;
 import ClientUIHandling.actions.ActionInitRollDice;
 import ClientUIHandling.actions.ActionServerIsFull;
 import ClientUIHandling.actions.ActionSetMoney;
+import ClientUIHandling.actions.ActionSuspensionNotification;
 import ClientUIHandling.actions.ActionUpdateGameTime;
 
 import android.os.Handler;
@@ -69,6 +70,7 @@ public class ClientHandler extends Handler {
         actionMap.put(Constants.PREFIX_NOTIFICATION, new ActionPrisonNotification());
         actionMap.put(Constants.PREFIX_PROPLIST_UPDATE, new ActionPropertyListUpdate());
         actionMap.put(Constants.PREFIX_SERVER_FULL, new ActionServerIsFull());
+        actionMap.put(Constants.PREFIX_SUSPENSION_COUNT, new ActionSuspensionNotification());
 
         actions.add(new ActionHostGame());
         actionPrefixes.add(Constants.PREFIX_HOST_NEW_GAME);
