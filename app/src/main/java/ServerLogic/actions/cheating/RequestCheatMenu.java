@@ -19,9 +19,19 @@ public class RequestCheatMenu implements ServerActionInterface {
     @SuppressLint("DefaultLocale")
     @Override
     public void execute(ServerNetworkClient server, Object parameters) {
-        String prefix = parameters.toString().split(" ")[0];
-        parameters = parameters.toString().substring(prefix.length() + 1);
         String[] args = parameters.toString().split(";");
+        String prefix = parameters.toString().split(" ")[0];
+        if(!prefix.contains(";")){ //? Handle the case in which no prefix is provided
+            if(args.length == 1){
+                //? there is no prefix but also only one argument.
+                args = new String[]{prefix};
+            }else{
+                //? there are arguments in the message, but no prefix
+                parameters = parameters.toString().substring(prefix.length() + 1);
+                args = parameters.toString().split(";");
+            }
+        }
+
 
         Log.v(LOG_CHEAT, "RequestCheatMenu: initate server-side-process");
         if (args.length == 0) {
