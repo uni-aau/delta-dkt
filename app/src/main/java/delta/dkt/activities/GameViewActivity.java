@@ -2,6 +2,7 @@ package delta.dkt.activities;
 
 
 import static ClientUIHandling.Constants.*;
+import static com.google.android.material.snackbar.BaseTransientBottomBar.LENGTH_SHORT;
 import static delta.dkt.R.id.imageView;
 
 import ClientUIHandling.handlers.languages.LanguageHandler;
@@ -77,7 +78,7 @@ public class GameViewActivity extends AppCompatActivity {
             btnReportCheat.setEnabled(false);
 
             //? Request the usernames from the server to display them in the menu later on.
-            ClientHandler.sendMessageToServer(GAMEVIEW_ACTIVITY_TYPE, PREFIX_PLAYER_CHEAT_MENU, String.valueOf(clientID));
+            ClientHandler.sendMessageToServer(GAMEVIEW_ACTIVITY_TYPE, PREFIX_REQUEST_SERVER_ACTION_AS_CLIENT, new Object[]{PREFIX_PLAYER_CHEAT_MENU, String.valueOf(clientID)});
         });
 
         registerLightSensor();
@@ -223,9 +224,14 @@ public class GameViewActivity extends AppCompatActivity {
         final AlertDialog alertDialog = builder.create();
 
         submitCheater.setOnClickListener(view1 -> {
+            if(this.cheatSelection < 0){
+                SnackBarHandler.createSnackbar(recyclerView, "Please select a player before reporting!", LENGTH_SHORT, true).show();
+                return;
+            }
+
             Log.d(LOG_CHEAT, "A player has been reported as a cheater! => id=" + (this.cheatSelection + 1));
             LanguageHandler.updateTextElement(this, "textView_activity", "reportCheater_message", new Object[]{playerNames.get(cheatSelection)});
-            ClientHandler.sendMessageToServer(GAMEVIEW_ACTIVITY_TYPE, PREFIX_PLAYER_REPORT_CHEATER, new Object[]{String.valueOf(clientID), String.valueOf(this.cheatSelection + 1)});
+            ClientHandler.sendMessageToServer(GAMEVIEW_ACTIVITY_TYPE, PREFIX_REQUEST_SERVER_ACTION_AS_CLIENT, new Object[]{PREFIX_PLAYER_REPORT_CHEATER, String.valueOf(clientID), String.valueOf(this.cheatSelection + 1)});
             alertDialog.dismiss();
         });
 

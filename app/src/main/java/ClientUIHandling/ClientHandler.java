@@ -14,7 +14,9 @@ import ClientUIHandling.actions.ActionServerIsFull;
 import ClientUIHandling.actions.ActionSetMoney;
 import ClientUIHandling.actions.ActionUpdateGameTime;
 
-import ClientUIHandling.actions.cheating.ActionOpenCheatMenu;import android.os.Handler;
+import ClientUIHandling.actions.cheating.ActionOpenCheatMenu;
+import ClientUIHandling.actions.redirect.ActionSendServerRequest;
+import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
 
@@ -34,7 +36,9 @@ import ClientUIHandling.actions.ActionCloseGame;
 import ClientUIHandling.actions.ActionHostGame;
 import ClientUIHandling.actions.ActionRemoveUserFromUserList;
 import ClientUIHandling.actions.ActionUpdateUserList;
-import network2.NetworkClientConnection;import static ClientUIHandling.Constants.PREFIX_PLAYER_CHEAT_MENU;
+import network2.NetworkClientConnection;
+import static ClientUIHandling.Constants.PREFIX_PLAYER_CHEAT_MENU;
+import static ClientUIHandling.Constants.PREFIX_REQUEST_SERVER_ACTION_AS_CLIENT;
 
 public class ClientHandler extends Handler {
 
@@ -69,6 +73,7 @@ public class ClientHandler extends Handler {
         actionMap.put(PREFIX_PLAYER_CHEAT_MENU, new ActionOpenCheatMenu());
         actionMap.put(Constants.PREFIX_PROPLIST_UPDATE, new ActionPropertyListUpdate());
         actionMap.put(Constants.PREFIX_SERVER_FULL, new ActionServerIsFull());
+        actionMap.put(PREFIX_REQUEST_SERVER_ACTION_AS_CLIENT, new ActionSendServerRequest());
 
         actions.add(new ActionHostGame());
         actionPrefixes.add(Constants.PREFIX_HOST_NEW_GAME);
