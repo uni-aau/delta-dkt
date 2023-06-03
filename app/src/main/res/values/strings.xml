@@ -87,4 +87,5 @@
     <string name="game_started_acitivty_text">Game started!</string>
     <string name="notify_inprisonment">Player %s has been sent to prison!</string>
     <string name="text_rent">Rent: %s$</string>
+    <string name="suspension_count">The player is suspended for %s more rounds</string>
 </resources>
