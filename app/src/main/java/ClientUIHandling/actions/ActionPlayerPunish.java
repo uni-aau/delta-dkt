@@ -17,7 +17,7 @@ public class ActionPlayerPunish implements ClientActionInterface {
     @Override
     public void execute(AppCompatActivity activity, String clientMessage) {
         Log.i("INFO", "PUNISHRECEIVED");
-
+        //! ClientMessage format: "PUNISH <correctlyReported> <name> <id> <cash>"
 
         String[] splitMessage = clientMessage.split(" ");
 
