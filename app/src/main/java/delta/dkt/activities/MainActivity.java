@@ -62,7 +62,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
         if (Config.Skip && Config.DEBUG) {
-            edtxt.setText(R.string.cheat_user_element_username_placeholder);
+            edtxt.setText((R.string.cash_text));
             enter.performClick();
         }
     }
