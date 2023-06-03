@@ -56,8 +56,8 @@ public class RequestPlayerMovement implements ServerActionInterface {
         requestPlayer.setCheat(isCheating);
         int currentPosition = requestPlayer.getPosition().getLocation();
 
-        int steps = Config.diceRange.getRandomValue();
-        if(isCheating) steps = Config.CheatRange.getRandomValue(); //? super-dice
+        int steps = Config.DICE_RANGE.getRandomValue();
+        if(isCheating) steps = Config.CHEAT_RANGE.getRandomValue(); //? super-dice
 
         int destination = (currentPosition + steps) % maxFields;
         if (destination == 0) destination++;

@@ -27,6 +27,6 @@ public class Config {
     public static final int PUNISHMENT_FOR_CHEATING = 500;
     public static final int PUNISHMENT_FOR_WRONG_REPORT = 200;
 
-    public static final Dice diceRange = new Dice(1, 6);
-    public static final Dice CheatRange = new Dice(7, 9);
+    public static final Dice DICE_RANGE = new Dice(1, 6);
+    public static final Dice CHEAT_RANGE = new Dice(7, 9);
 }
