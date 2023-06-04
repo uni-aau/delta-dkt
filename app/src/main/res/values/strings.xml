@@ -103,7 +103,6 @@
 
     <string name="suspension_count">The player is suspended for %s more rounds</string>
     <string name="player_lost_activity_text">%s was eliminated from the game!</string>
-    <string name="text_rent">Rent: %s$</string>
     <string name="playerName_info_text">You are spectator!</string>
 
     <plurals name="game_started_activity_text">
