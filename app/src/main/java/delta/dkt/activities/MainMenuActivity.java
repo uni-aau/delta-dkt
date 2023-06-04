@@ -195,6 +195,8 @@ public class MainMenuActivity extends AppCompatActivity {
                 if (isTimeSelected.get()) {
                     Config.END_TIME = timeOrRounds * 60000;
                 }
+                //dismiss alert dialog
+                alertDialog.dismiss();
                 startServer(serverName);
             } catch (InterruptedException e) {
                 Log.w("Warning", "Interrupted!", e);
