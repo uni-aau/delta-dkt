@@ -9,8 +9,8 @@
 
     <TextView
             android:text="@string/activity_text"
-            android:layout_width="151dp"
-            android:layout_height="51dp"
+            android:layout_width="152dp"
+            android:layout_height="72dp"
             android:id="@+id/textView_activity"
             android:gravity="center_horizontal"
             app:layout_constraintStart_toEndOf="@+id/imageView"
