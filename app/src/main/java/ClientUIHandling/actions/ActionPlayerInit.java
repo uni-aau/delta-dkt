@@ -4,7 +4,6 @@ import static ClientUIHandling.Constants.PREFIX_INIT_PLAYERS;
 
 import android.util.Log;
 import android.view.View;
-
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -21,13 +20,14 @@ public class ActionPlayerInit implements ClientActionInterface {
     private final String TAG = "[CLIENT] ActionPlayerInit";
     private GameViewActivity gameViewActivity;
     private String userName;
-    private String playerAmount;
+    private int playerAmount;
+
     @Override
     public void execute(AppCompatActivity activity, String clientMessage) {
         String[] args = clientMessage.replace(PREFIX_INIT_PLAYERS, "").trim().split(";");
         gameViewActivity = (GameViewActivity) activity;
         userName = args[0];
-        playerAmount = args[1];
+        playerAmount = Integer.parseInt(args[1]);
 
         initDice();
         setInitTextViewValues();
@@ -66,9 +66,17 @@ public class ActionPlayerInit implements ClientActionInterface {
 
         ((TextView) gameViewActivity.findViewById(R.id.textView_cash)).setText(String.format(gameViewActivity.getString(R.string.cash_text), String.valueOf(Config.INITIAL_CASH)));
         ((TextView) gameViewActivity.findViewById(R.id.textView_my_properties)).setText(String.format(gameViewActivity.getString(R.string.my_properties_text), String.valueOf(0)));
-        ((TextView) gameViewActivity.findViewById(R.id.textView_activity)).setText(String.format(gameViewActivity.getString(R.string.activity_text), gameViewActivity.getString(R.string.game_started_activity_text)));
 
-        String playersOnlineInputValue = String.format(gameViewActivity.getString(R.string.players_online), playerAmount, String.valueOf(Config.MAX_CLIENTS));
+        String playerAmountActivityTextInput;
+        if (playerAmount == 1) {
+            playerAmountActivityTextInput = String.format(gameViewActivity.getString(R.string.game_started_activity_text_sing), String.valueOf(playerAmount));
+        } else {
+            playerAmountActivityTextInput = String.format(gameViewActivity.getString(R.string.game_started_activity_text_plural), String.valueOf(playerAmount));
+        }
+        String activityTextInput = String.format(gameViewActivity.getString(R.string.activity_text), playerAmountActivityTextInput);
+        ((TextView) gameViewActivity.findViewById(R.id.textView_activity)).setText(activityTextInput);
+
+        String playersOnlineInputValue = String.format(gameViewActivity.getString(R.string.players_online), String.valueOf(playerAmount), String.valueOf(Config.MAX_CLIENTS));
         ((TextView) gameViewActivity.findViewById(R.id.textView_players_online)).setText(playersOnlineInputValue);
 
         String playerNameInputValue = String.format(gameViewActivity.getString(R.string.playerName_info_text), MainMenuActivity.username); // TODO
