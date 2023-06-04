@@ -38,22 +38,24 @@ public class RequestRollDicePerm implements ServerActionInterface {
                 nextClient = oldClientId + 1;
             }
 
-        //TODO: ADD ACTION HERE THAT EITHER SKIPS PLAYER IF IMPRISONED (decreases its turnCounter); USES GOOJ-Card or let him roll
-        int nextCopy = oldClientId;
-        Player p;
-        do {
-            nextClientId = getNextClientId(nextCopy);
-            p = getNextEligiblePlayer(nextClientId);
-            nextCopy = nextClientId;
+            //TODO: ADD ACTION HERE THAT EITHER SKIPS PLAYER IF IMPRISONED (decreases its turnCounter); USES GOOJ-Card or let him roll
+            int nextCopy = oldClientId;
+            int nextClientId;
+            Player p;
+            do {
+                nextClientId = getNextClientId(nextCopy);
+                p = getNextEligiblePlayer(nextClientId);
+                nextCopy = nextClientId;
+            }
+            while (p == null);
+
+            Log.d("[SERVER]", "New roll dice server request - prevClientID " + oldClientId + " nextClient " + nextClientId + " nickName " + p.getNickname());
+
+            server.broadcast(GAMEVIEW_ACTIVITY_TYPE, PREFIX_ROLL_DICE_REQUEST, new String[]{String.valueOf(nextClientId), p.getNickname()});
+            ServerActionHandler.triggerAction(PREFIX_PLAYER_MOVE, parameters);
+
+            Game.incrementRounds(oldClientId);
         }
-        while (p == null);
-
-        Log.d("[SERVER]", "New roll dice server request - prevClientID " + oldClientId + " nextClient " + nextClientId + " nickName " + p.getNickname());
-
-        server.broadcast(GAMEVIEW_ACTIVITY_TYPE, PREFIX_ROLL_DICE_REQUEST, new String[]{String.valueOf(nextClientId), p.getNickname()});
-        ServerActionHandler.triggerAction(PREFIX_PLAYER_MOVE, parameters);
-
-        Game.incrementRounds(oldClientId);
     }
 
 
