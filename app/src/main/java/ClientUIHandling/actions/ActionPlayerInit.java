@@ -1,7 +1,6 @@
 package ClientUIHandling.actions;
 
-import static ClientUIHandling.Constants.PREFIX_INIT_PLAYERS;
-
+import android.content.res.Resources;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
@@ -14,7 +13,6 @@ import ClientUIHandling.Config;
 import ClientUIHandling.Constants;
 import delta.dkt.R;
 import delta.dkt.activities.GameViewActivity;
-import delta.dkt.activities.MainMenuActivity;
 import delta.dkt.logic.structure.Game;
 
 public class ActionPlayerInit implements ClientActionInterface {
@@ -70,20 +68,20 @@ public class ActionPlayerInit implements ClientActionInterface {
     // Sets initial textview values in GameView
     private void setInitTextViewValues() {
         Log.d(TAG, "Successfully received action to set initial values!");
+        Resources resources = gameViewActivity.getResources();
 
-        ((TextView) gameViewActivity.findViewById(R.id.textView_cash)).setText(String.format(gameViewActivity.getString(R.string.cash_text), String.valueOf(Config.INITIAL_CASH)));
-        ((TextView) gameViewActivity.findViewById(R.id.textView_my_properties)).setText(String.format(gameViewActivity.getString(R.string.my_properties_text), String.valueOf(0)));
+        String cashText = gameViewActivity.getString(R.string.cash_text, String.valueOf(Config.INITIAL_CASH));
+        ((TextView) gameViewActivity.findViewById(R.id.textView_cash)).setText(cashText);
 
-        String playerAmountActivityTextInput;
-        if (playerAmount == 1) {
-            playerAmountActivityTextInput = String.format(gameViewActivity.getString(R.string.game_started_activity_text_sing), String.valueOf(playerAmount));
-        } else {
-            playerAmountActivityTextInput = String.format(gameViewActivity.getString(R.string.game_started_activity_text_plural), String.valueOf(playerAmount));
-        }
-        String activityTextInput = String.format(gameViewActivity.getString(R.string.activity_text), playerAmountActivityTextInput);
+        String myPropertiesText = gameViewActivity.getString(R.string.my_properties_text, String.valueOf(0));
+        ((TextView) gameViewActivity.findViewById(R.id.textView_my_properties)).setText(myPropertiesText);
+
+        String playersOnlineText = gameViewActivity.getString(R.string.players_online, String.valueOf(playerAmount), String.valueOf(Config.MAX_CLIENTS));
+        ((TextView) gameViewActivity.findViewById(R.id.textView_players_online)).setText(playersOnlineText);
+
+        // Sets plural/singular textview
+        String playerAmountActivityTextInput = resources.getQuantityString(R.plurals.game_started_activity_text, playerAmount, playerAmount);
+        String activityTextInput = resources.getString(R.string.activity_text, playerAmountActivityTextInput);
         ((TextView) gameViewActivity.findViewById(R.id.textView_activity)).setText(activityTextInput);
-
-        String playersOnlineInputValue = String.format(gameViewActivity.getString(R.string.players_online), String.valueOf(playerAmount), String.valueOf(Config.MAX_CLIENTS));
-        ((TextView) gameViewActivity.findViewById(R.id.textView_players_online)).setText(playersOnlineInputValue);
     }
 }
