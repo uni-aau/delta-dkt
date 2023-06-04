@@ -11,6 +11,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import ClientUIHandling.ClientActionInterface;
 import ClientUIHandling.Config;
+import ClientUIHandling.Constants;
 import delta.dkt.R;
 import delta.dkt.activities.GameViewActivity;
 import delta.dkt.activities.MainMenuActivity;
@@ -24,10 +25,8 @@ public class ActionPlayerInit implements ClientActionInterface {
 
     @Override
     public void execute(AppCompatActivity activity, String clientMessage) {
-        String[] args = clientMessage.replace(PREFIX_INIT_PLAYERS, "").trim().split(";");
         gameViewActivity = (GameViewActivity) activity;
-        userName = args[0];
-        playerAmount = Integer.parseInt(args[1]);
+        parseClientMessage(clientMessage);
 
         initDice();
         setInitTextViewValues();
@@ -48,11 +47,19 @@ public class ActionPlayerInit implements ClientActionInterface {
         }
     }
 
+    private void parseClientMessage(String clientMessage) {
+        String[] args = clientMessage.replace(Constants.PREFIX_INIT_PLAYERS, "").trim().split(";");
+        userName = args[0];
+        playerAmount = Integer.parseInt(args[1]);
+    }
+
     private void initDice() {
         Log.d(TAG, "Successfully received roll dice perm action: Activity: " + gameViewActivity + " ClientID: " + 1 + " Start-Username: " + userName);
 
         // Initial State (only client ID 1 can roll the dice)
-        ((TextView) gameViewActivity.findViewById(R.id.textView_dice_information)).setText(String.format(gameViewActivity.getString(R.string.dice_information_text), userName));
+        TextView diceInfoTextView = gameViewActivity.findViewById(R.id.textView_dice_information);
+        diceInfoTextView.setText(gameViewActivity.getString(R.string.dice_information_text, userName));
+
         if (GameViewActivity.clientID == 1) {
             gameViewActivity.enableDice();
         } else {
