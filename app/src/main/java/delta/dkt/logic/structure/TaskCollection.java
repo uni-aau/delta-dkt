@@ -21,7 +21,7 @@ public class TaskCollection {
         tasks.add(new GoToJailActionCard(1,"GoToJailCard","Gehe in den Arrest!"));
         tasks.add(new OutOfJailCard(2,"OutOfJailCard","Diese Karte befreit dich aus dem Arrest! Hebe diese Karte auf, du wirst sie brauchen."));
         tasks.add(new PlayerPositionCard(3,"TravelCard", "Besuch Salzburg und gehe am Mirabellplatz spazieren. Passierst du den Start, erhältst du 200€.",
-                getFieldLocationByName("Mirabellplatz"), false));
+               25, false));
         tasks.add(new PlayerPositionCard(4,"TravelCard","Gehe um 4 Felder zurück.", -4,true));
         tasks.add(new PlayerPositionCard(5,"TravelCard","Rücke 7 Felder vor.",7,true));
         tasks.add(new PlayerMoneyCard(6,"LuckyCard","Die Bank zahlt dir an Dividenden 60€.",60));
@@ -29,11 +29,11 @@ public class TaskCollection {
         tasks.add(new PlayerMoneyCard(8,"UnluckyCard","Zahle 5€ Polizeistrafe.",-5));
         tasks.add(new PlayerMoneyCard(9,"UnluckyCard","Für unerlaubtes Parken bezahlst du 200€.",-200));
         tasks.add(new PlayerPositionCard(10,"TravelCard","Besuch Graz und gehe auf der Annenstraße spazieren. Passierst du den Start, erhältst du 200€.",
-                                     getFieldLocationByName("Annenstraße"), false));
+                                     6, false));
     }
 
     private int getFieldLocationByName(String name){
-        return findFieldByName( name).getLocation();
+        return findFieldByName(name).getLocation();
     }
 
     private Field findFieldByName(String name){

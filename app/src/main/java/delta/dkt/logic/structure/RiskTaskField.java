@@ -16,4 +16,8 @@ public class RiskTaskField extends Field{
         super(location);
         this.taskStapel = taskStapel;
     }
+
+    public Task drawCard(){
+        return taskStapel.getRandomTask();
+    }
 }
