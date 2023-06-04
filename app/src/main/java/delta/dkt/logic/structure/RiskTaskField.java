@@ -5,15 +5,15 @@ package delta.dkt.logic.structure;
  */
 public class RiskTaskField extends Field{
 
-    Task riskTask;
+    TaskCollection taskStapel;
 
     /**
      * Creates a new risk task.
      * @param location location of the risk task field
-     * @param riskTask the risk task that the player has to do
+     * @param taskStapel the risk task that the player has to do
      */
-    public RiskTaskField(int location, Task riskTask) {
+    public RiskTaskField(int location, TaskCollection taskStapel) {
         super(location);
-        this.riskTask = riskTask;
+        this.taskStapel = taskStapel;
     }
 }

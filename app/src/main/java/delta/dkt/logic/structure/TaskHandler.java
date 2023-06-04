@@ -18,11 +18,11 @@ public class TaskHandler {
         TaskCollection r = new TaskCollection();
 
         switch (position){
-            case 3: return new RiskTaskField(3,r.getRandomTask());
-            case 9: return new RiskTaskField(9,r.getRandomTask());
-            case 23: return new RiskTaskField(23,r.getRandomTask());
-            case 28: return new RiskTaskField(28,r.getRandomTask());
-            case 38: return new RiskTaskField(38,r.getRandomTask());
+            case 3: return new RiskTaskField(3,r);
+            case 9: return new RiskTaskField(9,r);
+            case 23: return new RiskTaskField(23,r);
+            case 28: return new RiskTaskField(28,r);
+            case 38: return new RiskTaskField(38,r);
             default: return null;
         }
     }
