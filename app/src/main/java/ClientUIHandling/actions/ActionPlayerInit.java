@@ -20,9 +20,9 @@ import delta.dkt.logic.structure.Game;
 
 public class ActionPlayerInit implements ClientActionInterface {
     private final String TAG = "[CLIENT] ActionPlayerInit";
-    GameViewActivity gameViewActivity;
-    String userName;
-    String playerAmount;
+    private GameViewActivity gameViewActivity;
+    private String userName;
+    private String playerAmount;
     @Override
     public void execute(AppCompatActivity activity, String clientMessage) {
         String[] args = clientMessage.replace(PREFIX_INIT_PLAYERS, "").trim().split(";");
