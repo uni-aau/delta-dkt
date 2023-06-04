@@ -11,7 +11,8 @@ public class RequestPlayerInit implements ServerActionInterface {
     @Override
     public void execute(ServerNetworkClient server, Object parameters) {
         String userName = Game.getPlayers().get(1).getNickname();
+        int playerAmount = Game.getPlayers().size();
 
-        server.broadcast(GAMEVIEW_ACTIVITY_TYPE, PREFIX_INIT_PLAYERS, new String[]{(String) parameters, userName});
+        server.broadcast(GAMEVIEW_ACTIVITY_TYPE, PREFIX_INIT_PLAYERS, new String[]{userName, String.valueOf(playerAmount)});
     }
 }

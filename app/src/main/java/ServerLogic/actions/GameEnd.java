@@ -16,6 +16,8 @@ import network2.ServerNetworkClient;
 public class GameEnd implements ServerActionInterface {
     @Override
     public void execute(ServerNetworkClient server, Object parameters) {
+        Log.d("[SERVER] GameEnd", "Received game end request with reason: " + (String) parameters);
+
         //TODO: Evaluate which player wins/loses. For example: most wealth, most properties, etc.
 
         // winnerList gets the values from the Hashmap
