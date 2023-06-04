@@ -30,7 +30,7 @@ public class ActionPlayerInit implements ClientActionInterface {
         playerAmount = args[1];
 
         initDice();
-        setInitTextViewValues(activity, userName); // TODO
+        setInitTextViewValues();
     }
 
     // Shows for every clientId a specific player marker in the gui (todo)
@@ -61,12 +61,12 @@ public class ActionPlayerInit implements ClientActionInterface {
     }
 
     // Sets initial textview values in GameView
-    private void setInitTextViewValues(AppCompatActivity activity, String userName) {
-        ((TextView) activity.findViewById(R.id.textView_cash)).setText(String.format(activity.getString(R.string.cash_text), String.valueOf(Config.INITIAL_CASH)));
-        ((TextView) activity.findViewById(R.id.textView_my_properties)).setText(String.format(activity.getString(R.string.my_properties_text), String.valueOf(0)));
-        ((TextView) activity.findViewById(R.id.textView_activity)).setText(String.format(activity.getString(R.string.activity_text), activity.getString(R.string.game_started_acitivty_text)));
+    private void setInitTextViewValues() {
+        ((TextView) gameViewActivity.findViewById(R.id.textView_cash)).setText(String.format(gameViewActivity.getString(R.string.cash_text), String.valueOf(Config.INITIAL_CASH)));
+        ((TextView) gameViewActivity.findViewById(R.id.textView_my_properties)).setText(String.format(gameViewActivity.getString(R.string.my_properties_text), String.valueOf(0)));
+        ((TextView) gameViewActivity.findViewById(R.id.textView_activity)).setText(String.format(gameViewActivity.getString(R.string.activity_text), gameViewActivity.getString(R.string.game_started_acitivty_text)));
 
-        String playerNameInputValue = String.format(activity.getString(R.string.playerName_info_text), MainMenuActivity.username);
-        ((TextView) activity.findViewById(R.id.textView_playerName_spec)).setText(playerNameInputValue);
+        String playerNameInputValue = String.format(gameViewActivity.getString(R.string.playerName_info_text), MainMenuActivity.username); // TODO
+        ((TextView) gameViewActivity.findViewById(R.id.textView_playerName_spec)).setText(playerNameInputValue);
     }
 }
