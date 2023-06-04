@@ -8,6 +8,7 @@ import static delta.dkt.activities.MainActivity.user;
 import ClientUIHandling.Config;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
+import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.util.Log;
@@ -44,6 +45,8 @@ public class MainMenuActivity extends AppCompatActivity {
     public static boolean role;
 
     public static String ip;
+
+    private Button okButton;
 
 
     @Override
@@ -119,7 +122,8 @@ public class MainMenuActivity extends AppCompatActivity {
 
 
         // Getting all needed Views from the xml:
-        Button okButton = view.findViewById(R.id.okButton);
+        okButton = view.findViewById(R.id.okButton);
+        enableOkButton();
         Button cancelButton = view.findViewById(R.id.cancelButton);
         EditText editText = view.findViewById(R.id.popUpEditText);
         EditText gameRoundsAndTime = view.findViewById(R.id.roundAndTimeEdtxt);
@@ -187,7 +191,7 @@ public class MainMenuActivity extends AppCompatActivity {
                 return;
             }
 
-            okButton.setEnabled(false);
+            disableOkButton();
 
             try {
                 Config.MAX_CLIENTS = maxPlayers;
@@ -220,6 +224,16 @@ public class MainMenuActivity extends AppCompatActivity {
             roundsButton.setChecked(true);
             okButton.performClick();
         }
+    }
+
+    private void enableOkButton() {
+        okButton.setEnabled(true);
+        okButton.setBackgroundResource(R.drawable.host_btn_background);
+    }
+
+    private void disableOkButton() {
+        okButton.setBackgroundResource(R.drawable.host_btn_background_disabled);
+        okButton.setEnabled(false);
     }
 
 
