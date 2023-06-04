@@ -187,6 +187,8 @@ public class MainMenuActivity extends AppCompatActivity {
                 return;
             }
 
+            okButton.setEnabled(false);
+
             try {
                 Config.MAX_CLIENTS = maxPlayers;
                 if (isRoundsSelected.get()) {
