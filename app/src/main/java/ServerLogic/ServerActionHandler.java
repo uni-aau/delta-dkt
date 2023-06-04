@@ -6,6 +6,8 @@ import ServerLogic.actions.ActionPayRent;
 import ServerLogic.actions.*;
 import ServerLogic.actions.RequestPlayerLost;
 import ServerLogic.actions.RequestPlayerMovement;
+import ServerLogic.actions.cheating.RequestCheatMenu;
+import ServerLogic.actions.cheating.RequestReportCheater;
 import android.util.Log;
 
 import java.util.ArrayList;
@@ -44,7 +46,6 @@ public class ServerActionHandler {
         actionMap.put(PREFIX_PLAYER_LOST, new RequestPlayerLost());
         actionMap.put(PREFIX_GAME_START, new RequestGameStart());
         actionMap.put(PREFIX_INIT_PLAYERS, new RequestPlayerInit());
-        actionMap.put(PREFIX_GAME_START_STATS, new RequestGameStartStats());
         actionMap.put(PREFIX_ROLL_DICE_REQUEST, new RequestRollDicePerm());
         actionMap.put(PREFIX_GET_SERVER_TIME, new RequestGameStartTime());
         actionMap.put(PREFIX_PLAYER_MOVE, new RequestPlayerMovement());
@@ -54,13 +55,14 @@ public class ServerActionHandler {
         actionMap.put(PREFIX_PLAYER_CHEATED, new ActionPunish());
         actionMap.put(PREFIX_START_CASH_VALUE, new RequestSetStartMoney());
         actionMap.put(PREFIX_PAY_TAX, new RequestPayTax());
+        actionMap.put(PREFIX_PLAYER_CHEAT_MENU, new RequestCheatMenu());
+        actionMap.put(PREFIX_PLAYER_REPORT_CHEATER, new RequestReportCheater());
         actionMap.put(PREFIX_PROPLIST_UPDATE, new RequestPropertyListUpdate());
         actionMap.put(PREFIX_HOST_NEW_GAME, new RequestHostGame());
         actionMap.put(PREFIX_ADD_USER_TO_LIST, new RequestAddUserToUserList());
         actionMap.put(PREFIX_REMOVE_USER_FROM_LIST, new RequestRemoveUserFromList());
         actionMap.put(PREFIX_UPDATE_USER_LIST, new RequestUpdateUserList());
         actionMap.put(PREFIX_CLOSE_GAME, new RequestCloseGame());
-
     }
 
     public static void triggerAction(String name, Object parameters){

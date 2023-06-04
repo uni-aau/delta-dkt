@@ -5,6 +5,7 @@ import static delta.dkt.activities.MainActivity.INTENT_PARAMETER;
 import static delta.dkt.activities.MainActivity.logic;
 import static delta.dkt.activities.MainActivity.user;
 
+import ClientUIHandling.Config;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.graphics.drawable.ColorDrawable;
@@ -27,7 +28,6 @@ import java.util.concurrent.atomic.AtomicBoolean;
 
 import ClientUIHandling.ClientHandler;
 import ClientUIHandling.ClientLogic;
-import ClientUIHandling.Config;
 import ClientUIHandling.Constants;
 import ServerLogic.ServerActionHandler;
 import delta.dkt.R;
@@ -83,6 +83,8 @@ public class MainMenuActivity extends AppCompatActivity {
         });
 
         MainActivity.subscribeToLogic(Constants.MAINMENU_ACTIVITY_TYPE, this);
+
+        if (Config.Skip && Config.DEBUG) host.performClick();
     }
 
     public void establishServerConnection() throws InterruptedException {
@@ -208,6 +210,14 @@ public class MainMenuActivity extends AppCompatActivity {
             alertDialog.getWindow().setBackgroundDrawable(new ColorDrawable(0));
         }
         alertDialog.show();
+
+        if (Config.Skip && Config.DEBUG) {
+            editText.setText(R.string.cheat_user_element_username_placeholder);
+            gameRoundsAndTime.setText("6");
+            maxPlayersEDT.setText("6");
+            roundsButton.setChecked(true);
+            okButton.performClick();
+        }
     }
 
 

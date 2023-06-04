@@ -28,7 +28,6 @@ public class Constants {
     public static final String PREFIX_GAME_START = "GAMESTART";
     public static final String PREFIX_REGISTER = "REGISTERUSER";
     public static final String PREFIX_INIT_PLAYERS = "INIT_PLAYERS";
-    public static final String PREFIX_GAME_START_STATS = "START_STATS";
 
     public static final String PREFIX_PLAYER_LOST = "LOST";
     public static final String PREFIX_ADD_USER_TO_LIST = "Add_User_To_List";
@@ -54,4 +53,12 @@ public class Constants {
 
     public static final String PREFIX_SERVER_FULL = "SERVER_FULL";
     public static final String PREFIX_PROPLIST_UPDATE = "PROPLIST_UPDATE";
+  
+    public static final String PREFIX_PLAYER_CHEAT_MENU = "CHEAT_MENU";
+    public static final String PREFIX_PLAYER_REPORT_CHEATER = "REPORT_CHEATER";
+    public static final String PREFIX_REQUEST_SERVER_ACTION_AS_CLIENT = "REQUEST_SERVER_ACTION";
+
+    public static final String LOG_MAIN = "DKT-MAIN";
+    public static final String LOG_CHEAT = String.format("%s-Cheat", LOG_MAIN);
+    public static final String LOG_LIGHT_SENSOR = String.format("%s-LightSensor", LOG_MAIN);
 }

@@ -1,10 +1,8 @@
 package ClientUIHandling.actions;
 
-import static ClientUIHandling.Constants.PREFIX_INIT_PLAYERS;
-
+import android.content.res.Resources;
 import android.util.Log;
 import android.view.View;
-
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -12,29 +10,24 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import ClientUIHandling.ClientActionInterface;
 import ClientUIHandling.Config;
+import ClientUIHandling.Constants;
 import delta.dkt.R;
 import delta.dkt.activities.GameViewActivity;
 import delta.dkt.logic.structure.Game;
 
 public class ActionPlayerInit implements ClientActionInterface {
+    private static final String TAG = "[CLIENT] ActionPlayerInit";
+    private GameViewActivity gameViewActivity;
+    private String userName;
+    private int playerAmount;
+
     @Override
     public void execute(AppCompatActivity activity, String clientMessage) {
-        GameViewActivity gameViewActivity = (GameViewActivity) activity;
-        String[] args = clientMessage.replace(PREFIX_INIT_PLAYERS, "").trim().split(";");
-        int clientId = Integer.parseInt(args[0]);
-        String userName = args[1];
+        gameViewActivity = (GameViewActivity) activity;
+        parseClientMessage(clientMessage);
 
-        Log.d("[UI] Roll Dice Perm", "Successfully received roll dice perm action from server handler: Activity: " + activity + " ClientID: " + clientId + " Start-Username: " + userName);
-
-        // Initial State (only client ID 1 can roll the dice)
-        ((TextView) activity.findViewById(R.id.textView_dice_information)).setText(String.format(activity.getString(R.string.dice_information_text), userName));
-        if (GameViewActivity.clientID == 1) {
-            gameViewActivity.enableDice();
-        } else {
-            gameViewActivity.disableDice();
-        }
-
-        setInitTextViewValues(activity);
+        initDice();
+        setInitTextViewValues();
     }
 
     // Shows for every clientId a specific player marker in the gui (todo)
@@ -52,10 +45,43 @@ public class ActionPlayerInit implements ClientActionInterface {
         }
     }
 
+    private void parseClientMessage(String clientMessage) {
+        String[] args = clientMessage.replace(Constants.PREFIX_INIT_PLAYERS, "").trim().split(";");
+        userName = args[0];
+        playerAmount = Integer.parseInt(args[1]);
+    }
+
+    private void initDice() {
+        Log.d(TAG, "Successfully received roll dice perm action: Activity: " + gameViewActivity + " ClientID: " + 1 + " Start-Username: " + userName);
+
+        // Initial State (only client ID 1 can roll the dice)
+        TextView diceInfoTextView = gameViewActivity.findViewById(R.id.textView_dice_information);
+        diceInfoTextView.setText(gameViewActivity.getString(R.string.dice_information_text, userName));
+
+        if (GameViewActivity.clientID == 1) {
+            gameViewActivity.enableDice();
+        } else {
+            gameViewActivity.disableDice();
+        }
+    }
+
     // Sets initial textview values in GameView
-    private void setInitTextViewValues(AppCompatActivity activity) {
-        ((TextView) activity.findViewById(R.id.textView_cash)).setText(String.format(activity.getString(R.string.cash_text), String.valueOf(Config.INITIAL_CASH)));
-        ((TextView) activity.findViewById(R.id.textView_my_properties)).setText(String.format(activity.getString(R.string.my_properties_text), String.valueOf(0)));
-        ((TextView) activity.findViewById(R.id.textView_activity)).setText(String.format(activity.getString(R.string.activity_text), activity.getString(R.string.game_started_acitivty_text)));
+    private void setInitTextViewValues() {
+        Log.d(TAG, "Successfully received action to set initial values!");
+        Resources resources = gameViewActivity.getResources();
+
+        String cashText = gameViewActivity.getString(R.string.cash_text, String.valueOf(Config.INITIAL_CASH));
+        ((TextView) gameViewActivity.findViewById(R.id.textView_cash)).setText(cashText);
+
+        String myPropertiesText = gameViewActivity.getString(R.string.my_properties_text, String.valueOf(0));
+        ((TextView) gameViewActivity.findViewById(R.id.textView_my_properties)).setText(myPropertiesText);
+
+        String playersOnlineText = gameViewActivity.getString(R.string.players_online, String.valueOf(playerAmount), String.valueOf(Config.MAX_CLIENTS));
+        ((TextView) gameViewActivity.findViewById(R.id.textView_players_online)).setText(playersOnlineText);
+
+        // Sets plural/singular textview
+        String playerAmountActivityTextInput = resources.getQuantityString(R.plurals.game_started_activity_text, playerAmount, playerAmount);
+        String activityTextInput = resources.getString(R.string.activity_text, playerAmountActivityTextInput);
+        ((TextView) gameViewActivity.findViewById(R.id.textView_activity)).setText(activityTextInput);
     }
 }
