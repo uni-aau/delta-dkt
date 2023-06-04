@@ -102,5 +102,5 @@
     <string name="game_started_activity_text_sing">Game started with %s player!</string>
     <string name="game_started_activity_text_plural">Game started with %s players!</string>
     <string name="text_rent">Rent: %s$</string>
-    <string name="playerName_info_text">You are: %s</string>
+    <string name="playerName_info_text">You are spectator!</string>
 </resources>

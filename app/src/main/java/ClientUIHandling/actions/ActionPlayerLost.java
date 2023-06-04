@@ -25,18 +25,14 @@ public class ActionPlayerLost implements ClientActionInterface {
 
         if (GameViewActivity.clientID == id) {
             TextView playerNameTextView = activity.findViewById(R.id.textView_playerName_spec);
-            String playerNameInputValue = String.format(activity.getString(R.string.playerName_info_text), "Spectator"); // Todo dynamisch
-            playerNameTextView.setText(playerNameInputValue);
             playerNameTextView.setTextColor(Color.RED);
             playerNameTextView.setTypeface(null, Typeface.BOLD);
 
-            // Todo move in another class
+            // Todo move client & gameKill in another class, add stopConnection(), make playerMarker invisible
 //            Game.reset();
 //            LobbyViewActivity.userList.clear();
-            // Todo also stopConnection()
-            // Todo playerMarker invisible
 
-            Toast.makeText(activity, "YOU LOST!", Toast.LENGTH_LONG).show();
+            Toast.makeText(activity, "YOU LOST!", Toast.LENGTH_LONG).show(); //marked for removal
 
 //            Intent intent = new Intent(activity.getApplicationContext(), MainMenuActivity.class);
 //

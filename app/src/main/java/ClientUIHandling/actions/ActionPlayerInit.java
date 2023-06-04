@@ -78,8 +78,5 @@ public class ActionPlayerInit implements ClientActionInterface {
 
         String playersOnlineInputValue = String.format(gameViewActivity.getString(R.string.players_online), String.valueOf(playerAmount), String.valueOf(Config.MAX_CLIENTS));
         ((TextView) gameViewActivity.findViewById(R.id.textView_players_online)).setText(playersOnlineInputValue);
-
-        String playerNameInputValue = String.format(gameViewActivity.getString(R.string.playerName_info_text), MainMenuActivity.username); // TODO
-        ((TextView) gameViewActivity.findViewById(R.id.textView_playerName_spec)).setText(playerNameInputValue);
     }
 }
