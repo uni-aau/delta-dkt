@@ -50,7 +50,7 @@ public class ActionPlayerInit implements ClientActionInterface {
     }
 
     private void initDice() {
-        Log.d(TAG, "Successfully received roll dice perm action from server handler: Activity: " + gameViewActivity + " ClientID: " + 1 + " Start-Username: " + userName);
+        Log.d(TAG, "Successfully received roll dice perm action: Activity: " + gameViewActivity + " ClientID: " + 1 + " Start-Username: " + userName);
 
         // Initial State (only client ID 1 can roll the dice)
         ((TextView) gameViewActivity.findViewById(R.id.textView_dice_information)).setText(String.format(gameViewActivity.getString(R.string.dice_information_text), userName));
