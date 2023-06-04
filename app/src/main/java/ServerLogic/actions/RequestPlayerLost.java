@@ -26,6 +26,7 @@ public class RequestPlayerLost implements ServerActionInterface {
             return;
         }
         int id = (int) parameters;
+        Log.d("[SERVER] RequestPlayerLost", "Received player lost request! ClientID = " + id);
 
         Player player = Game.getPlayers().get(id);
         String nickname = player.getNickname();
@@ -38,12 +39,12 @@ public class RequestPlayerLost implements ServerActionInterface {
             player.getProperties().get(i).setOwner(null);
         }
 
-        Game.getPlayers().remove(id);
-        ServerActionHandler.triggerAction(PREFIX_PROPLIST_UPDATE, 1); // updates property list and removes player from all properties
-
         // Game End when only one user exists anymore
         if(Game.getPlayers().size() == 1) {
             ServerActionHandler.triggerAction(Constants.PREFIX_END_GAME, "ONLY ONE PLAYER LEFT");
+        } else {
+            Game.getPlayers().remove(id);
+            ServerActionHandler.triggerAction(PREFIX_PROPLIST_UPDATE, 1); // updates property list and removes player from all properties
         }
     }
 }
