@@ -6,6 +6,8 @@ import ServerLogic.actions.ActionPayRent;
 import ServerLogic.actions.*;
 import ServerLogic.actions.RequestPlayerLost;
 import ServerLogic.actions.RequestPlayerMovement;
+import ServerLogic.actions.cheating.RequestCheatMenu;
+import ServerLogic.actions.cheating.RequestReportCheater;
 import android.util.Log;
 
 import java.util.ArrayList;
@@ -54,10 +56,16 @@ public class ServerActionHandler {
         actionMap.put(PREFIX_PLAYER_CHEATED, new ActionPunish());
         actionMap.put(PREFIX_START_CASH_VALUE, new RequestSetStartMoney());
         actionMap.put(PREFIX_PAY_TAX, new RequestPayTax());
+
         actionMap.put(PREFIX_HAS_PRISONCARD, new ActionPrison());
         actionMap.put(PREFIX_GO_TO_PRISON_FIELD, new ActionGoToPrison());
         actionMap.put(PREFIX_PRISON, new ActionPrison());
+
+        actionMap.put(PREFIX_PLAYER_CHEAT_MENU, new RequestCheatMenu());
+        actionMap.put(PREFIX_PLAYER_REPORT_CHEATER, new RequestReportCheater());
+
         actionMap.put(PREFIX_PROPLIST_UPDATE, new RequestPropertyListUpdate());
+
 
         actions.add(new RequestHostGame());
         actionPrefixes.add(PREFIX_HOST_NEW_GAME);
