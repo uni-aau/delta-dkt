@@ -7,7 +7,6 @@ import static ClientUIHandling.Constants.PREFIX_PROPLIST_UPDATE;
 
 import android.util.Log;
 
-import ClientUIHandling.Constants;
 import ServerLogic.ServerActionHandler;
 import ServerLogic.ServerActionInterface;
 import delta.dkt.logic.structure.Game;
@@ -30,8 +29,8 @@ public class RequestPlayerLost implements ServerActionInterface {
         Player player = Game.getPlayers().get(id);
         String nickname = player.getNickname();
 
-        server.broadcast(Constants.GAMEVIEW_ACTIVITY_TYPE, Constants.PREFIX_ACTIVITY_BROADCAST, new String[]{"player_lost_activity_text", nickname});
-        server.broadcast(GAMEVIEW_ACTIVITY_TYPE+":"+PREFIX_PLAYER_LOST+" "+nickname+";"+player.getId());
+        server.broadcast(GAMEVIEW_ACTIVITY_TYPE, PREFIX_ACTIVITY_BROADCAST, new String[]{"player_lost_activity_text", nickname});
+        server.broadcast(GAMEVIEW_ACTIVITY_TYPE, PREFIX_PLAYER_LOST, new String[]{nickname, String.valueOf(player.getId())});
 
         for (int i = player.getProperties().size()-1; i>=0;i--) {
             player.getProperties().get(i).resetAccessories();
