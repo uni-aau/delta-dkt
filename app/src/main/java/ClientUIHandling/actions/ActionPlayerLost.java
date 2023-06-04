@@ -15,12 +15,13 @@ import delta.dkt.activities.GameViewActivity;
 public class ActionPlayerLost implements ClientActionInterface {
     @Override
     public void execute(AppCompatActivity activity, String clientMessage) {
-        Log.i("INFO", "PLAYERLOSTRECEIVED");
-
         String prefix = clientMessage.split(" ")[0];
         String[] splitMessage = clientMessage.replace(prefix, "").trim().split(";");
 
+        String nickname = splitMessage[0];
         int id = Integer.parseInt(splitMessage[1]);
+
+        Log.i("[Client] ActionPlayerLost", "Received player lost action! ClientID = " + id + " Nickname = " + nickname);
 
         if (GameViewActivity.clientID == id) {
             TextView playerNameTextView = activity.findViewById(R.id.textView_playerName_spec);
