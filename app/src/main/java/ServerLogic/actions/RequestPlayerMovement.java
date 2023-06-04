@@ -1,20 +1,18 @@
 package ServerLogic.actions;
 
-import static ClientUIHandling.Constants.GAMEVIEW_ACTIVITY_TYPE;
-import static ClientUIHandling.Constants.PREFIX_PLAYER_MOVE;
-import static ClientUIHandling.Constants.PREFIX_START_CASH_VALUE;
-import static ClientUIHandling.Constants.PREFIX_SUSPENSION_COUNT;
-
 import ClientUIHandling.Config;
 import android.util.Log;
 
 import ServerLogic.ServerActionHandler;
 import ServerLogic.ServerActionInterface;
 import delta.dkt.logic.structure.Game;
+import delta.dkt.logic.structure.GoToPrisonField;
 import delta.dkt.logic.structure.Player;
 import network2.ServerNetworkClient;
 
 import java.util.ArrayList;
+
+import static ClientUIHandling.Constants.*;
 
 @SuppressWarnings("FieldCanBeLocal")
 public class RequestPlayerMovement implements ServerActionInterface {
@@ -90,8 +88,17 @@ public class RequestPlayerMovement implements ServerActionInterface {
         Log.d(tag, String.format("Sending out messages to %s players.", Game.getPlayers().size()));
         Log.d(tag, "");
 
+        requestPlayer.moveTo(destination);
+
+        //* In case the player lands on the GoToPrisonField, he will be moved to the PrisonField.
+        if(Game.getMap().getField(destination) instanceof GoToPrisonField){
+            Log.d(tag, String.format("Player%s landed on a GoToPrisonField, thus he will be moved to the PrisonField! (Overriding Movement-Action)", clientID));
+            ServerActionHandler.triggerAction(PREFIX_GO_TO_PRISON_FIELD, clientID);
+            return;
+        }
+
         server.broadcast(GAMEVIEW_ACTIVITY_TYPE, PREFIX_PLAYER_MOVE, sendArgs.toArray(new String[0]));
-        requestPlayer.moveTo(destination); //Moved after Move-Broadcast to move the player to the PrisonField after he landed on the GoToPrisonField
+
 
         //? Add start-cash for passing over the start field.
         if (currentPosition > destination) ServerActionHandler.triggerAction(PREFIX_START_CASH_VALUE, clientID);

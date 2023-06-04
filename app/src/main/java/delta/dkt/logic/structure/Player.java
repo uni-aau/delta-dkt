@@ -176,10 +176,6 @@ public class Player implements Comparable<Player>{
                 //START-NOSCAN
                 ServerActionHandler.triggerAction(Constants.PREFIX_PAY_TAX, this.getId());
                 //END-NOSCAN
-            } else if(this.position instanceof GoToPrisonField){
-                //START-NOSCAN
-                ServerActionHandler.triggerAction(PREFIX_GO_TO_PRISON_FIELD, this.getId());
-                //END-NOSCAN
             }
         }
     }
