@@ -7,6 +7,7 @@ import static ClientUIHandling.Constants.PREFIX_PROPLIST_UPDATE;
 
 import android.util.Log;
 
+import ClientUIHandling.Constants;
 import ServerLogic.ServerActionHandler;
 import ServerLogic.ServerActionInterface;
 import delta.dkt.logic.structure.Game;
@@ -39,5 +40,10 @@ public class RequestPlayerLost implements ServerActionInterface {
 
         Game.getPlayers().remove(id);
         ServerActionHandler.triggerAction(PREFIX_PROPLIST_UPDATE, 1); // updates property list and removes player from all properties
+
+        // Game End when only one user exists anymore
+        if(Game.getPlayers().size() == 1) {
+            ServerActionHandler.triggerAction(Constants.PREFIX_END_GAME, "ONLY ONE PLAYER LEFT");
+        }
     }
 }
