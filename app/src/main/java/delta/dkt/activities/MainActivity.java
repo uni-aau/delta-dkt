@@ -2,6 +2,7 @@ package delta.dkt.activities;
 
 import static delta.dkt.activities.LobbyViewActivity.userList;
 
+import ClientUIHandling.Config;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
@@ -12,6 +13,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.HashMap;
+import java.util.regex.Pattern;
 
 import ClientUIHandling.ClientHandler;
 import ClientUIHandling.ClientLogic;
@@ -47,9 +49,13 @@ public class MainActivity extends AppCompatActivity {
             Intent intent = new Intent(getApplicationContext(), MainMenuActivity.class);
             user = edtxt.getText().toString();
             if (user.isEmpty()) {
-                Toast.makeText(MainActivity.this, "Please enter Username", Toast.LENGTH_SHORT).show();
+                Toast.makeText(MainActivity.this, "Please enter Username (Max. 12 characters!)", Toast.LENGTH_SHORT).show();
             } else if (checkIfUsernameAlreadyExists(user)){
                 Toast.makeText(MainActivity.this, "This Username already exists", Toast.LENGTH_SHORT).show();
+            } else if (user.length()>12) {
+                Toast.makeText(MainActivity.this, "This Username is too long -> Max 12 chars!!", Toast.LENGTH_SHORT).show();
+            } else if(hasUsernameSpecialCharacters(user)){
+                Toast.makeText(MainActivity.this, "A Username may not contain special characters!", Toast.LENGTH_SHORT).show();
             } else {
                 Toast.makeText(MainActivity.this, "Welcome " + user + "!", Toast.LENGTH_SHORT).show();
                 intent.putExtra(INTENT_PARAMETER, user);
@@ -57,8 +63,17 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        if (Config.Skip && Config.DEBUG) {
+            edtxt.setText((R.string.cheat_popup_selection_menu_heading));
+            enter.performClick();
+        }
     }
 
+    private static boolean hasUsernameSpecialCharacters(String username) {
+        Pattern special = Pattern.compile ("[!@#$%&*()_+=|<>?{}\\[\\]~-]");
+        return special.matcher(username).find();
+    }
 
     //--------------------------ALL METHODS-----------------------------//
 
@@ -66,8 +81,7 @@ public class MainActivity extends AppCompatActivity {
         logic.getHandler().put(type, new ClientHandler(activity));
     }
 
-
-    public boolean checkIfUsernameAlreadyExists (String newUsername){
+    public boolean checkIfUsernameAlreadyExists(String newUsername) {
         return (userList.contains(newUsername));
     }
 }

@@ -17,9 +17,10 @@ public class ActionPlayerLost implements ClientActionInterface {
     public void execute(AppCompatActivity activity, String clientMessage) {
         Log.i("INFO", "PLAYERLOSTRECEIVED");
 
-        String[] splitMessage = clientMessage.split(" ");
+        String prefix = clientMessage.split(" ")[0];
+        String[] splitMessage = clientMessage.replace(prefix, "").trim().split(";");
 
-        int id = Integer.parseInt(splitMessage[2]);
+        int id = Integer.parseInt(splitMessage[1]);
 
         if (GameViewActivity.clientID == id) {
             TextView playerNameTextView = activity.findViewById(R.id.textView_playerName_spec);

@@ -22,6 +22,7 @@ public class Player implements Comparable<Player>{
 
     //? May be used to check whether a player is timeoutet, e.g. prison, or not.
     private int suspention = 0;
+    private boolean hasCheated = false;
 
     public Player(String nickname) {
         this.nickname = nickname;
@@ -210,6 +211,18 @@ public class Player implements Comparable<Player>{
         return cash;
     }
 
+    public int getWealth() {
+
+        int wealth = 0;
+        for (Property property : properties){
+            wealth+=property.getPrice();
+            wealth+= property.getHouses()*property.getHousePrice();
+            wealth+= property.getHotels()* property.getHotelPrice();
+        }
+        wealth+=cash;
+        return wealth;
+    }
+
     /**
      * This method will set the players cash.
      *
@@ -233,6 +246,15 @@ public class Player implements Comparable<Player>{
 
     }
 
+    public boolean hasCheated(){
+        return hasCheated;
+    }
+
+    public void setCheat(boolean state){
+        hasCheated = state;
+    }
+  
+  
     @Override
     public int compareTo(Player o) {
         return this.id-o.id;

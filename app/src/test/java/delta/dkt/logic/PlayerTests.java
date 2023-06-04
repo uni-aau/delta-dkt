@@ -32,6 +32,7 @@ class PlayerTests {
 
     //? Getters
 
+
     /**
      * Checks whether the initialized nickname, via the constructor, has been set and is accesible.
      */
@@ -413,6 +414,30 @@ class PlayerTests {
 
     }
 
+
+    //? isCheating property tests
+
+    /**
+     * Check whether the default value of is false.
+     */
+    @Test
+    void check_hasCheating_Getter(){
+        assertFalse(player.hasCheated());
+    }
+
+    /**
+     * Check whether hasCheated property can be modified.
+     */
+    @Test
+    void check_hasCheating_Setter(){
+        assertFalse(player.hasCheated());
+        player.setCheat(true);
+        assertTrue(player.hasCheated());
+    }
+
+
+    //? Nickname & ID - Getter and Setters
+  
     @Test
     void testSetNickName(){
         Player player = new Player();
@@ -426,6 +451,26 @@ class PlayerTests {
         player.setId(5);
         assertEquals(5, player.getId());
     }
+
+
+    @Test
+    void getWealthWithNoPropertiesTest() {
+        player.getProperties().clear(); // Ensure player has no properties
+        player.setCash(500);
+        assertEquals(500, player.getWealth());
+    }
+
+    @Test
+    void getWealthWithPropertiesOnlyTest(){
+        player.getProperties().clear();
+        player.getProperties().add(testProperty1);
+        player.getProperties().add(testProperty2);
+
+        player.setCash(500);
+
+        assertEquals(player.getCash()+testProperty1.getPrice() + testProperty2.getPrice(), player.getWealth());
+    }
+
 
     /**
      * This method will create a property object that is being used as a valid field.
@@ -443,6 +488,7 @@ class PlayerTests {
         return dummy;
     }
 }
+
 
 
 class SomeTestField extends Field {
