@@ -3,6 +3,7 @@ package ClientUIHandling.actions;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.util.Log;
+import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -25,6 +26,7 @@ public class ActionPlayerLost implements ClientActionInterface {
 
         if (GameViewActivity.clientID == id) {
             TextView playerNameTextView = activity.findViewById(R.id.textView_playerName_spec);
+            playerNameTextView.setVisibility(View.VISIBLE);
             playerNameTextView.setTextColor(Color.RED);
             playerNameTextView.setTypeface(null, Typeface.BOLD);
 
