@@ -99,7 +99,8 @@
     <string name="pay_tax_activity_text">%s had to pay %s%% taxes. Old cash %s$, new cash %s$</string>
     <string name="pay_static_tax_activity_text">%s had to pay %s$ taxes. Old cash %s$, new cash %s$</string>
     <string name="player_lost_activity_text">%s was eliminated from the game!</string>
-    <string name="game_started_activity_text">Game started!</string>
+    <string name="game_started_activity_text_sing">Game started with %s player!</string>
+    <string name="game_started_activity_text_plural">Game started with %s players!</string>
     <string name="text_rent">Rent: %s$</string>
     <string name="playerName_info_text">You are: %s</string>
 </resources>
