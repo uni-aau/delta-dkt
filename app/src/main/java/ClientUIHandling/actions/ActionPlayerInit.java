@@ -17,7 +17,7 @@ import delta.dkt.activities.MainMenuActivity;
 import delta.dkt.logic.structure.Game;
 
 public class ActionPlayerInit implements ClientActionInterface {
-    private final String TAG = "[CLIENT] ActionPlayerInit";
+    private static final String TAG = "[CLIENT] ActionPlayerInit";
     private GameViewActivity gameViewActivity;
     private String userName;
     private int playerAmount;
