@@ -59,12 +59,6 @@
     <string name="Wealth">Wealth</string>
     <string name="Finish">Finish</string>
 
-
-
-
-
-
-
     <string name="NSDServiceName">delta_dkt</string>
     <string name="NSDServiceType">_delta_dkt.tcp</string>
     <string name="hours_plural_text">hours</string>
@@ -80,10 +74,7 @@
     <string name="img_description_player4_text">Player 4</string>
     <string name="img_description_player2_text">Player 2</string>
     <string name="img_description_player1_text">Player 1</string>
-
     <string name="start_money_activity_text">%s received start money</string>
-
-
 
     <!-- #START Cheating Texts -->
     <string name="cheat_open_report_menu">Report Cheater</string>
@@ -102,7 +93,6 @@
     <string name="cheat_user_element_image_description">Represents the players figure in the current game.</string>
 
     <!-- END Cheating Texts -->
-
     <string name="movement_info_message_singular">%s moved %s step and is now located at pos: %s</string>
     <string name="movement_info_message_plural">%s moved %s steps and is now located at pos: %s</string>
 
