@@ -163,7 +163,7 @@ public class Player implements Comparable<Player>{
             }else{ //property can be bought , ask user
                 //START-NOSCAN
                 //TODO: Ask the user if he wants to buy the property.
-                ServerActionHandler.triggerAction(PREFIX_PLAYER_BUYPROPERTY, this.getId()); //we only need one parameter , and thates the id of the player
+               // ServerActionHandler.triggerAction(PREFIX_PLAYER_BUYPROPERTY, this.getId()); //we only need one parameter , and thates the id of the player
                 //END-NOSCAN
             }
         } else if (this.position instanceof SpecialField) {
