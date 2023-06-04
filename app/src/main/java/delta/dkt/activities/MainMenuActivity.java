@@ -252,16 +252,20 @@ public class MainMenuActivity extends AppCompatActivity {
         MainActivity.subscribeToLogic(Constants.PREFIX_SERVER, this);
         server = new ServerNetworkClient(this.getApplicationContext());
         server.start();
+
         Thread.sleep(100);
 
         client = new NetworkClientConnection("localhost", server.getPort(), 1000, logic);
         ServerActionHandler.setServer(server);
         client.start();
-        Thread.sleep(100);
+
+
 
         ClientHandler.setClient(client);
 
         Toast.makeText(MainMenuActivity.this, "Server " + serverName + " started on " + getTime(), Toast.LENGTH_SHORT).show();
+
+        Thread.sleep(100);
 
         ServerActionHandler.triggerAction(PREFIX_HOST_NEW_GAME, user);
     }
