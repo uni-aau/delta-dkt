@@ -19,6 +19,7 @@ import delta.dkt.activities.MainMenuActivity;
 import delta.dkt.logic.structure.Game;
 
 public class ActionPlayerInit implements ClientActionInterface {
+    private final String TAG = "[CLIENT] ActionPlayerInit";
     GameViewActivity gameViewActivity;
     String userName;
     String playerAmount;
@@ -49,7 +50,7 @@ public class ActionPlayerInit implements ClientActionInterface {
     }
 
     private void initDice() {
-        Log.d("[UI] Roll Dice Perm", "Successfully received roll dice perm action from server handler: Activity: " + gameViewActivity + " ClientID: " + 1 + " Start-Username: " + userName);
+        Log.d(TAG, "Successfully received roll dice perm action from server handler: Activity: " + gameViewActivity + " ClientID: " + 1 + " Start-Username: " + userName);
 
         // Initial State (only client ID 1 can roll the dice)
         ((TextView) gameViewActivity.findViewById(R.id.textView_dice_information)).setText(String.format(gameViewActivity.getString(R.string.dice_information_text), userName));
@@ -62,6 +63,8 @@ public class ActionPlayerInit implements ClientActionInterface {
 
     // Sets initial textview values in GameView
     private void setInitTextViewValues() {
+        Log.d(TAG, "Successfully received action to set initial values!");
+
         ((TextView) gameViewActivity.findViewById(R.id.textView_cash)).setText(String.format(gameViewActivity.getString(R.string.cash_text), String.valueOf(Config.INITIAL_CASH)));
         ((TextView) gameViewActivity.findViewById(R.id.textView_my_properties)).setText(String.format(gameViewActivity.getString(R.string.my_properties_text), String.valueOf(0)));
         ((TextView) gameViewActivity.findViewById(R.id.textView_activity)).setText(String.format(gameViewActivity.getString(R.string.activity_text), gameViewActivity.getString(R.string.game_started_acitivty_text)));
