@@ -1,5 +1,7 @@
 package ClientUIHandling.actions;
 
+import ClientUIHandling.handlers.languages.LanguageHandler;
+import ServerLogic.handlers.ParameterHandler;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -23,18 +25,30 @@ public class ActionMove implements ClientActionInterface {
             return;
         }
 
-        int clientID, destination;
-
-        try {
-            clientID = Integer.parseInt(args[0]);
-            destination = Integer.parseInt(args[1]);
-        } catch (NumberFormatException e) {
-            String msg = String.format("Parsing the clientID or location has failed, thus the map cannot be updated! (ID: (%s), destination: (%s))", args[0], args[1]);
-            Log.e(tag, msg);
-            Toast.makeText(activity, msg, Toast.LENGTH_LONG).show();
-
+        if(!ParameterHandler.hasValue(args, 0, Integer.class)) {
+            Log.e(tag, "ClientActionMove: the clientID is invalid! => Aborting movement update!");
             return;
         }
+
+        if(!ParameterHandler.hasValue(args, 1, Integer.class)) {
+            Log.e(tag, "ClientActionMove: the destination is invalid! => Aborting movement update!");
+            return;
+        }
+
+        if(!ParameterHandler.hasValue(args, 2, Integer.class)) {
+            Log.e(tag, "ClientActionMove: the given steps is invalid! => Aborting movement update!");
+            return;
+        }
+
+        if(!ParameterHandler.hasValue(args, 3, String.class)) {
+            Log.e(tag, "ClientActionMove: the players-nickname is invalid! => Aborting movement update!");
+            return;
+        }
+
+        int clientID = ParameterHandler.getValue(args, 0, Integer.class);
+        int destination = ParameterHandler.getValue(args, 1, Integer.class);
+        int steps = ParameterHandler.getValue(args, 2, Integer.class);
+        String nickName = ParameterHandler.getValue(args, 3, String.class);
 
         GameViewActivity gameViewActivity = (GameViewActivity) activity;
 
@@ -43,13 +57,10 @@ public class ActionMove implements ClientActionInterface {
         String result = String.format("Successfully moved (id=%s) to (pos=%s)", clientID, destination);
         Log.d(tag + "-ClientSide", result);
 
-        var snack = SnackBarHandler.createSnackbar(activity.findViewById(R.id.imageView), result, 2000, true, "#6481d5", null);
-        snack.show();
+        
+        //? select the corresponding template for the message based on the amount of steps
+        String templateName = steps > 1 ? "movement_info_message_plural" : "movement_info_message_singular";
 
-        /*if(MainMenuActivity.role) {
-            ServerActionHandler.triggerAction(Constants.PREFIX_ROLL_DICE_REQUEST, clientID); // Sets the next player to roll the dice
-        }else{
-            ClientHandler.sendMessageToServer(Constants.GAMEVIEW_ACTIVITY_TYPE+":"+Constants.PREFIX_ROLL_DICE_REQUEST+" "+clientID);
-        }*/
+        LanguageHandler.updateTextElement(activity, "textView_activity", templateName, new Object[]{nickName, String.valueOf(steps), String.valueOf(destination)});
     }
 }

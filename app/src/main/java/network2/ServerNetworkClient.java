@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import ClientUIHandling.Config;
 import delta.dkt.activities.MainActivity;
 import delta.dkt.logic.structure.Game;
 import delta.dkt.logic.structure.Player;
@@ -101,6 +102,11 @@ public class ServerNetworkClient extends Thread { //always executed on a separat
                 clientConnections.add(clientSocket);
                 clientSocket.start();
 
+                if(Game.getPlayers().size() >= Config.MAX_CLIENTS){
+                    clientSocket.send("IPINNIT:-1");
+                    continue;
+                }
+
                 // sets clientID & username
                 // todo rework username setting
                 int clientID = Game.getPlayers().size() + 1;
@@ -108,6 +114,10 @@ public class ServerNetworkClient extends Thread { //always executed on a separat
                 clientSocket.send("IPINNIT:"+ clientID);
 
                 Game.getPlayers().put(clientID, new Player(userName));
+
+
+
+
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -164,6 +174,7 @@ public class ServerNetworkClient extends Thread { //always executed on a separat
         if (nsd != null) {
             nsd.tearDown();
         }
+        clientConnections.clear();
         serverSocket.close();
     }
 

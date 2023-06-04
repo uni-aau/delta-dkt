@@ -12,6 +12,8 @@
     <color name="red_200">#FF7F7F</color>
     <color name="button_gray">#848484</color>
     <color name="whiteSpecial">#FFFFFF</color>
+    <color name="blackSpecial">#000000</color>
 
+    <color name="cheatSelection">#95FB6C84</color>
 
 </resources>

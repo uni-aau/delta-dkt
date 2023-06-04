@@ -17,19 +17,15 @@ public class ClientLogic {
         this.handlers = handlers;
     }
 
-    public void setTextOfTestElement(String text){
-        sendHandle(text, Constants.PREFIX_PLAYER_MOVE);
-    }
-
     public void sendHandle(String message, String type) {
 
 
         //This distinction is necessary because the JUNIT environment does not have the android class implementation
         //The error messages refers to a dead website
         //https://g.co/androidstudio/not-mocked
-        System.out.println("TRYING"+type+" "+message);
+
         if(!isTEST) {
-            System.out.println("TRYING2"+type+" "+message);
+
             if(handlers.containsKey(type)) {
                 send(message,type);
             }else{
@@ -52,7 +48,7 @@ public class ClientLogic {
     }
 
     private void send(String message, String type){
-        System.out.println("TRYING3"+type+" "+message);
+
         android.os.Message handleMessage = new Message();
         Bundle b = new Bundle();
         b.putString("payload", message);

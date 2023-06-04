@@ -32,6 +32,7 @@ class PlayerTests {
 
     //? Getters
 
+
     /**
      * Checks whether the initialized nickname, via the constructor, has been set and is accesible.
      */
@@ -314,14 +315,19 @@ class PlayerTests {
     @ParameterizedTest
     @ValueSource(ints = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10})
     void checkPlayerMovement_bySteps(int steps) {
-
         //? sets the return value for getField method with its given arguments to a valid property.
         int location = player.getPosition().getLocation() + steps;
         if (steps % 2 == 0) {
             when(mockMapHandling.getField(location)).thenReturn(generateDummyProperty(location));
         } else {
             //Test for movement on a special location
-            when(mockMapHandling.getField(location)).thenReturn(new SpecialField(location));
+            Field mockField = new SpecialField(location);
+            if(steps == 1) {
+                mockField.setName("VermögensAbgabe");
+            } else {
+                mockField.setName("Steuerabgabe");
+            }
+            when(mockMapHandling.getField(location)).thenReturn(mockField);
         }
         when(mockMapHandling.getFields()).thenReturn(generateDummyList());
 
@@ -408,6 +414,64 @@ class PlayerTests {
 
     }
 
+
+    //? isCheating property tests
+
+    /**
+     * Check whether the default value of is false.
+     */
+    @Test
+    void check_hasCheating_Getter(){
+        assertFalse(player.hasCheated());
+    }
+
+    /**
+     * Check whether hasCheated property can be modified.
+     */
+    @Test
+    void check_hasCheating_Setter(){
+        assertFalse(player.hasCheated());
+        player.setCheat(true);
+        assertTrue(player.hasCheated());
+    }
+
+
+    //? Nickname & ID - Getter and Setters
+  
+    @Test
+    void testSetNickName(){
+        Player player = new Player();
+        player.setNickname("testNickName");
+        assertEquals("testNickName", player.getNickname());
+    }
+
+    @Test
+    void testSetID(){
+        Player player = new Player();
+        player.setId(5);
+        assertEquals(5, player.getId());
+    }
+
+
+    @Test
+    void getWealthWithNoPropertiesTest() {
+        player.getProperties().clear(); // Ensure player has no properties
+        player.setCash(500);
+        assertEquals(500, player.getWealth());
+    }
+
+    @Test
+    void getWealthWithPropertiesOnlyTest(){
+        player.getProperties().clear();
+        player.getProperties().add(testProperty1);
+        player.getProperties().add(testProperty2);
+
+        player.setCash(500);
+
+        assertEquals(player.getCash()+testProperty1.getPrice() + testProperty2.getPrice(), player.getWealth());
+    }
+
+
     /**
      * This method will create a property object that is being used as a valid field.
      *
@@ -424,6 +488,7 @@ class PlayerTests {
         return dummy;
     }
 }
+
 
 
 class SomeTestField extends Field {

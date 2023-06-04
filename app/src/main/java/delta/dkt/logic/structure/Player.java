@@ -6,12 +6,10 @@ import static ClientUIHandling.Constants.PREFIX_PLAYER_PAYRENT;
 import java.util.ArrayList;
 
 import ClientUIHandling.Config;
+import ClientUIHandling.Constants;
 import ServerLogic.ServerActionHandler;
 
-public class Player {
-    public static Player testInstance = new Player("testPlayer");
-
-
+public class Player implements Comparable<Player>{
     private static int _id = 1;
 
     //? May be used to sync player data across clients
@@ -24,6 +22,7 @@ public class Player {
 
     //? May be used to check whether a player is timeoutet, e.g. prison, or not.
     private int suspention = 0;
+    private boolean hasCheated = false;
 
     public Player(String nickname) {
         this.nickname = nickname;
@@ -32,6 +31,15 @@ public class Player {
     public Player() {
 
     }
+
+    public void setNickname(String nickname) {
+        this.nickname = nickname;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
 
     //? Property handling
 
@@ -149,11 +157,19 @@ public class Player {
 
         if (this.position instanceof Property) {
             if(((Property) this.position).getOwner() != null) {
+                //START-NOSCAN
                 ServerActionHandler.triggerAction(PREFIX_PLAYER_PAYRENT, this.getId());
+                //END-NOSCAN
             }else{ //property can be bought , ask user
                 //START-NOSCAN
                 //TODO: Ask the user if he wants to buy the property.
                // ServerActionHandler.triggerAction(PREFIX_PLAYER_BUYPROPERTY, this.getId()); //we only need one parameter , and thates the id of the player
+                //END-NOSCAN
+            }
+        } else if (this.position instanceof SpecialField) {
+            if (this.position.getName().equals("VermögensAbgabe") || this.position.getName().equals("Steuerabgabe")) {
+                //START-NOSCAN
+                ServerActionHandler.triggerAction(Constants.PREFIX_PAY_TAX, this.getId());
                 //END-NOSCAN
             }
         }
@@ -195,6 +211,18 @@ public class Player {
         return cash;
     }
 
+    public int getWealth() {
+
+        int wealth = 0;
+        for (Property property : properties){
+            wealth+=property.getPrice();
+            wealth+= property.getHouses()*property.getHousePrice();
+            wealth+= property.getHotels()* property.getHotelPrice();
+        }
+        wealth+=cash;
+        return wealth;
+    }
+
     /**
      * This method will set the players cash.
      *
@@ -216,5 +244,19 @@ public class Player {
         this.cash -= amount;
         recipient.cash += amount;
 
+    }
+
+    public boolean hasCheated(){
+        return hasCheated;
+    }
+
+    public void setCheat(boolean state){
+        hasCheated = state;
+    }
+  
+  
+    @Override
+    public int compareTo(Player o) {
+        return this.id-o.id;
     }
 }

@@ -15,13 +15,14 @@ import delta.dkt.logic.structure.Game;
 public class ActionRollDiceReceive implements ClientActionInterface {
     @Override
     public void execute(AppCompatActivity activity, String clientMessage) {
-        String[] args = clientMessage.replace(PREFIX_ROLL_DICE_RECEIVE, "").trim().split(" ");
-        int clientId = Integer.parseInt(args[0]);
+        String prefix = clientMessage.split(" ")[0];
+        clientMessage = clientMessage.substring(prefix.length()+1);
+
+        String[] args = clientMessage.split(";");
 
         if (MainMenuActivity.role) {
-            Log.d("[UI] Roll Dice Next Player", "Successfully received roll dice request: Activity: " + activity + " ClientID: " + clientId + " ClientGameID: " + Game.getPlayers().get(clientId).getId());
-            Log.d("TEST", "SERVER RECEIVED REQUEST with ID" + clientId);
-            ServerActionHandler.triggerAction(PREFIX_ROLL_DICE_REQUEST, clientId);
+            Log.d("TEST", "SERVER RECEIVED REQUEST with ID " + args[0]);
+            ServerActionHandler.triggerAction(PREFIX_ROLL_DICE_REQUEST, clientMessage);
         } else {
             Log.e("ERROR", "NON SERVER USER CALLED ROLLDICERECEIVE!");
         }

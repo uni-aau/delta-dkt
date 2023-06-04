@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="whiteSpecial">#221C1C</color>
+    <color name="blackSpecial">#FFFFFF</color>
+    <color name="cheatSelection">#E40429</color>
 </resources>

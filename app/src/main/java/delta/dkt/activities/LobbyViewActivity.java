@@ -7,6 +7,7 @@ import static ClientUIHandling.Constants.PREFIX_REMOVE_USER_FROM_LIST;
 import static delta.dkt.activities.MainActivity.user;
 import static delta.dkt.activities.MainMenuActivity.role;
 
+import ClientUIHandling.Config;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.util.Log;
@@ -70,6 +71,10 @@ public class LobbyViewActivity extends AppCompatActivity {
             Log.d("Start", "Sending start action to server!");
             ServerActionHandler.triggerAction(PREFIX_GAME_START, "");
         });
+
+        if(Config.Skip && Config.DEBUG) {
+            startButton.performClick();
+        }
     }
 
 
@@ -79,7 +84,7 @@ public class LobbyViewActivity extends AppCompatActivity {
     // This Method ass user to UserList und updates the List
     public void welcomeToLobby () {
         if(role) {
-            ServerActionHandler.triggerAction(PREFIX_ADD_USER_TO_LIST, user);
+            ServerActionHandler.triggerAction(PREFIX_ADD_USER_TO_LIST, new Object[]{user, 1});
 
             Toast.makeText(LobbyViewActivity.this, "Users Total: " + userList.size(), Toast.LENGTH_SHORT).show();
         }

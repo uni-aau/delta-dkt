@@ -6,6 +6,8 @@ import ServerLogic.actions.ActionPayRent;
 import ServerLogic.actions.*;
 import ServerLogic.actions.RequestPlayerLost;
 import ServerLogic.actions.RequestPlayerMovement;
+import ServerLogic.actions.cheating.RequestCheatMenu;
+import ServerLogic.actions.cheating.RequestReportCheater;
 import android.util.Log;
 
 import java.util.ArrayList;
@@ -30,14 +32,13 @@ public class ServerActionHandler {
 
     private static ServerNetworkClient server;
 
-    public static ArrayList<String> serverUserList;
+
 
     private ServerActionHandler() {
         // no instantiation of class
     }
 
     static{
-        serverUserList = new ArrayList<>();
         actions = new ArrayList<>();
         actionPrefixes = new ArrayList<>();
         actionMap = new HashMap<>();
@@ -52,6 +53,13 @@ public class ServerActionHandler {
         actionMap.put(PREFIX_GET_IP, new RequestGetIp());
         actionMap.put(PREFIX_PLAYER_BUYPROPERTY, new RequestBuyProperty());
         actionMap.put(PREFIX_END_GAME, new GameEnd());
+        actionMap.put(PREFIX_PLAYER_CHEATED, new ActionPunish());
+        actionMap.put(PREFIX_START_CASH_VALUE, new RequestSetStartMoney());
+        actionMap.put(PREFIX_PAY_TAX, new RequestPayTax());
+        actionMap.put(PREFIX_PLAYER_CHEAT_MENU, new RequestCheatMenu());
+        actionMap.put(PREFIX_PLAYER_REPORT_CHEATER, new RequestReportCheater());
+        actionMap.put(PREFIX_PROPLIST_UPDATE, new RequestPropertyListUpdate());
+
 
         actions.add(new RequestHostGame());
         actionPrefixes.add(PREFIX_HOST_NEW_GAME);
@@ -73,7 +81,8 @@ public class ServerActionHandler {
     public static void triggerAction(String name, Object parameters){
         if(server == null){
             //Use a java class here to avoid not-mocked exception when a test reaches here.
-           System.err.println("SERVER NOT SET");
+            //But due to sonarcloud, we simply do not log it instead...
+            //System.err.println("SERVER NOT SET");
             return;
         }
         //Still include old registration handling for legacy compatibility

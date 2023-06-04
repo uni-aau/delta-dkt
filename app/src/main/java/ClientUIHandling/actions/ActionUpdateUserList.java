@@ -12,6 +12,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import ClientUIHandling.ClientActionInterface;
 import delta.dkt.R;
+import delta.dkt.activities.MainMenuActivity;
 
 
 public class ActionUpdateUserList implements ClientActionInterface {
@@ -19,13 +20,14 @@ public class ActionUpdateUserList implements ClientActionInterface {
     public void execute(AppCompatActivity activity, String clientMessage) {
 
         String[] args = clientMessage.replace(PREFIX_UPDATE_USER_LIST, "").trim().split(";"); // Holt sich Args nach dem Prefix
-        updateLobbyInfo(activity);
 
-        System.out.println(clientMessage);
+
+        Log.d("[CLIENT]_Update_User_List", clientMessage+" "+ MainMenuActivity.role);
         userList.clear();
         for (String user : args) {
             userList.add(user);
         }
+        updateLobbyInfo(activity);
         Log.d("[CLIENT]_Update_User_List", "JUHU! UserList is up to date");
     }
 

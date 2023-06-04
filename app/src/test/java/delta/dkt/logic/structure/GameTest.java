@@ -14,7 +14,7 @@ class GameTest {
 
     void setUpReset() {
         Game.getPlayers().put(0, new Player());
-        Game.setRounds(5);
+        Game.setRounds(Config.ENDROUNDS);
         Game.setRoundStartID(3);
     }
 
@@ -27,7 +27,7 @@ class GameTest {
             }
         }
         Game.incrementRounds(1);
-        assertEquals(10, Game.getRounds());
+        assertEquals(Config.ENDROUNDS, Game.getRounds());
     }
 
     @Test
@@ -37,5 +37,14 @@ class GameTest {
         assertTrue(Game.getPlayers().size()==0);
         assertTrue(Game.getRoundStartID() == -1);
         assertTrue(Game.getRounds() == 0);
+    }
+
+
+    @Test
+    void getWinnerListTest(){
+        Game.getPlayers().put(0, new Player("Jay"));
+        Game.getPlayers().put(1, new Player("Tom"));
+        Game.getPlayers().put(2, new Player("Nick"));
+        assertEquals(3, Game.getWinnerList().size());
     }
 }
