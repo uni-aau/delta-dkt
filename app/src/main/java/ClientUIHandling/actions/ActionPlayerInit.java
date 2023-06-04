@@ -66,7 +66,7 @@ public class ActionPlayerInit implements ClientActionInterface {
 
         ((TextView) gameViewActivity.findViewById(R.id.textView_cash)).setText(String.format(gameViewActivity.getString(R.string.cash_text), String.valueOf(Config.INITIAL_CASH)));
         ((TextView) gameViewActivity.findViewById(R.id.textView_my_properties)).setText(String.format(gameViewActivity.getString(R.string.my_properties_text), String.valueOf(0)));
-        ((TextView) gameViewActivity.findViewById(R.id.textView_activity)).setText(String.format(gameViewActivity.getString(R.string.activity_text), gameViewActivity.getString(R.string.game_started_acitivty_text)));
+        ((TextView) gameViewActivity.findViewById(R.id.textView_activity)).setText(String.format(gameViewActivity.getString(R.string.activity_text), gameViewActivity.getString(R.string.game_started_activity_text)));
 
         String playersOnlineInputValue = String.format(gameViewActivity.getString(R.string.players_online), playerAmount, String.valueOf(Config.MAX_CLIENTS));
         ((TextView) gameViewActivity.findViewById(R.id.textView_players_online)).setText(playersOnlineInputValue);
