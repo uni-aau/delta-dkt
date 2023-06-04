@@ -14,5 +14,6 @@
     <color name="whiteSpecial">#FFFFFF</color>
     <color name="blackSpecial">#000000</color>
 
+    <color name="cheatSelection">#95FB6C84</color>
 
 </resources>

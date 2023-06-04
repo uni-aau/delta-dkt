@@ -25,6 +25,8 @@ public class Player implements Comparable<Player>{
 
     //? May be used to check whether a player was timed out, e.g. prison, or not.
     private int suspendedRounds = 0;
+    private boolean hasCheated = false;
+
 
     public Player(String nickname) {
         this.nickname = nickname;
@@ -293,7 +295,17 @@ public class Player implements Comparable<Player>{
             }
 
         }
+    }
 
+    public boolean hasCheated(){
+        return hasCheated;
+    }
+
+    public void setCheat(boolean state){
+        hasCheated = state;
+    }
+  
+ 
     @Override
     public int compareTo(Player o) {
         return this.id-o.id;

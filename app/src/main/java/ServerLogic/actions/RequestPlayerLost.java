@@ -27,7 +27,7 @@ public class RequestPlayerLost implements ServerActionInterface {
 
         Player player = Game.getPlayers().get(id);
 
-        server.broadcast(GAMEVIEW_ACTIVITY_TYPE+":"+PREFIX_PLAYER_LOST+" "+player.getNickname()+" "+player.getId());
+        server.broadcast(GAMEVIEW_ACTIVITY_TYPE+":"+PREFIX_PLAYER_LOST+" "+player.getNickname()+";"+player.getId());
 
         for (int i = player.getProperties().size()-1; i>=0;i--) {
             player.getProperties().get(i).resetAccessories();
