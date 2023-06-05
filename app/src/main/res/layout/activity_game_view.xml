@@ -12,7 +12,7 @@
             android:layout_width="162dp"
             android:layout_height="70dp"
             android:id="@+id/textView_activity"
-            android:gravity="center_horizontal"
+            android:gravity="center"
             app:layout_constraintStart_toEndOf="@+id/imageView"
             app:layout_constraintHorizontal_bias="0.542"
             app:layout_constraintEnd_toEndOf="parent"
