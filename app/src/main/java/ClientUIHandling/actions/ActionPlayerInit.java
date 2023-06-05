@@ -81,7 +81,6 @@ public class ActionPlayerInit implements ClientActionInterface {
 
         // Sets plural/singular textview
         String playerAmountActivityTextInput = resources.getQuantityString(R.plurals.game_started_activity_text, playerAmount, playerAmount);
-        String activityTextInput = resources.getString(R.string.activity_text, playerAmountActivityTextInput);
-        ((TextView) gameViewActivity.findViewById(R.id.textView_activity)).setText(activityTextInput);
+        ((TextView) gameViewActivity.findViewById(R.id.textView_activity)).setText(playerAmountActivityTextInput);
     }
 }
