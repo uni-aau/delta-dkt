@@ -180,6 +180,11 @@ public class MainMenuActivity extends AppCompatActivity {
                 return;
             }
 
+            if(tempMaxPlayers.length() > 1){
+                SnackBarHandler.createSnackbar(view, "Please enter a number between 1 and 6", LENGTH_SHORT).show();
+                return;
+            }
+
             if(tempGameRoundsOrTime.length() > 9 ){
                 String type = roundsButton.isChecked() ? "Rounds" : "Time";
                 SnackBarHandler.createSnackbar(view, "Please enter a valid amount for the total amount of "+type, LENGTH_SHORT).show();
