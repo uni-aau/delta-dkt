@@ -36,7 +36,8 @@ public class ActionPrison implements ServerActionInterface {
                         player.setYouGetOutOfPrisonCard(false);
                     }else{
                         server.broadcast(GAMEVIEW_ACTIVITY_TYPE, PREFIX_NOTIFICATION, args);
-                        player.setSuspension(3);
+                        Player updatedPlayer = player.suspendPlayerForRounds(3);
+                        Game.setPlayer(updatedPlayer);
                     }
                     player.setGoToPrisonField(false);
                 }
