@@ -19,7 +19,6 @@ import network2.ServerNetworkClient;
 public class ActionGoToPrison implements ServerActionInterface {
     @Override
     public void execute(ServerNetworkClient server, Object parameters) {
-        {
             int id = (int) parameters;
             Player player = Game.getPlayers().get(id);
 
@@ -39,6 +38,5 @@ public class ActionGoToPrison implements ServerActionInterface {
                 server.broadcast(GAMEVIEW_ACTIVITY_TYPE, PREFIX_PLAYER_MOVE, args);
                 ServerActionHandler.triggerAction(PREFIX_PRISON, id);
             }
-        }
     }
 }
