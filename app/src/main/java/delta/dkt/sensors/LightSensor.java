@@ -9,7 +9,8 @@ import static ClientUIHandling.Constants.LOG_LIGHT_SENSOR;
 
 public class LightSensor implements SensorEventListener {
     public static float value;
-    private static final float COVER_THRESHOLD = 300;
+    private static final float COVER_THRESHOLD = 5;
+    private static final float LOG_THRESHOLD = 60;
 
     public static boolean isCovered() {
         return value < COVER_THRESHOLD;
@@ -17,7 +18,7 @@ public class LightSensor implements SensorEventListener {
 
     @Override
     public void onSensorChanged(SensorEvent sensorEvent) {
-        if(Math.abs(LightSensor.value - sensorEvent.values[0]) >= COVER_THRESHOLD / 2){
+        if(Math.abs(LightSensor.value - sensorEvent.values[0]) >= LOG_THRESHOLD){
             //* Only notify about value update when there is a significant change.
             Log.v(LOG_LIGHT_SENSOR, "Value has significantly changed to: "+sensorEvent.values[0]);
         }
