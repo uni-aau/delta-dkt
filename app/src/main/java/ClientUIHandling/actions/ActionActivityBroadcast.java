@@ -25,8 +25,9 @@ public class ActionActivityBroadcast implements ClientActionInterface {
 
         int activityMessageIdentifier = activity.getResources().getIdentifier(messageTag, "string", activity.getPackageName()); // get resource key from identifier
         if (activityMessageIdentifier != 0) {
-            String activityMessageValue = activity.getResources().getString(activityMessageIdentifier); // get string from resource key
-            formatActivityMessage(activityMessageValue, args);
+            ArrayList<String> modified = new ArrayList<>(Arrays.asList(args));
+            modified.remove(0);
+            args = modified.toArray(new String[0]);
         } else {
             Log.e(TAG, "Wrong message tag defined messageTag = " + messageTag);
 
