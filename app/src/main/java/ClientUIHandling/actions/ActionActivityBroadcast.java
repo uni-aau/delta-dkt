@@ -29,6 +29,9 @@ public class ActionActivityBroadcast implements ClientActionInterface {
             formatActivityMessage(activityMessageValue, args);
         } else {
             Log.e(TAG, "Wrong message tag defined messageTag = " + messageTag);
+
+            //* cancel UI update when string-template is missing
+            return;
         }
 
         LanguageHandler.updateTextElement(activity, "textView_activity", messageTag, args);
