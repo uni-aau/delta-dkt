@@ -219,9 +219,20 @@ public class Player implements Comparable<Player>{
     public boolean getGoToPrisonField(){return goToPrisonField;}
     public boolean getYouGetOutOfPrisonCard(){return youGetOutOfPrisonCard;}
 
+    /**
+     * Sets the goToPrisonField value of a player.
+     *
+     * @param goToPrisonField is true, if the player was on the goToPrisonField before going to the prison.
+     */
     public void setGoToPrisonField(boolean goToPrisonField){
         this.goToPrisonField = goToPrisonField;
     }
+
+    /**
+     * Sets the youGetOutOfPrisonCard value of a player.
+     *
+     * @param youGetOutOfPrisonCard is true, if the player has a youGetOutOfPrisonCard.
+     */
     public void setYouGetOutOfPrisonCard(boolean youGetOutOfPrisonCard) {
         this.youGetOutOfPrisonCard = youGetOutOfPrisonCard;
     }
