@@ -1,7 +1,7 @@
 package delta.dkt.activities;
 
 
-import static ClientUIHandling.Constants.PREFIX_GAME_START_STATS;
+
 import static ClientUIHandling.Constants.PREFIX_GET_SERVER_TIME;
 import static ClientUIHandling.Constants.PREFIX_INIT_PLAYERS;
 import static ClientUIHandling.Constants.PREFIX_PLAYER_BUYPROPERTY;
