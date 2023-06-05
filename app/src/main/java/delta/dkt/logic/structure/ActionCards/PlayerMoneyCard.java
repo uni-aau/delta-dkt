@@ -30,7 +30,7 @@ public class PlayerMoneyCard extends Task {
             ServerActionHandler.triggerAction(Constants.PREFIX_PLAYER_LOST,assignee.getId());
         }
 
-        int[] params = {assignee.getId(), amount};
+        int[] params = { assignee.getId(), amount};
 
         //send message to clients that player just paid money
         ServerActionHandler.triggerAction(Constants.PREFIX_ACTIONCARD_MONEY, params );

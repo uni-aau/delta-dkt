@@ -48,13 +48,19 @@ public class Game {
     public static ArrayList<Player> getPlayerList(){
        return new ArrayList<>(players.values());
     }
-    public static Integer getClientIdByPlayerObject(Player player){
-        return getClientIdByPlayerId(player.getId());
+    public static Integer getClientIdByPlayerId(Player playerId){
+        return getClientIdByPlayerId(playerId);
     }
 
     public static Player getPlayerById(int playerId){
         Optional<Player> player = players.values().stream().filter(p -> p.getId() == playerId).findFirst();
         return player.orElse(null);
+    }
+
+    public static void setPlayer(Player playerobject){
+        //first get the clientId key
+        int clientID = getClientIdByPlayerId(playerobject.getId());
+        players.put(clientID, playerobject);
     }
 
     public static Integer getClientIdByPlayerId(int playerId){
@@ -67,6 +73,10 @@ public class Game {
             }
         }
         return clientId; //if we reach this statement we haven´t found any entry for the given playerId
+    }
+
+    public void UpdatePlayer(Player updatedPlayer){
+
     }
 
     public static int getRoundStartID() {

@@ -9,6 +9,8 @@ import java.util.ArrayList;
 import ClientUIHandling.Config;
 import ClientUIHandling.Constants;
 import ServerLogic.ServerActionHandler;
+import delta.dkt.logic.structure.ActionCards.GoToJailActionCard;
+import delta.dkt.logic.structure.ActionCards.OutOfJailCard;
 
 public class Player implements Comparable<Player>{
     private static int _id = 1;
@@ -122,18 +124,23 @@ public class Player implements Comparable<Player>{
         this.suspendedRounds = rounds;
     }
 
-    public void suspendPlayerForRounds(int rounds){
+    public Player suspendPlayerForRounds(int rounds){
+        if(rounds <= 0 ){ return this; }
+
         this.setSuspendedRounds(rounds);
         //get posisiton of prison field
         try{ //move player to prison
             Field prisonField = Game.getMap().getPrisonField();
             if(prisonField == null){ throw new RuntimeException("No prisonFieldFound");}
             move(prisonField.getLocation());
+
         }catch(Exception ex){
             Log.d("Error", ex.getMessage());
             ex.printStackTrace();
         }
-
+        finally {
+            return this;
+        }
     }
 
     /**
@@ -183,19 +190,38 @@ public class Player implements Comparable<Player>{
                 ServerActionHandler.triggerAction(PREFIX_PLAYER_PAYRENT, this.getId());
                 //END-NOSCAN
             }
-        } else if (this.position instanceof SpecialField) {
+        }else if (this.position instanceof SpecialField) {
             if (this.position.getName().equals("VermögensAbgabe") || this.position.getName().equals("Steuerabgabe")) {
                 //START-NOSCAN
                 ServerActionHandler.triggerAction(Constants.PREFIX_PAY_TAX, this.getId());
                 //END-NOSCAN
-            } else if (this.position.getName().equals("Gefängnis")) {
+            }else if(this.position.getName().equals("Gesetztes Verletzung")){
+                this.suspendPlayerForRounds(3);
+            }
+            else if (this.position.getName().equals("Gefängnis")) {
+                /**
+                 * Player is already in Prison (at field)
+                 * If player was moved here by roll , he wont be suspended
+                 * Though we don't take any action when a player just lands
+                 * accidentally on this field
+
                 if(this.isSuspended() == false){
                     //player just moved on prison field, was not yet there
                     this.setSuspendedRounds(3);
                     ServerActionHandler.triggerAction(Constants.PREFIX_ACTIONCARD_PRISON, this.getId());
                 }
-
+                 */
             }
+            else if (this.position.getName().equals("Start")){
+                //do nothing , this is checked in the ServerAction
+            }
+        }
+        else if(this.position instanceof RiskTaskField){
+            //draw a random card
+            RiskTaskField pos = (RiskTaskField) this.position;
+            Task task = pos.drawCard();
+            //just call the execute method, it knows what to do
+            task.execute(this);
         }
     }
 

@@ -48,7 +48,7 @@ public class RequestBuyProperty implements ServerActionInterface {
                 }
             }
             else{
-                throw new IllegalArgumentException("Invalid arguments provided. Property on Players position cannot be bought.");
+                //throw new IllegalArgumentException("Invalid arguments provided. Property on Players position cannot be bought.");
             }
 
         }

@@ -5,7 +5,7 @@ package delta.dkt.logic.structure;
  */
 public class RiskTaskField extends Field{
 
-    TaskCollection taskStapel;
+    private TaskCollection taskStapel;
 
     /**
      * Creates a new risk task.

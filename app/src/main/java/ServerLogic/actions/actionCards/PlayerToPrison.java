@@ -22,7 +22,10 @@ public class PlayerToPrison implements ServerActionInterface {
             if(imprisonedPlayer == null || clientId < 0){
                 throw new IllegalArgumentException();
             }
-
+            //now imprison the player, WE NEED TO return the player object since we change the instance
+            imprisonedPlayer = imprisonedPlayer.suspendPlayerForRounds(3);
+            //write this back to the gamestate
+            Game.setPlayer(imprisonedPlayer);
 
             String[] args = new String[2];
             args[0] = String.valueOf(clientId);

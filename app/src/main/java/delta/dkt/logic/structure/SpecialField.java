@@ -10,4 +10,6 @@ public class SpecialField extends Field {
         super(location);
         this.setName(name);
     }
+
+    //public abstract void execute(Player p);
 }
