@@ -1,5 +1,6 @@
 package delta.dkt.logic.structure;
 
+
 import static ClientUIHandling.Constants.PREFIX_PLAYER_PAYRENT;
 
 import android.util.Log;
@@ -9,10 +10,10 @@ import java.util.ArrayList;
 import ClientUIHandling.Config;
 import ClientUIHandling.Constants;
 import ServerLogic.ServerActionHandler;
-import delta.dkt.logic.structure.ActionCards.GoToJailActionCard;
-import delta.dkt.logic.structure.ActionCards.OutOfJailCard;
 
 public class Player implements Comparable<Player>{
+    private boolean youGetOutOfPrisonCard = false;
+    private boolean goToPrisonField = false;
     private static int _id = 1;
 
     //? May be used to sync player data across clients
@@ -259,6 +260,16 @@ public class Player implements Comparable<Player>{
 
     public int getCash() {
         return cash;
+    }
+
+    public boolean getGoToPrisonField(){return goToPrisonField;}
+    public boolean getYouGetOutOfPrisonCard(){return youGetOutOfPrisonCard;}
+
+    public void setGoToPrisonField(boolean goToPrisonField){
+        this.goToPrisonField = goToPrisonField;
+    }
+    public void setYouGetOutOfPrisonCard(boolean youGetOutOfPrisonCard) {
+        this.youGetOutOfPrisonCard = youGetOutOfPrisonCard;
     }
 
     public int getWealth() {
