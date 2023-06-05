@@ -488,12 +488,18 @@ class PlayerTests {
         return dummy;
     }
 
+    /**
+     * Checks if the setGoToPrisonField() method works.
+     */
     @Test
     void testSetGoToPrisonField() {
         player.setGoToPrisonField(true);
         assertTrue(player.getGoToPrisonField());
     }
 
+    /**
+     * Checks if the setYouGetOutOfPrisonCard() method works.
+     */
     @Test
     void testSetYouGetOutOfPrisonCard() {
         player.setYouGetOutOfPrisonCard(true);
