@@ -16,7 +16,6 @@ public class ActionPrison implements ServerActionInterface {
     private static final String TAG = "[Server] ActionPrison";
     @Override
     public void execute(ServerNetworkClient server, Object parameters) {
-        {
             int id = (int) parameters;
 
             Player player = Game.getPlayers().get(id);
@@ -43,5 +42,4 @@ public class ActionPrison implements ServerActionInterface {
                 }
             }
         }
-    }
 }
