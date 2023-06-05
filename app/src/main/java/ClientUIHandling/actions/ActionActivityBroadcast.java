@@ -36,18 +36,5 @@ public class ActionActivityBroadcast implements ClientActionInterface {
         }
 
         LanguageHandler.updateTextElement(activity, "textView_activity", messageTag, args);
-//        ((TextView) activity.findViewById(R.id.textView_activity)).setText(String.format(activity.getString(R.string.activity_text), combinedActivityMessage));
-    }
-
-    // Dynamically adds a specific amount of variables to a string
-    private void formatActivityMessage(String message, String[] args) {
-        int argsSize = args.length;
-        try {
-            Object[] formattedArgs = new Object[argsSize - 1];
-            System.arraycopy(args, 1, formattedArgs, 0, argsSize - 1);
-            combinedActivityMessage = String.format(message, formattedArgs);
-        } catch (Exception e) {
-            Log.e(TAG, "Error formatting activity broadcast message: " + e.getMessage());
-        }
     }
 }
