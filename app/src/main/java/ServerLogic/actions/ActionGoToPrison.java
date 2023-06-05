@@ -31,9 +31,11 @@ public class ActionGoToPrison implements ServerActionInterface {
                 Log.i("INFO", "Du bist am YouGoToPrisonField; Server");
                 int destination = 31;
                 player.moveTo(destination);
-                String[] args = new String[2];
+                String[] args = new String[4];
                 args[0] = String.valueOf(id);
                 args[1] = String.valueOf(destination);
+                args[2] = "10";
+                args[3] = String.valueOf(player.getNickname());
                 server.broadcast(GAMEVIEW_ACTIVITY_TYPE, PREFIX_PLAYER_MOVE, args);
                 ServerActionHandler.triggerAction(PREFIX_PRISON, id);
             }
