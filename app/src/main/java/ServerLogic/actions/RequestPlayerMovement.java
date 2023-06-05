@@ -58,7 +58,6 @@ public class RequestPlayerMovement implements ServerActionInterface {
             requestPlayer.reduceSuspension();
             Log.d(tag, String.format("Aborting move request for client: (%s), because he is in prison", clientID));
             String[] notifyArgs = new String[1];
-            //args[0] = String.valueOf(requestPlayer.getId());
             notifyArgs[0] = String.valueOf(requestPlayer.getSuspention());
             server.broadcast(GAMEVIEW_ACTIVITY_TYPE, PREFIX_SUSPENSION_COUNT, notifyArgs);
             return;
@@ -73,11 +72,9 @@ public class RequestPlayerMovement implements ServerActionInterface {
 
         int destination = (currentPosition + steps) % maxFields;
         if (destination == 0) destination++;
-        //destination = 11;
+
         //* detailed logs
         Log.d(tag, String.format("Moving Player%s to position=%s, dice value=%s!", clientID, destination, steps));
-
-
 
         ArrayList<String> sendArgs = new ArrayList<>();
         sendArgs.add(String.valueOf(clientID));
