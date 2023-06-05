@@ -4,6 +4,7 @@ import static ClientUIHandling.Constants.GAMEVIEW_ACTIVITY_TYPE;
 import static ClientUIHandling.Constants.PREFIX_HAS_PRISONCARD;
 import static ClientUIHandling.Constants.PREFIX_NOTIFICATION;
 
+import android.nfc.Tag;
 import android.util.Log;
 import ServerLogic.ServerActionInterface;
 import delta.dkt.logic.structure.Game;
@@ -12,6 +13,7 @@ import delta.dkt.logic.structure.PrisonField;
 import network2.ServerNetworkClient;
 
 public class ActionPrison implements ServerActionInterface {
+    private static final String TAG = "[Server] ActionPrison";
     @Override
     public void execute(ServerNetworkClient server, Object parameters) {
         {
@@ -20,17 +22,17 @@ public class ActionPrison implements ServerActionInterface {
             Player player = Game.getPlayers().get(id);
 
             int fieldLocation = player.getPosition().getLocation();
-            System.out.println("LOCATION: "+fieldLocation);
-            Log.i("INFO", "LOCATION: "+fieldLocation);
-            Log.i("INFO", "Du bist im Gefängnis; Server");
+            Log.i(TAG, "LOCATION: "+fieldLocation);
+            Log.i(TAG, "Du bist im Gefängnis; Server");
             String[] args = new String[1];
             args[0] = String.valueOf(id);
+            String playerName = player.getNickname();
 
             if(Game.getMap().getField(fieldLocation) instanceof PrisonField){
                 if(player.getGoToPrisonField()){
-                    Log.i("INFO", "Du warst davor am GoToPrisonField");
+                    Log.i(TAG, "Player " + playerName + " was at GoToPrisonField before");
                     if(player.getYouGetOutOfPrisonCard()){
-                        System.out.println("You have a YouGetOutOfPrison-Card!");
+                        Log.d(TAG, "Player " + playerName + " has a getOutOfPrisonCard");
                         server.broadcast(GAMEVIEW_ACTIVITY_TYPE +":"+PREFIX_HAS_PRISONCARD + ": " + player.getId() + " has YouGetOutOfPrisonCard");
                         player.setYouGetOutOfPrisonCard(false);
                     }else{
