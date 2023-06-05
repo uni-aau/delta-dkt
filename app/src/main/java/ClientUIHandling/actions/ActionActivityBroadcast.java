@@ -1,5 +1,6 @@
 package ClientUIHandling.actions;
 
+import ClientUIHandling.handlers.languages.LanguageHandler;
 import android.util.Log;
 import android.widget.TextView;
 
@@ -8,6 +9,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import ClientUIHandling.ClientActionInterface;
 import ClientUIHandling.Constants;
 import delta.dkt.R;
+
+import java.util.ArrayList;
+import java.util.Arrays;
 
 public class ActionActivityBroadcast implements ClientActionInterface {
     private String combinedActivityMessage = "Error formatting string";
@@ -27,7 +31,8 @@ public class ActionActivityBroadcast implements ClientActionInterface {
             Log.e(TAG, "Wrong message tag defined messageTag = " + messageTag);
         }
 
-        ((TextView) activity.findViewById(R.id.textView_activity)).setText(String.format(activity.getString(R.string.activity_text), combinedActivityMessage));
+        LanguageHandler.updateTextElement(activity, "textView_activity", messageTag, args);
+//        ((TextView) activity.findViewById(R.id.textView_activity)).setText(String.format(activity.getString(R.string.activity_text), combinedActivityMessage));
     }
 
     // Dynamically adds a specific amount of variables to a string
