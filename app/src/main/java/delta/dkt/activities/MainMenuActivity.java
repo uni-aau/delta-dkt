@@ -1,11 +1,13 @@
 package delta.dkt.activities;
 
 import static ClientUIHandling.Constants.PREFIX_HOST_NEW_GAME;
+import static com.google.android.material.snackbar.BaseTransientBottomBar.LENGTH_SHORT;
 import static delta.dkt.activities.MainActivity.INTENT_PARAMETER;
 import static delta.dkt.activities.MainActivity.logic;
 import static delta.dkt.activities.MainActivity.user;
 
 import ClientUIHandling.Config;
+import ClientUIHandling.handlers.notifications.SnackBarHandler;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.graphics.Color;
@@ -175,6 +177,17 @@ public class MainMenuActivity extends AppCompatActivity {
 
             if (tempGameRoundsOrTime.isEmpty()) {
                 Toast.makeText(MainMenuActivity.this, "Please enter Rounds or Time (Minutes)", Toast.LENGTH_SHORT).show();
+                return;
+            }
+
+            if(tempMaxPlayers.length() > 1){
+                SnackBarHandler.createSnackbar(view, "Please enter a number between 1 and 6", LENGTH_SHORT).show();
+                return;
+            }
+
+            if(tempGameRoundsOrTime.length() > 9 ){
+                String type = roundsButton.isChecked() ? "Rounds" : "Time";
+                SnackBarHandler.createSnackbar(view, "Please enter a valid amount for the total amount of "+type, LENGTH_SHORT).show();
                 return;
             }
 
