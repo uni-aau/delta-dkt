@@ -1,7 +1,10 @@
 package delta.dkt.logic.structure;
 
+import static ClientUIHandling.Constants.PREFIX_GO_TO_PRISON_FIELD;
 import static ClientUIHandling.Constants.PREFIX_PLAYER_BUYPROPERTY;
 import static ClientUIHandling.Constants.PREFIX_PLAYER_PAYRENT;
+import static ClientUIHandling.Constants.PREFIX_PLAYER_PROPERTYBOUGHT;
+import static ClientUIHandling.Constants.PREFIX_PRISON;
 
 import java.util.ArrayList;
 
@@ -10,6 +13,8 @@ import ClientUIHandling.Constants;
 import ServerLogic.ServerActionHandler;
 
 public class Player implements Comparable<Player>{
+    private boolean youGetOutOfPrisonCard = false;
+    private boolean goToPrisonField = false;
     private static int _id = 1;
 
     //? May be used to sync player data across clients
@@ -163,7 +168,7 @@ public class Player implements Comparable<Player>{
             }else{ //property can be bought , ask user
                 //START-NOSCAN
                 //TODO: Ask the user if he wants to buy the property.
-               // ServerActionHandler.triggerAction(PREFIX_PLAYER_BUYPROPERTY, this.getId()); //we only need one parameter , and thates the id of the player
+                // ServerActionHandler.triggerAction(PREFIX_PLAYER_BUYPROPERTY, this.getId()); //we only need one parameter , and thates the id of the player
                 //END-NOSCAN
             }
         } else if (this.position instanceof SpecialField) {
@@ -209,6 +214,16 @@ public class Player implements Comparable<Player>{
 
     public int getCash() {
         return cash;
+    }
+
+    public boolean getGoToPrisonField(){return goToPrisonField;}
+    public boolean getYouGetOutOfPrisonCard(){return youGetOutOfPrisonCard;}
+
+    public void setGoToPrisonField(boolean goToPrisonField){
+        this.goToPrisonField = goToPrisonField;
+    }
+    public void setYouGetOutOfPrisonCard(boolean youGetOutOfPrisonCard) {
+        this.youGetOutOfPrisonCard = youGetOutOfPrisonCard;
     }
 
     public int getWealth() {
