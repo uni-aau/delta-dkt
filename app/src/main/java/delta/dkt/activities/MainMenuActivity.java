@@ -1,13 +1,16 @@
 package delta.dkt.activities;
 
 import static ClientUIHandling.Constants.PREFIX_HOST_NEW_GAME;
+import static com.google.android.material.snackbar.BaseTransientBottomBar.LENGTH_SHORT;
 import static delta.dkt.activities.MainActivity.INTENT_PARAMETER;
 import static delta.dkt.activities.MainActivity.logic;
 import static delta.dkt.activities.MainActivity.user;
 
 import ClientUIHandling.Config;
+import ClientUIHandling.handlers.notifications.SnackBarHandler;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
+import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.util.Log;
@@ -44,6 +47,8 @@ public class MainMenuActivity extends AppCompatActivity {
     public static boolean role;
 
     public static String ip;
+
+    private Button okButton;
 
 
     @Override
@@ -119,7 +124,8 @@ public class MainMenuActivity extends AppCompatActivity {
 
 
         // Getting all needed Views from the xml:
-        Button okButton = view.findViewById(R.id.okButton);
+        okButton = view.findViewById(R.id.okButton);
+        enableOkButton();
         Button cancelButton = view.findViewById(R.id.cancelButton);
         EditText editText = view.findViewById(R.id.popUpEditText);
         EditText gameRoundsAndTime = view.findViewById(R.id.roundAndTimeEdtxt);
@@ -174,6 +180,17 @@ public class MainMenuActivity extends AppCompatActivity {
                 return;
             }
 
+            if(tempMaxPlayers.length() > 1){
+                SnackBarHandler.createSnackbar(view, "Please enter a number between 1 and 6", LENGTH_SHORT).show();
+                return;
+            }
+
+            if(tempGameRoundsOrTime.length() > 9 ){
+                String type = roundsButton.isChecked() ? "Rounds" : "Time";
+                SnackBarHandler.createSnackbar(view, "Please enter a valid amount for the total amount of "+type, LENGTH_SHORT).show();
+                return;
+            }
+
             int timeOrRounds = Integer.parseInt(tempGameRoundsOrTime);
             int maxPlayers = Integer.parseInt(tempMaxPlayers);
 
@@ -186,6 +203,8 @@ public class MainMenuActivity extends AppCompatActivity {
                 Toast.makeText(MainMenuActivity.this, "Time/Rounds <= 0 not allowed", Toast.LENGTH_SHORT).show();
                 return;
             }
+
+            disableOkButton();
 
             try {
                 Config.MAX_CLIENTS = maxPlayers;
@@ -222,6 +241,16 @@ public class MainMenuActivity extends AppCompatActivity {
         }
     }
 
+    private void enableOkButton() {
+        okButton.setEnabled(true);
+        okButton.setBackgroundResource(R.drawable.host_btn_background);
+    }
+
+    private void disableOkButton() {
+        okButton.setBackgroundResource(R.drawable.host_btn_background_disabled);
+        okButton.setEnabled(false);
+    }
+
 
     // Check if valid Methods:
     private boolean isValidMaxPlayers(int maxPlayers) {
@@ -238,16 +267,20 @@ public class MainMenuActivity extends AppCompatActivity {
         MainActivity.subscribeToLogic(Constants.PREFIX_SERVER, this);
         server = new ServerNetworkClient(this.getApplicationContext());
         server.start();
+
         Thread.sleep(100);
 
         client = new NetworkClientConnection("localhost", server.getPort(), 1000, logic);
         ServerActionHandler.setServer(server);
         client.start();
-        Thread.sleep(100);
+
+
 
         ClientHandler.setClient(client);
 
         Toast.makeText(MainMenuActivity.this, "Server " + serverName + " started on " + getTime(), Toast.LENGTH_SHORT).show();
+
+        Thread.sleep(100);
 
         ServerActionHandler.triggerAction(PREFIX_HOST_NEW_GAME, user);
     }

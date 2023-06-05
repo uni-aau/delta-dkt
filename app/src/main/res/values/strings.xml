@@ -59,12 +59,6 @@
     <string name="Wealth">Wealth</string>
     <string name="Finish">Finish</string>
 
-
-
-
-
-
-
     <string name="NSDServiceName">delta_dkt</string>
     <string name="NSDServiceType">_delta_dkt.tcp</string>
     <string name="hours_plural_text">hours</string>
@@ -80,14 +74,11 @@
     <string name="img_description_player4_text">Player 4</string>
     <string name="img_description_player2_text">Player 2</string>
     <string name="img_description_player1_text">Player 1</string>
-
     <string name="start_money_activity_text">%s received start money</string>
-
-
 
     <!-- #START Cheating Texts -->
     <string name="cheat_open_report_menu">Report Cheater</string>
-    <string name="reportCheater_message">Successfully reported %s as a Cheater!</string>
+    <string name="reportCheater_message">Activity: Successfully reported %s as a Cheater!</string>
 
     <!-- ##START Cheating-ReportMenu Texts -->
     <string name="cheat_popup_selection_menu_heading">Report Menu</string>
@@ -102,13 +93,14 @@
     <string name="cheat_user_element_image_description">Represents the players figure in the current game.</string>
 
     <!-- END Cheating Texts -->
-
-    <string name="movement_info_message_singular">%s moved %s step and is now located at pos: %s</string>
-    <string name="movement_info_message_plural">%s moved %s steps and is now located at pos: %s</string>
+    <string name="movement_info_message_singular">Activity: %s moved %s step and is now located at pos: %s</string>
+    <string name="movement_info_message_plural">Activity: %s moved %s steps and is now located at pos: %s</string>
 
     <string name="pay_tax_activity_text">%s had to pay %s%% taxes. Old cash %s$, new cash %s$</string>
     <string name="pay_static_tax_activity_text">%s had to pay %s$ taxes. Old cash %s$, new cash %s$</string>
-    <string name="game_started_acitivty_text">Game started!</string>
+    <string name="player_lost_activity_text">%s was eliminated from the game!</string>
+    <string name="text_rent">Rent: %s$</string>
+    <string name="playerName_info_text">You are spectator!</string>
 
     <string name="special_field_start">Start</string>
     <string name="special_field_law_violation">Gesetztes Verletzung</string>
@@ -116,7 +108,8 @@
     <string name="special_field_prison">Gefängnis</string>
     <string name="special_field_tax_payment">Steuerabgabe</string>
 
-    <integer name="default_suspension_rounds">3</integer>
-    <string name="text_rent">Rent: %s$</string>
-  
+    <plurals name="game_started_activity_text">
+        <item quantity="one">Game started with %d player</item>
+        <item quantity="other">Game started with %d players</item>
+    </plurals>
 </resources>

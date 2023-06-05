@@ -1,7 +1,6 @@
 package ClientUIHandling;
 
 import ClientUIHandling.actions.ActionActivityBroadcast;
-import ClientUIHandling.actions.ActionBroadcastStartStats;
 import ClientUIHandling.actions.ActionGameEnd;
 import ClientUIHandling.actions.ActionGetIP;
 import ClientUIHandling.actions.ActionMove;
@@ -60,7 +59,6 @@ public class ClientHandler extends Handler {
         actionMap.put(Constants.PREFIX_GAME_START, new ActionStartGame());
         actionMap.put(Constants.PREFIX_ROLL_DICE_REQUEST, new ActionInitRollDice());
         actionMap.put(Constants.PREFIX_INIT_PLAYERS, new ActionPlayerInit());
-        actionMap.put(Constants.PREFIX_GAME_START_STATS, new ActionBroadcastStartStats());
         actionMap.put(Constants.PREFIX_GET_SERVER_TIME, new ActionUpdateGameTime());
         actionMap.put(Constants.PREFIX_PLAYER_MOVE, new ActionMove());
         actionMap.put(Constants.PREFIX_GET_IP, new ActionGetIP());

@@ -50,7 +50,6 @@ public class ServerActionHandler {
         actionMap.put(PREFIX_PLAYER_LOST, new RequestPlayerLost());
         actionMap.put(PREFIX_GAME_START, new RequestGameStart());
         actionMap.put(PREFIX_INIT_PLAYERS, new RequestPlayerInit());
-        actionMap.put(PREFIX_GAME_START_STATS, new RequestGameStartStats());
         actionMap.put(PREFIX_ROLL_DICE_REQUEST, new RequestRollDicePerm());
         actionMap.put(PREFIX_GET_SERVER_TIME, new RequestGameStartTime());
         actionMap.put(PREFIX_PLAYER_MOVE, new RequestPlayerMovement());

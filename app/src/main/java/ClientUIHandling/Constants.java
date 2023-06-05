@@ -36,7 +36,6 @@ public class Constants {
     public static final String PREFIX_GAME_START = "GAMESTART";
     public static final String PREFIX_REGISTER = "REGISTERUSER";
     public static final String PREFIX_INIT_PLAYERS = "INIT_PLAYERS";
-    public static final String PREFIX_GAME_START_STATS = "START_STATS";
 
     public static final String PREFIX_PLAYER_LOST = "LOST";
     public static final String PREFIX_ADD_USER_TO_LIST = "Add_User_To_List";
