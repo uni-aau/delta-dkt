@@ -87,7 +87,6 @@ public class ServerActionHandler {
         if(server == null){
             //Use a java class here to avoid not-mocked exception when a test reaches here.
             //But due to sonarcloud, we simply do not log it instead...
-            //System.err.println("SERVER NOT SET");
             return;
         }
         //Still include old registration handling for legacy compatibility
