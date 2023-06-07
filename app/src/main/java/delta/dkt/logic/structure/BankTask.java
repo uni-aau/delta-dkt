@@ -6,7 +6,7 @@ package delta.dkt.logic.structure;
 
 public class BankTask extends Task{
 
-    public String bankTaskString;
+    private final String bankTaskString;
 
     /**
      * Creates a new bank task.
@@ -18,5 +18,9 @@ public class BankTask extends Task{
     public BankTask(int id, String name, String bankTask) {
         super(id, name);
         this.bankTaskString = bankTask;
+    }
+
+    public String getBankTaskString() {
+        return bankTaskString;
     }
 }
