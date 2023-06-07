@@ -17,7 +17,7 @@ public class NetworkServiceDiscovery {
 
     private RegistrationListener registrationListener;
 
-    public NsdServiceInfo nsdServiceInfo;
+    private NsdServiceInfo nsdServiceInfo;
 
 
 
@@ -73,4 +73,7 @@ public class NetworkServiceDiscovery {
         };
     }
 
+    public NsdServiceInfo getNsdServiceInfo() {
+        return nsdServiceInfo;
+    }
 }
