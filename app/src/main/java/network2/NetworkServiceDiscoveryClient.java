@@ -42,13 +42,4 @@ public class NetworkServiceDiscoveryClient {
     public List<NsdServiceInfo> getDiscoveredServices() {
         return discoveredServices;
     }
-
-    public interface OnDiscoveryListener {
-        void onStartDiscoveryFailed(String serviceType, int errorCode);
-        void onStopDiscoveryFailed(String serviceType, int errorCode);
-        void onDiscoveryStarted();
-        void onDiscoveryStopped();
-        void onServiceFound(NsdServiceInfo serviceInfo);
-        void onServiceLost(NsdServiceInfo serviceInfo);
-    }
 }
