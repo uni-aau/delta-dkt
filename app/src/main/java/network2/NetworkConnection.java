@@ -77,10 +77,6 @@ public class NetworkConnection extends Thread { //execute each instance within a
         this.socket = socket;
     }
 
-    public String getIP() {
-        return socket.getInetAddress().getHostAddress();
-    }
-
     @Override
     public void run() {   //equivalent to the read method .. always active
         try {
