@@ -24,7 +24,7 @@ public class MainActivity extends AppCompatActivity {
 
     public static final String INTENT_PARAMETER = "username";
 
-    public final static ClientLogic logic;
+    public static final ClientLogic logic;
     public static String user; // remove after static string username is moved in this class. (Hint: check for usage e.g. in ServerNetworkClass)
 
     static {
