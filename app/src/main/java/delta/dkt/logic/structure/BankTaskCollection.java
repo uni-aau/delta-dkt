@@ -8,7 +8,7 @@ import java.util.Collections;
  */
 
 public class BankTaskCollection {
-    private ArrayList<BankTask> bankTask = new ArrayList<>();
+    private final ArrayList<BankTask> bankTask = new ArrayList<>();
 
     /**
      * The BankTaskCollection includes ten tasks that a player can get in a game.
