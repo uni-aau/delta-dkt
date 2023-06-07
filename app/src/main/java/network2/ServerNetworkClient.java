@@ -30,9 +30,6 @@ public class ServerNetworkClient extends Thread { //always executed on a separat
     private boolean serverInterrupted;
 
     private List<NetworkConnection> clientConnections;
-
-    private Context context;
-
     private NetworkServiceDiscovery nsd;
 
 
@@ -41,7 +38,6 @@ public class ServerNetworkClient extends Thread { //always executed on a separat
     }
 
     public ServerNetworkClient(Context context) {
-        this.context = context;
         this.nsd = new NetworkServiceDiscovery(context);
 
         initProperties();
