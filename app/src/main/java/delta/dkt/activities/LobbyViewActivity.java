@@ -59,9 +59,7 @@ public class LobbyViewActivity extends AppCompatActivity {
         // Adding User to the UserList
         welcomeToLobby();
 
-        backButton.setOnClickListener(view -> {
-            leavingTheLobby();
-        });
+        backButton.setOnClickListener(view -> leavingTheLobby());
 
         startButton.setOnClickListener(view -> {
             Log.d("Start", "Sending start action to server!");

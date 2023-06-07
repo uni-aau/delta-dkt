@@ -67,9 +67,7 @@ public class DiscoveryListener implements NsdManager.DiscoveryListener{
             public void onServiceResolved(NsdServiceInfo nsdServiceInfo) {
                 printStatusMessage("Successfully resolved service!");
                 Log.d("Game-", nsdServiceInfo.toString());
-                activity.runOnUiThread(() -> {
-                    activity.addHost(nsdServiceInfo);
-                });
+                activity.runOnUiThread(() -> activity.addHost(nsdServiceInfo));
             }
         });
         printStatusMessage("A new service has been found!");
