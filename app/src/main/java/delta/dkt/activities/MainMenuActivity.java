@@ -84,21 +84,6 @@ public class MainMenuActivity extends AppCompatActivity {
         if (Config.Skip && Config.DEBUG) host.performClick();
     }
 
-    public void establishServerConnection() throws InterruptedException {
-
-        ClientLogic.isTEST = false;
-
-        ServerNetworkClient server = new ServerNetworkClient(this.getApplicationContext());
-
-        server.start();
-
-        Thread.sleep(100);
-        NetworkClientConnection client = new NetworkClientConnection("localhost", server.getPort(), 1000, logic);
-        client.start();
-        Thread.sleep(100);
-        ServerActionHandler.setServer(server);
-    }
-
 
     //---------------------------ALL METHODS:---------------------------//
 
