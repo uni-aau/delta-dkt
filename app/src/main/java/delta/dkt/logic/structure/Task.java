@@ -4,8 +4,8 @@ package delta.dkt.logic.structure;
  * This class represents a task.
  */
 public class Task {
-    public int id;
-    public String name;
+    private final int id;
+    private final String name;
 
     /**
      * Creates a new task.
@@ -15,5 +15,13 @@ public class Task {
     public Task(int id, String name){
         this.id = id;
         this.name = name;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public String getName() {
+        return name;
     }
 }
