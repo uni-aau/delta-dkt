@@ -5,13 +5,11 @@ import android.net.nsd.NsdManager;
 
 public class NetworkServiceDiscoveryClient {
 
-    private final Context context;
     private final NsdManager nsdManager;
     private final String serviceType;
     private NsdManager.DiscoveryListener discoveryListener;
 
     public NetworkServiceDiscoveryClient(Context context, String serviceType) {
-        this.context = context;
         this.serviceType = serviceType;
         nsdManager = (NsdManager) context.getSystemService(Context.NSD_SERVICE);
     }
