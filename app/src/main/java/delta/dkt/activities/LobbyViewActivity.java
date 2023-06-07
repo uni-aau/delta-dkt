@@ -53,7 +53,7 @@ public class LobbyViewActivity extends AppCompatActivity {
         // Everything which belongs to the Recycler View:
         recyclerView = findViewById(R.id.lobbyRecyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        adapter = new UserNameAdapter(this, userList, role);
+        adapter = new UserNameAdapter(userList);
         recyclerView.setAdapter(adapter);
 
         // Adding User to the UserList

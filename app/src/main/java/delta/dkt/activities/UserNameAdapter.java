@@ -17,14 +17,10 @@ import delta.dkt.R;
 
 class UserNameAdapter extends RecyclerView.Adapter<UserNameAdapter.UserViewHolder> {
 
-    Context context;
     ArrayList<String> usernames;
-    boolean role;
 
-    public UserNameAdapter (Context context, ArrayList<String> usernames, boolean role) {
-        this.context=context;
+    public UserNameAdapter (ArrayList<String> usernames) {
         this.usernames= usernames;
-        this.role = role;
     }
 
     @NonNull
