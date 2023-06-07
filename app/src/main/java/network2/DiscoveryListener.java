@@ -10,7 +10,7 @@ import delta.dkt.R;
 import delta.dkt.activities.FindHostViewActivity;
 
 public class DiscoveryListener implements NsdManager.DiscoveryListener{
-    private FindHostViewActivity activity;
+    private final FindHostViewActivity activity;
     private NsdManager manager;
 
     public DiscoveryListener(FindHostViewActivity activity){
