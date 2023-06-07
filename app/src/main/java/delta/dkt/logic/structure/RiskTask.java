@@ -18,7 +18,4 @@ public class RiskTask extends Task{
         this.riskTaskString = riskTask;
     }
 
-    public String getRiskTaskString() {
-        return riskTaskString;
-    }
 }
