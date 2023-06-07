@@ -44,11 +44,11 @@ import static ClientUIHandling.Constants.PREFIX_REQUEST_SERVER_ACTION_AS_CLIENT;
 public class ClientHandler extends Handler {
 
 
-    public static ArrayList<ClientActionInterface> actions;
-    public static ArrayList<String> actionPrefixes;
+    public static final ArrayList<ClientActionInterface> actions;
+    public static final ArrayList<String> actionPrefixes;
 
-    private AppCompatActivity UIActivity;
-    private static HashMap<String, ClientActionInterface> actionMap;
+    private final AppCompatActivity UIActivity;
+    private static final HashMap<String, ClientActionInterface> actionMap;
 
     private static NetworkClientConnection client;
 
