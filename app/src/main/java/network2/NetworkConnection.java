@@ -42,11 +42,11 @@ public class NetworkConnection extends Thread { //execute each instance within a
 
     private boolean isRunning;
 
-    private Object runningToken;
+    private final Object runningToken;
 
-    private ClientLogic logic;
+    private final ClientLogic logic;
 
-    private ArrayDeque<String> outputBuffer;
+    private final ArrayDeque<String> outputBuffer;
 
     private String ip;
     private int port;
