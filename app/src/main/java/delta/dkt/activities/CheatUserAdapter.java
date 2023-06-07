@@ -58,8 +58,8 @@ public class CheatUserAdapter extends RecyclerView.Adapter<CheatUserAdapter.Chea
 
 
     static class CheatUserViewHolder extends RecyclerView.ViewHolder {
-        TextView username;
-        ImageView userFigure;
+        private final TextView username;
+        private final ImageView userFigure;
 
         public CheatUserViewHolder(@NonNull View itemView) {
             super(itemView);
