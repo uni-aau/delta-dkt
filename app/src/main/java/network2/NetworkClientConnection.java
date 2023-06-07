@@ -15,12 +15,8 @@ public class NetworkClientConnection {
 
     private NetworkConnection connection;
 
-    private ClientLogic logic;
-
     public NetworkClientConnection(String ip, int port, int timeout, ClientLogic logic) {
-
         this.connection = new NetworkConnection(ip,  port, timeout,logic);
-        this.logic = logic;
     }
 
     public void start(){
