@@ -16,12 +16,4 @@ public class Task {
         this.id = id;
         this.name = name;
     }
-
-    public int getId() {
-        return id;
-    }
-
-    public String getName() {
-        return name;
-    }
 }
