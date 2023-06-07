@@ -16,9 +16,9 @@ import delta.dkt.R;
 
 public class HostAdapter extends RecyclerView.Adapter<HostAdapter.HostViewHolder> {
 
-    Context context;
-    ArrayList<String> hostId;
-    public static View selectedView;
+    private final Context context;
+    private final ArrayList<String> hostId;
+    private View selectedView;
     private int position;
 
     public HostAdapter (Context context, ArrayList<String> hostId) {
