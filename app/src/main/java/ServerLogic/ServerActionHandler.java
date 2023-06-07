@@ -13,9 +13,9 @@ import java.util.HashMap;
 import network2.ServerNetworkClient;
 
 public class ServerActionHandler {
-    public static final ArrayList<ServerActionInterface> actions;
-    public static final ArrayList<String> actionPrefixes;
-    public static final HashMap<String, ServerActionInterface> actionMap;
+    public static final ArrayList<ServerActionInterface> actions = new ArrayList<>();
+    public static final ArrayList<String> actionPrefixes = new ArrayList<>();
+    public static final HashMap<String, ServerActionInterface> actionMap = new HashMap<>();
 
     private static ServerNetworkClient server;
 
@@ -26,9 +26,6 @@ public class ServerActionHandler {
     }
 
     static{
-        actions = new ArrayList<>();
-        actionPrefixes = new ArrayList<>();
-        actionMap = new HashMap<>();
         actionMap.put(PREFIX_PLAYER_PAYRENT, new ActionPayRent());
         actionMap.put(PREFIX_PLAYER_LOST, new RequestPlayerLost());
         actionMap.put(PREFIX_GAME_START, new RequestGameStart());
