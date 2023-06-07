@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Optional;
 
 public class GameMap {
-    private ArrayList<Field> fields = FieldHandler.getFields();
+    private final ArrayList<Field> fields = FieldHandler.getFields();
 
     /**
      * This method returns a field based on the requested location.
