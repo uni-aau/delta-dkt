@@ -101,10 +101,6 @@ public class ClientHandler extends Handler {
         return client;
     }
 
-    public static void sendMessageToServer(String message){
-        client.sendMessage(message);
-    }
-
     public static void sendMessageToServer(String activity, String prefix, String args){
         client.sendMessage(activity+":"+prefix+" "+args);
     }
