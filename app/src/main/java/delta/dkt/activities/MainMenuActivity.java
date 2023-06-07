@@ -66,14 +66,6 @@ public class MainMenuActivity extends AppCompatActivity {
 
         //---HOST BUTTON---  (Everything that happens when host button is clicked)
         host.setOnClickListener(view -> {
-           /* try {
-                establishServerConnection();
-            } catch (InterruptedException e) {
-                Log.d("MainActivity::oncreate- interrupted", e.getMessage());
-                Thread.currentThread().interrupt();
-            } catch (RuntimeException e) {
-                Log.d("MainActivity::oncreate - Runtime exception", e.getMessage());
-            }*/
             role = true;
             showServerPopUpWindow();
         });
