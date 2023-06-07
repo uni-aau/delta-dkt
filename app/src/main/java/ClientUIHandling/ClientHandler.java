@@ -129,10 +129,6 @@ public class ClientHandler extends Handler {
 
     @Override
     public void handleMessage(@NonNull Message msg) {
-       /* if(msg.getData().containsKey(testType)){
-            Log.d("TEST", "REACHED");
-                testView.setText(msg.getData().get(testType).toString());
-        }*/
         String message = msg.getData().get("payload").toString();
         //For compatibility with old registration
         for (int i = 0; i < actions.size(); i++) {
