@@ -59,7 +59,6 @@ public class MainActivity extends AppCompatActivity {
             } else {
                 Toast.makeText(MainActivity.this, "Welcome " + user + "!", Toast.LENGTH_SHORT).show();
                 intent.putExtra(INTENT_PARAMETER, user);
-                //MainMenuActivity.username = user;
                 startActivity(intent);
             }
         });
