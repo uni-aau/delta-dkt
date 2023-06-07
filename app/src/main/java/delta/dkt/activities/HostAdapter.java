@@ -47,7 +47,7 @@ public class HostAdapter extends RecyclerView.Adapter<HostAdapter.HostViewHolder
 
     class HostViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         // Grabs informations thats needed from the recycler_view_find_host.xml
-        TextView hostId;
+        private final TextView hostId;
         public HostViewHolder (@NonNull View itemView) {
             super(itemView);
             hostId = itemView.findViewById(R.id.hostId_txt);
