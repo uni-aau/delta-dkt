@@ -13,7 +13,7 @@ import ClientUIHandling.ClientLogic;
  */
 public class NetworkClientConnection {
 
-    private NetworkConnection connection;
+    private final NetworkConnection connection;
 
     public NetworkClientConnection(String ip, int port, int timeout, ClientLogic logic) {
         this.connection = new NetworkConnection(ip,  port, timeout,logic);
