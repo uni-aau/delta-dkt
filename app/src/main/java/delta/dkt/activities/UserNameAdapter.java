@@ -17,7 +17,7 @@ import delta.dkt.R;
 
 class UserNameAdapter extends RecyclerView.Adapter<UserNameAdapter.UserViewHolder> {
 
-    ArrayList<String> usernames;
+    private final ArrayList<String> usernames;
 
     public UserNameAdapter (ArrayList<String> usernames) {
         this.usernames= usernames;
@@ -57,9 +57,9 @@ class UserNameAdapter extends RecyclerView.Adapter<UserNameAdapter.UserViewHolde
     class UserViewHolder extends RecyclerView.ViewHolder {
         // Grabs informations thats needed from the recycler_view_user_row.xml
 
-        TextView username;
-        TextView userRole;
-        TextView joiningTime;
+        private final TextView username;
+        private final TextView userRole;
+        private final TextView joiningTime;
 
         public UserViewHolder (@NonNull View itemView) {
             super(itemView);
