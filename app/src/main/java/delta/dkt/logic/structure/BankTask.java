@@ -19,8 +19,4 @@ public class BankTask extends Task{
         super(id, name);
         this.bankTaskString = bankTask;
     }
-
-    public String getBankTaskString() {
-        return bankTaskString;
-    }
 }
