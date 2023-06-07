@@ -27,7 +27,7 @@ public class ServerNetworkClient extends Thread { //always executed on a separat
 
     private int port; //the number of the port where the serverThread listens on for incoming connections
 
-    public boolean serverInterrupted;
+    private boolean serverInterrupted;
 
     private List<NetworkConnection> clientConnections;
 
@@ -189,7 +189,9 @@ public class ServerNetworkClient extends Thread { //always executed on a separat
         return this.clientConnections;
     }
 
-
+    public boolean isServerInterrupted() {
+        return serverInterrupted;
+    }
 }
 
 
