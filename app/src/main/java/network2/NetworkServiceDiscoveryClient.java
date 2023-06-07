@@ -14,9 +14,7 @@ public class NetworkServiceDiscoveryClient {
     private final Context context;
     private final NsdManager nsdManager;
     private final String serviceType;
-    private final List<NsdServiceInfo> discoveredServices = new ArrayList<>();
     private NsdManager.DiscoveryListener discoveryListener;
-    private final Handler handler = new Handler(Looper.getMainLooper());
 
     public NetworkServiceDiscoveryClient(Context context, String serviceType) {
         this.context = context;
@@ -26,7 +24,6 @@ public class NetworkServiceDiscoveryClient {
 
     public void startDiscovery(DiscoveryListener listener) {
         stopDiscovery();
-        discoveredServices.clear();
         listener.setManager(nsdManager);
         discoveryListener = listener;
         nsdManager.discoverServices(serviceType, NsdManager.PROTOCOL_DNS_SD, discoveryListener);
@@ -37,9 +34,5 @@ public class NetworkServiceDiscoveryClient {
             nsdManager.stopServiceDiscovery(discoveryListener);
             discoveryListener = null;
         }
-    }
-
-    public List<NsdServiceInfo> getDiscoveredServices() {
-        return discoveredServices;
     }
 }
