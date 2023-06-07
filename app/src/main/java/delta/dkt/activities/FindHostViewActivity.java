@@ -29,7 +29,7 @@ public class FindHostViewActivity extends AppCompatActivity{
     RecyclerView recyclerView;
     HostAdapter adapter;
     private final ArrayList<NsdServiceInfo> hosts = new ArrayList<>();
-    public static Button joinButton;
+    public Button joinButton;
     private NsdServiceInfo selection = null;
     private static final String SERVICE_NAME = "_delta-dkt";
     private static final String SERVICE_PROTOCOLL ="_tcp";

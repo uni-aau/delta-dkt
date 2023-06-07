@@ -66,10 +66,9 @@ public class HostAdapter extends RecyclerView.Adapter<HostAdapter.HostViewHolder
                 selectedView = view;
             }
 
-            FindHostViewActivity.joinButton.setVisibility(View.VISIBLE);
-
             FindHostViewActivity findHostViewActivity = (FindHostViewActivity) context;
             findHostViewActivity.setSelectedHost(position);
+            findHostViewActivity.joinButton.setVisibility(View.VISIBLE);
 
             Toast.makeText(context, "Selected host: " + selectedHost, Toast.LENGTH_SHORT).show();
         }
