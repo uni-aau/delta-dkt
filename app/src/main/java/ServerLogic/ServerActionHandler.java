@@ -15,7 +15,7 @@ import network2.ServerNetworkClient;
 public class ServerActionHandler {
     public static final ArrayList<ServerActionInterface> actions;
     public static final ArrayList<String> actionPrefixes;
-    public static HashMap<String, ServerActionInterface> actionMap;
+    public static final HashMap<String, ServerActionInterface> actionMap;
 
     private static ServerNetworkClient server;
 
