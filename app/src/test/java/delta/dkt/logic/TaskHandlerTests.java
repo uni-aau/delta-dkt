@@ -29,14 +29,4 @@ class TaskHandlerTests {
     void testGetTaskNotExistingTask(int input){
         assertNull(TaskHandler.getTask(input));
     }
-
-    /**
-     * Check the location of the task by calling the getLocation methode.
-     */
-    /*
-    @Test
-    void testGetTaskLocation(){
-        assertEquals(33, TaskHandler.getTask(33).getLocation());
-    }
-     */
 }
