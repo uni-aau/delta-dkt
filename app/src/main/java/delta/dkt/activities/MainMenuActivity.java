@@ -10,7 +10,6 @@ import ClientUIHandling.Config;
 import ClientUIHandling.handlers.notifications.SnackBarHandler;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
-import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.util.Log;
@@ -30,7 +29,6 @@ import java.util.Date;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 import ClientUIHandling.ClientHandler;
-import ClientUIHandling.ClientLogic;
 import ClientUIHandling.Constants;
 import ServerLogic.ServerActionHandler;
 import delta.dkt.R;

@@ -4,7 +4,6 @@ import static ClientUIHandling.Constants.GAMEVIEW_ACTIVITY_TYPE;
 import static ClientUIHandling.Constants.PREFIX_HAS_PRISONCARD;
 import static ClientUIHandling.Constants.PREFIX_NOTIFICATION;
 
-import android.nfc.Tag;
 import android.util.Log;
 import ServerLogic.ServerActionInterface;
 import delta.dkt.logic.structure.Game;

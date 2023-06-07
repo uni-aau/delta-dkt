@@ -34,7 +34,6 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import delta.dkt.R;
-import delta.dkt.logic.structure.Game;
 import delta.dkt.sensors.LightSensor;
 
 import java.util.ArrayList;

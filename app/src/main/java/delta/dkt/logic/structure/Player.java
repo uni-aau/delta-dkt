@@ -1,10 +1,6 @@
 package delta.dkt.logic.structure;
 
-import static ClientUIHandling.Constants.PREFIX_GO_TO_PRISON_FIELD;
-import static ClientUIHandling.Constants.PREFIX_PLAYER_BUYPROPERTY;
 import static ClientUIHandling.Constants.PREFIX_PLAYER_PAYRENT;
-import static ClientUIHandling.Constants.PREFIX_PLAYER_PROPERTYBOUGHT;
-import static ClientUIHandling.Constants.PREFIX_PRISON;
 
 import java.util.ArrayList;
 

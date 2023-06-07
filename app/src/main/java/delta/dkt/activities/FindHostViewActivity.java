@@ -1,9 +1,7 @@
 package delta.dkt.activities;
 
 
-import static ClientUIHandling.Constants.PREFIX_ADD_USER_TO_LIST;
 import static delta.dkt.activities.MainActivity.INTENT_PARAMETER;
-import static delta.dkt.activities.MainActivity.user;
 
 import android.content.Intent;
 import android.content.pm.ActivityInfo;

@@ -1,7 +1,6 @@
 package network2;
 import android.content.Context;
 import android.net.nsd.NsdManager;
-import android.os.Looper;
 
 
 import org.junit.jupiter.api.AfterEach;
@@ -9,11 +8,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.concurrent.CountDownLatch;
-import java.util.concurrent.TimeUnit;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
