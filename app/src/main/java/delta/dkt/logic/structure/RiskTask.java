@@ -5,7 +5,7 @@ package delta.dkt.logic.structure;
  */
 public class RiskTask extends Task{
 
-    public String riskTaskString;
+    private final String riskTaskString;
 
     /**
      * Creates a new risk task.
@@ -16,5 +16,9 @@ public class RiskTask extends Task{
     public RiskTask(int id, String name, String riskTask) {
         super(id, name);
         this.riskTaskString = riskTask;
+    }
+
+    public String getRiskTaskString() {
+        return riskTaskString;
     }
 }
