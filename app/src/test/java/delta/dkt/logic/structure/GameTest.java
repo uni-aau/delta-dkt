@@ -34,9 +34,9 @@ class GameTest {
     void reset() {
         setUpReset();
         Game.reset();
-        assertTrue(Game.getPlayers().size()==0);
-        assertTrue(Game.getRoundStartID() == -1);
-        assertTrue(Game.getRounds() == 0);
+        assertEquals(0, Game.getPlayers().size());
+        assertEquals(-1, Game.getRoundStartID());
+        assertEquals(0, Game.getRounds());
     }
 
 
