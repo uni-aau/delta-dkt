@@ -111,7 +111,6 @@ public class NetworkConnection extends Thread { //execute each instance within a
 
             System.out.println(TAG + ":Waiting for incoming messages");
             while (true) {
-                //System.out.println("WAITING1");
                 if (reader.ready()) {
                     String msg = reader.readLine();
                     //if we have received a message , handle it
@@ -140,7 +139,6 @@ public class NetworkConnection extends Thread { //execute each instance within a
                 sendThroughNetwork();
 
 
-                //System.out.println("WAITING2");
                 synchronized (runningToken) {
                     if (!isRunning) {
                         break;
