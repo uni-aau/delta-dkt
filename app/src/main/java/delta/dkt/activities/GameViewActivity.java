@@ -42,14 +42,14 @@ import java.util.ArrayList;
 public class GameViewActivity extends AppCompatActivity {
     public static int clientID = -1; // ID gets set by server
     public static int players = -1; // players gets set by server
-    private int[] locations = {1, 1, 1, 1, 1, 1};
+    private final int[] locations = {1, 1, 1, 1, 1, 1};
     private SensorManager manager = null;
-    private LightSensor lightSensorListener = new LightSensor();
+    private final LightSensor lightSensorListener = new LightSensor();
     private Sensor lightSensor = null;
     public int cheatSelection = -1; //? represents the index / position of the player-element selected, in the report-menu.
 
-    Button btnDice;
-    ImageView map;
+    private Button btnDice;
+    private ImageView map;
 
 
     @Override
