@@ -1,9 +1,5 @@
 package ServerLogic.actions;
 
-import static ClientUIHandling.Constants.GAMEVIEW_ACTIVITY_TYPE;
-import static ClientUIHandling.Constants.PREFIX_PLAYER_PROPERTYBOUGHT;
-import static ClientUIHandling.Constants.PREFIX_PROPLIST_UPDATE;
-
 import android.util.Log;
 
 import ServerLogic.ServerActionHandler;
@@ -13,6 +9,8 @@ import delta.dkt.logic.structure.Game;
 import delta.dkt.logic.structure.Player;
 import delta.dkt.logic.structure.Property;
 import network2.ServerNetworkClient;
+
+import static ClientUIHandling.Constants.*;
 
 public class RequestBuyProperty implements ServerActionInterface {
     @Override
@@ -30,7 +28,7 @@ public class RequestBuyProperty implements ServerActionInterface {
 
             int fieldLocation = player.getPosition().getLocation();
 
-            System.out.println("BuyProperty location: "+fieldLocation);
+            Log.d(LOG_PROPERTY_BUY, "BuyProperty location: "+fieldLocation);
 
             Field field = Game.getMap().getField(fieldLocation);
 
