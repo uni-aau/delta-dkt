@@ -91,7 +91,6 @@ public class NetworkConnection extends Thread { //execute each instance within a
 
             if (!MainMenuActivity.role) {
                 String clientID = reader.readLine();
-                System.out.println("WAITING FOR MY ID");
                 GameViewActivity.clientID = Integer.parseInt(clientID.split(":")[1]);
 
                 if(GameViewActivity.clientID == -1){
@@ -113,8 +112,6 @@ public class NetworkConnection extends Thread { //execute each instance within a
                     Log.d(TAG, "Incoming message " + msg);
                     this.lastMsgReceived = msg;
                     //TODO: Implement a handler that handles incoming game-related messages
-                    System.out.println("RECEIVED");
-                    System.out.println("I AM SERVER=" + MainMenuActivity.role + " received=" + msg);
                     // BEGIN-NOSCAN
                     if (logic != null) {
 
