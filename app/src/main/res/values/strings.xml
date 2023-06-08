@@ -104,6 +104,10 @@
     <string name="suspension_count">The player is suspended for %s more rounds</string>
     <string name="player_lost_activity_text">%s was eliminated from the game!</string>
     <string name="playerName_info_text">You are spectator!</string>
+    <string name="text_player_leave_confirmation">Do you really want to leave?</string>
+    <string name="text_button_yes">Yes</string>
+    <string name="text_button_no">No</string>
+    <string name="text_player_leave_hint">Hint: Your wealth will be reset!</string>
 
     <plurals name="game_started_activity_text">
         <item quantity="one">Game started with %d player</item>
