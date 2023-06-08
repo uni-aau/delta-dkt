@@ -4,6 +4,7 @@ import ClientUIHandling.actions.ActionActivityBroadcast;
 import ClientUIHandling.actions.ActionGameEnd;
 import ClientUIHandling.actions.ActionGetIP;
 import ClientUIHandling.actions.ActionMove;
+import ClientUIHandling.actions.ActionPlayerLeaveEvent;
 import ClientUIHandling.actions.ActionPlayerLost;
 import ClientUIHandling.actions.ActionPlayerPunish;
 import ClientUIHandling.actions.ActionPrisonNotification;
@@ -70,12 +71,11 @@ public class ClientHandler extends Handler {
         actionMap.put(Constants.PREFIX_END_GAME, new ActionGameEnd());
         actionMap.put(Constants.PREFIX_SET_MONEY, new ActionSetMoney());
         actionMap.put(Constants.PREFIX_PLAYER_CHEATED, new ActionPlayerPunish());
-
+        actionMap.put(Constants.PREFIX_PLAYER_LEAVE, new ActionPlayerLeaveEvent());
         actionMap.put(Constants.PREFIX_NOTIFICATION, new ActionPrisonNotification());
         actionMap.put(Constants.PREFIX_PROPLIST_UPDATE, new ActionPropertyListUpdate());
         actionMap.put(Constants.PREFIX_SERVER_FULL, new ActionServerIsFull());
         actionMap.put(Constants.PREFIX_SUSPENSION_COUNT, new ActionSuspensionNotification());
-
         actionMap.put(PREFIX_PLAYER_CHEAT_MENU, new ActionOpenCheatMenu());
         actionMap.put(PREFIX_REQUEST_SERVER_ACTION_AS_CLIENT, new ActionSendServerRequest());
 
