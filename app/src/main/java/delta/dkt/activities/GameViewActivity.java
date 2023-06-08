@@ -102,9 +102,7 @@ public class GameViewActivity extends AppCompatActivity {
         Button leaveGame = view.findViewById(R.id.button_leaveGame_yes);
         Button cancelLeaveGame = view.findViewById(R.id.button_leaveGame_no);
 
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setView(view);
-        final AlertDialog alertDialog = builder.create();
+        final AlertDialog alertDialog = createAlertDialog(view);
 
         cancelLeaveGame.setOnClickListener(view1 -> alertDialog.dismiss());
         leaveGame.setOnClickListener(view1 -> System.out.println("TODO triggeraction"));
@@ -244,9 +242,7 @@ public class GameViewActivity extends AppCompatActivity {
         Button submitCheater = view.findViewById(R.id.btnSubmitCheater);
         Button cancelCheater = view.findViewById(R.id.btnCancelCheater);
 
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setView(view);
-        final AlertDialog alertDialog = builder.create();
+        final AlertDialog alertDialog = createAlertDialog(view);
 
         submitCheater.setOnClickListener(view1 -> {
             if(this.cheatSelection < 0){
@@ -267,5 +263,11 @@ public class GameViewActivity extends AppCompatActivity {
             alertDialog.getWindow().setBackgroundDrawable(new ColorDrawable(0));
         }
         alertDialog.show();
+    }
+
+    private AlertDialog createAlertDialog(View view) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setView(view);
+        return builder.create();
     }
 }
