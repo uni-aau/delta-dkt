@@ -89,6 +89,35 @@ public class GameViewActivity extends AppCompatActivity {
         }
     }
 
+    // Action when player presses back on mobile phone
+    @Override
+    public void onBackPressed() {
+        openPlayerLeavePopUp();
+    }
+
+    private void openPlayerLeavePopUp() {
+        ConstraintLayout popUpConstraintLayout = findViewById(R.id.playerLeavePopUpConstraint);
+        View view = LayoutInflater.from(this).inflate(R.layout.player_leave_pop_up_window, popUpConstraintLayout);
+
+//        Button submitCheater = view.findViewById(R.id.btnSubmitCheater);
+        Button leaveGame = view.findViewById(R.id.button_leaveGame_yes);
+        Button cancelLeaveGame = view.findViewById(R.id.button_leaveGame_no);
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setView(view);
+        final AlertDialog alertDialog = builder.create();
+
+        cancelLeaveGame.setOnClickListener(view1 -> alertDialog.dismiss());
+        leaveGame.setOnClickListener(view1 -> {
+            System.out.println("TODO triggeraction");
+        });
+
+        if (alertDialog.getWindow() != null) {
+            alertDialog.getWindow().setBackgroundDrawable(new ColorDrawable(0));
+        }
+        alertDialog.show();
+    }
+
     protected void switchToPropertyActivity() {
         Intent switchIntent = new Intent(this, PropertyListActivity.class);
         startActivity(switchIntent);
