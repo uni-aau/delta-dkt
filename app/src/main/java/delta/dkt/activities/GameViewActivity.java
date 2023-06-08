@@ -89,6 +89,16 @@ public class GameViewActivity extends AppCompatActivity {
         }
     }
 
+    // Action when player presses back on mobile phone
+    @Override
+    public void onBackPressed() {
+        openPlayerLeavePopUp();
+    }
+
+    private void openPlayerLeavePopUp() {
+        // TODO
+    }
+
     protected void switchToPropertyActivity() {
         Intent switchIntent = new Intent(this, PropertyListActivity.class);
         startActivity(switchIntent);
