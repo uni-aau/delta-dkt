@@ -4,6 +4,9 @@ import android.content.Context;
 import android.net.nsd.NsdManager;
 import android.net.nsd.NsdManager.RegistrationListener;
 import android.net.nsd.NsdServiceInfo;
+import android.util.Log;
+
+import static ClientUIHandling.Constants.LOG_NETWORK;
 
 public class NetworkServiceDiscovery {
 
@@ -11,7 +14,7 @@ public class NetworkServiceDiscovery {
 
     private static final String SERVICE_PROTOCOLL ="_tcp";
     private static final String SERVICE_TYPE = SERVICE_NAME+"."+SERVICE_PROTOCOLL; // service type to be registered
-    private static final String TAG = NetworkServiceDiscovery.class.getSimpleName();
+    private static final String TAG = LOG_NETWORK + "-NSD";
 
     private NsdManager nsdManager;
 
@@ -51,24 +54,22 @@ public class NetworkServiceDiscovery {
 
             @Override
             public void onServiceRegistered(NsdServiceInfo serviceInfo) {
-
-                System.out.println(TAG+" onServiceRegistered: " + serviceInfo);
-
+                Log.d(TAG, " onServiceRegistered: " + serviceInfo);
             }
 
             @Override
             public void onRegistrationFailed(NsdServiceInfo serviceInfo, int errorCode) {
-                System.out.println(TAG+" onRegistrationFailed: " + serviceInfo + ", errorCode: " + errorCode);
+                Log.d(TAG, " onRegistrationFailed: " + serviceInfo + ", errorCode: " + errorCode);
             }
 
             @Override
             public void onServiceUnregistered(NsdServiceInfo serviceInfo) {
-                System.out.println(TAG+" onServiceUnregistered: "  + serviceInfo);
+                Log.d(TAG, " onServiceUnregistered: "  + serviceInfo);
             }
 
             @Override
             public void onUnregistrationFailed(NsdServiceInfo serviceInfo, int errorCode) {
-                System.out.println(TAG+" onUnregistrationFailed: " +serviceInfo + ", errorCode: " + errorCode);
+                Log.d(TAG, " onUnregistrationFailed: " +serviceInfo + ", errorCode: " + errorCode);
             }
         };
     }

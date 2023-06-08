@@ -1,5 +1,6 @@
 package network2;
 
+import static ClientUIHandling.Constants.LOG_NETWORK;
 import static ClientUIHandling.Constants.PREFIX_ADD_USER_TO_LIST;
 import static delta.dkt.activities.MainActivity.user;
 
@@ -38,7 +39,7 @@ public class NetworkConnection extends Thread { //execute each instance within a
 
     private String lastMsgReceived;
 
-    private static final String TAG = "NetworkConnection";
+    private static final String TAG = LOG_NETWORK + "-NC";
 
     private boolean isRunning;
 
@@ -56,7 +57,7 @@ public class NetworkConnection extends Thread { //execute each instance within a
     //while listening to its port
     //for us , the port of the socket is defined by the client communicating with us
     public NetworkConnection(String ip, int port, int timeout, ClientLogic logic) {
-        System.out.println(TAG + ": Saving socket for client connection and creating Reader/Writer Objects");
+        Log.d(TAG,"Saving socket for client connection and creating Reader/Writer Objects");
         this.isRunning = true;
         runningToken = "";
         this.logic = logic;
@@ -68,7 +69,7 @@ public class NetworkConnection extends Thread { //execute each instance within a
     }
 
     public NetworkConnection(Socket socket, ClientLogic logic) {
-        System.out.println(TAG + ": Saving socket for client connection and creating Reader/Writer Objects");
+        Log.d(TAG, "Saving socket for client connection and creating Reader/Writer Objects");
         this.isRunning = true;
         runningToken = "";
         this.logic = logic;
@@ -90,7 +91,6 @@ public class NetworkConnection extends Thread { //execute each instance within a
 
             if (!MainMenuActivity.role) {
                 String clientID = reader.readLine();
-                System.out.println("WAITING FOR MY ID");
                 GameViewActivity.clientID = Integer.parseInt(clientID.split(":")[1]);
 
                 if(GameViewActivity.clientID == -1){
@@ -104,16 +104,14 @@ public class NetworkConnection extends Thread { //execute each instance within a
                 GameViewActivity.clientID = 1;
             }
 
-            System.out.println(TAG + ":Waiting for incoming messages");
+            Log.d(TAG, "Waiting for incoming messages");
             while (true) {
                 if (reader.ready()) {
                     String msg = reader.readLine();
                     //if we have received a message , handle it
-                    System.out.println(TAG + " Incoming message " + msg);
+                    Log.d(TAG, "Incoming message " + msg);
                     this.lastMsgReceived = msg;
                     //TODO: Implement a handler that handles incoming game-related messages
-                    System.out.println("RECEIVED");
-                    System.out.println("I AM SERVER=" + MainMenuActivity.role + " received=" + msg);
                     // BEGIN-NOSCAN
                     if (logic != null) {
 
@@ -143,10 +141,10 @@ public class NetworkConnection extends Thread { //execute each instance within a
             }
             Thread.sleep(1);
         } catch (IOException e) {
-            System.out.println(e.getMessage());
+            Log.e(TAG, e.getMessage());
 
         } catch (InterruptedException e) {
-            Log.e("INTERRUPT", "Interrupted!", e);
+            Log.e(TAG, "Interrupted!"+ e);
 
             Thread.currentThread().interrupt();
         } finally {
@@ -174,7 +172,7 @@ public class NetworkConnection extends Thread { //execute each instance within a
             while (!outputBuffer.isEmpty()) {
                 try {
                     String message = outputBuffer.pop();
-                    System.out.println(TAG + " Sending following message to server: " + message);
+                    Log.d(TAG, "Sending following message to server: " + message);
                     writer.write(message);
                     writer.newLine(); //adds newline == NULLBYTE termination of messages (EOF signal)
                     writer.flush(); //flushes the message within the OUTPUTBUFFER -> sends to cient/server via Socket

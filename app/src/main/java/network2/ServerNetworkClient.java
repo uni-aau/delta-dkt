@@ -13,9 +13,12 @@ import java.util.Collections;
 import java.util.List;
 
 import ClientUIHandling.Config;
+import android.util.Log;
 import delta.dkt.activities.MainActivity;
 import delta.dkt.logic.structure.Game;
 import delta.dkt.logic.structure.Player;
+
+import static ClientUIHandling.Constants.LOG_NETWORK;
 
 /**
  * This class maintains a set of clientNetworkConnections and listens to a
@@ -58,7 +61,7 @@ public class ServerNetworkClient extends Thread { //always executed on a separat
         for (NetworkInterface networkInterface : interfaces) {
             List<InetAddress> addresses = Collections.list(networkInterface.getInetAddresses());
             for (InetAddress address : addresses) {
-                System.out.println("TRYING");
+
                 if (!address.isLoopbackAddress()) {
                     String ip = address.getHostAddress();
                     //Check if it is not an ipv6 address
@@ -88,10 +91,10 @@ public class ServerNetworkClient extends Thread { //always executed on a separat
             //before start listening, register the service.. the port has been set
             if (nsd != null) { //for testcases this class has to be called without service registration
                 nsd.registerService(getPort());
-                System.out.println("REGISTERED SERVICE");
+                Log.d(LOG_NETWORK, "REGISTERED SERVICE");
             }
 
-            System.out.println("Server started on port " + port);
+            Log.d(LOG_NETWORK, "Server started on port " + port);
             while (!serverInterrupted) {
                 Socket socket = serverSocket.accept();
                 NetworkConnection clientSocket = new NetworkConnection(socket, MainActivity.logic);
