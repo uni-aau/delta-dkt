@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="300dp"
         android:layout_height="200dp"
         android:id="@+id/playerLeavePopUpConstraintLayout">
@@ -18,7 +17,7 @@
             android:id="@+id/playerLeavePopUpInnerConstraintLayout">
 
         <TextView
-                android:text="Do you really want to leave the game?"
+                android:text="@string/text_player_leave_confirmation"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/textView_leaveGameQuestion"
@@ -31,7 +30,7 @@
                 android:textSize="16sp" />
 
         <Button
-                android:text="Yes"
+                android:text="@string/text_button_yes"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/button_leaveGame_yes"
@@ -41,7 +40,7 @@
                 android:layout_marginBottom="15dp" />
 
         <Button
-                android:text="No"
+                android:text="@string/text_button_no"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/button_leaveGame_no"
@@ -52,7 +51,7 @@
                 android:textStyle="bold" />
 
         <TextView
-                android:text="Hint: Your wealth will be reset!"
+                android:text="@string/text_player_leave_hint"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/textView_playerLeaveHint"
