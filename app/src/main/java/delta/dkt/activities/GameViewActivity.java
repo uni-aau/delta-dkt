@@ -99,7 +99,6 @@ public class GameViewActivity extends AppCompatActivity {
         ConstraintLayout popUpConstraintLayout = findViewById(R.id.playerLeavePopUpConstraint);
         View view = LayoutInflater.from(this).inflate(R.layout.player_leave_pop_up_window, popUpConstraintLayout);
 
-//        Button submitCheater = view.findViewById(R.id.btnSubmitCheater);
         Button leaveGame = view.findViewById(R.id.button_leaveGame_yes);
         Button cancelLeaveGame = view.findViewById(R.id.button_leaveGame_no);
 
