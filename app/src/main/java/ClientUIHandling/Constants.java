@@ -26,7 +26,6 @@ public class Constants {
     public static final String PREFIX_ROLL_DICE_REQUEST = "ROLL_DICE_REQUEST";
     public static final String PREFIX_GET_SERVER_TIME = "SERVER_TIME";
     public static final String PREFIX_GAME_START = "GAMESTART";
-    public static final String PREFIX_REGISTER = "REGISTERUSER";
     public static final String PREFIX_INIT_PLAYERS = "INIT_PLAYERS";
     public static final String PREFIX_PLAYER_LEAVE = "PLAYER_LEAVE";
     public static final String PREFIX_PLAYER_LOST = "LOST";
