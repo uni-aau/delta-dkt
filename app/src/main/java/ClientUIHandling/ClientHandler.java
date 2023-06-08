@@ -31,7 +31,7 @@ import ClientUIHandling.actions.ActionPlayerInit;
 import ClientUIHandling.actions.ActionBuyProperty;
 import ClientUIHandling.actions.ActionRollDiceReceive;
 import ClientUIHandling.actions.ActionAddUserToUserList;
-import ClientUIHandling.actions.ActionCloseGame;
+import ClientUIHandling.actions.ActionLeaveLobby;
 import ClientUIHandling.actions.ActionHostGame;
 import ClientUIHandling.actions.ActionRemoveUserFromUserList;
 import ClientUIHandling.actions.ActionUpdateUserList;
@@ -75,7 +75,7 @@ public class ClientHandler extends Handler {
         actionMap.put(Constants.PREFIX_UPDATE_USER_LIST, new ActionUpdateUserList());
         actionMap.put(Constants.PREFIX_ADD_USER_TO_LIST, new ActionAddUserToUserList());
         actionMap.put(Constants.PREFIX_REMOVE_USER_FROM_LIST, new ActionRemoveUserFromUserList());
-        actionMap.put(Constants.PREFIX_CLOSE_GAME, new ActionCloseGame());
+        actionMap.put(Constants.PREFIX_LEAVE_LOBBY, new ActionLeaveLobby());
         actionMap.put(PREFIX_REQUEST_SERVER_ACTION_AS_CLIENT, new ActionSendServerRequest());
 
     }

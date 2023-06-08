@@ -19,7 +19,7 @@ import ServerLogic.actions.RequestPlayerInit;
 import ServerLogic.actions.RequestGameStart;
 import ServerLogic.actions.RequestGetIp;
 import ServerLogic.actions.RequestAddUserToUserList;
-import ServerLogic.actions.RequestCloseGame;
+import ServerLogic.actions.RequestLeaveLobby;
 import ServerLogic.actions.RequestHostGame;
 import ServerLogic.actions.RequestRemoveUserFromList;
 import ServerLogic.actions.RequestUpdateUserList;
@@ -62,7 +62,7 @@ public class ServerActionHandler {
         actionMap.put(PREFIX_ADD_USER_TO_LIST, new RequestAddUserToUserList());
         actionMap.put(PREFIX_REMOVE_USER_FROM_LIST, new RequestRemoveUserFromList());
         actionMap.put(PREFIX_UPDATE_USER_LIST, new RequestUpdateUserList());
-        actionMap.put(PREFIX_CLOSE_GAME, new RequestCloseGame());
+        actionMap.put(PREFIX_LEAVE_LOBBY, new RequestLeaveLobby());
     }
 
     public static void triggerAction(String name, Object parameters){

@@ -35,7 +35,7 @@ public class Constants {
 
     public static final String PREFIX_UPDATE_USER_LIST = "Update_UserList";
 
-    public static final String PREFIX_CLOSE_GAME = "Close_Game";
+    public static final String PREFIX_LEAVE_LOBBY = "Leave_Lobby";
 
     public static final String PREFIX_END_GAME = "ENDGAME";
 
