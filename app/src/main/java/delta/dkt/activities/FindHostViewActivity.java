@@ -1,9 +1,7 @@
 package delta.dkt.activities;
 
 
-import static ClientUIHandling.Constants.PREFIX_ADD_USER_TO_LIST;
 import static delta.dkt.activities.MainActivity.INTENT_PARAMETER;
-import static delta.dkt.activities.MainActivity.user;
 
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
@@ -30,9 +28,8 @@ public class FindHostViewActivity extends AppCompatActivity{
 
     RecyclerView recyclerView;
     HostAdapter adapter;
-    //ArrayList<String> hostList;
-    private ArrayList<NsdServiceInfo> hosts = new ArrayList<>();
-    public static Button joinButton;
+    private final ArrayList<NsdServiceInfo> hosts = new ArrayList<>();
+    public Button joinButton;
     private NsdServiceInfo selection = null;
     private static final String SERVICE_NAME = "_delta-dkt";
     private static final String SERVICE_PROTOCOLL ="_tcp";
@@ -60,18 +57,7 @@ public class FindHostViewActivity extends AppCompatActivity{
         Log.d("Game-", "Discovery has been started!");
 
         updateHostList();
-        //hostList = new ArrayList<>();
-
-        //hostList.add("Host1");
-        //hostList.add("Host2");
-        //hostList.add("Host3");
-
-        //recyclerView = findViewById(R.id.RecyclerView);
-        //recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        //adapter = new HostAdapter(this, hostList);
-        //recyclerView.setAdapter(adapter);
-
-
+        
         backButton.setOnClickListener(view -> {
             Intent intent = new Intent(getApplicationContext(), MainMenuActivity.class);
             intent.putExtra(INTENT_PARAMETER, newUser);

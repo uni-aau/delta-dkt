@@ -1,6 +1,5 @@
 package ClientUIHandling.actions;
 
-import static ClientUIHandling.Constants.PREFIX_NOTIFICATION;
 import static ClientUIHandling.Constants.PREFIX_SUSPENSION_COUNT;
 
 import android.annotation.SuppressLint;

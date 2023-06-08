@@ -9,7 +9,8 @@ import org.jetbrains.annotations.NotNull;
  */
 class RelativeRectangle {
     PointF topLeft, topRight, bottomRight, bottomLeft;
-    float width, height;
+    private final float width;
+    private final float height;
 
     /**
      * By using this constructor the width and height of a given field, will be set, based on the given locations.

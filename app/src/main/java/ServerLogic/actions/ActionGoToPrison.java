@@ -9,17 +9,15 @@ import android.util.Log;
 
 import ServerLogic.ServerActionHandler;
 import ServerLogic.ServerActionInterface;
-import delta.dkt.activities.GameViewActivity;
 import delta.dkt.logic.structure.Game;
 import delta.dkt.logic.structure.GoToPrisonField;
 import delta.dkt.logic.structure.Player;
-import delta.dkt.logic.structure.PrisonField;
 import network2.ServerNetworkClient;
 
 public class ActionGoToPrison implements ServerActionInterface {
     @Override
     public void execute(ServerNetworkClient server, Object parameters) {
-            int id = (int) parameters;
+            Integer id = (Integer) parameters;
             Player player = Game.getPlayers().get(id);
 
             int fieldLocation = player.getPosition().getLocation();

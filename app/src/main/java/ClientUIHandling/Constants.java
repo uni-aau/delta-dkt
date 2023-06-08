@@ -68,5 +68,7 @@ public class Constants {
     public static final String LOG_MAIN = "DKT-MAIN";
     public static final String LOG_CHEAT = String.format("%s-Cheat", LOG_MAIN);
     public static final String LOG_LIGHT_SENSOR = String.format("%s-LightSensor", LOG_MAIN);
+    public static final String LOG_NETWORK = String.format("%s-Network", LOG_MAIN);
+    public static final String LOG_PROPERTY_BUY = String.format("%s-Property-Buy", LOG_MAIN);
 
 }

@@ -1,10 +1,6 @@
 package delta.dkt.logic.structure;
 
-import static ClientUIHandling.Constants.PREFIX_GO_TO_PRISON_FIELD;
-import static ClientUIHandling.Constants.PREFIX_PLAYER_BUYPROPERTY;
 import static ClientUIHandling.Constants.PREFIX_PLAYER_PAYRENT;
-import static ClientUIHandling.Constants.PREFIX_PLAYER_PROPERTYBOUGHT;
-import static ClientUIHandling.Constants.PREFIX_PRISON;
 
 import java.util.ArrayList;
 
@@ -23,7 +19,7 @@ public class Player implements Comparable<Player>{
 
     private Field position = Game.getMap().getField(1);
     private int cash = Config.INITIAL_CASH;
-    private ArrayList<Property> properties = new ArrayList<>();
+    private final ArrayList<Property> properties = new ArrayList<>();
 
     //? May be used to check whether a player is timeoutet, e.g. prison, or not.
     private int suspention = 0;

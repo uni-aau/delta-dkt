@@ -10,7 +10,6 @@ import ClientUIHandling.Config;
 import ClientUIHandling.handlers.notifications.SnackBarHandler;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
-import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.util.Log;
@@ -30,7 +29,6 @@ import java.util.Date;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 import ClientUIHandling.ClientHandler;
-import ClientUIHandling.ClientLogic;
 import ClientUIHandling.Constants;
 import ServerLogic.ServerActionHandler;
 import delta.dkt.R;
@@ -66,14 +64,6 @@ public class MainMenuActivity extends AppCompatActivity {
 
         //---HOST BUTTON---  (Everything that happens when host button is clicked)
         host.setOnClickListener(view -> {
-           /* try {
-                establishServerConnection();
-            } catch (InterruptedException e) {
-                Log.d("MainActivity::oncreate- interrupted", e.getMessage());
-                Thread.currentThread().interrupt();
-            } catch (RuntimeException e) {
-                Log.d("MainActivity::oncreate - Runtime exception", e.getMessage());
-            }*/
             role = true;
             showServerPopUpWindow();
         });
@@ -90,21 +80,6 @@ public class MainMenuActivity extends AppCompatActivity {
         MainActivity.subscribeToLogic(Constants.MAINMENU_ACTIVITY_TYPE, this);
 
         if (Config.Skip && Config.DEBUG) host.performClick();
-    }
-
-    public void establishServerConnection() throws InterruptedException {
-
-        ClientLogic.isTEST = false;
-
-        ServerNetworkClient server = new ServerNetworkClient(this.getApplicationContext());
-
-        server.start();
-
-        Thread.sleep(100);
-        NetworkClientConnection client = new NetworkClientConnection("localhost", server.getPort(), 1000, logic);
-        client.start();
-        Thread.sleep(100);
-        ServerActionHandler.setServer(server);
     }
 
 
