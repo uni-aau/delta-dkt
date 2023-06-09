@@ -105,7 +105,7 @@ public class GameViewActivity extends AppCompatActivity {
         final AlertDialog alertDialog = createAlertDialog(view);
 
         cancelLeaveGame.setOnClickListener(view1 -> alertDialog.dismiss());
-        leaveGame.setOnClickListener(view1 -> System.out.println("TODO triggeraction"));
+        leaveGame.setOnClickListener(view1 -> ClientHandler.sendMessageToServer(GAMEVIEW_ACTIVITY_TYPE, PREFIX_PLAYER_LEAVE, String.valueOf(clientID)));
 
         if (alertDialog.getWindow() != null) {
             alertDialog.getWindow().setBackgroundDrawable(new ColorDrawable(0));
