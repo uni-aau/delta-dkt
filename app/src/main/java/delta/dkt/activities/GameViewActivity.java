@@ -5,6 +5,7 @@ import static com.google.android.material.snackbar.BaseTransientBottomBar.LENGTH
 import static ClientUIHandling.Constants.GAMEVIEW_ACTIVITY_TYPE;
 import static ClientUIHandling.Constants.LOG_CHEAT;
 import static ClientUIHandling.Constants.PREFIX_CLOSE_GAME;
+import static ClientUIHandling.Constants.PREFIX_END_GAME;
 import static ClientUIHandling.Constants.PREFIX_GET_SERVER_TIME;
 import static ClientUIHandling.Constants.PREFIX_INIT_PLAYERS;
 import static ClientUIHandling.Constants.PREFIX_PLAYER_CHEAT_MENU;
@@ -122,7 +123,7 @@ public class GameViewActivity extends AppCompatActivity {
         if (!isDicing || players == 1) {
             if (MainMenuActivity.role) {
                 playerLeaveHint.setText(R.string.text_player_leave_hint_host);
-                leaveGame.setOnClickListener(view1 -> ServerActionHandler.triggerAction(PREFIX_CLOSE_GAME, ""));
+                leaveGame.setOnClickListener(view1 -> ServerActionHandler.triggerAction(PREFIX_END_GAME, "HOST WANTS TO LEAVE"));
             } else
                 leaveGame.setOnClickListener(view1 -> ClientHandler.sendMessageToServer(GAMEVIEW_ACTIVITY_TYPE, PREFIX_PLAYER_LEAVE, String.valueOf(clientID)));
         } else {
