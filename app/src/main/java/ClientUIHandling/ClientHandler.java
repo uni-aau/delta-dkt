@@ -13,6 +13,7 @@ import ClientUIHandling.actions.ActionInitRollDice;
 import ClientUIHandling.actions.ActionServerIsFull;
 import ClientUIHandling.actions.ActionSetMoney;
 import ClientUIHandling.actions.ActionSuspensionNotification;
+import ClientUIHandling.actions.ActionTimeoutWarning;
 import ClientUIHandling.actions.ActionUpdateGameTime;
 
 import ClientUIHandling.actions.cheating.ActionOpenCheatMenu;
@@ -39,6 +40,7 @@ import ClientUIHandling.actions.ActionRemoveUserFromUserList;
 import ClientUIHandling.actions.ActionUpdateUserList;
 import network2.NetworkClientConnection;
 import static ClientUIHandling.Constants.PREFIX_PLAYER_CHEAT_MENU;
+import static ClientUIHandling.Constants.PREFIX_PLAYER_TIMEOUT_WARNING;
 import static ClientUIHandling.Constants.PREFIX_REQUEST_SERVER_ACTION_AS_CLIENT;
 
 public class ClientHandler extends Handler {
@@ -75,6 +77,8 @@ public class ClientHandler extends Handler {
 
         actionMap.put(PREFIX_PLAYER_CHEAT_MENU, new ActionOpenCheatMenu());
         actionMap.put(PREFIX_REQUEST_SERVER_ACTION_AS_CLIENT, new ActionSendServerRequest());
+
+        actionMap.put(PREFIX_PLAYER_TIMEOUT_WARNING, new ActionTimeoutWarning());
 
 
         actions.add(new ActionHostGame());

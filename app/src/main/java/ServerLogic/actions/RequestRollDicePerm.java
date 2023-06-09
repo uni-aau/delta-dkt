@@ -3,6 +3,7 @@ package ServerLogic.actions;
 import static ClientUIHandling.Config.DEBUG;
 import static ClientUIHandling.Constants.GAMEVIEW_ACTIVITY_TYPE;
 import static ClientUIHandling.Constants.PREFIX_PLAYER_MOVE;
+import static ClientUIHandling.Constants.PREFIX_PLAYER_TIMEOUT_WARNING;
 import static ClientUIHandling.Constants.PREFIX_ROLL_DICE_REQUEST;
 
 import android.util.Log;
@@ -51,6 +52,8 @@ public class RequestRollDicePerm implements ServerActionInterface {
             if (timeOutThread == null) {
                 timeOutThread = new TimeOutThread(Config.timeout, nextClient, server);
                 timeOutThread.start();
+            }else{
+                timeOutThread.resetTimeout(nextClient);
             }
 
             Game.incrementRounds(oldClientId);
@@ -76,6 +79,8 @@ public class RequestRollDicePerm implements ServerActionInterface {
 
         private long startTime;
 
+        private boolean clientHasBeenWarned;
+
         public TimeOutThread(int timeout, int playerID, ServerNetworkClient server) {
             this.timeout = timeout;
             this.playerID = playerID;
@@ -92,17 +97,29 @@ public class RequestRollDicePerm implements ServerActionInterface {
             }
 
             while (true) {
-                resetTimeout();
+                resetTimeout(playerID);
+
                 while (true) {
                     synchronized (synchRunnToken) {
                         if (!isRunning || server.hasClosed()) {
+                            Log.i("TIMEOUT", "SERVER CLOSED, SHUTTING DOWN TIMEOUT");
                             return;
                         }
                         synchronized (synchTimeoutToken) {
                             if (System.currentTimeMillis() - startTime >= timeout) {
                                 break;
                             }
+                            if(!clientHasBeenWarned) {
+                                long remainingTime = timeout - (System.currentTimeMillis() - startTime);
+                                if (remainingTime <= Config.timeout_warning_threshold) {
+                                    Log.i("TIMEOUT", "SEND WARNING");
+                                    server.broadcast(GAMEVIEW_ACTIVITY_TYPE, PREFIX_PLAYER_TIMEOUT_WARNING, new String[]{"" + playerID});
+                                    clientHasBeenWarned = true;
+                                }
+
+                            }
                         }
+
 
                     }
                     try {
@@ -111,10 +128,12 @@ public class RequestRollDicePerm implements ServerActionInterface {
                         throw new RuntimeException(e);
                     }
                 }
-                int nextPlayerID = getNextPlayerID(playerID, Game.getPlayers().size());
-                Game.incrementRounds(playerID);
-                server.broadcast(GAMEVIEW_ACTIVITY_TYPE, PREFIX_ROLL_DICE_REQUEST, new String[]{"" + nextPlayerID, Game.getPlayers().get(nextPlayerID).getNickname()});
-                this.playerID = nextPlayerID;
+                synchronized (synchTimeoutToken) {
+                    int nextPlayerID = getNextPlayerID(playerID, Game.getPlayers().size());
+                    Game.incrementRounds(playerID);
+                    server.broadcast(GAMEVIEW_ACTIVITY_TYPE, PREFIX_ROLL_DICE_REQUEST, new String[]{"" + nextPlayerID, Game.getPlayers().get(nextPlayerID).getNickname()});
+                    this.playerID = nextPlayerID;
+                }
             }
 
         }
@@ -125,9 +144,11 @@ public class RequestRollDicePerm implements ServerActionInterface {
             }
         }
 
-        public void resetTimeout() {
+        public void resetTimeout(int playerID) {
             synchronized (synchTimeoutToken) {
                 this.startTime = System.currentTimeMillis();
+                this.playerID = playerID;
+                this.clientHasBeenWarned = false;
             }
         }
     }
