@@ -4,6 +4,7 @@ package delta.dkt.activities;
 import static com.google.android.material.snackbar.BaseTransientBottomBar.LENGTH_SHORT;
 import static ClientUIHandling.Constants.GAMEVIEW_ACTIVITY_TYPE;
 import static ClientUIHandling.Constants.LOG_CHEAT;
+import static ClientUIHandling.Constants.PREFIX_CLOSE_GAME;
 import static ClientUIHandling.Constants.PREFIX_GET_SERVER_TIME;
 import static ClientUIHandling.Constants.PREFIX_INIT_PLAYERS;
 import static ClientUIHandling.Constants.PREFIX_PLAYER_CHEAT_MENU;
@@ -105,6 +106,7 @@ public class GameViewActivity extends AppCompatActivity {
         openPlayerLeavePopUp();
     }
 
+    @SuppressLint("SetTextI18n")
     private void openPlayerLeavePopUp() {
         ConstraintLayout popUpConstraintLayout = findViewById(R.id.playerLeavePopUpConstraint);
         View view = LayoutInflater.from(this).inflate(R.layout.player_leave_pop_up_window, popUpConstraintLayout);
@@ -118,7 +120,11 @@ public class GameViewActivity extends AppCompatActivity {
         cancelLeaveGame.setOnClickListener(view1 -> alertDialog.dismiss());
         playerWealthHint.setVisibility(View.VISIBLE);
         if (!isDicing || players == 1) {
-            leaveGame.setOnClickListener(view1 -> ClientHandler.sendMessageToServer(GAMEVIEW_ACTIVITY_TYPE, PREFIX_PLAYER_LEAVE, String.valueOf(clientID)));
+            if (MainMenuActivity.role) {
+                playerWealthHint.setText(R.string.text_player_leave_hint_host);
+                leaveGame.setOnClickListener(view1 -> ServerActionHandler.triggerAction(PREFIX_CLOSE_GAME, ""));
+            } else
+                leaveGame.setOnClickListener(view1 -> ClientHandler.sendMessageToServer(GAMEVIEW_ACTIVITY_TYPE, PREFIX_PLAYER_LEAVE, String.valueOf(clientID)));
         } else {
             leaveGame.setOnClickListener(view1 -> {
                 Toast.makeText(this, "You cannot leave since you need to dice!", Toast.LENGTH_SHORT).show(); // TODO can also be shown via TextView
