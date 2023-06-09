@@ -12,7 +12,6 @@ import delta.dkt.R;
 import delta.dkt.activities.GameViewActivity;
 
 public class ActionBuyProperty implements ClientActionInterface {
-    private static String fixedPart = "My Properties: ";
 
     @SuppressLint("StringFormatInvalid")
     @Override
@@ -37,7 +36,7 @@ public class ActionBuyProperty implements ClientActionInterface {
             }
             //increase value
             intVal += 1;
-            String newFieldVal = fixedPart + (intVal);
+            String newFieldVal = "My Properties: "+intVal;
             ((TextView) activity.findViewById(R.id.textView_my_properties)).setText(newFieldVal);
 
             //set new cashValue

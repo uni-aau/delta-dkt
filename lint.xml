@@ -1,4 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <lint>
     <issue id="UnusedResources" severity="ignore" /> <!-- Ignore unused resources, due to the LanguageHandler -->
+
+    <!-- Ignore orientation lock smells, as some activities are ment to be played in a given orientation -->
+    <issue id="SourceLockedOrientationActivity" severity="ignore" />
+
+    <!-- Ignored getRessource calls as they are used for dynamicly accessing views -->
+    <issue id="DiscouragedApi" severity="ignore" />
 </lint>

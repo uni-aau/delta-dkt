@@ -9,7 +9,7 @@ public class Config {
     }
 
     public static int MAX_CLIENTS = 6;
-    public static int MIN_CLIENTS = 1;
+    public static final int MIN_CLIENTS = 1;
     public static int END_TIME = 3000000; // end_time in milliseconds
     public static int ENDROUNDS = 100; //Number of rounds until the game ends
     public static final float TAX_PERCENTAGE = 0.1F; // Percentage of money that gets removed from player cash

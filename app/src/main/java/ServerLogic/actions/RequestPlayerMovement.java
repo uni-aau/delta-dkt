@@ -17,7 +17,7 @@ import static ClientUIHandling.Constants.*;
 @SuppressWarnings("FieldCanBeLocal")
 public class RequestPlayerMovement implements ServerActionInterface {
     private String tag = "Movement-" + getClass().getSimpleName();
-    private int maxFields = 41;
+    private final int maxFields = 41;
 
 
     @SuppressWarnings("DataFlowIssue")

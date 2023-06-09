@@ -25,7 +25,6 @@ class ServerNetworkClientTest {
     static void setup() throws IOException, InterruptedException{
         MainMenuActivity.role = true;
         server = new ServerNetworkClient();
-        System.out.println("TRYING TO START");
         server.start();
 
         Thread.sleep(1000);

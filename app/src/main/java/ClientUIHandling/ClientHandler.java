@@ -45,18 +45,15 @@ import static ClientUIHandling.Constants.PREFIX_REQUEST_SERVER_ACTION_AS_CLIENT;
 public class ClientHandler extends Handler {
 
 
-    public static ArrayList<ClientActionInterface> actions;
-    public static ArrayList<String> actionPrefixes;
+    public static final ArrayList<ClientActionInterface> actions = new ArrayList<>();
+    public static final ArrayList<String> actionPrefixes = new ArrayList<>();
 
-    private AppCompatActivity UIActivity;
-    private static HashMap<String, ClientActionInterface> actionMap;
+    private final AppCompatActivity UIActivity;
+    private static final HashMap<String, ClientActionInterface> actionMap =  new HashMap<>();
 
     private static NetworkClientConnection client;
 
     static{
-        actions = new ArrayList<>();
-        actionPrefixes = new ArrayList<>();
-        actionMap = new HashMap<>();
         actionMap.put(Constants.PREFIX_PLAYER_RENTPAID, new ActionRentPaid());
         actionMap.put(Constants.PREFIX_PLAYER_LOST, new ActionPlayerLost());
         actionMap.put(Constants.PREFIX_GAME_START, new ActionStartGame());
@@ -104,10 +101,6 @@ public class ClientHandler extends Handler {
         return client;
     }
 
-    public static void sendMessageToServer(String message){
-        client.sendMessage(message);
-    }
-
     public static void sendMessageToServer(String activity, String prefix, String args){
         client.sendMessage(activity+":"+prefix+" "+args);
     }
@@ -129,10 +122,6 @@ public class ClientHandler extends Handler {
 
     @Override
     public void handleMessage(@NonNull Message msg) {
-       /* if(msg.getData().containsKey(testType)){
-            Log.d("TEST", "REACHED");
-                testView.setText(msg.getData().get(testType).toString());
-        }*/
         String message = msg.getData().get("payload").toString();
         //For compatibility with old registration
         for (int i = 0; i < actions.size(); i++) {

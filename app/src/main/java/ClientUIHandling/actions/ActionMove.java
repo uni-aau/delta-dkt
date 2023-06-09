@@ -3,14 +3,11 @@ package ClientUIHandling.actions;
 import ClientUIHandling.handlers.languages.LanguageHandler;
 import ServerLogic.handlers.ParameterHandler;
 import android.util.Log;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import ClientUIHandling.ClientActionInterface;
 import ClientUIHandling.Constants;
-import ClientUIHandling.handlers.notifications.SnackBarHandler;
-import delta.dkt.R;
 import delta.dkt.activities.GameViewActivity;
 
 public class ActionMove implements ClientActionInterface {

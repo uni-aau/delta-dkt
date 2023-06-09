@@ -4,7 +4,7 @@ package delta.dkt.logic.structure;
  * Contains the base information for a field of the game-map.
  */
 public abstract class Field {
-    private int location;
+    private final int location;
     private String name;
 
 

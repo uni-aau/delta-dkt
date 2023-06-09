@@ -12,9 +12,9 @@ import delta.dkt.R;
 import java.util.ArrayList;
 
 public class CheatUserAdapter extends RecyclerView.Adapter<CheatUserAdapter.CheatUserViewHolder> {
-    private GameViewActivity parent;
-    private ArrayList<String> playerNames;
-    private ArrayList<Integer> figureIdentifiers = new ArrayList<>();
+    private final GameViewActivity parent;
+    private final ArrayList<String> playerNames;
+    private final ArrayList<Integer> figureIdentifiers = new ArrayList<>();
 
     public CheatUserAdapter(GameViewActivity parent, ArrayList<String> playerNames) {
         this.parent = parent;
@@ -57,9 +57,9 @@ public class CheatUserAdapter extends RecyclerView.Adapter<CheatUserAdapter.Chea
     }
 
 
-    class CheatUserViewHolder extends RecyclerView.ViewHolder {
-        TextView username;
-        ImageView userFigure;
+    static class CheatUserViewHolder extends RecyclerView.ViewHolder {
+        private final TextView username;
+        private final ImageView userFigure;
 
         public CheatUserViewHolder(@NonNull View itemView) {
             super(itemView);

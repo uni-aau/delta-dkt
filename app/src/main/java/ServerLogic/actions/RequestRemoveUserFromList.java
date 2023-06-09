@@ -6,8 +6,6 @@ import static ClientUIHandling.Constants.PREFIX_REMOVE_USER_FROM_LIST;
 
 import android.util.Log;
 
-import java.util.List;
-
 import ServerLogic.ServerActionInterface;
 import network2.ServerNetworkClient;
 

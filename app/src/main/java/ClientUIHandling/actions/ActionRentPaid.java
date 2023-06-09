@@ -2,14 +2,12 @@ package ClientUIHandling.actions;
 
 import android.annotation.SuppressLint;
 import android.util.Log;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import ClientUIHandling.ClientActionInterface;
 import ClientUIHandling.handlers.languages.LanguageHandler;
-import delta.dkt.R;
 import delta.dkt.activities.GameViewActivity;
 
 public class ActionRentPaid implements ClientActionInterface {
