@@ -17,6 +17,8 @@ import network2.ServerNetworkClient;
 public class RequestPlayerLost implements ServerActionInterface {
     @Override
     public void execute(ServerNetworkClient server, Object parameters) {
+        String[] args = (String[]) parameters;
+
         if (parameters == null) {
             Log.i("ERROR", "No parameters");
             return;
@@ -25,7 +27,10 @@ public class RequestPlayerLost implements ServerActionInterface {
             Log.i("ERROR", "Wrong parameter");
             return;
         }
-        int clientID = (int) parameters;
+
+        int clientID = Integer.parseInt(args[0]);
+        boolean leaveEvent = Boolean.parseBoolean(args[1]);
+
         Log.d("[SERVER] RequestPlayerLost", "Received player lost request! ClientID = " + clientID);
 
         Player player = Game.getPlayers().get(clientID);
