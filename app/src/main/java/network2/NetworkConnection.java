@@ -111,7 +111,6 @@ public class NetworkConnection extends Thread { //execute each instance within a
                     //if we have received a message , handle it
                     Log.d(TAG, "Incoming message " + msg);
                     this.lastMsgReceived = msg;
-                    //TODO: Implement a handler that handles incoming game-related messages
                     // BEGIN-NOSCAN
                     if (logic != null) {
 
@@ -121,10 +120,7 @@ public class NetworkConnection extends Thread { //execute each instance within a
                         }
                     }
                     // END-NOSCAN
-                    //TODO: CALL CLIENT LOGIC
 
-                    //TODO: IMPLEMENT HANDLE AS SYNCHRONIZED METHOD TO AVOID inconsistency due to concurrent executions
-                    // or on message handler object level
 
                 }
 

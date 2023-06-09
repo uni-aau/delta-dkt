@@ -35,6 +35,10 @@ public class ServerNetworkClient extends Thread { //always executed on a separat
     private List<NetworkConnection> clientConnections;
     private NetworkServiceDiscovery nsd;
 
+    private boolean hasClosed;
+
+    private Object synchCloseToken;
+
 
     public ServerNetworkClient() {
         initProperties();
@@ -80,6 +84,8 @@ public class ServerNetworkClient extends Thread { //always executed on a separat
         this.port = 0; //not yet set AND the prequesite for allocating a dynamic port
         clientConnections = new ArrayList<>(); //init list
         serverInterrupted = false;
+        this.hasClosed = false;
+        this.synchCloseToken = "";
     }
 
     @Override
@@ -175,6 +181,15 @@ public class ServerNetworkClient extends Thread { //always executed on a separat
         }
         clientConnections.clear();
         serverSocket.close();
+        synchronized (synchCloseToken){
+            this.hasClosed = true;
+        }
+    }
+
+    public boolean hasClosed(){
+        synchronized (synchCloseToken){
+           return this.hasClosed;
+        }
     }
 
     /**
