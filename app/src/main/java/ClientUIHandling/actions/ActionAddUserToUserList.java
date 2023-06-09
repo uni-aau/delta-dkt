@@ -8,7 +8,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import ClientUIHandling.ClientActionInterface;
 import ServerLogic.ServerActionHandler;
-import delta.dkt.activities.LobbyViewActivity;
 import delta.dkt.activities.MainMenuActivity;
 
 

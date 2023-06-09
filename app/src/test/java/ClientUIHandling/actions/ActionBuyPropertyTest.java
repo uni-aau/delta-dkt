@@ -1,12 +1,5 @@
 package ClientUIHandling.actions;
 
-import static org.junit.jupiter.api.Assertions.*;
-
-import static ClientUIHandling.Constants.GAMEVIEW_ACTIVITY_TYPE;
-import static ClientUIHandling.Constants.PREFIX_PLAYER_PROPERTYBOUGHT;
-
-import androidx.appcompat.app.AppCompatActivity;
-
 import org.junit.jupiter.api.Test;
 
 import java.util.Optional;

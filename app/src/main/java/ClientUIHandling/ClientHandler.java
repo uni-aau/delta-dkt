@@ -6,11 +6,13 @@ import ClientUIHandling.actions.ActionGetIP;
 import ClientUIHandling.actions.ActionMove;
 import ClientUIHandling.actions.ActionPlayerLost;
 import ClientUIHandling.actions.ActionPlayerPunish;
+import ClientUIHandling.actions.ActionPrisonNotification;
 import ClientUIHandling.actions.ActionPropertyListUpdate;
 import ClientUIHandling.actions.ActionRentPaid;
 import ClientUIHandling.actions.ActionInitRollDice;
 import ClientUIHandling.actions.ActionServerIsFull;
 import ClientUIHandling.actions.ActionSetMoney;
+import ClientUIHandling.actions.ActionSuspensionNotification;
 import ClientUIHandling.actions.ActionUpdateGameTime;
 
 import ClientUIHandling.actions.cheating.ActionOpenCheatMenu;
@@ -42,18 +44,15 @@ import static ClientUIHandling.Constants.PREFIX_REQUEST_SERVER_ACTION_AS_CLIENT;
 public class ClientHandler extends Handler {
 
 
-    public static ArrayList<ClientActionInterface> actions;
-    public static ArrayList<String> actionPrefixes;
+    public static final ArrayList<ClientActionInterface> actions = new ArrayList<>();
+    public static final ArrayList<String> actionPrefixes = new ArrayList<>();
 
-    private AppCompatActivity UIActivity;
-    private static HashMap<String, ClientActionInterface> actionMap;
+    private final AppCompatActivity UIActivity;
+    private static final HashMap<String, ClientActionInterface> actionMap =  new HashMap<>();
 
     private static NetworkClientConnection client;
 
     static{
-        actions = new ArrayList<>();
-        actionPrefixes = new ArrayList<>();
-        actionMap = new HashMap<>();
         actionMap.put(Constants.PREFIX_PLAYER_RENTPAID, new ActionRentPaid());
         actionMap.put(Constants.PREFIX_PLAYER_LOST, new ActionPlayerLost());
         actionMap.put(Constants.PREFIX_GAME_START, new ActionStartGame());
@@ -68,7 +67,8 @@ public class ClientHandler extends Handler {
         actionMap.put(Constants.PREFIX_END_GAME, new ActionGameEnd());
         actionMap.put(Constants.PREFIX_SET_MONEY, new ActionSetMoney());
         actionMap.put(Constants.PREFIX_PLAYER_CHEATED, new ActionPlayerPunish());
-        actionMap.put(PREFIX_PLAYER_CHEAT_MENU, new ActionOpenCheatMenu());
+
+        actionMap.put(Constants.PREFIX_NOTIFICATION, new ActionPrisonNotification());
         actionMap.put(Constants.PREFIX_PROPLIST_UPDATE, new ActionPropertyListUpdate());
         actionMap.put(Constants.PREFIX_SERVER_FULL, new ActionServerIsFull());
         actionMap.put(Constants.PREFIX_HOST_NEW_GAME, new ActionHostGame());
@@ -77,7 +77,9 @@ public class ClientHandler extends Handler {
         actionMap.put(Constants.PREFIX_REMOVE_USER_FROM_LIST, new ActionRemoveUserFromUserList());
         actionMap.put(Constants.PREFIX_CLOSE_GAME, new ActionCloseGame());
         actionMap.put(PREFIX_REQUEST_SERVER_ACTION_AS_CLIENT, new ActionSendServerRequest());
-
+        actionMap.put(Constants.PREFIX_SUSPENSION_COUNT, new ActionSuspensionNotification());
+        actionMap.put(PREFIX_PLAYER_CHEAT_MENU, new ActionOpenCheatMenu());
+        actionMap.put(PREFIX_REQUEST_SERVER_ACTION_AS_CLIENT, new ActionSendServerRequest());
     }
 
     public static void setClient(NetworkClientConnection connection){
@@ -86,10 +88,6 @@ public class ClientHandler extends Handler {
 
     public static NetworkClientConnection getClient() {
         return client;
-    }
-
-    public static void sendMessageToServer(String message){
-        client.sendMessage(message);
     }
 
     public static void sendMessageToServer(String activity, String prefix, String args){
@@ -113,10 +111,6 @@ public class ClientHandler extends Handler {
 
     @Override
     public void handleMessage(@NonNull Message msg) {
-       /* if(msg.getData().containsKey(testType)){
-            Log.d("TEST", "REACHED");
-                testView.setText(msg.getData().get(testType).toString());
-        }*/
         String message = msg.getData().get("payload").toString();
         //For compatibility with old registration
         for (int i = 0; i < actions.size(); i++) {

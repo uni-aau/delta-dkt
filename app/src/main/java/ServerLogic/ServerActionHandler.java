@@ -2,10 +2,7 @@ package ServerLogic;
 
 import static ClientUIHandling.Constants.*;
 
-import ServerLogic.actions.ActionPayRent;
 import ServerLogic.actions.*;
-import ServerLogic.actions.RequestPlayerLost;
-import ServerLogic.actions.RequestPlayerMovement;
 import ServerLogic.actions.cheating.RequestCheatMenu;
 import ServerLogic.actions.cheating.RequestReportCheater;
 import android.util.Log;
@@ -13,22 +10,12 @@ import android.util.Log;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import ServerLogic.actions.RequestRollDicePerm;
-import ServerLogic.actions.RequestGameStartTime;
-import ServerLogic.actions.RequestPlayerInit;
-import ServerLogic.actions.RequestGameStart;
-import ServerLogic.actions.RequestGetIp;
-import ServerLogic.actions.RequestAddUserToUserList;
-import ServerLogic.actions.RequestCloseGame;
-import ServerLogic.actions.RequestHostGame;
-import ServerLogic.actions.RequestRemoveUserFromList;
-import ServerLogic.actions.RequestUpdateUserList;
 import network2.ServerNetworkClient;
 
 public class ServerActionHandler {
-    public static final ArrayList<ServerActionInterface> actions;
-    public static final ArrayList<String> actionPrefixes;
-    public static HashMap<String, ServerActionInterface> actionMap;
+    public static final ArrayList<ServerActionInterface> actions = new ArrayList<>();
+    public static final ArrayList<String> actionPrefixes = new ArrayList<>();
+    public static final HashMap<String, ServerActionInterface> actionMap = new HashMap<>();
 
     private static ServerNetworkClient server;
 
@@ -39,9 +26,6 @@ public class ServerActionHandler {
     }
 
     static{
-        actions = new ArrayList<>();
-        actionPrefixes = new ArrayList<>();
-        actionMap = new HashMap<>();
         actionMap.put(PREFIX_PLAYER_PAYRENT, new ActionPayRent());
         actionMap.put(PREFIX_PLAYER_LOST, new RequestPlayerLost());
         actionMap.put(PREFIX_GAME_START, new RequestGameStart());
@@ -55,8 +39,14 @@ public class ServerActionHandler {
         actionMap.put(PREFIX_PLAYER_CHEATED, new ActionPunish());
         actionMap.put(PREFIX_START_CASH_VALUE, new RequestSetStartMoney());
         actionMap.put(PREFIX_PAY_TAX, new RequestPayTax());
+
+        actionMap.put(PREFIX_HAS_PRISONCARD, new ActionPrison());
+        actionMap.put(PREFIX_GO_TO_PRISON_FIELD, new ActionGoToPrison());
+        actionMap.put(PREFIX_PRISON, new ActionPrison());
+
         actionMap.put(PREFIX_PLAYER_CHEAT_MENU, new RequestCheatMenu());
         actionMap.put(PREFIX_PLAYER_REPORT_CHEATER, new RequestReportCheater());
+
         actionMap.put(PREFIX_PROPLIST_UPDATE, new RequestPropertyListUpdate());
         actionMap.put(PREFIX_HOST_NEW_GAME, new RequestHostGame());
         actionMap.put(PREFIX_ADD_USER_TO_LIST, new RequestAddUserToUserList());
@@ -69,7 +59,6 @@ public class ServerActionHandler {
         if(server == null){
             //Use a java class here to avoid not-mocked exception when a test reaches here.
             //But due to sonarcloud, we simply do not log it instead...
-            //System.err.println("SERVER NOT SET");
             return;
         }
         //Still include old registration handling for legacy compatibility

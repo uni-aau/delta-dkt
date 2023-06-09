@@ -8,7 +8,7 @@ import java.util.HashMap;
 
 public class ClientLogic {
 
-    private HashMap<String, ClientHandler> handlers;
+    private final HashMap<String, ClientHandler> handlers;
 
     public static boolean isTEST;
 

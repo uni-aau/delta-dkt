@@ -1,10 +1,8 @@
 package delta.dkt.logic;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
 
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
@@ -29,14 +27,4 @@ class TaskHandlerTests {
     void testGetTaskNotExistingTask(int input){
         assertNull(TaskHandler.getTask(input));
     }
-
-    /**
-     * Check the location of the task by calling the getLocation methode.
-     */
-    /*
-    @Test
-    void testGetTaskLocation(){
-        assertEquals(33, TaskHandler.getTask(33).getLocation());
-    }
-     */
 }

@@ -18,7 +18,7 @@
     <string name="playing_time_text">Playing Time: %s %s, %s, %s, %s %s</string>
     <string name="roll_the_dice">Roll the dice</string>
     <string name="property_information">Property Information</string>
-    <string name="dice_information_text">%s rolls the dice\n{1} left to roll the dice</string>
+    <string name="dice_information_text">%s rolls the dice</string>
     <string name="gameview_image_description">DKT-Board</string>
     <string name="activity_text">Activity: %s</string>
     <string name="EnterButton">Enter</string>
@@ -79,7 +79,7 @@
 
     <!-- #START Cheating Texts -->
     <string name="cheat_open_report_menu">Report Cheater</string>
-    <string name="reportCheater_message">Successfully reported %s as a Cheater!</string>
+    <string name="reportCheater_message">Activity: Successfully reported %s as a Cheater!</string>
 
     <!-- ##START Cheating-ReportMenu Texts -->
     <string name="cheat_popup_selection_menu_heading">Report Menu</string>
@@ -94,13 +94,16 @@
     <string name="cheat_user_element_image_description">Represents the players figure in the current game.</string>
 
     <!-- END Cheating Texts -->
-    <string name="movement_info_message_singular">%s moved %s step and is now located at pos: %s</string>
-    <string name="movement_info_message_plural">%s moved %s steps and is now located at pos: %s</string>
+    <string name="movement_info_message_singular">Activity: %s moved %s step and is now located at pos: %s</string>
+    <string name="movement_info_message_plural">Activity: %s moved %s steps and is now located at pos: %s</string>
 
     <string name="pay_tax_activity_text">%s had to pay %s%% taxes. Old cash %s$, new cash %s$</string>
     <string name="pay_static_tax_activity_text">%s had to pay %s$ taxes. Old cash %s$, new cash %s$</string>
-    <string name="player_lost_activity_text">%s was eliminated from the game!</string>
+    <string name="notify_inprisonment">Player %s has been sent to prison!</string>
     <string name="text_rent">Rent: %s$</string>
+
+    <string name="suspension_count">The player is suspended for %s more rounds</string>
+    <string name="player_lost_activity_text">%s was eliminated from the game!</string>
     <string name="playerName_info_text">You are spectator!</string>
 
     <plurals name="game_started_activity_text">
