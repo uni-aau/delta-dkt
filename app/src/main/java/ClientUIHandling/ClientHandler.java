@@ -69,6 +69,7 @@ public class ClientHandler extends Handler {
         actionMap.put(Constants.PREFIX_SET_MONEY, new ActionSetMoney());
         actionMap.put(Constants.PREFIX_PLAYER_CHEATED, new ActionPlayerPunish());
         actionMap.put(Constants.PREFIX_PLAYER_LEAVE, new ActionPlayerLeaveEvent());
+        actionMap.put(Constants.PREFIX_PLAYER_SPECTATOR_LEAVE, new ActionPlayerLeaveEvent());
         actionMap.put(Constants.PREFIX_NOTIFICATION, new ActionPrisonNotification());
         actionMap.put(Constants.PREFIX_PROPLIST_UPDATE, new ActionPropertyListUpdate());
         actionMap.put(Constants.PREFIX_SERVER_FULL, new ActionServerIsFull());
