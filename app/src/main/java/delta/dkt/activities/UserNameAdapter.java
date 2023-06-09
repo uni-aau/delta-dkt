@@ -21,10 +21,13 @@ class UserNameAdapter extends RecyclerView.Adapter<UserNameAdapter.UserViewHolde
     ArrayList<String> usernames;
     boolean role;
 
-    public UserNameAdapter (Context context, ArrayList<String> usernames, boolean role) {
+    boolean backButtonCLicked;
+
+    public UserNameAdapter (Context context, ArrayList<String> usernames, boolean role, boolean backButtonCLicked) {
         this.context=context;
         this.usernames= usernames;
         this.role = role;
+        this.backButtonCLicked=backButtonCLicked;
     }
 
     @NonNull
@@ -43,6 +46,14 @@ class UserNameAdapter extends RecyclerView.Adapter<UserNameAdapter.UserViewHolde
 
         holder.username.setText(usernames.get(position));
 
+        if (backButtonCLicked) {
+            // Set the background for all users when the back button is clicked
+            holder.itemView.setBackgroundResource(R.drawable.host_background);
+        } else {
+            // Reset the background to the default for other cases
+            holder.itemView.setBackgroundResource(R.drawable.user_card_background);
+        }
+
         if (position == 0) holder.userRole.setText(R.string.Host);
         else holder.userRole.setText(R.string.Player);
 
@@ -50,6 +61,16 @@ class UserNameAdapter extends RecyclerView.Adapter<UserNameAdapter.UserViewHolde
         holder.joiningTime.setText("Joined: "+ getTime());
 
     }
+
+    public void updateUserBackground(String username) {
+        int position = usernames.indexOf(username);
+        if (position != -1) {
+            // Update the background for the specific user
+            notifyItemChanged(position);
+        }
+    }
+
+
 
     @Override
     public int getItemCount() {
