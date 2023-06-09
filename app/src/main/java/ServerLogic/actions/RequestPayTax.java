@@ -52,7 +52,7 @@ public class RequestPayTax implements ServerActionInterface {
 
             if (playerCashNew < 0) {
                 Log.i(TAG, "Player has too less money (OldCash/Newcash) = " + playerCashOld + " / " + playerCashNew);
-                ServerActionHandler.triggerAction(PREFIX_PLAYER_LOST, clientID);
+                ServerActionHandler.triggerAction(PREFIX_PLAYER_LOST, new String[]{String.valueOf(player.getId()), "false"});
             } else {
                 player.setCash(playerCashNew);
                 Log.d(TAG, "Setting new player cash: OldPlayerCash = " + playerCashOld + " NewPlayerCash = " + playerCashNew + " ClientID = " + clientID);
