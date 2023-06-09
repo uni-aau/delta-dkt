@@ -54,6 +54,7 @@ public class GameViewActivity extends AppCompatActivity {
     public static int clientID = -1; // ID gets set by server
     public static int players = -1; // players gets set by server
     public static boolean isDicing = false;
+    public static boolean isSpectator = false;
     private final int[] locations = {1, 1, 1, 1, 1, 1};
     private SensorManager manager = null;
     private final LightSensor lightSensorListener = new LightSensor();
