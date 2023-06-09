@@ -53,6 +53,7 @@ public class ServerActionHandler {
         actionMap.put(PREFIX_REMOVE_USER_FROM_LIST, new RequestRemoveUserFromList());
         actionMap.put(PREFIX_UPDATE_USER_LIST, new RequestUpdateUserList());
         actionMap.put(PREFIX_CLOSE_GAME, new RequestCloseGame());
+        actionMap.put(PING, new RequestPing());
     }
 
     public static void triggerAction(String name, Object parameters){
