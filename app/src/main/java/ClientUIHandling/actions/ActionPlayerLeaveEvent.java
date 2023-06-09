@@ -1,6 +1,8 @@
 package ClientUIHandling.actions;
 
+import static ClientUIHandling.Constants.PREFIX_PLAYER_LEAVE;
 import static ClientUIHandling.Constants.PREFIX_PLAYER_LOST;
+import static ClientUIHandling.Constants.PREFIX_PLAYER_SPECTATOR_LEAVE;
 
 import android.content.Intent;
 import android.util.Log;
@@ -24,23 +26,15 @@ public class ActionPlayerLeaveEvent implements ClientActionInterface {
 
         Log.i("[Client] ActionPlayerLeave", "Received player leave action! ClientID = " + clientId);
 
-        // Closes client connection and resets the game for specific user
-        if (clientId == GameViewActivity.clientID) {
-            try {
-                ClientHandler.getClient().stopConnection();
-            } catch (Exception e) {
-                throw new RuntimeException("Error while trying to close the client connection: " + e);
-            }
-
-            Intent intent = new Intent(activity.getApplicationContext(), MainMenuActivity.class);
-            intent.putExtra(MainActivity.INTENT_PARAMETER, MainMenuActivity.username);
-            activity.startActivity(intent);
-        }
-
         // Client host sends to the server to remove player from game
         if (MainMenuActivity.role) {
             Log.d("[CLIENT] ActionPlayerLeave", "Sending player leave action to server! ClientID = " + clientId);
-            ServerActionHandler.triggerAction(PREFIX_PLAYER_LOST, new String[]{String.valueOf(clientId), "true"});
+
+            if(prefix.equals(PREFIX_PLAYER_SPECTATOR_LEAVE)) {
+                Log.d("[CLIENT] ActionPlayerLeave", "Sending spectator leave action to server! ClientID = " + clientId);
+                ServerActionHandler.triggerAction(PREFIX_PLAYER_LOST, new String[]{String.valueOf(clientId), "true", "true"});
+            }
+            else ServerActionHandler.triggerAction(PREFIX_PLAYER_LOST, new String[]{String.valueOf(clientId), "true"});
         }
 
         // make playerMarker invisible
