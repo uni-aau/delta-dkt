@@ -1,12 +1,19 @@
 package delta.dkt.activities;
 
 
-import static ClientUIHandling.Constants.*;
 import static com.google.android.material.snackbar.BaseTransientBottomBar.LENGTH_SHORT;
+import static ClientUIHandling.Constants.GAMEVIEW_ACTIVITY_TYPE;
+import static ClientUIHandling.Constants.LOG_CHEAT;
+import static ClientUIHandling.Constants.PREFIX_GET_SERVER_TIME;
+import static ClientUIHandling.Constants.PREFIX_INIT_PLAYERS;
+import static ClientUIHandling.Constants.PREFIX_PLAYER_CHEAT_MENU;
+import static ClientUIHandling.Constants.PREFIX_PLAYER_LEAVE;
+import static ClientUIHandling.Constants.PREFIX_PLAYER_REPORT_CHEATER;
+import static ClientUIHandling.Constants.PREFIX_PROPLIST_UPDATE;
+import static ClientUIHandling.Constants.PREFIX_REQUEST_SERVER_ACTION_AS_CLIENT;
+import static ClientUIHandling.Constants.PREFIX_ROLL_DICE_RECEIVE;
 import static delta.dkt.R.id.imageView;
 
-import ClientUIHandling.handlers.languages.LanguageHandler;
-import ClientUIHandling.handlers.notifications.SnackBarHandler;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
@@ -25,19 +32,21 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+import java.util.ArrayList;
 
 import ClientUIHandling.ClientHandler;
 import ClientUIHandling.Config;
 import ClientUIHandling.Constants;
+import ClientUIHandling.handlers.languages.LanguageHandler;
+import ClientUIHandling.handlers.notifications.SnackBarHandler;
 import ClientUIHandling.handlers.positioning.PositionHandler;
 import ServerLogic.ServerActionHandler;
-import androidx.constraintlayout.widget.ConstraintLayout;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 import delta.dkt.R;
 import delta.dkt.sensors.LightSensor;
-
-import java.util.ArrayList;
 
 
 public class GameViewActivity extends AppCompatActivity {
@@ -108,10 +117,9 @@ public class GameViewActivity extends AppCompatActivity {
 
         cancelLeaveGame.setOnClickListener(view1 -> alertDialog.dismiss());
         playerWealthHint.setVisibility(View.VISIBLE);
-        if(!isDicing || players == 1) {
+        if (!isDicing || players == 1) {
             leaveGame.setOnClickListener(view1 -> ClientHandler.sendMessageToServer(GAMEVIEW_ACTIVITY_TYPE, PREFIX_PLAYER_LEAVE, String.valueOf(clientID)));
-        }
-        else {
+        } else {
             leaveGame.setOnClickListener(view1 -> {
                 Toast.makeText(this, "You cannot leave since you need to dice!", Toast.LENGTH_SHORT).show();
                 alertDialog.dismiss();
@@ -237,7 +245,7 @@ public class GameViewActivity extends AppCompatActivity {
         ConstraintLayout popUpConstraintLayout = findViewById(R.id.cheatConstraint);
         View view = LayoutInflater.from(this).inflate(R.layout.report_cheat_popup, popUpConstraintLayout);
 
-        if(playerNames.size() == 0){
+        if (playerNames.size() == 0) {
             Log.v(LOG_CHEAT, "No players found, using default names.");
             playerNames.add("Player1");
             playerNames.add("Player2");
@@ -258,7 +266,7 @@ public class GameViewActivity extends AppCompatActivity {
         final AlertDialog alertDialog = createAlertDialog(view);
 
         submitCheater.setOnClickListener(view1 -> {
-            if(this.cheatSelection < 0){
+            if (this.cheatSelection < 0) {
                 SnackBarHandler.createSnackbar(recyclerView, "Please select a player before reporting!", LENGTH_SHORT, true).show();
                 return;
             }
