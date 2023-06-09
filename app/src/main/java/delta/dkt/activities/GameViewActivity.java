@@ -10,6 +10,7 @@ import static ClientUIHandling.Constants.PREFIX_INIT_PLAYERS;
 import static ClientUIHandling.Constants.PREFIX_PLAYER_CHEAT_MENU;
 import static ClientUIHandling.Constants.PREFIX_PLAYER_LEAVE;
 import static ClientUIHandling.Constants.PREFIX_PLAYER_REPORT_CHEATER;
+import static ClientUIHandling.Constants.PREFIX_PLAYER_SPECTATOR_LEAVE;
 import static ClientUIHandling.Constants.PREFIX_PROPLIST_UPDATE;
 import static ClientUIHandling.Constants.PREFIX_REQUEST_SERVER_ACTION_AS_CLIENT;
 import static ClientUIHandling.Constants.PREFIX_ROLL_DICE_RECEIVE;
@@ -119,12 +120,13 @@ public class GameViewActivity extends AppCompatActivity {
 
         cancelLeaveGame.setOnClickListener(view1 -> alertDialog.dismiss());
         playerLeaveHint.setVisibility(View.VISIBLE);
-        if (!isDicing || players == 1) { // Player can leave when he is not dicing or only one player left
+        if (!isDicing || players == 1) { // Player can leave when he is not dicing or only one player left // TODO <= 1
             if (MainMenuActivity.role) {
                 playerLeaveHint.setText(R.string.text_player_leave_hint_host);
                 leaveGame.setOnClickListener(view1 -> ServerActionHandler.triggerAction(PREFIX_END_GAME, "HOST WANTS TO LEAVE"));
             } else
-                leaveGame.setOnClickListener(view1 -> ClientHandler.sendMessageToServer(GAMEVIEW_ACTIVITY_TYPE, PREFIX_PLAYER_LEAVE, String.valueOf(clientID)));
+                if(isSpectator) leaveGame.setOnClickListener(view1 -> ClientHandler.sendMessageToServer(GAMEVIEW_ACTIVITY_TYPE, PREFIX_PLAYER_SPECTATOR_LEAVE, String.valueOf(clientID)));
+                else leaveGame.setOnClickListener(view1 -> ClientHandler.sendMessageToServer(GAMEVIEW_ACTIVITY_TYPE, PREFIX_PLAYER_LEAVE, String.valueOf(clientID)));
         } else {
             leaveGame.setOnClickListener(view1 -> {
                 Toast.makeText(this, "You cannot leave since you need to dice!", Toast.LENGTH_SHORT).show(); // TODO can also be shown via TextView
