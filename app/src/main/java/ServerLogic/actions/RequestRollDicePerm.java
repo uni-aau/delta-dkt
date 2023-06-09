@@ -135,7 +135,9 @@ public class RequestRollDicePerm implements ServerActionInterface {
                     try {
                         Thread.sleep(100);
                     } catch (InterruptedException e) {
-                        throw new RuntimeException(e);
+                        Log.e("ROLLDICE", "Interrupted!" + e);
+
+                        Thread.currentThread().interrupt();
                     }
                 }
                 //Check if the player has disconnected

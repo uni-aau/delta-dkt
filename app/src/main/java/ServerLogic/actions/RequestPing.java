@@ -2,6 +2,8 @@ package ServerLogic.actions;
 
 import static ClientUIHandling.Constants.PREFIX_PLAYER_LOST;
 
+import android.util.Log;
+
 import ClientUIHandling.Config;
 import ClientUIHandling.Constants;
 import ServerLogic.ServerActionHandler;
@@ -36,7 +38,9 @@ public class RequestPing implements ServerActionInterface {
                     ServerActionHandler.triggerAction(PREFIX_PLAYER_LOST, id);
                 }
             } catch (InterruptedException e) {
-                throw new RuntimeException(e);
+                Log.e("TIMEOUT", "Interrupted!" + e);
+
+                Thread.currentThread().interrupt();
             }
         }
     }
