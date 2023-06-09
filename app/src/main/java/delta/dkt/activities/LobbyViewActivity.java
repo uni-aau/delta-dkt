@@ -1,9 +1,8 @@
 package delta.dkt.activities;
 
 import static ClientUIHandling.Constants.PREFIX_ADD_USER_TO_LIST;
-import static ClientUIHandling.Constants.PREFIX_CLOSE_GAME;
 import static ClientUIHandling.Constants.PREFIX_GAME_START;
-import static ClientUIHandling.Constants.PREFIX_REMOVE_USER_FROM_LIST;
+import static ClientUIHandling.Constants.PREFIX_LEAVE_LOBBY;
 import static delta.dkt.activities.MainActivity.user;
 import static delta.dkt.activities.MainMenuActivity.role;
 
@@ -26,9 +25,11 @@ import delta.dkt.R;
 
 public class LobbyViewActivity extends AppCompatActivity {
     RecyclerView recyclerView;
-    UserNameAdapter adapter;
+    public UserNameAdapter adapter;
     public static ArrayList<String> userList = new ArrayList<>();
     private Button startButton;
+
+    private boolean isBackButtonClicked = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,7 +55,7 @@ public class LobbyViewActivity extends AppCompatActivity {
         // Everything which belongs to the Recycler View:
         recyclerView = findViewById(R.id.lobbyRecyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        adapter = new UserNameAdapter(this, userList, role);
+        adapter = new UserNameAdapter(this, userList, role, isBackButtonClicked);
         recyclerView.setAdapter(adapter);
 
         // Adding User to the UserList
@@ -89,13 +90,19 @@ public class LobbyViewActivity extends AppCompatActivity {
 
     // This Method removes the User from the UserList, updates the List and Closes the game/server
     public void leavingTheLobby() {
-        ServerActionHandler.triggerAction(PREFIX_REMOVE_USER_FROM_LIST, user);
-        ServerActionHandler.triggerAction(PREFIX_CLOSE_GAME,""); // TO DO -> (implement close server and close client in actions)
+        isBackButtonClicked = true;
+        ServerActionHandler.triggerAction(PREFIX_LEAVE_LOBBY, user);
     }
 
     private void disableStartButton() {
         startButton.setEnabled(false);
         startButton.setBackgroundResource(R.drawable.host_btn_background_disabled);
+    }
+
+    public void updateUserBackground(String leavingUser) {
+        if (adapter != null) {
+            adapter.updateUserBackground(leavingUser);
+        }
     }
 
 
