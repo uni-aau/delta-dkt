@@ -20,7 +20,6 @@ public class ActionPlayerLeaveEvent implements ClientActionInterface {
         String prefix = clientMessage.split(" ")[0];
         String[] splitMessage = clientMessage.replace(prefix, "").trim().split(";");
 
-//        String playerName = splitMessage[0];
         int clientId = Integer.parseInt(splitMessage[0]);
 
         Log.i("[Client] ActionPlayerLeave", "Received player leave action! ClientID = " + clientId);
@@ -32,9 +31,6 @@ public class ActionPlayerLeaveEvent implements ClientActionInterface {
             } catch (Exception e) {
                 throw new RuntimeException("Error while trying to close the client connection: " + e);
             }
-
-//            Game.reset();
-//            LobbyViewActivity.userList.clear();
 
             Intent intent = new Intent(activity.getApplicationContext(), MainMenuActivity.class);
             intent.putExtra(MainActivity.INTENT_PARAMETER, MainMenuActivity.username);
