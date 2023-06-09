@@ -2,6 +2,7 @@ package ServerLogic.actions;
 
 import static ClientUIHandling.Constants.GAMEVIEW_ACTIVITY_TYPE;
 import static ClientUIHandling.Constants.PREFIX_ACTIVITY_BROADCAST;
+import static ClientUIHandling.Constants.PREFIX_CLIENT_LEAVE_EVENT;
 import static ClientUIHandling.Constants.PREFIX_PLAYER_LOST;
 import static ClientUIHandling.Constants.PREFIX_PROPLIST_UPDATE;
 
@@ -61,6 +62,10 @@ public class RequestPlayerLost implements ServerActionInterface {
             if (Game.getPlayers().size() == 1) {
                 ServerActionHandler.triggerAction(Constants.PREFIX_END_GAME, "ONLY ONE PLAYER LEFT");
             }
+        }
+
+        if(leaveEvent) {
+            server.broadcast(GAMEVIEW_ACTIVITY_TYPE, PREFIX_CLIENT_LEAVE_EVENT, new String[]{String.valueOf(clientID)});
         }
     }
 }
