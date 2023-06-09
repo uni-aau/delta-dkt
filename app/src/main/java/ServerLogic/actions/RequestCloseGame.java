@@ -15,8 +15,8 @@ public class RequestCloseGame implements ServerActionInterface {
     @Override
     public void execute(ServerNetworkClient server, Object parameters) {
         Log.d("[SERVER]:CLOSE_Game", "Close Game Request received");
-        server.broadcast(LOBBYVIEW_ACTIVITY_TYPE, PREFIX_CLOSE_GAME, new String[]{(String) parameters});
 
+        server.broadcast(LOBBYVIEW_ACTIVITY_TYPE, PREFIX_CLOSE_GAME, new String[]{(String) parameters});
         tryToCloseServer(server);
     }
 
@@ -24,7 +24,7 @@ public class RequestCloseGame implements ServerActionInterface {
         try {
             server.tearDown();
             Log.d("[Server] Close Game", "Server was closed");
-            Game.getPlayers().clear();
+            Game.reset();
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
