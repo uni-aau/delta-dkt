@@ -124,9 +124,10 @@ public class GameViewActivity extends AppCompatActivity {
             if (MainMenuActivity.role) {
                 playerLeaveHint.setText(R.string.text_player_leave_hint_host);
                 leaveGame.setOnClickListener(view1 -> ServerActionHandler.triggerAction(PREFIX_END_GAME, "HOST WANTS TO LEAVE"));
-            } else
-                if(isSpectator) leaveGame.setOnClickListener(view1 -> ClientHandler.sendMessageToServer(GAMEVIEW_ACTIVITY_TYPE, PREFIX_PLAYER_SPECTATOR_LEAVE, String.valueOf(clientID)));
-                else leaveGame.setOnClickListener(view1 -> ClientHandler.sendMessageToServer(GAMEVIEW_ACTIVITY_TYPE, PREFIX_PLAYER_LEAVE, String.valueOf(clientID)));
+            } else if (isSpectator)
+                leaveGame.setOnClickListener(view1 -> ClientHandler.sendMessageToServer(GAMEVIEW_ACTIVITY_TYPE, PREFIX_PLAYER_SPECTATOR_LEAVE, String.valueOf(clientID)));
+            else
+                leaveGame.setOnClickListener(view1 -> ClientHandler.sendMessageToServer(GAMEVIEW_ACTIVITY_TYPE, PREFIX_PLAYER_LEAVE, String.valueOf(clientID)));
         } else {
             leaveGame.setOnClickListener(view1 -> {
                 Toast.makeText(this, "You cannot leave since you need to dice!", Toast.LENGTH_SHORT).show(); // TODO can also be shown via TextView
