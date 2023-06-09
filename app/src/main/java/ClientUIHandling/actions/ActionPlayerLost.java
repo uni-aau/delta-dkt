@@ -28,6 +28,8 @@ public class ActionPlayerLost implements ClientActionInterface {
             playerNameTextView.setVisibility(View.VISIBLE);
             playerNameTextView.setTextColor(Color.RED);
             playerNameTextView.setTypeface(null, Typeface.BOLD);
+
+            GameViewActivity.isSpectator = true;
         }
     }
 }
