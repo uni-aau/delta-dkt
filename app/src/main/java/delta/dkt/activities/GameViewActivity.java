@@ -121,7 +121,7 @@ public class GameViewActivity extends AppCompatActivity {
             leaveGame.setOnClickListener(view1 -> ClientHandler.sendMessageToServer(GAMEVIEW_ACTIVITY_TYPE, PREFIX_PLAYER_LEAVE, String.valueOf(clientID)));
         } else {
             leaveGame.setOnClickListener(view1 -> {
-                Toast.makeText(this, "You cannot leave since you need to dice!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "You cannot leave since you need to dice!", Toast.LENGTH_SHORT).show(); // TODO can also be shown via TextView
                 alertDialog.dismiss();
             });
         }
