@@ -8,7 +8,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/layoutPopUp"
             android:layout_width="300dp"
-            android:layout_height="180dp"
+            android:layout_height="190dp"
             android:background="@drawable/pop_up_background"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -32,7 +32,7 @@
         <Button
                 android:id="@+id/button_leaveGame_no"
                 android:layout_width="wrap_content"
-                android:layout_height="45dp"
+                android:layout_height="0dp"
                 android:text="@string/text_button_no"
                 android:background="@drawable/host_btn_background"
                 android:textColor="@color/dkt_yellow"
@@ -41,8 +41,8 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.075"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView_playerLeaveHint"
-                android:layout_marginTop="20dp" />
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:layout_marginBottom="20dp" />
 
         <Button
                 android:id="@+id/button_leaveGame_yes"
@@ -56,24 +56,24 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.924"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView_playerLeaveHint"
-                android:layout_marginTop="20dp" />
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:layout_marginBottom="20dp" />
 
         <TextView
                 android:text="@string/text_player_leave_hint"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/textView_playerLeaveHint"
-                android:textSize="18sp"
+                android:textSize="17sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintEnd_toEndOf="parent"
-                android:textColor="@color/blackSpecial"
+                android:textColor="@color/dkt_red"
                 app:layout_constraintTop_toBottomOf="@+id/textView_leaveGameQuestion"
                 android:layout_marginTop="10dp"
                 android:gravity="center"
                 android:textStyle="bold"
-                android:visibility="invisible" />
+                android:visibility="visible" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
