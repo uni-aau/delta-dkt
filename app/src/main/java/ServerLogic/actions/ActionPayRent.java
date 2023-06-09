@@ -35,7 +35,7 @@ public class ActionPayRent implements ServerActionInterface {
                 if(owner != null && !property.getOwner().equals(player)){
                     int rent = property.calculateRent();
                     if(player.getCash() < rent){
-                        ServerActionHandler.triggerAction(PREFIX_PLAYER_LOST, player.getId());
+                        ServerActionHandler.triggerAction(PREFIX_PLAYER_LOST, new String[]{String.valueOf(player.getId()), "false"});
 
                     }else{
                         player.payRentTo(owner, rent);
