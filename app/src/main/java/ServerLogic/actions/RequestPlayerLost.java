@@ -29,31 +29,38 @@ public class RequestPlayerLost implements ServerActionInterface {
         String[] args = (String[]) parameters;
         int clientID = Integer.parseInt(args[0]);
         boolean leaveEvent = Boolean.parseBoolean(args[1]);
+        boolean isSpectator = false;
+
+        if (args.length >= 3) {
+            isSpectator = Boolean.parseBoolean(args[2]);
+        }
 
         Log.d("[SERVER] RequestPlayerLost", "Received player lost request! ClientID = " + clientID);
 
-        Player player = Game.getPlayers().get(clientID);
-        String nickname = player.getNickname();
-        int playerAmount = Game.getPlayers().size();
+        if (!isSpectator) {
+            Player player = Game.getPlayers().get(clientID);
+            String nickname = player.getNickname();
+            int playerAmount = Game.getPlayers().size();
 
-        if (!leaveEvent)
-            server.broadcast(GAMEVIEW_ACTIVITY_TYPE, PREFIX_PLAYER_LOST, new String[]{nickname, String.valueOf(player.getId())});
-        server.broadcast(GAMEVIEW_ACTIVITY_TYPE, PREFIX_ACTIVITY_BROADCAST, new String[]{"player_lost_activity_text", nickname});
+            if (!leaveEvent)
+                server.broadcast(GAMEVIEW_ACTIVITY_TYPE, PREFIX_PLAYER_LOST, new String[]{nickname, String.valueOf(player.getId())});
+            server.broadcast(GAMEVIEW_ACTIVITY_TYPE, PREFIX_ACTIVITY_BROADCAST, new String[]{"player_lost_activity_text", nickname});
 
-        for (int i = player.getProperties().size() - 1; i >= 0; i--) {
-            player.getProperties().get(i).resetAccessories();
-            player.getProperties().get(i).setOwner(null);
-        }
+            for (int i = player.getProperties().size() - 1; i >= 0; i--) {
+                player.getProperties().get(i).resetAccessories();
+                player.getProperties().get(i).setOwner(null);
+            }
 
-        // Checks if the initial playerAmount > 1
-        if (playerAmount > 1) {
-            Game.getPlayers().remove(clientID);
-            ServerActionHandler.triggerAction(PREFIX_PROPLIST_UPDATE, 1); // updates property list and removes player from all properties
-        }
+            // Checks if the initial playerAmount > 1
+            if (playerAmount > 1) {
+                Game.getPlayers().remove(clientID);
+                ServerActionHandler.triggerAction(PREFIX_PROPLIST_UPDATE, 1); // updates property list and removes player from all properties
+            }
 
-        // Check if new playerAmount equals one -> Game ends
-        if (Game.getPlayers().size() == 1) {
-            ServerActionHandler.triggerAction(Constants.PREFIX_END_GAME, "ONLY ONE PLAYER LEFT");
+            // Check if new playerAmount equals one -> Game ends
+            if (Game.getPlayers().size() == 1) {
+                ServerActionHandler.triggerAction(Constants.PREFIX_END_GAME, "ONLY ONE PLAYER LEFT");
+            }
         }
     }
 }
