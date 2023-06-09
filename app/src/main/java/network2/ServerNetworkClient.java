@@ -13,7 +13,9 @@ import java.util.Collections;
 import java.util.List;
 
 import ClientUIHandling.Config;
+
 import android.util.Log;
+
 import delta.dkt.activities.MainActivity;
 import delta.dkt.logic.structure.Game;
 import delta.dkt.logic.structure.Player;
@@ -35,9 +37,8 @@ public class ServerNetworkClient extends Thread { //always executed on a separat
     private List<NetworkConnection> clientConnections;
     private NetworkServiceDiscovery nsd;
 
-    private boolean hasClosed;
 
-    private Object synchCloseToken;
+    private Object synchTearDownToken;
 
 
     public ServerNetworkClient() {
@@ -51,7 +52,7 @@ public class ServerNetworkClient extends Thread { //always executed on a separat
     }
 
     public String getIP() {
-       return getIPAddress();
+        return getIPAddress();
     }
 
     public static String getIPAddress() {
@@ -84,8 +85,7 @@ public class ServerNetworkClient extends Thread { //always executed on a separat
         this.port = 0; //not yet set AND the prequesite for allocating a dynamic port
         clientConnections = new ArrayList<>(); //init list
         serverInterrupted = false;
-        this.hasClosed = false;
-        this.synchCloseToken = "";
+        this.synchTearDownToken = "";
     }
 
     @Override
@@ -107,7 +107,7 @@ public class ServerNetworkClient extends Thread { //always executed on a separat
                 clientConnections.add(clientSocket);
                 clientSocket.start();
 
-                if(Game.getPlayers().size() >= Config.MAX_CLIENTS){
+                if (Game.getPlayers().size() >= Config.MAX_CLIENTS) {
                     clientSocket.send("IPINNIT:-1");
                     continue;
                 }
@@ -116,11 +116,9 @@ public class ServerNetworkClient extends Thread { //always executed on a separat
                 // todo rework username setting
                 int clientID = Game.getPlayers().size() + 1;
                 String userName = "-";
-                clientSocket.send("IPINNIT:"+ clientID);
+                clientSocket.send("IPINNIT:" + clientID);
 
                 Game.getPlayers().put(clientID, new Player(userName));
-
-
 
 
             }
@@ -129,8 +127,8 @@ public class ServerNetworkClient extends Thread { //always executed on a separat
         } finally { //always clean up, short extra try-catch needed because if exeption thrown above, teardown might not be executed
             try {
                 tearDown();
-            } catch (IOException ex) {
-                ex.printStackTrace();
+            } catch (IOException e) {
+                throw new RuntimeException(e);
             }
         }
     }
@@ -145,9 +143,15 @@ public class ServerNetworkClient extends Thread { //always executed on a separat
         this.port = serverSocket.getLocalPort();
     }
 
-    public synchronized void broadcast(String message) { //synchronized might not be necessary since there should always be <= 1 server thread
-        for (NetworkConnection clientConnection : clientConnections) {
-            clientConnection.send(message);
+    public void broadcast(String message) { //synchronized is not necessary and only slows down the server
+        synchronized (synchTearDownToken) {
+            if(!hasClosed()) {
+                for (NetworkConnection clientConnection : clientConnections) {
+                    clientConnection.send(message);
+                }
+            }else{
+                Log.e("SERVER", "COULDNT BROADCAST "+ message+", SERVER ALREADY CLOSED!");
+            }
         }
     }
 
@@ -158,7 +162,7 @@ public class ServerNetworkClient extends Thread { //always executed on a separat
      * @param prefix   The prefix defines the action that should be executed and should also be defined in the Constants class.
      * @param args     The additional parameters that follow along with the command.
      */
-    public synchronized void broadcast(String activity, String prefix, String[] args) {
+    public void broadcast(String activity, String prefix, String[] args) {
         this.broadcast(activity + ":" + prefix + " " + String.join(";", args));
     }
 
@@ -171,7 +175,14 @@ public class ServerNetworkClient extends Thread { //always executed on a separat
         clientConnections.remove(client);
     }
 
+    public void stopThread() {
+        synchronized (synchTearDownToken) {
+            this.serverInterrupted = true;
+        }
+    }
+
     public void tearDown() throws IOException {
+        stopThread();
         for (NetworkConnection clientConn : clientConnections) {
             clientConn.close();
             clientConn.interrupt();
@@ -181,14 +192,15 @@ public class ServerNetworkClient extends Thread { //always executed on a separat
         }
         clientConnections.clear();
         serverSocket.close();
-        synchronized (synchCloseToken){
-            this.hasClosed = true;
-        }
     }
 
-    public boolean hasClosed(){
-        synchronized (synchCloseToken){
-           return this.hasClosed;
+    public void tearDownAfterBroadCast(){
+
+    }
+
+    public boolean hasClosed() {
+        synchronized (synchTearDownToken) {
+            return this.serverInterrupted;
         }
     }
 

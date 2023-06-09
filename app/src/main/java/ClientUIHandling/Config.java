@@ -29,7 +29,7 @@ public class Config {
 
     public static final Dice DICE_RANGE = new Dice(1, 6);
     public static final Dice CHEAT_RANGE = new Dice(7, 9);
-    public static final int timeout = 20000;
+    public static final int timeout = 5000;
 
-    public static final int timeout_warning_threshold = 5000;
+    public static final int timeout_warning_threshold = 3000;
 }

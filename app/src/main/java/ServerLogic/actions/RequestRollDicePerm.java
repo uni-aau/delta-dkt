@@ -48,12 +48,15 @@ public class RequestRollDicePerm implements ServerActionInterface {
             server.broadcast(GAMEVIEW_ACTIVITY_TYPE, PREFIX_ROLL_DICE_REQUEST, new String[]{String.valueOf(nextClient), nickName});
             ServerActionHandler.triggerAction(PREFIX_PLAYER_MOVE, parameters);
 
-            //If this is the first dice request, start the timeout loop
+            //If this is the first dice request, start the timeout loop, else reset the values.
             if (timeOutThread == null) {
-                timeOutThread = new TimeOutThread(Config.timeout, nextClient, server);
-                timeOutThread.start();
+                createAndStartTimeout(nextClient, server);
             }else{
-                timeOutThread.resetTimeout(nextClient);
+                if(timeOutThread.isAlive()) {
+                    timeOutThread.resetTimeout(nextClient);
+                }else{
+                    createAndStartTimeout(nextClient, server);
+                }
             }
 
             Game.incrementRounds(oldClientId);
@@ -61,6 +64,11 @@ public class RequestRollDicePerm implements ServerActionInterface {
         } else {
             Log.e(tag, "Error - No players available in GameView");
         }
+    }
+
+    private void createAndStartTimeout(int nextClient, ServerNetworkClient server){
+        timeOutThread = new TimeOutThread(Config.timeout, nextClient, server);
+        timeOutThread.start();
     }
 
     private class TimeOutThread extends Thread {
@@ -130,8 +138,8 @@ public class RequestRollDicePerm implements ServerActionInterface {
                 }
                 synchronized (synchTimeoutToken) {
                     int nextPlayerID = getNextPlayerID(playerID, Game.getPlayers().size());
-                    Game.incrementRounds(playerID);
                     server.broadcast(GAMEVIEW_ACTIVITY_TYPE, PREFIX_ROLL_DICE_REQUEST, new String[]{"" + nextPlayerID, Game.getPlayers().get(nextPlayerID).getNickname()});
+                    Game.incrementRounds(playerID);
                     this.playerID = nextPlayerID;
                 }
             }
@@ -151,6 +159,7 @@ public class RequestRollDicePerm implements ServerActionInterface {
                 this.clientHasBeenWarned = false;
             }
         }
+
     }
 
     private int getNextPlayerID(int oldClientId, int size) {
