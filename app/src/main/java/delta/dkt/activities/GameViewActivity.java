@@ -50,6 +50,7 @@ public class GameViewActivity extends AppCompatActivity {
 
     private Button btnDice;
     private ImageView map;
+    private boolean isInitialized = false;
 
 
     @Override
@@ -58,17 +59,13 @@ public class GameViewActivity extends AppCompatActivity {
         setContentView(R.layout.activity_game_view);
         Config.Skip = false;
 
-        Button btnPropertyInfos = findViewById(R.id.button_property_infos);
-        btnDice = findViewById(R.id.button_roll_dice);
-        map = findViewById(imageView);
-        btnPropertyInfos.setOnClickListener(view -> switchToPropertyActivity());
-
-        MainActivity.subscribeToLogic(Constants.GAMEVIEW_ACTIVITY_TYPE, this);
-        if (MainMenuActivity.role) {
-            ServerActionHandler.triggerAction(PREFIX_GET_SERVER_TIME, clientID); // Get game time
-            ServerActionHandler.triggerAction(PREFIX_INIT_PLAYERS, 1); // Set player & handle dice perms
-            ServerActionHandler.triggerAction(PREFIX_PROPLIST_UPDATE, 1); // initializes propertylist
+        if (!isInitialized) {
+            initializeOnce();
+            isInitialized = true;
         }
+
+        Button btnPropertyInfos = findViewById(R.id.button_property_infos);
+        btnPropertyInfos.setOnClickListener(view -> switchToPropertyActivity());
 
         Button btnReportCheat = findViewById(R.id.btnReportCheater);
         btnReportCheat.setOnClickListener(view -> {
@@ -80,12 +77,25 @@ public class GameViewActivity extends AppCompatActivity {
         });
 
         registerLightSensor();
-        displayPlayers(players);
         handleMovementRequests();
 
         if (Config.Skip && Config.DEBUG) {
             btnPropertyInfos.performClick();
         }
+    }
+
+    private void initializeOnce() {
+        btnDice = findViewById(R.id.button_roll_dice);
+        map = findViewById(imageView);
+
+        MainActivity.subscribeToLogic(Constants.GAMEVIEW_ACTIVITY_TYPE, this);
+        if (MainMenuActivity.role) {
+            ServerActionHandler.triggerAction(PREFIX_GET_SERVER_TIME, clientID); // Get game time
+            ServerActionHandler.triggerAction(PREFIX_INIT_PLAYERS, 1); // Set player & handle dice perms
+            ServerActionHandler.triggerAction(PREFIX_PROPLIST_UPDATE, 1); // initializes propertylist
+        }
+
+        displayPlayers(players);
     }
 
     protected void switchToPropertyActivity() {
