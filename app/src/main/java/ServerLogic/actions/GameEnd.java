@@ -39,12 +39,12 @@ public class GameEnd implements ServerActionInterface {
             server.tearDown();
             Log.d("[SERVER]_GAME_END", "After Teardown");
             Game.getPlayers().clear();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }catch (InterruptedException e) {
+        } catch (InterruptedException e) {
             Log.w("Warning", "Interrupted!", e);
             // Restore interrupted state...
             Thread.currentThread().interrupt();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
         }
 
     }

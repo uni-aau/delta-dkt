@@ -4,6 +4,7 @@ import ClientUIHandling.actions.ActionActivityBroadcast;
 import ClientUIHandling.actions.ActionGameEnd;
 import ClientUIHandling.actions.ActionGetIP;
 import ClientUIHandling.actions.ActionMove;
+import ClientUIHandling.actions.ActionPing;
 import ClientUIHandling.actions.ActionPlayerLost;
 import ClientUIHandling.actions.ActionPlayerPunish;
 import ClientUIHandling.actions.ActionPrisonNotification;
@@ -13,6 +14,7 @@ import ClientUIHandling.actions.ActionInitRollDice;
 import ClientUIHandling.actions.ActionServerIsFull;
 import ClientUIHandling.actions.ActionSetMoney;
 import ClientUIHandling.actions.ActionSuspensionNotification;
+import ClientUIHandling.actions.ActionTimeoutWarning;
 import ClientUIHandling.actions.ActionUpdateGameTime;
 
 import ClientUIHandling.actions.cheating.ActionOpenCheatMenu;
@@ -38,7 +40,10 @@ import ClientUIHandling.actions.ActionHostGame;
 import ClientUIHandling.actions.ActionRemoveUserFromUserList;
 import ClientUIHandling.actions.ActionUpdateUserList;
 import network2.NetworkClientConnection;
+
+import static ClientUIHandling.Constants.PING;
 import static ClientUIHandling.Constants.PREFIX_PLAYER_CHEAT_MENU;
+import static ClientUIHandling.Constants.PREFIX_PLAYER_TIMEOUT_WARNING;
 import static ClientUIHandling.Constants.PREFIX_REQUEST_SERVER_ACTION_AS_CLIENT;
 
 public class ClientHandler extends Handler {
@@ -75,6 +80,10 @@ public class ClientHandler extends Handler {
 
         actionMap.put(PREFIX_PLAYER_CHEAT_MENU, new ActionOpenCheatMenu());
         actionMap.put(PREFIX_REQUEST_SERVER_ACTION_AS_CLIENT, new ActionSendServerRequest());
+
+        actionMap.put(PREFIX_PLAYER_TIMEOUT_WARNING, new ActionTimeoutWarning());
+
+        actionMap.put(PING, new ActionPing());
 
 
         actions.add(new ActionHostGame());

@@ -499,6 +499,14 @@ class PlayerTests {
         player.setYouGetOutOfPrisonCard(true);
         assertTrue(player.getYouGetOutOfPrisonCard());
     }
+
+    @Test
+    void testPing(){
+        player.setHasReceivedPing(true);
+        assertTrue(player.getAndClearPing());
+        assertFalse(player.getAndClearPing());
+
+    }
 }
 
 

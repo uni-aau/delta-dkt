@@ -49,6 +49,7 @@ public class ServerActionHandler {
 
         actionMap.put(PREFIX_PROPLIST_UPDATE, new RequestPropertyListUpdate());
 
+        actionMap.put(PING, new RequestPing());
 
         actions.add(new RequestHostGame());
         actionPrefixes.add(PREFIX_HOST_NEW_GAME);
