@@ -20,6 +20,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
@@ -101,11 +102,13 @@ public class GameViewActivity extends AppCompatActivity {
 
         Button leaveGame = view.findViewById(R.id.button_leaveGame_yes);
         Button cancelLeaveGame = view.findViewById(R.id.button_leaveGame_no);
+        TextView playerWealthHint = view.findViewById(R.id.textView_playerLeaveHint);
 
         final AlertDialog alertDialog = createAlertDialog(view);
 
         cancelLeaveGame.setOnClickListener(view1 -> alertDialog.dismiss());
         leaveGame.setOnClickListener(view1 -> ClientHandler.sendMessageToServer(GAMEVIEW_ACTIVITY_TYPE, PREFIX_PLAYER_LEAVE, String.valueOf(clientID)));
+        playerWealthHint.setVisibility(View.VISIBLE);
 
         if (alertDialog.getWindow() != null) {
             alertDialog.getWindow().setBackgroundDrawable(new ColorDrawable(0));
