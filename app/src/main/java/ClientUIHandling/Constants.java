@@ -73,4 +73,6 @@ public class Constants {
 
     public static final String PREFIX_PLAYER_TIMEOUT_WARNING = "TIMEOUT_WARNING";
 
+    public static final String PING = "PING";
+
 }

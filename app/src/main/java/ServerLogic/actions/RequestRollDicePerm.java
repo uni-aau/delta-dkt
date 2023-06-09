@@ -2,6 +2,7 @@ package ServerLogic.actions;
 
 import static ClientUIHandling.Config.DEBUG;
 import static ClientUIHandling.Constants.GAMEVIEW_ACTIVITY_TYPE;
+import static ClientUIHandling.Constants.PING;
 import static ClientUIHandling.Constants.PREFIX_PLAYER_MOVE;
 import static ClientUIHandling.Constants.PREFIX_PLAYER_TIMEOUT_WARNING;
 import static ClientUIHandling.Constants.PREFIX_ROLL_DICE_REQUEST;
@@ -11,6 +12,7 @@ import android.util.Log;
 import ClientUIHandling.Config;
 import ServerLogic.ServerActionHandler;
 import ServerLogic.ServerActionInterface;
+import delta.dkt.activities.MainMenuActivity;
 import delta.dkt.logic.structure.Game;
 import delta.dkt.logic.structure.Player;
 import network2.ServerNetworkClient;
@@ -136,12 +138,20 @@ public class RequestRollDicePerm implements ServerActionInterface {
                         throw new RuntimeException(e);
                     }
                 }
+                //Check if the player has disconnected
+                Log.i("PING", ""+playerID);
+                if(this.playerID != 1) {
+                    ServerActionHandler.triggerAction(PING, playerID);
+                }
+
                 synchronized (synchTimeoutToken) {
                     int nextPlayerID = getNextPlayerID(playerID, Game.getPlayers().size());
                     server.broadcast(GAMEVIEW_ACTIVITY_TYPE, PREFIX_ROLL_DICE_REQUEST, new String[]{"" + nextPlayerID, Game.getPlayers().get(nextPlayerID).getNickname()});
                     Game.incrementRounds(playerID);
                     this.playerID = nextPlayerID;
                 }
+
+
             }
 
         }

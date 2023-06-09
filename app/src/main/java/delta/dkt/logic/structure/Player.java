@@ -25,12 +25,20 @@ public class Player implements Comparable<Player>{
     private int suspention = 0;
     private boolean hasCheated = false;
 
+    private boolean hasReceivedPing;
+
+    private Object pingToken;
+
+
     public Player(String nickname) {
         this.nickname = nickname;
+        this.hasReceivedPing = false;
+        this.pingToken = "";
     }
 
     public Player() {
-
+        this.hasReceivedPing = false;
+        this.pingToken = "";
     }
 
     public void setNickname(String nickname) {
@@ -264,10 +272,26 @@ public class Player implements Comparable<Player>{
     public void setCheat(boolean state){
         hasCheated = state;
     }
-  
-  
+
+
     @Override
     public int compareTo(Player o) {
         return this.id-o.id;
+    }
+
+    public boolean getAndClearPing() {
+        synchronized (pingToken) {
+            if (this.hasReceivedPing) {
+                this.hasReceivedPing = false;
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public void setHasReceivedPing(boolean hasReceivedPing) {
+        synchronized (pingToken) {
+            this.hasReceivedPing = hasReceivedPing;
+        }
     }
 }
