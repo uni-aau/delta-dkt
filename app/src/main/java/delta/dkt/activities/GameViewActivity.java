@@ -113,15 +113,15 @@ public class GameViewActivity extends AppCompatActivity {
 
         Button leaveGame = view.findViewById(R.id.button_leaveGame_yes);
         Button cancelLeaveGame = view.findViewById(R.id.button_leaveGame_no);
-        TextView playerWealthHint = view.findViewById(R.id.textView_playerLeaveHint);
+        TextView playerLeaveHint = view.findViewById(R.id.textView_playerLeaveHint);
 
         final AlertDialog alertDialog = createAlertDialog(view);
 
         cancelLeaveGame.setOnClickListener(view1 -> alertDialog.dismiss());
-        playerWealthHint.setVisibility(View.VISIBLE);
+        playerLeaveHint.setVisibility(View.VISIBLE);
         if (!isDicing || players == 1) {
             if (MainMenuActivity.role) {
-                playerWealthHint.setText(R.string.text_player_leave_hint_host);
+                playerLeaveHint.setText(R.string.text_player_leave_hint_host);
                 leaveGame.setOnClickListener(view1 -> ServerActionHandler.triggerAction(PREFIX_CLOSE_GAME, ""));
             } else
                 leaveGame.setOnClickListener(view1 -> ClientHandler.sendMessageToServer(GAMEVIEW_ACTIVITY_TYPE, PREFIX_PLAYER_LEAVE, String.valueOf(clientID)));
