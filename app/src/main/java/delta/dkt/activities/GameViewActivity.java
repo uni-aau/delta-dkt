@@ -43,6 +43,7 @@ import java.util.ArrayList;
 public class GameViewActivity extends AppCompatActivity {
     public static int clientID = -1; // ID gets set by server
     public static int players = -1; // players gets set by server
+    public static boolean isDicing = false;
     private final int[] locations = {1, 1, 1, 1, 1, 1};
     private SensorManager manager = null;
     private final LightSensor lightSensorListener = new LightSensor();
@@ -106,8 +107,16 @@ public class GameViewActivity extends AppCompatActivity {
         final AlertDialog alertDialog = createAlertDialog(view);
 
         cancelLeaveGame.setOnClickListener(view1 -> alertDialog.dismiss());
-        leaveGame.setOnClickListener(view1 -> ClientHandler.sendMessageToServer(GAMEVIEW_ACTIVITY_TYPE, PREFIX_PLAYER_LEAVE, String.valueOf(clientID)));
         playerWealthHint.setVisibility(View.VISIBLE);
+        if(!isDicing || players == 1) {
+            leaveGame.setOnClickListener(view1 -> ClientHandler.sendMessageToServer(GAMEVIEW_ACTIVITY_TYPE, PREFIX_PLAYER_LEAVE, String.valueOf(clientID)));
+        }
+        else {
+            leaveGame.setOnClickListener(view1 -> {
+                Toast.makeText(this, "You cannot leave since you need to dice!", Toast.LENGTH_SHORT).show();
+                alertDialog.dismiss();
+            });
+        }
 
         if (alertDialog.getWindow() != null) {
             alertDialog.getWindow().setBackgroundDrawable(new ColorDrawable(0));
@@ -191,12 +200,14 @@ public class GameViewActivity extends AppCompatActivity {
         btnDice.setEnabled(true);
         btnDice.setBackgroundResource(R.drawable.host_btn_background);
         map.setEnabled(true);
+        isDicing = true;
     }
 
     public void disableDice() {
         btnDice.setEnabled(false);
         btnDice.setBackgroundResource(R.drawable.host_btn_background_disabled);
         map.setEnabled(false); // prevent touch event
+        isDicing = false;
     }
 
     /**
