@@ -113,6 +113,15 @@ public class GameViewActivity extends AppCompatActivity {
         }
 
         displayPlayers(players);
+
+        //? Positions the player-figures on the map (at the start-field).
+        for (int i = 0; i < locations.length; i++) {
+            int index = i;
+            map.post(() -> updatePlayerPosition(locations[index], index + 1));
+        }
+
+        map.post(() -> PositionHandler.setLogs(true));
+
     }
     
     // Action when player presses back on mobile phone
@@ -189,28 +198,16 @@ public class GameViewActivity extends AppCompatActivity {
      */
     @SuppressLint("ClickableViewAccessibility")
     private void handleMovementRequests() {
-        //? Places all figures on their designated position inside the start field.
-        for (int i = 0; i < locations.length; i++) {
-            int index = i;
-            map.post(() -> updatePlayerPosition(locations[index], index + 1));
-        }
-
-        map.post(() -> PositionHandler.setLogs(true));
-
-
         btnDice.setOnClickListener(view -> {
             Log.d("Movement", "Sending movement request to server!");
             ClientHandler.sendMessageToServer(GAMEVIEW_ACTIVITY_TYPE, PREFIX_ROLL_DICE_RECEIVE, new Object[]{String.valueOf(clientID), String.valueOf(LightSensor.isCovered())});
         });
-
-
         map.setOnTouchListener((v, event) -> {
             if (event.getAction() != MotionEvent.ACTION_DOWN) return false;
 
             btnDice.performClick();
             return true;
         });
-
     }
 
     /**
