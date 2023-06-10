@@ -59,7 +59,7 @@ public class ActionGameEnd implements ClientActionInterface {
         try {
             ClientHandler.getClient().stopConnection();
         } catch (Exception e) {
-            throw new RuntimeException(e);
+            throw new RuntimeException("Error while trying to close the client connection: " + e);
         }
         Game.reset();
         LobbyViewActivity.userList.clear();

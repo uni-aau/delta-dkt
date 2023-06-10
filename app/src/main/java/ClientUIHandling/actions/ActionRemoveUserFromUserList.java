@@ -9,17 +9,16 @@ import android.util.Log;
 import androidx.appcompat.app.AppCompatActivity;
 
 import ClientUIHandling.ClientActionInterface;
+import ClientUIHandling.Constants;
+import ServerLogic.ServerActionHandler;
 import delta.dkt.activities.MainMenuActivity;
 
 public class ActionRemoveUserFromUserList implements ClientActionInterface {
     @Override
     public void execute(AppCompatActivity activity, String clientMessage) {
-
-        String[] args = clientMessage.replace(PREFIX_REMOVE_USER_FROM_LIST, "").trim().split(";"); // Holt sich Args nach dem Prefix
-        Log.d("[CLIENT]_Remove_User_From_User_List", "JUHU! User was removed from List. Parameter: "+ args[0] );
-
-        Intent intent = new Intent(activity, MainMenuActivity.class);
-        intent.putExtra(INTENT_PARAMETER, MainMenuActivity.username);
-        activity.startActivity(intent);
+        if(MainMenuActivity.role){
+            int id = Integer.parseInt(clientMessage.split(" ")[1]);
+            ServerActionHandler.triggerAction(Constants.PREFIX_REMOVE_USER_FROM_LIST, id);
+        }
     }
 }

@@ -7,14 +7,24 @@ import static ClientUIHandling.Constants.PREFIX_REMOVE_USER_FROM_LIST;
 import static delta.dkt.activities.MainActivity.user;
 import static delta.dkt.activities.MainMenuActivity.role;
 
+import ClientUIHandling.ClientHandler;
 import ClientUIHandling.Config;
+
+import android.content.Intent;
 import android.content.pm.ActivityInfo;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.KeyEvent;
+import android.view.LayoutInflater;
+import android.view.View;
 import android.widget.Button;
-import android.widget.Toast;
 
+import androidx.activity.OnBackPressedCallback;
+import androidx.activity.OnBackPressedDispatcher;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -58,8 +68,9 @@ public class LobbyViewActivity extends AppCompatActivity {
 
         // Adding User to the UserList
         welcomeToLobby();
+        createOnBackCallBack();
 
-        backButton.setOnClickListener(view -> leavingTheLobby());
+        backButton.setOnClickListener(view -> backPressed());
 
         startButton.setOnClickListener(view -> {
             Log.d("Start", "Sending start action to server!");
@@ -71,6 +82,17 @@ public class LobbyViewActivity extends AppCompatActivity {
         }
     }
 
+    // Action when player presses back on mobile phone
+    private void createOnBackCallBack() {
+        OnBackPressedCallback callback = new OnBackPressedCallback(true) {
+            @Override
+            public void handleOnBackPressed() {
+                openPlayerLeavePopUp();
+            }
+        };
+        OnBackPressedDispatcher onBackPressedDispatcher = this.getOnBackPressedDispatcher();
+        onBackPressedDispatcher.addCallback(this, callback);
+    }
 
 
     //---------------------------ALL METHODS:---------------------------//
@@ -79,17 +101,13 @@ public class LobbyViewActivity extends AppCompatActivity {
     public void welcomeToLobby () {
         if(role) {
             ServerActionHandler.triggerAction(PREFIX_ADD_USER_TO_LIST, new Object[]{user, 1});
-
-            Toast.makeText(LobbyViewActivity.this, "Users Total: " + userList.size(), Toast.LENGTH_SHORT).show();
         }
     }
 
     // This Method removes the User from the UserList, updates the List and Closes the game/server
     public void leavingTheLobby() {
         ServerActionHandler.triggerAction(PREFIX_REMOVE_USER_FROM_LIST, user);
-        ServerActionHandler.triggerAction(PREFIX_CLOSE_GAME,""); // TO DO -> (implement close server and close client in actions)
-
-        Toast.makeText(LobbyViewActivity.this, "Users Total: "+userList.size(), Toast.LENGTH_SHORT).show();
+        ServerActionHandler.triggerAction(PREFIX_CLOSE_GAME,"");
     }
 
     private void disableStartButton() {
@@ -97,6 +115,48 @@ public class LobbyViewActivity extends AppCompatActivity {
         startButton.setBackgroundResource(R.drawable.host_btn_background_disabled);
     }
 
+    private void openPlayerLeavePopUp() {
+        ConstraintLayout popUpConstraintLayout = findViewById(R.id.playerLeavePopUpConstraint);
+        View view = LayoutInflater.from(this).inflate(R.layout.player_leave_pop_up_window, popUpConstraintLayout);
 
+        Button leaveGame = view.findViewById(R.id.button_leaveGame_yes);
+        Button cancelLeaveGame = view.findViewById(R.id.button_leaveGame_no);
 
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setView(view);
+        AlertDialog alertDialog = builder.create();
+
+        cancelLeaveGame.setOnClickListener(view1 -> alertDialog.dismiss());
+        leaveGame.setOnClickListener(view1 -> leavingTheLobby());
+
+        if (alertDialog.getWindow() != null) {
+            alertDialog.getWindow().setBackgroundDrawable(new ColorDrawable(0));
+        }
+        alertDialog.show();
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if(keyCode == KeyEvent.KEYCODE_BACK){
+            backPressed();
+        }
+        return super.onKeyDown(keyCode, event);
+    }
+
+    private void backPressed(){
+        Log.i("LOBBY", "BACK BUTTON PRESSED");
+        if(role){
+            ServerActionHandler.triggerAction(PREFIX_CLOSE_GAME, null);
+        }else{
+            ClientHandler.sendMessageToServer(Constants.LOBBYVIEW_ACTIVITY_TYPE,Constants.PREFIX_REMOVE_USER_FROM_LIST,""+GameViewActivity.clientID);
+            backToMainMenu();
+
+        }
+    }
+
+    private void backToMainMenu(){
+        Intent intent = new Intent(getApplicationContext(), MainMenuActivity.class);
+        intent.putExtra(MainActivity.INTENT_PARAMETER, MainMenuActivity.username);
+        startActivity(intent);
+    }
 }
