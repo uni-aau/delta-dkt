@@ -6,6 +6,7 @@ import ClientUIHandling.actions.ActionGameEnd;
 import ClientUIHandling.actions.ActionGetIP;
 import ClientUIHandling.actions.ActionMove;
 import ClientUIHandling.actions.ActionPlayerLeaveEvent;
+import ClientUIHandling.actions.ActionPing;
 import ClientUIHandling.actions.ActionPlayerLost;
 import ClientUIHandling.actions.ActionPlayerPunish;
 import ClientUIHandling.actions.ActionPrisonNotification;
@@ -15,6 +16,7 @@ import ClientUIHandling.actions.ActionInitRollDice;
 import ClientUIHandling.actions.ActionServerIsFull;
 import ClientUIHandling.actions.ActionSetMoney;
 import ClientUIHandling.actions.ActionSuspensionNotification;
+import ClientUIHandling.actions.ActionTimeoutWarning;
 import ClientUIHandling.actions.ActionUpdateGameTime;
 
 import ClientUIHandling.actions.cheating.ActionOpenCheatMenu;
@@ -40,7 +42,10 @@ import ClientUIHandling.actions.ActionHostGame;
 import ClientUIHandling.actions.ActionRemoveUserFromUserList;
 import ClientUIHandling.actions.ActionUpdateUserList;
 import network2.NetworkClientConnection;
+
+import static ClientUIHandling.Constants.PING;
 import static ClientUIHandling.Constants.PREFIX_PLAYER_CHEAT_MENU;
+import static ClientUIHandling.Constants.PREFIX_PLAYER_TIMEOUT_WARNING;
 import static ClientUIHandling.Constants.PREFIX_REQUEST_SERVER_ACTION_AS_CLIENT;
 
 public class ClientHandler extends Handler {
@@ -75,25 +80,17 @@ public class ClientHandler extends Handler {
         actionMap.put(Constants.PREFIX_NOTIFICATION, new ActionPrisonNotification());
         actionMap.put(Constants.PREFIX_PROPLIST_UPDATE, new ActionPropertyListUpdate());
         actionMap.put(Constants.PREFIX_SERVER_FULL, new ActionServerIsFull());
+        actionMap.put(Constants.PREFIX_HOST_NEW_GAME, new ActionHostGame());
+        actionMap.put(Constants.PREFIX_UPDATE_USER_LIST, new ActionUpdateUserList());
+        actionMap.put(Constants.PREFIX_ADD_USER_TO_LIST, new ActionAddUserToUserList());
+        actionMap.put(Constants.PREFIX_REMOVE_USER_FROM_LIST, new ActionRemoveUserFromUserList());
+        actionMap.put(Constants.PREFIX_CLOSE_GAME, new ActionCloseGame());
+        actionMap.put(PREFIX_REQUEST_SERVER_ACTION_AS_CLIENT, new ActionSendServerRequest());
         actionMap.put(Constants.PREFIX_SUSPENSION_COUNT, new ActionSuspensionNotification());
         actionMap.put(PREFIX_PLAYER_CHEAT_MENU, new ActionOpenCheatMenu());
         actionMap.put(PREFIX_REQUEST_SERVER_ACTION_AS_CLIENT, new ActionSendServerRequest());
-
-
-        actions.add(new ActionHostGame());
-        actionPrefixes.add(Constants.PREFIX_HOST_NEW_GAME);
-
-        actions.add(new ActionUpdateUserList());
-        actionPrefixes.add(Constants.PREFIX_UPDATE_USER_LIST);
-
-        actions.add(new ActionAddUserToUserList());
-        actionPrefixes.add(Constants.PREFIX_ADD_USER_TO_LIST);
-
-        actions.add(new ActionRemoveUserFromUserList());
-        actionPrefixes.add(Constants.PREFIX_REMOVE_USER_FROM_LIST);
-
-        actions.add(new ActionCloseGame());
-        actionPrefixes.add(Constants.PREFIX_CLOSE_GAME);
+        actionMap.put(PREFIX_PLAYER_TIMEOUT_WARNING, new ActionTimeoutWarning());
+        actionMap.put(PING, new ActionPing());
     }
 
     public static void setClient(NetworkClientConnection connection){

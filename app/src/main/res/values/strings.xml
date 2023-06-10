@@ -58,6 +58,7 @@
     <string name="SixthPlace">6</string>
     <string name="Wealth">Wealth</string>
     <string name="Finish">Finish</string>
+    <string name="IP">IP:</string>
 
     <string name="NSDServiceName">delta_dkt</string>
     <string name="NSDServiceType">_delta_dkt.tcp</string>

@@ -115,7 +115,7 @@
             android:layout_height="100dp"
             android:layout_marginTop="5dp"
             android:layout_centerHorizontal="true"
-            android:src="@drawable/winner_podium_dkt"
+            android:src="@drawable/winner_podium_dkt_revised"
             app:layout_constraintTop_toBottomOf="@id/secondLinearLayout"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />

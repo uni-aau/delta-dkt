@@ -15,7 +15,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -89,8 +88,6 @@ public class LobbyViewActivity extends AppCompatActivity {
     public void welcomeToLobby () {
         if(role) {
             ServerActionHandler.triggerAction(PREFIX_ADD_USER_TO_LIST, new Object[]{user, 1});
-
-            Toast.makeText(LobbyViewActivity.this, "Users Total: " + userList.size(), Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -98,8 +95,6 @@ public class LobbyViewActivity extends AppCompatActivity {
     public void leavingTheLobby() {
         ServerActionHandler.triggerAction(PREFIX_REMOVE_USER_FROM_LIST, user);
         ServerActionHandler.triggerAction(PREFIX_CLOSE_GAME,"");
-
-        Toast.makeText(LobbyViewActivity.this, "Users Total: "+userList.size(), Toast.LENGTH_SHORT).show();
     }
 
     private void disableStartButton() {

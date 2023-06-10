@@ -72,4 +72,8 @@ public class Constants {
     public static final String LOG_NETWORK = String.format("%s-Network", LOG_MAIN);
     public static final String LOG_PROPERTY_BUY = String.format("%s-Property-Buy", LOG_MAIN);
 
+    public static final String PREFIX_PLAYER_TIMEOUT_WARNING = "TIMEOUT_WARNING";
+
+    public static final String PING = "PING";
+
 }
