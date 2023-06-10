@@ -8,7 +8,7 @@ import android.util.Log;
 
 import static ClientUIHandling.Constants.LOG_NETWORK;
 
-public class NetworkServiceDiscovery {
+public class NetworkServiceFinder {
 
     private static final String SERVICE_NAME = "_delta-dkt";
 
@@ -25,7 +25,7 @@ public class NetworkServiceDiscovery {
 
 
 
-    public NetworkServiceDiscovery(Context context) {
+    public NetworkServiceFinder(Context context) {
         this.nsdManager = (NsdManager) context.getSystemService(Context.NSD_SERVICE);
 
         initializeRegistrationListener();
