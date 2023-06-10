@@ -54,6 +54,7 @@ public class ServerActionHandler {
         actionMap.put(PREFIX_UPDATE_USER_LIST, new RequestUpdateUserList());
         actionMap.put(PREFIX_CLOSE_GAME, new RequestCloseGame());
         actionMap.put(PING, new RequestPing());
+        actionMap.put(PREFIX_CLOSE_LOBBY, new ActionCloseLobby());
     }
 
     public static void triggerAction(String name, Object parameters){

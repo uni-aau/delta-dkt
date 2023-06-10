@@ -76,4 +76,8 @@ public class Constants {
 
     public static final String PING = "PING";
 
+    public static final String PREFIX_CLOSE_LOBBY = "CLOSE_LOBBY";
+
+
+
 }

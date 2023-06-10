@@ -16,7 +16,7 @@ public class RequestPing implements ServerActionInterface {
     public void execute(ServerNetworkClient server, Object parameters) {
         int id = (int) parameters;
         server.broadcast(Constants.GAMEVIEW_ACTIVITY_TYPE, Constants.PING, new String[]{"" + id,"0"});
-        new timeoutPingThread(Config.pingTimeout, id).start();
+        new timeoutPingThread(Config.PING_TIMEOUT, id).start();
     }
 
     private class timeoutPingThread extends Thread {
