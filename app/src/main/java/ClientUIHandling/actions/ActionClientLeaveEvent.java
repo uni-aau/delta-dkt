@@ -20,7 +20,6 @@ public class ActionClientLeaveEvent implements ClientActionInterface {
         int clientId = Integer.parseInt(splitMessage[0]);
 
         // Closes client connection and resets the game for specific user
-        Log.d("[CLIENT] ActionPlayerLeave", "clientId = " + clientId + " clientIDGameView =" + GameViewActivity.clientID);
         if (clientId == GameViewActivity.clientID) {
             try {
                 ClientHandler.getClient().stopConnection();
