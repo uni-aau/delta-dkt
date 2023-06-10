@@ -32,6 +32,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.activity.OnBackPressedCallback;
+import androidx.activity.OnBackPressedDispatcher;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
@@ -66,8 +68,6 @@ public class GameViewActivity extends AppCompatActivity {
     private ImageView map;
 
 
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -98,6 +98,7 @@ public class GameViewActivity extends AppCompatActivity {
         registerLightSensor();
         displayPlayers(players);
         handleMovementRequests();
+        createOnBackCallBack();
 
         if (Config.Skip && Config.DEBUG) {
             btnPropertyInfos.performClick();
@@ -105,9 +106,15 @@ public class GameViewActivity extends AppCompatActivity {
     }
 
     // Action when player presses back on mobile phone
-    @Override
-    public void onBackPressed() {
-        openPlayerLeavePopUp();
+    private void createOnBackCallBack() {
+        OnBackPressedCallback callback = new OnBackPressedCallback(true) {
+            @Override
+            public void handleOnBackPressed() {
+                openPlayerLeavePopUp();
+            }
+        };
+        OnBackPressedDispatcher onBackPressedDispatcher = this.getOnBackPressedDispatcher();
+        onBackPressedDispatcher.addCallback(this, callback);
     }
 
     private void openPlayerLeavePopUp() {
