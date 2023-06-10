@@ -2,6 +2,7 @@ package ServerLogic.actions;
 
 import android.util.Log;
 
+import ClientUIHandling.Constants;
 import ServerLogic.ServerActionHandler;
 import ServerLogic.ServerActionInterface;
 import delta.dkt.logic.structure.Field;
@@ -23,29 +24,27 @@ public class RequestBuyProperty implements ServerActionInterface {
             }
 
             //fetch player object
-            Player player = Game.getPlayers().get((int)parameters);
-
+            int clientId = (int) parameters;
+            Player player = Game.getPlayers().get(clientId);
             int fieldLocation = player.getPosition().getLocation();
-
             Log.d(LOG_PROPERTY_BUY, "BuyProperty location: "+fieldLocation);
-
             Field field = Game.getMap().getField(fieldLocation);
 
-            if(field instanceof Property &&  ((Property) field).getOwner() == null && ((Property) field).getPrice() <= player.getCash()){
+            if(field instanceof Property && ((Property) field).getOwner() == null) {
                 Property property = (Property) field;
-                //player.buyProperty again checks if the values provided are valid (field isnt owned by anybody, player has enough cash etc.)
-                boolean success = player.buyProperty(property.getLocation());
-                if(success) {
-                    ServerActionHandler.triggerAction(PREFIX_PROPLIST_UPDATE, fieldLocation); // initializes propertylist
-                    server.broadcast(GAMEVIEW_ACTIVITY_TYPE +":"+PREFIX_PLAYER_PROPERTYBOUGHT+" "+player.getNickname()+"(id= "+player.getId()+" ) "+player.getCash()+" "+property.getName()+"(Pos= "+property.getLocation()+" )");
+                if(property.getPrice() <= player.getCash()) {
+                    boolean success = player.buyProperty(property.getLocation());
+                    if (success) {
+                        ServerActionHandler.triggerAction(PREFIX_PROPLIST_UPDATE, fieldLocation); // initializes property list
+                        server.broadcast(GAMEVIEW_ACTIVITY_TYPE, PREFIX_PLAYER_PROPERTYBOUGHT, new String[]{String.valueOf(player.getId())});
+                        server.broadcast(Constants.GAMEVIEW_ACTIVITY_TYPE, Constants.PREFIX_SET_MONEY, new String[]{String.valueOf(clientId), String.valueOf(player.getCash())});
+                    }
+                } else {
+                    // server.broadcast(GAMEVIEW_ACTIVITY_TYPE, PREFIX_PLAYER_PROPERTYBOUGHT, new String[]{player.getNickname(), String.valueOf(player.getId()), String.valueOf(player.getCash()), property.getName(), String.valueOf(property.getLocation())});
+                    // TODO GELD REICHT NICHT AUS
                 }
-                else{
-                    throw new RuntimeException("BuyPropertyAction::execute():Failed to buy a property");
-                }
+            } else {
+                Log.e(LOG_PROPERTY_BUY, "Error trying to buy plot - Invalid arguments provided!");
             }
-            else{
-//                throw new IllegalArgumentException("Invalid arguments provided. Property on Players position cannot be bought.");
-            }
-
         }
     }
