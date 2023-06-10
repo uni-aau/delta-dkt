@@ -1,5 +1,7 @@
 package ClientUIHandling.actions;
 
+import android.util.Log;
+
 import androidx.appcompat.app.AppCompatActivity;
 
 import ClientUIHandling.ClientActionInterface;
@@ -14,14 +16,16 @@ public class ActionPing implements ClientActionInterface {
     public void execute(AppCompatActivity activity, String clientMessage) {
         String[] parameters = clientMessage.split(" ")[1].split(";");
         int id = Integer.parseInt(parameters[0]);
+        Log.i("PING", "RECEIVED "+clientMessage);
         if (MainMenuActivity.role) {
-            boolean isFromClient = Boolean.parseBoolean(parameters[1]);
-            if(isFromClient) {
+            int isFromClient = Integer.parseInt(parameters[1]);
+            Log.i("PING", "ISFROMCLIENT "+isFromClient);
+            if(isFromClient == 1) {
                 Game.getPlayers().get(id).setHasReceivedPing(true);
             }
         } else {
             if (id == GameViewActivity.clientID) {
-                ClientHandler.sendMessageToServer(Constants.GAMEVIEW_ACTIVITY_TYPE, Constants.PING, "" + id+" "+1);
+                ClientHandler.sendMessageToServer(Constants.GAMEVIEW_ACTIVITY_TYPE, Constants.PING,id+";"+1);
             }
         }
     }

@@ -12,9 +12,7 @@ import android.util.Log;
 import ClientUIHandling.Config;
 import ServerLogic.ServerActionHandler;
 import ServerLogic.ServerActionInterface;
-import delta.dkt.activities.MainMenuActivity;
 import delta.dkt.logic.structure.Game;
-import delta.dkt.logic.structure.Player;
 import network2.ServerNetworkClient;
 
 public class RequestRollDicePerm implements ServerActionInterface {
@@ -69,7 +67,7 @@ public class RequestRollDicePerm implements ServerActionInterface {
     }
 
     private void createAndStartTimeout(int nextClient, ServerNetworkClient server){
-        timeOutThread = new TimeOutThread(Config.timeout, nextClient, server);
+        timeOutThread = new TimeOutThread(Config.TIMEOUT, nextClient, server);
         timeOutThread.start();
     }
 
@@ -121,7 +119,7 @@ public class RequestRollDicePerm implements ServerActionInterface {
                             }
                             if(!clientHasBeenWarned) {
                                 long remainingTime = timeout - (System.currentTimeMillis() - startTime);
-                                if (remainingTime <= Config.timeout_warning_threshold) {
+                                if (remainingTime <= Config.TIMEOUT_WARNING_THRESHOLD) {
                                     Log.i("TIMEOUT", "SEND WARNING");
                                     server.broadcast(GAMEVIEW_ACTIVITY_TYPE, PREFIX_PLAYER_TIMEOUT_WARNING, new String[]{"" + playerID});
                                     clientHasBeenWarned = true;

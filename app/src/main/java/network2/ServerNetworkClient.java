@@ -124,7 +124,7 @@ public class ServerNetworkClient extends Thread { //always executed on a separat
             }
         } catch (IOException e) {
             e.printStackTrace();
-        } finally { //always clean up, short extra try-catch needed because if exeption thrown above, teardown might not be executed
+        } finally { //always clean up, short extra try-catch needed because if exception thrown above, teardown might not be executed
             try {
                 tearDown();
             } catch (IOException e) {
