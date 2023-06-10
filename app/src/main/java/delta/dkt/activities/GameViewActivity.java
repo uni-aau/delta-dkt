@@ -66,6 +66,8 @@ public class GameViewActivity extends AppCompatActivity {
     private ImageView map;
 
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -120,15 +122,16 @@ public class GameViewActivity extends AppCompatActivity {
 
         cancelLeaveGame.setOnClickListener(view1 -> alertDialog.dismiss());
         playerLeaveHint.setVisibility(View.VISIBLE);
-        if (!isDicing || players == 1) { // Player can leave when he is not dicing or only one player left // TODO <= 1
-            if (MainMenuActivity.role) {
-                playerLeaveHint.setText(R.string.text_player_leave_hint_host);
-                leaveGame.setOnClickListener(view1 -> ServerActionHandler.triggerAction(PREFIX_END_GAME, "HOST WANTS TO LEAVE"));
-            } else if (isSpectator)
+
+        if (MainMenuActivity.role) {
+            playerLeaveHint.setText(R.string.text_player_leave_hint_host);
+            leaveGame.setOnClickListener(view1 -> ServerActionHandler.triggerAction(PREFIX_END_GAME, "HOST WANTS TO LEAVE")); // Owner closes the game
+        } else if (!isDicing || players == 1) { // Checks if player is not dicing or only one player exists -> Possible to leave
+            if (isSpectator)
                 leaveGame.setOnClickListener(view1 -> ClientHandler.sendMessageToServer(GAMEVIEW_ACTIVITY_TYPE, PREFIX_PLAYER_SPECTATOR_LEAVE, String.valueOf(clientID)));
             else
                 leaveGame.setOnClickListener(view1 -> ClientHandler.sendMessageToServer(GAMEVIEW_ACTIVITY_TYPE, PREFIX_PLAYER_LEAVE, String.valueOf(clientID)));
-        } else {
+        } else { // Player cannot leave if conditions are not satisfied
             leaveGame.setOnClickListener(view1 -> {
                 Toast.makeText(this, "You cannot leave since you need to dice!", Toast.LENGTH_SHORT).show(); // TODO can also be shown via TextView
                 alertDialog.dismiss();
