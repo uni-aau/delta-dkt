@@ -36,13 +36,15 @@ public class RequestPlayerLost implements ServerActionInterface {
             isSpectator = Boolean.parseBoolean(args[2]);
         }
 
-        Log.d("[SERVER] RequestPlayerLost", "Received player lost request! ClientID = " + clientID);
+        Log.d("[SERVER] RequestPlayerLost", "Received player lost request! ClientID = " + clientID + " leaveEvent =" + leaveEvent + " isSpectator =" + isSpectator);
 
+        // If player is already spectator, player will not be removed again from game
         if (!isSpectator) {
             Player player = Game.getPlayers().get(clientID);
             String nickname = player.getNickname();
             int playerAmount = Game.getPlayers().size();
 
+            // If leaveEvent exists, player will not be moved into spectator view
             if (!leaveEvent)
                 server.broadcast(GAMEVIEW_ACTIVITY_TYPE, PREFIX_PLAYER_LOST, new String[]{nickname, String.valueOf(player.getId())});
             server.broadcast(GAMEVIEW_ACTIVITY_TYPE, PREFIX_ACTIVITY_BROADCAST, new String[]{"player_lost_activity_text", nickname});
@@ -64,6 +66,7 @@ public class RequestPlayerLost implements ServerActionInterface {
             }
         }
 
+        // Trigger leave event for client to remove player from game
         if(leaveEvent) {
             server.broadcast(GAMEVIEW_ACTIVITY_TYPE, PREFIX_CLIENT_LEAVE_EVENT, new String[]{String.valueOf(clientID)});
         }
