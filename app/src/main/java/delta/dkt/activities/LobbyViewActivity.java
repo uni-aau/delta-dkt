@@ -9,11 +9,18 @@ import static delta.dkt.activities.MainMenuActivity.role;
 
 import ClientUIHandling.Config;
 import android.content.pm.ActivityInfo;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
 import android.widget.Button;
 
+import androidx.activity.OnBackPressedCallback;
+import androidx.activity.OnBackPressedDispatcher;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -57,6 +64,7 @@ public class LobbyViewActivity extends AppCompatActivity {
 
         // Adding User to the UserList
         welcomeToLobby();
+        createOnBackCallBack();
 
         backButton.setOnClickListener(view -> leavingTheLobby());
 
@@ -70,6 +78,17 @@ public class LobbyViewActivity extends AppCompatActivity {
         }
     }
 
+    // Action when player presses back on mobile phone
+    private void createOnBackCallBack() {
+        OnBackPressedCallback callback = new OnBackPressedCallback(true) {
+            @Override
+            public void handleOnBackPressed() {
+                openPlayerLeavePopUp();
+            }
+        };
+        OnBackPressedDispatcher onBackPressedDispatcher = this.getOnBackPressedDispatcher();
+        onBackPressedDispatcher.addCallback(this, callback);
+    }
 
 
     //---------------------------ALL METHODS:---------------------------//
@@ -84,7 +103,7 @@ public class LobbyViewActivity extends AppCompatActivity {
     // This Method removes the User from the UserList, updates the List and Closes the game/server
     public void leavingTheLobby() {
         ServerActionHandler.triggerAction(PREFIX_REMOVE_USER_FROM_LIST, user);
-        ServerActionHandler.triggerAction(PREFIX_CLOSE_GAME,""); // TO DO -> (implement close server and close client in actions)
+        ServerActionHandler.triggerAction(PREFIX_CLOSE_GAME,"");
     }
 
     private void disableStartButton() {
@@ -92,6 +111,23 @@ public class LobbyViewActivity extends AppCompatActivity {
         startButton.setBackgroundResource(R.drawable.host_btn_background_disabled);
     }
 
+    private void openPlayerLeavePopUp() {
+        ConstraintLayout popUpConstraintLayout = findViewById(R.id.playerLeavePopUpConstraint);
+        View view = LayoutInflater.from(this).inflate(R.layout.player_leave_pop_up_window, popUpConstraintLayout);
 
+        Button leaveGame = view.findViewById(R.id.button_leaveGame_yes);
+        Button cancelLeaveGame = view.findViewById(R.id.button_leaveGame_no);
 
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setView(view);
+        AlertDialog alertDialog = builder.create();
+
+        cancelLeaveGame.setOnClickListener(view1 -> alertDialog.dismiss());
+        leaveGame.setOnClickListener(view1 -> leavingTheLobby());
+
+        if (alertDialog.getWindow() != null) {
+            alertDialog.getWindow().setBackgroundDrawable(new ColorDrawable(0));
+        }
+        alertDialog.show();
+    }
 }

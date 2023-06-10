@@ -46,7 +46,7 @@ public class ActionPunish implements ServerActionInterface {
         }
 
         if(player.getCash() < 0){
-            ServerActionHandler.triggerAction(PREFIX_PLAYER_LOST, player.getId());
+            ServerActionHandler.triggerAction(PREFIX_PLAYER_LOST, new String[]{String.valueOf(player.getId()), "false"}); // false -> loose event
         }
     }
 }

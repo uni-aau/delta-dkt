@@ -1,12 +1,21 @@
 package delta.dkt.activities;
 
 
-import static ClientUIHandling.Constants.*;
 import static com.google.android.material.snackbar.BaseTransientBottomBar.LENGTH_SHORT;
+import static ClientUIHandling.Constants.GAMEVIEW_ACTIVITY_TYPE;
+import static ClientUIHandling.Constants.LOG_CHEAT;
+import static ClientUIHandling.Constants.PREFIX_END_GAME;
+import static ClientUIHandling.Constants.PREFIX_GET_SERVER_TIME;
+import static ClientUIHandling.Constants.PREFIX_INIT_PLAYERS;
+import static ClientUIHandling.Constants.PREFIX_PLAYER_CHEAT_MENU;
+import static ClientUIHandling.Constants.PREFIX_PLAYER_LEAVE;
+import static ClientUIHandling.Constants.PREFIX_PLAYER_REPORT_CHEATER;
+import static ClientUIHandling.Constants.PREFIX_PLAYER_SPECTATOR_LEAVE;
+import static ClientUIHandling.Constants.PREFIX_PROPLIST_UPDATE;
+import static ClientUIHandling.Constants.PREFIX_REQUEST_SERVER_ACTION_AS_CLIENT;
+import static ClientUIHandling.Constants.PREFIX_ROLL_DICE_RECEIVE;
 import static delta.dkt.R.id.imageView;
 
-import ClientUIHandling.handlers.languages.LanguageHandler;
-import ClientUIHandling.handlers.notifications.SnackBarHandler;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
@@ -20,28 +29,35 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.activity.OnBackPressedCallback;
+import androidx.activity.OnBackPressedDispatcher;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+import java.util.ArrayList;
 
 import ClientUIHandling.ClientHandler;
 import ClientUIHandling.Config;
 import ClientUIHandling.Constants;
+import ClientUIHandling.handlers.languages.LanguageHandler;
+import ClientUIHandling.handlers.notifications.SnackBarHandler;
 import ClientUIHandling.handlers.positioning.PositionHandler;
 import ServerLogic.ServerActionHandler;
-import androidx.constraintlayout.widget.ConstraintLayout;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 import delta.dkt.R;
 import delta.dkt.sensors.LightSensor;
-
-import java.util.ArrayList;
 
 
 public class GameViewActivity extends AppCompatActivity {
     public static int clientID = -1; // ID gets set by server
     public static int players = -1; // players gets set by server
+    public static boolean isDicing = false;
+    public static boolean isSpectator = false;
     private final int[] locations = {1, 1, 1, 1, 1, 1};
     private SensorManager manager = null;
     private final LightSensor lightSensorListener = new LightSensor();
@@ -82,10 +98,57 @@ public class GameViewActivity extends AppCompatActivity {
         registerLightSensor();
         displayPlayers(players);
         handleMovementRequests();
+        createOnBackCallBack();
 
         if (Config.Skip && Config.DEBUG) {
             btnPropertyInfos.performClick();
         }
+    }
+
+    // Action when player presses back on mobile phone
+    private void createOnBackCallBack() {
+        OnBackPressedCallback callback = new OnBackPressedCallback(true) {
+            @Override
+            public void handleOnBackPressed() {
+                openPlayerLeavePopUp();
+            }
+        };
+        OnBackPressedDispatcher onBackPressedDispatcher = this.getOnBackPressedDispatcher();
+        onBackPressedDispatcher.addCallback(this, callback);
+    }
+
+    private void openPlayerLeavePopUp() {
+        ConstraintLayout popUpConstraintLayout = findViewById(R.id.playerLeavePopUpConstraint);
+        View view = LayoutInflater.from(this).inflate(R.layout.player_leave_pop_up_window, popUpConstraintLayout);
+
+        Button leaveGame = view.findViewById(R.id.button_leaveGame_yes);
+        Button cancelLeaveGame = view.findViewById(R.id.button_leaveGame_no);
+        TextView playerLeaveHint = view.findViewById(R.id.textView_playerLeaveHint);
+
+        final AlertDialog alertDialog = createAlertDialog(view);
+
+        cancelLeaveGame.setOnClickListener(view1 -> alertDialog.dismiss());
+        playerLeaveHint.setVisibility(View.VISIBLE);
+
+        if (MainMenuActivity.role) {
+            playerLeaveHint.setText(R.string.text_player_leave_hint_host);
+            leaveGame.setOnClickListener(view1 -> ServerActionHandler.triggerAction(PREFIX_END_GAME, "HOST WANTS TO LEAVE")); // Owner closes the game
+        } else if (!isDicing || players <= 1) { // Checks if player is not dicing or only one player exists -> Possible to leave
+            if (isSpectator)
+                leaveGame.setOnClickListener(view1 -> ClientHandler.sendMessageToServer(GAMEVIEW_ACTIVITY_TYPE, PREFIX_PLAYER_SPECTATOR_LEAVE, String.valueOf(clientID)));
+            else
+                leaveGame.setOnClickListener(view1 -> ClientHandler.sendMessageToServer(GAMEVIEW_ACTIVITY_TYPE, PREFIX_PLAYER_LEAVE, String.valueOf(clientID)));
+        } else { // Player cannot leave if conditions are not satisfied
+            leaveGame.setOnClickListener(view1 -> {
+                Toast.makeText(this, "You cannot leave since you need to dice!", Toast.LENGTH_SHORT).show();
+                alertDialog.dismiss();
+            });
+        }
+
+        if (alertDialog.getWindow() != null) {
+            alertDialog.getWindow().setBackgroundDrawable(new ColorDrawable(0));
+        }
+        alertDialog.show();
     }
 
     protected void switchToPropertyActivity() {
@@ -164,12 +227,14 @@ public class GameViewActivity extends AppCompatActivity {
         btnDice.setEnabled(true);
         btnDice.setBackgroundResource(R.drawable.host_btn_background);
         map.setEnabled(true);
+        isDicing = true;
     }
 
     public void disableDice() {
         btnDice.setEnabled(false);
         btnDice.setBackgroundResource(R.drawable.host_btn_background_disabled);
         map.setEnabled(false); // prevent touch event
+        isDicing = false;
     }
 
     /**
@@ -199,7 +264,7 @@ public class GameViewActivity extends AppCompatActivity {
         ConstraintLayout popUpConstraintLayout = findViewById(R.id.cheatConstraint);
         View view = LayoutInflater.from(this).inflate(R.layout.report_cheat_popup, popUpConstraintLayout);
 
-        if(playerNames.size() == 0){
+        if (playerNames.size() == 0) {
             Log.v(LOG_CHEAT, "No players found, using default names.");
             playerNames.add("Player1");
             playerNames.add("Player2");
@@ -217,12 +282,10 @@ public class GameViewActivity extends AppCompatActivity {
         Button submitCheater = view.findViewById(R.id.btnSubmitCheater);
         Button cancelCheater = view.findViewById(R.id.btnCancelCheater);
 
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setView(view);
-        final AlertDialog alertDialog = builder.create();
+        final AlertDialog alertDialog = createAlertDialog(view);
 
         submitCheater.setOnClickListener(view1 -> {
-            if(this.cheatSelection < 0){
+            if (this.cheatSelection < 0) {
                 SnackBarHandler.createSnackbar(recyclerView, "Please select a player before reporting!", LENGTH_SHORT, true).show();
                 return;
             }
@@ -240,5 +303,11 @@ public class GameViewActivity extends AppCompatActivity {
             alertDialog.getWindow().setBackgroundDrawable(new ColorDrawable(0));
         }
         alertDialog.show();
+    }
+
+    private AlertDialog createAlertDialog(View view) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setView(view);
+        return builder.create();
     }
 }

@@ -1,9 +1,11 @@
 package ClientUIHandling;
 
 import ClientUIHandling.actions.ActionActivityBroadcast;
+import ClientUIHandling.actions.ActionClientLeaveEvent;
 import ClientUIHandling.actions.ActionGameEnd;
 import ClientUIHandling.actions.ActionGetIP;
 import ClientUIHandling.actions.ActionMove;
+import ClientUIHandling.actions.ActionPlayerLeaveEvent;
 import ClientUIHandling.actions.ActionPing;
 import ClientUIHandling.actions.ActionPlayerLost;
 import ClientUIHandling.actions.ActionPlayerPunish;
@@ -72,7 +74,9 @@ public class ClientHandler extends Handler {
         actionMap.put(Constants.PREFIX_END_GAME, new ActionGameEnd());
         actionMap.put(Constants.PREFIX_SET_MONEY, new ActionSetMoney());
         actionMap.put(Constants.PREFIX_PLAYER_CHEATED, new ActionPlayerPunish());
-
+        actionMap.put(Constants.PREFIX_PLAYER_LEAVE, new ActionPlayerLeaveEvent());
+        actionMap.put(Constants.PREFIX_CLIENT_LEAVE_EVENT, new ActionClientLeaveEvent());
+        actionMap.put(Constants.PREFIX_PLAYER_SPECTATOR_LEAVE, new ActionPlayerLeaveEvent());
         actionMap.put(Constants.PREFIX_NOTIFICATION, new ActionPrisonNotification());
         actionMap.put(Constants.PREFIX_PROPLIST_UPDATE, new ActionPropertyListUpdate());
         actionMap.put(Constants.PREFIX_SERVER_FULL, new ActionServerIsFull());

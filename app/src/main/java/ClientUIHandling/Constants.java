@@ -26,9 +26,10 @@ public class Constants {
     public static final String PREFIX_ROLL_DICE_REQUEST = "ROLL_DICE_REQUEST";
     public static final String PREFIX_GET_SERVER_TIME = "SERVER_TIME";
     public static final String PREFIX_GAME_START = "GAMESTART";
-    public static final String PREFIX_REGISTER = "REGISTERUSER";
     public static final String PREFIX_INIT_PLAYERS = "INIT_PLAYERS";
-
+    public static final String PREFIX_PLAYER_LEAVE = "PLAYER_LEAVE";
+    public static final String PREFIX_PLAYER_SPECTATOR_LEAVE = "PLAYER_SPECTATOR_LEAVE";
+    public static final String PREFIX_CLIENT_LEAVE_EVENT = "PLAYER_CLIENT_LEAVE";
     public static final String PREFIX_PLAYER_LOST = "LOST";
     public static final String PREFIX_ADD_USER_TO_LIST = "Add_User_To_List";
     public static final String PREFIX_REMOVE_USER_FROM_LIST = "Remove_User_from_List";
