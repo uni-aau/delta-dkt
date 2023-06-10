@@ -7,11 +7,15 @@ import static ClientUIHandling.Constants.PREFIX_REMOVE_USER_FROM_LIST;
 import static delta.dkt.activities.MainActivity.user;
 import static delta.dkt.activities.MainMenuActivity.role;
 
+import ClientUIHandling.ClientHandler;
 import ClientUIHandling.Config;
+
+import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
@@ -66,7 +70,7 @@ public class LobbyViewActivity extends AppCompatActivity {
         welcomeToLobby();
         createOnBackCallBack();
 
-        backButton.setOnClickListener(view -> leavingTheLobby());
+        backButton.setOnClickListener(view -> backPressed());
 
         startButton.setOnClickListener(view -> {
             Log.d("Start", "Sending start action to server!");
@@ -129,5 +133,30 @@ public class LobbyViewActivity extends AppCompatActivity {
             alertDialog.getWindow().setBackgroundDrawable(new ColorDrawable(0));
         }
         alertDialog.show();
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if(keyCode == KeyEvent.KEYCODE_BACK){
+            backPressed();
+        }
+        return super.onKeyDown(keyCode, event);
+    }
+
+    private void backPressed(){
+        Log.i("LOBBY", "BACK BUTTON PRESSED");
+        if(role){
+            ServerActionHandler.triggerAction(PREFIX_CLOSE_GAME, null);
+        }else{
+            ClientHandler.sendMessageToServer(Constants.LOBBYVIEW_ACTIVITY_TYPE,Constants.PREFIX_REMOVE_USER_FROM_LIST,""+GameViewActivity.clientID);
+            backToMainMenu();
+
+        }
+    }
+
+    private void backToMainMenu(){
+        Intent intent = new Intent(getApplicationContext(), MainMenuActivity.class);
+        intent.putExtra(MainActivity.INTENT_PARAMETER, MainMenuActivity.username);
+        startActivity(intent);
     }
 }
