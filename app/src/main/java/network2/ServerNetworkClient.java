@@ -35,7 +35,7 @@ public class ServerNetworkClient extends Thread { //always executed on a separat
     private boolean serverInterrupted;
 
     private List<NetworkConnection> clientConnections;
-    private NetworkServiceDiscovery nsd;
+    private NetworkServiceFinder nsd;
 
 
     private Object synchTearDownToken;
@@ -46,7 +46,7 @@ public class ServerNetworkClient extends Thread { //always executed on a separat
     }
 
     public ServerNetworkClient(Context context) {
-        this.nsd = new NetworkServiceDiscovery(context);
+        this.nsd = new NetworkServiceFinder(context);
 
         initProperties();
     }

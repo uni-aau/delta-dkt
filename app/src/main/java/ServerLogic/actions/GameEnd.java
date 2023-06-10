@@ -17,8 +17,6 @@ public class GameEnd implements ServerActionInterface {
     public void execute(ServerNetworkClient server, Object parameters) {
         Log.d("[SERVER] GameEnd", "Received game end request with reason: " + (String) parameters);
 
-        //TODO: Evaluate which player wins/loses. For example: most wealth, most properties, etc.
-
         // winnerList gets the values from the Hashmap
         ArrayList<Player> winners = new ArrayList<>(Game.getWinnerList());
         ArrayList<String> args = new ArrayList<>();

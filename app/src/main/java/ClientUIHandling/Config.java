@@ -8,7 +8,8 @@ public class Config {
         // No instantiation of class
     }
 
-    public static int MAX_CLIENTS = 6;
+    public static int MAX_CLIENTS = 6; // value gets set by user (needs to be <= MAX_CLIENTS_AMOUNT)
+    public static final int MAX_CLIENTS_AMOUNT = 6; // Maximum clients that are possible in game (should be only changed here)
     public static final int MIN_CLIENTS = 1;
     public static int END_TIME = 3000000; // end_time in milliseconds
     public static int ENDROUNDS = 100; //Number of rounds until the game ends

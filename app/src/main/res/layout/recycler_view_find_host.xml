@@ -2,7 +2,6 @@
 
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/recViewFindHost"
     android:layout_width="350dp"
     android:layout_height="100dp"
@@ -30,18 +29,19 @@
         android:textSize="15sp" />
 
     <ImageView
-        android:id="@+id/imageView2"
-        android:layout_width="79dp"
-        android:layout_height="74dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginStart="13dp"
-        android:layout_marginTop="15dp"
-        android:layout_marginEnd="258dp"
-        android:layout_marginBottom="11dp"
-        app:srcCompat="@drawable/baseline_wifi_24" />
+            android:id="@+id/imageView2"
+            android:layout_width="79dp"
+            android:layout_height="74dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="13dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginEnd="258dp"
+            android:layout_marginBottom="11dp"
+            app:srcCompat="@drawable/baseline_wifi_24"
+            android:contentDescription="@string/contentdescription_host_wlan" />
     <!--android:fontFamily="@font/bangers"-->
 
 
