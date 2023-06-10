@@ -110,6 +110,7 @@
     <string name="text_button_no">No</string>
     <string name="text_player_leave_hint">Hint: Your wealth will be reset!</string>
     <string name="text_player_leave_hint_host">Hint: Since you are the host, the server will be closed!</string>
+    <string name="contentdescription_host_wlan">Host WLan Logo</string>
 
     <plurals name="game_started_activity_text">
         <item quantity="one">Game started with %d player</item>
