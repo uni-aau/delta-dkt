@@ -16,6 +16,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 
+import androidx.activity.OnBackPressedCallback;
+import androidx.activity.OnBackPressedDispatcher;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
@@ -62,6 +64,7 @@ public class LobbyViewActivity extends AppCompatActivity {
 
         // Adding User to the UserList
         welcomeToLobby();
+        createOnBackCallBack();
 
         backButton.setOnClickListener(view -> leavingTheLobby());
 
@@ -76,9 +79,15 @@ public class LobbyViewActivity extends AppCompatActivity {
     }
 
     // Action when player presses back on mobile phone
-    @Override
-    public void onBackPressed() {
-        openPlayerLeavePopUp();
+    private void createOnBackCallBack() {
+        OnBackPressedCallback callback = new OnBackPressedCallback(true) {
+            @Override
+            public void handleOnBackPressed() {
+                openPlayerLeavePopUp();
+            }
+        };
+        OnBackPressedDispatcher onBackPressedDispatcher = this.getOnBackPressedDispatcher();
+        onBackPressedDispatcher.addCallback(this, callback);
     }
 
 
