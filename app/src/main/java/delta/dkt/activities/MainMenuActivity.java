@@ -227,7 +227,7 @@ public class MainMenuActivity extends AppCompatActivity {
 
     // Check if valid Methods:
     private boolean isValidMaxPlayers(int maxPlayers) {
-        return maxPlayers >= Config.MIN_CLIENTS && maxPlayers <= Config.MAX_CLIENTS;
+        return maxPlayers >= Config.MIN_CLIENTS && maxPlayers <= Config.MAX_CLIENTS_AMOUNT;
     }
 
     private boolean isValidTimeOrRounds(int timeOrRounds) {
