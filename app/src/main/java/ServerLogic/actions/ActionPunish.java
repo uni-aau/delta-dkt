@@ -14,21 +14,22 @@ import delta.dkt.logic.structure.Player;
 import network2.ServerNetworkClient;
 
 public class ActionPunish implements ServerActionInterface {
+    private static final String TAG = "[Server] ActionPunish";
     @Override
     public void execute(ServerNetworkClient server, Object parameters) {
         //! Parameter format: [<correctlyReported>, <playerID>]
 
         if(!(parameters instanceof Object[])){
-            Log.e("ERROR","WRONG PARAMETERS FOR ActionPunish, expected an array!");
+            Log.e(TAG,"WRONG PARAMETERS FOR ActionPunish, expected an array!");
             return;
         }
         Object[] parameterArray = (Object[]) parameters;
         if(!(parameterArray[0] instanceof Boolean)){
-            Log.e("ERROR","WRONG PARAMETERS FOR ActionPunish, expected boolean as first element!");
+            Log.e(TAG,"WRONG PARAMETERS FOR ActionPunish, expected boolean as first element!");
             return;
         }
         if(!(parameterArray[1] instanceof Integer)){
-            Log.e("ERROR","WRONG PARAMETERS FOR ActionPunish, expected integer as second element!");
+            Log.e(TAG,"WRONG PARAMETERS FOR ActionPunish, expected integer as second element!");
             return;
         }
 
@@ -46,7 +47,7 @@ public class ActionPunish implements ServerActionInterface {
         }
 
         if(player.getCash() < 0){
-            ServerActionHandler.triggerAction(PREFIX_PLAYER_LOST, player.getId());
+            ServerActionHandler.triggerAction(PREFIX_PLAYER_LOST, new String[]{String.valueOf(player.getId()), "false"}); // false -> loose event
         }
     }
 }

@@ -35,7 +35,7 @@ public class ServerNetworkClient extends Thread { //always executed on a separat
     private boolean serverInterrupted;
 
     private List<NetworkConnection> clientConnections;
-    private NetworkServiceDiscovery nsd;
+    private NetworkServiceFinder nsd;
 
 
     private Object synchTearDownToken;
@@ -46,7 +46,7 @@ public class ServerNetworkClient extends Thread { //always executed on a separat
     }
 
     public ServerNetworkClient(Context context) {
-        this.nsd = new NetworkServiceDiscovery(context);
+        this.nsd = new NetworkServiceFinder(context);
 
         initProperties();
     }
@@ -61,7 +61,7 @@ public class ServerNetworkClient extends Thread { //always executed on a separat
         try {
             interfaces = Collections.list(NetworkInterface.getNetworkInterfaces());
         } catch (SocketException e) {
-            throw new RuntimeException(e);
+            throw new RuntimeException("Error while trying to create list of NetworkInterfaces: " + e);
         }
         for (NetworkInterface networkInterface : interfaces) {
             List<InetAddress> addresses = Collections.list(networkInterface.getInetAddresses());
