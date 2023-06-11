@@ -48,8 +48,10 @@ public class RequestGameStartTime implements ServerActionInterface {
 
                 @Override
                 public void onFinish() {
-                    ServerActionHandler.triggerAction(Constants.PREFIX_END_GAME, "TIME RAN OUT");
-                    timer.cancel();
+                    if(!Config.SELECTED_GAME_MODE) { // Only stop the game via time when host selected max time as game mode
+                        ServerActionHandler.triggerAction(Constants.PREFIX_END_GAME, "TIME RAN OUT");
+                        timer.cancel();
+                    }
                 }
             };
             timer.start();
