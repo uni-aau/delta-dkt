@@ -53,7 +53,7 @@ public class RequestGameStartTime implements ServerActionInterface {
                     timer.cancel();
                 }
             };
-//            timer.start();
+            timer.start();
         }
     }
 }
