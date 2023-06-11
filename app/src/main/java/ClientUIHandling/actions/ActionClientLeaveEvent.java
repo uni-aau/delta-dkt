@@ -1,15 +1,16 @@
 package ClientUIHandling.actions;
 
 import android.content.Intent;
-import android.util.Log;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import ClientUIHandling.ClientActionInterface;
 import ClientUIHandling.ClientHandler;
 import delta.dkt.activities.GameViewActivity;
+import delta.dkt.activities.LobbyViewActivity;
 import delta.dkt.activities.MainActivity;
 import delta.dkt.activities.MainMenuActivity;
+import delta.dkt.logic.structure.Game;
 
 public class ActionClientLeaveEvent implements ClientActionInterface {
     @Override
@@ -26,6 +27,9 @@ public class ActionClientLeaveEvent implements ClientActionInterface {
             } catch (Exception e) {
                 throw new RuntimeException("Error while trying to close the client connection: " + e);
             }
+
+            Game.reset();
+            LobbyViewActivity.userList.clear();
 
             Intent intent = new Intent(activity.getApplicationContext(), MainMenuActivity.class);
             intent.putExtra(MainActivity.INTENT_PARAMETER, MainMenuActivity.username);
