@@ -12,7 +12,7 @@ import ServerLogic.ServerActionHandler;
 public class Player implements Comparable<Player>{
     private boolean youGetOutOfPrisonCard = false;
     private boolean goToPrisonField = false;
-    private static int _id = 1;
+    public static int _id = 1;
 
     //? May be used to sync player data across clients
     private int id = Player._id++;

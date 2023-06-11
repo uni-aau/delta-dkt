@@ -113,10 +113,12 @@ public class ServerNetworkClient extends Thread { //always executed on a separat
                 }
 
                 // sets clientID & username
-                // todo rework username setting
                 int clientID = Game.getPlayers().size() + 1;
                 String userName = "-";
                 clientSocket.send("IPINNIT:" + clientID);
+
+                Player player = new Player(userName);
+                player.setId(clientID);
 
                 Game.getPlayers().put(clientID, new Player(userName));
 
