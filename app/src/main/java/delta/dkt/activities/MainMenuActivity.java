@@ -41,7 +41,7 @@ public class MainMenuActivity extends AppCompatActivity {
     ServerNetworkClient server;
     NetworkClientConnection client;
 
-    public static String username; // Todo - Move into Main Activity??
+    public static String username;
     public static boolean role;
 
     public static String ip;
