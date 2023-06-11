@@ -20,6 +20,7 @@ import static delta.dkt.R.id.imageView;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.Resources;
 import android.graphics.drawable.ColorDrawable;
 import android.hardware.Sensor;
 import android.hardware.SensorManager;
@@ -51,6 +52,8 @@ import ClientUIHandling.handlers.notifications.SnackBarHandler;
 import ClientUIHandling.handlers.positioning.PositionHandler;
 import ServerLogic.ServerActionHandler;
 import delta.dkt.R;
+import delta.dkt.logic.structure.Game;
+import delta.dkt.logic.structure.Property;
 import delta.dkt.sensors.LightSensor;
 
 
@@ -231,12 +234,18 @@ public class GameViewActivity extends AppCompatActivity {
         figure.setY(pos.y);
     }
 
-    public void openBuyPropertyPopUp() {
+    public void openBuyPropertyPopUp(int position) {
+        Resources resources = this.getResources();
         ConstraintLayout popUpConstraintLayout = findViewById(R.id.playerBuyPropertyPopUpConstraint);
         View view = LayoutInflater.from(this).inflate(R.layout.player_buy_property_pop_up_window, popUpConstraintLayout);
 
         Button buyProperty = view.findViewById(R.id.button_buyProperty_yes);
         Button cancelBuyProperty = view.findViewById(R.id.button_buyProperty_no);
+
+        TextView propertyInformation = view.findViewById(R.id.textView_playerBuyPropertyHint);
+        Property property = (Property) Game.getMap().getField(position);
+        String propertyInformationTextInput = resources.getString(R.string.text_property_buy_hint, property.getName(), String.valueOf(property.getLocation()), String.valueOf(property.getPrice()));
+        propertyInformation.setText(propertyInformationTextInput);
 
         final AlertDialog alertDialog = createAlertDialog(view);
 
