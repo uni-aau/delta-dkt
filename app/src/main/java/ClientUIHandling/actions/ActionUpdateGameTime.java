@@ -15,8 +15,6 @@ public class ActionUpdateGameTime implements ClientActionInterface {
     public void execute(AppCompatActivity activity, String clientMessage) {
         String[] args = clientMessage.replace(PREFIX_GET_SERVER_TIME, "").trim().split(";"); // Holt sich Args nach dem Prefix
 
-        Log.d("[UI] GameTime", "Received update game time event: " + args[0]);
-
         updateGameTime(args[0], activity);
     }
 
