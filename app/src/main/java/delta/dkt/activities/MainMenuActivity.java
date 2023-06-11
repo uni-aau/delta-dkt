@@ -24,8 +24,9 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
-import java.text.SimpleDateFormat;
+import java.text.DateFormat;
 import java.util.Date;
+import java.util.Locale;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 import ClientUIHandling.ClientHandler;
@@ -237,10 +238,10 @@ public class MainMenuActivity extends AppCompatActivity {
 
     // This Method will start with the Server and trigger the Action "HOST_NEW_GAME"
     public void startServer(String serverName) throws InterruptedException {
+        String currentTime = getTime();
         MainActivity.subscribeToLogic(Constants.PREFIX_SERVER, this);
         server = new ServerNetworkClient(this.getApplicationContext());
         server.start();
-
         Thread.sleep(100);
 
         client = new NetworkClientConnection("localhost", server.getPort(), 1000, logic);
@@ -251,7 +252,7 @@ public class MainMenuActivity extends AppCompatActivity {
 
         ClientHandler.setClient(client);
 
-        Toast.makeText(MainMenuActivity.this, "Server " + serverName + " started on " + getTime(), Toast.LENGTH_SHORT).show();
+        Toast.makeText(MainMenuActivity.this, "Server " + serverName + " started on " + currentTime, Toast.LENGTH_SHORT).show();
 
         Thread.sleep(100);
 
@@ -261,8 +262,8 @@ public class MainMenuActivity extends AppCompatActivity {
 
     // This method returns the current time
     public static String getTime() {
-        SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss");
-        return sdf.format(new Date());
+        DateFormat timeFormat = DateFormat.getTimeInstance(DateFormat.MEDIUM, Locale.getDefault());
+        return timeFormat.format(new Date());
     }
 
 }
