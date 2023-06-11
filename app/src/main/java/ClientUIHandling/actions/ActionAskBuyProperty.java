@@ -10,9 +10,15 @@ import delta.dkt.activities.GameViewActivity;
 public class ActionAskBuyProperty implements ClientActionInterface {
     @Override
     public void execute(AppCompatActivity activity, String clientMessage) {
-        Log.d("[Client] ActionAskBuyProperty", "Received property ask buy property action! " + clientMessage);
         GameViewActivity gameViewActivity = (GameViewActivity) activity;
+        String prefix = clientMessage.split(" ")[0];
+        String[] splitMessage = clientMessage.replace(prefix, "").trim().split(";");
 
-        gameViewActivity.openBuyPropertyPopUp();
+        int clientID = Integer.parseInt(splitMessage[0]);
+        Log.d("[Client] ActionAskBuyProperty", "Received property ask buy property action! " + clientID);
+
+        if (clientID == GameViewActivity.clientID) {
+            gameViewActivity.openBuyPropertyPopUp();
+        }
     }
 }
