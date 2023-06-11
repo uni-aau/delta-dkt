@@ -87,4 +87,14 @@
     <string name="pay_static_tax_activity_text">%s muss %s$ Miete zahlen. Alter Betrag: %s$, neuer Betrag: %s$</string>
     <string name="game_started_acitivty_text">Spiel wurde gestertet!</string>
     <string name="text_rent">Miete: %s$</string>
+
+    <string name="jail_card">JailCard</string>
+    <string name="lucky_card">LuckyCard</string>
+    <string name="unlucky_card">UnluckyCard</string>
+    <string name="jail_card_text">Gehe in den Arrest</string>
+    <string name="lucky_card_text1">Für Bankzinsen erhältst du 180€</string>
+    <string name="lucky_card_text2">Für den Verkauf von Wertpapieren erhältst du 50€</string>
+    <string name="lucky_card_text3">An Reisespesenbeitrag erhältst du 40€</string>
+    <string name="unlucky_card_text1">Bezahle deine Lebensversicherungsprämie: 120€</string>
+    <string name="unlucky_card_text2">An die Krankenkasse bezahle: 130€</string>
 </resources>
