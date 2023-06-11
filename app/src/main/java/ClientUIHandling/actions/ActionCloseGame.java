@@ -10,7 +10,9 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import ClientUIHandling.ClientActionInterface;
 import ClientUIHandling.ClientHandler;
+import delta.dkt.activities.LobbyViewActivity;
 import delta.dkt.activities.MainMenuActivity;
+import delta.dkt.logic.structure.Game;
 
 public class ActionCloseGame implements ClientActionInterface {
     @Override
@@ -39,5 +41,8 @@ public class ActionCloseGame implements ClientActionInterface {
         } catch (Exception e) {
             throw new RuntimeException("Error while trying to close the client connection: " + e);
         }
+
+        Game.reset();
+        LobbyViewActivity.userList.clear();
     }
 }
