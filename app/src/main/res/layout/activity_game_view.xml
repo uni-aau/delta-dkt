@@ -10,9 +10,9 @@
     <TextView
             android:text="@string/activity_text"
             android:layout_width="162dp"
-            android:layout_height="70dp"
+            android:layout_height="80dp"
             android:id="@+id/textView_activity"
-            android:gravity="center_horizontal"
+            android:gravity="center|center_horizontal"
             app:layout_constraintStart_toEndOf="@+id/imageView"
             app:layout_constraintHorizontal_bias="0.542"
             app:layout_constraintEnd_toEndOf="parent"
@@ -131,7 +131,7 @@
     <TextView
             android:text="@string/dice_information_text"
             android:layout_width="147dp"
-            android:layout_height="40dp"
+            android:layout_height="25dp"
             android:id="@+id/textView_dice_information"
             android:gravity="center"
             android:textSize="14sp"
