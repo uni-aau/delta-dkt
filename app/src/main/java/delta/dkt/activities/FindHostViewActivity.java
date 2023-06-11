@@ -19,7 +19,7 @@ import java.util.ArrayList;
 import ClientUIHandling.ClientHandler;
 import ClientUIHandling.Constants;
 import delta.dkt.R;
-import network2.DiscoveryListener;
+import network2.NsdDiscoveryListener;
 import network2.NetworkClientConnection;
 import network2.NetworkServiceDiscoveryClient;
 
@@ -52,7 +52,7 @@ public class FindHostViewActivity extends AppCompatActivity{
 
         NetworkServiceDiscoveryClient discoveryClient = new NetworkServiceDiscoveryClient(this, SERVICE_TYPE);
 
-        discoveryClient.startDiscovery(new DiscoveryListener(this));
+        discoveryClient.startDiscovery(new NsdDiscoveryListener(this));
 
         Log.d("Game-", "Discovery has been started!");
 

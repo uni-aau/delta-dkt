@@ -9,11 +9,11 @@ import ClientUIHandling.handlers.notifications.SnackBarHandler;
 import delta.dkt.R;
 import delta.dkt.activities.FindHostViewActivity;
 
-public class DiscoveryListener implements NsdManager.DiscoveryListener{
+public class NsdDiscoveryListener implements NsdManager.DiscoveryListener{
     private final FindHostViewActivity activity;
     private NsdManager manager;
 
-    public DiscoveryListener(FindHostViewActivity activity){
+    public NsdDiscoveryListener(FindHostViewActivity activity){
         this.activity = activity;
     }
 

@@ -14,7 +14,7 @@ public class NetworkServiceDiscoveryClient {
         nsdManager = (NsdManager) context.getSystemService(Context.NSD_SERVICE);
     }
 
-    public void startDiscovery(DiscoveryListener listener) {
+    public void startDiscovery(NsdDiscoveryListener listener) {
         stopDiscovery();
         listener.setManager(nsdManager);
         discoveryListener = listener;
