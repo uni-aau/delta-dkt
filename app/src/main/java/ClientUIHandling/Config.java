@@ -31,9 +31,9 @@ public class Config {
 
     public static final Dice DICE_RANGE = new Dice(1, 6);
     public static final Dice CHEAT_RANGE = new Dice(7, 9);
-    public static final int TIMEOUT = 20000; // timeout threshold (in milliseconds)
+    public static final int TIMEOUT = 30000; // timeout threshold (in milliseconds)
 
-    public static final int TIMEOUT_WARNING_THRESHOLD = 5000; // opens snackbar as warning that time is nearly over (in milliseconds)
+    public static final int TIMEOUT_WARNING_THRESHOLD = 10000; // opens snackbar as warning that time is nearly over (in milliseconds)
 
     public static final int PING_TIMEOUT = 2000;
 }
