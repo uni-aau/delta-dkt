@@ -138,14 +138,6 @@ public class LobbyViewActivity extends AppCompatActivity {
         alertDialog.show();
     }
 
-    @Override
-    public boolean onKeyDown(int keyCode, KeyEvent event) {
-        if(keyCode == KeyEvent.KEYCODE_BACK){
-            backPressed();
-        }
-        return super.onKeyDown(keyCode, event);
-    }
-
     private void backPressed(){
         Log.i("LOBBY", "BACK BUTTON PRESSED");
         if(role){
