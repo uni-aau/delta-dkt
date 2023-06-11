@@ -13,6 +13,7 @@ import ClientUIHandling.Config;
 import ServerLogic.ServerActionHandler;
 import ServerLogic.ServerActionInterface;
 import delta.dkt.logic.structure.Game;
+import delta.dkt.logic.structure.Player;
 import network2.ServerNetworkClient;
 
 public class RequestRollDicePerm implements ServerActionInterface {
@@ -173,10 +174,30 @@ public class RequestRollDicePerm implements ServerActionInterface {
     }
 
     private int getNextPlayerID(int oldClientId, int size) {
-        if (oldClientId % size == 0) {
+        int nextCopy = oldClientId;
+        int nextClient;
+        Player player;
+
+        do {
+            nextClient = getNextClientId(nextCopy);
+            player = getNextPlayer(nextClient);
+            nextCopy = nextClient;
+            System.out.println("TEST - Calculating clientID: " + nextClient + " " + nextCopy + " size " + size);
+        } while(player == null);
+
+        return nextClient;
+    }
+
+    private int getNextClientId(int clientId) {
+        int size = Config.MAX_CLIENTS; // starts at 1 when all clients are checked
+
+        if (clientId % size == 0) {
             return 1; // swap to first player
         }
-        return oldClientId + 1;
+        return clientId + 1;
+    }
 
+    private Player getNextPlayer(int nextClient) {
+        return Game.getPlayers().get(nextClient);
     }
 }
