@@ -314,10 +314,9 @@ class PlayerTests {
      *
      * @param steps Steps that the player will move from its current position.
      */
-//    @ParameterizedTest
-//    @ValueSource(ints = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10})
+    @ParameterizedTest
+    @ValueSource(ints = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10})
     void checkPlayerMovement_bySteps(int steps) {
-        mockClientHandler();
         //? sets the return value for getField method with its given arguments to a valid property.
         int location = player.getPosition().getLocation() + steps;
         if (steps % 2 == 0) {
@@ -346,10 +345,9 @@ class PlayerTests {
      *
      * @param location The location to which the player should be moved.
      */
-//    @ParameterizedTest
-//    @ValueSource(ints = {0, 1, 2, 3, 4, 5, 6, 10})
+    @ParameterizedTest
+    @ValueSource(ints = {0, 1, 2, 3, 4, 5, 6, 10})
     void checkPlayerMovement_moveTo(int location) {
-        mockClientHandler();
         //? sets the return value for getField method with its given arguments to a valid property.
         when(mockMapHandling.getField(location == 0 ? location + 1 : location)).thenReturn(generateDummyProperty(location == 0 ? location + 1 : location));
 
@@ -509,17 +507,6 @@ class PlayerTests {
         assertTrue(player.getAndClearPing());
         assertFalse(player.getAndClearPing());
 
-    }
-
-    private void mockClientHandler() {
-/*        mockedClientHandler = mock(ClientHandler.class);
-
-        // Mock the sendMessageToServer method to do nothing
-        doNothing().when(mockedClientHandler).sendMessageToServer(anyString(), anyString(), anyString());
-        doNothing().when(mockedClientHandler).sendMessageToServer(anyString(), anyString(), (Object[]) anyObject());
-
-        // Set the mocked ClientHandler instance in the class under test
-        player.setClientHandler(mockedClientHandler);*/
     }
 }
 
