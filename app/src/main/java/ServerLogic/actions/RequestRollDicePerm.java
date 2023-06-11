@@ -37,7 +37,7 @@ public class RequestRollDicePerm implements ServerActionInterface {
         // Check if clientID is last ID in game
         int size = Game.getPlayers().size();
         if (size != 0) {
-            nextClient = getNextPlayerID(oldClientId, size);
+            nextClient = getNextPlayerID(oldClientId);
 
             String nickName = Game.getPlayers().get(nextClient).getNickname();
             Log.d(TAG, "New roll dice server request - prevClientID " + oldClientId + " nextClient " + nextClient + " nickName " + nickName);
@@ -142,7 +142,7 @@ public class RequestRollDicePerm implements ServerActionInterface {
                 }
 
                 synchronized (synchTimeoutToken) {
-                    int nextPlayerID = getNextPlayerID(playerID, Game.getPlayers().size());
+                    int nextPlayerID = getNextPlayerID(playerID);
                     server.broadcast(GAMEVIEW_ACTIVITY_TYPE, PREFIX_ROLL_DICE_REQUEST, new String[]{"" + nextPlayerID, Game.getPlayers().get(nextPlayerID).getNickname()});
                     Game.incrementRounds(playerID);
                     this.playerID = nextPlayerID;
@@ -169,7 +169,7 @@ public class RequestRollDicePerm implements ServerActionInterface {
 
     }
 
-    private int getNextPlayerID(int oldClientId, int size) {
+    private int getNextPlayerID(int oldClientId) {
         int nextCopy = oldClientId;
         int nextClient;
         Player player;
