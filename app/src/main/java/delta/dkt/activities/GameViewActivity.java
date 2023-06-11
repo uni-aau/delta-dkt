@@ -244,7 +244,7 @@ public class GameViewActivity extends AppCompatActivity {
 
         TextView propertyInformation = view.findViewById(R.id.textView_playerBuyPropertyHint);
         Property property = (Property) Game.getMap().getField(position);
-        String propertyInformationTextInput = resources.getString(R.string.text_property_buy_hint, property.getName(), String.valueOf(property.getLocation()), String.valueOf(property.getPrice()));
+        String propertyInformationTextInput = resources.getString(R.string.text_property_buy_hint, property.getName(), String.valueOf(property.getLocation()), String.valueOf(property.getBaseRent()), String.valueOf(property.getPrice()));
         propertyInformation.setText(propertyInformationTextInput);
 
         final AlertDialog alertDialog = createAlertDialog(view);
