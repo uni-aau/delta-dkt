@@ -42,9 +42,15 @@ public class GameEnd implements ServerActionInterface {
             // Restore interrupted state...
             Thread.currentThread().interrupt();
         } catch (IOException e) {
-            throw new RuntimeException("Error while trying to close the server: " + e);
+            throw new GameEndException("Error while trying to close the server: " + e);
         }
 
+    }
+
+    public static class GameEndException extends RuntimeException {
+        public GameEndException(String message) {
+            super(message);
+        }
     }
 
 }
