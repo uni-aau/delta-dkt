@@ -19,7 +19,7 @@
                 android:id="@+id/textView_buyPropertyQuestion"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Do you want to buy the following property?"
+                android:text="@string/text_buy_property_confirmation_question"
                 android:textColor="@color/blackSpecial"
                 android:textSize="20sp"
                 android:paddingTop="28dp"
