@@ -104,12 +104,6 @@ public class LobbyViewActivity extends AppCompatActivity {
         }
     }
 
-    // This Method removes the User from the UserList, updates the List and Closes the game/server
-    public void leavingTheLobby() {
-        ServerActionHandler.triggerAction(PREFIX_REMOVE_USER_FROM_LIST, user);
-        ServerActionHandler.triggerAction(PREFIX_CLOSE_GAME,"");
-    }
-
     private void disableStartButton() {
         startButton.setEnabled(false);
         startButton.setBackgroundResource(R.drawable.host_btn_background_disabled);
@@ -127,20 +121,15 @@ public class LobbyViewActivity extends AppCompatActivity {
         AlertDialog alertDialog = builder.create();
 
         cancelLeaveGame.setOnClickListener(view1 -> alertDialog.dismiss());
-        leaveGame.setOnClickListener(view1 -> leavingTheLobby());
+        leaveGame.setOnClickListener(view1 -> {
+            backPressed();
+            alertDialog.dismiss();
+        });
 
         if (alertDialog.getWindow() != null) {
             alertDialog.getWindow().setBackgroundDrawable(new ColorDrawable(0));
         }
         alertDialog.show();
-    }
-
-    @Override
-    public boolean onKeyDown(int keyCode, KeyEvent event) {
-        if(keyCode == KeyEvent.KEYCODE_BACK){
-            backPressed();
-        }
-        return super.onKeyDown(keyCode, event);
     }
 
     private void backPressed(){
