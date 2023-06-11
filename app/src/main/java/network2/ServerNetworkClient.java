@@ -120,7 +120,7 @@ public class ServerNetworkClient extends Thread { //always executed on a separat
                 Player player = new Player(userName);
                 player.setId(clientID);
 
-                Game.getPlayers().put(clientID, new Player(userName));
+                Game.getPlayers().put(clientID, player);
 
 
             }
