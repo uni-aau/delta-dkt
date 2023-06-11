@@ -13,16 +13,16 @@ public class RiskTaskCollection {
      * The RiskTaskCollection includes ten tasks that a player can get in a game.
      */
     public RiskTaskCollection(){
-        riskTask.add(new RiskTask(1,"JailCard","Gehe in den Arrest!"));
-        riskTask.add(new RiskTask(2,"OutOfJailCard","Diese Karte befreit dich aus dem Arrest! Hebe diese Karte auf, du wirst sie brauchen."));
-        riskTask.add(new RiskTask(3,"TravelCard", "Besuch Salzburg und gehe am Mirabellplatz spazieren. Passierst du den Start, erhältst du 200€."));
-        riskTask.add(new RiskTask(4,"TravelCard","Gehe um 4 Felder zurück."));
-        riskTask.add(new RiskTask(5,"TravelCard","Rücke 7 Felder vor."));
-        riskTask.add(new RiskTask(6,"LuckyCard","Die Bank zahlt dir an Dividenden 60€."));
-        riskTask.add(new RiskTask(7,"LuckyCard","Für die Auswertung einer Erfindung erhältst du 140€ aus öffentlichen Mitteln."));
-        riskTask.add(new RiskTask(8,"UnluckyCard","Zahle 5€ Polizeistrafe."));
-        riskTask.add(new RiskTask(9,"UnluckyCard","Für unerlaubtes Parken bezahlst du 200€."));
-        riskTask.add(new RiskTask(10,"TravelCard","Besuch Graz und gehe auf der Annenstraße spazieren. Passierst du den Start, erhältst du 200€."));
+        riskTask.add(new RiskTask(1,"jail_card","jail_card_text"));
+        riskTask.add(new RiskTask(2,"out_of_jail_card","out_of_jail_card_text"));
+        riskTask.add(new RiskTask(3,"travel_card", "travel_card_text1"));
+        riskTask.add(new RiskTask(4,"travel_card","travel_card_text2"));
+        riskTask.add(new RiskTask(5,"travel_card","travel_card_text3"));
+        riskTask.add(new RiskTask(6,"lucky_card","lucky_card_text4"));
+        riskTask.add(new RiskTask(7,"lucky_card","lucky_card_text5"));
+        riskTask.add(new RiskTask(8,"unlucky_card","unlucky_card_text3"));
+        riskTask.add(new RiskTask(9,"unlucky_card","unlucky_card_text4"));
+        riskTask.add(new RiskTask(10,"travel_card","travel_card_text4"));
     }
 
     /**

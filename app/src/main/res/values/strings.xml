@@ -96,4 +96,16 @@
     <string name="lucky_card_text3">You get 40€ for travel expenses contribution</string>
     <string name="unlucky_card_text1">Pay your life insurance: 120€</string>
     <string name="unlucky_card_text2">Pay 130€ for your health insurance</string>
+
+    <string name="out_of_jail_card">OutOfJailCard</string>
+    <string name="out_of_jail_card_text">This card will free you from prison! Keep it, you will need it.</string>
+    <string name="lucky_card_text4">The bank pays you dividends: 60€</string>
+    <string name="lucky_card_text5">For an invention you get 140€</string>
+    <string name="unlucky_card_text3">Pay 5€ police penalty</string>
+    <string name="unlucky_card_text4">Pay 200€ for wrong parking</string>
+    <string name="travel_card">TravelCard</string>
+    <string name="travel_card_text1">Move to \"Mirabellplatz\" (field 25). If you pass the Start-Field you will get 200€</string>
+    <string name="travel_card_text2">Go 4 fields back</string>
+    <string name="travel_card_text3">Move 7 fields forward</string>
+    <string name="travel_card_text4">Move to \"Annenstraße\" (field 6). If you pass the Start-Field you will get 200€</string>
 </resources>
