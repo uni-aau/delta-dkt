@@ -86,4 +86,14 @@
     <string name="pay_static_tax_activity_text">%s had to pay %s$ taxes. Old cash %s$, new cash %s$</string>
     <string name="game_started_acitivty_text">Game started!</string>
     <string name="text_rent">Rent: %s$</string>
+
+    <string name="jail_card">JailCard</string>
+    <string name="lucky_card">LuckyCard</string>
+    <string name="unlucky_card">UnluckyCard</string>
+    <string name="jail_card_text">Go to jail</string>
+    <string name="lucky_card_text1">For bank interest you get 180€</string>
+    <string name="lucky_card_text2">For the sale of shares you receive 50€</string>
+    <string name="lucky_card_text3">You get 40€ for travel expenses contribution</string>
+    <string name="unlucky_card_text1">Pay your life insurance: 120€</string>
+    <string name="unlucky_card_text2">Pay 130€ for your health insurance</string>
 </resources>
