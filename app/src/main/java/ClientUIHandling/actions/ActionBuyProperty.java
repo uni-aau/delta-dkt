@@ -19,8 +19,6 @@ public class ActionBuyProperty implements ClientActionInterface {
         String prefix = clientMessage.split(" ")[0];
         String[] splitMessage = clientMessage.replace(prefix, "").trim().split(";");
         Log.i("PropertyBought", "Received a Property bought message");
-//        Toast.makeText(activity, clientMessage, Toast.LENGTH_LONG).show();
-//        Log.i("PropertyBought", "Trying to process request clientmessage:" + clientMessage);
 
         int id = Integer.parseInt(splitMessage[0]);
 
