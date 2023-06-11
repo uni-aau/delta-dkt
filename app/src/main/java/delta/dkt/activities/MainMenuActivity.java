@@ -184,9 +184,11 @@ public class MainMenuActivity extends AppCompatActivity {
             try {
                 Config.MAX_CLIENTS = maxPlayers;
                 if (isRoundsSelected.get()) {
+                    Config.SELECTED_GAME_MODE = true;
                     Config.ENDROUNDS = timeOrRounds;
                 }
                 if (isTimeSelected.get()) {
+                    Config.SELECTED_GAME_MODE = false;
                     Config.END_TIME = timeOrRounds * 60000;
                 }
                 startServer(serverName);

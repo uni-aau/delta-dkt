@@ -21,7 +21,7 @@ class GameTest {
     void incrementRounds() {
 
         for (int playerId = 1; playerId < 6; playerId++) {
-            for(int rounds = 0; rounds < Config.ENDROUNDS;rounds++){
+            for(int rounds = 1; rounds < Config.ENDROUNDS;rounds++){
                 Game.incrementRounds(playerId);
             }
         }
@@ -35,7 +35,7 @@ class GameTest {
         Game.reset();
         assertEquals(0, Game.getPlayers().size());
         assertEquals(-1, Game.getRoundStartID());
-        assertEquals(0, Game.getRounds());
+        assertEquals(1, Game.getRounds());
     }
 
 
