@@ -39,6 +39,9 @@ public class RequestGameStartTime implements ServerActionInterface {
                     elapsedTime += 1000; // + 1000 millisekunden pro Tick -> +1 sekunde
 
                     int currentMinute = (int) (elapsedTime / 60000);
+                    if(currentMinute != previousMinute) {
+                        Log.d("Server Start Time", "New minute! Previous minute " + previousMinute + " new minute " + currentMinute);
+                    }
                     server.broadcast(GAMEVIEW_ACTIVITY_TYPE, PREFIX_GET_SERVER_TIME, new String[]{String.valueOf(elapsedTime)});
                     previousMinute = currentMinute;
                 }
