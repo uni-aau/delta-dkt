@@ -127,7 +127,10 @@ public class LobbyViewActivity extends AppCompatActivity {
         AlertDialog alertDialog = builder.create();
 
         cancelLeaveGame.setOnClickListener(view1 -> alertDialog.dismiss());
-        leaveGame.setOnClickListener(view1 -> leavingTheLobby());
+        leaveGame.setOnClickListener(view1 -> {
+            backPressed();
+            alertDialog.dismiss();
+        });
 
         if (alertDialog.getWindow() != null) {
             alertDialog.getWindow().setBackgroundDrawable(new ColorDrawable(0));
