@@ -172,7 +172,7 @@ public class Player implements Comparable<Player>{
                 //END-NOSCAN
             }else{ //property can be bought , ask user
                 //START-NOSCAN
-                ServerActionHandler.triggerAction(PREFIX_ASK_BUY_PROPERTY, this.getId());
+                ServerActionHandler.triggerAction(PREFIX_ASK_BUY_PROPERTY, new String[]{String.valueOf(this.getId()), String.valueOf(location)});
                 //END-NOSCAN
             }
         } else if (this.position instanceof SpecialField) {
