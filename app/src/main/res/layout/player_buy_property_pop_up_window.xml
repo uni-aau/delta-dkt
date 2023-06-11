@@ -8,7 +8,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/layoutPopUp"
             android:layout_width="300dp"
-            android:layout_height="190dp"
+            android:layout_height="220dp"
             android:background="@drawable/pop_up_background"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -60,20 +60,21 @@
                 android:layout_marginBottom="20dp" />
 
         <TextView
-                android:text="@string/text_player_leave_hint"
+                android:text="@string/text_property_buy_hint"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/textView_playerBuyPropertyHint"
-                android:textSize="17sp"
+                android:textSize="16sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintEnd_toEndOf="parent"
-                android:textColor="@color/dkt_red"
+                android:textColor="@color/blackSpecial"
                 app:layout_constraintTop_toBottomOf="@+id/textView_buyPropertyQuestion"
                 android:layout_marginTop="10dp"
                 android:gravity="center"
-                android:textStyle="bold"
-                android:visibility="invisible" />
+                android:visibility="visible"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

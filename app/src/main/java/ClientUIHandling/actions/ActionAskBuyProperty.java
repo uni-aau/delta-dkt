@@ -15,10 +15,11 @@ public class ActionAskBuyProperty implements ClientActionInterface {
         String[] splitMessage = clientMessage.replace(prefix, "").trim().split(";");
 
         int clientID = Integer.parseInt(splitMessage[0]);
+        int position = Integer.parseInt(splitMessage[1]);
         Log.d("[Client] ActionAskBuyProperty", "Received property ask buy property action! " + clientID);
 
         if (clientID == GameViewActivity.clientID) {
-            gameViewActivity.openBuyPropertyPopUp();
+            gameViewActivity.openBuyPropertyPopUp(position);
         }
     }
 }
