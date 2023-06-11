@@ -25,7 +25,7 @@ public class Game {
     private static GameMap map;
 
     private static int roundStartID = -1;
-    private static int rounds = 0;
+    private static int rounds = 1;
     public static void setMap(GameMap map) {
         Game.map = map;
     }
@@ -83,6 +83,6 @@ public class Game {
         map = new GameMap();
         players = new HashMap<>();
         roundStartID = -1;
-        rounds = 0;
+        rounds = 1;
     }
 }
