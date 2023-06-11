@@ -3,7 +3,6 @@ package ClientUIHandling.actions;
 import android.annotation.SuppressLint;
 import android.util.Log;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
