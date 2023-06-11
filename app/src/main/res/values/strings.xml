@@ -114,7 +114,7 @@
     <string name="text_buy_property_confirmation_question">Do you want to buy the following property?</string>
     <string name="player_buy_property_activity_text">%s has successfully bought %s (%s) for %s$</string>
     <string name="player_pay_rent_activity_text">%s had to pay %s$ rent for property %s (Owner %s)</string>
-    <string name="text_property_buy_hint">Property %s (%s) with price %s$</string>
+    <string name="text_property_buy_hint">Property %s (%s) with %s$ rent for %s$</string>
 
     <plurals name="game_started_activity_text">
         <item quantity="one">Game started with %d player</item>
