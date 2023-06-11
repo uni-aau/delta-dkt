@@ -1,5 +1,6 @@
 package delta.dkt.logic;
 
+import ClientUIHandling.ClientHandler;
 import ClientUIHandling.Config;
 import delta.dkt.logic.structure.*;
 import org.junit.jupiter.api.BeforeEach;
@@ -16,6 +17,7 @@ class PlayerTests {
 
     GameMap mockMapHandling = mock(GameMap.class);
     Player player = null;
+    ClientHandler mockedClientHandler;
 
     Property testProperty1 = null;
     Property testProperty2 = null;
@@ -346,7 +348,6 @@ class PlayerTests {
     @ParameterizedTest
     @ValueSource(ints = {0, 1, 2, 3, 4, 5, 6, 10})
     void checkPlayerMovement_moveTo(int location) {
-
         //? sets the return value for getField method with its given arguments to a valid property.
         when(mockMapHandling.getField(location == 0 ? location + 1 : location)).thenReturn(generateDummyProperty(location == 0 ? location + 1 : location));
 

@@ -43,7 +43,7 @@ public class ServerActionHandler {
         actionMap.put(PREFIX_HAS_PRISONCARD, new ActionPrison());
         actionMap.put(PREFIX_GO_TO_PRISON_FIELD, new ActionGoToPrison());
         actionMap.put(PREFIX_PRISON, new ActionPrison());
-
+        actionMap.put(PREFIX_ASK_BUY_PROPERTY, new RequestAskBuyProperty());
         actionMap.put(PREFIX_PLAYER_CHEAT_MENU, new RequestCheatMenu());
         actionMap.put(PREFIX_PLAYER_REPORT_CHEATER, new RequestReportCheater());
 

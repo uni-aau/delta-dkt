@@ -1,5 +1,6 @@
 package delta.dkt.logic.structure;
 
+import static ClientUIHandling.Constants.PREFIX_ASK_BUY_PROPERTY;
 import static ClientUIHandling.Constants.PREFIX_PLAYER_PAYRENT;
 
 import java.util.ArrayList;
@@ -171,8 +172,7 @@ public class Player implements Comparable<Player>{
                 //END-NOSCAN
             }else{ //property can be bought , ask user
                 //START-NOSCAN
-                //TODO: Ask the user if he wants to buy the property.
-                // ServerActionHandler.triggerAction(PREFIX_PLAYER_BUYPROPERTY, this.getId()); //we only need one parameter , and thates the id of the player
+                ServerActionHandler.triggerAction(PREFIX_ASK_BUY_PROPERTY, this.getId());
                 //END-NOSCAN
             }
         } else if (this.position instanceof SpecialField) {

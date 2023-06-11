@@ -4,6 +4,7 @@ package delta.dkt.activities;
 import static com.google.android.material.snackbar.BaseTransientBottomBar.LENGTH_SHORT;
 import static ClientUIHandling.Constants.GAMEVIEW_ACTIVITY_TYPE;
 import static ClientUIHandling.Constants.LOG_CHEAT;
+import static ClientUIHandling.Constants.PREFIX_CLIENT_BUY_PROPERTY;
 import static ClientUIHandling.Constants.PREFIX_END_GAME;
 import static ClientUIHandling.Constants.PREFIX_GET_SERVER_TIME;
 import static ClientUIHandling.Constants.PREFIX_INIT_PLAYERS;
@@ -221,6 +222,28 @@ public class GameViewActivity extends AppCompatActivity {
         var pos = PositionHandler.calculateFigurePosition(destination, _player, figure, map);
         figure.setX(pos.x);
         figure.setY(pos.y);
+    }
+
+    public void openBuyPropertyPopUp() {
+        ConstraintLayout popUpConstraintLayout = findViewById(R.id.playerBuyPropertyPopUpConstraint);
+        View view = LayoutInflater.from(this).inflate(R.layout.player_buy_property_pop_up_window, popUpConstraintLayout);
+
+        Button buyProperty = view.findViewById(R.id.button_buyProperty_yes);
+        Button cancelBuyProperty = view.findViewById(R.id.button_buyProperty_no);
+
+        final AlertDialog alertDialog = createAlertDialog(view);
+
+        cancelBuyProperty.setOnClickListener(view1 -> alertDialog.dismiss());
+        buyProperty.setOnClickListener(view1 -> {
+            ClientHandler.sendMessageToServer(GAMEVIEW_ACTIVITY_TYPE, PREFIX_CLIENT_BUY_PROPERTY, new Object[]{String.valueOf(clientID)});
+            alertDialog.dismiss();
+        });
+
+
+        if (alertDialog.getWindow() != null) {
+            alertDialog.getWindow().setBackgroundDrawable(new ColorDrawable(0));
+        }
+        alertDialog.show();
     }
 
     public void enableDice() {

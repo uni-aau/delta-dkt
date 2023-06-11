@@ -13,20 +13,21 @@ import ClientUIHandling.Config;
 import ServerLogic.ServerActionHandler;
 import ServerLogic.ServerActionInterface;
 import delta.dkt.logic.structure.Game;
+import delta.dkt.logic.structure.Player;
 import network2.ServerNetworkClient;
 
 public class RequestRollDicePerm implements ServerActionInterface {
 
     private TimeOutThread timeOutThread;
+    private static final String TAG = "[Server] Roll Dice Request";
 
     @Override
     public void execute(ServerNetworkClient server, Object parameters) {
         String[] args = parameters.toString().trim().split(";");
 
         int nextClient;
-        String tag = "[Server] Roll Dice Request";
         int oldClientId = Integer.parseInt(args[0]);
-        Log.d(tag, "Received next client request - Old client: " + parameters);
+        Log.d(TAG, "Received next client request - Old client: " + oldClientId);
 
         if (DEBUG) {
             ServerActionHandler.triggerAction(PREFIX_PLAYER_MOVE, parameters);
@@ -36,14 +37,10 @@ public class RequestRollDicePerm implements ServerActionInterface {
         // Check if clientID is last ID in game
         int size = Game.getPlayers().size();
         if (size != 0) {
-            nextClient = getNextPlayerID(oldClientId, size);
+            nextClient = getNextPlayerID(oldClientId);
 
             String nickName = Game.getPlayers().get(nextClient).getNickname();
-            Log.d("[SERVER]", "New roll dice server request - prevClientID " + oldClientId + " nextClient " + nextClient + " nickName " + nickName);
-
-            Log.d(tag, "OldClientId = " + oldClientId + " NewClient = " + nextClient);
-
-
+            Log.d(TAG, "New roll dice server request - prevClientID " + oldClientId + " nextClient " + nextClient + " nickName " + nickName);
 
             server.broadcast(GAMEVIEW_ACTIVITY_TYPE, PREFIX_ROLL_DICE_REQUEST, new String[]{String.valueOf(nextClient), nickName});
             ServerActionHandler.triggerAction(PREFIX_PLAYER_MOVE, parameters);
@@ -62,7 +59,7 @@ public class RequestRollDicePerm implements ServerActionInterface {
             Game.incrementRounds(oldClientId);
 
         } else {
-            Log.e(tag, "Error - No players available in GameView");
+            Log.e(TAG, "Error - No players available in GameView");
         }
     }
 
@@ -133,7 +130,7 @@ public class RequestRollDicePerm implements ServerActionInterface {
                     try {
                         Thread.sleep(100);
                     } catch (InterruptedException e) {
-                        Log.e("ROLLDICE", "Interrupted!" + e);
+                        Log.e(TAG, "Interrupted!" + e);
 
                         Thread.currentThread().interrupt();
                     }
@@ -145,7 +142,7 @@ public class RequestRollDicePerm implements ServerActionInterface {
                 }
 
                 synchronized (synchTimeoutToken) {
-                    int nextPlayerID = getNextPlayerID(playerID, Game.getPlayers().size());
+                    int nextPlayerID = getNextPlayerID(playerID);
                     server.broadcast(GAMEVIEW_ACTIVITY_TYPE, PREFIX_ROLL_DICE_REQUEST, new String[]{"" + nextPlayerID, Game.getPlayers().get(nextPlayerID).getNickname()});
                     Game.incrementRounds(playerID);
                     this.playerID = nextPlayerID;
@@ -172,11 +169,31 @@ public class RequestRollDicePerm implements ServerActionInterface {
 
     }
 
-    private int getNextPlayerID(int oldClientId, int size) {
-        if (oldClientId % size == 0) {
+    private int getNextPlayerID(int oldClientId) {
+        int nextCopy = oldClientId;
+        int nextClient;
+        Player player;
+
+        do {
+            nextClient = getNextClientId(nextCopy);
+            player = getNextPlayer(nextClient);
+            nextCopy = nextClient;
+            Log.d(TAG, "Trying to get new clientID - nextClient = " + nextClient);
+        } while(player == null);
+
+        return nextClient;
+    }
+
+    private int getNextClientId(int clientId) {
+        int size = Config.MAX_CLIENTS; // starts at 1 when all clients are checked
+
+        if (clientId % size == 0) {
             return 1; // swap to first player
         }
-        return oldClientId + 1;
+        return clientId + 1;
+    }
 
+    private Player getNextPlayer(int nextClient) {
+        return Game.getPlayers().get(nextClient);
     }
 }

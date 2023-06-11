@@ -49,6 +49,8 @@ public class Constants {
     public static final String PREFIX_SET_MONEY = "SET_MONEY";
     public static final String PREFIX_ACTIVITY_BROADCAST = "ACTIVITY_BROADCAST";
     public static final String PREFIX_PAY_TAX = "PAY_TAX";
+    public static final String PREFIX_ASK_BUY_PROPERTY = "ASK_BUY_PROPERTY";
+    public static final String PREFIX_CLIENT_BUY_PROPERTY = "CLIENT_BUY_PROPERTY";
     public static final String PREFIX_PLAYER_CHEATED = "CHEATED";
     public static final String PREFIX_PLAYER_REPORTED_WRONGLY = "REPORTED_WRONGLY";
     public static final String PREFIX_GO_TO_PRISON_FIELD = "Go_To_Prison";
