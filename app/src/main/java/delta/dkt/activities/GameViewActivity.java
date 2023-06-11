@@ -67,6 +67,7 @@ public class GameViewActivity extends AppCompatActivity {
 
     private Button btnDice;
     private ImageView map;
+    private boolean isInitialized = false;
 
 
     @Override
@@ -75,17 +76,13 @@ public class GameViewActivity extends AppCompatActivity {
         setContentView(R.layout.activity_game_view);
         Config.Skip = false;
 
-        Button btnPropertyInfos = findViewById(R.id.button_property_infos);
-        btnDice = findViewById(R.id.button_roll_dice);
-        map = findViewById(imageView);
-        btnPropertyInfos.setOnClickListener(view -> switchToPropertyActivity());
-
-        MainActivity.subscribeToLogic(Constants.GAMEVIEW_ACTIVITY_TYPE, this);
-        if (MainMenuActivity.role) {
-            ServerActionHandler.triggerAction(PREFIX_GET_SERVER_TIME, clientID); // Get game time
-            ServerActionHandler.triggerAction(PREFIX_INIT_PLAYERS, 1); // Set player & handle dice perms
-            ServerActionHandler.triggerAction(PREFIX_PROPLIST_UPDATE, 1); // initializes propertylist
+        if (!isInitialized) {
+            initializeOnce();
+            isInitialized = true;
         }
+
+        Button btnPropertyInfos = findViewById(R.id.button_property_infos);
+        btnPropertyInfos.setOnClickListener(view -> switchToPropertyActivity());
 
         Button btnReportCheat = findViewById(R.id.btnReportCheater);
         btnReportCheat.setOnClickListener(view -> {
@@ -97,7 +94,6 @@ public class GameViewActivity extends AppCompatActivity {
         });
 
         registerLightSensor();
-        displayPlayers(players);
         handleMovementRequests();
         createOnBackCallBack();
 
@@ -106,6 +102,29 @@ public class GameViewActivity extends AppCompatActivity {
         }
     }
 
+    private void initializeOnce() {
+        btnDice = findViewById(R.id.button_roll_dice);
+        map = findViewById(imageView);
+
+        MainActivity.subscribeToLogic(Constants.GAMEVIEW_ACTIVITY_TYPE, this);
+        if (MainMenuActivity.role) {
+            ServerActionHandler.triggerAction(PREFIX_GET_SERVER_TIME, clientID); // Get game time
+            ServerActionHandler.triggerAction(PREFIX_INIT_PLAYERS, 1); // Set player & handle dice perms
+            ServerActionHandler.triggerAction(PREFIX_PROPLIST_UPDATE, 1); // initializes propertylist
+        }
+
+        displayPlayers(players);
+
+        //? Positions the player-figures on the map (at the start-field).
+        for (int i = 0; i < locations.length; i++) {
+            int index = i;
+            map.post(() -> updatePlayerPosition(locations[index], index + 1));
+        }
+
+        map.post(() -> PositionHandler.setLogs(true));
+
+    }
+    
     // Action when player presses back on mobile phone
     private void createOnBackCallBack() {
         OnBackPressedCallback callback = new OnBackPressedCallback(true) {
@@ -180,28 +199,16 @@ public class GameViewActivity extends AppCompatActivity {
      */
     @SuppressLint("ClickableViewAccessibility")
     private void handleMovementRequests() {
-        //? Places all figures on their designated position inside the start field.
-        for (int i = 0; i < locations.length; i++) {
-            int index = i;
-            map.post(() -> updatePlayerPosition(locations[index], index + 1));
-        }
-
-        map.post(() -> PositionHandler.setLogs(true));
-
-
         btnDice.setOnClickListener(view -> {
             Log.d("Movement", "Sending movement request to server!");
             ClientHandler.sendMessageToServer(GAMEVIEW_ACTIVITY_TYPE, PREFIX_ROLL_DICE_RECEIVE, new Object[]{String.valueOf(clientID), String.valueOf(LightSensor.isCovered())});
         });
-
-
         map.setOnTouchListener((v, event) -> {
             if (event.getAction() != MotionEvent.ACTION_DOWN) return false;
 
             btnDice.performClick();
             return true;
         });
-
     }
 
     /**
