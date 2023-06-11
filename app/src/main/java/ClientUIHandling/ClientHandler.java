@@ -89,7 +89,6 @@ public class ClientHandler extends Handler {
         actionMap.put(Constants.PREFIX_CLOSE_GAME, new ActionCloseGame());
         actionMap.put(Constants.PREFIX_ASK_BUY_PROPERTY, new ActionAskBuyProperty());
         actionMap.put(Constants.PREFIX_CLIENT_BUY_PROPERTY, new ActionClientBuyProperty());
-        actionMap.put(PREFIX_REQUEST_SERVER_ACTION_AS_CLIENT, new ActionSendServerRequest());
         actionMap.put(Constants.PREFIX_SUSPENSION_COUNT, new ActionSuspensionNotification());
         actionMap.put(PREFIX_PLAYER_CHEAT_MENU, new ActionOpenCheatMenu());
         actionMap.put(PREFIX_REQUEST_SERVER_ACTION_AS_CLIENT, new ActionSendServerRequest());
