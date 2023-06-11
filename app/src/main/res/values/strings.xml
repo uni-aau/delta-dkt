@@ -59,6 +59,7 @@
     <string name="Wealth">Wealth</string>
     <string name="Finish">Finish</string>
     <string name="IP">IP:</string>
+    <string name="joined_format">Joined on: %1$s</string>
 
     <string name="NSDServiceName">delta_dkt</string>
     <string name="NSDServiceType">_delta_dkt.tcp</string>
