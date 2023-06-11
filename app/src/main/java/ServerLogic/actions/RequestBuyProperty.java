@@ -2,7 +2,6 @@ package ServerLogic.actions;
 
 import android.util.Log;
 
-import ClientUIHandling.Constants;
 import ServerLogic.ServerActionHandler;
 import ServerLogic.ServerActionInterface;
 import delta.dkt.logic.structure.Field;
@@ -38,7 +37,7 @@ public class RequestBuyProperty implements ServerActionInterface {
                         ServerActionHandler.triggerAction(PREFIX_PROPLIST_UPDATE, fieldLocation); // initializes property list
                         server.broadcast(GAMEVIEW_ACTIVITY_TYPE, PREFIX_PLAYER_PROPERTYBOUGHT, new String[]{String.valueOf(clientId)});
                         server.broadcast(GAMEVIEW_ACTIVITY_TYPE, PREFIX_ACTIVITY_BROADCAST, new String[]{"player_buy_property_activity_text", player.getNickname(), property.getName(), String.valueOf(property.getLocation()), String.valueOf(property.getPrice())});
-                        server.broadcast(Constants.GAMEVIEW_ACTIVITY_TYPE, Constants.PREFIX_SET_MONEY, new String[]{String.valueOf(clientId), String.valueOf(player.getCash())});
+                        server.broadcast(GAMEVIEW_ACTIVITY_TYPE, PREFIX_SET_MONEY, new String[]{String.valueOf(clientId), String.valueOf(player.getCash())});
                     }
                 } else {
                     // TODO GELD REICHT NICHT AUS - Könnte auch direkt via RequestAskPropertyBuy klasse implementiert werden
