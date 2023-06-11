@@ -2,7 +2,6 @@ package ClientUIHandling.actions;
 
 import static ClientUIHandling.Constants.PREFIX_GET_SERVER_TIME;
 
-import android.util.Log;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
