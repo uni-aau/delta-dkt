@@ -104,12 +104,6 @@ public class LobbyViewActivity extends AppCompatActivity {
         }
     }
 
-    // This Method removes the User from the UserList, updates the List and Closes the game/server
-    public void leavingTheLobby() {
-        ServerActionHandler.triggerAction(PREFIX_REMOVE_USER_FROM_LIST, user);
-        ServerActionHandler.triggerAction(PREFIX_CLOSE_GAME,"");
-    }
-
     private void disableStartButton() {
         startButton.setEnabled(false);
         startButton.setBackgroundResource(R.drawable.host_btn_background_disabled);
