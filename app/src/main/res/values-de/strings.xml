@@ -108,7 +108,6 @@
 
     <string name="pay_tax_activity_text">%s muss %s%% Miete zahlen. Alter Betrag: %s$, neuer Betrag: %s$</string>
     <string name="pay_static_tax_activity_text">%s muss %s$ Miete zahlen. Alter Betrag: %s$, neuer Betrag: %s$</string>
-    <string name="game_started_acitivty_text">Spiel wurde gestertet!</string>
     <string name="notify_inprisonment">Spieler %s wurde ins Gefängnis geschickt!</string>
     <string name="text_rent">Miete: %s$</string>
 
