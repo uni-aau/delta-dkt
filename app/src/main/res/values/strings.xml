@@ -102,6 +102,8 @@
     <string name="notify_inprisonment">Player %s has been sent to prison!</string>
     <string name="text_rent">Rent: %s$</string>
 
+    <string name="outOfPrisonCardAwarded_notification">Player %s has been awarded with a get-out-of-jail-card!</string>
+
     <string name="suspension_count">The player is suspended for %s more rounds</string>
     <string name="player_lost_activity_text">%s was eliminated from the game!</string>
     <string name="playerName_info_text">You are spectator!</string>
