@@ -156,7 +156,7 @@ public class MainMenuActivity extends AppCompatActivity {
             }
 
             if(tempMaxPlayers.length() > 1){
-                SnackBarHandler.createSnackbar(view, "Please enter a number between 1 and 6", LENGTH_SHORT).show();
+                SnackBarHandler.createSnackbar(view, "Please enter a number between 1 and 6 to set max players", LENGTH_SHORT).show();
                 return;
             }
 
