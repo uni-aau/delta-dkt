@@ -59,6 +59,7 @@
     <string name="SixthPlace">6</string>
     <string name="Wealth">Vermögen</string>
     <string name="Finish">Beenden</string>
+    <string name="IP">IP:</string>
 
 
 
@@ -81,11 +82,34 @@
     <string name="img_description_player4_text">Spieler 4</string>
     <string name="img_description_player2_text">Spieler 2</string>
     <string name="img_description_player1_text">Spieler 1</string>
-
     <string name="start_money_activity_text">%s erhält Start-Geld</string>
+
+    <!-- #START Cheating Texts -->
+    <string name="cheat_open_report_menu">Cheater melden</string>
+    <string name="reportCheater_message">Activity: %s wurde erfolgreich als Cheater gemeldet!</string>
+
+    <!-- ##START Cheating-ReportMenu Texts -->
+    <string name="cheat_popup_selection_menu_heading">Report Menü</string>
+    <string name="cheat_popup_selection_menu_description">
+        Wähle einen Cheater aus der Liste unten aus, um ihn zu melden. Sei aber vorsichtig.
+    </string>
+    <string name="cheat_popup_selection_menu_canel_button">Abbrechen</string>
+    <string name="cheat_popup_selection_menu_submit_button">Melden</string>
+
+    <!-- ##START Cheating-ReportMenu Texts -->
+    <string name="cheat_user_element_username_placeholder">Spieler-Platzhalter 1</string>
+    <string name="cheat_user_element_image_description">Stellt die Figur des Spielers im aktuellen Spiel dar.</string>
+
+    <!-- END Cheating Texts -->
+    <string name="movement_info_message_singular">Activity: %s hat sich %s Schritt bewegt und befindet sich jetzt an der Position: %s</string>
+    <string name="movement_info_message_plural">Activity: %s hat sich %s Schritte bewegt und befindet sich nun an der Position: %s</string>
+
+
+
     <string name="pay_tax_activity_text">%s muss %s%% Miete zahlen. Alter Betrag: %s$, neuer Betrag: %s$</string>
     <string name="pay_static_tax_activity_text">%s muss %s$ Miete zahlen. Alter Betrag: %s$, neuer Betrag: %s$</string>
     <string name="game_started_acitivty_text">Spiel wurde gestertet!</string>
+    <string name="notify_inprisonment">Spieler %s wurde ins Gefängnis geschickt!</string>
     <string name="text_rent">Miete: %s$</string>
 
     <string name="jail_card">JailCard</string>
@@ -109,4 +133,23 @@
     <string name="travel_card_text2">Gehe um 4 Felder zurück.</string>
     <string name="travel_card_text3">Rücke 7 Felder vor.</string>
     <string name="travel_card_text4">Besuch Graz und gehe auf der Annenstraße spazieren. Passierst du den Start, erhältst du 200€.</string>
+
+    <string name="suspension_count">Der Spieler ist für %s weitere Runden gesperrt</string>
+    <string name="player_lost_activity_text">%s wurde aus dem Spiel entfernt!</string>
+    <string name="playerName_info_text">Du bist Zuschauer!</string>
+    <string name="text_player_leave_confirmation">Willst du wirklich gehen?</string>
+    <string name="text_button_yes">Ja</string>
+    <string name="text_button_no">Nein</string>
+    <string name="text_player_leave_hint">Hinweis: Dein Vermögen wird zurückgesetzt!</string>
+    <string name="text_player_leave_hint_host">Hinweis: Da Du der Host bist, wird der Server geschlossen!</string>
+    <string name="contentdescription_host_wlan">Host WLan Logo</string>
+    <string name="text_buy_property_confirmation_question">Möchten Du die folgende Immobilie kaufen?</string>
+    <string name="player_buy_property_activity_text">%s hat erfolgreich %s (%s) für %s$ gekauft</string>
+    <string name="player_pay_rent_activity_text">%s musste %s$ Miete für Immobilie %s zahlen (Eigentümer %s)</string>
+    <string name="text_property_buy_hint">Immobilie %s (%s) mit %s$ Miete für %s$</string>
+
+    <plurals name="game_started_activity_text">
+        <item quantity="one">Das Spiel hat mit %d Spieler begonnen</item>
+        <item quantity="other">Das Spiel hat mit %d Spieler begonnen</item>
+    </plurals>
 </resources>
