@@ -53,6 +53,7 @@ For this to work a game has to be hosted by another player that is on the same n
 
 In order to host a new game, the ‘Host Game’ button is to be pressed. After the button has been pressed a new dialog will pop up, that will ask the user to configure the game server. The options include the server name, max. amount of players allowed, whether the game is to be timed either by rounds or time spent and the amount of rounds or minutes until the game is finished by the system. Once the parameters have been entered the server can be started and the screen could like this:
 
+[Host Game - Menu](/assets/MainMenu.png)
 [Host Game - Config Menu](/assets/ServerConfig.png)
 
 ### Game Lobby
