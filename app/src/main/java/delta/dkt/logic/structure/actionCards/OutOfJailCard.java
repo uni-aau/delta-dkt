@@ -23,6 +23,7 @@ public class OutOfJailCard extends Task {
         asignee.setYouGetOutOfPrisonCard(true);
 
         //send message to client that he is suspended for so many rounds
+
         ServerActionHandler.triggerAction(Constants.PREFIX_PRISONCARD_AWARDED,asignee.getId());
     }
 
