@@ -2,7 +2,6 @@ package ClientUIHandling.actions;
 
 import static ClientUIHandling.Constants.PREFIX_GET_SERVER_TIME;
 
-import android.util.Log;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -14,8 +13,6 @@ public class ActionUpdateGameTime implements ClientActionInterface {
     @Override
     public void execute(AppCompatActivity activity, String clientMessage) {
         String[] args = clientMessage.replace(PREFIX_GET_SERVER_TIME, "").trim().split(";"); // Holt sich Args nach dem Prefix
-
-        Log.d("[UI] GameTime", "Received update game time event: " + args[0]);
 
         updateGameTime(args[0], activity);
     }

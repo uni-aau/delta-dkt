@@ -1,10 +1,13 @@
 package delta.dkt.activities;
 
 import static ClientUIHandling.Constants.PREFIX_HOST_NEW_GAME;
+import static com.google.android.material.snackbar.BaseTransientBottomBar.LENGTH_SHORT;
 import static delta.dkt.activities.MainActivity.INTENT_PARAMETER;
 import static delta.dkt.activities.MainActivity.logic;
 import static delta.dkt.activities.MainActivity.user;
 
+import ClientUIHandling.Config;
+import ClientUIHandling.handlers.notifications.SnackBarHandler;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.graphics.drawable.ColorDrawable;
@@ -26,8 +29,6 @@ import java.util.Date;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 import ClientUIHandling.ClientHandler;
-import ClientUIHandling.ClientLogic;
-import ClientUIHandling.Config;
 import ClientUIHandling.Constants;
 import ServerLogic.ServerActionHandler;
 import delta.dkt.R;
@@ -45,6 +46,8 @@ public class MainMenuActivity extends AppCompatActivity {
 
     public static String ip;
 
+    private Button okButton;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,14 +64,6 @@ public class MainMenuActivity extends AppCompatActivity {
 
         //---HOST BUTTON---  (Everything that happens when host button is clicked)
         host.setOnClickListener(view -> {
-           /* try {
-                establishServerConnection();
-            } catch (InterruptedException e) {
-                Log.d("MainActivity::oncreate- interrupted", e.getMessage());
-                Thread.currentThread().interrupt();
-            } catch (RuntimeException e) {
-                Log.d("MainActivity::oncreate - Runtime exception", e.getMessage());
-            }*/
             role = true;
             showServerPopUpWindow();
         });
@@ -83,21 +78,8 @@ public class MainMenuActivity extends AppCompatActivity {
         });
 
         MainActivity.subscribeToLogic(Constants.MAINMENU_ACTIVITY_TYPE, this);
-    }
 
-    public void establishServerConnection() throws InterruptedException {
-
-        ClientLogic.isTEST = false;
-
-        ServerNetworkClient server = new ServerNetworkClient(this.getApplicationContext());
-
-        server.start();
-
-        Thread.sleep(100);
-        NetworkClientConnection client = new NetworkClientConnection("localhost", server.getPort(), 1000, logic);
-        client.start();
-        Thread.sleep(100);
-        ServerActionHandler.setServer(server);
+        if (Config.Skip && Config.DEBUG) host.performClick();
     }
 
 
@@ -117,7 +99,8 @@ public class MainMenuActivity extends AppCompatActivity {
 
 
         // Getting all needed Views from the xml:
-        Button okButton = view.findViewById(R.id.okButton);
+        okButton = view.findViewById(R.id.okButton);
+        enableOkButton();
         Button cancelButton = view.findViewById(R.id.cancelButton);
         EditText editText = view.findViewById(R.id.popUpEditText);
         EditText gameRoundsAndTime = view.findViewById(R.id.roundAndTimeEdtxt);
@@ -172,6 +155,17 @@ public class MainMenuActivity extends AppCompatActivity {
                 return;
             }
 
+            if(tempMaxPlayers.length() > 1){
+                SnackBarHandler.createSnackbar(view, "Please enter a number between 1 and 6", LENGTH_SHORT).show();
+                return;
+            }
+
+            if(tempGameRoundsOrTime.length() > 9 ){
+                String type = roundsButton.isChecked() ? "Rounds" : "Time";
+                SnackBarHandler.createSnackbar(view, "Please enter a valid amount for the total amount of "+type, LENGTH_SHORT).show();
+                return;
+            }
+
             int timeOrRounds = Integer.parseInt(tempGameRoundsOrTime);
             int maxPlayers = Integer.parseInt(tempMaxPlayers);
 
@@ -185,12 +179,16 @@ public class MainMenuActivity extends AppCompatActivity {
                 return;
             }
 
+            disableOkButton();
+
             try {
                 Config.MAX_CLIENTS = maxPlayers;
                 if (isRoundsSelected.get()) {
+                    Config.SELECTED_GAME_MODE = true;
                     Config.ENDROUNDS = timeOrRounds;
                 }
                 if (isTimeSelected.get()) {
+                    Config.SELECTED_GAME_MODE = false;
                     Config.END_TIME = timeOrRounds * 60000;
                 }
                 startServer(serverName);
@@ -208,12 +206,30 @@ public class MainMenuActivity extends AppCompatActivity {
             alertDialog.getWindow().setBackgroundDrawable(new ColorDrawable(0));
         }
         alertDialog.show();
+
+        if (Config.Skip && Config.DEBUG) {
+            editText.setText(R.string.cheat_user_element_username_placeholder);
+            gameRoundsAndTime.setText("6");
+            maxPlayersEDT.setText("6");
+            roundsButton.setChecked(true);
+            okButton.performClick();
+        }
+    }
+
+    private void enableOkButton() {
+        okButton.setEnabled(true);
+        okButton.setBackgroundResource(R.drawable.host_btn_background);
+    }
+
+    private void disableOkButton() {
+        okButton.setBackgroundResource(R.drawable.host_btn_background_disabled);
+        okButton.setEnabled(false);
     }
 
 
     // Check if valid Methods:
     private boolean isValidMaxPlayers(int maxPlayers) {
-        return maxPlayers >= Config.MIN_CLIENTS && maxPlayers <= Config.MAX_CLIENTS;
+        return maxPlayers >= Config.MIN_CLIENTS && maxPlayers <= Config.MAX_CLIENTS_AMOUNT;
     }
 
     private boolean isValidTimeOrRounds(int timeOrRounds) {
@@ -226,16 +242,20 @@ public class MainMenuActivity extends AppCompatActivity {
         MainActivity.subscribeToLogic(Constants.PREFIX_SERVER, this);
         server = new ServerNetworkClient(this.getApplicationContext());
         server.start();
+
         Thread.sleep(100);
 
         client = new NetworkClientConnection("localhost", server.getPort(), 1000, logic);
         ServerActionHandler.setServer(server);
         client.start();
-        Thread.sleep(100);
+
+
 
         ClientHandler.setClient(client);
 
         Toast.makeText(MainMenuActivity.this, "Server " + serverName + " started on " + getTime(), Toast.LENGTH_SHORT).show();
+
+        Thread.sleep(100);
 
         ServerActionHandler.triggerAction(PREFIX_HOST_NEW_GAME, user);
     }

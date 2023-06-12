@@ -1,5 +1,6 @@
 package delta.dkt.logic;
 
+import ClientUIHandling.ClientHandler;
 import ClientUIHandling.Config;
 import delta.dkt.logic.structure.*;
 import org.junit.jupiter.api.BeforeEach;
@@ -16,6 +17,7 @@ class PlayerTests {
 
     GameMap mockMapHandling = mock(GameMap.class);
     Player player = null;
+    ClientHandler mockedClientHandler;
 
     Property testProperty1 = null;
     Property testProperty2 = null;
@@ -346,7 +348,6 @@ class PlayerTests {
     @ParameterizedTest
     @ValueSource(ints = {0, 1, 2, 3, 4, 5, 6, 10})
     void checkPlayerMovement_moveTo(int location) {
-
         //? sets the return value for getField method with its given arguments to a valid property.
         when(mockMapHandling.getField(location == 0 ? location + 1 : location)).thenReturn(generateDummyProperty(location == 0 ? location + 1 : location));
 
@@ -414,6 +415,30 @@ class PlayerTests {
 
     }
 
+
+    //? isCheating property tests
+
+    /**
+     * Check whether the default value of is false.
+     */
+    @Test
+    void check_hasCheating_Getter(){
+        assertFalse(player.hasCheated());
+    }
+
+    /**
+     * Check whether hasCheated property can be modified.
+     */
+    @Test
+    void check_hasCheating_Setter(){
+        assertFalse(player.hasCheated());
+        player.setCheat(true);
+        assertTrue(player.hasCheated());
+    }
+
+
+    //? Nickname & ID - Getter and Setters
+  
     @Test
     void testSetNickName(){
         Player player = new Player();
@@ -462,6 +487,32 @@ class PlayerTests {
         for (int i = 0; i < 40; i++) dummy.add(null);
 
         return dummy;
+    }
+
+    /**
+     * Checks if the setGoToPrisonField() method works.
+     */
+    @Test
+    void testSetGoToPrisonField() {
+        player.setGoToPrisonField(true);
+        assertTrue(player.getGoToPrisonField());
+    }
+
+    /**
+     * Checks if the setYouGetOutOfPrisonCard() method works.
+     */
+    @Test
+    void testSetYouGetOutOfPrisonCard() {
+        player.setYouGetOutOfPrisonCard(true);
+        assertTrue(player.getYouGetOutOfPrisonCard());
+    }
+
+    @Test
+    void testPing(){
+        player.setHasReceivedPing(true);
+        assertTrue(player.getAndClearPing());
+        assertFalse(player.getAndClearPing());
+
     }
 }
 

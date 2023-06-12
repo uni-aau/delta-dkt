@@ -25,7 +25,7 @@ public class Game {
     private static GameMap map;
 
     private static int roundStartID = -1;
-    private static int rounds = 0;
+    private static int rounds = 1;
     public static void setMap(GameMap map) {
         Game.map = map;
     }
@@ -71,7 +71,7 @@ public class Game {
         }else{
             if(Game.roundStartID == playerID){
                 Game.rounds++;
-                if(Game.rounds == Config.ENDROUNDS){
+                if(Game.rounds == Config.ENDROUNDS && Config.SELECTED_GAME_MODE){ // Only stop game via rounds when host selected max. rounds as game mode
                     ServerActionHandler.triggerAction(Constants.PREFIX_END_GAME, "ROUNDS RAN OUT");
                 }
             }
@@ -79,9 +79,10 @@ public class Game {
     }
 
     public static void reset(){
+        Player._id = 1; // Reset player id otherwise it will be incremented every game from the old value
         map = new GameMap();
         players = new HashMap<>();
         roundStartID = -1;
-        rounds = 0;
+        rounds = 1;
     }
 }

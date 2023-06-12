@@ -18,7 +18,7 @@
     <string name="playing_time_text">Playing Time: %s %s, %s, %s, %s %s</string>
     <string name="roll_the_dice">Roll the dice</string>
     <string name="property_information">Property Information</string>
-    <string name="dice_information_text">%s rolls the dice\n{1} left to roll the dice</string>
+    <string name="dice_information_text">%s rolls the dice</string>
     <string name="gameview_image_description">DKT-Board</string>
     <string name="activity_text">Activity: %s</string>
     <string name="EnterButton">Enter</string>
@@ -58,12 +58,7 @@
     <string name="SixthPlace">6</string>
     <string name="Wealth">Wealth</string>
     <string name="Finish">Finish</string>
-
-
-
-
-
-
+    <string name="IP">IP:</string>
 
     <string name="NSDServiceName">delta_dkt</string>
     <string name="NSDServiceType">_delta_dkt.tcp</string>
@@ -80,11 +75,31 @@
     <string name="img_description_player4_text">Player 4</string>
     <string name="img_description_player2_text">Player 2</string>
     <string name="img_description_player1_text">Player 1</string>
-
     <string name="start_money_activity_text">%s received start money</string>
+
+    <!-- #START Cheating Texts -->
+    <string name="cheat_open_report_menu">Report Cheater</string>
+    <string name="reportCheater_message">Activity: Successfully reported %s as a Cheater!</string>
+
+    <!-- ##START Cheating-ReportMenu Texts -->
+    <string name="cheat_popup_selection_menu_heading">Report Menu</string>
+    <string name="cheat_popup_selection_menu_description">
+        Select a cheating-player from the list down below to report him as such. Act with caution.
+    </string>
+    <string name="cheat_popup_selection_menu_canel_button">Cancel</string>
+    <string name="cheat_popup_selection_menu_submit_button">Report</string>
+
+    <!-- ##START Cheating-ReportMenu Texts -->
+    <string name="cheat_user_element_username_placeholder">Player Placeholder 1</string>
+    <string name="cheat_user_element_image_description">Represents the players figure in the current game.</string>
+
+    <!-- END Cheating Texts -->
+    <string name="movement_info_message_singular">Activity: %s moved %s step and is now located at pos: %s</string>
+    <string name="movement_info_message_plural">Activity: %s moved %s steps and is now located at pos: %s</string>
+
     <string name="pay_tax_activity_text">%s had to pay %s%% taxes. Old cash %s$, new cash %s$</string>
     <string name="pay_static_tax_activity_text">%s had to pay %s$ taxes. Old cash %s$, new cash %s$</string>
-    <string name="game_started_acitivty_text">Game started!</string>
+    <string name="notify_inprisonment">Player %s has been sent to prison!</string>
     <string name="text_rent">Rent: %s$</string>
 
     <string name="jail_card">JailCard</string>
@@ -108,4 +123,22 @@
     <string name="travel_card_text2">Go 4 fields back</string>
     <string name="travel_card_text3">Move 7 fields forward</string>
     <string name="travel_card_text4">Move to \"Annenstraße\" (field 6). If you pass the Start-Field you will get 200€</string>
+    <string name="suspension_count">The player is suspended for %s more rounds</string>
+    <string name="player_lost_activity_text">%s was eliminated from the game!</string>
+    <string name="playerName_info_text">You are spectator!</string>
+    <string name="text_player_leave_confirmation">Do you really want to leave?</string>
+    <string name="text_button_yes">Yes</string>
+    <string name="text_button_no">No</string>
+    <string name="text_player_leave_hint">Hint: Your wealth will be reset!</string>
+    <string name="text_player_leave_hint_host">Hint: Since you are the host, the server will be closed!</string>
+    <string name="contentdescription_host_wlan">Host WLan Logo</string>
+    <string name="text_buy_property_confirmation_question">Do you want to buy the following property?</string>
+    <string name="player_buy_property_activity_text">%s has successfully bought %s (%s) for %s$</string>
+    <string name="player_pay_rent_activity_text">%s had to pay %s$ rent for property %s (Owner %s)</string>
+    <string name="text_property_buy_hint">Property %s (%s) with %s$ rent for %s$</string>
+
+    <plurals name="game_started_activity_text">
+        <item quantity="one">Game started with %d player</item>
+        <item quantity="other">Game started with %d players</item>
+    </plurals>
 </resources>

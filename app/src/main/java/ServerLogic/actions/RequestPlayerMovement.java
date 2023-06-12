@@ -1,30 +1,34 @@
 package ServerLogic.actions;
 
-import static ClientUIHandling.Constants.GAMEVIEW_ACTIVITY_TYPE;
-import static ClientUIHandling.Constants.PREFIX_PLAYER_MOVE;
-import static ClientUIHandling.Constants.PREFIX_START_CASH_VALUE;
-
+import ClientUIHandling.Config;
 import android.util.Log;
 
 import ServerLogic.ServerActionHandler;
 import ServerLogic.ServerActionInterface;
 import delta.dkt.logic.structure.Game;
+import delta.dkt.logic.structure.GoToPrisonField;
 import delta.dkt.logic.structure.Player;
 import network2.ServerNetworkClient;
+
+import java.util.ArrayList;
+
+import static ClientUIHandling.Constants.*;
 
 @SuppressWarnings("FieldCanBeLocal")
 public class RequestPlayerMovement implements ServerActionInterface {
     private String tag = "Movement-" + getClass().getSimpleName();
-    private int maxFields = 41;
+    private final int maxFields = 41;
 
 
     @SuppressWarnings("DataFlowIssue")
     @Override
     public void execute(ServerNetworkClient server, Object parameters) {
+        String[] args = parameters.toString().split(";");
+
         int clientID;
         //? Checking whether the id of the request-player is valid.
         try {
-            clientID = Integer.parseInt(parameters.toString());
+            clientID = Integer.parseInt(args[0]);
         } catch (NumberFormatException e) {
             Log.e("Movement", String.format("Parsing the clientsID failed, as its format is invalid! (%s)", parameters));
 
@@ -40,47 +44,60 @@ public class RequestPlayerMovement implements ServerActionInterface {
             return;
         }
 
+        boolean isCheating = args.length >= 2 && args[1].equalsIgnoreCase("true");
+
         Log.d(tag, "");
-        Log.d(tag, String.format("Performing move request for client: (%s).", clientID));
+        Log.d(tag, String.format("Performing move request for Player%s: ", clientID));
+        if(isCheating) Log.w(tag, "Cheatmode has been enabled for this move by the player!");
 
 
         Player requestPlayer = Game.getPlayers().get(clientID);
+
+
+        if(requestPlayer.isSuspended()){
+            requestPlayer.reduceSuspension();
+            Log.d(tag, String.format("Aborting move request for client: (%s), because he is in prison", clientID));
+            String[] notifyArgs = new String[1];
+            notifyArgs[0] = String.valueOf(requestPlayer.getSuspention());
+            server.broadcast(GAMEVIEW_ACTIVITY_TYPE, PREFIX_SUSPENSION_COUNT, notifyArgs);
+            return;
+        }
+
+
+        requestPlayer.setCheat(isCheating);
         int currentPosition = requestPlayer.getPosition().getLocation();
 
-        int steps = useDice(1, 6);
+        int steps = Config.DICE_RANGE.getRandomValue();
+        if(isCheating) steps = Config.CHEAT_RANGE.getRandomValue(); //? super-dice
+
         int destination = (currentPosition + steps) % maxFields;
         if (destination == 0) destination++;
 
         //* detailed logs
-        Log.d(tag, String.format("Moving player (id=%s) to (pos=%s)!", clientID, destination));
-        Log.d(tag + "-detail", String.format("\told position: (pos=%s), new position: (pos=%s), steps: (steps=%s)", currentPosition, destination, steps));
+        Log.d(tag, String.format("Moving Player%s to position=%s, dice value=%s!", clientID, destination, steps));
 
-        requestPlayer.moveTo(destination);
-
-        String[] args = new String[2];
-        args[0] = String.valueOf(clientID);
-        args[1] = String.valueOf(destination);
+        ArrayList<String> sendArgs = new ArrayList<>();
+        sendArgs.add(String.valueOf(clientID));
+        sendArgs.add(String.valueOf(destination));
+        sendArgs.add(String.valueOf(steps));
+        sendArgs.add(requestPlayer.getNickname());
 
         Log.d(tag, String.format("Sending out messages to %s players.", Game.getPlayers().size()));
         Log.d(tag, "");
-        server.broadcast(GAMEVIEW_ACTIVITY_TYPE, PREFIX_PLAYER_MOVE, args);
+
+        requestPlayer.moveTo(destination);
+
+        //* In case the player lands on the GoToPrisonField, he will be moved to the PrisonField.
+        if(Game.getMap().getField(destination) instanceof GoToPrisonField){
+            Log.d(tag, String.format("Player%s landed on a GoToPrisonField, thus he will be moved to the PrisonField! (Overriding Movement-Action)", clientID));
+            ServerActionHandler.triggerAction(PREFIX_GO_TO_PRISON_FIELD, clientID);
+            return;
+        }
+
+        server.broadcast(GAMEVIEW_ACTIVITY_TYPE, PREFIX_PLAYER_MOVE, sendArgs.toArray(new String[0]));
 
 
         //? Add start-cash for passing over the start field.
         if (currentPosition > destination) ServerActionHandler.triggerAction(PREFIX_START_CASH_VALUE, clientID);
     }
-
-    /**
-     * This method will return a number in a given range.
-     *
-     * @param min The minimum value that is to be returned.
-     * @param max The value that should be exceeded.
-     * @return Returns a random value in between the given range.
-     */
-    public static int useDice(int min, int max) {
-        //START-NOSCAN
-        return (int) (Math.random() * max + min);
-        //END-NOSCAN
-    }
-
 }

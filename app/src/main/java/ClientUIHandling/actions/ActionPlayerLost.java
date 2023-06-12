@@ -1,38 +1,35 @@
 package ClientUIHandling.actions;
 
-import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.Typeface;
 import android.util.Log;
-import android.widget.Toast;
+import android.view.View;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import ClientUIHandling.ClientActionInterface;
+import delta.dkt.R;
 import delta.dkt.activities.GameViewActivity;
-import delta.dkt.activities.LobbyViewActivity;
-import delta.dkt.activities.MainActivity;
-import delta.dkt.activities.MainMenuActivity;
-import delta.dkt.logic.structure.Game;
 
 public class ActionPlayerLost implements ClientActionInterface {
     @Override
     public void execute(AppCompatActivity activity, String clientMessage) {
-        Log.i("INFO", "PLAYERLOSTRECEIVED");
+        String prefix = clientMessage.split(" ")[0];
+        String[] splitMessage = clientMessage.replace(prefix, "").trim().split(";");
 
-        String[] splitMessage = clientMessage.split(" ");
+        String nickname = splitMessage[0];
+        int id = Integer.parseInt(splitMessage[1]);
 
-        int id = Integer.parseInt(splitMessage[2]);
+        Log.i("[Client] ActionPlayerLost", "Received player lost action! ClientID = " + id + " Nickname = " + nickname);
 
-        if(GameViewActivity.clientID == id) {
+        if (GameViewActivity.clientID == id) {
+            TextView playerNameTextView = activity.findViewById(R.id.textView_playerName_spec);
+            playerNameTextView.setVisibility(View.VISIBLE);
+            playerNameTextView.setTextColor(Color.RED);
+            playerNameTextView.setTypeface(null, Typeface.BOLD);
 
-            Game.reset();
-            LobbyViewActivity.userList.clear();
-
-            Toast.makeText(activity, "YOU LOST!", Toast.LENGTH_LONG).show();
-
-            Intent intent = new Intent(activity.getApplicationContext(), MainMenuActivity.class);
-
-            intent.putExtra(MainActivity.INTENT_PARAMETER, MainMenuActivity.username);
-            activity.startActivity(intent);
+            GameViewActivity.isSpectator = true;
         }
     }
 }

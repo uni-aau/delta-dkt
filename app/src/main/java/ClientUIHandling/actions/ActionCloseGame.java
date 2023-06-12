@@ -9,17 +9,17 @@ import android.util.Log;
 import androidx.appcompat.app.AppCompatActivity;
 
 import ClientUIHandling.ClientActionInterface;
+import ClientUIHandling.ClientHandler;
+import delta.dkt.activities.LobbyViewActivity;
 import delta.dkt.activities.MainMenuActivity;
+import delta.dkt.logic.structure.Game;
 
 public class ActionCloseGame implements ClientActionInterface {
     @Override
     public void execute(AppCompatActivity activity, String clientMessage) {
-        MainMenuActivity mainMenuActivity = new MainMenuActivity();
-        //mainMenuActivity.closeClient();
         Log.d("[CLIENT]:Close_Game ", "Client closed");
 
         if (role) {
-            //mainMenuActivity.closeServer();
             Log.d("[CLIENT]:Close_Game ", "Server closed");
             Intent intent = new Intent(activity, MainMenuActivity.class);
             intent.putExtra(INTENT_PARAMETER, MainMenuActivity.username);
@@ -31,12 +31,18 @@ public class ActionCloseGame implements ClientActionInterface {
             activity.startActivity(intent);
         }
 
+        tryCloseClientConnection();
+    }
 
+    private void tryCloseClientConnection() {
+        // Closes client connection and reset the game
+        try {
+            ClientHandler.getClient().stopConnection();
+        } catch (Exception e) {
+            throw new RuntimeException("Error while trying to close the client connection: " + e);
+        }
 
-
-
-
-        
-
+        Game.reset();
+        LobbyViewActivity.userList.clear();
     }
 }

@@ -32,25 +32,26 @@ public class RequestGameStartTime implements ServerActionInterface {
             timer = new CountDownTimer(Config.END_TIME, 1000) {
                 @Override
                 public void onTick(long l) {
-                    if(!server.isAlive()){
+                    if (!server.isAlive()) {
                         timer.cancel();
                     }
 
                     elapsedTime += 1000; // + 1000 millisekunden pro Tick -> +1 sekunde
 
                     int currentMinute = (int) (elapsedTime / 60000);
-                    Log.d("[Server] Request Time", "CurrentMinute = " + currentMinute + "PreviousMinute = " + previousMinute);
-
-                    // if(currentMinute != previousMinute) { // Todo - Check, ob nur eine Request pro Minute?
+                    if(currentMinute != previousMinute) {
+                        Log.d("Server Start Time", "New minute! Previous minute " + previousMinute + " new minute " + currentMinute);
+                    }
                     server.broadcast(GAMEVIEW_ACTIVITY_TYPE, PREFIX_GET_SERVER_TIME, new String[]{String.valueOf(elapsedTime)});
                     previousMinute = currentMinute;
-
                 }
 
                 @Override
                 public void onFinish() {
-                    ServerActionHandler.triggerAction(Constants.PREFIX_END_GAME, "TIME RAN OUT");
-                    timer.cancel();
+                    if(!Config.SELECTED_GAME_MODE) { // Only stop the game via time when host selected max time as game mode
+                        ServerActionHandler.triggerAction(Constants.PREFIX_END_GAME, "TIME RAN OUT");
+                        timer.cancel();
+                    }
                 }
             };
             timer.start();

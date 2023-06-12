@@ -14,19 +14,22 @@ import delta.dkt.logic.structure.Player;
 import network2.ServerNetworkClient;
 
 public class ActionPunish implements ServerActionInterface {
+    private static final String TAG = "[Server] ActionPunish";
     @Override
     public void execute(ServerNetworkClient server, Object parameters) {
+        //! Parameter format: [<correctlyReported>, <playerID>]
+
         if(!(parameters instanceof Object[])){
-            Log.e("ERROR","WRONG PARAMETERS FOR ActionPunish, expected an array!");
+            Log.e(TAG,"WRONG PARAMETERS FOR ActionPunish, expected an array!");
             return;
         }
         Object[] parameterArray = (Object[]) parameters;
         if(!(parameterArray[0] instanceof Boolean)){
-            Log.e("ERROR","WRONG PARAMETERS FOR ActionPunish, expected boolean as first element!");
+            Log.e(TAG,"WRONG PARAMETERS FOR ActionPunish, expected boolean as first element!");
             return;
         }
         if(!(parameterArray[1] instanceof Integer)){
-            Log.e("ERROR","WRONG PARAMETERS FOR ActionPunish, expected integer as second element!");
+            Log.e(TAG,"WRONG PARAMETERS FOR ActionPunish, expected integer as second element!");
             return;
         }
 
@@ -35,16 +38,16 @@ public class ActionPunish implements ServerActionInterface {
         Player player = Game.getPlayers().get(id);
         if(isCheater){
             player.setCash(player.getCash()- Config.PUNISHMENT_FOR_CHEATING);
-            server.broadcast(GAMEVIEW_ACTIVITY_TYPE +":"+PREFIX_PLAYER_CHEATED+" 1 "+player.getNickname()+" "+player.getId()+" "+player.getCash());
+            server.broadcast(GAMEVIEW_ACTIVITY_TYPE +":"+PREFIX_PLAYER_CHEATED+" 1;"+player.getNickname()+";"+player.getId()+";"+player.getCash());
 
             //TODO SET PLAYER FIELD "hasCheated" to true
         }else{
             player.setCash(player.getCash()- Config.PUNISHMENT_FOR_WRONG_REPORT);
-            server.broadcast(GAMEVIEW_ACTIVITY_TYPE +":"+PREFIX_PLAYER_CHEATED+" 0 "+player.getNickname()+" "+player.getId()+" "+player.getCash());
+            server.broadcast(GAMEVIEW_ACTIVITY_TYPE +":"+PREFIX_PLAYER_CHEATED+" 0;"+player.getNickname()+";"+player.getId()+";"+player.getCash());
         }
 
         if(player.getCash() < 0){
-            ServerActionHandler.triggerAction(PREFIX_PLAYER_LOST, player.getId());
+            ServerActionHandler.triggerAction(PREFIX_PLAYER_LOST, new String[]{String.valueOf(player.getId()), "false"}); // false -> loose event
         }
     }
 }

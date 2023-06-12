@@ -2,7 +2,6 @@ package delta.dkt.logic.structure;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import ClientUIHandling.Config;
@@ -22,7 +21,7 @@ class GameTest {
     void incrementRounds() {
 
         for (int playerId = 1; playerId < 6; playerId++) {
-            for(int rounds = 0; rounds < Config.ENDROUNDS;rounds++){
+            for(int rounds = 1; rounds < Config.ENDROUNDS;rounds++){
                 Game.incrementRounds(playerId);
             }
         }
@@ -34,9 +33,9 @@ class GameTest {
     void reset() {
         setUpReset();
         Game.reset();
-        assertTrue(Game.getPlayers().size()==0);
-        assertTrue(Game.getRoundStartID() == -1);
-        assertTrue(Game.getRounds() == 0);
+        assertEquals(0, Game.getPlayers().size());
+        assertEquals(-1, Game.getRoundStartID());
+        assertEquals(1, Game.getRounds());
     }
 
 

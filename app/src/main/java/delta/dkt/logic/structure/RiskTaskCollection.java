@@ -7,7 +7,7 @@ import java.util.Collections;
  * This class includes a collection of all the risk tasks that a player can get in a game.
  */
 public class RiskTaskCollection {
-    private ArrayList<RiskTask> riskTask = new ArrayList<>();
+    private final ArrayList<RiskTask> riskTask = new ArrayList<>();
 
     /**
      * The RiskTaskCollection includes ten tasks that a player can get in a game.
