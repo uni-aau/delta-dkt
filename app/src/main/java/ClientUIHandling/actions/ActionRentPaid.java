@@ -18,7 +18,7 @@ public class ActionRentPaid implements ClientActionInterface {
 
         String[] splitMessage = clientMessage.split(" ");
 
-        int id = Integer.parseInt(splitMessage[2]);
+        int id = Integer.parseInt(splitMessage[1]);
 
         if (id == GameViewActivity.clientID) {
             LanguageHandler.updateTextElement(activity, "textView_cash","cash_text" , new Object[]{Integer.parseInt(splitMessage[4])});

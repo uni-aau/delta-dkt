@@ -130,15 +130,17 @@ public class ClientHandler extends Handler {
         for (int i = 0; i < actions.size(); i++) {
 
             if(message.startsWith(actionPrefixes.get(i))){
-                actions.get(i).execute(UIActivity, message);
+                String arguments = message.split(actionPrefixes.get(i))[1].trim(); //? Removes prefix
+                actions.get(i).execute(UIActivity, arguments);
                 return;
             }
         }
 
         String[] actionSplit = message.split("[: ]");
         if (actionMap.containsKey(actionSplit[0])) {
-            Log.i("INFO","TRIGGERED "+actionSplit[0]);
-            actionMap.get(actionSplit[0]).execute(UIActivity, message);
+            System.out.println("TRIGGERED "+actionSplit[0]);
+            String arguments = message.split(actionSplit[0])[1].trim(); //? Removes prefix
+            actionMap.get(actionSplit[0]).execute(UIActivity, arguments);
             return;
         }
 
