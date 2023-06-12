@@ -35,7 +35,7 @@ public class PlayerPositionCard extends Task {
         }else{
             asignee.moveTo(this.destination);
         }
-        int[] args ={ asignee.getId(), currentPos};
+        int[] args ={ asignee.getId(), asignee.getPosition().getLocation()};
         ServerActionHandler.triggerAction(Constants.PREFIX_ACTIONCARD_TRAVEL,args);
     }
 

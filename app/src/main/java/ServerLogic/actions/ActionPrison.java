@@ -39,8 +39,9 @@ public class ActionPrison implements ServerActionInterface {
                         Player updatedPlayer = player.suspendPlayerForRounds(3);
                         Game.setPlayer(updatedPlayer);
                     }
-                    player.setGoToPrisonField(false);
                 }
             }
+
+            //Now inform
         }
 }

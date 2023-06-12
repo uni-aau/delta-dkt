@@ -14,7 +14,7 @@ public class ActionTravelActionCard implements ServerActionInterface {
     @Override
     public void execute(ServerNetworkClient server, Object parameters) {
         try {
-            Object[] values = (Object[]) parameters;
+            int[] values = (int[]) parameters;
 
 
             int playerId = (int)values[0];

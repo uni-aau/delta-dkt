@@ -19,7 +19,7 @@ public class GameMap {
     }
 
     public Field getPrisonField(){
-        return this.fields.stream().filter(f -> f.getName().equals("Gefängnis")).collect(Collectors.toList()).stream().findFirst().orElseGet(null);
+        return this.fields.stream().filter(f -> f instanceof PrisonField).collect(Collectors.toList()).stream().findFirst().orElseGet(null);
     }
 
     public Field getFieldByName(String name){

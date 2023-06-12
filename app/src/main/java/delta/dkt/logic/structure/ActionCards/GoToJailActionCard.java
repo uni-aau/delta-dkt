@@ -1,7 +1,10 @@
 package delta.dkt.logic.structure.ActionCards;
 
+import static ClientUIHandling.Constants.PREFIX_GO_TO_PRISON_FIELD;
+
 import ClientUIHandling.Constants;
 import ServerLogic.ServerActionHandler;
+import ServerLogic.ServerActionInterface;
 import delta.dkt.logic.structure.GameMap;
 import delta.dkt.logic.structure.Player;
 import delta.dkt.logic.structure.Task;
@@ -24,7 +27,8 @@ public class GoToJailActionCard extends Task {
     @Override
     public void execute(Player asignee) {
         //send message to client that he is suspended for so many rounds
-        ServerActionHandler.triggerAction(Constants.PREFIX_ACTIONCARD_PRISON,asignee.getId());
+       //ServerActionHandler.triggerAction(Constants.PREFIX_ACTIONCARD_PRISON,asignee.getId());
+        ServerActionHandler.triggerAction(Constants.PREFIX_GO_TO_PRISON_FIELD, asignee.getId());
     }
 
 }
