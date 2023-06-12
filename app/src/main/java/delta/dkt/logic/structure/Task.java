@@ -21,4 +21,16 @@ public abstract class Task {
     }
 
     public abstract void execute(Player asignee);
+
+    public String getName() {
+        return name;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public String getDescriptionString() {
+        return descriptionString;
+    }
 }
