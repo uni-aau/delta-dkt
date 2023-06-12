@@ -12,7 +12,7 @@ public class RiskTask extends Task{
      * @param name The name of the risk task
      * @param descriptionString Tells you what task you have to do
      */
-    public RiskTask(int id, String name, String riskTask, String descriptionString) {
+    public RiskTask(int id, String name, String descriptionString) {
         super(id, name, descriptionString);
     }
 
