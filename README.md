@@ -1,4 +1,7 @@
 # Delta-DKT-Documentation
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=uni-aau_delta-dkt&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=uni-aau_delta-dkt)
+[![Coverage](https://sonarcloud.io/api/project_badges/measure?project=uni-aau_delta-dkt&metric=coverage)](https://sonarcloud.io/summary/new_code?id=uni-aau_delta-dkt)
+[![Lines of Code](https://sonarcloud.io/api/project_badges/measure?project=uni-aau_delta-dkt&metric=ncloc)](https://sonarcloud.io/summary/new_code?id=uni-aau_delta-dkt)
 
 # DKT - Group project
 
