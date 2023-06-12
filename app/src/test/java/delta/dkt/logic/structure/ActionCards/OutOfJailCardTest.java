@@ -73,8 +73,9 @@ class OutOfJailCardTest {
         try (MockedStatic<ServerActionHandler> handler = Mockito.mockStatic(ServerActionHandler.class)) {
             handler.when(() -> ServerActionHandler.triggerAction(anyString(), anyInt()))
                     .thenReturn(null);
-        card.execute(p);
-        handler.verify(() -> ServerActionHandler.triggerAction(anyString(),anyInt()),times(1));
+            card.execute(p);
+            handler.verify(() -> ServerActionHandler.triggerAction(anyString(), anyInt()), times(1));
+        }
     }
 
 }
