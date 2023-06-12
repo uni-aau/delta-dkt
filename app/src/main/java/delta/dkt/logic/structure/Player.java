@@ -181,13 +181,12 @@ public class Player implements Comparable<Player>{
                 ServerActionHandler.triggerAction(Constants.PREFIX_PAY_TAX, this.getId());
                 //END-NOSCAN
             }
-            else if(this.position instanceof RiskTaskField){
-                //depending on field, a card has been asigned
-                RiskTaskField currentPos = (RiskTaskField)this.position;
-                Task task = currentPos.getRiskTask();
-                //just call the execute method, it knows what to do
-                task.execute(this);
-            }
+        }else if(this.position instanceof RiskTaskField){
+            //depending on field, a card has been asigned
+            RiskTaskField currentPos = (RiskTaskField)this.position;
+            Task task = currentPos.getRiskTask();
+            //just call the execute method, it knows what to do
+            task.execute(this);
         }
     }
 

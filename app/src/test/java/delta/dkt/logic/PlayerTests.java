@@ -3,6 +3,8 @@ package delta.dkt.logic;
 import ClientUIHandling.ClientHandler;
 import ClientUIHandling.Config;
 import delta.dkt.logic.structure.*;
+import delta.dkt.logic.structure.ActionCards.OutOfJailCard;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -22,10 +24,20 @@ class PlayerTests {
     Property testProperty1 = null;
     Property testProperty2 = null;
 
+    RiskTaskField riskTaskField;
+    RiskTask riskTask = mock(RiskTask.class);
+
+    BankTaskField bankTaskField;
+
+    BankTask bankTask = mock(BankTask.class);
+
     @BeforeEach
     void setup() {
         testProperty1 = new Property(12, 10, 10, PropertyLevel.NORMAL, 10, 10);
         testProperty2 = new Property(14, 10, 10, PropertyLevel.NORMAL, 10, 10);
+
+        riskTaskField = new RiskTaskField(123,riskTask);
+        bankTaskField = new BankTaskField(1234, bankTask);
 
         setMockRequirements_PropertyAquisition();
         player = new Player("Mike");
@@ -508,6 +520,37 @@ class PlayerTests {
         assertFalse(player.getAndClearPing());
 
     }
+
+    @Test
+    /**
+     * test a simulated movement of the player to a field of type riskTask
+     * check that the execution of the given task on a RiskTaskField is called
+     */
+    void ensureRiskTaskExecutionAfterMovingToRiskTaskField(){
+        int pos = riskTaskField.getLocation();
+        RiskTask task = riskTaskField.getRiskTask();
+        assertEquals(task, riskTask);
+        player.moveTo(pos);
+        assert (riskTaskField instanceof  RiskTaskField);
+        assert (task instanceof  RiskTask);
+        verify(task, (times(1))).execute(player);
+    }
+
+    /**
+     * this test ensures that the risktask is not called when player lands on a banktaskfield
+     */
+    @Test
+    void ensureRiskTaskNotExecutedWhenBankTaskField() {
+        int pos = bankTaskField.getLocation();
+        RiskTask task = riskTaskField.getRiskTask();
+        //cant test the following lines, cause banktask needs further implementation first
+        //BankTask bankTask1 = bankTaskField.get();
+        //assertEquals(bankTask1, bankTask);
+        player.moveTo(pos);
+        assert (bankTaskField instanceof BankTaskField);
+        verify(task, (times(0))).execute(player);
+    }
+
 }
 
 
