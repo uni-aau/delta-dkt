@@ -3,7 +3,7 @@ package delta.dkt.logic.structure;
 /**
  * This class represents a task.
  */
-public class Task {
+public abstract class Task {
     private final int id;
     private final String name;
 
@@ -16,4 +16,6 @@ public class Task {
         this.id = id;
         this.name = name;
     }
+
+    public abstract void execute(Player asignee);
 }
