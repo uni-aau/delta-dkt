@@ -33,12 +33,14 @@ public class RequestGameStartTime implements ServerActionInterface {
     private void initializeTimer() {
         cancelPreviousTimer();
 
+        int tickInterval = Config.SELECTED_GAME_MODE ? 1000 : -1000; // decreses countdown when user selects time
+
         timer = new CountDownTimer(Config.END_TIME, 1000) {
             @Override
             public void onTick(long l) {
                 cancelTimerIfServerIsNotAlive();
 
-                elapsedTime += 1000; // + 1000 millisekunden pro Tick -> +1 sekunde
+                elapsedTime += tickInterval; // + 1000 millisekunden pro Tick -> +1 sekunde
 
                 int currentMinute = (int) (elapsedTime / 60000);
                 if (currentMinute != previousMinute) {
@@ -62,7 +64,7 @@ public class RequestGameStartTime implements ServerActionInterface {
     }
 
     private void cancelPreviousTimer() {
-        elapsedTime = 0;
+        elapsedTime = !Config.SELECTED_GAME_MODE? Config.END_TIME: 0;
         previousMinute = -1;
 
         if (timer != null) {
