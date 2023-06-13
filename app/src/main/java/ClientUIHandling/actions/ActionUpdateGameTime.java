@@ -3,6 +3,7 @@ package ClientUIHandling.actions;
 import static ClientUIHandling.Constants.GAMEVIEW_ACTIVITY_TYPE;
 import static ClientUIHandling.Constants.PREFIX_GET_SERVER_TIME;
 
+import android.content.res.Resources;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -27,6 +28,8 @@ public class ActionUpdateGameTime implements ClientActionInterface {
      * This method updates the game time in the gameview (converts milliseconds to hours, minutes and seconds)
      */
     private void updateGameTime(int milliseconds, boolean isTimeMode) {
+        Resources resources = gameViewActivity.getResources();
+
         int hours = (milliseconds / (1000 * 60 * 60)) % 24;
         int minutes = (milliseconds / (1000 * 60)) % 60;
         int seconds = (milliseconds / 1000) % 60;
@@ -37,6 +40,8 @@ public class ActionUpdateGameTime implements ClientActionInterface {
         String secondsLocale = seconds != 1 ? gameViewActivity.getString(R.string.seconds_plural_text) : gameViewActivity.getString(R.string.second_sing_text);
 
         // %d %s, %d %s, %d, %s
-        ((TextView) gameViewActivity.findViewById(R.id.textView_playing_time)).setText(String.format(gameViewActivity.getString(R.string.playing_time_text), String.valueOf(hours), hoursLocale, String.valueOf(minutes), minutesLocale, String.valueOf(seconds), secondsLocale));
+        TextView playingTime = gameViewActivity.findViewById(R.id.textView_playing_time);
+        String playingTimeTextInput = resources.getString(R.string.playing_time_text, String.valueOf(hours), hoursLocale, String.valueOf(minutes), minutesLocale, String.valueOf(seconds), secondsLocale);
+        playingTime.setText(playingTimeTextInput);
     }
 }
