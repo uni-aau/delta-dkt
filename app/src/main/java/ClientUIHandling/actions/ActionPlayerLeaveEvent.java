@@ -13,15 +13,22 @@ import delta.dkt.activities.MainMenuActivity;
 
 public class ActionPlayerLeaveEvent implements ClientActionInterface {
     private static final String TAG = "[CLIENT] ActionPlayerLeave";
+    private int clientId;
 
     @Override
     public void execute(AppCompatActivity activity, String clientMessage) {
         String prefix = clientMessage.split(" ")[0];
         String[] splitMessage = clientMessage.replace(prefix, "").trim().split(";");
 
-        int clientId = Integer.parseInt(splitMessage[0]);
+        clientId = Integer.parseInt(splitMessage[0]);
 
-        // Host sends request to the server to remove specific player from game
+        sendPlayerLeaveRequestAsHost(prefix);
+    }
+
+    /**
+     * This method sends a request as host to the server to remove the specific player from game
+     */
+    private void sendPlayerLeaveRequestAsHost(String prefix) {
         if (MainMenuActivity.role) {
             Log.d(TAG, "Sending player leave action to server! ClientID = " + clientId);
 
@@ -31,6 +38,5 @@ public class ActionPlayerLeaveEvent implements ClientActionInterface {
             } else
                 ServerActionHandler.triggerAction(PREFIX_PLAYER_LOST, new String[]{String.valueOf(clientId), "true"});
         }
-
     }
 }
