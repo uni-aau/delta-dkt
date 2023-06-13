@@ -196,10 +196,6 @@ public class ServerNetworkClient extends Thread { //always executed on a separat
         serverSocket.close();
     }
 
-    public void tearDownAfterBroadCast(){
-
-    }
-
     public boolean hasClosed() {
         synchronized (synchTearDownToken) {
             return this.serverInterrupted;

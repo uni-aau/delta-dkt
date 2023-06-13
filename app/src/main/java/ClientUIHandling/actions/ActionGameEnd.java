@@ -1,5 +1,6 @@
 package ClientUIHandling.actions;
 
+import static ClientUIHandling.Constants.GAMEVIEW_ACTIVITY_TYPE;
 import static ClientUIHandling.Constants.PREFIX_END_GAME;
 
 import android.content.Intent;
@@ -37,7 +38,7 @@ public class ActionGameEnd implements ClientActionInterface {
 
     @Override
     public void execute(AppCompatActivity activity, String clientMessage) {
-
+        MainActivity.logic.removeType(GAMEVIEW_ACTIVITY_TYPE);
         // Everything that is needed to create the popUp Window:
         GameViewActivity game = (GameViewActivity) activity;
         ConstraintLayout popUpConstraintLayout = game.findViewById(R.id.winnerPopUpLayout);
