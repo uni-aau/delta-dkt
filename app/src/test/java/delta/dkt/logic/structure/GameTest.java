@@ -19,7 +19,7 @@ class GameTest {
 
     @Test
     void incrementRounds() {
-
+        Config.IS_ROUNDS_MODE = true;
         for (int playerId = 1; playerId < 6; playerId++) {
             for(int rounds = 1; rounds < Config.ENDROUNDS;rounds++){
                 Game.incrementRounds(playerId);
