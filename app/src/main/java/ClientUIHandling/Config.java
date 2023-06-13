@@ -9,7 +9,6 @@ public class Config {
     }
 
     public static int MAX_CLIENTS = 6; // value gets set by user (needs to be <= MAX_CLIENTS_AMOUNT)
-    public static boolean SELECTED_GAME_MODE = false; // false -> time / true -> rounds
     public static boolean IS_TIME_MODE = false;
     public static boolean IS_ROUNDS_MODE = false;
     public static final int MAX_CLIENTS_AMOUNT = 6; // Maximum clients that are possible in game (should be only changed here)
