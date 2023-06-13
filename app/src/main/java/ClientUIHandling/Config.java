@@ -9,10 +9,12 @@ public class Config {
     }
 
     public static int MAX_CLIENTS = 6; // value gets set by user (needs to be <= MAX_CLIENTS_AMOUNT)
-    public static boolean SELECTED_GAME_MODE = false; // false -> time / true -> rounds
+    public static boolean IS_TIME_MODE = false; // checks if host wants to play with time or rounds
+    public static boolean IS_ROUNDS_MODE = false; // checks if host wants to play with time or rounds
     public static final int MAX_CLIENTS_AMOUNT = 6; // Maximum clients that are possible in game (should be only changed here)
     public static final int MIN_CLIENTS = 1;
     public static int END_TIME = 3000000; // end_time in milliseconds
+    public static final int CRITICAL_TIME = 30000; // critical time when countdown should be marked red (in milliseconds)
     public static int ENDROUNDS = 100; //Number of rounds until the game ends
     public static final float TAX_PERCENTAGE = 0.1F; // Percentage of money that gets removed from player cash
     public static final int STATIC_TAX_AMOUNT = 100; // Specify the static tax amount that would get removed from player cash
