@@ -1,19 +1,22 @@
 package ClientUIHandling.actions;
 
-import static ClientUIHandling.Constants.GAMEVIEW_ACTIVITY_TYPE;
 import static ClientUIHandling.Constants.PREFIX_GET_SERVER_TIME;
 
+import android.content.res.ColorStateList;
 import android.content.res.Resources;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 
 import ClientUIHandling.ClientActionInterface;
+import ClientUIHandling.Config;
 import delta.dkt.R;
 import delta.dkt.activities.GameViewActivity;
 
 public class ActionUpdateGameTime implements ClientActionInterface {
     private AppCompatActivity gameViewActivity;
+
     @Override
     public void execute(AppCompatActivity activity, String clientMessage) {
         String[] args = clientMessage.replace(PREFIX_GET_SERVER_TIME, "").trim().split(";"); // Holt sich Args nach dem Prefix
@@ -43,5 +46,15 @@ public class ActionUpdateGameTime implements ClientActionInterface {
         TextView playingTime = gameViewActivity.findViewById(R.id.textView_playing_time);
         String playingTimeTextInput = resources.getString(R.string.playing_time_text, String.valueOf(hours), hoursLocale, String.valueOf(minutes), minutesLocale, String.valueOf(seconds), secondsLocale);
         playingTime.setText(playingTimeTextInput);
+
+        // Sets critical countdown color when threshold is reached
+        int playingTimeTextColor;
+        if (milliseconds < Config.CRITICAL_TIME && isTimeMode) {
+            playingTimeTextColor = ContextCompat.getColor(gameViewActivity, R.color.critical_color);
+        } else {
+            ColorStateList textColors = playingTime.getTextColors();
+            playingTimeTextColor = textColors.getDefaultColor(); // gets default xml color
+        }
+        playingTime.setTextColor(playingTimeTextColor);
     }
 }
