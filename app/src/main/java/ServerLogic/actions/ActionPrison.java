@@ -23,8 +23,8 @@ public class ActionPrison implements ServerActionInterface {
             Log.i(TAG, "LOCATION: "+fieldLocation);
             Log.i(TAG, "Du bist im Gefängnis; Server");
             String[] args = new String[1];
-            args[0] = String.valueOf(id);
             String playerName = player.getNickname();
+            args[0] = playerName;
 
             if(Game.getMap().getField(fieldLocation) instanceof PrisonField){
                 if(player.getGoToPrisonField()){

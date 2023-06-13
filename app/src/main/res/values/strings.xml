@@ -99,7 +99,7 @@
 
     <string name="pay_tax_activity_text">%s had to pay %s%% taxes. Old cash %s$, new cash %s$</string>
     <string name="pay_static_tax_activity_text">%s had to pay %s$ taxes. Old cash %s$, new cash %s$</string>
-    <string name="notify_inprisonment">Player %s has been sent to prison!</string>
+    <string name="notify_inprisonment">%s has been sent to prison!</string>
     <string name="text_rent">Rent: %s$</string>
 
     <string name="suspension_count">The player is suspended for %s more rounds</string>
