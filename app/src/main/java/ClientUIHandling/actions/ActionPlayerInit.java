@@ -73,6 +73,8 @@ public class ActionPlayerInit implements ClientActionInterface {
         String cashText = gameViewActivity.getString(R.string.cash_text, String.valueOf(Config.INITIAL_CASH));
         ((TextView) gameViewActivity.findViewById(R.id.textView_cash)).setText(cashText);
 
+
+
         String myPropertiesText = gameViewActivity.getString(R.string.my_properties_text, String.valueOf(0));
         ((TextView) gameViewActivity.findViewById(R.id.textView_my_properties)).setText(myPropertiesText);
 
