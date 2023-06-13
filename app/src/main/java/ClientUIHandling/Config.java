@@ -9,8 +9,8 @@ public class Config {
     }
 
     public static int MAX_CLIENTS = 6; // value gets set by user (needs to be <= MAX_CLIENTS_AMOUNT)
-    public static boolean IS_TIME_MODE = false;
-    public static boolean IS_ROUNDS_MODE = false;
+    public static boolean IS_TIME_MODE = false; // checks if host wants to play with time or rounds
+    public static boolean IS_ROUNDS_MODE = false; // checks if host wants to play with time or rounds
     public static final int MAX_CLIENTS_AMOUNT = 6; // Maximum clients that are possible in game (should be only changed here)
     public static final int MIN_CLIENTS = 1;
     public static int END_TIME = 3000000; // end_time in milliseconds
