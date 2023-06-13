@@ -88,4 +88,12 @@ public class ClientLogic {
             }
         }
     }
+
+    public void removeType(String type){
+        synchronized (handlers){
+            if(handlers.containsKey(type)){
+                handlers.remove(type);
+            }
+        }
+    }
 }

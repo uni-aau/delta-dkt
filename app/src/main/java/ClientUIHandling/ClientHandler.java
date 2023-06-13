@@ -152,4 +152,5 @@ public class ClientHandler extends Handler {
             this.UIActivity = activity;
         }
     }
+
 }

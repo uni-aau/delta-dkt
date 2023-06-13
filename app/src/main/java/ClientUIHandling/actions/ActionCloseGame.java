@@ -1,5 +1,6 @@
 package ClientUIHandling.actions;
 
+import static ClientUIHandling.Constants.GAMEVIEW_ACTIVITY_TYPE;
 import static delta.dkt.activities.MainActivity.INTENT_PARAMETER;
 import static delta.dkt.activities.MainMenuActivity.role;
 
@@ -11,6 +12,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import ClientUIHandling.ClientActionInterface;
 import ClientUIHandling.ClientHandler;
 import delta.dkt.activities.LobbyViewActivity;
+import delta.dkt.activities.MainActivity;
 import delta.dkt.activities.MainMenuActivity;
 import delta.dkt.logic.structure.Game;
 
@@ -18,7 +20,7 @@ public class ActionCloseGame implements ClientActionInterface {
     @Override
     public void execute(AppCompatActivity activity, String clientMessage) {
         Log.d("[CLIENT]:Close_Game ", "Client closed");
-
+        MainActivity.logic.removeType(GAMEVIEW_ACTIVITY_TYPE);
         if (role) {
             Log.d("[CLIENT]:Close_Game ", "Server closed");
             Intent intent = new Intent(activity, MainMenuActivity.class);
