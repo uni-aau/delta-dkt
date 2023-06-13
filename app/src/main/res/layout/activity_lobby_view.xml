@@ -91,7 +91,7 @@
                 android:fontFamily="@font/bangers"
                 android:background="@drawable/host_btn_background"
                 app:layout_constraintEnd_toEndOf="parent"
-                android:layout_marginEnd="10dp"
+                android:layout_marginEnd="15dp"
                 app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
