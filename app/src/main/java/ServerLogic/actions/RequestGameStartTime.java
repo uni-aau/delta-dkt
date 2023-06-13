@@ -47,7 +47,7 @@ public class RequestGameStartTime implements ServerActionInterface {
                     Log.d(TAG, "New minute! Previous minute " + previousMinute + " new minute " + currentMinute);
                 }
 
-                server.broadcast(GAMEVIEW_ACTIVITY_TYPE, PREFIX_GET_SERVER_TIME, new String[]{String.valueOf(elapsedTime)});
+                server.broadcast(GAMEVIEW_ACTIVITY_TYPE, PREFIX_GET_SERVER_TIME, new String[]{String.valueOf(elapsedTime), String.valueOf(Config.IS_TIME_MODE)});
                 previousMinute = currentMinute;
             }
 
