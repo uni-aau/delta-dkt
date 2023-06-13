@@ -71,7 +71,7 @@ public class Game {
         }else{
             if(Game.roundStartID == playerID){
                 Game.rounds++;
-                if(Game.rounds == Config.ENDROUNDS && Config.IS_TIME_MODE){ // Only stop game via rounds when host selected max. rounds as game mode
+                if(Game.rounds == Config.ENDROUNDS && Config.IS_ROUNDS_MODE){ // Only stop game via rounds when host selected max. rounds as game mode
                     ServerActionHandler.triggerAction(Constants.PREFIX_END_GAME, "ROUNDS RAN OUT");
                 }
             }
