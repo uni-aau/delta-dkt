@@ -6,6 +6,7 @@ import ClientUIHandling.Config;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -77,7 +78,10 @@ public class MainActivity extends AppCompatActivity {
     //--------------------------ALL METHODS-----------------------------//
 
     public static void subscribeToLogic(String type, AppCompatActivity activity) {
-        logic.getHandler().put(type, new ClientHandler(activity));
+        if(activity instanceof  GameViewActivity){
+            Log.i("DEBUGGAME", ""+activity);
+        }
+        logic.registerActivity(type, activity);
     }
 
     public boolean checkIfUsernameAlreadyExists(String newUsername) {

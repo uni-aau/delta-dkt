@@ -349,4 +349,8 @@ public class GameViewActivity extends AppCompatActivity {
         builder.setView(view);
         return builder.create();
     }
+
+    public void destroy(){
+        finish();
+    }
 }

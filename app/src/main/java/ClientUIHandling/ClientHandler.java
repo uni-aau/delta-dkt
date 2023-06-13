@@ -23,6 +23,7 @@ import ClientUIHandling.actions.ActionUpdateGameTime;
 
 import ClientUIHandling.actions.cheating.ActionOpenCheatMenu;
 import ClientUIHandling.actions.redirect.ActionSendServerRequest;
+
 import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
@@ -56,12 +57,12 @@ public class ClientHandler extends Handler {
     public static final ArrayList<ClientActionInterface> actions = new ArrayList<>();
     public static final ArrayList<String> actionPrefixes = new ArrayList<>();
 
-    private final AppCompatActivity UIActivity;
-    private static final HashMap<String, ClientActionInterface> actionMap =  new HashMap<>();
+    private AppCompatActivity UIActivity;
+    private static final HashMap<String, ClientActionInterface> actionMap = new HashMap<>();
 
     private static NetworkClientConnection client;
 
-    static{
+    static {
         actionMap.put(Constants.PREFIX_PLAYER_RENTPAID, new ActionRentPaid());
         actionMap.put(Constants.PREFIX_PLAYER_LOST, new ActionPlayerLost());
         actionMap.put(Constants.PREFIX_GAME_START, new ActionStartGame());
@@ -96,7 +97,7 @@ public class ClientHandler extends Handler {
         actionMap.put(PING, new ActionPing());
     }
 
-    public static void setClient(NetworkClientConnection connection){
+    public static void setClient(NetworkClientConnection connection) {
         client = connection;
     }
 
@@ -104,21 +105,22 @@ public class ClientHandler extends Handler {
         return client;
     }
 
-    public static void sendMessageToServer(String activity, String prefix, String args){
-        client.sendMessage(activity+":"+prefix+" "+args);
+    public static void sendMessageToServer(String activity, String prefix, String args) {
+        client.sendMessage(activity + ":" + prefix + " " + args);
     }
 
-    public static void sendMessageToServer(String activity, String prefix, Object[] args){
+    public static void sendMessageToServer(String activity, String prefix, Object[] args) {
         StringBuilder message = new StringBuilder();
-        for(Object element : args) {
+        for (Object element : args) {
             message.append(element);
-            if(args.length-1 != Arrays.asList(args).indexOf(element)) message.append(";"); //? Splits arguments from another with ';'
+            if (args.length - 1 != Arrays.asList(args).indexOf(element))
+                message.append(";"); //? Splits arguments from another with ';'
         }
         ClientHandler.sendMessageToServer(activity, prefix, message.toString());
     }
 
 
-    public ClientHandler(AppCompatActivity UIActivity){
+    public ClientHandler(AppCompatActivity UIActivity) {
         this.UIActivity = UIActivity;
 
     }
@@ -126,24 +128,28 @@ public class ClientHandler extends Handler {
     @Override
     public void handleMessage(@NonNull Message msg) {
         String message = msg.getData().get("payload").toString();
-        //For compatibility with old registration
-        for (int i = 0; i < actions.size(); i++) {
-
-            if(message.startsWith(actionPrefixes.get(i))){
-                actions.get(i).execute(UIActivity, message);
-                return;
-            }
-        }
 
         String[] actionSplit = message.split("[: ]");
         if (actionMap.containsKey(actionSplit[0])) {
-            Log.i("INFO","TRIGGERED "+actionSplit[0]);
-            actionMap.get(actionSplit[0]).execute(UIActivity, message);
+            Log.i("INFO", "TRIGGERED " + actionSplit[0]);
+            synchronized (UIActivity) {
+                actionMap.get(actionSplit[0]).execute(UIActivity, message);
+            }
             return;
         }
 
-        Log.e("ERROR",actionSplit[0] + " NOT FOUND");
+
+        Log.e("ERROR", actionSplit[0] + " NOT FOUND");
 
     }
 
+    public AppCompatActivity getUIActivity() {
+        return UIActivity;
+    }
+
+    public void replaceActivity(AppCompatActivity activity) {
+        synchronized (UIActivity) {
+            this.UIActivity = activity;
+        }
+    }
 }
