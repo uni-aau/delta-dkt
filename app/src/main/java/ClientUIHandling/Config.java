@@ -14,6 +14,7 @@ public class Config {
     public static final int MAX_CLIENTS_AMOUNT = 6; // Maximum clients that are possible in game (should be only changed here)
     public static final int MIN_CLIENTS = 1;
     public static int END_TIME = 3000000; // end_time in milliseconds
+    public static final int CRITICAL_TIME = 30000; // critical time when countdown should be marked red (in milliseconds)
     public static int ENDROUNDS = 100; //Number of rounds until the game ends
     public static final float TAX_PERCENTAGE = 0.1F; // Percentage of money that gets removed from player cash
     public static final int STATIC_TAX_AMOUNT = 100; // Specify the static tax amount that would get removed from player cash
