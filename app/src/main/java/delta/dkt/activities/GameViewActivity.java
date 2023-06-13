@@ -127,8 +127,10 @@ public class GameViewActivity extends AppCompatActivity {
         map.post(() -> PositionHandler.setLogs(true));
 
     }
-    
-    // Action when player presses back on mobile phone
+
+    /**
+     * This method handles the action when player presses back on mobile phone
+     */
     private void createOnBackCallBack() {
         OnBackPressedCallback callback = new OnBackPressedCallback(true) {
             @Override
@@ -140,6 +142,12 @@ public class GameViewActivity extends AppCompatActivity {
         onBackPressedDispatcher.addCallback(this, callback);
     }
 
+    /**
+     * This method handles the player leave event in the game view
+     * When host wants to leave -> server will be closed
+     * When player wants to leave -> will be removed from game and switches back to server
+     * When player is spectator -> server handles different request (without removing the player again from game)
+     */
     private void openPlayerLeavePopUp() {
         ConstraintLayout popUpConstraintLayout = findViewById(R.id.playerLeavePopUpConstraint);
         View view = LayoutInflater.from(this).inflate(R.layout.player_leave_pop_up_window, popUpConstraintLayout);

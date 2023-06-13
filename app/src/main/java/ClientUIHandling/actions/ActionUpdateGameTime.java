@@ -17,6 +17,9 @@ public class ActionUpdateGameTime implements ClientActionInterface {
         updateGameTime(args[0], activity);
     }
 
+    /**
+     * This method updates the game time in the gameview (converts milliseconds to hours, minutes and seconds)
+     */
     private void updateGameTime(String args, AppCompatActivity activity) {
         int milliseconds = Integer.parseInt(args);
 
