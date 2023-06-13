@@ -15,7 +15,7 @@ import delta.dkt.R;
 import delta.dkt.activities.GameViewActivity;
 
 public class ActionUpdateGameTime implements ClientActionInterface {
-    private AppCompatActivity gameViewActivity;
+    private GameViewActivity gameViewActivity;
 
     @Override
     public void execute(AppCompatActivity activity, String clientMessage) {
