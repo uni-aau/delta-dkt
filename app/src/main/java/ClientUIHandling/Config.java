@@ -20,7 +20,7 @@ public class Config {
     public static final int STATIC_TAX_AMOUNT = 100; // Specify the static tax amount that would get removed from player cash
     // -1 for disabling MAX_TAX_AMOUNT check
     public static final int MAX_TAX_AMOUNT = 1500; // Specify the max tax amount that would get removed from player cash
-    public static final int INITIAL_CASH = 1000; // end_time in milliseconds
+    public static final int INITIAL_CASH = 1000; // Cash amount the player receives when starting the game
 
     public static boolean Skip = false; //? Used for quick development, skips activities until false.
     public static final boolean DEBUG = false;
