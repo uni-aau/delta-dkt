@@ -38,4 +38,5 @@ public class Config {
     public static final int TIMEOUT_WARNING_THRESHOLD = 10000; // opens snackbar as warning that time is nearly over (in milliseconds)
 
     public static final int PING_TIMEOUT = 2000;
+    public static final int SUSPENSION_ROUNDS = 2; // sets the amount of rounds the player has to stay in prison
 }
