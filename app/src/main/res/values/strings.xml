@@ -122,4 +122,6 @@
         <item quantity="one">Game started with %d player</item>
         <item quantity="other">Game started with %d players</item>
     </plurals>
+    <string name="toast_buy_property_too_less_cash">You have too less cash to buy this property!</string>
+    <string name="toast_buy_property_error_buying">Error buying property! Already bought by someone else?</string>
 </resources>
