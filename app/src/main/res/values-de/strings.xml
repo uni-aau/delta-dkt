@@ -46,7 +46,6 @@
     <string name="JoinBtn">Beitreten</string>
     <string name="HostId">Host ID</string>
     <string name="EnterServerName">Servername:</string>
-    <string name="EnterServerName">S</string>
     <string name="EnterMaxPlayers">Maximale Spieleranzahl:</string>
     <string name="Time">Zeit</string>
     <string name="Rounds">Runden</string>
@@ -61,13 +60,6 @@
     <string name="Wealth">Vermögen</string>
     <string name="Finish">Beenden</string>
     <string name="IP">IP:</string>
-
-
-
-
-
-
-
     <string name="NSDServiceName">delta_dkt</string>
     <string name="NSDServiceType">_delta_dkt.tcp</string>
     <string name="hours_plural_text">Stunden</string>
@@ -104,8 +96,6 @@
     <!-- END Cheating Texts -->
     <string name="movement_info_message_singular">Activity: %s hat sich %s Schritt bewegt und befindet sich jetzt an der Position: %s</string>
     <string name="movement_info_message_plural">Activity: %s hat sich %s Schritte bewegt und befindet sich nun an der Position: %s</string>
-
-
 
     <string name="pay_tax_activity_text">%s muss %s%% Miete zahlen. Altes Vermögen %s$, neues Vermögen %s$</string>
     <string name="pay_static_tax_activity_text">%s muss %s$ Miete zahlen. Altes Vermögen %s$, neues Vermögen %s$</string>
@@ -153,10 +143,7 @@
         <item quantity="other">Das Spiel hat mit %d Spieler begonnen</item>
     </plurals>
     <string name="joined_format">Beigetreten am: %1$s</string>
-    <string name="joined_format">Joined on: %1$s</string>
     <string name="outOfPrisonCardAwarded_notification">%s hat eine Get-Out-Of-Jail-Card erhalten!</string>
     <string name="toast_buy_property_too_less_cash">Du hast zu wenig Geld, um dieses Grundstück zu kaufen!</string>
-    <string name="toast_buy_property_too_less_cash">You have too less cash to buy this property!</string>
     <string name="toast_buy_property_error_buying">Fehler beim Grundstückskauf! Bereits von jemand anderem gekauft?</string>
-    <string name="toast_buy_property_error_buying">Fehler beim Kauf einer Immobilie! Bereits von jemand anderem gekauft?</string>
 </resources>
