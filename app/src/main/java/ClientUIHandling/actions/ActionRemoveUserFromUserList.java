@@ -1,10 +1,5 @@
 package ClientUIHandling.actions;
 
-import static ClientUIHandling.Constants.PREFIX_REMOVE_USER_FROM_LIST;
-import static delta.dkt.activities.MainActivity.INTENT_PARAMETER;
-
-import android.content.Intent;
-import android.util.Log;
 
 import androidx.appcompat.app.AppCompatActivity;
 
