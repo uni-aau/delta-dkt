@@ -8,18 +8,14 @@ import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
-import static ServerLogic.ServerActionHandler.triggerAction;
 
 import org.junit.Test;
 import org.junit.jupiter.api.BeforeEach;
 import org.mockito.MockedStatic;
 import org.mockito.Mockito;
-import org.mockito.stubbing.Answer1;
 
-import ClientUIHandling.Constants;
 import ServerLogic.ServerActionHandler;
 import delta.dkt.logic.structure.Player;
-import delta.dkt.logic.structure.RiskTask;
 
 class OutOfJailCardTest {
 
