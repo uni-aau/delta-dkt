@@ -8,7 +8,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import ClientUIHandling.ClientActionInterface;
 import delta.dkt.activities.GameViewActivity;
 
-public class ActionPropertyBuyToasts implements ClientActionInterface {
+public class ActionBuyPropertyToasts implements ClientActionInterface {
     private GameViewActivity gameViewActivity;
     private String languageString;
     private static final String TAG = "[Client] ActionPropertyBuyToasts";
