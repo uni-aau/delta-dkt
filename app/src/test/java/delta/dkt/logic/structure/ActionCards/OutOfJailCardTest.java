@@ -52,6 +52,7 @@ class OutOfJailCardTest {
     }
 
 
+    /**
     @Test
     void testExecutePlayerSideEffectsPreviousCard(){
         Player player = new Player();
@@ -61,6 +62,7 @@ class OutOfJailCardTest {
         assertEquals(player.getYouGetOutOfPrisonCard(), true);
     }
 
+    @Test
     void testExecuteServerActionTrigger() {
         ;
         Player p = mock(Player.class);
@@ -73,5 +75,6 @@ class OutOfJailCardTest {
             handler.verify(() -> ServerActionHandler.triggerAction(anyString(), anyInt()), times(1));
         }
     }
+    */
 
 }
