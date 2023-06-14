@@ -40,9 +40,11 @@ public class RequestBuyProperty implements ServerActionInterface {
                     server.broadcast(GAMEVIEW_ACTIVITY_TYPE, PREFIX_SET_MONEY, new String[]{String.valueOf(clientId), String.valueOf(player.getCash())});
                 }
             } else {
-                // TODO GELD REICHT NICHT AUS - Könnte auch direkt via RequestAskPropertyBuy klasse implementiert werden
+                Log.i(LOG_PROPERTY_BUY, "Player " + player.getNickname() + " has too less money to buy property!");
+                server.broadcast(GAMEVIEW_ACTIVITY_TYPE, PREFIX_BUY_PROPERTY_TOASTS, new String[]{"toast_buy_property_too_less_cash", String.valueOf(clientId)});
             }
         } else {
+            server.broadcast(GAMEVIEW_ACTIVITY_TYPE, PREFIX_BUY_PROPERTY_TOASTS, new String[]{"toast_buy_property_error_buying", String.valueOf(clientId)});
             Log.e(LOG_PROPERTY_BUY, "Error trying to buy plot - Invalid arguments provided!");
         }
     }
