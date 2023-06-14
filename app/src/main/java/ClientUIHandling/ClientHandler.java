@@ -12,6 +12,7 @@ import ClientUIHandling.actions.ActionPing;
 import ClientUIHandling.actions.ActionPlayerLost;
 import ClientUIHandling.actions.ActionPlayerPunish;
 import ClientUIHandling.actions.ActionPrisonNotification;
+import ClientUIHandling.actions.ActionPropertyBuyToasts;
 import ClientUIHandling.actions.ActionPropertyListUpdate;
 import ClientUIHandling.actions.ActionRentPaid;
 import ClientUIHandling.actions.ActionInitRollDice;
@@ -91,6 +92,7 @@ public class ClientHandler extends Handler {
         actionMap.put(Constants.PREFIX_ASK_BUY_PROPERTY, new ActionAskBuyProperty());
         actionMap.put(Constants.PREFIX_CLIENT_BUY_PROPERTY, new ActionClientBuyProperty());
         actionMap.put(Constants.PREFIX_SUSPENSION_COUNT, new ActionSuspensionNotification());
+        actionMap.put(Constants.PREFIX_BUY_PROPERTY_TOASTS, new ActionPropertyBuyToasts());
         actionMap.put(PREFIX_PLAYER_CHEAT_MENU, new ActionOpenCheatMenu());
         actionMap.put(PREFIX_REQUEST_SERVER_ACTION_AS_CLIENT, new ActionSendServerRequest());
         actionMap.put(PREFIX_PLAYER_TIMEOUT_WARNING, new ActionTimeoutWarning());
