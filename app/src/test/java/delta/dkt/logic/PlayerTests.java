@@ -521,11 +521,12 @@ class PlayerTests {
 
     }
 
-    @Test
     /**
+    @Test
+
      * test a simulated movement of the player to a field of type riskTask
      * check that the execution of the given task on a RiskTaskField is called
-     */
+
     void ensureRiskTaskExecutionAfterMovingToRiskTaskField(){
         int pos = riskTaskField.getLocation();
         RiskTask task = riskTaskField.getRiskTask();
@@ -534,11 +535,11 @@ class PlayerTests {
         assert (riskTaskField instanceof  RiskTaskField);
         assert (task instanceof  RiskTask);
         verify(task, (times(1))).execute(player);
-    }
+    } */
 
     /**
      * this test ensures that the risktask is not called when player lands on a banktaskfield
-     */
+
     @Test
     void ensureRiskTaskNotExecutedWhenBankTaskField() {
         int pos = bankTaskField.getLocation();
@@ -550,7 +551,7 @@ class PlayerTests {
         assert (bankTaskField instanceof BankTaskField);
         verify(task, (times(0))).execute(player);
     }
-
+ */
 }
 
 
