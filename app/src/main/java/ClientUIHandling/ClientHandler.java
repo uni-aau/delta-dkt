@@ -7,6 +7,7 @@ import ClientUIHandling.actions.ActionClientLeaveEvent;
 import ClientUIHandling.actions.ActionGameEnd;
 import ClientUIHandling.actions.ActionGetIP;
 import ClientUIHandling.actions.ActionMove;
+import ClientUIHandling.actions.ActionOutOfPrisonAwardedNotification;
 import ClientUIHandling.actions.ActionPlayerLeaveEvent;
 import ClientUIHandling.actions.ActionPing;
 import ClientUIHandling.actions.ActionPlayerLost;
@@ -81,6 +82,7 @@ public class ClientHandler extends Handler {
         actionMap.put(Constants.PREFIX_CLIENT_LEAVE_EVENT, new ActionClientLeaveEvent());
         actionMap.put(Constants.PREFIX_PLAYER_SPECTATOR_LEAVE, new ActionPlayerLeaveEvent());
         actionMap.put(Constants.PREFIX_NOTIFICATION, new ActionPrisonNotification());
+        actionMap.put(Constants.PREFIX_PRISONCARD_AWARDED_NOTIFICATION, new ActionOutOfPrisonAwardedNotification());
         actionMap.put(Constants.PREFIX_PROPLIST_UPDATE, new ActionPropertyListUpdate());
         actionMap.put(Constants.PREFIX_SERVER_FULL, new ActionServerIsFull());
         actionMap.put(Constants.PREFIX_HOST_NEW_GAME, new ActionHostGame());

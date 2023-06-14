@@ -55,6 +55,8 @@ public class ServerActionHandler {
         actionMap.put(PREFIX_CLOSE_GAME, new RequestCloseGame());
         actionMap.put(PING, new RequestPing());
         actionMap.put(PREFIX_CLOSE_LOBBY, new ActionCloseLobby());
+
+        actionMap.put(PREFIX_PRISONCARD_AWARDED, new ActionOutOfJailCardAwarded());
     }
 
     public static void triggerAction(String name, Object parameters){
