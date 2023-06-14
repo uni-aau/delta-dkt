@@ -25,7 +25,7 @@ public class Config {
     public static boolean Skip = false; //? Used for quick development, skips activities until false.
     public static final boolean DEBUG = false;
 
-    public static final int START_CASH = 1000;
+    public static final int START_CASH = 500;
     public static final boolean ONLY_SHOW_PROPERTY_WITH_OWNER = false;
     public static final int MAX_HOUSES = 4; // also used in displaying house amount (currently max. 4)
     public static final int PUNISHMENT_FOR_CHEATING = 500; // cash for successful report
