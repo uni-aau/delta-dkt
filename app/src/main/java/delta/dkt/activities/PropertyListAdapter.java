@@ -53,6 +53,11 @@ public class PropertyListAdapter extends RecyclerView.Adapter<PropertyListAdapte
         setPropertyAmount(holder, housesAmount);
     }
 
+    /**
+     * This method updates the houses in the property view
+     *
+     * @param propPlotAmountInput - Amount of properties that should be displayed
+     */
     private void setPropertyAmount(CustomViewHolder holder, int propPlotAmountInput) {
         if (propPlotAmountInput > Config.MAX_HOUSES)
             throw new IllegalArgumentException("Too much inserted houses!");

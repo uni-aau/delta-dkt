@@ -1,7 +1,5 @@
 package ServerLogic.actions;
 
-import static ClientUIHandling.Constants.LOBBYVIEW_ACTIVITY_TYPE;
-import static ClientUIHandling.Constants.PREFIX_REMOVE_USER_FROM_LIST;
 
 
 import android.util.Log;
@@ -17,7 +15,6 @@ public class RequestRemoveUserFromList implements ServerActionInterface {
     public void execute(ServerNetworkClient server, Object parameters) {
         Log.d("[SERVER]:Remove_User_From_UserList", "Remove User from UserList Request received. Parameter: " + parameters);
         removeUserFromList((int)parameters);
-        //server.broadcast(LOBBYVIEW_ACTIVITY_TYPE, PREFIX_REMOVE_USER_FROM_LIST, new String[]{(String) parameters});
         ServerActionHandler.triggerAction(Constants.PREFIX_UPDATE_USER_LIST, null);
     }
 

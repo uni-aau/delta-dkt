@@ -20,34 +20,34 @@
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
         android:layout_centerHorizontal="true"
-        android:fontFamily="@font/bangers"
+        android:layout_marginTop="20dp"
+        android:fontFamily="@font/bowlby_one"
         android:text="@string/PlayerLobby"
         android:textColor="@color/dkt_red"
-        android:textSize="30sp" />
+        android:textSize="25sp" />
 
     <TextView
         android:id="@+id/currentPlayersTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/TotalPlayers"
+        android:layout_below="@id/dkt_logo"
         android:layout_centerHorizontal="true"
-        android:fontFamily="@font/bangers"
-        android:textSize="20sp"
         android:layout_marginTop="2dp"
-        android:layout_below="@id/dkt_logo"/>
+        android:fontFamily="sans-serif-black"
+        android:text="@string/TotalPlayers"
+        android:textSize="18sp" />
 
     <TextView
         android:id="@+id/IP"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/IP"
+        android:layout_below="@id/currentPlayersTextView"
         android:layout_centerHorizontal="true"
-        android:textStyle="bold"
-        android:textSize="18sp"
         android:layout_marginTop="2dp"
-        android:layout_below="@id/currentPlayersTextView"/>
+        android:fontFamily="sans-serif-medium"
+        android:text="@string/IP"
+        android:textSize="15sp" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/lobbyRecyclerView"
@@ -91,7 +91,7 @@
                 android:fontFamily="@font/bangers"
                 android:background="@drawable/host_btn_background"
                 app:layout_constraintEnd_toEndOf="parent"
-                android:layout_marginEnd="10dp"
+                android:layout_marginEnd="15dp"
                 app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 

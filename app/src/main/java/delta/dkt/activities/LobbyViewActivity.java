@@ -82,7 +82,9 @@ public class LobbyViewActivity extends AppCompatActivity {
         }
     }
 
-    // Action when player presses back on mobile phone
+    /**
+     * This method handles the action when player presses back on mobile phone
+     */
     private void createOnBackCallBack() {
         OnBackPressedCallback callback = new OnBackPressedCallback(true) {
             @Override

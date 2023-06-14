@@ -5,6 +5,8 @@ import static ClientUIHandling.Constants.PREFIX_HAS_PRISONCARD;
 import static ClientUIHandling.Constants.PREFIX_NOTIFICATION;
 
 import android.util.Log;
+
+import ClientUIHandling.Config;
 import ServerLogic.ServerActionInterface;
 import delta.dkt.logic.structure.Game;
 import delta.dkt.logic.structure.Player;
@@ -23,8 +25,8 @@ public class ActionPrison implements ServerActionInterface {
             Log.i(TAG, "LOCATION: "+fieldLocation);
             Log.i(TAG, "Du bist im Gefängnis; Server");
             String[] args = new String[1];
-            args[0] = String.valueOf(id);
             String playerName = player.getNickname();
+            args[0] = playerName;
 
             if(Game.getMap().getField(fieldLocation) instanceof PrisonField){
                 if(player.getGoToPrisonField()){
@@ -35,7 +37,7 @@ public class ActionPrison implements ServerActionInterface {
                         player.setYouGetOutOfPrisonCard(false);
                     }else{
                         server.broadcast(GAMEVIEW_ACTIVITY_TYPE, PREFIX_NOTIFICATION, args);
-                        player.setSuspension(3);
+                        player.setSuspension(Config.SUSPENSION_ROUNDS);
                     }
                     player.setGoToPrisonField(false);
                 }

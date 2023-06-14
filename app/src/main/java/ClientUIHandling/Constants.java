@@ -12,7 +12,7 @@ public class Constants {
     public static final String LOBBYVIEW_ACTIVITY_TYPE = "lobby";
     public static final String PREFIX_PLAYER_MOVE = "move";
     public static final String FIND_HOST_VIEW_ACTIVITY_TYPE = "findHost";
-
+    public static final String PREFIX_BUY_PROPERTY_TOASTS = "BUY_PROPERTY_TOASTS";
     public static final String PREFIX_PLAYER_RENTPAID = "RENTPAID";
 
     public static final String PREFIX_PLAYER_BUYPROPERTY = "PROPERTY_BUY";
@@ -56,6 +56,9 @@ public class Constants {
     public static final String PREFIX_GO_TO_PRISON_FIELD = "Go_To_Prison";
     public static final String PREFIX_PRISON = "You_Are_In_Prison";
     public static final String PREFIX_HAS_PRISONCARD = "Player_Has_A_YouGetOutOfPrison_Card";
+
+    public static final String PREFIX_PRISONCARD_AWARDED = "Player_RECEIVED_YOUGETOUTOFPRISONCARD";
+    public static final String PREFIX_PRISONCARD_AWARDED_NOTIFICATION = "Player_RECEIVED_YOUGETOUTOFPRISONCARD_NOTIFICATION";
     public static final String PREFIX_NOTIFICATION = "Player_Moves_To_Prison_Field";
 
     public static final String PREFIX_SERVER_FULL = "SERVER_FULL";

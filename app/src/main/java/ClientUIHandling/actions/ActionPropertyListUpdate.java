@@ -16,8 +16,15 @@ public class ActionPropertyListUpdate implements ClientActionInterface {
     @Override
     public void execute(AppCompatActivity activity, String clientMessage) {
         String[] args = clientMessage.replace(PREFIX_PROPLIST_UPDATE, "").trim().split(";");
-        ArrayList<PropertyListElement> propertyElements = new ArrayList<>();
 
+        updatePropertyElements(args);
+    }
+
+    /**
+     * This method extracts all properties and adds them to the property view list
+     */
+    private void updatePropertyElements(String[] args){
+        ArrayList<PropertyListElement> propertyElements = new ArrayList<>();
         for (String arg : args) {
             String[] propertyValues = arg.split("#"); // Splits String into all variables
 

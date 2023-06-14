@@ -1,6 +1,7 @@
 package delta.dkt.activities;
 
 
+import static ClientUIHandling.Constants.GAMEVIEW_ACTIVITY_TYPE;
 import static delta.dkt.activities.MainActivity.INTENT_PARAMETER;
 
 import android.content.Intent;
@@ -65,6 +66,7 @@ public class FindHostViewActivity extends AppCompatActivity{
         });
 
         joinButton.setOnClickListener(view -> {
+            MainActivity.logic.removeType(GAMEVIEW_ACTIVITY_TYPE);
             Intent intent = new Intent(getApplicationContext(), LobbyViewActivity.class);
             intent.putExtra(INTENT_PARAMETER, newUser);
             if(selection != null){

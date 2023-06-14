@@ -24,8 +24,9 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
-import java.text.SimpleDateFormat;
+import java.text.DateFormat;
 import java.util.Date;
+import java.util.Locale;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 import ClientUIHandling.ClientHandler;
@@ -41,7 +42,7 @@ public class MainMenuActivity extends AppCompatActivity {
     ServerNetworkClient server;
     NetworkClientConnection client;
 
-    public static String username; // Todo - Move into Main Activity??
+    public static String username;
     public static boolean role;
 
     public static String ip;
@@ -156,7 +157,7 @@ public class MainMenuActivity extends AppCompatActivity {
             }
 
             if(tempMaxPlayers.length() > 1){
-                SnackBarHandler.createSnackbar(view, "Please enter a number between 1 and 6", LENGTH_SHORT).show();
+                SnackBarHandler.createSnackbar(view, "Please enter a number between 1 and 6 to set max players", LENGTH_SHORT).show();
                 return;
             }
 
@@ -184,11 +185,13 @@ public class MainMenuActivity extends AppCompatActivity {
             try {
                 Config.MAX_CLIENTS = maxPlayers;
                 if (isRoundsSelected.get()) {
-                    Config.SELECTED_GAME_MODE = true;
+                    Config.IS_ROUNDS_MODE = true;
+                    Config.IS_TIME_MODE = false;
                     Config.ENDROUNDS = timeOrRounds;
                 }
                 if (isTimeSelected.get()) {
-                    Config.SELECTED_GAME_MODE = false;
+                    Config.IS_TIME_MODE = true;
+                    Config.IS_ROUNDS_MODE = false;
                     Config.END_TIME = timeOrRounds * 60000;
                 }
                 startServer(serverName);
@@ -239,10 +242,10 @@ public class MainMenuActivity extends AppCompatActivity {
 
     // This Method will start with the Server and trigger the Action "HOST_NEW_GAME"
     public void startServer(String serverName) throws InterruptedException {
+        String currentTime = getTime();
         MainActivity.subscribeToLogic(Constants.PREFIX_SERVER, this);
         server = new ServerNetworkClient(this.getApplicationContext());
         server.start();
-
         Thread.sleep(100);
 
         client = new NetworkClientConnection("localhost", server.getPort(), 1000, logic);
@@ -253,7 +256,7 @@ public class MainMenuActivity extends AppCompatActivity {
 
         ClientHandler.setClient(client);
 
-        Toast.makeText(MainMenuActivity.this, "Server " + serverName + " started on " + getTime(), Toast.LENGTH_SHORT).show();
+        Toast.makeText(MainMenuActivity.this, "Server " + serverName + " started on " + currentTime, Toast.LENGTH_SHORT).show();
 
         Thread.sleep(100);
 
@@ -263,8 +266,8 @@ public class MainMenuActivity extends AppCompatActivity {
 
     // This method returns the current time
     public static String getTime() {
-        SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss");
-        return sdf.format(new Date());
+        DateFormat timeFormat = DateFormat.getTimeInstance(DateFormat.MEDIUM, Locale.getDefault());
+        return timeFormat.format(new Date());
     }
 
 }

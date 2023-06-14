@@ -30,7 +30,9 @@ public class ActionActivityBroadcast implements ClientActionInterface {
         ((TextView) activity.findViewById(R.id.textView_activity)).setText(String.format(activity.getString(R.string.activity_text), combinedActivityMessage));
     }
 
-    // Dynamically adds a specific amount of variables to a string
+    /**
+     * This method dynamically adds a specific amount of variables to a string
+     */
     private void formatActivityMessage(String message, String[] args) {
         int argsSize = args.length;
         try {

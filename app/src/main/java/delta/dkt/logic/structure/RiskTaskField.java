@@ -16,4 +16,8 @@ public class RiskTaskField extends Field{
         super(location);
         this.riskTask = riskTask;
     }
+
+    public RiskTask getRiskTask(){
+        return this.riskTask;
+    }
 }

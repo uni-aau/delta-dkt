@@ -26,7 +26,7 @@
     <string name="JoinGameButton">Join Game</string>
     <string name="BackButton">Back</string>
     <string name="StartButton">Start</string>
-    <string name="PleaseEnterUsername">Please enter your Username:</string>
+    <string name="PleaseEnterUsername">Please enter your username:</string>
     <string name="UserName">Username</string>
     <string name="DktLogoDescription">DKTLogo</string>
     <string name="Avatar">Avatar</string>
@@ -44,12 +44,12 @@
     <string name="FindHost">Find Host</string>
     <string name="JoinBtn">Join</string>
     <string name="HostId">Host ID</string>
-    <string name="EnterServerName">Please enter Server name:</string>
-    <string name="EnterMaxPlayers">Please enter Max Players:</string>
+    <string name="EnterServerName">Please enter server name:</string>
+    <string name="EnterMaxPlayers">Please enter max players:</string>
     <string name="Time">Time</string>
     <string name="Rounds">Rounds</string>
-    <string name="enterRoundsOrTime">Enter Rounds Or Minutes</string>
-    <string name="Congratulations">Congratulations!!!</string>
+    <string name="enterRoundsOrTime">Enter rounds or minutes</string>
+    <string name="Congratulations">Congratulations!</string>
     <string name="FirstPlace">First Place</string>
     <string name="SecondPlace">Second Place</string>
     <string name="ThirdPlace">Third Place</string>
@@ -59,6 +59,7 @@
     <string name="Wealth">Wealth</string>
     <string name="Finish">Finish</string>
     <string name="IP">IP:</string>
+    <string name="joined_format">Joined on: %1$s</string>
 
     <string name="NSDServiceName">delta_dkt</string>
     <string name="NSDServiceType">_delta_dkt.tcp</string>
@@ -99,7 +100,7 @@
 
     <string name="pay_tax_activity_text">%s had to pay %s%% taxes. Old cash %s$, new cash %s$</string>
     <string name="pay_static_tax_activity_text">%s had to pay %s$ taxes. Old cash %s$, new cash %s$</string>
-    <string name="notify_inprisonment">Player %s has been sent to prison!</string>
+    <string name="notify_inprisonment">%s has been sent to prison!</string>
     <string name="text_rent">Rent: %s$</string>
 
     <string name="jail_card">JailCard</string>
@@ -123,6 +124,8 @@
     <string name="travel_card_text2">Go 4 fields back</string>
     <string name="travel_card_text3">Move 7 fields forward</string>
     <string name="travel_card_text4">Move to \"Annenstraße\" (field 6). If you pass the Start-Field you will get 200€</string>
+    <string name="outOfPrisonCardAwarded_notification">%s has been awarded with a get-out-of-jail-card!</string>
+
     <string name="suspension_count">The player is suspended for %s more rounds</string>
     <string name="player_lost_activity_text">%s was eliminated from the game!</string>
     <string name="playerName_info_text">You are spectator!</string>
@@ -141,4 +144,6 @@
         <item quantity="one">Game started with %d player</item>
         <item quantity="other">Game started with %d players</item>
     </plurals>
+    <string name="toast_buy_property_too_less_cash">You have too less cash to buy this property!</string>
+    <string name="toast_buy_property_error_buying">Error buying property! Already bought by someone else?</string>
 </resources>

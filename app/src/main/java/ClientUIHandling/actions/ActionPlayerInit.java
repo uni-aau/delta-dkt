@@ -25,7 +25,7 @@ public class ActionPlayerInit implements ClientActionInterface {
     public void execute(AppCompatActivity activity, String clientMessage) {
         gameViewActivity = (GameViewActivity) activity;
         parseClientMessage(clientMessage);
-
+        Log.d("DEDUBINFO", "gameViewActivity is "+gameViewActivity);
         initDice();
         setInitTextViewValues();
     }
