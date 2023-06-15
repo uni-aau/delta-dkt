@@ -13,15 +13,14 @@ public class RequestCashTaskHandling implements ServerActionInterface {
     public void execute(ServerNetworkClient server, Object parameters) {
         String[] args = (String[]) parameters;
 
-        if(args.length != 4) {
+        if (args.length != 3) {
             Log.e("[SERVER] TaskHandling", "Error handling cash task -> Invalid args length args = " + args.length);
         }
 
         int clientID = Integer.parseInt(args[0]);
         Player player = Game.getPlayers().get(clientID);
         String taskDescriptionString = args[1];
-        int taskID = Integer.parseInt(args[2]);
-        int amount = Integer.parseInt(args[3]);
+        int amount = Integer.parseInt(args[2]);
         String nickName = player.getNickname();
 
         // Sets new cash money from ris task

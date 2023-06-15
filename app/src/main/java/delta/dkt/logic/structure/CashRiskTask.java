@@ -25,6 +25,6 @@ public class CashRiskTask extends RiskTask {
     public void execute(Player assignee) {
         Log.d("RiskTask", "Sending RiskTask execution to server");
 
-        ServerActionHandler.triggerAction(Constants.PREFIX_CASH_TASK, new String[]{String.valueOf(assignee.getId()), getDescriptionString(), String.valueOf(getId()), String.valueOf(cashAmount)});
+        ServerActionHandler.triggerAction(Constants.PREFIX_CASH_TASK, new String[]{String.valueOf(assignee.getId()), getDescriptionString(), String.valueOf(cashAmount)});
     }
 }
