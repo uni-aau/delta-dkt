@@ -56,8 +56,9 @@ public class RequestPlayerMovement implements ServerActionInterface {
 
         if(requestPlayer.isSuspended()){
             Log.d(tag, String.format("Aborting move request for client: (%s), because he is in prison", clientID));
-            String[] notifyArgs = new String[1];
+            String[] notifyArgs = new String[2];
             notifyArgs[0] = String.valueOf(requestPlayer.getSuspention());
+            notifyArgs[1] = String.valueOf(clientID);
             server.broadcast(GAMEVIEW_ACTIVITY_TYPE, PREFIX_SUSPENSION_COUNT, notifyArgs);
             requestPlayer.reduceSuspension();
             return;

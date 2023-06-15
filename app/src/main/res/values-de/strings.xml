@@ -124,7 +124,7 @@
     <string name="travel_card_text3">Rücke 7 Felder vor.</string>
     <string name="travel_card_text4">Besuche Graz und gehe auf der Annenstraße spazieren. Passierst du den Start, erhältst du 200€.</string>
 
-    <string name="suspension_count">Der Spieler ist für %s weitere Runden gesperrt</string>
+    <string name="suspension_count">Du bist für %s weitere Runden gesperrt</string>
     <string name="player_lost_activity_text">%s wurde aus dem Spiel entfernt!</string>
     <string name="playerName_info_text">Du bist Zuschauer!</string>
     <string name="text_player_leave_confirmation">Willst du wirklich gehen?</string>
@@ -146,4 +146,8 @@
     <string name="outOfPrisonCardAwarded_notification">%s hat eine Get-Out-Of-Jail-Card erhalten!</string>
     <string name="toast_buy_property_too_less_cash">Du hast zu wenig Geld, um dieses Grundstück zu kaufen!</string>
     <string name="toast_buy_property_error_buying">Fehler beim Grundstückskauf! Bereits von jemand anderem gekauft?</string>
+    <string name="text_player_move_plural">%s ging %s Schritte</string>
+    <string name="text_player_move_sing">%s ging %s Schritt</string>
+    <string name="moved_steps">%s</string>
+    <string name="no_player_rolled_dice">Kein Spieler hat gewürfelt</string>
 </resources>
