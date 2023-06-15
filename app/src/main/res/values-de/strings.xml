@@ -114,10 +114,10 @@
 
     <string name="out_of_jail_card">OutOfJailCard</string>
     <string name="out_of_jail_card_text">Diese Karte befreit dich aus dem Arrest! Hebe diese Karte auf, du wirst sie brauchen.</string>
-    <string name="lucky_card_text4">Die Bank zahlt dir an Dividenden 60€.</string>
-    <string name="lucky_card_text5">Für die Auswertung einer Erfindung erhältst du 140€ aus öffentlichen Mitteln.</string>
-    <string name="unlucky_card_text3">Zahle 5€ Polizeistrafe.</string>
-    <string name="unlucky_card_text4">Für unerlaubtes Parken bezahlst du 200€.</string>
+    <string name="lucky_card_text4">Die Bank zahlt %s an Dividenden %s€.</string>
+    <string name="lucky_card_text5">Für eine Erfindung erhält %s %s€ aus öffentlichen Mitteln</string>
+    <string name="unlucky_card_text3">%s bezahlt %s€ Polizeistrafe</string>
+    <string name="unlucky_card_text4">%s bezahlt für unerlaubtes Parken %s€.</string>
     <string name="travel_card">TravelCard</string>
     <string name="travel_card_text1">Besuche Salzburg und gehe am Mirabellplatz spazieren. Passierst du den Start, erhältst du 200€.</string>
     <string name="travel_card_text2">Gehe um 4 Felder zurück.</string>
