@@ -21,7 +21,7 @@
     <string name="property_information">Grundstück Information</string>
     <string name="dice_information_text">%s würfelt</string>
     <string name="gameview_image_description">DKT-Board</string>
-    <string name="activity_text">Activität: %s</string>
+    <string name="activity_text">Aktivität: %s</string>
     <string name="EnterButton">Weiter</string>
     <string name="HostGameButton">Spiel hosten</string>
     <string name="JoinGameButton">Spiel beitreten</string>
@@ -94,8 +94,8 @@
     <string name="cheat_user_element_image_description">Stellt die Figur des Spielers im aktuellen Spiel dar.</string>
 
     <!-- END Cheating Texts -->
-    <string name="movement_info_message_singular">Activity: %s hat sich %s Schritt bewegt und befindet sich jetzt an der Position: %s</string>
-    <string name="movement_info_message_plural">Activity: %s hat sich %s Schritte bewegt und befindet sich nun an der Position: %s</string>
+    <string name="movement_info_message_singular">Aktivität: %s hat sich %s Schritt bewegt und befindet sich jetzt an der Position: %s</string>
+    <string name="movement_info_message_plural">Aktivität: %s hat sich %s Schritte bewegt und befindet sich nun an der Position: %s</string>
 
     <string name="pay_tax_activity_text">%s muss %s%% Miete zahlen. Altes Vermögen %s$, neues Vermögen %s$</string>
     <string name="pay_static_tax_activity_text">%s muss %s$ Miete zahlen. Altes Vermögen %s$, neues Vermögen %s$</string>
