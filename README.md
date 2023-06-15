@@ -118,3 +118,7 @@ Should a player not be able to pay a rent or the fine for cheating or something 
 
 ---
 At the end of a game, each player sees a ranking list of the players, sorted by their wealth.
+
+<p align="center">
+  <img style="width: 75%; border-radius: 24px;" src="/assets/WinnersRanking.png?raw=true" alt="Host Game - Menu"/>
+</p>
