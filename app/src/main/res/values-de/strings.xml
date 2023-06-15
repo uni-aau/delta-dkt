@@ -59,7 +59,7 @@
     <string name="SixthPlace">6</string>
     <string name="Wealth">Vermögen</string>
     <string name="Finish">Beenden</string>
-    <string name="IP">IP:</string>
+    <string name="text_ip">IP: %s</string>
     <string name="NSDServiceName">delta_dkt</string>
     <string name="NSDServiceType">_delta_dkt.tcp</string>
     <string name="hours_plural_text">Stunden</string>

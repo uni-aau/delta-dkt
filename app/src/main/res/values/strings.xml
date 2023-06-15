@@ -58,7 +58,7 @@
     <string name="SixthPlace">6</string>
     <string name="Wealth">Wealth</string>
     <string name="Finish">Finish</string>
-    <string name="IP">IP:</string>
+    <string name="text_ip">IP: %s</string>
     <string name="joined_format">Joined on: %1$s</string>
 
     <string name="NSDServiceName">delta_dkt</string>
