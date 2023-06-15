@@ -16,4 +16,8 @@ public class BankTaskField extends Field{
         super(location);
         this.bankTask = bankTask;
     }
+
+    public BankTask getBankTask() {
+        return bankTask;
+    }
 }
