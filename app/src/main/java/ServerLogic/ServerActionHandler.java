@@ -47,6 +47,7 @@ public class ServerActionHandler {
         actionMap.put(PREFIX_PLAYER_CHEAT_MENU, new RequestCheatMenu());
         actionMap.put(PREFIX_PLAYER_REPORT_CHEATER, new RequestReportCheater());
         actionMap.put(PREFIX_CASH_TASK, new RequestCashTaskHandling());
+        actionMap.put(PREFIX_JAIL_TASK, new RequestJailCardHandling());
         actionMap.put(PREFIX_PROPLIST_UPDATE, new RequestPropertyListUpdate());
         actionMap.put(PREFIX_HOST_NEW_GAME, new RequestHostGame());
         actionMap.put(PREFIX_ADD_USER_TO_LIST, new RequestAddUserToUserList());
