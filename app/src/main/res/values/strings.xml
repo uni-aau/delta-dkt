@@ -126,7 +126,7 @@
     <string name="travel_card_text4">Move to \"Annenstraße\" (field 6). If you pass the Start-Field you will get 200€</string>
     <string name="outOfPrisonCardAwarded_notification">%s has been awarded with a get-out-of-jail-card!</string>
 
-    <string name="suspension_count">The player is suspended for %s more rounds</string>
+    <string name="suspension_count">You are suspended for %s more rounds</string>
     <string name="player_lost_activity_text">%s was eliminated from the game!</string>
     <string name="playerName_info_text">You are spectator!</string>
     <string name="text_player_leave_confirmation">Do you really want to leave?</string>

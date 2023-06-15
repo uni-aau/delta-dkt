@@ -124,7 +124,7 @@
     <string name="travel_card_text3">Rücke 7 Felder vor.</string>
     <string name="travel_card_text4">Besuche Graz und gehe auf der Annenstraße spazieren. Passierst du den Start, erhältst du 200€.</string>
 
-    <string name="suspension_count">Der Spieler ist für %s weitere Runden gesperrt</string>
+    <string name="suspension_count">Du bist für %s weitere Runden gesperrt</string>
     <string name="player_lost_activity_text">%s wurde aus dem Spiel entfernt!</string>
     <string name="playerName_info_text">Du bist Zuschauer!</string>
     <string name="text_player_leave_confirmation">Willst du wirklich gehen?</string>
