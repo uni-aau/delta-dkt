@@ -146,4 +146,8 @@
     </plurals>
     <string name="toast_buy_property_too_less_cash">You have too less cash to buy this property!</string>
     <string name="toast_buy_property_error_buying">Error buying property! Already bought by someone else?</string>
+    <string name="text_player_move_plural">%s moved %s steps</string>
+    <string name="text_player_move_sing">%s moved %s step</string>
+    <string name="moved_steps">%s</string>
+    <string name="no_player_rolled_dice">No player rolled the dice</string>
 </resources>

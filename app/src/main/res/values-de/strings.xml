@@ -146,4 +146,8 @@
     <string name="outOfPrisonCardAwarded_notification">%s hat eine Get-Out-Of-Jail-Card erhalten!</string>
     <string name="toast_buy_property_too_less_cash">Du hast zu wenig Geld, um dieses Grundstück zu kaufen!</string>
     <string name="toast_buy_property_error_buying">Fehler beim Grundstückskauf! Bereits von jemand anderem gekauft?</string>
+    <string name="text_player_move_plural">%s ging %s Schritte</string>
+    <string name="text_player_move_sing">%s ging %s Schritt</string>
+    <string name="moved_steps">%s</string>
+    <string name="no_player_rolled_dice">Kein Spieler hat gewürfelt</string>
 </resources>
