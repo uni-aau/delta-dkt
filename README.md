@@ -58,7 +58,9 @@ In this menu the player can choose whether he wants to host a new game or join a
 
 For this to work a game has to be hosted by another player that is on the same network as the player that wants to join a game. If those requirements are met, then all available game servers will be shown in a list. Then one of the servers can be selected by clicking on it. Once a selection has been made the player is able to press the Join button at the bottom right corner. Pressing the Join button will connect to the server as a client and show a new activity / screen, called the LobbyView.
 
-
+<p align="center">
+  <img style="width: 45%; border-radius: 24px;" src="/assets/FindHostActivity.png?raw=true" alt="Host Game - Menu"/>
+</p>
 
 ### Host a new game
 
