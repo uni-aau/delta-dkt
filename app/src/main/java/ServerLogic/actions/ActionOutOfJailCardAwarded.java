@@ -21,9 +21,10 @@ public class ActionOutOfJailCardAwarded implements ServerActionInterface {
     public void execute(ServerNetworkClient server, Object parameters) {
         //clientId is passed to serverAction
         int playerId = (int) parameters;
+        String playerName = Game.getPlayers().get(playerId).getNickname();
 
         String[] args = new String[1];
-        args[0] = String.valueOf(playerId);
+        args[0] = playerName;
 
         server.broadcast(GAMEVIEW_ACTIVITY_TYPE,PREFIX_PRISONCARD_AWARDED_NOTIFICATION,args);
     }

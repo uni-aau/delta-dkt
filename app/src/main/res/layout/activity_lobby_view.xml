@@ -39,15 +39,15 @@
         android:textSize="18sp" />
 
     <TextView
-        android:id="@+id/IP"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/currentPlayersTextView"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="2dp"
-        android:fontFamily="sans-serif-medium"
-        android:text="@string/IP"
-        android:textSize="15sp" />
+            android:id="@+id/IP"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/currentPlayersTextView"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="2dp"
+            android:fontFamily="sans-serif-medium"
+            android:text="@string/text_ip"
+            android:textSize="15sp" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/lobbyRecyclerView"

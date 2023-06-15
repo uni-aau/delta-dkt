@@ -3,10 +3,12 @@ package ClientUIHandling.actions;
 import android.annotation.SuppressLint;
 import android.util.Log;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import ClientUIHandling.ClientActionInterface;
+import ClientUIHandling.handlers.languages.LanguageHandler;
 import delta.dkt.R;
 import delta.dkt.activities.GameViewActivity;
 
@@ -36,8 +38,9 @@ public class ActionBuyProperty implements ClientActionInterface {
             }
             //increase value
             intVal += 1;
-            String newFieldVal = "My Properties: "+intVal;
-            ((TextView) activity.findViewById(R.id.textView_my_properties)).setText(newFieldVal);
+
+            String formattedPropertyAmountText = LanguageHandler.formatText(activity.getString(R.string.my_properties_text), new Object[]{intVal});
+            ((TextView) activity.findViewById(R.id.textView_my_properties)).setText(formattedPropertyAmountText);
         }
     }
 }
