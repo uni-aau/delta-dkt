@@ -26,7 +26,7 @@
     <string name="JoinGameButton">Join Game</string>
     <string name="BackButton">Back</string>
     <string name="StartButton">Start</string>
-    <string name="PleaseEnterUsername">Please enter your Username:</string>
+    <string name="PleaseEnterUsername">Please enter your username:</string>
     <string name="UserName">Username</string>
     <string name="DktLogoDescription">DKTLogo</string>
     <string name="Avatar">Avatar</string>
@@ -44,12 +44,12 @@
     <string name="FindHost">Find Host</string>
     <string name="JoinBtn">Join</string>
     <string name="HostId">Host ID</string>
-    <string name="EnterServerName">Please enter Server name:</string>
-    <string name="EnterMaxPlayers">Please enter Max Players:</string>
+    <string name="EnterServerName">Please enter server name:</string>
+    <string name="EnterMaxPlayers">Please enter max players:</string>
     <string name="Time">Time</string>
     <string name="Rounds">Rounds</string>
-    <string name="enterRoundsOrTime">Enter Rounds Or Minutes</string>
-    <string name="Congratulations">Congratulations!!!</string>
+    <string name="enterRoundsOrTime">Enter rounds or minutes</string>
+    <string name="Congratulations">Congratulations!</string>
     <string name="FirstPlace">First Place</string>
     <string name="SecondPlace">Second Place</string>
     <string name="ThirdPlace">Third Place</string>
@@ -103,7 +103,28 @@
     <string name="notify_inprisonment">%s has been sent to prison!</string>
     <string name="text_rent">Rent: %s$</string>
 
-    <string name="outOfPrisonCardAwarded_notification">Player %s has been awarded with a get-out-of-jail-card!</string>
+    <string name="jail_card">JailCard</string>
+    <string name="lucky_card">LuckyCard</string>
+    <string name="unlucky_card">UnluckyCard</string>
+    <string name="jail_card_text">Go to jail</string>
+    <string name="lucky_card_text1">For bank interest you get 180€</string>
+    <string name="lucky_card_text2">For the sale of shares you receive 50€</string>
+    <string name="lucky_card_text3">You get 40€ for travel expenses contribution</string>
+    <string name="unlucky_card_text1">Pay your life insurance: 120€</string>
+    <string name="unlucky_card_text2">Pay 130€ for your health insurance</string>
+
+    <string name="out_of_jail_card">OutOfJailCard</string>
+    <string name="out_of_jail_card_text">This card will free you from prison! Keep it, you will need it.</string>
+    <string name="lucky_card_text4">The bank pays you dividends: 60€</string>
+    <string name="lucky_card_text5">For an invention you get 140€</string>
+    <string name="unlucky_card_text3">Pay 5€ police penalty</string>
+    <string name="unlucky_card_text4">Pay 200€ for wrong parking</string>
+    <string name="travel_card">TravelCard</string>
+    <string name="travel_card_text1">Move to \"Mirabellplatz\" (field 25). If you pass the Start-Field you will get 200€</string>
+    <string name="travel_card_text2">Go 4 fields back</string>
+    <string name="travel_card_text3">Move 7 fields forward</string>
+    <string name="travel_card_text4">Move to \"Annenstraße\" (field 6). If you pass the Start-Field you will get 200€</string>
+    <string name="outOfPrisonCardAwarded_notification">%s has been awarded with a get-out-of-jail-card!</string>
 
     <string name="suspension_count">The player is suspended for %s more rounds</string>
     <string name="player_lost_activity_text">%s was eliminated from the game!</string>
