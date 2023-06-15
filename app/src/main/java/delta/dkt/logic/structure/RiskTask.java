@@ -17,7 +17,7 @@ public class RiskTask extends Task{
     }
 
     @Override
-    public void execute(Player asignee) {
-
+    public void execute(Player assignee) {
+        // Will be called in Subclasses
     }
 }
