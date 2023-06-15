@@ -19,7 +19,6 @@ class PlayerTests {
 
     GameMap mockMapHandling = mock(GameMap.class);
     Player player = null;
-    ClientHandler mockedClientHandler;
 
     Property testProperty1 = null;
     Property testProperty2 = null;
@@ -332,7 +331,9 @@ class PlayerTests {
         //? sets the return value for getField method with its given arguments to a valid property.
         int location = player.getPosition().getLocation() + steps;
         if (steps % 2 == 0) {
-            when(mockMapHandling.getField(location)).thenReturn(generateDummyProperty(location));
+            Field dummyProperty = generateDummyProperty(location);
+            if(steps == 4) ((Property)dummyProperty).setOwner(player);
+            when(mockMapHandling.getField(location)).thenReturn(dummyProperty);
         } else {
             //Test for movement on a special location
             Field mockField = new SpecialField(location);
