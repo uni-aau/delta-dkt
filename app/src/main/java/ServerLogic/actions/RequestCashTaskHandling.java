@@ -27,8 +27,9 @@ public class RequestCashTaskHandling implements ServerActionInterface {
         int oldCashValue = player.getCash();
         int newCashValue = oldCashValue + amount;
         player.setCash(newCashValue);
+        int positiveCashAmountForBroadcast = Math.abs(amount);
 
-        server.broadcast(Constants.GAMEVIEW_ACTIVITY_TYPE, Constants.PREFIX_ACTIVITY_BROADCAST, new String[]{taskDescriptionString, nickName, String.valueOf(amount)});
+        server.broadcast(Constants.GAMEVIEW_ACTIVITY_TYPE, Constants.PREFIX_ACTIVITY_BROADCAST, new String[]{taskDescriptionString, nickName, String.valueOf(positiveCashAmountForBroadcast)});
         server.broadcast(Constants.GAMEVIEW_ACTIVITY_TYPE, Constants.PREFIX_SET_MONEY, new String[]{String.valueOf(clientID), String.valueOf(newCashValue)});
     }
 }
