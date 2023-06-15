@@ -14,16 +14,18 @@ public class BankTaskCollection {
      * The BankTaskCollection includes ten tasks that a player can get in a game.
      */
     public BankTaskCollection(){
-        bankTask.add(new BankTask(1,"jail_card","jail_card_text"));
-        bankTask.add(new BankTask(2,"lucky_card", "lucky_card_text1"));
-        bankTask.add(new BankTask(3,"lucky_card", "lucky_card_text2"));
-        bankTask.add(new BankTask(4,"unlucky_card", "unlucky_card_text1"));
-        bankTask.add(new BankTask(5,"jail_card","jail_card_text"));
-        bankTask.add(new BankTask(6,"unlucky_card", "unlucky_card_text2"));
-        bankTask.add(new BankTask(7,"jail_card","jail_card_text"));
-        bankTask.add(new BankTask(8,"lucky_card", "lucky_card_text3"));
-        bankTask.add(new BankTask(9,"unlucky_card", "unlucky_card_text2"));
-        bankTask.add(new BankTask(10,"jail_card","jail_card_text"));
+        String luckyCardName = "lucky_card";
+        String unluckyCardName = "unlucky_card";
+//        bankTask.add(new BankTask(1,"jail_card","jail_card_text"));
+        bankTask.add(new CashBankTask(2,luckyCardName, "lucky_card_text1", 180));
+        bankTask.add(new CashBankTask(3,luckyCardName, "lucky_card_text2", 50));
+        bankTask.add(new CashBankTask(4,unluckyCardName, "unlucky_card_text1", -120));
+//        bankTask.add(new BankTask(5,"jail_card","jail_card_text"));
+        bankTask.add(new CashBankTask(6,unluckyCardName, "unlucky_card_text2", -130));
+//        bankTask.add(new BankTask(7,"jail_card","jail_card_text"));
+        bankTask.add(new CashBankTask(8,luckyCardName, "lucky_card_text3", 40));
+        bankTask.add(new CashBankTask(9,unluckyCardName, "unlucky_card_text2", -130));
+//        bankTask.add(new BankTask(10,"jail_card","jail_card_text"));
     }
     /**
      * gets a random bank task from the BankTaskCollection.
