@@ -79,7 +79,7 @@ public class Constants {
 
     public static final String PREFIX_PLAYER_TIMEOUT_WARNING = "TIMEOUT_WARNING";
     public static final String PREFIX_CASH_TASK = "CASH_TASK";
-
+    public static final String PREFIX_JAIL_TASK = "JAIL_TASK";
     public static final String PING = "PING";
 
     public static final String PREFIX_CLOSE_LOBBY = "CLOSE_LOBBY";
