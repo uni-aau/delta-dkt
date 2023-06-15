@@ -183,8 +183,14 @@ public class Player implements Comparable<Player>{
             }
         }else if(this.position instanceof RiskTaskField){
             //depending on field, a card has been asigned
-            RiskTaskField currentPos = (RiskTaskField)this.position;
+            RiskTaskField currentPos = (RiskTaskField)TaskHandler.getTask(location);
             Task task = currentPos.getRiskTask();
+            //just call the execute method, it knows what to do
+            task.execute(this);
+        } else if(this.position instanceof BankTaskField){
+            //depending on field, a card has been asigned
+            BankTaskField currentPos = (BankTaskField)TaskHandler.getTask(location);
+            Task task = currentPos.getBankTask();
             //just call the execute method, it knows what to do
             task.execute(this);
         }
