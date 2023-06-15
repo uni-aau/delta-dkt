@@ -24,6 +24,6 @@ public class RiskTask extends Task {
     @Override
     public void execute(Player assignee) {
         // Only jail tasks execute the general bankTask method
-        ServerActionHandler.triggerAction(PREFIX_JAIL_TASK, new String[]{String.valueOf(assignee), getDescriptionString()});
+        ServerActionHandler.triggerAction(PREFIX_JAIL_TASK, new String[]{String.valueOf(assignee.getId()), getDescriptionString()});
     }
 }
