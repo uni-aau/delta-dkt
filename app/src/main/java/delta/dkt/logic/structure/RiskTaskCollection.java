@@ -10,7 +10,6 @@ import delta.dkt.logic.structure.ActionCards.OutOfJailCard;
  */
 public class RiskTaskCollection {
     private final ArrayList<RiskTask> riskTask = new ArrayList<>();
-    private final String travelCardName = "travel_card";
 
     /**
      * The RiskTaskCollection includes ten tasks that a player can get in a game.
