@@ -106,7 +106,7 @@
     <string name="jail_card">JailCard</string>
     <string name="lucky_card">LuckyCard</string>
     <string name="unlucky_card">UnluckyCard</string>
-    <string name="jail_card_text">Go to jail</string>
+    <string name="jail_card_text">%s has to go to jail</string>
     <string name="lucky_card_text1">For bank interest %s gets %s$</string>
     <string name="lucky_card_text2">For the sale of shares %s receives %s$</string>
     <string name="lucky_card_text3">%s gets %s$ for travel expenses contribution</string>
