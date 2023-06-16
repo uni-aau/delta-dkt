@@ -102,7 +102,10 @@ public class RequestPlayerMovement implements ServerActionInterface {
             Property prop = (Property) field;
 
             //? The property is not owned by anyone, thus the player can buy it.
-            if(prop.getOwner() == null) ServerActionHandler.triggerAction(PREFIX_ASK_BUY_PROPERTY, new String[]{String.valueOf(player.getId()), String.valueOf(player.getPosition().getLocation())});
+            if(prop.getOwner() == null) {
+                ServerActionHandler.triggerAction(PREFIX_ASK_BUY_PROPERTY, new String[]{String.valueOf(player.getId()), String.valueOf(player.getPosition().getLocation())});
+                return;
+            }
 
             //? Not calling the rent action as the player is the owner of the property.
             if(prop.getOwner().getId() == player.getId()) return;
