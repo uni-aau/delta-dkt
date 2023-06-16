@@ -43,7 +43,7 @@ public class RequestPayTax implements ServerActionInterface {
                     playerCashNew = playerCashOld - Config.MAX_TAX_AMOUNT;
                 }
 
-                server.broadcast(Constants.GAMEVIEW_ACTIVITY_TYPE, Constants.PREFIX_ACTIVITY_BROADCAST, new String[]{"pay_tax_activity_text", playerName, String.valueOf(Config.TAX_PERCENTAGE), String.valueOf(playerCashOld), String.valueOf(playerCashNew)});
+                server.broadcast(Constants.GAMEVIEW_ACTIVITY_TYPE, Constants.PREFIX_ACTIVITY_BROADCAST, new String[]{"pay_tax_activity_text", playerName, String.valueOf((int) (Config.TAX_PERCENTAGE * 100)), String.valueOf(playerCashOld), String.valueOf(playerCashNew)});
             } else if (mapField.getName().equals("Steuerabgabe")) { // Reduce playercash with static tax amount
                 playerCashNew = playerCashOld - Config.STATIC_TAX_AMOUNT;
 
@@ -52,7 +52,7 @@ public class RequestPayTax implements ServerActionInterface {
 
             if (playerCashNew < 0) {
                 Log.i(TAG, "Player has too less money (OldCash/Newcash) = " + playerCashOld + " / " + playerCashNew);
-                ServerActionHandler.triggerAction(PREFIX_PLAYER_LOST, clientID);
+                ServerActionHandler.triggerAction(PREFIX_PLAYER_LOST, new String[]{String.valueOf(player.getId()), "false"}); // false -> loose event
             } else {
                 player.setCash(playerCashNew);
                 Log.d(TAG, "Setting new player cash: OldPlayerCash = " + playerCashOld + " NewPlayerCash = " + playerCashNew + " ClientID = " + clientID);

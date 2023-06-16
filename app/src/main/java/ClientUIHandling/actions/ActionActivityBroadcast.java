@@ -30,7 +30,6 @@ public class ActionActivityBroadcast implements ClientActionInterface {
             args = modified.toArray(new String[0]);
         } else {
             Log.e(TAG, "Wrong message tag defined messageTag = " + messageTag);
-
             //* cancel UI update when string-template is missing
             return;
         }

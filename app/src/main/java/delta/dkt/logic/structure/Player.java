@@ -1,6 +1,6 @@
 package delta.dkt.logic.structure;
 
-import static ClientUIHandling.Constants.PREFIX_PLAYER_BUYPROPERTY;
+import static ClientUIHandling.Constants.PREFIX_ASK_BUY_PROPERTY;
 import static ClientUIHandling.Constants.PREFIX_PLAYER_PAYRENT;
 
 import java.util.ArrayList;
@@ -10,7 +10,9 @@ import ClientUIHandling.Constants;
 import ServerLogic.ServerActionHandler;
 
 public class Player implements Comparable<Player>{
-    private static int _id = 1;
+    private boolean youGetOutOfPrisonCard = false;
+    private boolean goToPrisonField = false;
+    public static int _id = 1;
 
     //? May be used to sync player data across clients
     private int id = Player._id++;
@@ -18,18 +20,26 @@ public class Player implements Comparable<Player>{
 
     private Field position = Game.getMap().getField(1);
     private int cash = Config.INITIAL_CASH;
-    private ArrayList<Property> properties = new ArrayList<>();
+    private final ArrayList<Property> properties = new ArrayList<>();
 
     //? May be used to check whether a player is timeoutet, e.g. prison, or not.
     private int suspention = 0;
     private boolean hasCheated = false;
 
+    private boolean hasReceivedPing;
+
+    private Object pingToken;
+
+
     public Player(String nickname) {
         this.nickname = nickname;
+        this.hasReceivedPing = false;
+        this.pingToken = "";
     }
 
     public Player() {
-
+        this.hasReceivedPing = false;
+        this.pingToken = "";
     }
 
     public void setNickname(String nickname) {
@@ -162,8 +172,7 @@ public class Player implements Comparable<Player>{
                 //END-NOSCAN
             }else{ //property can be bought , ask user
                 //START-NOSCAN
-                //TODO: Ask the user if he wants to buy the property.
-               // ServerActionHandler.triggerAction(PREFIX_PLAYER_BUYPROPERTY, this.getId()); //we only need one parameter , and thates the id of the player
+                ServerActionHandler.triggerAction(PREFIX_ASK_BUY_PROPERTY, new String[]{String.valueOf(this.getId()), String.valueOf(location)});
                 //END-NOSCAN
             }
         } else if (this.position instanceof SpecialField) {
@@ -172,6 +181,12 @@ public class Player implements Comparable<Player>{
                 ServerActionHandler.triggerAction(Constants.PREFIX_PAY_TAX, this.getId());
                 //END-NOSCAN
             }
+        }else if(this.position instanceof RiskTaskField){
+            //depending on field, a card has been asigned
+            RiskTaskField currentPos = (RiskTaskField)this.position;
+            Task task = currentPos.getRiskTask();
+            //just call the execute method, it knows what to do
+            task.execute(this);
         }
     }
 
@@ -209,6 +224,27 @@ public class Player implements Comparable<Player>{
 
     public int getCash() {
         return cash;
+    }
+
+    public boolean getGoToPrisonField(){return goToPrisonField;}
+    public boolean getYouGetOutOfPrisonCard(){return youGetOutOfPrisonCard;}
+
+    /**
+     * Sets the goToPrisonField value of a player.
+     *
+     * @param goToPrisonField is true, if the player was on the goToPrisonField before going to the prison.
+     */
+    public void setGoToPrisonField(boolean goToPrisonField){
+        this.goToPrisonField = goToPrisonField;
+    }
+
+    /**
+     * Sets the youGetOutOfPrisonCard value of a player.
+     *
+     * @param youGetOutOfPrisonCard is true, if the player has a youGetOutOfPrisonCard.
+     */
+    public void setYouGetOutOfPrisonCard(boolean youGetOutOfPrisonCard) {
+        this.youGetOutOfPrisonCard = youGetOutOfPrisonCard;
     }
 
     public int getWealth() {
@@ -253,10 +289,26 @@ public class Player implements Comparable<Player>{
     public void setCheat(boolean state){
         hasCheated = state;
     }
-  
-  
+
+
     @Override
     public int compareTo(Player o) {
         return this.id-o.id;
+    }
+
+    public boolean getAndClearPing() {
+        synchronized (pingToken) {
+            if (this.hasReceivedPing) {
+                this.hasReceivedPing = false;
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public void setHasReceivedPing(boolean hasReceivedPing) {
+        synchronized (pingToken) {
+            this.hasReceivedPing = hasReceivedPing;
+        }
     }
 }

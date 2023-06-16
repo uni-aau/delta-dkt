@@ -16,9 +16,9 @@ import delta.dkt.R;
 
 public class HostAdapter extends RecyclerView.Adapter<HostAdapter.HostViewHolder> {
 
-    Context context;
-    ArrayList<String> hostId;
-    public static View selectedView;
+    private final Context context;
+    private final ArrayList<String> hostId;
+    private View selectedView;
     private int position;
 
     public HostAdapter (Context context, ArrayList<String> hostId) {
@@ -47,7 +47,7 @@ public class HostAdapter extends RecyclerView.Adapter<HostAdapter.HostViewHolder
 
     class HostViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         // Grabs informations thats needed from the recycler_view_find_host.xml
-        TextView hostId;
+        private final TextView hostId;
         public HostViewHolder (@NonNull View itemView) {
             super(itemView);
             hostId = itemView.findViewById(R.id.hostId_txt);
@@ -66,10 +66,9 @@ public class HostAdapter extends RecyclerView.Adapter<HostAdapter.HostViewHolder
                 selectedView = view;
             }
 
-            FindHostViewActivity.joinButton.setVisibility(View.VISIBLE);
-
             FindHostViewActivity findHostViewActivity = (FindHostViewActivity) context;
             findHostViewActivity.setSelectedHost(position);
+            findHostViewActivity.joinButton.setVisibility(View.VISIBLE);
 
             Toast.makeText(context, "Selected host: " + selectedHost, Toast.LENGTH_SHORT).show();
         }

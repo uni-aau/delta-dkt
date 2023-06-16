@@ -25,7 +25,7 @@ public class ActionPlayerInit implements ClientActionInterface {
     public void execute(AppCompatActivity activity, String clientMessage) {
         gameViewActivity = (GameViewActivity) activity;
         parseClientMessage(clientMessage);
-
+        Log.d("DEDUBINFO", "gameViewActivity is "+gameViewActivity);
         initDice();
         setInitTextViewValues();
     }
@@ -81,6 +81,11 @@ public class ActionPlayerInit implements ClientActionInterface {
 
         // Sets plural/singular textview
         String playerAmountActivityTextInput = resources.getQuantityString(R.plurals.game_started_activity_text, playerAmount, playerAmount);
-        ((TextView) gameViewActivity.findViewById(R.id.textView_activity)).setText(playerAmountActivityTextInput);
+
+        String activityTextInput = resources.getString(R.string.activity_text, playerAmountActivityTextInput);
+        ((TextView) gameViewActivity.findViewById(R.id.textView_activity)).setText(activityTextInput);
+
+        String noPlayerRolledDice = gameViewActivity.getString(R.string.no_player_rolled_dice);
+        ((TextView) gameViewActivity.findViewById(R.id.textView_MovementActivity)).setText(noPlayerRolledDice);
     }
 }

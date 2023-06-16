@@ -4,6 +4,8 @@ import android.os.Bundle;
 import android.os.Message;
 import android.util.Log;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import java.util.HashMap;
 
 public class ClientLogic {
@@ -24,30 +26,43 @@ public class ClientLogic {
         //The error messages refers to a dead website
         //https://g.co/androidstudio/not-mocked
 
-        if(!isTEST) {
+        if (!isTEST) {
 
-            if(handlers.containsKey(type)) {
-                send(message,type);
-            }else{
+            if(attemptSend(message,type)){
+                return;
+            }
+
+            for(int i = 0; i<10; i++) {
                 try {
-                    Thread.sleep(1000);
+                    Thread.sleep(100);
                 } catch (InterruptedException e) {
                     Log.w("Warning", "Interrupted!", e);
                     // Restore interrupted state...
                     Thread.currentThread().interrupt();
                 }
-                if(handlers.containsKey(type)) {
-                    send(message, type);
-                }else{
-                    Log.i("ERROR","INVALID UI TYPE "+type);
+                if (attemptSend(message, type)) {
+                    return;
+                } else {
+                    Log.i("ERROR", "INVALID UI TYPE " + type);
                 }
-
             }
-        }
 
+
+        }
     }
 
-    private void send(String message, String type){
+    private boolean attemptSend(String message, String type){
+        synchronized (handlers) {
+            if (handlers.containsKey(type)) {
+                send(message, type);
+                return true;
+            }
+        }
+        return false;
+    }
+
+
+    private void send(String message, String type) {
 
         android.os.Message handleMessage = new Message();
         Bundle b = new Bundle();
@@ -56,7 +71,27 @@ public class ClientLogic {
 
         handlers.get(type).sendMessage(handleMessage);
     }
+
     public HashMap<String, ClientHandler> getHandler() {
         return handlers;
+    }
+
+    public void registerActivity(String type, AppCompatActivity activity) {
+        synchronized (handlers) {
+            if (handlers.containsKey(type)) {
+                Log.i("LOGICINFO", "ALREADY CONTAINS " + type + " with signature " + handlers.get(type).getUiActivity());
+                handlers.get(type).replaceActivity(activity);
+            } else {
+                handlers.put(type, new ClientHandler(activity));
+            }
+        }
+    }
+
+    public void removeType(String type){
+        synchronized (handlers){
+            if(handlers.containsKey(type)){
+                handlers.remove(type);
+            }
+        }
     }
 }

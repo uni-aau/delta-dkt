@@ -1,7 +1,8 @@
 package delta.dkt.logic.structure;
 
 public class Dice {
-    private int min, max;
+    private final int min;
+    private final int max;
 
     public Dice(int min, int max) {
         this.min = min;

@@ -18,7 +18,7 @@
     <string name="playing_time_text">Playing Time: %s %s, %s, %s, %s %s</string>
     <string name="roll_the_dice">Roll the dice</string>
     <string name="property_information">Property Information</string>
-    <string name="dice_information_text">%s rolls the dice\n{1} left to roll the dice</string>
+    <string name="dice_information_text">%s rolls the dice</string>
     <string name="gameview_image_description">DKT-Board</string>
     <string name="activity_text">Activity: %s</string>
     <string name="EnterButton">Enter</string>
@@ -26,7 +26,7 @@
     <string name="JoinGameButton">Join Game</string>
     <string name="BackButton">Back</string>
     <string name="StartButton">Start</string>
-    <string name="PleaseEnterUsername">Please enter your Username:</string>
+    <string name="PleaseEnterUsername">Please enter your username:</string>
     <string name="UserName">Username</string>
     <string name="DktLogoDescription">DKTLogo</string>
     <string name="Avatar">Avatar</string>
@@ -44,12 +44,12 @@
     <string name="FindHost">Find Host</string>
     <string name="JoinBtn">Join</string>
     <string name="HostId">Host ID</string>
-    <string name="EnterServerName">Please enter Server name:</string>
-    <string name="EnterMaxPlayers">Please enter Max Players:</string>
+    <string name="EnterServerName">Please enter server name:</string>
+    <string name="EnterMaxPlayers">Please enter max players:</string>
     <string name="Time">Time</string>
     <string name="Rounds">Rounds</string>
-    <string name="enterRoundsOrTime">Enter Rounds Or Minutes</string>
-    <string name="Congratulations">Congratulations!!!</string>
+    <string name="enterRoundsOrTime">Enter rounds or minutes</string>
+    <string name="Congratulations">Congratulations!</string>
     <string name="FirstPlace">First Place</string>
     <string name="SecondPlace">Second Place</string>
     <string name="ThirdPlace">Third Place</string>
@@ -58,6 +58,8 @@
     <string name="SixthPlace">6</string>
     <string name="Wealth">Wealth</string>
     <string name="Finish">Finish</string>
+    <string name="text_ip">IP: %s</string>
+    <string name="joined_format">Joined on: %1$s</string>
 
     <string name="NSDServiceName">delta_dkt</string>
     <string name="NSDServiceType">_delta_dkt.tcp</string>
@@ -78,7 +80,7 @@
 
     <!-- #START Cheating Texts -->
     <string name="cheat_open_report_menu">Report Cheater</string>
-    <string name="reportCheater_message">Successfully reported %s as a Cheater!</string>
+    <string name="reportCheater_message">Activity: Successfully reported %s as a Cheater!</string>
 
     <!-- ##START Cheating-ReportMenu Texts -->
     <string name="cheat_popup_selection_menu_heading">Report Menu</string>
@@ -93,17 +95,59 @@
     <string name="cheat_user_element_image_description">Represents the players figure in the current game.</string>
 
     <!-- END Cheating Texts -->
-    <string name="movement_info_message_singular">%s moved %s step and is now located at pos: %s</string>
-    <string name="movement_info_message_plural">%s moved %s steps and is now located at pos: %s</string>
+    <string name="movement_info_message_singular">Activity: %s moved %s step and is now located at pos: %s</string>
+    <string name="movement_info_message_plural">Activity: %s moved %s steps and is now located at pos: %s</string>
 
     <string name="pay_tax_activity_text">%s had to pay %s%% taxes. Old cash %s$, new cash %s$</string>
     <string name="pay_static_tax_activity_text">%s had to pay %s$ taxes. Old cash %s$, new cash %s$</string>
-    <string name="player_lost_activity_text">%s was eliminated from the game!</string>
+    <string name="notify_inprisonment">%s has been sent to prison!</string>
     <string name="text_rent">Rent: %s$</string>
+
+    <string name="jail_card">JailCard</string>
+    <string name="lucky_card">LuckyCard</string>
+    <string name="unlucky_card">UnluckyCard</string>
+    <string name="jail_card_text">Go to jail</string>
+    <string name="lucky_card_text1">For bank interest you get 180€</string>
+    <string name="lucky_card_text2">For the sale of shares you receive 50€</string>
+    <string name="lucky_card_text3">You get 40€ for travel expenses contribution</string>
+    <string name="unlucky_card_text1">Pay your life insurance: 120€</string>
+    <string name="unlucky_card_text2">Pay 130€ for your health insurance</string>
+
+    <string name="out_of_jail_card">OutOfJailCard</string>
+    <string name="out_of_jail_card_text">This card will free you from prison! Keep it, you will need it.</string>
+    <string name="lucky_card_text4">The bank pays you dividends: 60€</string>
+    <string name="lucky_card_text5">For an invention you get 140€</string>
+    <string name="unlucky_card_text3">Pay 5€ police penalty</string>
+    <string name="unlucky_card_text4">Pay 200€ for wrong parking</string>
+    <string name="travel_card">TravelCard</string>
+    <string name="travel_card_text1">Move to \"Mirabellplatz\" (field 25). If you pass the Start-Field you will get 200€</string>
+    <string name="travel_card_text2">Go 4 fields back</string>
+    <string name="travel_card_text3">Move 7 fields forward</string>
+    <string name="travel_card_text4">Move to \"Annenstraße\" (field 6). If you pass the Start-Field you will get 200€</string>
+    <string name="outOfPrisonCardAwarded_notification">%s has been awarded with a get-out-of-jail-card!</string>
+
+    <string name="suspension_count">You are suspended for %s more rounds</string>
+    <string name="player_lost_activity_text">%s was eliminated from the game!</string>
     <string name="playerName_info_text">You are spectator!</string>
+    <string name="text_player_leave_confirmation">Do you really want to leave?</string>
+    <string name="text_button_yes">Yes</string>
+    <string name="text_button_no">No</string>
+    <string name="text_player_leave_hint">Hint: Your wealth will be reset!</string>
+    <string name="text_player_leave_hint_host">Hint: Since you are the host, the server will be closed!</string>
+    <string name="contentdescription_host_wlan">Host WLan Logo</string>
+    <string name="text_buy_property_confirmation_question">Do you want to buy the following property?</string>
+    <string name="player_buy_property_activity_text">%s has successfully bought %s (%s) for %s$</string>
+    <string name="player_pay_rent_activity_text">%s had to pay %s$ rent for property %s (Owner %s)</string>
+    <string name="text_property_buy_hint">Property %s (%s) with %s$ rent for %s$</string>
 
     <plurals name="game_started_activity_text">
         <item quantity="one">Game started with %d player</item>
         <item quantity="other">Game started with %d players</item>
     </plurals>
+    <string name="toast_buy_property_too_less_cash">You have not enough cash to buy this property!</string>
+    <string name="toast_buy_property_error_buying">Error buying property! Already bought by someone else?</string>
+    <string name="text_player_move_plural">%s moved %s steps</string>
+    <string name="text_player_move_sing">%s moved %s step</string>
+    <string name="moved_steps">%s</string>
+    <string name="no_player_rolled_dice">No player rolled the dice</string>
 </resources>

@@ -8,22 +8,22 @@ import java.util.Collections;
  */
 
 public class BankTaskCollection {
-    private ArrayList<BankTask> bankTask = new ArrayList<>();
+    private final ArrayList<BankTask> bankTask = new ArrayList<>();
 
     /**
      * The BankTaskCollection includes ten tasks that a player can get in a game.
      */
     public BankTaskCollection(){
-        bankTask.add(new BankTask(1,"JailCard","Gehe in den Arrest"));
-        bankTask.add(new BankTask(2,"LuckyCard", "Für Bankzinsen erhältst du 180€ "));
-        bankTask.add(new BankTask(3,"LuckyCard", "Für den Verkauf von Wertpapieren erhältst du 50€ "));
-        bankTask.add(new BankTask(4,"UnluckyCard", "Bezahle deine Lebensversicherungsprämie: 120€"));
-        bankTask.add(new BankTask(5,"JailCard","Gehe in den Arrest"));
-        bankTask.add(new BankTask(6,"UnluckyCard", "An die Krankenkasse bezahle: 130€"));
-        bankTask.add(new BankTask(7,"JailCard","Gehe in den Arrest"));
-        bankTask.add(new BankTask(8,"LuckyCard", " An Reisespesenbeitrag erhältst du 40€"));
-        bankTask.add(new BankTask(9,"UnluckyCard", "An die Krankenkasse bezahle: 130€"));
-        bankTask.add(new BankTask(10,"JailCard","Gehe in den Arrest"));
+        bankTask.add(new BankTask(1,"jail_card","jail_card_text"));
+        bankTask.add(new BankTask(2,"lucky_card", "lucky_card_text1"));
+        bankTask.add(new BankTask(3,"lucky_card", "lucky_card_text2"));
+        bankTask.add(new BankTask(4,"unlucky_card", "unlucky_card_text1"));
+        bankTask.add(new BankTask(5,"jail_card","jail_card_text"));
+        bankTask.add(new BankTask(6,"unlucky_card", "unlucky_card_text2"));
+        bankTask.add(new BankTask(7,"jail_card","jail_card_text"));
+        bankTask.add(new BankTask(8,"lucky_card", "lucky_card_text3"));
+        bankTask.add(new BankTask(9,"unlucky_card", "unlucky_card_text2"));
+        bankTask.add(new BankTask(10,"jail_card","jail_card_text"));
     }
     /**
      * gets a random bank task from the BankTaskCollection.

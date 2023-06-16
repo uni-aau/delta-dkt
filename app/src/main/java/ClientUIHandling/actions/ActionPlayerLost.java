@@ -5,7 +5,6 @@ import android.graphics.Typeface;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -30,18 +29,7 @@ public class ActionPlayerLost implements ClientActionInterface {
             playerNameTextView.setTextColor(Color.RED);
             playerNameTextView.setTypeface(null, Typeface.BOLD);
 
-            // Todo move client & gameKill in another class, add stopConnection(), make playerMarker invisible
-            /*
-             Game.reset();
-             LobbyViewActivity.userList.clear();
-
-            Toast.makeText(activity, "YOU LOST!", Toast.LENGTH_LONG).show(); //marked for removal
-
-            Intent intent = new Intent(activity.getApplicationContext(), MainMenuActivity.class);
-
-            intent.putExtra(MainActivity.INTENT_PARAMETER, MainMenuActivity.username);
-            activity.startActivity(intent);
-             */
+            GameViewActivity.isSpectator = true;
         }
     }
 }

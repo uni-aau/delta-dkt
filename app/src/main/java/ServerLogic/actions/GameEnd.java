@@ -7,7 +7,6 @@ import java.util.ArrayList;
 import java.util.Locale;
 
 import ClientUIHandling.Constants;
-import ServerLogic.ServerActionHandler;
 import ServerLogic.ServerActionInterface;
 import delta.dkt.logic.structure.Game;
 import delta.dkt.logic.structure.Player;
@@ -17,8 +16,6 @@ public class GameEnd implements ServerActionInterface {
     @Override
     public void execute(ServerNetworkClient server, Object parameters) {
         Log.d("[SERVER] GameEnd", "Received game end request with reason: " + (String) parameters);
-
-        //TODO: Evaluate which player wins/loses. For example: most wealth, most properties, etc.
 
         // winnerList gets the values from the Hashmap
         ArrayList<Player> winners = new ArrayList<>(Game.getWinnerList());
@@ -40,14 +37,20 @@ public class GameEnd implements ServerActionInterface {
             server.tearDown();
             Log.d("[SERVER]_GAME_END", "After Teardown");
             Game.getPlayers().clear();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }catch (InterruptedException e) {
+        } catch (InterruptedException e) {
             Log.w("Warning", "Interrupted!", e);
             // Restore interrupted state...
             Thread.currentThread().interrupt();
+        } catch (IOException e) {
+            throw new GameEndException("Error while trying to close the server: " + e);
         }
 
+    }
+
+    public static class GameEndException extends RuntimeException {
+        public GameEndException(String message) {
+            super(message);
+        }
     }
 
 }

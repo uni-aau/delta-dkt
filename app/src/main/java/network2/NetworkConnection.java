@@ -1,5 +1,6 @@
 package network2;
 
+import static ClientUIHandling.Constants.LOG_NETWORK;
 import static ClientUIHandling.Constants.PREFIX_ADD_USER_TO_LIST;
 import static delta.dkt.activities.MainActivity.user;
 
@@ -14,7 +15,6 @@ import java.net.InetSocketAddress;
 import java.net.Socket;
 import java.util.ArrayDeque;
 
-import ClientUIHandling.ClientHandler;
 import ClientUIHandling.ClientLogic;
 import ClientUIHandling.Constants;
 import delta.dkt.activities.GameViewActivity;
@@ -39,25 +39,29 @@ public class NetworkConnection extends Thread { //execute each instance within a
 
     private String lastMsgReceived;
 
-    private static final String TAG = "NetworkConnection";
+    private static final String TAG = LOG_NETWORK + "-NC";
 
     private boolean isRunning;
 
-    private Object runningToken;
+    private final Object runningToken;
 
-    private ClientLogic logic;
+    private final ClientLogic logic;
 
-    private ArrayDeque<String> outputBuffer;
+    private final ArrayDeque<String> outputBuffer;
 
     private String ip;
     private int port;
     private int timeout;
 
+    private boolean closeHasBeenRequested;
+
+    private Object closeRequestToken;
+
     //we introduce the socket as parameter because the server will accept/retrieve socket objects
     //while listening to its port
     //for us , the port of the socket is defined by the client communicating with us
     public NetworkConnection(String ip, int port, int timeout, ClientLogic logic) {
-        System.out.println(TAG + ": Saving socket for client connection and creating Reader/Writer Objects");
+        Log.d(TAG, "Saving socket for client connection and creating Reader/Writer Objects");
         this.isRunning = true;
         runningToken = "";
         this.logic = logic;
@@ -66,20 +70,20 @@ public class NetworkConnection extends Thread { //execute each instance within a
         this.ip = ip;
         this.port = port;
         this.timeout = timeout;
+        closeHasBeenRequested = false;
+        closeRequestToken = "";
     }
 
     public NetworkConnection(Socket socket, ClientLogic logic) {
-        System.out.println(TAG + ": Saving socket for client connection and creating Reader/Writer Objects");
+        Log.d(TAG, "Saving socket for client connection and creating Reader/Writer Objects");
         this.isRunning = true;
         runningToken = "";
         this.logic = logic;
         outputBuffer = new ArrayDeque<>();
 
         this.socket = socket;
-    }
-
-    public String getIP() {
-        return socket.getInetAddress().getHostAddress();
+        closeHasBeenRequested = false;
+        closeRequestToken = "";
     }
 
     @Override
@@ -95,31 +99,32 @@ public class NetworkConnection extends Thread { //execute each instance within a
 
             if (!MainMenuActivity.role) {
                 String clientID = reader.readLine();
-                System.out.println("WAITING FOR MY ID");
                 GameViewActivity.clientID = Integer.parseInt(clientID.split(":")[1]);
 
-                if(GameViewActivity.clientID == -1){
-                    if(logic != null){
+                if (GameViewActivity.clientID == -1) {
+                    if (logic != null) {
                         logic.sendHandle(Constants.PREFIX_SERVER_FULL, Constants.MAINMENU_ACTIVITY_TYPE);
                     }
                     return;
                 }
-                send(Constants.PREFIX_SERVER+":"+PREFIX_ADD_USER_TO_LIST+" "+user+" "+GameViewActivity.clientID);
+                send(Constants.PREFIX_SERVER + ":" + PREFIX_ADD_USER_TO_LIST + " " + user + " " + GameViewActivity.clientID);
             } else {
                 GameViewActivity.clientID = 1;
             }
 
-            System.out.println(TAG + ":Waiting for incoming messages");
+            Log.d(TAG, "Waiting for incoming messages");
             while (true) {
-                //System.out.println("WAITING1");
-                if (reader.ready()) {
+                read: if (reader.ready()) {
+
+                    if(hasCloseBeenRequested()){
+                        Log.e(TAG, "CONNECTION COULDNT READ, CLOSE HAS ALREADY BEEN REQUESTED");
+                        break read;
+                    }
+
                     String msg = reader.readLine();
                     //if we have received a message , handle it
-                    System.out.println(TAG + " Incoming message " + msg);
+                    Log.d(TAG, "Incoming message " + msg);
                     this.lastMsgReceived = msg;
-                    //TODO: Implement a handler that handles incoming game-related messages
-                    System.out.println("RECEIVED");
-                    System.out.println("I AM SERVER=" + MainMenuActivity.role + " received=" + msg);
                     // BEGIN-NOSCAN
                     if (logic != null) {
 
@@ -129,10 +134,7 @@ public class NetworkConnection extends Thread { //execute each instance within a
                         }
                     }
                     // END-NOSCAN
-                    //TODO: CALL CLIENT LOGIC
 
-                    //TODO: IMPLEMENT HANDLE AS SYNCHRONIZED METHOD TO AVOID inconsistency due to concurrent executions
-                    // or on message handler object level
 
                 }
 
@@ -140,7 +142,6 @@ public class NetworkConnection extends Thread { //execute each instance within a
                 sendThroughNetwork();
 
 
-                //System.out.println("WAITING2");
                 synchronized (runningToken) {
                     if (!isRunning) {
                         break;
@@ -148,25 +149,51 @@ public class NetworkConnection extends Thread { //execute each instance within a
                 }
 
             }
+
+            //TRY TO ALLOW LAST MESSAGES TO SEND
+            synchronized (closeRequestToken){
+                if(hasCloseBeenRequested()){
+                    synchronized (outputBuffer){
+                        if(outputBuffer.isEmpty()){
+                            synchronized (runningToken){
+                                isRunning = false;
+                            }
+                        }
+                    }
+                }
+            }
+
             Thread.sleep(1);
         } catch (IOException e) {
-            System.out.println(e.getMessage());
+            Log.e(TAG, e.getMessage());
 
         } catch (InterruptedException e) {
-            Log.e("INTERRUPT", "Interrupted!", e);
+            Log.e(TAG, "Interrupted!" + e);
 
             Thread.currentThread().interrupt();
         } finally {
             // Close the connection always!
             try {
-                this.close();
+                this.shutdown();
             } catch (IOException e) {
                 e.printStackTrace();
+            }
+        }
+        synchronized (outputBuffer) {
+            if (!outputBuffer.isEmpty()) {
+                for (String message : outputBuffer) {
+                    Log.e(TAG, "CONNECTION COULDNT SEND " + message + ". CONNECTION IS ALREADY CLOSED!");
+                }
             }
         }
     }
 
     public void send(String message) {
+        if (hasCloseBeenRequested()) {
+            Log.e(TAG, "CONNECTION COULDNT SEND " + message + ". CONNECTION HAS ALREADY BEEN REQUESTED TO CLOSE!");
+            return;
+        }
+
         synchronized (outputBuffer) {
 
             outputBuffer.add(message);
@@ -181,7 +208,7 @@ public class NetworkConnection extends Thread { //execute each instance within a
             while (!outputBuffer.isEmpty()) {
                 try {
                     String message = outputBuffer.pop();
-                    System.out.println(TAG + " Sending following message to server: " + message);
+                    Log.d(TAG, "Sending following message to server: " + message);
                     writer.write(message);
                     writer.newLine(); //adds newline == NULLBYTE termination of messages (EOF signal)
                     writer.flush(); //flushes the message within the OUTPUTBUFFER -> sends to cient/server via Socket
@@ -200,7 +227,20 @@ public class NetworkConnection extends Thread { //execute each instance within a
         return this.lastMsgReceived;
     }
 
-    public void close() throws IOException {
+    public void close() {
+        synchronized (closeRequestToken) {
+            closeHasBeenRequested = true;
+        }
+
+    }
+
+    public boolean hasCloseBeenRequested() {
+        synchronized (closeRequestToken) {
+            return closeHasBeenRequested;
+        }
+    }
+
+    private void shutdown() throws IOException {
         if (this.reader != null) {
             this.reader.close();
         }
@@ -214,5 +254,6 @@ public class NetworkConnection extends Thread { //execute each instance within a
             isRunning = false;
         }
     }
+
 
 }
