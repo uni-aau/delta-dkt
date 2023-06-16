@@ -20,7 +20,7 @@ import delta.dkt.activities.MainActivity;
 import delta.dkt.logic.structure.Game;
 import delta.dkt.logic.structure.Player;
 
-import static ClientUIHandling.Constants.LOG_NETWORK;
+import static ClientUIHandling.Constants.*;
 
 /**
  * This class maintains a set of clientNetworkConnections and listens to a
@@ -130,7 +130,7 @@ public class ServerNetworkClient extends Thread { //always executed on a separat
             try {
                 tearDown();
             } catch (IOException e) {
-                throw new RuntimeException(e);
+                Log.d(LOG_ERROR, "Error while tearing down server: " + e);
             }
         }
     }
