@@ -35,7 +35,7 @@ public class RequestPing implements ServerActionInterface {
             try {
                 Thread.sleep(timeout);
                 if (!Game.getPlayers().get(id).getAndClearPing()) {
-                    ServerActionHandler.triggerAction(PREFIX_PLAYER_LOST, id);
+                    ServerActionHandler.triggerAction(PREFIX_PLAYER_LOST, new String[]{String.valueOf(id), "true", "player_lost_timeout_activity_text"}); // true -> leave event
                 }
             } catch (InterruptedException e) {
                 Log.e("TIMEOUT", "Interrupted!" + e);
