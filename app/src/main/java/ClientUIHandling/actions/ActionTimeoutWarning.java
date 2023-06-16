@@ -14,8 +14,6 @@ import delta.dkt.activities.GameViewActivity;
 
 public class ActionTimeoutWarning implements ClientActionInterface {
 
-    private static String WARNING = "Your time is nearly up!";
-
     @Override
     public void execute(AppCompatActivity activity, String clientMessage) {
         int id = Integer.parseInt(clientMessage.split(" ")[1]);
@@ -25,7 +23,7 @@ public class ActionTimeoutWarning implements ClientActionInterface {
         if(!(activity instanceof GameViewActivity)) return;
 
         View parentLayout = activity.findViewById(R.id.imageView);
-        SnackBarHandler.createSnackbar(parentLayout, WARNING,LENGTH_SHORT).show();
+        SnackBarHandler.createSnackbar(parentLayout, "Your time is nearly up!" ,LENGTH_SHORT).show();
 
     }
 }
