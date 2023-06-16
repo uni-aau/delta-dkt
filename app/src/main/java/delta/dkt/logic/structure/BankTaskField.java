@@ -12,7 +12,7 @@ public class BankTaskField extends Field{
         super(location);
     }
 
-    public BankTask getBankTask() {
-        return (BankTask) TaskHandler.getTask(this.getLocation());
+    public Task getBankTask() {
+        return TaskHandler.getTask(this.getLocation());
     }
 }
