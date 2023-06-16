@@ -15,7 +15,7 @@
     <string name="players_online">Players online: %s / %s</string>
     <string name="cash_text">Cash: %s$</string>
     <string name="my_properties_text">My Properties: %s</string>
-    <string name="playing_time_text">Playing Time: %s %s, %s, %s, %s %s</string>
+    <string name="playing_time_text">Playing Time: %s %s, %s %s, %s %s</string>
     <string name="roll_the_dice">Roll the dice</string>
     <string name="property_information">Property Information</string>
     <string name="dice_information_text">%s rolls the dice</string>
