@@ -32,8 +32,7 @@ public class RequestCashTaskHandling implements ServerActionInterface {
 
         if (newCashValue < 0) {
             Log.i("[SERVER] TaskHandling", "New cash is smaller than 0! (OldCash/Newcash) = " + oldCashValue + " / " + newCashValue);
-            // TODO broadcast
-            ServerActionHandler.triggerAction(PREFIX_PLAYER_LOST, new String[]{String.valueOf(player.getId()), "false"}); // false -> loose event
+            ServerActionHandler.triggerAction(PREFIX_PLAYER_LOST, new String[]{String.valueOf(player.getId()), "false", "player_lost_cash_task_activity_text"}); // false -> loose event
         } else {
             player.setCash(newCashValue);
             int positiveCashAmountForBroadcast = Math.abs(amount);

@@ -1,6 +1,7 @@
 package ServerLogic.actions;
 
 import static ClientUIHandling.Constants.GAMEVIEW_ACTIVITY_TYPE;
+import static ClientUIHandling.Constants.PREFIX_ACTIVITY_BROADCAST;
 import static ClientUIHandling.Constants.PREFIX_HAS_PRISONCARD;
 import static ClientUIHandling.Constants.PREFIX_NOTIFICATION;
 
@@ -32,7 +33,7 @@ public class ActionPrison implements ServerActionInterface {
                 Log.i(TAG, "Player " + playerName + " was at GoToPrisonField before");
                 if(player.getYouGetOutOfPrisonCard()){
                     Log.d(TAG, "Player " + playerName + " has a getOutOfPrisonCard");
-                    server.broadcast(GAMEVIEW_ACTIVITY_TYPE +":"+PREFIX_HAS_PRISONCARD + ": " + player.getId() + " has YouGetOutOfPrisonCard");
+                    server.broadcast(GAMEVIEW_ACTIVITY_TYPE, PREFIX_ACTIVITY_BROADCAST, new String[]{"player_out_of_jail_activity_text", playerName});
                     player.setYouGetOutOfPrisonCard(false);
                 }else{
                     server.broadcast(GAMEVIEW_ACTIVITY_TYPE, PREFIX_NOTIFICATION, args);

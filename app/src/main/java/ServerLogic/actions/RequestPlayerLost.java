@@ -30,9 +30,10 @@ public class RequestPlayerLost implements ServerActionInterface {
         String[] args = (String[]) parameters;
         int clientID = Integer.parseInt(args[0]);
         boolean leaveEvent = Boolean.parseBoolean(args[1]);
-        boolean isSpectator = false;
+        String playerLostActivityText = args[2];
 
-        if (args.length >= 3) {
+        boolean isSpectator = false;
+        if (args.length >= 4) {
             isSpectator = Boolean.parseBoolean(args[2]);
         }
 
@@ -47,7 +48,7 @@ public class RequestPlayerLost implements ServerActionInterface {
             // If leaveEvent exists, player will not be moved into spectator view
             if (!leaveEvent)
                 server.broadcast(GAMEVIEW_ACTIVITY_TYPE, PREFIX_PLAYER_LOST, new String[]{nickname, String.valueOf(player.getId())});
-            server.broadcast(GAMEVIEW_ACTIVITY_TYPE, PREFIX_ACTIVITY_BROADCAST, new String[]{"player_lost_activity_text", nickname});
+            server.broadcast(GAMEVIEW_ACTIVITY_TYPE, PREFIX_ACTIVITY_BROADCAST, new String[]{playerLostActivityText, nickname});
 
             for (int i = player.getProperties().size() - 1; i >= 0; i--) {
                 player.getProperties().get(i).resetAccessories();

@@ -2,11 +2,11 @@ package ServerLogic.actions;
 
 
 import static ClientUIHandling.Constants.GAMEVIEW_ACTIVITY_TYPE;
+import static ClientUIHandling.Constants.PREFIX_ACTIVITY_BROADCAST;
 import static ClientUIHandling.Constants.PREFIX_PRISONCARD_AWARDED_NOTIFICATION;
 
 import ServerLogic.ServerActionInterface;
 import delta.dkt.logic.structure.Game;
-import delta.dkt.logic.structure.Player;
 import network2.ServerNetworkClient;
 
 public class ActionOutOfJailCardAwarded implements ServerActionInterface {
@@ -26,6 +26,7 @@ public class ActionOutOfJailCardAwarded implements ServerActionInterface {
         String[] args = new String[1];
         args[0] = playerName;
 
+        server.broadcast(GAMEVIEW_ACTIVITY_TYPE, PREFIX_ACTIVITY_BROADCAST, new String[]{"player_out_of_jail_card_activity_text", playerName});
         server.broadcast(GAMEVIEW_ACTIVITY_TYPE,PREFIX_PRISONCARD_AWARDED_NOTIFICATION,args);
     }
 }

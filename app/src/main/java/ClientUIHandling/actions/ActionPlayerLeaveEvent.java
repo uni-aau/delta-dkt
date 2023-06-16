@@ -34,9 +34,9 @@ public class ActionPlayerLeaveEvent implements ClientActionInterface {
 
             if (prefix.equals(PREFIX_PLAYER_SPECTATOR_LEAVE)) {
                 Log.d(TAG, "Sending spectator leave action to server! ClientID = " + clientId);
-                ServerActionHandler.triggerAction(PREFIX_PLAYER_LOST, new String[]{String.valueOf(clientId), "true", "true"}); //true -> leaveevent & 2nd true -> spectator
+                ServerActionHandler.triggerAction(PREFIX_PLAYER_LOST, new String[]{String.valueOf(clientId), "true", "player_leave_activity_text", "true"}); //true -> leave event & 2nd true -> spectator
             } else
-                ServerActionHandler.triggerAction(PREFIX_PLAYER_LOST, new String[]{String.valueOf(clientId), "true"});
+                ServerActionHandler.triggerAction(PREFIX_PLAYER_LOST, new String[]{String.valueOf(clientId), "true", "player_lost_activity_text"});
         }
     }
 }
