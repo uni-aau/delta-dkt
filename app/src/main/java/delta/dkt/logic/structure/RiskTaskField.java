@@ -12,7 +12,7 @@ public class RiskTaskField extends Field{
         super(location);
     }
 
-    public RiskTask getRiskTask(){
-        return (RiskTask) TaskHandler.getTask(this.getLocation());
+    public Task getRiskTask(){
+        return TaskHandler.getTask(this.getLocation());
     }
 }
