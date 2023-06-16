@@ -11,7 +11,6 @@ import ServerLogic.ServerActionHandler;
 
 public class Player implements Comparable<Player>{
     private boolean youGetOutOfPrisonCard = false;
-    private boolean goToPrisonField = false;
     public static int _id = 1;
 
     //? May be used to sync player data across clients
@@ -232,17 +231,8 @@ public class Player implements Comparable<Player>{
         return cash;
     }
 
-    public boolean getGoToPrisonField(){return goToPrisonField;}
     public boolean getYouGetOutOfPrisonCard(){return youGetOutOfPrisonCard;}
 
-    /**
-     * Sets the goToPrisonField value of a player.
-     *
-     * @param goToPrisonField is true, if the player was on the goToPrisonField before going to the prison.
-     */
-    public void setGoToPrisonField(boolean goToPrisonField){
-        this.goToPrisonField = goToPrisonField;
-    }
 
     /**
      * Sets the youGetOutOfPrisonCard value of a player.
