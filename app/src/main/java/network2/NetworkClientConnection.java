@@ -27,7 +27,7 @@ public class NetworkClientConnection {
          connection.send(msg);
     }
 
-    public void stopConnection() throws Exception {
+    public void stopConnection() {
         connection.close();
     }
 
