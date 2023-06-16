@@ -5,13 +5,8 @@ import android.util.Log;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import java.util.UUID;
-
 import ClientUIHandling.ClientActionInterface;
-import ClientUIHandling.Constants;
-import ServerLogic.ServerActionHandler;
 import delta.dkt.activities.GameViewActivity;
-import delta.dkt.logic.structure.Game;
 
 public class ActionStartGame implements ClientActionInterface {
     @Override

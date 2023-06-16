@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">DKT</string>
+    <string name="text_propNumber">{0}</string>
+    <string name="text_propName">Grundstück Name: %s</string>
+    <string name="text_price">Preis: %s$</string>
+    <string name="text_ownedBy">Gehört: %s</string>
+    <string name="text_housesAmount">Häuser: %d</string>
+    <string name="text_propInfoTitle">Grundstück-Information</string>
+    <string name="textCD_prop1">Grundstück 1</string>
+    <string name="textCD_prop2">Grundstück 2</string>
+    <string name="textCD_prop3">Grundstück 3</string>
+    <string name="textCD_prop4">Grundstück 4</string>
+    <string name="text_backToGame">Zurück</string>
+    <string name="general_information">Allgemeine Information</string>
+    <string name="players_online">Spieler online: %s / %s</string>
+    <string name="cash_text">Geld: %s$</string>
+    <string name="my_properties_text">Meine Grundstücke: %s</string>
+    <string name="playing_time_text">Spielzeit: %s %s, %s, %s, %s %s</string>
+    <string name="roll_the_dice">Würfeln</string>
+    <string name="property_information">Grundstück Information</string>
+    <string name="dice_information_text">%s würfelt</string>
+    <string name="gameview_image_description">DKT-Board</string>
+    <string name="activity_text">Aktivität: %s</string>
+    <string name="EnterButton">Weiter</string>
+    <string name="HostGameButton">Spiel hosten</string>
+    <string name="JoinGameButton">Spiel beitreten</string>
+    <string name="BackButton">Zurück</string>
+    <string name="StartButton">Start</string>
+    <string name="PleaseEnterUsername">Bitte gib deinen Namen ein:</string>
+    <string name="UserName">Spielername</string>
+    <string name="DktLogoDescription">DKTLogo</string>
+    <string name="Avatar">Avatar</string>
+    <string name="PlayerLobby">Spieler Lobby</string>
+    <string name="HostGame">Neues Spiel hosten:</string>
+    <string name="OK">OK</string>
+    <string name="Cancel">Abbrechen</string>
+    <string name="ServerName">Server Name</string>
+    <string name="UserRole">User Rolle</string>
+    <string name="JoiningTime">Beigetreten am:</string>
+    <string name="TotalPlayers">Spieleranzahl:</string>
+    <string name="Host">HOST</string>
+    <string name="Player">SPIELER</string>
+    <string name="Joined">Beigetreten:</string>
+    <string name="FindHost">Finde Host</string>
+    <string name="JoinBtn">Beitreten</string>
+    <string name="HostId">Host ID</string>
+    <string name="EnterServerName">Servername:</string>
+    <string name="EnterMaxPlayers">Maximale Spieleranzahl:</string>
+    <string name="Time">Zeit</string>
+    <string name="Rounds">Runden</string>
+    <string name="enterRoundsOrTime">Gib Runden oder Minuten an</string>
+    <string name="Congratulations">Glückwunsch!</string>
+    <string name="FirstPlace">Erster Platz</string>
+    <string name="SecondPlace">Zweiter Platz</string>
+    <string name="ThirdPlace">Dritter Platz</string>
+    <string name="FourthPlace">4</string>
+    <string name="FifthPlace">5</string>
+    <string name="SixthPlace">6</string>
+    <string name="Wealth">Vermögen</string>
+    <string name="Finish">Beenden</string>
+    <string name="text_ip">IP: %s</string>
+    <string name="NSDServiceName">delta_dkt</string>
+    <string name="NSDServiceType">_delta_dkt.tcp</string>
+    <string name="hours_plural_text">Stunden</string>
+    <string name="hour_sing_text">Stunde</string>
+    <string name="minutes_plural_text">Minuten</string>
+    <string name="minute_sing_text">Minute</string>
+    <string name="seconds_plural_text">Sekunden</string>
+    <string name="second_sing_text">Sekunde</string>
+    <string name="start_broadcast_toast_text">Das Spiel wurde erfolgreich mit %s Spielern gestartet</string>
+    <string name="img_description_player6_text">Spieler 6</string>
+    <string name="img_description_player5_text">Spieler 5</string>
+    <string name="img_description_player3_text">Spieler 3</string>
+    <string name="img_description_player4_text">Spieler 4</string>
+    <string name="img_description_player2_text">Spieler 2</string>
+    <string name="img_description_player1_text">Spieler 1</string>
+    <string name="start_money_activity_text">%s erhält Start-Geld</string>
+
+    <!-- #START Cheating Texts -->
+    <string name="cheat_open_report_menu">Cheater melden</string>
+    <string name="reportCheater_message">Activity: %s wurde erfolgreich als Cheater gemeldet!</string>
+
+    <!-- ##START Cheating-ReportMenu Texts -->
+    <string name="cheat_popup_selection_menu_heading">Report Menü</string>
+    <string name="cheat_popup_selection_menu_description">
+        Wähle einen Cheater aus der Liste unten aus, um ihn zu melden. Sei aber vorsichtig.
+    </string>
+    <string name="cheat_popup_selection_menu_canel_button">Abbrechen</string>
+    <string name="cheat_popup_selection_menu_submit_button">Melden</string>
+
+    <!-- ##START Cheating-ReportMenu Texts -->
+    <string name="cheat_user_element_username_placeholder">Spieler-Platzhalter 1</string>
+    <string name="cheat_user_element_image_description">Stellt die Figur des Spielers im aktuellen Spiel dar.</string>
+
+    <!-- END Cheating Texts -->
+    <string name="movement_info_message_singular">Aktivität: %s hat sich %s Schritt bewegt und befindet sich jetzt an der Position: %s</string>
+    <string name="movement_info_message_plural">Aktivität: %s hat sich %s Schritte bewegt und befindet sich nun an der Position: %s</string>
+
+    <string name="pay_tax_activity_text">%s muss %s%% Miete zahlen. Altes Vermögen %s$, neues Vermögen %s$</string>
+    <string name="pay_static_tax_activity_text">%s muss %s$ Miete zahlen. Altes Vermögen %s$, neues Vermögen %s$</string>
+    <string name="notify_inprisonment">%s wurde ins Gefängnis geschickt!</string>
+    <string name="text_rent">Miete: %s$</string>
+
+    <string name="jail_card">JailCard</string>
+    <string name="lucky_card">LuckyCard</string>
+    <string name="unlucky_card">UnluckyCard</string>
+    <string name="jail_card_text">Gehe in den Arrest</string>
+    <string name="lucky_card_text1">Für Bankzinsen erhältst du 180€</string>
+    <string name="lucky_card_text2">Für den Verkauf von Wertpapieren erhältst du 50€</string>
+    <string name="lucky_card_text3">An Reisespesenbeitrag erhältst du 40€</string>
+    <string name="unlucky_card_text1">Bezahle deine Lebensversicherungsprämie: 120€</string>
+    <string name="unlucky_card_text2">An die Krankenkasse bezahle: 130€</string>
+
+    <string name="out_of_jail_card">OutOfJailCard</string>
+    <string name="out_of_jail_card_text">Diese Karte befreit dich aus dem Arrest! Hebe diese Karte auf, du wirst sie brauchen.</string>
+    <string name="lucky_card_text4">Die Bank zahlt dir an Dividenden 60€.</string>
+    <string name="lucky_card_text5">Für die Auswertung einer Erfindung erhältst du 140€ aus öffentlichen Mitteln.</string>
+    <string name="unlucky_card_text3">Zahle 5€ Polizeistrafe.</string>
+    <string name="unlucky_card_text4">Für unerlaubtes Parken bezahlst du 200€.</string>
+    <string name="travel_card">TravelCard</string>
+    <string name="travel_card_text1">Besuche Salzburg und gehe am Mirabellplatz spazieren. Passierst du den Start, erhältst du 200€.</string>
+    <string name="travel_card_text2">Gehe um 4 Felder zurück.</string>
+    <string name="travel_card_text3">Rücke 7 Felder vor.</string>
+    <string name="travel_card_text4">Besuche Graz und gehe auf der Annenstraße spazieren. Passierst du den Start, erhältst du 200€.</string>
+
+    <string name="suspension_count">Du bist für %s weitere Runden gesperrt</string>
+    <string name="player_lost_activity_text">%s wurde aus dem Spiel entfernt!</string>
+    <string name="playerName_info_text">Du bist Zuschauer!</string>
+    <string name="text_player_leave_confirmation">Willst du wirklich gehen?</string>
+    <string name="text_button_yes">Ja</string>
+    <string name="text_button_no">Nein</string>
+    <string name="text_player_leave_hint">Hinweis: Dein Vermögen wird zurückgesetzt!</string>
+    <string name="text_player_leave_hint_host">Hinweis: Da du der Host bist, wird der Server geschlossen!</string>
+    <string name="contentdescription_host_wlan">Host WLan Logo</string>
+    <string name="text_buy_property_confirmation_question">Möchten du folgendes Grundstück kaufen?</string>
+    <string name="player_buy_property_activity_text">%s hat erfolgreich %s (%s) für %s$ gekauft</string>
+    <string name="player_pay_rent_activity_text">%s musste %s$ Miete für Grundstück %s zahlen (Eigentümer %s)</string>
+    <string name="text_property_buy_hint">Grundstück %s (%s) mit %s$ Miete für %s$</string>
+
+    <plurals name="game_started_activity_text">
+        <item quantity="one">Das Spiel hat mit %d Spieler begonnen</item>
+        <item quantity="other">Das Spiel hat mit %d Spieler begonnen</item>
+    </plurals>
+    <string name="joined_format">Beigetreten am: %1$s</string>
+    <string name="outOfPrisonCardAwarded_notification">%s hat eine Get-Out-Of-Jail-Card erhalten!</string>
+    <string name="toast_buy_property_too_less_cash">Du hast zu wenig Geld, um dieses Grundstück zu kaufen!</string>
+    <string name="toast_buy_property_error_buying">Fehler beim Grundstückskauf! Bereits von jemand anderem gekauft?</string>
+    <string name="text_player_move_plural">%s ging %s Schritte</string>
+    <string name="text_player_move_sing">%s ging %s Schritt</string>
+    <string name="moved_steps">%s</string>
+    <string name="no_player_rolled_dice">Kein Spieler hat gewürfelt</string>
+</resources>

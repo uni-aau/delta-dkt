@@ -3,14 +3,11 @@ package ClientUIHandling.actions;
 import ClientUIHandling.handlers.languages.LanguageHandler;
 import ServerLogic.handlers.ParameterHandler;
 import android.util.Log;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import ClientUIHandling.ClientActionInterface;
 import ClientUIHandling.Constants;
-import ClientUIHandling.handlers.notifications.SnackBarHandler;
-import delta.dkt.R;
 import delta.dkt.activities.GameViewActivity;
 
 public class ActionMove implements ClientActionInterface {
@@ -59,8 +56,8 @@ public class ActionMove implements ClientActionInterface {
 
         
         //? select the corresponding template for the message based on the amount of steps
-        String templateName = steps > 1 ? "movement_info_message_plural" : "movement_info_message_singular";
+        String templateName = steps > 1 ? "text_player_move_plural" : "text_player_move_sing";
 
-        LanguageHandler.updateTextElement(activity, "textView_activity", templateName, new Object[]{nickName, String.valueOf(steps), String.valueOf(destination)});
+        LanguageHandler.updateTextElement(activity, "textView_MovementActivity", templateName, new Object[]{nickName, String.valueOf(steps)});
     }
 }

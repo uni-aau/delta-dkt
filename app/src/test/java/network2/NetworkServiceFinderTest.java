@@ -1,7 +1,6 @@
 package network2;
 import android.content.Context;
 import android.net.nsd.NsdManager;
-import android.os.Looper;
 
 
 import org.junit.jupiter.api.AfterEach;
@@ -9,19 +8,16 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.concurrent.CountDownLatch;
-import java.util.concurrent.TimeUnit;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
-class NetworkServiceDiscoveryTest {
+class NetworkServiceFinderTest {
 
     private Context context;
     private NsdManager nsdManager;
-    private NetworkServiceDiscovery nsd;
+    private NetworkServiceFinder nsd;
     private CountDownLatch countDownLatch;
 
     @BeforeEach
@@ -29,7 +25,7 @@ class NetworkServiceDiscoveryTest {
         context = mock(Context.class);
         nsdManager = mock(NsdManager.class);
         when(context.getSystemService(Context.NSD_SERVICE)).thenReturn(nsdManager);
-        nsd = new NetworkServiceDiscovery(context);
+        nsd = new NetworkServiceFinder(context);
         countDownLatch = new CountDownLatch(1);
     }
 

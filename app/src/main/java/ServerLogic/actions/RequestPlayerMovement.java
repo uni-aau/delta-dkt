@@ -1,24 +1,23 @@
 package ServerLogic.actions;
 
-import static ClientUIHandling.Constants.GAMEVIEW_ACTIVITY_TYPE;
-import static ClientUIHandling.Constants.PREFIX_PLAYER_MOVE;
-import static ClientUIHandling.Constants.PREFIX_START_CASH_VALUE;
-
 import ClientUIHandling.Config;
 import android.util.Log;
 
 import ServerLogic.ServerActionHandler;
 import ServerLogic.ServerActionInterface;
 import delta.dkt.logic.structure.Game;
+import delta.dkt.logic.structure.GoToPrisonField;
 import delta.dkt.logic.structure.Player;
 import network2.ServerNetworkClient;
 
 import java.util.ArrayList;
 
+import static ClientUIHandling.Constants.*;
+
 @SuppressWarnings("FieldCanBeLocal")
 public class RequestPlayerMovement implements ServerActionInterface {
     private String tag = "Movement-" + getClass().getSimpleName();
-    private int maxFields = 41;
+    private final int maxFields = 41;
 
 
     @SuppressWarnings("DataFlowIssue")
@@ -53,6 +52,19 @@ public class RequestPlayerMovement implements ServerActionInterface {
 
 
         Player requestPlayer = Game.getPlayers().get(clientID);
+
+
+        if(requestPlayer.isSuspended()){
+            Log.d(tag, String.format("Aborting move request for client: (%s), because he is in prison", clientID));
+            String[] notifyArgs = new String[2];
+            notifyArgs[0] = String.valueOf(requestPlayer.getSuspention());
+            notifyArgs[1] = String.valueOf(clientID);
+            server.broadcast(GAMEVIEW_ACTIVITY_TYPE, PREFIX_SUSPENSION_COUNT, notifyArgs);
+            requestPlayer.reduceSuspension();
+            return;
+        }
+
+
         requestPlayer.setCheat(isCheating);
         int currentPosition = requestPlayer.getPosition().getLocation();
 
@@ -65,8 +77,6 @@ public class RequestPlayerMovement implements ServerActionInterface {
         //* detailed logs
         Log.d(tag, String.format("Moving Player%s to position=%s, dice value=%s!", clientID, destination, steps));
 
-        requestPlayer.moveTo(destination);
-
         ArrayList<String> sendArgs = new ArrayList<>();
         sendArgs.add(String.valueOf(clientID));
         sendArgs.add(String.valueOf(destination));
@@ -75,7 +85,18 @@ public class RequestPlayerMovement implements ServerActionInterface {
 
         Log.d(tag, String.format("Sending out messages to %s players.", Game.getPlayers().size()));
         Log.d(tag, "");
+
+        requestPlayer.moveTo(destination);
+
+        //* In case the player lands on the GoToPrisonField, he will be moved to the PrisonField.
+        if(Game.getMap().getField(destination) instanceof GoToPrisonField){
+            Log.d(tag, String.format("Player%s landed on a GoToPrisonField, thus he will be moved to the PrisonField! (Overriding Movement-Action)", clientID));
+            ServerActionHandler.triggerAction(PREFIX_GO_TO_PRISON_FIELD, clientID);
+            return;
+        }
+
         server.broadcast(GAMEVIEW_ACTIVITY_TYPE, PREFIX_PLAYER_MOVE, sendArgs.toArray(new String[0]));
+
 
         //? Add start-cash for passing over the start field.
         if (currentPosition > destination) ServerActionHandler.triggerAction(PREFIX_START_CASH_VALUE, clientID);

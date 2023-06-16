@@ -6,16 +6,16 @@ import java.util.ArrayList;
  * This class represents a property of the game that can be bought, where rent can be paid and more.
  */
 public class Property extends Field {
-    private int price;
-    private int baseRent;
+    private final int price;
+    private final int baseRent;
 
-    private PropertyLevel level;
+    private final PropertyLevel level;
     private Player owner;
 
-    private int housePrice;
-    private int hotelPrice;
+    private final int housePrice;
+    private final int hotelPrice;
 
-    private ArrayList<PropertyAccessory> accessories = new ArrayList<>();
+    private final ArrayList<PropertyAccessory> accessories = new ArrayList<>();
 
     /**
      * Create a new property that has a given location on the field.

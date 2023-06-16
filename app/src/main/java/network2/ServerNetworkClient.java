@@ -13,9 +13,14 @@ import java.util.Collections;
 import java.util.List;
 
 import ClientUIHandling.Config;
+
+import android.util.Log;
+
 import delta.dkt.activities.MainActivity;
 import delta.dkt.logic.structure.Game;
 import delta.dkt.logic.structure.Player;
+
+import static ClientUIHandling.Constants.LOG_NETWORK;
 
 /**
  * This class maintains a set of clientNetworkConnections and listens to a
@@ -27,13 +32,13 @@ public class ServerNetworkClient extends Thread { //always executed on a separat
 
     private int port; //the number of the port where the serverThread listens on for incoming connections
 
-    public boolean serverInterrupted;
+    private boolean serverInterrupted;
 
     private List<NetworkConnection> clientConnections;
+    private NetworkServiceFinder nsd;
 
-    private Context context;
 
-    private NetworkServiceDiscovery nsd;
+    private Object synchTearDownToken;
 
 
     public ServerNetworkClient() {
@@ -41,14 +46,13 @@ public class ServerNetworkClient extends Thread { //always executed on a separat
     }
 
     public ServerNetworkClient(Context context) {
-        this.context = context;
-        this.nsd = new NetworkServiceDiscovery(context);
+        this.nsd = new NetworkServiceFinder(context);
 
         initProperties();
     }
 
     public String getIP() {
-       return getIPAddress();
+        return getIPAddress();
     }
 
     public static String getIPAddress() {
@@ -57,12 +61,12 @@ public class ServerNetworkClient extends Thread { //always executed on a separat
         try {
             interfaces = Collections.list(NetworkInterface.getNetworkInterfaces());
         } catch (SocketException e) {
-            throw new RuntimeException(e);
+            throw new RuntimeException("Error while trying to create list of NetworkInterfaces: " + e);
         }
         for (NetworkInterface networkInterface : interfaces) {
             List<InetAddress> addresses = Collections.list(networkInterface.getInetAddresses());
             for (InetAddress address : addresses) {
-                System.out.println("TRYING");
+
                 if (!address.isLoopbackAddress()) {
                     String ip = address.getHostAddress();
                     //Check if it is not an ipv6 address
@@ -81,6 +85,7 @@ public class ServerNetworkClient extends Thread { //always executed on a separat
         this.port = 0; //not yet set AND the prequesite for allocating a dynamic port
         clientConnections = new ArrayList<>(); //init list
         serverInterrupted = false;
+        this.synchTearDownToken = "";
     }
 
     @Override
@@ -92,40 +97,40 @@ public class ServerNetworkClient extends Thread { //always executed on a separat
             //before start listening, register the service.. the port has been set
             if (nsd != null) { //for testcases this class has to be called without service registration
                 nsd.registerService(getPort());
-                System.out.println("REGISTERED SERVICE");
+                Log.d(LOG_NETWORK, "REGISTERED SERVICE");
             }
 
-            System.out.println("Server started on port " + port);
+            Log.d(LOG_NETWORK, "Server started on port " + port);
             while (!serverInterrupted) {
                 Socket socket = serverSocket.accept();
                 NetworkConnection clientSocket = new NetworkConnection(socket, MainActivity.logic);
                 clientConnections.add(clientSocket);
                 clientSocket.start();
 
-                if(Game.getPlayers().size() >= Config.MAX_CLIENTS){
+                if (Game.getPlayers().size() >= Config.MAX_CLIENTS) {
                     clientSocket.send("IPINNIT:-1");
                     continue;
                 }
 
                 // sets clientID & username
-                // todo rework username setting
                 int clientID = Game.getPlayers().size() + 1;
                 String userName = "-";
-                clientSocket.send("IPINNIT:"+ clientID);
+                clientSocket.send("IPINNIT:" + clientID);
 
-                Game.getPlayers().put(clientID, new Player(userName));
+                Player player = new Player(userName);
+                player.setId(clientID);
 
-
+                Game.getPlayers().put(clientID, player);
 
 
             }
         } catch (IOException e) {
             e.printStackTrace();
-        } finally { //always clean up, short extra try-catch needed because if exeption thrown above, teardown might not be executed
+        } finally { //always clean up, short extra try-catch needed because if exception thrown above, teardown might not be executed
             try {
                 tearDown();
-            } catch (IOException ex) {
-                ex.printStackTrace();
+            } catch (IOException e) {
+                throw new RuntimeException(e);
             }
         }
     }
@@ -140,9 +145,15 @@ public class ServerNetworkClient extends Thread { //always executed on a separat
         this.port = serverSocket.getLocalPort();
     }
 
-    public synchronized void broadcast(String message) { //synchronized might not be necessary since there should always be <= 1 server thread
-        for (NetworkConnection clientConnection : clientConnections) {
-            clientConnection.send(message);
+    public void broadcast(String message) { //synchronized is not necessary and only slows down the server
+        synchronized (synchTearDownToken) {
+            if(!hasClosed()) {
+                for (NetworkConnection clientConnection : clientConnections) {
+                    clientConnection.send(message);
+                }
+            }else{
+                Log.e("SERVER", "COULDNT BROADCAST "+ message+", SERVER ALREADY CLOSED!");
+            }
         }
     }
 
@@ -153,7 +164,7 @@ public class ServerNetworkClient extends Thread { //always executed on a separat
      * @param prefix   The prefix defines the action that should be executed and should also be defined in the Constants class.
      * @param args     The additional parameters that follow along with the command.
      */
-    public synchronized void broadcast(String activity, String prefix, String[] args) {
+    public void broadcast(String activity, String prefix, String[] args) {
         this.broadcast(activity + ":" + prefix + " " + String.join(";", args));
     }
 
@@ -166,7 +177,14 @@ public class ServerNetworkClient extends Thread { //always executed on a separat
         clientConnections.remove(client);
     }
 
+    public void stopThread() {
+        synchronized (synchTearDownToken) {
+            this.serverInterrupted = true;
+        }
+    }
+
     public void tearDown() throws IOException {
+        stopThread();
         for (NetworkConnection clientConn : clientConnections) {
             clientConn.close();
             clientConn.interrupt();
@@ -176,6 +194,12 @@ public class ServerNetworkClient extends Thread { //always executed on a separat
         }
         clientConnections.clear();
         serverSocket.close();
+    }
+
+    public boolean hasClosed() {
+        synchronized (synchTearDownToken) {
+            return this.serverInterrupted;
+        }
     }
 
     /**
@@ -189,7 +213,9 @@ public class ServerNetworkClient extends Thread { //always executed on a separat
         return this.clientConnections;
     }
 
-
+    public boolean isServerInterrupted() {
+        return serverInterrupted;
+    }
 }
 
 

@@ -6,6 +6,7 @@ import ClientUIHandling.Config;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -24,7 +25,7 @@ public class MainActivity extends AppCompatActivity {
 
     public static final String INTENT_PARAMETER = "username";
 
-    public static ClientLogic logic;
+    public static final ClientLogic logic;
     public static String user; // remove after static string username is moved in this class. (Hint: check for usage e.g. in ServerNetworkClass)
 
     static {
@@ -59,7 +60,6 @@ public class MainActivity extends AppCompatActivity {
             } else {
                 Toast.makeText(MainActivity.this, "Welcome " + user + "!", Toast.LENGTH_SHORT).show();
                 intent.putExtra(INTENT_PARAMETER, user);
-                //MainMenuActivity.username = user;
                 startActivity(intent);
             }
         });
@@ -78,7 +78,10 @@ public class MainActivity extends AppCompatActivity {
     //--------------------------ALL METHODS-----------------------------//
 
     public static void subscribeToLogic(String type, AppCompatActivity activity) {
-        logic.getHandler().put(type, new ClientHandler(activity));
+        if(activity instanceof  GameViewActivity){
+            Log.i("DEBUGGAME", ""+activity);
+        }
+        logic.registerActivity(type, activity);
     }
 
     public boolean checkIfUsernameAlreadyExists(String newUsername) {

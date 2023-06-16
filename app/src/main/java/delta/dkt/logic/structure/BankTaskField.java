@@ -5,7 +5,7 @@ package delta.dkt.logic.structure;
  */
 public class BankTaskField extends Field{
 
-    BankTask bankTask;
+    private final BankTask bankTask;
 
     /**
      * Creates a new bank task.

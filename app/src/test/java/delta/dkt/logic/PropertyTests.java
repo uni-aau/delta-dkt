@@ -296,6 +296,7 @@ class PropertyTests {
      * @param levelFactor The factor of the property (0.5 | 1 | 1.5)
      */
     private void testRentCalculations (int base, double levelFactor) {
+        Assertions.assertEquals(10, dummy.getBaseRent());
         Assertions.assertEquals(expectedRent(base, levelFactor, 0, 0), dummy.calculateRent()); // => base rent of the property
 
         dummy.addHouse();

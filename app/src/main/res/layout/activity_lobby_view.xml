@@ -20,34 +20,34 @@
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
         android:layout_centerHorizontal="true"
-        android:fontFamily="@font/bangers"
+        android:layout_marginTop="20dp"
+        android:fontFamily="@font/bowlby_one"
         android:text="@string/PlayerLobby"
         android:textColor="@color/dkt_red"
-        android:textSize="30sp" />
+        android:textSize="25sp" />
 
     <TextView
         android:id="@+id/currentPlayersTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/TotalPlayers"
+        android:layout_below="@id/dkt_logo"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="1dp"
-        android:fontFamily="@font/bangers"
-        android:textSize="20sp"
-        android:layout_below="@id/dkt_logo"/>
+        android:layout_marginTop="2dp"
+        android:fontFamily="sans-serif-black"
+        android:text="@string/TotalPlayers"
+        android:textSize="18sp" />
 
     <TextView
-        android:id="@+id/IP"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="ip: "
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="1dp"
-        android:fontFamily="@font/bangers"
-        android:textSize="20sp"
-        android:layout_below="@id/currentPlayersTextView"/>
+            android:id="@+id/IP"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/currentPlayersTextView"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="2dp"
+            android:fontFamily="sans-serif-medium"
+            android:text="@string/text_ip"
+            android:textSize="15sp" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/lobbyRecyclerView"
@@ -57,33 +57,43 @@
         android:layout_marginTop="40dp" />
 
 
-    <Button
-        android:id="@+id/backbtn"
-        android:layout_width="120dp"
-        android:layout_height="wrap_content"
-        android:text="@string/BackButton"
-        android:layout_below="@id/lobbyRecyclerView"
-        android:layout_marginTop="5dp"
-        android:layout_marginStart="20dp"
-        android:textColor="@color/dkt_yellow"
-        android:textSize="20sp"
-        android:fontFamily="@font/bangers"
-        android:background="@drawable/host_btn_background"/>
+    <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="1dp"
+            android:layout_marginBottom="24dp"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="0dp">
 
-    <Button
-        android:id="@+id/startbtn"
-        android:layout_width="120dp"
-        android:layout_height="wrap_content"
-        android:text="@string/StartButton"
-        android:layout_below="@id/lobbyRecyclerView"
-        android:layout_marginTop="5dp"
-        android:layout_marginStart="270dp"
-        android:textColor="@color/dkt_yellow"
-        android:textSize="20sp"
-        android:fontFamily="@font/bangers"
-        android:background="@drawable/host_btn_background"/>
+        <Button
+                android:id="@+id/backbtn"
+                android:layout_width="120dp"
+                android:layout_height="wrap_content"
+                android:text="@string/BackButton"
+                android:textColor="@color/dkt_yellow"
+                android:textSize="20sp"
+                android:fontFamily="@font/bangers"
+                android:background="@drawable/host_btn_background"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:layout_marginStart="15dp"
+                app:layout_constraintBottom_toBottomOf="parent" />
 
-
+        <Button
+                android:id="@+id/startbtn"
+                android:layout_width="120dp"
+                android:layout_height="wrap_content"
+                android:text="@string/StartButton"
+                android:textColor="@color/dkt_yellow"
+                android:textSize="20sp"
+                android:fontFamily="@font/bangers"
+                android:background="@drawable/host_btn_background"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginEnd="15dp"
+                app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 
 </RelativeLayout>

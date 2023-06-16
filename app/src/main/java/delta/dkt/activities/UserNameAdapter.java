@@ -2,7 +2,7 @@ package delta.dkt.activities;
 
 import static delta.dkt.activities.MainMenuActivity.getTime;
 
-import android.content.Context;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,14 +17,10 @@ import delta.dkt.R;
 
 class UserNameAdapter extends RecyclerView.Adapter<UserNameAdapter.UserViewHolder> {
 
-    Context context;
-    ArrayList<String> usernames;
-    boolean role;
+    private final ArrayList<String> usernames;
 
-    public UserNameAdapter (Context context, ArrayList<String> usernames, boolean role) {
-        this.context=context;
+    public UserNameAdapter (ArrayList<String> usernames) {
         this.usernames= usernames;
-        this.role = role;
     }
 
     @NonNull
@@ -46,8 +42,8 @@ class UserNameAdapter extends RecyclerView.Adapter<UserNameAdapter.UserViewHolde
         if (position == 0) holder.userRole.setText(R.string.Host);
         else holder.userRole.setText(R.string.Player);
 
-
-        holder.joiningTime.setText("Joined: "+ getTime());
+        String joinedText = holder.itemView.getContext().getString(R.string.joined_format, getTime());
+        holder.joiningTime.setText(joinedText);
 
     }
 
@@ -58,12 +54,12 @@ class UserNameAdapter extends RecyclerView.Adapter<UserNameAdapter.UserViewHolde
     }
 
 
-    class UserViewHolder extends RecyclerView.ViewHolder {
+    static class UserViewHolder extends RecyclerView.ViewHolder {
         // Grabs informations thats needed from the recycler_view_user_row.xml
 
-        TextView username;
-        TextView userRole;
-        TextView joiningTime;
+        private final TextView username;
+        private final TextView userRole;
+        private final TextView joiningTime;
 
         public UserViewHolder (@NonNull View itemView) {
             super(itemView);
