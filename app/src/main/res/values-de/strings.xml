@@ -12,11 +12,11 @@
     <string name="textCD_prop3">Grundstück 3</string>
     <string name="textCD_prop4">Grundstück 4</string>
     <string name="text_backToGame">Zurück</string>
-    <string name="general_information">Allgemeine Information</string>
+    <string name="general_information">Allgemeine Informationen</string>
     <string name="players_online">Spieler online: %s / %s</string>
     <string name="cash_text">Geld: %s$</string>
     <string name="my_properties_text">Meine Grundstücke: %s</string>
-    <string name="playing_time_text">Spielzeit: %s %s, %s, %s, %s %s</string>
+    <string name="playing_time_text">Spielzeit: %s %s, %s %s, %s %s</string>
     <string name="roll_the_dice">Würfeln</string>
     <string name="property_information">Grundstück Information</string>
     <string name="dice_information_text">%s würfelt</string>
