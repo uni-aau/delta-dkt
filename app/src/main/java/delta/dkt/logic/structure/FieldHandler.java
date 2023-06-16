@@ -12,7 +12,13 @@ public class FieldHandler {
 
         for (int i = 1; i <= 40; i++) {
             if (PropertyHandler.getProperties(i) != null) fields.add(PropertyHandler.getProperties(i));
-            if (TaskHandler.getTask(i) != null) fields.add(TaskHandler.getTask(i));
+
+            if(i == 3) fields.add(new RiskTaskField(i, (RiskTask) TaskHandler.getTask(i)));
+            if(i == 23) fields.add(new RiskTaskField(i, (RiskTask) TaskHandler.getTask(i)));
+            if(i == 38) fields.add(new RiskTaskField(i, (RiskTask) TaskHandler.getTask(i)));
+
+            if(i == 9) fields.add(new BankTaskField(i, (BankTask) TaskHandler.getTask(i)));
+            if(i == 28) fields.add(new BankTaskField(i, (BankTask) TaskHandler.getTask(i)));
 
             if (i == 1) fields.add(new SpecialField(i, "Start"));
             if (i == 11) fields.add(new GoToPrisonField(i, "Gesetzes Verletzung"));
