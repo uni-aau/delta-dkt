@@ -7,6 +7,7 @@ import delta.dkt.activities.GameViewActivity;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Locale;
 
 import static ClientUIHandling.Constants.LOG_CHEAT;
 
@@ -38,7 +39,7 @@ public class ActionOpenCheatMenu implements ClientActionInterface {
             playerInfos.put(Integer.parseInt(strings[0]), strings[1]);
         }
 
-        Log.v(LOG_CHEAT, String.format("ActionOpenCheatMenu: Attempting to open cheat-menu with %d players", playerInfos.size()));
+        Log.v(LOG_CHEAT, String.format(Locale.getDefault(), "ActionOpenCheatMenu: Attempting to open cheat-menu with %d players", playerInfos.size()));
 
         Log.d(LOG_CHEAT, "ActionOpenCheatMenu: Creating selection-report-popup");
         GameViewActivity gameViewActivity = (GameViewActivity) activity;

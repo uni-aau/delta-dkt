@@ -105,24 +105,24 @@
     <string name="jail_card">JailCard</string>
     <string name="lucky_card">LuckyCard</string>
     <string name="unlucky_card">UnluckyCard</string>
-    <string name="jail_card_text">Gehe in den Arrest</string>
-    <string name="lucky_card_text1">Für Bankzinsen erhältst du 180€</string>
-    <string name="lucky_card_text2">Für den Verkauf von Wertpapieren erhältst du 50€</string>
-    <string name="lucky_card_text3">An Reisespesenbeitrag erhältst du 40€</string>
-    <string name="unlucky_card_text1">Bezahle deine Lebensversicherungsprämie: 120€</string>
-    <string name="unlucky_card_text2">An die Krankenkasse bezahle: 130€</string>
+    <string name="jail_card_text">%s muss in den Arrest gehen</string>
+    <string name="lucky_card_text1">Für Bankzinsen erhält %s %s$</string>
+    <string name="lucky_card_text2">Für den Verkauf von Wertpapieren erhält %s %s$</string>
+    <string name="lucky_card_text3">%s bekommt %s$ als Reisekostenbeitrag</string>
+    <string name="unlucky_card_text1">%s muss %s$ Lebensversicherungsprämie bezahlen</string>
+    <string name="unlucky_card_text2">%s muss %s$ an die Krankenkasse bezahlen</string>
 
     <string name="out_of_jail_card">OutOfJailCard</string>
     <string name="out_of_jail_card_text">Diese Karte befreit dich aus dem Arrest! Hebe diese Karte auf, du wirst sie brauchen.</string>
-    <string name="lucky_card_text4">Die Bank zahlt dir an Dividenden 60€.</string>
-    <string name="lucky_card_text5">Für die Auswertung einer Erfindung erhältst du 140€ aus öffentlichen Mitteln.</string>
-    <string name="unlucky_card_text3">Zahle 5€ Polizeistrafe.</string>
-    <string name="unlucky_card_text4">Für unerlaubtes Parken bezahlst du 200€.</string>
+    <string name="lucky_card_text4">Die Bank zahlt %s an Dividenden %s$.</string>
+    <string name="lucky_card_text5">Für eine Erfindung erhält %s %s$ aus öffentlichen Mitteln</string>
+    <string name="unlucky_card_text3">%s bezahlt %s$ Polizeistrafe</string>
+    <string name="unlucky_card_text4">%s bezahlt für unerlaubtes Parken %s$.</string>
     <string name="travel_card">TravelCard</string>
-    <string name="travel_card_text1">Besuche Salzburg und gehe am Mirabellplatz spazieren. Passierst du den Start, erhältst du 200€.</string>
+    <string name="travel_card_text1">Besuche Salzburg und gehe am Mirabellplatz spazieren. Passierst du den Start, erhältst du 200$.</string>
     <string name="travel_card_text2">Gehe um 4 Felder zurück.</string>
     <string name="travel_card_text3">Rücke 7 Felder vor.</string>
-    <string name="travel_card_text4">Besuche Graz und gehe auf der Annenstraße spazieren. Passierst du den Start, erhältst du 200€.</string>
+    <string name="travel_card_text4">Besuche Graz und gehe auf der Annenstraße spazieren. Passierst du den Start, erhältst du 200$.</string>
 
     <string name="suspension_count">Du bist für %s weitere Runden gesperrt</string>
     <string name="player_lost_activity_text">%s wurde aus dem Spiel entfernt!</string>

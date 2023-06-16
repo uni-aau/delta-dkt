@@ -1,13 +1,12 @@
 package ServerLogic.actions;
 
 import ClientUIHandling.Config;
+import ClientUIHandling.Constants;
 import android.util.Log;
 
 import ServerLogic.ServerActionHandler;
 import ServerLogic.ServerActionInterface;
-import delta.dkt.logic.structure.Game;
-import delta.dkt.logic.structure.GoToPrisonField;
-import delta.dkt.logic.structure.Player;
+import delta.dkt.logic.structure.*;
 import network2.ServerNetworkClient;
 
 import java.util.ArrayList;
@@ -88,17 +87,49 @@ public class RequestPlayerMovement implements ServerActionInterface {
 
         requestPlayer.moveTo(destination);
 
-        //* In case the player lands on the GoToPrisonField, he will be moved to the PrisonField.
-        if(Game.getMap().getField(destination) instanceof GoToPrisonField){
-            Log.d(tag, String.format("Player%s landed on a GoToPrisonField, thus he will be moved to the PrisonField! (Overriding Movement-Action)", clientID));
-            ServerActionHandler.triggerAction(PREFIX_GO_TO_PRISON_FIELD, clientID);
-            return;
-        }
-
         server.broadcast(GAMEVIEW_ACTIVITY_TYPE, PREFIX_PLAYER_MOVE, sendArgs.toArray(new String[0]));
 
+        handleSpecialEvents(requestPlayer);
 
         //? Add start-cash for passing over the start field.
         if (currentPosition > destination) ServerActionHandler.triggerAction(PREFIX_START_CASH_VALUE, clientID);
     }
+
+    private void handleSpecialEvents(Player player){
+        Field field = player.getPosition();
+
+        if (field instanceof Property) {
+            Property prop = (Property) field;
+
+            //? The property is not owned by anyone, thus the player can buy it.
+            if(prop.getOwner() == null) {
+                ServerActionHandler.triggerAction(PREFIX_ASK_BUY_PROPERTY, new String[]{String.valueOf(player.getId()), String.valueOf(player.getPosition().getLocation())});
+                return;
+            }
+
+            //? Not calling the rent action as the player is the owner of the property.
+            if(prop.getOwner().getId() == player.getId()) return;
+
+            //? Pay rent to the owner of the property.
+            ServerActionHandler.triggerAction(PREFIX_PLAYER_PAYRENT, player.getId());
+        }
+
+        if (field instanceof SpecialField) {
+            if (field.getName().equals("VermögensAbgabe") || field.getName().equals("Steuerabgabe")) {
+                ServerActionHandler.triggerAction(Constants.PREFIX_PAY_TAX, player.getId());
+            }
+        }
+
+        if(field instanceof RiskTaskField || field instanceof BankTaskField){
+            Task task = TaskHandler.getTask(field.getLocation());
+            task.execute(player);
+        }
+
+
+        if(field instanceof GoToPrisonField){
+            Log.d(tag, String.format("Player%s landed on a GoToPrisonField, thus he will be moved to the PrisonField! (Overriding Movement-Action)", player.getId()));
+            ServerActionHandler.triggerAction(PREFIX_GO_TO_PRISON_FIELD, player.getId());
+        }
+    }
+
 }

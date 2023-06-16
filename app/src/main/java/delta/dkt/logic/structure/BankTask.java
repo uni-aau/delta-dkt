@@ -1,5 +1,9 @@
 package delta.dkt.logic.structure;
 
+import static ClientUIHandling.Constants.PREFIX_JAIL_TASK;
+
+import ServerLogic.ServerActionHandler;
+
 /**
  * This class represents a bank task
  */
@@ -19,7 +23,8 @@ public class BankTask extends Task{
     }
 
     @Override
-    public void execute(Player asignee) {
-
+    public void execute(Player assignee) {
+        // Only jail tasks execute the general bankTask method
+        ServerActionHandler.triggerAction(PREFIX_JAIL_TASK, new String[]{String.valueOf(assignee.getId()), getDescriptionString()});
     }
 }

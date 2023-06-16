@@ -15,8 +15,15 @@ public class RiskTaskCollection {
      * The RiskTaskCollection includes ten tasks that a player can get in a game.
      */
     public RiskTaskCollection(){
-        riskTask.add(new OutOfJailCard(1,"jail_card","jail_card_text"));
+        String luckyCardName = "lucky_card";
+        String unluckyCardName = "unlucky_card";
+        riskTask.add(new RiskTask(1,"jail_card","jail_card_text"));
         riskTask.add(new OutOfJailCard(2,"out_of_jail_card","out_of_jail_card_text"));
+
+        riskTask.add(new CashRiskTask(6, luckyCardName,"lucky_card_text4", 60));
+        riskTask.add(new CashRiskTask(7, luckyCardName,"lucky_card_text5", 140));
+        riskTask.add(new CashRiskTask(8, unluckyCardName,"unlucky_card_text3", -5));
+        riskTask.add(new CashRiskTask(9, unluckyCardName,"unlucky_card_text4", -200));
     }
 
     /**

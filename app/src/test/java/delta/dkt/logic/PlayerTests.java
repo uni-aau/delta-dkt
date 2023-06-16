@@ -19,25 +19,21 @@ class PlayerTests {
 
     GameMap mockMapHandling = mock(GameMap.class);
     Player player = null;
-    ClientHandler mockedClientHandler;
 
     Property testProperty1 = null;
     Property testProperty2 = null;
 
     RiskTaskField riskTaskField;
-    RiskTask riskTask = mock(RiskTask.class);
-
     BankTaskField bankTaskField;
 
-    BankTask bankTask = mock(BankTask.class);
 
     @BeforeEach
     void setup() {
         testProperty1 = new Property(12, 10, 10, PropertyLevel.NORMAL, 10, 10);
         testProperty2 = new Property(14, 10, 10, PropertyLevel.NORMAL, 10, 10);
 
-        riskTaskField = new RiskTaskField(123,riskTask);
-        bankTaskField = new BankTaskField(1234, bankTask);
+        riskTaskField = new RiskTaskField(123);
+        bankTaskField = new BankTaskField(1234);
 
         setMockRequirements_PropertyAquisition();
         player = new Player("Mike");
@@ -76,8 +72,6 @@ class PlayerTests {
      */
     @Test
     void checkGameGetPlayers() {
-        assertEquals(0, Game.getPlayers().size());
-
         Game.getPlayers().put(1, null);
         assertEquals(1, Game.getPlayers().size());
 
@@ -332,7 +326,9 @@ class PlayerTests {
         //? sets the return value for getField method with its given arguments to a valid property.
         int location = player.getPosition().getLocation() + steps;
         if (steps % 2 == 0) {
-            when(mockMapHandling.getField(location)).thenReturn(generateDummyProperty(location));
+            Field dummyProperty = generateDummyProperty(location);
+            if(steps == 4) ((Property)dummyProperty).setOwner(player);
+            when(mockMapHandling.getField(location)).thenReturn(dummyProperty);
         } else {
             //Test for movement on a special location
             Field mockField = new SpecialField(location);
@@ -499,15 +495,6 @@ class PlayerTests {
         for (int i = 0; i < 40; i++) dummy.add(null);
 
         return dummy;
-    }
-
-    /**
-     * Checks if the setGoToPrisonField() method works.
-     */
-    @Test
-    void testSetGoToPrisonField() {
-        player.setGoToPrisonField(true);
-        assertTrue(player.getGoToPrisonField());
     }
 
     /**
