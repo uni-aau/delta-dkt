@@ -127,7 +127,6 @@
     <string name="outOfPrisonCardAwarded_notification">%s has been awarded with a get-out-of-jail-card!</string>
 
     <string name="suspension_count">You are suspended for %s more rounds</string>
-    <string name="player_lost_activity_text">%s was eliminated from the game!</string>
     <string name="playerName_info_text">You are spectator!</string>
     <string name="text_player_leave_confirmation">Do you really want to leave?</string>
     <string name="text_button_yes">Yes</string>
@@ -150,4 +149,14 @@
     <string name="text_player_move_sing">%s moved %s step</string>
     <string name="moved_steps">%s</string>
     <string name="no_player_rolled_dice">No player rolled the dice</string>
+
+    <string name="player_out_of_jail_card_activity_text">%s was released from jail due to Out-Of-Jail-Card</string>
+
+    <string name="player_lost_activity_text">%s was eliminated from the game!</string>
+    <string name="player_leave_activity_text">%s left the game!</string>
+    <string name="player_lost_pay_rent_activity_text">%s left the game!</string>
+    <string name="player_lost_timeout_activity_text">%s timed out!</string>
+    <string name="player_lost_wrong_punish_activity_text">%s lost. Had not enough money to pay for wrong cheater report!</string>
+    <string name="player_lost_cash_task_activity_text">%s lost. Had not enough money to pay for cash task!</string>
+    <string name="player_lost_pay_tax_activity_text">%s lost. Had not enough money to pay his taxes!</string>
 </resources>
