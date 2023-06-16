@@ -24,19 +24,16 @@ class PlayerTests {
     Property testProperty2 = null;
 
     RiskTaskField riskTaskField;
-    RiskTask riskTask = mock(RiskTask.class);
-
     BankTaskField bankTaskField;
 
-    BankTask bankTask = mock(BankTask.class);
 
     @BeforeEach
     void setup() {
         testProperty1 = new Property(12, 10, 10, PropertyLevel.NORMAL, 10, 10);
         testProperty2 = new Property(14, 10, 10, PropertyLevel.NORMAL, 10, 10);
 
-        riskTaskField = new RiskTaskField(123,riskTask);
-        bankTaskField = new BankTaskField(1234, bankTask);
+        riskTaskField = new RiskTaskField(123);
+        bankTaskField = new BankTaskField(1234);
 
         setMockRequirements_PropertyAquisition();
         player = new Player("Mike");
