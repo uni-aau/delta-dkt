@@ -150,4 +150,14 @@
     <string name="text_player_move_sing">%s ging %s Schritt</string>
     <string name="moved_steps">%s</string>
     <string name="no_player_rolled_dice">Kein Spieler hat gewürfelt</string>
+
+    <string name="player_out_of_jail_card_activity_text">%s hat eine Out-Of-Jail-Card erhalten</string>
+    <string name="player_out_of_jail_activity_text">%s wurde durch eine Out-Of-Jail-Card vom Gefängnis befreit</string>
+
+    <string name="player_leave_activity_text">%s hat das Spiel verlassen</string>
+    <string name="player_lost_pay_rent_activity_text">%s hat verloren, da die Miete nicht bezahlt werden konnte!</string>
+    <string name="player_lost_timeout_activity_text">%s ist ausgetimed!</string>
+    <string name="player_lost_wrong_punish_activity_text">%s hat verloren. Hatte nicht genug Geld, um den falschen Cheater-Report zu bezahlen!</string>
+    <string name="player_lost_cash_task_activity_text">%s hat verloren. Hatte nicht genug Geld, um den Cash-Task zu bezahlen!</string>
+    <string name="player_lost_pay_tax_activity_text">%s hat verloren. Hatte nicht genug Geld, um Steuern zu bezahlen!</string>
 </resources>

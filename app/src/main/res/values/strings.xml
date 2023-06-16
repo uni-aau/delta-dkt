@@ -155,9 +155,9 @@
 
     <string name="player_lost_activity_text">%s was eliminated from the game!</string>
     <string name="player_leave_activity_text">%s left the game!</string>
-    <string name="player_lost_pay_rent_activity_text">%s left the game!</string>
+    <string name="player_lost_pay_rent_activity_text">%s lost. Had not enough money to pay for rent!</string>
     <string name="player_lost_timeout_activity_text">%s timed out!</string>
     <string name="player_lost_wrong_punish_activity_text">%s lost. Had not enough money to pay for wrong cheater report!</string>
     <string name="player_lost_cash_task_activity_text">%s lost. Had not enough money to pay for cash task!</string>
-    <string name="player_lost_pay_tax_activity_text">%s lost. Had not enough money to pay his taxes!</string>
+    <string name="player_lost_pay_tax_activity_text">%s lost. Had not enough money to pay taxes!</string>
 </resources>
