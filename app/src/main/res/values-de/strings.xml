@@ -12,11 +12,11 @@
     <string name="textCD_prop3">Grundstück 3</string>
     <string name="textCD_prop4">Grundstück 4</string>
     <string name="text_backToGame">Zurück</string>
-    <string name="general_information">Allgemeine Information</string>
+    <string name="general_information">Allgemeine Informationen</string>
     <string name="players_online">Spieler online: %s / %s</string>
     <string name="cash_text">Geld: %s$</string>
     <string name="my_properties_text">Meine Grundstücke: %s</string>
-    <string name="playing_time_text">Spielzeit: %s %s, %s, %s, %s %s</string>
+    <string name="playing_time_text">Spielzeit: %s %s, %s %s, %s %s</string>
     <string name="roll_the_dice">Würfeln</string>
     <string name="property_information">Grundstück Information</string>
     <string name="dice_information_text">%s würfelt</string>
@@ -105,7 +105,7 @@
     <string name="jail_card">JailCard</string>
     <string name="lucky_card">LuckyCard</string>
     <string name="unlucky_card">UnluckyCard</string>
-    <string name="jail_card_text">%s muss in den Arrest gehen</string>
+    <string name="jail_card_text">%s muss ins Gefängnis gehen</string>
     <string name="lucky_card_text1">Für Bankzinsen erhält %s %s$</string>
     <string name="lucky_card_text2">Für den Verkauf von Wertpapieren erhält %s %s$</string>
     <string name="lucky_card_text3">%s bekommt %s$ als Reisekostenbeitrag</string>
@@ -133,9 +133,9 @@
     <string name="text_player_leave_hint">Hinweis: Dein Vermögen wird zurückgesetzt!</string>
     <string name="text_player_leave_hint_host">Hinweis: Da du der Host bist, wird der Server geschlossen!</string>
     <string name="contentdescription_host_wlan">Host WLan Logo</string>
-    <string name="text_buy_property_confirmation_question">Möchten du folgendes Grundstück kaufen?</string>
+    <string name="text_buy_property_confirmation_question">Möchtest du folgendes Grundstück kaufen?</string>
     <string name="player_buy_property_activity_text">%s hat erfolgreich %s (%s) für %s$ gekauft</string>
-    <string name="player_pay_rent_activity_text">%s musste %s$ Miete für Grundstück %s zahlen (Eigentümer %s)</string>
+    <string name="player_pay_rent_activity_text">%s musste %s$ Miete für %s zahlen (Eigentümer %s)</string>
     <string name="text_property_buy_hint">Grundstück %s (%s) mit %s$ Miete für %s$</string>
 
     <plurals name="game_started_activity_text">

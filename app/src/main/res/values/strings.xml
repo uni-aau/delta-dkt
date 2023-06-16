@@ -15,7 +15,7 @@
     <string name="players_online">Players online: %s / %s</string>
     <string name="cash_text">Cash: %s$</string>
     <string name="my_properties_text">My Properties: %s</string>
-    <string name="playing_time_text">Playing Time: %s %s, %s, %s, %s %s</string>
+    <string name="playing_time_text">Playing Time: %s %s, %s %s, %s %s</string>
     <string name="roll_the_dice">Roll the dice</string>
     <string name="property_information">Property Information</string>
     <string name="dice_information_text">%s rolls the dice</string>
@@ -136,7 +136,7 @@
     <string name="contentdescription_host_wlan">Host WLan Logo</string>
     <string name="text_buy_property_confirmation_question">Do you want to buy the following property?</string>
     <string name="player_buy_property_activity_text">%s has successfully bought %s (%s) for %s$</string>
-    <string name="player_pay_rent_activity_text">%s had to pay %s$ rent for property %s (Owner %s)</string>
+    <string name="player_pay_rent_activity_text">%s had to pay %s$ rent for %s (Owner %s)</string>
     <string name="text_property_buy_hint">Property %s (%s) with %s$ rent for %s$</string>
 
     <plurals name="game_started_activity_text">
