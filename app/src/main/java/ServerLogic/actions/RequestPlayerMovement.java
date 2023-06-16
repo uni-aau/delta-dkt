@@ -87,13 +87,6 @@ public class RequestPlayerMovement implements ServerActionInterface {
 
         requestPlayer.moveTo(destination);
 
-        //* In case the player lands on the GoToPrisonField, he will be moved to the PrisonField.
-        if(Game.getMap().getField(destination) instanceof GoToPrisonField){
-            Log.d(tag, String.format("Player%s landed on a GoToPrisonField, thus he will be moved to the PrisonField! (Overriding Movement-Action)", clientID));
-            ServerActionHandler.triggerAction(PREFIX_GO_TO_PRISON_FIELD, clientID);
-            return;
-        }
-
         server.broadcast(GAMEVIEW_ACTIVITY_TYPE, PREFIX_PLAYER_MOVE, sendArgs.toArray(new String[0]));
 
 
@@ -126,6 +119,12 @@ public class RequestPlayerMovement implements ServerActionInterface {
         if(field instanceof RiskTaskField || field instanceof BankTaskField){
             Task task = TaskHandler.getTask(field.getLocation());
             task.execute(player);
+        }
+
+
+        if(field instanceof GoToPrisonField){
+            Log.d(tag, String.format("Player%s landed on a GoToPrisonField, thus he will be moved to the PrisonField! (Overriding Movement-Action)", player.getId()));
+            ServerActionHandler.triggerAction(PREFIX_GO_TO_PRISON_FIELD, player.getId());
         }
     }
 
