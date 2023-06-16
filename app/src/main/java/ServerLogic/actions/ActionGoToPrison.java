@@ -23,7 +23,6 @@ public class ActionGoToPrison implements ServerActionInterface {
             int fieldLocation = player.getPosition().getLocation();
             Log.i("INFO", "LOCATION: "+fieldLocation);
 
-                player.setGoToPrisonField(true);
                 Log.i("INFO", "Du bist am YouGoToPrisonField; Server");
                 int destination = 31;
                 player.moveTo(destination);

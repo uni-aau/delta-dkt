@@ -11,7 +11,6 @@ import ServerLogic.ServerActionHandler;
 
 public class Player implements Comparable<Player>{
     private boolean youGetOutOfPrisonCard = false;
-    private boolean goToPrisonField = false;
     public static int _id = 1;
 
     //? May be used to sync player data across clients
@@ -161,39 +160,7 @@ public class Player implements Comparable<Player>{
         if (this.isSuspended()) return;
 
         if (location == 0) location++;
-
-
         this.position = Game.getMap().getField(location);
-
-        if (this.position instanceof Property) {
-            if(((Property) this.position).getOwner() != null) {
-                //START-NOSCAN
-                ServerActionHandler.triggerAction(PREFIX_PLAYER_PAYRENT, this.getId());
-                //END-NOSCAN
-            }else{ //property can be bought , ask user
-                //START-NOSCAN
-                ServerActionHandler.triggerAction(PREFIX_ASK_BUY_PROPERTY, new String[]{String.valueOf(this.getId()), String.valueOf(location)});
-                //END-NOSCAN
-            }
-        } else if (this.position instanceof SpecialField) {
-            if (this.position.getName().equals("VermögensAbgabe") || this.position.getName().equals("Steuerabgabe")) {
-                //START-NOSCAN
-                ServerActionHandler.triggerAction(Constants.PREFIX_PAY_TAX, this.getId());
-                //END-NOSCAN
-            }
-        }else if(this.position instanceof RiskTaskField){
-            //depending on field, a card has been asigned
-            RiskTaskField currentPos = (RiskTaskField)TaskHandler.getTask(location);
-            Task task = currentPos.getRiskTask();
-            //just call the execute method, it knows what to do
-            task.execute(this);
-        } else if(this.position instanceof BankTaskField){
-            //depending on field, a card has been asigned
-            BankTaskField currentPos = (BankTaskField)TaskHandler.getTask(location);
-            Task task = currentPos.getBankTask();
-            //just call the execute method, it knows what to do
-            task.execute(this);
-        }
     }
 
     /**
@@ -232,17 +199,8 @@ public class Player implements Comparable<Player>{
         return cash;
     }
 
-    public boolean getGoToPrisonField(){return goToPrisonField;}
     public boolean getYouGetOutOfPrisonCard(){return youGetOutOfPrisonCard;}
 
-    /**
-     * Sets the goToPrisonField value of a player.
-     *
-     * @param goToPrisonField is true, if the player was on the goToPrisonField before going to the prison.
-     */
-    public void setGoToPrisonField(boolean goToPrisonField){
-        this.goToPrisonField = goToPrisonField;
-    }
 
     /**
      * Sets the youGetOutOfPrisonCard value of a player.
