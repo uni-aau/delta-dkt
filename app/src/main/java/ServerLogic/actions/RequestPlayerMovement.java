@@ -102,18 +102,26 @@ public class RequestPlayerMovement implements ServerActionInterface {
     }
 
     private void handleSpecialEvents(Player player){
-        if (player.getPosition() instanceof Property) {
-            if(((Property) player.getPosition()).getOwner() != null) {
+        Field field = player.getPosition();
+
+        if (field instanceof Property) {
+            Property prop = (Property) field;
+
+            if(prop.getOwner() != null) {
                 ServerActionHandler.triggerAction(PREFIX_PLAYER_PAYRENT, player.getId());
             }else{
                 ServerActionHandler.triggerAction(PREFIX_ASK_BUY_PROPERTY, new String[]{String.valueOf(player.getId()), String.valueOf(player.getPosition().getLocation())});
             }
-        } else if (player.getPosition() instanceof SpecialField) {
-            if (player.getPosition().getName().equals("VermögensAbgabe") || player.getPosition().getName().equals("Steuerabgabe")) {
+        }
+
+        if (field instanceof SpecialField) {
+            if (field.getName().equals("VermögensAbgabe") || field.getName().equals("Steuerabgabe")) {
                 ServerActionHandler.triggerAction(Constants.PREFIX_PAY_TAX, player.getId());
             }
-        }else if(player.getPosition() instanceof RiskTaskField || player.getPosition() instanceof BankTaskField){
-            Task task = TaskHandler.getTask(player.getPosition().getLocation());
+        }
+
+        if(field instanceof RiskTaskField || field instanceof BankTaskField){
+            Task task = TaskHandler.getTask(field.getLocation());
             task.execute(player);
         }
     }
