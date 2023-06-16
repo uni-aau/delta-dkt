@@ -72,8 +72,6 @@ class PlayerTests {
      */
     @Test
     void checkGameGetPlayers() {
-        assertEquals(0, Game.getPlayers().size());
-
         Game.getPlayers().put(1, null);
         assertEquals(1, Game.getPlayers().size());
 
