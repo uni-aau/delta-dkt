@@ -30,7 +30,7 @@ public class ActionPlayerInit implements ClientActionInterface {
         setInitTextViewValues();
     }
 
-    // Shows for every clientId a specific player marker in the gui (todo)
+    // Shows for every clientId a specific player marker in the gui
     private void enablePlayers(AppCompatActivity activity, int clientId) {
         Log.d("[UI] Action", "Received client ID for player enabling: " + clientId);
 
