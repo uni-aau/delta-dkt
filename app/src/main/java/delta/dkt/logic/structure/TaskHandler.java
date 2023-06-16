@@ -18,7 +18,8 @@ public class TaskHandler {
         BankTaskCollection b = new BankTaskCollection();
 
         if(Game.getMap().getField(position) instanceof BankTaskField) return b.getRandomBankTask();
+        if(Game.getMap().getField(position) instanceof RiskTaskField) return r.getRandomRiskTask();
 
-        return r.getRandomRiskTask();
+        return null;
     }
 }
