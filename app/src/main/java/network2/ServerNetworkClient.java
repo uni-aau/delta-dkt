@@ -57,11 +57,11 @@ public class ServerNetworkClient extends Thread { //always executed on a separat
 
     public static String getIPAddress() {
 
-        List<NetworkInterface> interfaces = null;
+        List<NetworkInterface> interfaces = new ArrayList<>();
         try {
             interfaces = Collections.list(NetworkInterface.getNetworkInterfaces());
         } catch (SocketException e) {
-            throw new RuntimeException("Error while trying to create list of NetworkInterfaces: " + e);
+            Log.e(LOG_ERROR, "Error while trying to create list of NetworkInterfaces: " + e);
         }
         for (NetworkInterface networkInterface : interfaces) {
             List<InetAddress> addresses = Collections.list(networkInterface.getInetAddresses());
