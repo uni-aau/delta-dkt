@@ -76,7 +76,7 @@ public class ActionPlayerInit implements ClientActionInterface {
         String myPropertiesText = gameViewActivity.getString(R.string.my_properties_text, String.valueOf(0));
         ((TextView) gameViewActivity.findViewById(R.id.textView_my_properties)).setText(myPropertiesText);
 
-        String playersOnlineText = gameViewActivity.getString(R.string.players_online, String.valueOf(playerAmount), String.valueOf(Config.MAX_CLIENTS));
+        String playersOnlineText = gameViewActivity.getString(R.string.players_online, String.valueOf(playerAmount), String.valueOf(Config.MAX_CLIENTS_AMOUNT));
         ((TextView) gameViewActivity.findViewById(R.id.textView_players_online)).setText(playersOnlineText);
 
         // Sets plural/singular textview
