@@ -40,7 +40,6 @@ public class ActionPunish implements ServerActionInterface {
             player.setCash(player.getCash()- Config.PUNISHMENT_FOR_CHEATING);
             server.broadcast(GAMEVIEW_ACTIVITY_TYPE +":"+PREFIX_PLAYER_CHEATED+" 1;"+player.getNickname()+";"+player.getId()+";"+player.getCash());
 
-            //TODO SET PLAYER FIELD "hasCheated" to true
         }else{
             player.setCash(player.getCash()- Config.PUNISHMENT_FOR_WRONG_REPORT);
             server.broadcast(GAMEVIEW_ACTIVITY_TYPE +":"+PREFIX_PLAYER_CHEATED+" 0;"+player.getNickname()+";"+player.getId()+";"+player.getCash());
