@@ -89,6 +89,7 @@ public class RequestPlayerMovement implements ServerActionInterface {
 
         server.broadcast(GAMEVIEW_ACTIVITY_TYPE, PREFIX_PLAYER_MOVE, sendArgs.toArray(new String[0]));
 
+        handleSpecialEvents(requestPlayer);
 
         //? Add start-cash for passing over the start field.
         if (currentPosition > destination) ServerActionHandler.triggerAction(PREFIX_START_CASH_VALUE, clientID);
