@@ -1,6 +1,7 @@
 package ClientUIHandling.actions;
 
 import static ClientUIHandling.Constants.GAMEVIEW_ACTIVITY_TYPE;
+import static ClientUIHandling.Constants.LOG_ERROR;
 import static delta.dkt.activities.MainActivity.INTENT_PARAMETER;
 import static delta.dkt.activities.MainMenuActivity.role;
 
@@ -41,7 +42,7 @@ public class ActionCloseGame implements ClientActionInterface {
         try {
             ClientHandler.getClient().stopConnection();
         } catch (Exception e) {
-            throw new RuntimeException("Error while trying to close the client connection: " + e);
+            Log.e(LOG_ERROR, "Error while trying to close the client connection: " + e);
         }
 
         Game.reset();
