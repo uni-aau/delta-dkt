@@ -168,13 +168,6 @@ public class ServerNetworkClient extends Thread { //always executed on a separat
         this.broadcast(activity + ":" + prefix + " " + String.join(";", args));
     }
 
-    /**
-     * @param client
-     */
-    public synchronized void removeClient(NetworkConnection client) {
-        clientConnections.remove(client);
-    }
-
     public void stopThread() {
         synchronized (synchTearDownToken) {
             this.serverInterrupted = true;
@@ -209,10 +202,6 @@ public class ServerNetworkClient extends Thread { //always executed on a separat
 
     public List<NetworkConnection> getConnections() {
         return this.clientConnections;
-    }
-
-    public boolean isServerInterrupted() {
-        return serverInterrupted;
     }
 }
 
