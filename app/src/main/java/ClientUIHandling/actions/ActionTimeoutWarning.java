@@ -20,12 +20,12 @@ public class ActionTimeoutWarning implements ClientActionInterface {
     public void execute(AppCompatActivity activity, String clientMessage) {
         int id = Integer.parseInt(clientMessage.split(" ")[1]);
         Log.i("TIMEOUT", id+" "+GameViewActivity.clientID);
-        if (id == GameViewActivity.clientID) {
-            if (activity instanceof GameViewActivity) {
-                View parentLayout = activity.findViewById(R.id.imageView);
-                SnackBarHandler.createSnackbar(parentLayout, WARNING,LENGTH_SHORT).show();
-            }
-        }
+
+        if(id != GameViewActivity.clientID) return;
+        if(!(activity instanceof GameViewActivity)) return;
+
+        View parentLayout = activity.findViewById(R.id.imageView);
+        SnackBarHandler.createSnackbar(parentLayout, WARNING,LENGTH_SHORT).show();
 
     }
 }
