@@ -152,7 +152,7 @@ public class ServerNetworkClient extends Thread { //always executed on a separat
                     clientConnection.send(message);
                 }
             }else{
-                Log.e("SERVER", "COULDNT BROADCAST "+ message+", SERVER ALREADY CLOSED!");
+                Log.e(LOG_ERROR, "COULDNT BROADCAST "+ message+", SERVER ALREADY CLOSED!");
             }
         }
     }
