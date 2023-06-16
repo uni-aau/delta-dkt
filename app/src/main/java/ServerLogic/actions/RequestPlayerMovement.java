@@ -102,34 +102,18 @@ public class RequestPlayerMovement implements ServerActionInterface {
     }
 
     private void handleSpecialEvents(Player player){
-
         if (player.getPosition() instanceof Property) {
             if(((Property) player.getPosition()).getOwner() != null) {
-                //START-NOSCAN
                 ServerActionHandler.triggerAction(PREFIX_PLAYER_PAYRENT, player.getId());
-                //END-NOSCAN
-            }else{ //property can be bought , ask user
-                //START-NOSCAN
+            }else{
                 ServerActionHandler.triggerAction(PREFIX_ASK_BUY_PROPERTY, new String[]{String.valueOf(player.getId()), String.valueOf(player.getPosition().getLocation())});
-                //END-NOSCAN
             }
         } else if (player.getPosition() instanceof SpecialField) {
             if (player.getPosition().getName().equals("VermögensAbgabe") || player.getPosition().getName().equals("Steuerabgabe")) {
-                //START-NOSCAN
                 ServerActionHandler.triggerAction(Constants.PREFIX_PAY_TAX, player.getId());
-                //END-NOSCAN
             }
-        }else if(player.getPosition() instanceof RiskTaskField){
-            //depending on field, a card has been asigned
-            RiskTaskField currentPos = (RiskTaskField)TaskHandler.getTask(player.getPosition().getLocation());
-            Task task = currentPos.getRiskTask();
-            //just call the execute method, it knows what to do
-            task.execute(player);
-        } else if(player.getPosition() instanceof BankTaskField){
-            //depending on field, a card has been asigned
-            BankTaskField currentPos = (BankTaskField)TaskHandler.getTask(player.getPosition().getLocation());
-            Task task = currentPos.getBankTask();
-            //just call the execute method, it knows what to do
+        }else if(player.getPosition() instanceof RiskTaskField || player.getPosition() instanceof BankTaskField){
+            Task task = TaskHandler.getTask(player.getPosition().getLocation());
             task.execute(player);
         }
     }
