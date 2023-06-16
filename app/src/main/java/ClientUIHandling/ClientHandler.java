@@ -59,7 +59,7 @@ public class ClientHandler extends Handler {
     public static final ArrayList<ClientActionInterface> actions = new ArrayList<>();
     public static final ArrayList<String> actionPrefixes = new ArrayList<>();
 
-    private AppCompatActivity UIActivity;
+    private AppCompatActivity uiActivity;
     private static final HashMap<String, ClientActionInterface> actionMap = new HashMap<>();
 
     private static NetworkClientConnection client;
@@ -124,8 +124,8 @@ public class ClientHandler extends Handler {
     }
 
 
-    public ClientHandler(AppCompatActivity UIActivity) {
-        this.UIActivity = UIActivity;
+    public ClientHandler(AppCompatActivity uiActivity) {
+        this.uiActivity = uiActivity;
 
     }
 
@@ -136,8 +136,8 @@ public class ClientHandler extends Handler {
         String[] actionSplit = message.split("[: ]");
         if (actionMap.containsKey(actionSplit[0])) {
             Log.i("INFO", "TRIGGERED " + actionSplit[0]);
-            synchronized (UIActivity) {
-                actionMap.get(actionSplit[0]).execute(UIActivity, message);
+            synchronized (uiActivity) {
+                actionMap.get(actionSplit[0]).execute(uiActivity, message);
             }
             return;
         }
@@ -147,13 +147,13 @@ public class ClientHandler extends Handler {
 
     }
 
-    public AppCompatActivity getUIActivity() {
-        return UIActivity;
+    public AppCompatActivity getUiActivity() {
+        return uiActivity;
     }
 
     public void replaceActivity(AppCompatActivity activity) {
-        synchronized (UIActivity) {
-            this.UIActivity = activity;
+        synchronized (uiActivity) {
+            this.uiActivity = activity;
         }
     }
 

@@ -41,7 +41,6 @@ public class PropertyHandler {
         Property innsbruck2;
         Property innsbruck3;
 
-        //todo clean up the other switch-cases
         switch (position){
             case 2:{
                 bregenz1 = new Property(2,220, 80, CHEAP, 160);

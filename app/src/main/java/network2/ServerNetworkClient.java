@@ -20,7 +20,7 @@ import delta.dkt.activities.MainActivity;
 import delta.dkt.logic.structure.Game;
 import delta.dkt.logic.structure.Player;
 
-import static ClientUIHandling.Constants.LOG_NETWORK;
+import static ClientUIHandling.Constants.*;
 
 /**
  * This class maintains a set of clientNetworkConnections and listens to a
@@ -57,11 +57,11 @@ public class ServerNetworkClient extends Thread { //always executed on a separat
 
     public static String getIPAddress() {
 
-        List<NetworkInterface> interfaces = null;
+        List<NetworkInterface> interfaces = new ArrayList<>();
         try {
             interfaces = Collections.list(NetworkInterface.getNetworkInterfaces());
         } catch (SocketException e) {
-            throw new RuntimeException("Error while trying to create list of NetworkInterfaces: " + e);
+            Log.e(LOG_ERROR, "Error while trying to create list of NetworkInterfaces: " + e);
         }
         for (NetworkInterface networkInterface : interfaces) {
             List<InetAddress> addresses = Collections.list(networkInterface.getInetAddresses());
@@ -130,7 +130,7 @@ public class ServerNetworkClient extends Thread { //always executed on a separat
             try {
                 tearDown();
             } catch (IOException e) {
-                throw new RuntimeException(e);
+                Log.d(LOG_ERROR, "Error while tearing down server: " + e);
             }
         }
     }
@@ -152,7 +152,7 @@ public class ServerNetworkClient extends Thread { //always executed on a separat
                     clientConnection.send(message);
                 }
             }else{
-                Log.e("SERVER", "COULDNT BROADCAST "+ message+", SERVER ALREADY CLOSED!");
+                Log.e(LOG_ERROR, "COULDNT BROADCAST "+ message+", SERVER ALREADY CLOSED!");
             }
         }
     }
@@ -166,15 +166,6 @@ public class ServerNetworkClient extends Thread { //always executed on a separat
      */
     public void broadcast(String activity, String prefix, String[] args) {
         this.broadcast(activity + ":" + prefix + " " + String.join(";", args));
-    }
-
-    /**
-     * TODO: move this method and all other things concerning connection handling to a separate clientHandler class
-     *
-     * @param client
-     */
-    public synchronized void removeClient(NetworkConnection client) {
-        clientConnections.remove(client);
     }
 
     public void stopThread() {
@@ -211,10 +202,6 @@ public class ServerNetworkClient extends Thread { //always executed on a separat
 
     public List<NetworkConnection> getConnections() {
         return this.clientConnections;
-    }
-
-    public boolean isServerInterrupted() {
-        return serverInterrupted;
     }
 }
 
