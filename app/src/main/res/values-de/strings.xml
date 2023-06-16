@@ -135,7 +135,7 @@
     <string name="contentdescription_host_wlan">Host WLan Logo</string>
     <string name="text_buy_property_confirmation_question">Möchtest du folgendes Grundstück kaufen?</string>
     <string name="player_buy_property_activity_text">%s hat erfolgreich %s (%s) für %s$ gekauft</string>
-    <string name="player_pay_rent_activity_text">%s musste %s$ Miete für Grundstück %s zahlen (Eigentümer %s)</string>
+    <string name="player_pay_rent_activity_text">%s musste %s$ Miete für %s zahlen (Eigentümer %s)</string>
     <string name="text_property_buy_hint">Grundstück %s (%s) mit %s$ Miete für %s$</string>
 
     <plurals name="game_started_activity_text">
