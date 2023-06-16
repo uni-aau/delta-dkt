@@ -169,8 +169,6 @@ public class ServerNetworkClient extends Thread { //always executed on a separat
     }
 
     /**
-     * TODO: move this method and all other things concerning connection handling to a separate clientHandler class
-     *
      * @param client
      */
     public synchronized void removeClient(NetworkConnection client) {
