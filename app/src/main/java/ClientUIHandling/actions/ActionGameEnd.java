@@ -1,8 +1,5 @@
 package ClientUIHandling.actions;
 
-import static ClientUIHandling.Constants.GAMEVIEW_ACTIVITY_TYPE;
-import static ClientUIHandling.Constants.PREFIX_END_GAME;
-
 import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
 import android.util.Log;
@@ -29,6 +26,7 @@ import delta.dkt.activities.MainActivity;
 import delta.dkt.activities.MainMenuActivity;
 import delta.dkt.logic.structure.Game;
 
+import static ClientUIHandling.Constants.*;
 
 
 public class ActionGameEnd implements ClientActionInterface {
@@ -60,7 +58,7 @@ public class ActionGameEnd implements ClientActionInterface {
         try {
             ClientHandler.getClient().stopConnection();
         } catch (Exception e) {
-            throw new RuntimeException("Error while trying to close the client connection: " + e);
+            Log.e(LOG_ERROR, "Error while trying to close the client connection: " + e);
         }
         Game.reset();
         LobbyViewActivity.userList.clear();

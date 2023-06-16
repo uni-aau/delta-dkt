@@ -8,8 +8,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.HashMap;
 
-import delta.dkt.activities.GameViewActivity;
-
 public class ClientLogic {
 
     private HashMap<String, ClientHandler> handlers;
@@ -81,7 +79,7 @@ public class ClientLogic {
     public void registerActivity(String type, AppCompatActivity activity) {
         synchronized (handlers) {
             if (handlers.containsKey(type)) {
-                Log.i("LOGICINFO", "ALREADY CONTAINS " + type + " with signature " + handlers.get(type).getUIActivity());
+                Log.i("LOGICINFO", "ALREADY CONTAINS " + type + " with signature " + handlers.get(type).getUiActivity());
                 handlers.get(type).replaceActivity(activity);
             } else {
                 handlers.put(type, new ClientHandler(activity));

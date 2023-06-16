@@ -1,8 +1,5 @@
 package ServerLogic.actions;
 
-import static ClientUIHandling.Constants.LOBBYVIEW_ACTIVITY_TYPE;
-import static ClientUIHandling.Constants.PREFIX_CLOSE_GAME;
-
 import android.util.Log;
 
 import java.io.IOException;
@@ -10,6 +7,8 @@ import java.io.IOException;
 import ServerLogic.ServerActionInterface;
 import delta.dkt.logic.structure.Game;
 import network2.ServerNetworkClient;
+
+import static ClientUIHandling.Constants.*;
 
 public class RequestCloseGame implements ServerActionInterface {
     @Override
@@ -26,7 +25,7 @@ public class RequestCloseGame implements ServerActionInterface {
             Log.d("[Server] Close Game", "Server was closed");
             Game.reset();
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            Log.e(LOG_ERROR, "Error while closing the server [RequestCloseGame]: "+e);
         }
     }
 }

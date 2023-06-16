@@ -25,7 +25,6 @@ public class ActionBuyProperty implements ClientActionInterface {
 
         if (id == GameViewActivity.clientID) {
             TextView myPropertiesTextView = (TextView) activity.findViewById(R.id.textView_my_properties);
-            // TODO recode
             String[] values = myPropertiesTextView.getText().toString().split(": ");
 
             //try to parse value into something of type int , otherwhise set 0

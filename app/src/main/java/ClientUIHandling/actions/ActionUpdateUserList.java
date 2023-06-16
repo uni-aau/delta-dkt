@@ -14,6 +14,8 @@ import ClientUIHandling.ClientActionInterface;
 import delta.dkt.R;
 import delta.dkt.activities.MainMenuActivity;
 
+import java.util.Arrays;
+
 
 public class ActionUpdateUserList implements ClientActionInterface {
     @Override
@@ -24,9 +26,8 @@ public class ActionUpdateUserList implements ClientActionInterface {
 
         Log.d("[CLIENT]_Update_User_List", clientMessage+" "+ MainMenuActivity.role);
         userList.clear();
-        for (String user : args) {
-            userList.add(user);
-        }
+        userList.addAll(Arrays.asList(args));
+        
         updateLobbyInfo(activity);
         Log.d("[CLIENT]_Update_User_List", "JUHU! UserList is up to date");
     }

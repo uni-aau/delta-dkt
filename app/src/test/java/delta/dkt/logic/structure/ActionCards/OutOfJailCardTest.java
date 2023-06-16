@@ -36,9 +36,9 @@ class OutOfJailCardTest {
 
     @Test
     void testOutOfJailCardConstructor(){
-        assertEquals(card.getId(), cardId);
-        assertEquals(card.getName(), name);
-        assertEquals(card.getDescriptionString(), description);
+        assertEquals(cardId, card.getId());
+        assertEquals(name, card.getName());
+        assertEquals(description, card.getDescriptionString());
     }
 
 
@@ -48,7 +48,7 @@ class OutOfJailCardTest {
         //initial situation is that player has no card
         player.setYouGetOutOfPrisonCard(false);
         card.execute(player);
-        assertEquals(player.getYouGetOutOfPrisonCard(), true);
+        assertTrue(player.getYouGetOutOfPrisonCard());
     }
 
 
