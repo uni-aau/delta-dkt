@@ -20,13 +20,13 @@ public class BankTaskCollection {
         String jailCardText = "jail_card_text";
 
         bankTask.add(new BankTask(1, jailCardName, jailCardText));
-        bankTask.add(new CashBankTask(2, luckyCardName, "lucky_card_text1", 180));
-        bankTask.add(new CashBankTask(3, luckyCardName, "lucky_card_text2", 50));
-        bankTask.add(new CashBankTask(4, unluckyCardName, "unlucky_card_text1", -120));
+        bankTask.add(new CashBankTask(2, luckyCardName, "lucky_card_text1", 160));
+        bankTask.add(new CashBankTask(3, luckyCardName, "lucky_card_text2", 80));
+        bankTask.add(new CashBankTask(4, unluckyCardName, "unlucky_card_text1", -100));
         bankTask.add(new BankTask(5, jailCardName, jailCardText));
-        bankTask.add(new CashBankTask(6, unluckyCardName, "unlucky_card_text2", -130));
-        bankTask.add(new CashBankTask(7, luckyCardName, "lucky_card_text3", 40));
-        bankTask.add(new CashBankTask(8, unluckyCardName, "unlucky_card_text2", -130));
+        bankTask.add(new CashBankTask(6, unluckyCardName, "unlucky_card_text2", -120));
+        bankTask.add(new CashBankTask(7, luckyCardName, "lucky_card_text3", 50));
+        bankTask.add(new CashBankTask(8, unluckyCardName, "unlucky_card_text2", -120));
         bankTask.add(new BankTask(9, jailCardName, jailCardText));
     }
 
