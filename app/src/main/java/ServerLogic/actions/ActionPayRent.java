@@ -17,7 +17,6 @@ import network2.ServerNetworkClient;
 public class ActionPayRent implements ServerActionInterface {
     @Override
     public void execute(ServerNetworkClient server, Object parameters) {
-        {
             Log.i("INFO", "TRIGGERED ACTION");
             int id = (int)parameters;
             if (! Game.getPlayers().containsKey(id)) {
@@ -46,7 +45,5 @@ public class ActionPayRent implements ServerActionInterface {
 
                 }
             }
-
-        }
     }
 }
