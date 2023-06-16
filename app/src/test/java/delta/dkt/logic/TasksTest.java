@@ -10,8 +10,8 @@ import delta.dkt.logic.structure.RiskTask;
 import delta.dkt.logic.structure.RiskTaskField;
 
 class TasksTest {
-    RiskTaskField riskTaskField = new RiskTaskField(1, new RiskTask(1, "Risktask", "Description"));
-    BankTaskField bankTaskField = new BankTaskField(2, new BankTask(2, "BankTask", "Description"));
+    RiskTaskField riskTaskField = new RiskTaskField(1);
+    BankTaskField bankTaskField = new BankTaskField(2);
 
     @Test
     void testRiskTaskFieldNotNull() {
