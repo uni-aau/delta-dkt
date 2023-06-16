@@ -72,7 +72,6 @@ public class RequestPlayerMovement implements ServerActionInterface {
 
         int destination = (currentPosition + steps) % maxFields;
         if (destination == 0) destination++;
-        destination = 3;
 
         //* detailed logs
         Log.d(tag, String.format("Moving Player%s to position=%s, dice value=%s!", clientID, destination, steps));
