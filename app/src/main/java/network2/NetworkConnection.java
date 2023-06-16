@@ -117,7 +117,7 @@ public class NetworkConnection extends Thread { //execute each instance within a
                 read: if (reader.ready()) {
 
                     if(hasCloseBeenRequested()){
-                        Log.e("SERVER", "CONNECTION COULDNT READ, CLOSE HAS ALREADY BEEN REQUESTED");
+                        Log.e(TAG, "CONNECTION COULDNT READ, CLOSE HAS ALREADY BEEN REQUESTED");
                         break read;
                     }
 
@@ -182,7 +182,7 @@ public class NetworkConnection extends Thread { //execute each instance within a
         synchronized (outputBuffer) {
             if (!outputBuffer.isEmpty()) {
                 for (String message : outputBuffer) {
-                    Log.e("SERVER", "CONNECTION COULDNT SEND " + message + ". CONNECTION IS ALREADY CLOSED!");
+                    Log.e(TAG, "CONNECTION COULDNT SEND " + message + ". CONNECTION IS ALREADY CLOSED!");
                 }
             }
         }
@@ -190,7 +190,7 @@ public class NetworkConnection extends Thread { //execute each instance within a
 
     public void send(String message) {
         if (hasCloseBeenRequested()) {
-            Log.e("SERVER", "CONNECTION COULDNT SEND " + message + ". CONNECTION HAS ALREADY BEEN REQUESTED TO CLOSE!");
+            Log.e(TAG, "CONNECTION COULDNT SEND " + message + ". CONNECTION HAS ALREADY BEEN REQUESTED TO CLOSE!");
             return;
         }
 
