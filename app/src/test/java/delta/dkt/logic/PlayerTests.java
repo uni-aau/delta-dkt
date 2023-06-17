@@ -1,9 +1,7 @@
 package delta.dkt.logic;
 
-import ClientUIHandling.ClientHandler;
 import ClientUIHandling.Config;
 import delta.dkt.logic.structure.*;
-import delta.dkt.logic.structure.ActionCards.OutOfJailCard;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

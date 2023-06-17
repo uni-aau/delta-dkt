@@ -1,4 +1,4 @@
-package delta.dkt.logic.structure.ActionCards;
+package delta.dkt.logic.structure.actioncards;
 
 import static ClientUIHandling.Constants.PREFIX_JAIL_TASK;
 

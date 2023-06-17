@@ -1,20 +1,13 @@
-package delta.dkt.logic.structure.ActionCards;
+package delta.dkt.logic.structure.actioncards;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.ArgumentMatchers.anyInt;
-import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
 
 
 import org.junit.Test;
 import org.junit.jupiter.api.BeforeEach;
-import org.mockito.MockedStatic;
-import org.mockito.Mockito;
 
-import ServerLogic.ServerActionHandler;
 import delta.dkt.logic.structure.Player;
 
 class OutOfJailCardTest {

@@ -1,4 +1,4 @@
-package delta.dkt.logic.structure.ActionCards;
+package delta.dkt.logic.structure.actioncards;
 
 import ClientUIHandling.Constants;
 import ServerLogic.ServerActionHandler;
