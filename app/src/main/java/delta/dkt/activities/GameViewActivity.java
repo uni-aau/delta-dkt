@@ -62,6 +62,7 @@ public class GameViewActivity extends AppCompatActivity {
     public static int players = -1; // players gets set by server
     public static boolean isDicing = false;
     public static boolean isSpectator = false;
+    public static boolean gameOver = false;
     private final int[] locations = {1, 1, 1, 1, 1, 1};
     private SensorManager manager = null;
     private final LightSensor lightSensorListener = new LightSensor();
@@ -145,6 +146,7 @@ public class GameViewActivity extends AppCompatActivity {
 
     /**
      * This method handles the player leave event in the game view
+     * When player wants to leave after win animation -> Switches back to main menu activity
      * When host wants to leave -> server will be closed
      * When player wants to leave -> will be removed from game and switches back to server
      * When player is spectator -> server handles different request (without removing the player again from game)
@@ -162,25 +164,35 @@ public class GameViewActivity extends AppCompatActivity {
         cancelLeaveGame.setOnClickListener(view1 -> alertDialog.dismiss());
         playerLeaveHint.setVisibility(View.VISIBLE);
 
-        if (MainMenuActivity.role) {
-            playerLeaveHint.setText(R.string.text_player_leave_hint_host);
-            leaveGame.setOnClickListener(view1 -> ServerActionHandler.triggerAction(PREFIX_END_GAME, "HOST WANTS TO LEAVE")); // Owner closes the game
-        } else if (!isDicing || players <= 1) { // Checks if player is not dicing or only one player exists -> Possible to leave
-            if (isSpectator)
-                leaveGame.setOnClickListener(view1 -> ClientHandler.sendMessageToServer(GAMEVIEW_ACTIVITY_TYPE, PREFIX_PLAYER_SPECTATOR_LEAVE, String.valueOf(clientID)));
-            else
-                leaveGame.setOnClickListener(view1 -> ClientHandler.sendMessageToServer(GAMEVIEW_ACTIVITY_TYPE, PREFIX_PLAYER_LEAVE, String.valueOf(clientID)));
-        } else { // Player cannot leave if conditions are not satisfied
-            leaveGame.setOnClickListener(view1 -> {
-                Toast.makeText(this, "You cannot leave since you need to dice!", Toast.LENGTH_SHORT).show();
-                alertDialog.dismiss();
-            });
+        if(gameOver) {
+            leaveGame.setOnClickListener(view1 -> backToMainMenu()); // Player only switches back to MainMenu since no server exists anymore
+        } else {
+            if (MainMenuActivity.role) {
+                playerLeaveHint.setText(R.string.text_player_leave_hint_host);
+                leaveGame.setOnClickListener(view1 -> ServerActionHandler.triggerAction(PREFIX_END_GAME, "HOST WANTS TO LEAVE")); // Owner closes the game
+            } else if (!isDicing || players <= 1) { // Checks if player is not dicing or only one player exists -> Possible to leave
+                if (isSpectator)
+                    leaveGame.setOnClickListener(view1 -> ClientHandler.sendMessageToServer(GAMEVIEW_ACTIVITY_TYPE, PREFIX_PLAYER_SPECTATOR_LEAVE, String.valueOf(clientID)));
+                else
+                    leaveGame.setOnClickListener(view1 -> ClientHandler.sendMessageToServer(GAMEVIEW_ACTIVITY_TYPE, PREFIX_PLAYER_LEAVE, String.valueOf(clientID)));
+            } else { // Player cannot leave if conditions are not satisfied
+                leaveGame.setOnClickListener(view1 -> {
+                    Toast.makeText(this, "You cannot leave since you need to dice!", Toast.LENGTH_SHORT).show();
+                    alertDialog.dismiss();
+                });
+            }
         }
 
         if (alertDialog.getWindow() != null) {
             alertDialog.getWindow().setBackgroundDrawable(new ColorDrawable(0));
         }
         alertDialog.show();
+    }
+
+    private void backToMainMenu(){
+        Intent intent = new Intent(getApplicationContext(), MainMenuActivity.class);
+        intent.putExtra(MainActivity.INTENT_PARAMETER, MainMenuActivity.username);
+        startActivity(intent);
     }
 
     protected void switchToPropertyActivity() {

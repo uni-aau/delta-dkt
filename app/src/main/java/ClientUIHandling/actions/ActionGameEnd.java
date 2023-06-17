@@ -39,6 +39,7 @@ public class ActionGameEnd implements ClientActionInterface {
         MainActivity.logic.removeType(GAMEVIEW_ACTIVITY_TYPE);
         // Everything that is needed to create the popUp Window:
         GameViewActivity game = (GameViewActivity) activity;
+        GameViewActivity.gameOver = true;
         ConstraintLayout popUpConstraintLayout = game.findViewById(R.id.winnerPopUpLayout);
         View view = LayoutInflater.from(activity).inflate(R.layout.winner_podium_pop_up, popUpConstraintLayout);
         AlertDialog.Builder builder = new AlertDialog.Builder(activity);
