@@ -1,8 +1,10 @@
-package delta.dkt.logic.structure;
+package delta.dkt.logic.structure.ActionCards;
 
 import static ClientUIHandling.Constants.PREFIX_JAIL_TASK;
 
 import ServerLogic.ServerActionHandler;
+import delta.dkt.logic.structure.Player;
+import delta.dkt.logic.structure.Task;
 
 /**
  * This class represents a risk task.

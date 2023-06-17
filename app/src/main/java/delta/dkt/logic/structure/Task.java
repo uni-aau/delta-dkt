@@ -15,7 +15,7 @@ public abstract class Task {
      * @param id The id of the task
      * @param name The name of the task
      */
-    Task(int id, String name, String descriptionString) {
+    public Task(int id, String name, String descriptionString) {
         this.id = id;
         this.name = name;
         this.descriptionString = descriptionString;

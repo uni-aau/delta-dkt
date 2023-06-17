@@ -1,9 +1,11 @@
-package delta.dkt.logic.structure;
+package delta.dkt.logic.structure.ActionCards;
 
 import android.util.Log;
 
 import ClientUIHandling.Constants;
 import ServerLogic.ServerActionHandler;
+import delta.dkt.logic.structure.ActionCards.RiskTask;
+import delta.dkt.logic.structure.Player;
 
 public class CashRiskTask extends RiskTask {
     private final int cashAmount;

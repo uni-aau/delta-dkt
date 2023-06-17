@@ -1,7 +1,8 @@
-package delta.dkt.logic.structure;
+package delta.dkt.logic.structure.ActionCards;
 
 import ClientUIHandling.Constants;
 import ServerLogic.ServerActionHandler;
+import delta.dkt.logic.structure.Player;
 
 public class CashBankTask extends BankTask {
     private final int cashBankTaskAmount;

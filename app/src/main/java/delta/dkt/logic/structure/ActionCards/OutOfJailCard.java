@@ -3,7 +3,6 @@ package delta.dkt.logic.structure.ActionCards;
 import ClientUIHandling.Constants;
 import ServerLogic.ServerActionHandler;
 import delta.dkt.logic.structure.Player;
-import delta.dkt.logic.structure.RiskTask;
 
 public class OutOfJailCard extends RiskTask {
 
