@@ -31,4 +31,16 @@ class TasksTest {
         assertNotNull(bankTaskField.getBankTask());
         verify(mockMap, atLeastOnce()).getField(9);
     }
+
+    @Test
+    void testTaskFieldVariablesNotNull() {
+        when(mockMap.getField(3)).thenReturn(new RiskTaskField(3));
+        Task riskTask = riskTaskField.getRiskTask();
+
+        assertNotNull(riskTask.getId());
+        assertNotNull(riskTask.getDescriptionString());
+        assertNotNull(riskTask.getName());
+
+        verify(mockMap, atLeastOnce()).getField(3);
+    }
 }
