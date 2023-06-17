@@ -25,7 +25,8 @@ public class ActionPlayerInit implements ClientActionInterface {
     public void execute(AppCompatActivity activity, String clientMessage) {
         gameViewActivity = (GameViewActivity) activity;
         parseClientMessage(clientMessage);
-        Log.d("DEDUBINFO", "gameViewActivity is "+gameViewActivity);
+        Log.d(TAG, "gameViewActivity is "+gameViewActivity);
+        resetGameViewValues();
         initDice();
         setInitTextViewValues();
     }
@@ -43,6 +44,11 @@ public class ActionPlayerInit implements ClientActionInterface {
             Log.e("[UI] Action Error", String.format("Error - Less player markers (%d) than players (%d)!", Config.MAX_CLIENTS, clientId));
             Toast.makeText(activity, "There was an error while adding another player - Check error logs!", Toast.LENGTH_SHORT).show();
         }
+    }
+
+    private void resetGameViewValues() {
+        GameViewActivity.isSpectator = false;
+        GameViewActivity.gameOver = false;
     }
 
     private void parseClientMessage(String clientMessage) {
