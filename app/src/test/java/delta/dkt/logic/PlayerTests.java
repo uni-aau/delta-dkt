@@ -394,6 +394,16 @@ class PlayerTests {
     }
 
     /**
+     * Tests compareTo Method in Player class
+     *
+     */
+    @Test
+    void testCompareToDifferentPlayer() {
+        int result = player.compareTo(new Player());
+        assertTrue(result < 0); // player1 should be less then new player
+    }
+
+    /**
      * Checks whether the preliminary implementation of the getField method returns null.
      * For now, this test will stay in this class since it tests all the code written in this branch.
      */
