@@ -1,5 +1,6 @@
 package delta.dkt.logic;
 
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.Mockito.*;
 
@@ -37,7 +38,7 @@ class TasksTest {
         when(mockMap.getField(3)).thenReturn(new RiskTaskField(3));
         Task riskTask = riskTaskField.getRiskTask();
 
-        assertNotNull(riskTask.getId());
+        assertNotEquals(0, riskTask.getId());
         assertNotNull(riskTask.getDescriptionString());
         assertNotNull(riskTask.getName());
 
