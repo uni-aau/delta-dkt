@@ -3,7 +3,9 @@ package delta.dkt.logic.structure;
 import java.util.ArrayList;
 import java.util.Collections;
 
-import delta.dkt.logic.structure.ActionCards.OutOfJailCard;
+import delta.dkt.logic.structure.actioncards.CashRiskTask;
+import delta.dkt.logic.structure.actioncards.OutOfJailCard;
+import delta.dkt.logic.structure.actioncards.RiskTask;
 
 /**
  * This class includes a collection of all the risk tasks that a player can get in a game.

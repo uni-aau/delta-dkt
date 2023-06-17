@@ -3,6 +3,9 @@ package delta.dkt.logic.structure;
 import java.util.ArrayList;
 import java.util.Collections;
 
+import delta.dkt.logic.structure.actioncards.BankTask;
+import delta.dkt.logic.structure.actioncards.CashBankTask;
+
 /**
  * This class includes a collection of all the bank tasks that a player can get in a game.
  */

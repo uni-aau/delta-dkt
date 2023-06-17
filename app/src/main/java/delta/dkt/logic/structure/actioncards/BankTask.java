@@ -1,14 +1,16 @@
-package delta.dkt.logic.structure;
+package delta.dkt.logic.structure.actioncards;
 
 import static ClientUIHandling.Constants.PREFIX_JAIL_TASK;
 
 import ServerLogic.ServerActionHandler;
+import delta.dkt.logic.structure.Player;
+import delta.dkt.logic.structure.Task;
 
 /**
  * This class represents a bank task
  */
 
-public class BankTask extends Task{
+public class BankTask extends Task {
 
 
     /**
