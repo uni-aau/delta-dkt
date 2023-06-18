@@ -7,6 +7,7 @@ import static ClientUIHandling.Constants.PREFIX_PLAYER_MOVE;
 import static ClientUIHandling.Constants.PREFIX_PLAYER_TIMEOUT_WARNING;
 import static ClientUIHandling.Constants.PREFIX_ROLL_DICE_REQUEST;
 
+import ClientUIHandling.Constants;
 import android.util.Log;
 
 import ClientUIHandling.Config;
@@ -57,6 +58,7 @@ public class RequestRollDicePerm implements ServerActionInterface {
             }
 
             Game.incrementRounds(oldClientId);
+            if(Game.hasGameEnded()) ServerActionHandler.triggerAction(Constants.PREFIX_END_GAME, "ROUNDS RAN OUT");
 
         } else {
             Log.e(TAG, "Error - No players available in GameView");
@@ -145,6 +147,7 @@ public class RequestRollDicePerm implements ServerActionInterface {
                     int nextPlayerID = getNextPlayerID(playerID);
                     server.broadcast(GAMEVIEW_ACTIVITY_TYPE, PREFIX_ROLL_DICE_REQUEST, new String[]{"" + nextPlayerID, Game.getPlayers().get(nextPlayerID).getNickname()});
                     Game.incrementRounds(playerID);
+                    if(Game.hasGameEnded()) ServerActionHandler.triggerAction(Constants.PREFIX_END_GAME, "ROUNDS RAN OUT");
                     this.playerID = nextPlayerID;
                 }
 
