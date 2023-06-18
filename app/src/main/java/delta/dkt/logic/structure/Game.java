@@ -78,6 +78,10 @@ public class Game {
         }
     }
 
+    public static boolean hasGameEnded(){
+        return Game.rounds >= Config.ENDROUNDS;
+    }
+
     public static void reset(){
         Player._id = 1; // Reset player id otherwise it will be incremented every game from the old value
         map = new GameMap();
