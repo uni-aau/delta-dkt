@@ -114,7 +114,7 @@
 
     <string name="out_of_jail_card">OutOfJailCard</string>
     <string name="out_of_jail_card_text">Diese Karte befreit dich aus dem Arrest! Hebe diese Karte auf, du wirst sie brauchen.</string>
-    <string name="lucky_card_text4">Die Bank zahlt %s an Dividenden %s$.</string>
+    <string name="lucky_card_text4">Die Bank zahlt %s einen Bonus von %s$</string>
     <string name="lucky_card_text5">Für eine Erfindung erhält %s %s$ aus öffentlichen Mitteln</string>
     <string name="unlucky_card_text3">%s bezahlt %s$ Polizeistrafe</string>
     <string name="unlucky_card_text4">%s bezahlt für unerlaubtes Parken %s$.</string>
