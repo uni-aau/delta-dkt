@@ -19,6 +19,7 @@ class GameTest {
 
     @Test
     void incrementRounds() {
+        assertFalse(Game.hasGameEnded());
         for (int playerId = 1; playerId < 6; playerId++) {
             for(int rounds = 1; rounds < Config.ENDROUNDS;rounds++){
                 Game.incrementRounds(playerId);
@@ -26,6 +27,7 @@ class GameTest {
         }
         Game.incrementRounds(1);
         assertEquals(Config.ENDROUNDS, Game.getRounds());
+        assertTrue(Game.hasGameEnded());
     }
 
     @Test
