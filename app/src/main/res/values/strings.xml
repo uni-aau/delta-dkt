@@ -85,14 +85,14 @@
     <!-- ##START Cheating-ReportMenu Texts -->
     <string name="cheat_popup_selection_menu_heading">Report Menu</string>
     <string name="cheat_popup_selection_menu_description">
-        Select a cheating-player from the list down below to report him as such. Act with caution.
+        Select a cheating-player from the list down below to report him as such. Act with caution
     </string>
     <string name="cheat_popup_selection_menu_canel_button">Cancel</string>
     <string name="cheat_popup_selection_menu_submit_button">Report</string>
 
     <!-- ##START Cheating-ReportMenu Texts -->
     <string name="cheat_user_element_username_placeholder">Player Placeholder 1</string>
-    <string name="cheat_user_element_image_description">Represents the players figure in the current game.</string>
+    <string name="cheat_user_element_image_description">Represents the players figure in the current game</string>
 
     <!-- END Cheating Texts -->
     <string name="movement_info_message_singular">Activity: %s moved %s step and is now located at pos: %s</string>
@@ -114,7 +114,7 @@
     <string name="unlucky_card_text2">%s needs to pay %s$ for health insurance</string>
 
     <string name="out_of_jail_card">OutOfJailCard</string>
-    <string name="out_of_jail_card_text">This card will free you from prison! Keep it, you will need it.</string>
+    <string name="out_of_jail_card_text">This card will free you from prison! Keep it, you will need it</string>
     <string name="lucky_card_text4">The bank pays %s a special bonus of %s$</string>
     <string name="lucky_card_text5">For an invention %s gets %s$</string>
     <string name="unlucky_card_text3">%s pays %s$ police penalty</string>
