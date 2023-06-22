@@ -1,5 +1,9 @@
 package ClientUIHandling.actions;
 
+import static ClientUIHandling.Constants.GAMEVIEW_ACTIVITY_TYPE;
+import static ClientUIHandling.Constants.LOG_ERROR;
+import static ClientUIHandling.Constants.PREFIX_END_GAME;
+
 import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
 import android.util.Log;
@@ -13,7 +17,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
 import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -26,12 +30,10 @@ import delta.dkt.activities.MainActivity;
 import delta.dkt.activities.MainMenuActivity;
 import delta.dkt.logic.structure.Game;
 
-import static ClientUIHandling.Constants.*;
-
 
 public class ActionGameEnd implements ClientActionInterface {
 
-    private HashMap<String, Integer> ranking;
+    private LinkedHashMap<String, Integer> ranking;
     public static final String LOG_MESSAGE = "[CLIENT]_GAME_END";
 
     @Override
@@ -50,7 +52,8 @@ public class ActionGameEnd implements ClientActionInterface {
 
 
         // Receiving the WinnerRankingList from the Server:
-        ranking= receiveWinnerRanking(clientMessage);
+        ranking = receiveWinnerRanking(clientMessage);
+
 
         // Setting TextViews with Values:
         setTextViews(view);
@@ -63,7 +66,6 @@ public class ActionGameEnd implements ClientActionInterface {
         }
         Game.reset();
         LobbyViewActivity.userList.clear();
-
 
 
         // Switching to the Main Menu when ok Button is clicked:
@@ -84,7 +86,6 @@ public class ActionGameEnd implements ClientActionInterface {
         alertDialog.show();
 
     }
-
 
 
     //----------------------ALL METHODS------------------------//
@@ -197,12 +198,11 @@ public class ActionGameEnd implements ClientActionInterface {
     }
 
 
-
     // This Method is returning the Hashmap with the WinnerRanking
-    private HashMap<String,Integer> receiveWinnerRanking(String clientMessage) {
+    private LinkedHashMap<String, Integer> receiveWinnerRanking(String clientMessage) {
         String[] args = clientMessage.replace(PREFIX_END_GAME, "").split(";");
 
-        HashMap<String, Integer> stats = new HashMap<>();
+        LinkedHashMap<String, Integer> stats = new LinkedHashMap<>();
 
         for (String arg : args) {
             String[] parts = arg.split("#!#");
@@ -210,7 +210,7 @@ public class ActionGameEnd implements ClientActionInterface {
             int wealth = Integer.parseInt(parts[1]);
             stats.put(name, wealth);
         }
-        Log.d(LOG_MESSAGE, "JUHU! Game has ended// Name: "  + " "+ stats.keySet());
+        Log.d(LOG_MESSAGE, "JUHU! Game has ended// Name: " + " " + stats.keySet());
         return stats;
     }
 
