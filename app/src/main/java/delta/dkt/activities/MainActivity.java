@@ -55,8 +55,8 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(MainActivity.this, "This Username already exists", Toast.LENGTH_SHORT).show();
             } else if (user.length()>12) {
                 Toast.makeText(MainActivity.this, "This Username is too long -> Max 12 chars!!", Toast.LENGTH_SHORT).show();
-            } else if(hasUsernameSpecialCharacters(user)){
-                Toast.makeText(MainActivity.this, "A Username may not contain special characters!", Toast.LENGTH_SHORT).show();
+            } else if(!hasUsernameSpecialCharacters(user)){
+                Toast.makeText(MainActivity.this, "The Username may not contain special characters! (Allowed: a-Z 0-9)", Toast.LENGTH_SHORT).show();
             } else {
                 Toast.makeText(MainActivity.this, "Welcome " + user + "!", Toast.LENGTH_SHORT).show();
                 intent.putExtra(INTENT_PARAMETER, user);
@@ -71,8 +71,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private static boolean hasUsernameSpecialCharacters(String username) {
-        Pattern special = Pattern.compile ("[!@#$%&*()_+=|<>?{}\\[\\]~-]");
-        return special.matcher(username).find();
+        return username.matches("^[a-zA-Z0-9]+$");
     }
 
     //--------------------------ALL METHODS-----------------------------//
