@@ -14,6 +14,7 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -31,7 +32,7 @@ import static ClientUIHandling.Constants.*;
 
 public class ActionGameEnd implements ClientActionInterface {
 
-    private HashMap<String, Integer> ranking;
+    private LinkedHashMap<String, Integer> ranking;
     public static final String LOG_MESSAGE = "[CLIENT]_GAME_END";
 
     @Override
@@ -51,6 +52,8 @@ public class ActionGameEnd implements ClientActionInterface {
 
         // Receiving the WinnerRankingList from the Server:
         ranking= receiveWinnerRanking(clientMessage);
+
+
 
         // Setting TextViews with Values:
         setTextViews(view);
@@ -197,12 +200,11 @@ public class ActionGameEnd implements ClientActionInterface {
     }
 
 
-
     // This Method is returning the Hashmap with the WinnerRanking
-    private HashMap<String,Integer> receiveWinnerRanking(String clientMessage) {
+    private LinkedHashMap<String,Integer> receiveWinnerRanking(String clientMessage) {
         String[] args = clientMessage.replace(PREFIX_END_GAME, "").split(";");
 
-        HashMap<String, Integer> stats = new HashMap<>();
+        LinkedHashMap<String, Integer> stats = new LinkedHashMap<>();
 
         for (String arg : args) {
             String[] parts = arg.split("#!#");
