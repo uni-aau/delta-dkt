@@ -27,6 +27,8 @@ class GameTest {
         }
         Game.incrementRounds(1);
         assertEquals(Config.ENDROUNDS, Game.getRounds());
+        assertFalse(Game.hasGameEnded());
+        Config.IS_ROUNDS_MODE = true;
         assertTrue(Game.hasGameEnded());
     }
 
