@@ -76,7 +76,7 @@ public class Game {
     }
 
     public static boolean hasGameEnded(){
-        return Game.rounds >= Config.ENDROUNDS;
+        return (Game.rounds >= Config.ENDROUNDS) && Config.IS_ROUNDS_MODE;
     }
 
     public static void reset(){
